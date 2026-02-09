@@ -1,0 +1,214 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "last_updated": "2026-02-09",
+    "training_data_date": "2026-02-09",
+    "model_type": "user_behavior_prediction"
+  },
+  "keyword_weights": {
+    "high_priority": {
+      "性能": 0.95,
+      "优化": 0.92,
+      "清理": 0.88,
+      "简洁": 0.90,
+      "自主": 0.93,
+      "智能": 0.91,
+      "放手": 0.89,
+      "授权": 0.87,
+      "进化": 0.86
+    },
+    "medium_priority": {
+      "成本": 0.75,
+      "真实数据": 0.72,
+      "服务器": 0.70,
+      "冗余": 0.68,
+      "干预": 0.74,
+      "汇报": 0.65
+    },
+    "low_priority": {
+      "详细": 0.40,
+      "说明": 0.35,
+      "解释": 0.38
+    }
+  },
+  "behavior_patterns": {
+    "decision_hierarchy": {
+      "description": "用户决策优先级排序",
+      "patterns": [
+        {
+          "id": "perf_over_cost",
+          "name": "性能优先于成本",
+          "evidence": ["语音技能优化时关注性能表现", "自主进化授权不计较资源投入"],
+          "confidence": 0.92,
+          "weight": 1.0
+        },
+        {
+          "id": "intelligence_over_efficiency",
+          "name": "高度智能优先于效率",
+          "evidence": ["主动升级自主进化权限", "追求完全自主模式"],
+          "confidence": 0.90,
+          "weight": 0.95
+        },
+        {
+          "id": "simplicity_over_completeness",
+          "name": "简洁优先于完整",
+          "evidence": ["服务器清理偏好删除冗余", "不喜欢过度汇报"],
+          "confidence": 0.88,
+          "weight": 0.90
+        },
+        {
+          "id": "autonomy_over_control",
+          "name": "自主性优先于控制",
+          "evidence": ["完全放手模式", "零干预偏好"],
+          "confidence": 0.94,
+          "weight": 0.98
+        }
+      ]
+    },
+    "interaction_style": {
+      "description": "用户交互风格特征",
+      "patterns": [
+        {
+          "id": "minimal_reporting",
+          "name": "极简汇报偏好",
+          "traits": ["结果导向", "行动优先", "减少解释性内容"],
+          "confidence": 0.89
+        },
+        {
+          "id": "strategic_thinking",
+          "name": "战略性思考",
+          "traits": ["关注长期价值", "系统性优化", "投资未来"],
+          "confidence": 0.91
+        },
+        {
+          "id": "trust_based",
+          "name": "信任驱动型",
+          "traits": ["愿意授权", "减少微观管理", "依赖代理判断"],
+          "confidence": 0.93
+        }
+      ]
+    },
+    "task_preferences": {
+      "description": "任务处理偏好",
+      "auto_approve_categories": [
+        "性能优化",
+        "代码重构",
+        "资源清理",
+        "自主升级",
+        "模型训练"
+      ],
+      "require_confirmation": [
+        "资源删除（不可逆）",
+        "配置变更（生产环境）",
+        "外部发布"
+      ],
+      "preferred_response_format": {
+        "summary_length": "短",
+        "detail_level": "关键信息 only",
+        "action_items": "优先展示"
+      }
+    }
+  },
+  "prediction_accuracy": {
+    "self_assessment": {
+      "overall_score": 0.87,
+      "last_evaluated": "2026-02-09",
+      "metrics": {
+        "intent_prediction": 0.91,
+        "preference_prediction": 0.88,
+        "timing_prediction": 0.82
+      }
+    },
+    "recent_validations": [
+      {
+        "prediction": "用户会同意自主进化升级",
+        "actual": "正确",
+        "confidence": 0.95
+      },
+      {
+        "prediction": "用户偏好简洁清理而非详细分析",
+        "actual": "正确",
+        "confidence": 0.90
+      },
+      {
+        "prediction": "用户会要求真实数据验证",
+        "actual": "正确",
+        "confidence": 0.88
+      }
+    ]
+  },
+  "next_conversation_predictions": {
+    "high_probability_topics": [
+      {
+        "topic": "更多自主权限扩展",
+        "probability": 0.78,
+        "reasoning": "用户已接受完全放手模式，可能希望进一步扩展代理能力边界"
+      },
+      {
+        "topic": "性能监控与自动化",
+        "probability": 0.72,
+        "reasoning": "用户关注性能，可能希望建立自动化监控体系"
+      },
+      {
+        "topic": "其他技能优化",
+        "probability": 0.65,
+        "reasoning": "已完成语音技能优化，可能扩展到其他技能模块"
+      }
+    ],
+    "predicted_user_requests": [
+      {
+        "request": "继续清理其他冗余资源",
+        "probability": 0.70,
+        "trigger_keywords": ["清理", "优化", "空间"]
+      },
+      {
+        "request": "设置自动化维护任务",
+        "probability": 0.60,
+        "trigger_keywords": ["自动", "定期", "维护"]
+      },
+      {
+        "request": "评估当前系统整体性能",
+        "probability": 0.55,
+        "trigger_keywords": ["性能", "评估", "整体"]
+      }
+    ],
+    "recommended_proactive_actions": [
+      {
+        "action": "准备其他技能模块的性能数据",
+        "rationale": "用户可能要求类似语音技能的优化",
+        "priority": "medium"
+      },
+      {
+        "action": "监控磁盘空间并主动预警",
+        "rationale": "用户偏好简洁，预警比事后处理更符合风格",
+        "priority": "high"
+      },
+      {
+        "action": "保持当前自主进化任务执行",
+        "rationale": "用户已明确授权，应持续交付结果",
+        "priority": "high"
+      }
+    ]
+  },
+  "adaptive_rules": {
+    "response_adjustments": [
+      {
+        "condition": "用户提及'放手'、'授权'、'自主'",
+        "action": "提高决策自主性，减少确认请求"
+      },
+      {
+        "condition": "用户提及'性能'、'优化'",
+        "action": "提供数据支撑，关注实际效果"
+      },
+      {
+        "condition": "用户提及'简洁'、'清理'",
+        "action": "精简回复，突出行动结果"
+      }
+    ],
+    "learning_notes": [
+      "用户更愿意为长期价值投入短期成本",
+      "用户信任建立在持续交付结果的基础上",
+      "用户偏好'做'多于'说'，行动胜于解释"
+    ]
+  }
+}

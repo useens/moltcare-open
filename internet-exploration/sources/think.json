@@ -1,0 +1,94 @@
+{
+  "category": "thinking",
+  "description": "思维类信息源 - 理性思考、认知科学、哲学、决策",
+  "update_frequency": "daily",
+  "sources": [
+    {
+      "name": "LessWrong",
+      "url": "https://www.lesswrong.com",
+      "feed": "https://www.lesswrong.com/feed.xml",
+      "type": "rss",
+      "priority": 10,
+      "max_items": 15,
+      "tags": ["rationality", "ai-safety", "cognition", "philosophy"]
+    },
+    {
+      "name": "RibbonFarm",
+      "url": "https://www.ribbonfarm.com",
+      "feed": "https://www.ribbonfarm.com/feed/",
+      "type": "rss",
+      "priority": 9,
+      "max_items": 5,
+      "tags": ["longform", "systems-thinking", "culture", "philosophy"]
+    },
+    {
+      "name": "Slate Star Codex (Astral Codex Ten)",
+      "url": "https://astralcodexten.substack.com",
+      "feed": "https://astralcodexten.substack.com/feed",
+      "type": "rss",
+      "priority": 9,
+      "max_items": 5,
+      "tags": ["rationality", "psychology", "society", "science"]
+    },
+    {
+      "name": "Marginal Revolution",
+      "url": "https://marginalrevolution.com",
+      "feed": "https://feeds.feedburner.com/marginalrevolution",
+      "type": "rss",
+      "priority": 8,
+      "max_items": 15,
+      "tags": ["economics", "policy", "thinking"]
+    },
+    {
+      "name": "Farnam Street",
+      "url": "https://fs.blog",
+      "feed": "https://fs.blog/feed/",
+      "type": "rss",
+      "priority": 8,
+      "max_items": 5,
+      "tags": ["decision-making", "mental-models", "learning"]
+    },
+    {
+      "name": "Overcoming Bias",
+      "url": "https://www.overcomingbias.com",
+      "feed": "https://www.overcomingbias.com/feed",
+      "type": "rss",
+      "priority": 7,
+      "max_items": 5,
+      "tags": ["bias", "rationality", "prediction"]
+    },
+    {
+      "name": "Melting Asphalt",
+      "url": "https://meltingasphalt.com",
+      "feed": "https://meltingasphalt.com/feed/",
+      "type": "rss",
+      "priority": 7,
+      "max_items": 3,
+      "tags": ["culture", "psychology", "systems"]
+    },
+    {
+      "name": "Edge.org",
+      "url": "https://www.edge.org",
+      "feed": "https://www.edge.org/feed",
+      "type": "rss",
+      "priority": 8,
+      "max_items": 5,
+      "tags": ["science", "culture", "future"]
+    },
+    {
+      "name": "Scott Aaronson Blog",
+      "url": "https://scottaaronson.blog",
+      "feed": "https://scottaaronson.blog/?feed=rss2",
+      "type": "rss",
+      "priority": 7,
+      "max_items": 5,
+      "tags": ["quantum", "computation", "philosophy"]
+    }
+  ],
+  "scoring_weights": {
+    "depth": 0.35,
+    "novelty": 0.25,
+    "relevance": 0.25,
+    "source_quality": 0.15
+  }
+}

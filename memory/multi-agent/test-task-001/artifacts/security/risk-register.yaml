@@ -1,0 +1,40 @@
+risks:
+  - id: R001
+    category: API安全
+    description: 缺少速率限制可能导致暴力攻击
+    severity: MEDIUM
+    likelihood: HIGH
+    impact: MEDIUM
+    risk_score: 6
+    mitigation: 实现基于IP的速率限制
+    owner: developer
+    status: OPEN
+
+  - id: R002
+    category: 数据保护
+    description: 未加密传输可能泄露敏感信息
+    severity: HIGH
+    likelihood: MEDIUM
+    impact: HIGH
+    risk_score: 9
+    mitigation: 强制使用HTTPS
+    owner: developer
+    status: OPEN
+
+  - id: R003
+    category: 认证
+    description: JWT Token无刷新机制
+    severity: LOW
+    likelihood: MEDIUM
+    impact: LOW
+    risk_score: 2
+    mitigation: 实现Refresh Token
+    owner: developer
+    status: ACCEPTED
+
+summary:
+  total_risks: 3
+  high: 1
+  medium: 1
+  low: 1
+  mitigated: 0

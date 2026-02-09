@@ -1,0 +1,25 @@
+# Python虚拟环境
+**/.venv/
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.Python
+
+# 大文件
+**/*.so
+**/*.dll
+**/*.dylib
+
+# 临时文件
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+
+# 敏感信息（已加密存储）
+credentials/
+
+# 备份文件（单独管理）
+*.tar.gz

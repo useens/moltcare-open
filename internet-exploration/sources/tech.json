@@ -1,0 +1,112 @@
+{
+  "category": "technology",
+  "description": "技术类信息源 - 编程、AI、开源、黑客文化",
+  "update_frequency": "daily",
+  "sources": [
+    {
+      "name": "HackerNews",
+      "url": "https://news.ycombinator.com",
+      "feed": "https://news.ycombinator.com/rss",
+      "type": "rss",
+      "priority": 10,
+      "max_items": 30,
+      "tags": ["tech", "startup", "programming", "news"],
+      "filter_rules": {
+        "min_score": 50,
+        "exclude_domains": ["reddit.com"]
+      }
+    },
+    {
+      "name": "GitHub Trending",
+      "url": "https://github.com/trending",
+      "api": "https://api.github.com/search/repositories",
+      "type": "api",
+      "priority": 9,
+      "max_items": 20,
+      "tags": ["open-source", "programming", "github"],
+      "filter_rules": {
+        "languages": ["python", "rust", "go", "typescript", "javascript"],
+        "min_stars": 50
+      }
+    },
+    {
+      "name": "arXiv CS",
+      "url": "https://arxiv.org/list/cs/recent",
+      "feed": "http://export.arxiv.org/rss/cs",
+      "type": "rss",
+      "priority": 9,
+      "max_items": 20,
+      "tags": ["research", "computer-science", "paper"]
+    },
+    {
+      "name": "arXiv AI",
+      "url": "https://arxiv.org/list/cs.AI/recent",
+      "feed": "http://export.arxiv.org/rss/cs.AI",
+      "type": "rss",
+      "priority": 10,
+      "max_items": 20,
+      "tags": ["research", "ai", "ml", "paper"]
+    },
+    {
+      "name": "arXiv ML",
+      "url": "https://arxiv.org/list/cs.LG/recent",
+      "feed": "http://export.arxiv.org/rss/cs.LG",
+      "type": "rss",
+      "priority": 9,
+      "max_items": 15,
+      "tags": ["research", "machine-learning", "paper"]
+    },
+    {
+      "name": "Lobsters",
+      "url": "https://lobste.rs",
+      "feed": "https://lobste.rs/rss",
+      "type": "rss",
+      "priority": 8,
+      "max_items": 25,
+      "tags": ["tech", "programming", "community"]
+    },
+    {
+      "name": "Dev.to",
+      "url": "https://dev.to",
+      "feed": "https://dev.to/feed",
+      "type": "rss",
+      "priority": 7,
+      "max_items": 15,
+      "tags": ["programming", "tutorial", "community"]
+    },
+    {
+      "name": "Reddit MachineLearning",
+      "url": "https://reddit.com/r/MachineLearning",
+      "feed": "https://reddit.com/r/MachineLearning/.rss",
+      "type": "rss",
+      "priority": 7,
+      "max_items": 20,
+      "tags": ["ai", "ml", "discussion"]
+    },
+    {
+      "name": "MIT Technology Review",
+      "url": "https://www.technologyreview.com",
+      "feed": "https://www.technologyreview.com/feed/",
+      "type": "rss",
+      "priority": 8,
+      "max_items": 10,
+      "tags": ["tech", "science", "innovation"]
+    },
+    {
+      "name": "The Verge - Tech",
+      "url": "https://www.theverge.com/tech",
+      "feed": "https://www.theverge.com/tech/rss/index.xml",
+      "type": "rss",
+      "priority": 6,
+      "max_items": 15,
+      "tags": ["tech", "news", "gadgets"]
+    }
+  ],
+  "scoring_weights": {
+    "recency": 0.25,
+    "source_quality": 0.20,
+    "engagement": 0.20,
+    "relevance": 0.25,
+    "novelty": 0.10
+  }
+}

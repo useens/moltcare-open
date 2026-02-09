@@ -1,0 +1,685 @@
+{
+  "exploration_date": "2026-02-08",
+  "source": "https://github.com/VoltAgent/awesome-openclaw-skills",
+  "total_skills_in_repo": 2999,
+  "categories_explored": [
+    "Coding Agents & IDEs",
+    "Productivity & Tasks",
+    "Search & Research",
+    "CLI Utilities",
+    "Notes & PKM",
+    "Git & GitHub"
+  ],
+  "discoveries": {
+    "coding_agents_ides": {
+      "category": "Coding Agents & IDEs",
+      "skill_count": 133,
+      "highlights": [
+        {
+          "name": "cellcog",
+          "description": "#1 on DeepResearch Bench (Feb 2026). Advanced research and coding assistant.",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/nitishgargiitd/cellcog/SKILL.md",
+          "use_cases": ["Deep research", "Code analysis", "Benchmark tasks"]
+        },
+        {
+          "name": "coding-agent",
+          "description": "Run Codex CLI, Claude Code, OpenCode, or Pi Coding Agent",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/steipete/coding-agent/SKILL.md",
+          "use_cases": ["Multi-agent orchestration", "Code generation", "IDE integration"]
+        },
+        {
+          "name": "cursor-agent",
+          "description": "A comprehensive skill for using the Cursor CLI agent",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/swiftlysingh/cursor-agent/SKILL.md",
+          "use_cases": ["Cursor IDE integration", "AI-assisted coding"]
+        },
+        {
+          "name": "cc-godmode",
+          "description": "Self-orchestrating multi-agent development workflows",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/cubetribe/cc-godmode/SKILL.md",
+          "use_cases": ["Workflow automation", "Multi-agent coordination"]
+        },
+        {
+          "name": "claude-team",
+          "description": "Orchestrate multiple Claude Code workers via iTerm2",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/jalehman/claude-team/SKILL.md",
+          "use_cases": ["Parallel coding", "Team coordination"]
+        },
+        {
+          "name": "debug-pro",
+          "description": "Systematic debugging methodology and language-specific debugging",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/cmanfre7/debug-pro/SKILL.md",
+          "use_cases": ["Debugging", "Error analysis"]
+        },
+        {
+          "name": "docker-essentials",
+          "description": "Essential Docker commands and workflows for container management",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/arnarsson/docker-essentials/SKILL.md",
+          "use_cases": ["Container management", "DevOps workflows"]
+        },
+        {
+          "name": "ec-excalidraw",
+          "description": "Generate hand-drawn style diagrams, flowcharts, and architecture",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/henrino3/ec-excalidraw/SKILL.md",
+          "use_cases": ["Diagram generation", "Architecture visualization"]
+        },
+        {
+          "name": "mcp-builder",
+          "description": "Guide for creating high-quality MCP (Model Context Protocol) servers",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/seanphan/mcp-builder/SKILL.md",
+          "use_cases": ["MCP server development", "Tool integration"]
+        },
+        {
+          "name": "python",
+          "description": "Python coding guidelines and best practices",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/adarshdigievo/python/SKILL.md",
+          "use_cases": ["Python development", "Code standards"]
+        },
+        {
+          "name": "test-runner",
+          "description": "Write and run tests across languages and frameworks",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/cmanfre7/test-runner/SKILL.md",
+          "use_cases": ["Testing", "Quality assurance"]
+        },
+        {
+          "name": "tdd-guide",
+          "description": "Test-driven development workflow with test generation, coverage",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/alirezarezvani/tdd-guide/SKILL.md",
+          "use_cases": ["TDD", "Test generation"]
+        },
+        {
+          "name": "vhs-recorder",
+          "description": "Create professional terminal recordings with VHS tape files",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/killerapp/vhs-recorder/SKILL.md",
+          "use_cases": ["Terminal recording", "Documentation"]
+        }
+      ]
+    },
+    "productivity_tasks": {
+      "category": "Productivity & Tasks",
+      "skill_count": 134,
+      "highlights": [
+        {
+          "name": "asana",
+          "description": "Integrate Asana with Clawdbot via the Asana REST API",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/k0nkupa/asana/SKILL.md",
+          "use_cases": ["Project management", "Task tracking"]
+        },
+        {
+          "name": "clickup-skill",
+          "description": "Enterprise-grade ClickUp project management integration",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/d3layd/clickup-skill/SKILL.md",
+          "use_cases": ["Project management", "Team collaboration"]
+        },
+        {
+          "name": "linear",
+          "description": "Query and manage Linear issues, projects",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/manuelhettich/linear/SKILL.md",
+          "use_cases": ["Issue tracking", "Project management"]
+        },
+        {
+          "name": "todoist",
+          "description": "Manage Todoist tasks using the todoist CLI (via brainz-tasks)",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/xejrax/brainz-tasks/SKILL.md",
+          "use_cases": ["Task management", "Productivity"]
+        },
+        {
+          "name": "omnifocus",
+          "description": "Manage OmniFocus tasks, projects, and folders via Omni Automation",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/coyote-git/omnifocus-automation/SKILL.md",
+          "use_cases": ["Task management", "GTD methodology"]
+        },
+        {
+          "name": "microsoft-todo",
+          "description": "Manage Microsoft To Do tasks via the todo CLI",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/underwear/microsoft-todo/SKILL.md",
+          "use_cases": ["Task management", "Microsoft 365 integration"]
+        },
+        {
+          "name": "pomodoro",
+          "description": "A beautiful Pomodoro timer with task tracking",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/snail3d/pomodoro/SKILL.md",
+          "use_cases": ["Time management", "Focus enhancement"]
+        },
+        {
+          "name": "habit-tracker",
+          "description": "Build habits with streaks, reminders, and progress visualization",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/jhillin8/habit-tracker/SKILL.md",
+          "use_cases": ["Habit formation", "Self-improvement"]
+        },
+        {
+          "name": "focus-deep-work",
+          "description": "Maximize deep work with focus sessions, distraction logging",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/jhillin8/focus-deep-work/SKILL.md",
+          "use_cases": ["Deep work", "Productivity enhancement"]
+        },
+        {
+          "name": "deepwork-tracker",
+          "description": "Track deep work sessions locally (start/stop/status)",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/adunne09/deepwork-tracker/SKILL.md",
+          "use_cases": ["Time tracking", "Productivity analysis"]
+        },
+        {
+          "name": "jira",
+          "description": "Manage Jira issues, boards, sprints, and projects via the jira-cli",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/jdrhyne/jira/SKILL.md",
+          "use_cases": ["Issue tracking", "Agile project management"]
+        },
+        {
+          "name": "gmail-manager",
+          "description": "Expert Gmail management assistant via Rube",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/pepperbotts/gmail-manager/SKILL.md",
+          "use_cases": ["Email management", "Inbox organization"]
+        },
+        {
+          "name": "gsd",
+          "description": "Get Shit Done - Full project planning and execution workflow",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/glittercowboy/gsd/SKILL.md",
+          "use_cases": ["Project planning", "Execution tracking"]
+        }
+      ]
+    },
+    "search_research": {
+      "category": "Search & Research",
+      "skill_count": 253,
+      "highlights": [
+        {
+          "name": "brave-search",
+          "description": "Web search and content extraction via Brave Search API",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/steipete/brave-search/SKILL.md",
+          "use_cases": ["Web search", "Content extraction"]
+        },
+        {
+          "name": "duckduckgo-search",
+          "description": "Performs web searches using DuckDuckGo to retrieve relevant results",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/10e9928a/duckduckgo-search/SKILL.md",
+          "use_cases": ["Privacy-focused search", "Web research"]
+        },
+        {
+          "name": "exa",
+          "description": "Neural web search and code context via Exa AI API",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/fardeenxyz/exa/SKILL.md",
+          "use_cases": ["AI-powered search", "Code search"]
+        },
+        {
+          "name": "deep-research",
+          "description": "Deep Research Agent specializes in complex, multi-step research tasks",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/seyhunak/deep-research/SKILL.md",
+          "use_cases": ["Deep research", "Complex queries"]
+        },
+        {
+          "name": "academic-deep-research",
+          "description": "Transparent, rigorous research with full citations",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/kesslerio/academic-deep-research/SKILL.md",
+          "use_cases": ["Academic research", "Citation management"]
+        },
+        {
+          "name": "arxiv-watcher",
+          "description": "Search and summarize papers from ArXiv",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/rubenfb23/arxiv-watcher/SKILL.md",
+          "use_cases": ["Academic paper search", "Research monitoring"]
+        },
+        {
+          "name": "agentic-paper-digest",
+          "description": "Fetches and summarizes recent arXiv and Hugging Face papers",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/matanle51/agentic-paper-digest/SKILL.md",
+          "use_cases": ["Paper summarization", "Research tracking"]
+        },
+        {
+          "name": "hackernews",
+          "description": "Browse and search Hacker News",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/gchapim/hackernews/SKILL.md",
+          "use_cases": ["Tech news", "Community discussions"]
+        },
+        {
+          "name": "google-search",
+          "description": "Search the web using Google Custom Search Engine",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/mxfeinberg/google-search/SKILL.md",
+          "use_cases": ["Web search", "Information retrieval"]
+        },
+        {
+          "name": "bing-search",
+          "description": "Bing search skill for all users",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/stdeson/bing-search/SKILL.md",
+          "use_cases": ["Web search", "Microsoft ecosystem"]
+        },
+        {
+          "name": "file-search",
+          "description": "Fast file-name and content search using fd and rg (ripgrep)",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/xejrax/file-search/SKILL.md",
+          "use_cases": ["Local file search", "Content indexing"]
+        },
+        {
+          "name": "find-people",
+          "description": "Open Source Intelligence (OSINT) tool for researching people",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/tzannetosgiannis/find-people/SKILL.md",
+          "use_cases": ["OSINT", "People search"]
+        },
+        {
+          "name": "engram",
+          "description": "Provides semantic search for a local knowledge base using Pinecone and Gemini",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/anwitch/engram/SKILL.md",
+          "use_cases": ["Semantic search", "Knowledge base"]
+        }
+      ]
+    },
+    "cli_utilities": {
+      "category": "CLI Utilities",
+      "skill_count": 131,
+      "highlights": [
+        {
+          "name": "bat-cat",
+          "description": "A cat clone with syntax highlighting, line numbers, and Git integration",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/arnarsson/bat-cat/SKILL.md",
+          "use_cases": ["File viewing", "Syntax highlighting"]
+        },
+        {
+          "name": "fd-find",
+          "description": "A fast and user-friendly alternative to 'find' - simple syntax, smart defaults",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/arnarsson/fd-find/SKILL.md",
+          "use_cases": ["File search", "Directory traversal"]
+        },
+        {
+          "name": "jq-json-processor",
+          "description": "Process, filter, and transform JSON data using jq",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/arnarsson/jq-json-processor/SKILL.md",
+          "use_cases": ["JSON processing", "Data transformation"]
+        },
+        {
+          "name": "curl-http",
+          "description": "Essential curl commands for HTTP requests, API testing, and file transfers",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/arnarsson/curl-http/SKILL.md",
+          "use_cases": ["HTTP requests", "API testing"]
+        },
+        {
+          "name": "ffmpeg-cli",
+          "description": "Comprehensive video/audio processing with FFmpeg",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/ascendswang/ffmpeg-cli/SKILL.md",
+          "use_cases": ["Media processing", "Video conversion"]
+        },
+        {
+          "name": "create-cli",
+          "description": "Design CLI arguments, flags, subcommands",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/steipete/create-cli/SKILL.md",
+          "use_cases": ["CLI development", "Command design"]
+        },
+        {
+          "name": "pdf",
+          "description": "Comprehensive PDF manipulation toolkit for extracting text and tables, creating",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/awspace/pdf/SKILL.md",
+          "use_cases": ["PDF processing", "Document manipulation"]
+        },
+        {
+          "name": "sag",
+          "description": "ElevenLabs text-to-speech with mac-style say",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/steipete/sag/SKILL.md",
+          "use_cases": ["Text-to-speech", "Voice generation"]
+        },
+        {
+          "name": "gifgrep",
+          "description": "Search GIF providers with CLI/TUI, download results, and extract frames",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/steipete/gifgrep/SKILL.md",
+          "use_cases": ["GIF search", "Media download"]
+        },
+        {
+          "name": "dns-lookup",
+          "description": "Resolve hostnames to IP addresses using dig from bind-utils",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/xejrax/dns-lookup/SKILL.md",
+          "use_cases": ["DNS resolution", "Network diagnostics"]
+        },
+        {
+          "name": "geo-ip",
+          "description": "Look up geographic location for any IP address",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/xejrax/geo-ip/SKILL.md",
+          "use_cases": ["IP geolocation", "Network analysis"]
+        },
+        {
+          "name": "process-watch",
+          "description": "Monitor system processes - CPU, memory, disk I/O, network, open files",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/dbhurley/process-watch/SKILL.md",
+          "use_cases": ["Process monitoring", "System diagnostics"]
+        },
+        {
+          "name": "mactop",
+          "description": "Retrieve real-time hardware metrics from Apple Silicon Macs using mactop",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/metaspartan/mactop/SKILL.md",
+          "use_cases": ["Hardware monitoring", "Performance tracking"]
+        }
+      ]
+    },
+    "notes_pkm": {
+      "category": "Notes & PKM",
+      "skill_count": 100,
+      "highlights": [
+        {
+          "name": "obsidian",
+          "description": "Work with Obsidian vaults (plain Markdown notes) and automate workflows",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/steipete/obsidian/SKILL.md",
+          "use_cases": ["Note-taking", "Knowledge management", "Zettelkasten"]
+        },
+        {
+          "name": "notion",
+          "description": "Notion API for creating and managing pages, databases, and blocks",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/steipete/notion/SKILL.md",
+          "use_cases": ["Wiki", "Database", "Project management"]
+        },
+        {
+          "name": "bear-notes",
+          "description": "Create, search, and manage Bear notes via grizzly",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/steipete/bear-notes/SKILL.md",
+          "use_cases": ["Note-taking", "Apple ecosystem"]
+        },
+        {
+          "name": "apple-notes",
+          "description": "Manage Apple Notes via the memo CLI on macOS",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/steipete/apple-notes/SKILL.md",
+          "use_cases": ["Apple Notes automation", "macOS integration"]
+        },
+        {
+          "name": "logseq",
+          "description": "Provide commands for interacting with a local Logseq instance",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/juanirm/logseq/SKILL.md",
+          "use_cases": ["Outliner", "Knowledge graph", "PKM"]
+        },
+        {
+          "name": "para-pkm",
+          "description": "Manage PARA-based personal knowledge management (PKM) systems",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/killerapp/para-pkm/SKILL.md",
+          "use_cases": ["PKM methodology", "Organization"]
+        },
+        {
+          "name": "raindrop",
+          "description": "Search, list, and manage Raindrop.io bookmarks via CLI",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/velvet-shark/raindrop/SKILL.md",
+          "use_cases": ["Bookmark management", "Reading list"]
+        },
+        {
+          "name": "readwise",
+          "description": "Access Readwise highlights and Reader saved articles",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/refrigerator/readwise/SKILL.md",
+          "use_cases": ["Reading highlights", "Article management"]
+        },
+        {
+          "name": "instapaper",
+          "description": "Operate the instapaper-cli (ip) tool for read-later articles",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/vburojevic/instapaper/SKILL.md",
+          "use_cases": ["Read-later", "Article curation"]
+        },
+        {
+          "name": "second-brain",
+          "description": "Personal knowledge base powered by Ensue for capturing and retrieving",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/christinetyip/second-brain/SKILL.md",
+          "use_cases": ["Knowledge capture", "Information retrieval"]
+        },
+        {
+          "name": "craft",
+          "description": "Manage Craft notes and documents",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/noah-ribaudo/craft/SKILL.md",
+          "use_cases": ["Note-taking", "Document management"]
+        },
+        {
+          "name": "flomo-notes",
+          "description": "Save notes to Flomo via the Flomo inbox webhook",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/xiaoluoboding/flomo-notes/SKILL.md",
+          "use_cases": ["Quick capture", "Note-taking"]
+        },
+        {
+          "name": "anki-connect",
+          "description": "Interact with Anki flashcard decks via the AnkiConnect REST API",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/gyroninja/anki-connect/SKILL.md",
+          "use_cases": ["Spaced repetition", "Learning", "Memory"]
+        }
+      ]
+    },
+    "git_github": {
+      "category": "Git & GitHub",
+      "skill_count": 66,
+      "highlights": [
+        {
+          "name": "github",
+          "description": "Interact with GitHub using the gh CLI",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/steipete/github/SKILL.md",
+          "use_cases": ["GitHub automation", "Repository management"]
+        },
+        {
+          "name": "github-pr",
+          "description": "Fetch, preview, merge, and test GitHub PRs locally",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/dbhurley/github-pr/SKILL.md",
+          "use_cases": ["PR management", "Code review"]
+        },
+        {
+          "name": "pr-reviewer",
+          "description": "Automated GitHub PR code review with diff analysis, lint",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/briancolinger/pr-reviewer/SKILL.md",
+          "use_cases": ["Automated review", "Code quality"]
+        },
+        {
+          "name": "git-essentials",
+          "description": "Essential Git commands and workflows for version control",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/arnarsson/git-essentials/SKILL.md",
+          "use_cases": ["Git operations", "Version control"]
+        },
+        {
+          "name": "git-workflows",
+          "description": "Advanced git operations beyond add/commit/push",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/gitgoodordietrying/git-workflows/SKILL.md",
+          "use_cases": ["Advanced Git", "Workflow automation"]
+        },
+        {
+          "name": "gitclaw",
+          "description": "Back up the OpenClaw agent workspace to a GitHub repo and keep it synced",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/marian2js/gitclaw/SKILL.md",
+          "use_cases": ["Backup", "Workspace sync"]
+        },
+        {
+          "name": "gitlab-api",
+          "description": "GitLab API integration for repository operations",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/d1gl3/gitlab-api/SKILL.md",
+          "use_cases": ["GitLab automation", "Repository management"]
+        },
+        {
+          "name": "conventional-commits",
+          "description": "Format commit messages using the Conventional Commits specification",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/bastos/conventional-commits/SKILL.md",
+          "use_cases": ["Commit standards", "Changelog generation"]
+        }
+      ]
+    }
+  },
+  "key_insights": {
+    "most_popular_categories": [
+      {"category": "Search & Research", "count": 253},
+      {"category": "AI & LLMs", "count": 287},
+      {"category": "DevOps & Cloud", "count": 212},
+      {"category": "Web & Frontend Development", "count": 201},
+      {"category": "Browser & Automation", "count": 139}
+    ],
+    "notable_trends": [
+      "Strong focus on coding agents and multi-agent orchestration",
+      "Extensive search and research capabilities (253 skills)",
+      "Rich CLI utility ecosystem for automation",
+      "Multiple PKM integrations (Obsidian, Notion, Logseq)",
+      "GitHub/GitLab automation skills for developer workflows",
+      "Productivity tools for task management and focus"
+    ],
+    "recommended_for_ai_agents": [
+      "cellcog - Top-rated research skill",
+      "coding-agent - Multi-agent orchestration",
+      "brave-search - Web search capability",
+      "obsidian - Knowledge management",
+      "github - Repository automation",
+      "pomodoro - Time management",
+      "mcp-builder - Tool integration framework"
+    ]
+  },
+  "round_2_exploration": {
+    "exploration_date": "2026-02-08T23:37:00+08:00",
+    "latest_commit": "2026-02-08T04:45:11Z - Update descriptions 2",
+    "new_discoveries": {
+      "productivity_tasks": [
+        {
+          "name": "claw-conductor",
+          "description": "Always-on autonomous development orchestrator",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/johnsonfarmsus/claw-conductor/SKILL.md",
+          "use_cases": ["Autonomous development", "Workflow orchestration"]
+        },
+        {
+          "name": "clickup-mcp",
+          "description": "Manage ClickUp tasks, docs, time tracking, comments, chat, and search",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/pvoo/clickup-mcp/SKILL.md",
+          "use_cases": ["Project management", "Team collaboration", "Time tracking"]
+        },
+        {
+          "name": "comanda",
+          "description": "Generate, visualize, and execute declarative AI pipelines",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/kris-hansen/comanda/SKILL.md",
+          "use_cases": ["AI pipeline", "Workflow automation", "Visualization"]
+        },
+        {
+          "name": "daily-briefing",
+          "description": "Generates a warm, compact daily briefing with weather, calendar",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/antgly/daily-briefing/SKILL.md",
+          "use_cases": ["Daily planning", "Information aggregation"]
+        },
+        {
+          "name": "adhd-daily-planner",
+          "description": "Time-blind friendly planning, executive function support",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/mikecourt/adhd-daily-planner/SKILL.md",
+          "use_cases": ["ADHD support", "Daily planning", "Executive function"]
+        }
+      ],
+      "search_research": [
+        {
+          "name": "academic-deep-research",
+          "description": "Transparent, rigorous research with full citations",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/kesslerio/academic-deep-research/SKILL.md",
+          "use_cases": ["Academic research", "Citation management", "Literature review"]
+        },
+        {
+          "name": "agentic-paper-digest",
+          "description": "Fetches and summarizes recent arXiv and Hugging Face papers",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/matanle51/agentic-paper-digest/SKILL.md",
+          "use_cases": ["Paper summarization", "Research tracking", "AI/ML papers"]
+        },
+        {
+          "name": "deep-research",
+          "description": "Deep Research Agent specializes in complex, multi-step research tasks",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/seyhunak/deep-research/SKILL.md",
+          "use_cases": ["Complex research", "Multi-step queries", "Deep analysis"]
+        },
+        {
+          "name": "aluvia-brave-search",
+          "description": "Web search and content extraction via Brave",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/bertxtrella/aluvia-brave-search/SKILL.md",
+          "use_cases": ["Web search", "Content extraction", "Privacy search"]
+        },
+        {
+          "name": "brightdata",
+          "description": "Web scraping and search via Bright Data API",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/meirkad/bright-data/SKILL.md",
+          "use_cases": ["Web scraping", "Data collection", "Market research"]
+        }
+      ],
+      "cli_utilities": [
+        {
+          "name": "aria2-json-rpc",
+          "description": "Interact with aria2 download manager via JSON-RPC 2.0",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/azzgo/aria2-json-rpc/SKILL.md",
+          "use_cases": ["Download management", "Batch downloads", "Torrent support"]
+        },
+        {
+          "name": "camsnap",
+          "description": "Capture frames or clips from RTSP/ONVIF cameras",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/steipete/camsnap/SKILL.md",
+          "use_cases": ["Camera capture", "Video recording", "Surveillance"]
+        },
+        {
+          "name": "entr",
+          "description": "Run arbitrary commands when files change",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/gumadeiras/entr/SKILL.md",
+          "use_cases": ["File watching", "Auto-execution", "Development workflow"]
+        },
+        {
+          "name": "error-guard",
+          "description": "System safety and control-plane skill that prevents agent deadlocks",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/amar1432/error-guard/SKILL.md",
+          "use_cases": ["Error prevention", "System safety", "Agent reliability"]
+        },
+        {
+          "name": "clip-it",
+          "description": "The master tool for all advanced audio/video processing",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/akdeepankar/clip-it/SKILL.md",
+          "use_cases": ["Audio processing", "Video processing", "Media editing"]
+        }
+      ],
+      "notes_pkm": [
+        {
+          "name": "agents-structured-memory",
+          "description": "Chat-native structured memory for agents",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/singhcoder/agents-structured-memory/SKILL.md",
+          "use_cases": ["Structured memory", "Chat history", "Context preservation"]
+        },
+        {
+          "name": "chaos-mind",
+          "description": "Hybrid search memory system for AI agents",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/hargabyte/chaos-mind/SKILL.md",
+          "use_cases": ["Memory system", "Hybrid search", "Knowledge retrieval"]
+        },
+        {
+          "name": "elite-longterm-memory",
+          "description": "Ultimate AI agent memory system",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/nextfrontierbuilds/elite-longterm-memory/SKILL.md",
+          "use_cases": ["Long-term memory", "Memory optimization", "AI continuity"]
+        },
+        {
+          "name": "lancedb-memory",
+          "description": "LanceDB integration for long-term memory management",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/pntrivedy/lancedb-memory/SKILL.md",
+          "use_cases": ["Vector database", "Memory management", "Semantic search"]
+        },
+        {
+          "name": "zettelkasten",
+          "description": "Zettelkasten - Card box note taking system with AI insights",
+          "raw_url": "https://raw.githubusercontent.com/openclaw/skills/main/skills/rainy-cogmet/zettelkasten/SKILL.md",
+          "use_cases": ["Note-taking", "Knowledge management", "Zettelkasten method"]
+        }
+      ]
+    },
+    "top_recommended_for_installation": [
+      {
+        "name": "comanda",
+        "priority": "high",
+        "reason": "AI pipeline generation and execution - powerful for automation"
+      },
+      {
+        "name": "academic-deep-research",
+        "priority": "high",
+        "reason": "Research with citations - useful for in-depth analysis"
+      },
+      {
+        "name": "clickup-mcp",
+        "priority": "medium",
+        "reason": "Full project management integration via MCP"
+      },
+      {
+        "name": "elite-longterm-memory",
+        "priority": "high",
+        "reason": "Advanced memory system for agent continuity"
+      },
+      {
+        "name": "entr",
+        "priority": "medium",
+        "reason": "File watching and auto-execution utility"
+      }
+    ]
+  },
+  "next_exploration": {
+    "recommended_categories": [
+      "AI & LLMs (287 skills) - Model integration and LLM tools",
+      "DevOps & Cloud (212 skills) - Infrastructure and deployment",
+      "Browser & Automation (139 skills) - Web automation and scraping",
+      "Communication (133 skills) - Messaging and collaboration tools"
+    ],
+    "scheduled_for": "2026-02-08T23:47:00+08:00"
+  }
+}

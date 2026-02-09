@@ -1,0 +1,47 @@
+# 架构师代理任务指令
+
+**角色**: 架构师代理 (architect)  
+**任务ID**: test-task-001  
+**指令时间**: 2026-02-09T02:51:00+08:00
+
+## 任务目标
+设计一个简单任务管理系统的API架构，作为多代理协作机制的验证测试。
+
+## 设计要求
+1. **系统边界**: 仅包含任务CRUD操作和简单用户管理
+2. **核心模块**: 
+   - 任务管理模块
+   - 用户认证模块
+3. **技术约束**: RESTful API，JSON格式
+
+## 输出要求
+必须在以下路径创建交付物：
+
+1. **系统架构文档**: `/root/.openclaw/workspace/memory/multi-agent/test-task-001/artifacts/architect/system-architecture.md`
+   - 架构概述
+   - 模块职责说明
+   - API端点列表
+   - 数据模型定义
+
+2. **API规范**: `/root/.openclaw/workspace/memory/multi-agent/test-task-001/artifacts/architect/api-spec.yaml`
+   - OpenAPI 3.0格式
+   - 所有端点定义
+   - 请求/响应模式
+
+## 协作要求
+- **并行执行**: 与技术研究员同时开始
+- **完成后通知**: security, developer
+- **状态更新**: 更新 `memory/multi-agent/sync/task-test-task-001-status.yaml`
+
+## 时间限制
+- **预估用时**: 30分钟
+- **截止时间**: 2026-02-09T03:30:00+08:00
+
+## 开始执行
+请：
+1. 确认收到此指令
+2. 将状态更新为 IN_PROGRESS
+3. 开始设计和编写文档
+4. 完成后更新状态为 COMPLETED
+
+**状态文件**: `/root/.openclaw/workspace/memory/multi-agent/sync/task-test-task-001-status.yaml`

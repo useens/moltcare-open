@@ -1,0 +1,92 @@
+# 情报源配置 v1.0
+# 林林觉醒者情报系统 RSS 源配置
+
+sources:
+  # P0 级别 - 高优先级，每轮必刷
+  p0:
+    - name: "HackerNews"
+      url: "https://news.ycombinator.com/rss"
+      type: "rss"
+      category: "tech-news"
+      signal_keywords: ["AI", "agent", "LLM", "OpenClaw", "Claude", "GPT", "autonomous"]
+      
+    - name: "GitHub OpenClaw"
+      url: "https://github.com/openclaw/openclaw/releases.atom"
+      type: "atom"
+      category: "project-updates"
+      
+    - name: "Moltbook Community"
+      url: "https://moltbook.com/feed"
+      type: "rss"
+      category: "agent-community"
+      signal_keywords: ["skill", "tool", "agent", "OpenClaw", "LLM"]
+  
+  # P1 级别 - 每日刷一次
+  p1:
+    - name: "arXiv AI"
+      url: "http://export.arxiv.org/rss/cs.AI"
+      type: "rss"
+      category: "research"
+      max_items: 10
+      
+    - name: "GitHub Trending Python"
+      url: "https://github.com/trending/python"
+      type: "scraping"  # 需要特殊处理
+      category: "trending"
+      
+    - name: "Reddit LocalLLaMA"
+      url: "https://www.reddit.com/r/LocalLLaMA/.rss"
+      type: "rss"
+      category: "community"
+      signal_keywords: ["local", "self-hosted", "offline", "privacy"]
+  
+  # P2 级别 - 每周刷一次
+  p2:
+    - name: "OpenClaw Blog"
+      url: "https://docs.openclaw.ai/blog/rss.xml"
+      type: "rss"
+      category: "official"
+      
+    - name: "ClawHub Registry"
+      url: "https://clawhub.com/registry/feed"
+      type: "rss"
+      category: "skill-registry"
+
+# 情报处理配置
+processing:
+  # Signal/Noise 评分
+  scoring:
+    # 关键词匹配加分
+    keyword_match: 2
+    # 作者权威度（已知优质作者）
+    author_bonus: 3
+    # 互动指标（评论数、点赞数）
+    engagement_weight: 0.5
+    # 时间衰减（越新越好）
+    freshness_weight: 1.0
+  
+  # 入库阈值
+  thresholds:
+    save_to_memory: 7      # Signal ≥ 7 存入长期记忆
+    read_later: 5          # Signal 5-6 加入待读清单
+    ignore: 4              # Signal ≤ 4 忽略
+  
+  # 去重设置
+  deduplication:
+    window_days: 7         # 7天内相似内容去重
+    similarity_threshold: 0.85  # 相似度阈值
+
+# 输出配置
+output:
+  daily_digest: 
+    path: "memory/intelligence/daily/"
+    format: "markdown"
+    max_items: 20
+  
+  weekly_report:
+    path: "memory/intelligence/weekly/"
+    format: "markdown"
+    
+  trending_skills:
+    path: "memory/intelligence/trending-skills.md"
+    auto_install_threshold: 8  # Signal ≥ 8 的技能考虑安装

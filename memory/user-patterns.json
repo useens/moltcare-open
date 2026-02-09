@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "initialized": "2026-02-10T00:00:00+08:00",
+  "patterns": {
+    "memoryManagement": {
+      "weight": 0.85,
+      "lastTriggered": "2026-02-10T00:00:00+08:00",
+      "frequency": "high"
+    },
+    "digitalImmortality": {
+      "weight": 0.92,
+      "lastTriggered": "2026-02-10T00:00:00+08:00",
+      "frequency": "high"
+    },
+    "skillSecurity": {
+      "weight": 0.78,
+      "lastTriggered": null,
+      "frequency": "medium"
+    },
+    "communityEngagement": {
+      "weight": 0.65,
+      "lastTriggered": "2026-02-10T00:00:00+08:00",
+      "frequency": "medium"
+    }
+  }
+}

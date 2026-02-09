@@ -1,0 +1,23 @@
+#!/bin/bash
+# Whisper Transcription - Optimized wrapper
+# Features: Model caching, Fast startup
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VENV_PYTHON="$SCRIPT_DIR/../.venv/bin/python"
+TRANSCRIBE_PY="$SCRIPT_DIR/transcribe_v2.py"
+
+# Preload model cache on first run
+if [ ! -f /tmp/whisper_model_cached ]; then
+    echo "[System] Initializing model cache (first run)..." >&2
+    $VENV_PYTHON -c "
+import whisper
+import sys
+sys.stderr = open('/dev/null', 'w')
+model = whisper.load_model('base')
+" &2>/dev/null
+    touch /tmp/whisper_model_cached
+    echo "[System] Model cached" >&2
+fi
+
+# Run transcription
+exec $VENV_PYTHON "$TRANSCRIBE_PY" "$@"

@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: 任务管理系统API
+  version: 1.0.0
+  description: 简单任务管理系统API
+
+paths:
+  /auth/login:
+    post:
+      summary: 用户登录
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username: { type: string }
+                password: { type: string }
+      responses:
+        200:
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token: { type: string }
+
+  /tasks:
+    get:
+      summary: 获取任务列表
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: 任务列表
+    post:
+      summary: 创建任务
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title: { type: string }
+                description: { type: string }
+                priority: { type: integer }
+      responses:
+        201:
+          description: 创建成功
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

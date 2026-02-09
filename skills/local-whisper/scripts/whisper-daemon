@@ -1,0 +1,13 @@
+#!/bin/bash
+# Whisper Fast - 使用常驻服务器
+# 模型常驻内存，启动即转录
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VENV_PYTHON="$SCRIPT_DIR/../.venv/bin/python"
+CLIENT_PY="$SCRIPT_DIR/client.py"
+
+# 默认语言
+LANGUAGE="${2:-zh}"
+
+# 转录
+exec $VENV_PYTHON "$CLIENT_PY" "$1" --language "$LANGUAGE"

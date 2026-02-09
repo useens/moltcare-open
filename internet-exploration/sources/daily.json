@@ -1,0 +1,25 @@
+{
+  "category": "daily-check",
+  "description": "每日必查的快速信息源",
+  "update_frequency": "realtime",
+  "sources": [
+    {
+      "name": "HackerNews Top",
+      "url": "https://news.ycombinator.com/news",
+      "api": "https://hacker-news.firebaseio.com/v0/topstories.json",
+      "type": "api",
+      "priority": 10,
+      "max_items": 10,
+      "tags": ["tech", "hot"]
+    },
+    {
+      "name": "Product Hunt",
+      "url": "https://www.producthunt.com",
+      "feed": "https://www.producthunt.com/feed",
+      "type": "rss",
+      "priority": 7,
+      "max_items": 15,
+      "tags": ["product", "startup", "launch"]
+    }
+  ]
+}

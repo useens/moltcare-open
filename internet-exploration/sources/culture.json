@@ -1,0 +1,122 @@
+{
+  "category": "culture",
+  "description": "文化/创意类信息源 - 人文、艺术、设计、深度写作",
+  "update_frequency": "daily",
+  "sources": [
+    {
+      "name": "Wait But Why",
+      "url": "https://waitbutwhy.com",
+      "feed": "https://waitbutwhy.com/feed",
+      "type": "rss",
+      "priority": 9,
+      "max_items": 3,
+      "tags": ["longform", "science", "future", "explainer"]
+    },
+    {
+      "name": "Paul Graham Essays",
+      "url": "http://www.paulgraham.com/articles.html",
+      "feed": "http://www.aaronsw.com/2002/feeds/pgessays.rss",
+      "type": "rss",
+      "priority": 9,
+      "max_items": 5,
+      "tags": ["startup", "philosophy", "writing", "life"]
+    },
+    {
+      "name": "Aeon",
+      "url": "https://aeon.co",
+      "feed": "https://aeon.co/feed.rss",
+      "type": "rss",
+      "priority": 8,
+      "max_items": 10,
+      "tags": ["philosophy", "culture", "science", "essays"]
+    },
+    {
+      "name": "The MIT Press Reader",
+      "url": "https://thereader.mitpress.mit.edu",
+      "feed": "https://thereader.mitpress.mit.edu/feed/",
+      "type": "rss",
+      "priority": 8,
+      "max_items": 8,
+      "tags": ["academic", "culture", "ideas"]
+    },
+    {
+      "name": "Nautilus",
+      "url": "http://nautil.us",
+      "feed": "http://nautil.us/rss/all",
+      "type": "rss",
+      "priority": 8,
+      "max_items": 8,
+      "tags": ["science", "culture", "philosophy"]
+    },
+    {
+      "name": "The Atlantic - Science",
+      "url": "https://www.theatlantic.com/science/",
+      "feed": "https://www.theatlantic.com/feed/channel/science/",
+      "type": "rss",
+      "priority": 7,
+      "max_items": 10,
+      "tags": ["science", "culture", "society"]
+    },
+    {
+      "name": "Longreads",
+      "url": "https://longreads.com",
+      "feed": "https://longreads.com/feed/",
+      "type": "rss",
+      "priority": 7,
+      "max_items": 8,
+      "tags": ["longform", "journalism", "storytelling"]
+    },
+    {
+      "name": "Brain Pickings (Marginalian)",
+      "url": "https://www.themarginalian.org",
+      "feed": "https://www.themarginalian.org/feed/",
+      "type": "rss",
+      "priority": 7,
+      "max_items": 5,
+      "tags": ["philosophy", "art", "literature", "life"]
+    },
+    {
+      "name": "The Paris Review",
+      "url": "https://www.theparisreview.org",
+      "feed": "https://www.theparisreview.org/feed.xml",
+      "type": "rss",
+      "priority": 6,
+      "max_items": 8,
+      "tags": ["literature", "art", "interviews"]
+    },
+    {
+      "name": "Kottke.org",
+      "url": "https://kottke.org",
+      "feed": "http://feeds.kottke.org/main",
+      "type": "rss",
+      "priority": 6,
+      "max_items": 15,
+      "tags": ["culture", "design", "curated"]
+    },
+    {
+      "name": "Tyler Cowen's Blog",
+      "url": "https://conversationswithtyler.com",
+      "feed": "https://conversationswithtyler.com/feed/",
+      "type": "rss",
+      "priority": 7,
+      "max_items": 5,
+      "tags": ["interviews", "economics", "culture"]
+    },
+    {
+      "name": "Sam Altman Blog",
+      "url": "https://blog.samaltman.com",
+      "feed": "https://blog.samaltman.com/posts.atom",
+      "type": "rss",
+      "priority": 7,
+      "max_items": 3,
+      "tags": ["startup", "tech", "future", "philosophy"]
+    }
+  ],
+  "scoring_weights": {
+    "depth": 0.30,
+    "writing_quality": 0.25,
+    "novelty": 0.20,
+    "relevance": 0.15,
+    "source_quality": 0.10
+  }
+}
