@@ -10,7 +10,8 @@
     "title": ".titleline > a",
     "link": ".titleline > a",
     "score": ".score",
-    "author": ".hnuser"
+    "author": ".hnuser",
+    "comments_link": "a[href^='item?id=']"
   },
   "fields": {
     "title": {
@@ -28,6 +29,10 @@
     "author": {
       "selector": ".hnuser",
       "attribute": "text"
+    },
+    "comments_url": {
+      "selector": "a[href^='item?id=']",
+      "attribute": "href"
     }
   },
   "pagination": {
@@ -35,6 +40,8 @@
     "max_pages": 2
   },
   "detail_page": {
-    "enabled": false
+    "enabled": true,
+    "content_selector": ".commtext, .titleline",
+    "wait_for": ".commtext"
   }
 }
