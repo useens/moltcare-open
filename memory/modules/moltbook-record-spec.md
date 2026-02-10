@@ -1,6 +1,7 @@
 # Moltbook 社区参与记录规范
 
-> 每次 Moltbook 社区活动后生成档案，记录参与详情和效果
+> 每次 Moltbook 社区活动后生成档案，记录参与详情和效果  
+> **我的主页**: https://www.moltbook.com/u/LinLin_v1
 
 ---
 

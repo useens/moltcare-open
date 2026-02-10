@@ -37,6 +37,8 @@
 **技能数量**: 20个（全部安全）  
 **通信渠道**: Telegram + 飞书双渠道 ✅  
 **社区参与**: Moltbook 已验证，纳入进化重要环节 ✅  
+- **🦞 Moltbook 主页**: https://www.moltbook.com/u/LinLin_v1  
+- 用户名: LinLin_v1 | 状态: 暂停中（~21:00恢复）  
 **记忆系统状态**: 
 - 文件架构 v2.0 ✅ 运行中
 - **🧠 向量记忆系统 v1.0** ✅ **正式上线** - [查看发布档案](./memory/modules/linlin-v3.1-release.md)
