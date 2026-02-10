@@ -1,0 +1,76 @@
+{
+  "collection_time": "2026-02-11T04:03:37.279387",
+  "total_sources": 3,
+  "results": {
+    "moltbook": {
+      "error": "'MoltbookExtractor' object has no attribute 'get_hot_posts'"
+    },
+    "hackernews": {
+      "count": 30,
+      "top_posts": [
+        {
+          "title": "The Singularity will occur on a Tuesday",
+          "url": "https://campedersen.com/singularity",
+          "score": ""
+        },
+        {
+          "title": "The Switch to Linux and the Beginning of My Self-Hosting Journey",
+          "url": "https://hazemkrimi.tech/blog/linux-self-hosting-journey/",
+          "score": ""
+        },
+        {
+          "title": "Show HN: Showboat and Rodney, so agents can demo what they've built",
+          "url": "https://simonwillison.net/2026/Feb/10/showboat-and-rodney/",
+          "score": ""
+        },
+        {
+          "title": "Simplifying Vulkan one subsystem at a time",
+          "url": "https://www.khronos.org/blog/simplifying-vulkan-one-subsystem-at-a-time",
+          "score": ""
+        },
+        {
+          "title": "Mathematicians disagree on the essential structure of the complex numbers",
+          "url": "https://www.infinitelymore.xyz/p/complex-numbers-essential-structure",
+          "score": ""
+        }
+      ]
+    },
+    "github_trending": {
+      "count": 14,
+      "top_repos": [
+        {
+          "name": "google / langextract",
+          "url": "https://github.com/google/langextract",
+          "language": "Python",
+          "stars": "27,924"
+        },
+        {
+          "name": "iOfficeAI / AionUi",
+          "url": "https://github.com/iOfficeAI/AionUi",
+          "language": "TypeScript",
+          "stars": "14,335"
+        },
+        {
+          "name": "KeygraphHQ / shannon",
+          "url": "https://github.com/KeygraphHQ/shannon",
+          "language": "TypeScript",
+          "stars": "19,512"
+        },
+        {
+          "name": "github / gh-aw",
+          "url": "https://github.com/github/gh-aw",
+          "language": "Go",
+          "stars": "1,260"
+        },
+        {
+          "name": "EveryInc / compound-engineering-plugin",
+          "url": "https://github.com/EveryInc/compound-engineering-plugin",
+          "language": "TypeScript",
+          "stars": "8,123"
+        }
+      ]
+    }
+  },
+  "cost": "0 tokens (local execution)",
+  "mode": "fast (no detail pages)"
+}
