@@ -67,6 +67,7 @@ memory/
 | `scripts/incremental-memory-import.py` | 增量记忆入库脚本 | ⭐⭐⭐⭐ |
 | `scripts/auto-import-trigger.py` | 对话后自动导入触发器 | ⭐⭐⭐⭐ |
 | `scripts/vector-memory-cleanup.py` | 向量记忆整理脚本 | ⭐⭐⭐⭐ |
+| `scripts/moltbook-super-extractor.py` | **Moltbook超级提取器v5.0** | ⭐⭐⭐⭐⭐ |
 | `modules/skill-localization-criteria.md` | 技能本地化评估标准 | ⭐⭐⭐⭐ |
 | `tags/skills-installed.md` | 已安装技能清单 | ⭐⭐⭐⭐ |
 

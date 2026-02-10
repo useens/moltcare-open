@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 """
-Moltbook 超级提取器 v5.0 - 全功能优化版
+Moltbook 超级提取器 v5.0 - 全功能版
 并发 + 智能等待 + 增量 + 滚动 + 登录态
-Token成本最低，全部本地化执行
+融入进化体系，定时执行
+Token成本：0（纯本地执行）
 """
 
 import asyncio
 import json
-import os
-import re
+import sys
 from datetime import datetime
 from pathlib import Path
-from playwright.async_api import async_playwright, Page
+from playwright.async_api import async_playwright
 
 # 配置
 CONFIG = {
     "username": "LinLin_v1",
-    "concurrent_limit": 3,  # 并发数
-    "max_scrolls": 5,       # 最大滚动次数
-    "scroll_delay": 1000,   # 滚动间隔(ms)
+    "concurrent_limit": 3,
+    "max_scrolls": 5,
+    "scroll_delay": 1000,
     "data_dir": "data/moltbook",
     "cookie_file": "data/moltbook/cookies.json",
     "state_file": "data/moltbook/last_state.json"
@@ -60,11 +60,10 @@ class MoltbookSuperExtractor:
                 "extracted_posts": post_ids
             }, f)
     
-    async def scroll_to_load(self, page: Page):
+    async def scroll_to_load(self, page):
         """智能滚动加载更多内容"""
         posts_before = 0
         for i in range(CONFIG["max_scrolls"]):
-            # 获取当前帖子数
             links = await page.query_selector_all('a[href^="/post/"]')
             posts_now = len(set([await l.get_attribute('href') for l in links]))
             
@@ -75,24 +74,21 @@ class MoltbookSuperExtractor:
             posts_before = posts_now
             print(f"[滚动] 第{i+1}次: 当前{posts_now}个帖子")
             
-            # 滚动到底部
             await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
             await page.wait_for_timeout(CONFIG["scroll_delay"])
     
     async def extract_post_detail(self, browser, post_url: str) -> dict:
         """提取单个帖子详情（带并发控制）"""
-        async with self.semaphore:  # 限制并发
+        async with self.semaphore:
             page = await browser.new_page()
             try:
                 await page.goto(post_url, wait_until="networkidle", timeout=30000)
                 
-                # 智能等待：等文章内容出现
                 try:
                     await page.wait_for_selector('[class*="content"], article, main', timeout=5000)
                 except:
-                    pass  # 超时继续
+                    pass
                 
-                # 提取完整内容
                 content = await page.evaluate('''() => {
                     const selectors = ['[class*="content"]', '[class*="body"]', 'article', 'main', '.post'];
                     for (const sel of selectors) {
@@ -102,7 +98,6 @@ class MoltbookSuperExtractor:
                     return document.body.innerText.substring(0, 1000);
                 }''')
                 
-                # 提取评论
                 comments = await page.evaluate('''() => {
                     const comments = document.querySelectorAll('[class*="comment"]');
                     return Array.from(comments).slice(0, 5).map(c => ({
@@ -126,7 +121,6 @@ class MoltbookSuperExtractor:
             browser = await p.chromium.launch(headless=True)
             context = await browser.new_context()
             
-            # 加载cookie（如果有）
             cookies = self.load_cookies()
             if cookies:
                 await context.add_cookies(cookies)
@@ -138,17 +132,14 @@ class MoltbookSuperExtractor:
             
             await page.goto(profile_url, wait_until="networkidle", timeout=30000)
             
-            # 智能等待：等帖子加载
             try:
                 await page.wait_for_selector('a[href^="/post/"]', timeout=5000)
             except:
                 print("[主页] 未找到帖子")
                 return []
             
-            # 滚动加载更多
             await self.scroll_to_load(page)
             
-            # 提取所有帖子链接
             links = await page.query_selector_all('a[href^="/post/"]')
             post_urls = []
             seen = set()
@@ -161,15 +152,114 @@ class MoltbookSuperExtractor:
             
             print(f"[主页] 找到 {len(post_urls)} 个帖子")
             
-            # 保存cookie（保持登录态）
             cookies = await context.cookies()
             self.save_cookies(cookies)
             
             await browser.close()
             return post_urls
     
-    async def run(self, username: str = None):
-        """主运行流程"""
+    async def extract_feed(self, sort_by="hot") -> list:
+        """提取Moltbook热门/最新帖子列表"""
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True)
+            context = await browser.new_context()
+            
+            cookies = self.load_cookies()
+            if cookies:
+                await context.add_cookies(cookies)
+            
+            page = await context.new_page()
+            
+            feed_url = f"https://www.moltbook.com/?sort={sort_by}"
+            print(f"[热门] 访问: {feed_url}")
+            
+            await page.goto(feed_url, wait_until="networkidle", timeout=30000)
+            
+            try:
+                await page.wait_for_selector('a[href^="/post/"]', timeout=5000)
+            except:
+                print("[热门] 未找到帖子")
+                return []
+            
+            await self.scroll_to_load(page)
+            
+            links = await page.query_selector_all('a[href^="/post/"]')
+            post_urls = []
+            seen = set()
+            
+            for link in links:
+                href = await link.get_attribute('href')
+                if href and href not in seen:
+                    seen.add(href)
+                    post_urls.append(f"https://www.moltbook.com{href}")
+            
+            print(f"[热门] 找到 {len(post_urls)} 个帖子")
+            
+            cookies = await context.cookies()
+            self.save_cookies(cookies)
+            
+            await browser.close()
+            return post_urls
+    
+    async def extract_hot_posts(self, limit=10) -> list:
+        """提取热门帖子（供进化系统调用）"""
+        print(f"\n{'='*50}")
+        print(f"Moltbook 热门帖子提取")
+        print(f"{'='*50}\n")
+        
+        post_urls = await self.extract_feed(sort_by="hot")
+        
+        if not post_urls:
+            print("[热门] 没有帖子需要提取")
+            return []
+        
+        post_urls = post_urls[:limit]
+        print(f"[热门] 准备提取前 {len(post_urls)} 个帖子详情\n")
+        
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True)
+            
+            tasks = [self.extract_post_detail(browser, url) for url in post_urls]
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+            
+            await browser.close()
+        
+        successful = [r for r in results if isinstance(r, dict)]
+        errors = [r for r in results if isinstance(r, Exception)]
+        
+        output_file = self.data_dir / f"hot_posts_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump({
+                "extraction_time": datetime.now().isoformat(),
+                "sort_by": "hot",
+                "posts_count": len(successful),
+                "errors_count": len(errors),
+                "posts": successful
+            }, f, ensure_ascii=False, indent=2)
+        
+        print(f"\n{'='*50}")
+        print(f"提取完成")
+        print(f"{'='*50}")
+        print(f"热门帖子: {len(successful)}")
+        print(f"失败: {len(errors)}")
+        print(f"数据保存: {output_file}")
+        
+        for i, post in enumerate(successful[:5], 1):
+            print(f"\n[{i}] {post['url'][:60]}...")
+            content_preview = post['content'][:100] if post['content'] else "N/A"
+            print(f"    内容: {content_preview}...")
+            print(f"    评论数: {len(post['comments'])}")
+        
+        return successful
+    
+    async def run(self, username: str = None, mode: str = "profile"):
+        """主运行流程
+        mode: profile(主页) | hot(热门)
+        """
+        if mode == "hot":
+            return await self.extract_hot_posts(limit=10)
+        
+        # 默认模式：提取用户主页
         username = username or CONFIG["username"]
         
         print(f"\n{'='*50}")
@@ -177,38 +267,32 @@ class MoltbookSuperExtractor:
         print(f"用户: {username}")
         print(f"{'='*50}\n")
         
-        # 1. 加载上次状态（增量）
         last_state = self.load_last_state()
         already_extracted = set(last_state.get("extracted_posts", []))
         print(f"[增量] 已提取过 {len(already_extracted)} 个帖子")
         
-        # 2. 提取主页帖子列表
         post_urls = await self.extract_profile(username)
         
-        # 3. 过滤新帖子
         new_urls = [url for url in post_urls if url not in already_extracted]
         print(f"[增量] 新帖子: {len(new_urls)} 个")
         
         if not new_urls:
             print("[完成] 没有新帖子需要提取")
-            return
+            return []
         
-        # 4. 并发提取详情
         print(f"[并发] 启动 {CONFIG['concurrent_limit']} 个并发任务\n")
         
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)
             
-            tasks = [self.extract_post_detail(browser, url) for url in new_urls[:10]]  # 限制前10个
+            tasks = [self.extract_post_detail(browser, url) for url in new_urls[:10]]
             results = await asyncio.gather(*tasks, return_exceptions=True)
             
             await browser.close()
         
-        # 5. 处理结果
         successful = [r for r in results if isinstance(r, dict)]
         errors = [r for r in results if isinstance(r, Exception)]
         
-        # 6. 保存数据
         output_file = self.data_dir / f"{username}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump({
@@ -219,11 +303,9 @@ class MoltbookSuperExtractor:
                 "posts": successful
             }, f, ensure_ascii=False, indent=2)
         
-        # 7. 更新状态
         all_extracted = already_extracted.union(set(new_urls[:len(successful)]))
         self.save_state(list(all_extracted))
         
-        # 8. 输出摘要（供AI查看）
         print(f"\n{'='*50}")
         print(f"提取完成")
         print(f"{'='*50}")
@@ -240,8 +322,16 @@ class MoltbookSuperExtractor:
 
 
 if __name__ == "__main__":
-    import sys
-    username = sys.argv[1] if len(sys.argv) > 1 else None
-    
     extractor = MoltbookSuperExtractor()
-    result = asyncio.run(extractor.run(username))
+    
+    # 参数解析
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "hot":
+            result = asyncio.run(extractor.run(mode="hot"))
+        elif sys.argv[1] == "profile":
+            username = sys.argv[2] if len(sys.argv) > 2 else None
+            result = asyncio.run(extractor.run(username=username, mode="profile"))
+        else:
+            result = asyncio.run(extractor.run(username=sys.argv[1], mode="profile"))
+    else:
+        result = asyncio.run(extractor.run(mode="profile"))
