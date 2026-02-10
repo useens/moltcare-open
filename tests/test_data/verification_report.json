@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-02-10T07:49:08.160531",
+  "tests": {
+    "model_download": {
+      "status": "passed",
+      "load_time": 3.008470058441162,
+      "vector_dim": 384
+    },
+    "startup_time": {
+      "status": "passed",
+      "init_time": 0.013763666152954102,
+      "model_load_time": 3.062687635421753,
+      "total_time": 3.076451301574707
+    },
+    "incremental_update": {
+      "status": "passed",
+      "doc_count_v1": 1,
+      "doc_count_v1_repeat": 1,
+      "doc_count_v2": 1
+    },
+    "memory_usage": {
+      "status": "passed",
+      "baseline_mb": 519.4453125,
+      "after_1000_mb": 582.07421875,
+      "increase_mb": 62.62890625,
+      "limit_mb": 500
+    }
+  },
+  "status": "pending"
+}

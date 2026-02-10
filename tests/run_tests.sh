@@ -1,0 +1,170 @@
+#!/bin/bash
+# 向量记忆系统测试运行脚本
+
+echo "=========================================="
+echo "向量记忆系统测试与验证"
+echo "=========================================="
+echo ""
+
+# 激活虚拟环境
+source venv/bin/activate
+
+# 导出测试数据
+echo "📦 准备测试数据..."
+python3 -c "
+import json
+from pathlib import Path
+
+TEST_MEMORIES = [
+    {'type': 'instruction', 'content': '用户要求所有代码必须包含中文注释，方便后续维护'},
+    {'type': 'instruction', 'content': '重要决策必须记录决策理由和替代方案考虑'},
+    {'type': 'instruction', 'content': '每日工作结束前需要提交git commit并推送到远程仓库'},
+    {'type': 'instruction', 'content': '遇到安全相关操作必须先询问用户确认'},
+    {'type': 'instruction', 'content': '使用Feishu发送消息时必须检查token有效性'},
+    {'type': 'instruction', 'content': '所有自动化脚本需要包含错误处理和日志记录'},
+    {'type': 'instruction', 'content': '数据库操作必须使用参数化查询防止SQL注入'},
+    {'type': 'instruction', 'content': 'API密钥和敏感信息必须存储在环境变量中'},
+    {'type': 'instruction', 'content': '代码审查时重点关注边界条件处理'},
+    {'type': 'instruction', 'content': '所有用户界面文本需要支持国际化'},
+    {'type': 'instruction', 'content': '定期备份重要数据到多个存储位置'},
+    {'type': 'instruction', 'content': '使用异步编程处理I/O密集型任务'},
+    {'type': 'instruction', 'content': '缓存频繁访问的数据以提高性能'},
+    {'type': 'instruction', 'content': '实现限流机制防止API被滥用'},
+    {'type': 'instruction', 'content': '使用连接池管理数据库连接'},
+    {'type': 'instruction', 'content': '记录所有重要操作的审计日志'},
+    {'type': 'instruction', 'content': '实现优雅关闭机制处理正在进行的任务'},
+    {'type': 'instruction', 'content': '使用类型注解提高代码可读性'},
+    {'type': 'instruction', 'content': '编写单元测试覆盖核心功能'},
+    {'type': 'instruction', 'content': '使用Docker容器化部署应用'},
+    {'type': 'instruction', 'content': '监控关键性能指标并设置告警'},
+    {'type': 'instruction', 'content': '实现健康检查端点用于服务监控'},
+    {'type': 'instruction', 'content': '使用结构化日志方便日志分析'},
+    {'type': 'instruction', 'content': '定期更新依赖库以修复安全漏洞'},
+    {'type': 'instruction', 'content': '代码提交前运行静态代码分析工具'},
+    {'type': 'discovery', 'content': '发现使用余弦相似度比欧氏距离更适合文本语义匹配'},
+    {'type': 'discovery', 'content': 'MiniLM模型在中文文本上表现良好，推理速度快'},
+    {'type': 'discovery', 'content': 'SQLite的FTS5扩展可以实现高效的全文搜索'},
+    {'type': 'discovery', 'content': '向量归一化可以显著提升搜索准确性'},
+    {'type': 'discovery', 'content': '使用BLOB存储numpy数组比JSON更节省空间'},
+    {'type': 'discovery', 'content': '批量处理比逐条处理向量效率高3倍以上'},
+    {'type': 'discovery', 'content': 'Faiss索引比暴力搜索快100倍但占用更多内存'},
+    {'type': 'discovery', 'content': '文本分块策略对搜索结果质量影响巨大'},
+    {'type': 'discovery', 'content': 'HNSW算法在高维向量搜索中表现优异'},
+    {'type': 'discovery', 'content': '量化技术可以将向量存储减少75%而精度损失很小'},
+    {'type': 'discovery', 'content': '使用GPU加速可以将嵌入生成速度提升10倍'},
+    {'type': 'discovery', 'content': '定期重新索引可以保持搜索质量稳定'},
+    {'type': 'discovery', 'content': '混合搜索（向量+关键词）比单一方法效果更好'},
+    {'type': 'discovery', 'content': '缓存频繁查询的嵌入向量可以显著降低延迟'},
+    {'type': 'discovery', 'content': '使用内存映射文件可以处理超出物理内存的数据'},
+    {'type': 'discovery', 'content': '增量更新策略可以减少90%的重新计算时间'},
+    {'type': 'discovery', 'content': '多层索引结构可以平衡查询速度和内存使用'},
+    {'type': 'discovery', 'content': '相似度阈值设为0.7可以在精度和召回率间取得平衡'},
+    {'type': 'discovery', 'content': '使用元数据过滤可以减少搜索空间提高效率'},
+    {'type': 'discovery', 'content': '向量维度从768降到384可以节省50%空间而精度损失很小'},
+    {'type': 'discovery', 'content': '多语言模型在跨语言搜索中表现令人惊讶地好'},
+    {'type': 'discovery', 'content': '短文本（<50字符）的向量表示质量较差'},
+    {'type': 'discovery', 'content': '使用主成分分析可以可视化高维向量分布'},
+    {'type': 'discovery', 'content': '文档的标题和正文应该分别建立索引'},
+    {'type': 'discovery', 'content': '时间衰减因子可以让新文档在搜索中排名更高'},
+    {'type': 'decision', 'content': '决定使用SQLite而非PostgreSQL作为向量存储，考虑到部署简单性'},
+    {'type': 'decision', 'content': '选择all-MiniLM-L6-v2作为默认嵌入模型，平衡精度和速度'},
+    {'type': 'decision', 'content': '采用余弦相似度作为默认相似度度量方法'},
+    {'type': 'decision', 'content': '确定向量维度为384，满足大部分应用场景需求'},
+    {'type': 'decision', 'content': '使用文件内容哈希来判断文档是否需要更新索引'},
+    {'type': 'decision', 'content': '决定支持混合搜索模式，结合向量相似度和关键词匹配'},
+    {'type': 'decision', 'content': '选择Python作为主开发语言，利用丰富的ML生态'},
+    {'type': 'decision', 'content': '采用懒加载策略初始化嵌入模型，减少启动时间'},
+    {'type': 'decision', 'content': '使用numpy的float32而非float64存储向量，节省内存'},
+    {'type': 'decision', 'content': '确定默认返回5条最相似的结果'},
+    {'type': 'decision', 'content': '实现增量索引更新而非全量重建'},
+    {'type': 'decision', 'content': '选择pytest作为测试框架，支持丰富的断言和fixture'},
+    {'type': 'decision', 'content': '使用GitHub Actions进行持续集成测试'},
+    {'type': 'decision', 'content': '采用语义化版本控制管理发布'},
+    {'type': 'decision', 'content': '使用MIT许可证开源项目代码'},
+    {'type': 'decision', 'content': '决定先实现核心功能再考虑性能优化'},
+    {'type': 'decision', 'content': '采用模块化设计便于后续功能扩展'},
+    {'type': 'decision', 'content': '使用Type hints提高代码可维护性'},
+    {'type': 'decision', 'content': '选择黑色主题作为默认文档风格'},
+    {'type': 'decision', 'content': '使用中英文双语编写文档'},
+    {'type': 'decision', 'content': '确定最低支持Python 3.9版本'},
+    {'type': 'decision', 'content': '使用poetry管理项目依赖'},
+    {'type': 'decision', 'content': '采用conventional commits规范提交信息'},
+    {'type': 'decision', 'content': '使用pre-commit钩子确保代码质量'},
+    {'type': 'decision', 'content': '决定优先支持Linux和macOS平台'},
+    {'type': 'error', 'content': '错误：忘记处理空查询字符串导致程序崩溃，已添加空值检查'},
+    {'type': 'error', 'content': '错误：向量维度不匹配导致相似度计算失败，现已添加维度验证'},
+    {'type': 'error', 'content': '错误：数据库连接未关闭导致资源泄漏，已使用上下文管理器'},
+    {'type': 'error', 'content': '错误：文件编码问题导致中文内容乱码，已统一使用UTF-8'},
+    {'type': 'error', 'content': '错误：并发写入导致数据库锁定，已添加重试机制'},
+    {'type': 'error', 'content': '错误：大文件处理时内存溢出，已实现流式处理'},
+    {'type': 'error', 'content': '错误：相似度计算时除以零，已添加边界检查'},
+    {'type': 'error', 'content': '错误：模型文件下载超时，已添加断点续传'},
+    {'type': 'error', 'content': '错误：路径包含特殊字符导致文件操作失败，已进行路径转义'},
+    {'type': 'error', 'content': '错误：缓存数据格式不兼容导致解析失败，已添加版本检查'},
+    {'type': 'error', 'content': '错误：浮点数精度问题导致相似度比较不准确，已使用Decimal'},
+    {'type': 'error', 'content': '错误：递归深度过大导致栈溢出，已改为迭代实现'},
+    {'type': 'error', 'content': '错误：正则表达式回溯导致性能问题，已优化正则模式'},
+    {'type': 'error', 'content': '错误：未处理的异常导致程序崩溃，已添加全局异常处理'},
+    {'type': 'error', 'content': '错误：时区问题导致时间戳不一致，已统一使用UTC'},
+    {'type': 'error', 'content': '错误：SQL注入漏洞，已使用参数化查询'},
+    {'type': 'error', 'content': '错误：竞态条件导致数据不一致，已添加锁机制'},
+    {'type': 'error', 'content': '错误：JSON序列化失败，已处理非标准类型'},
+    {'type': 'error', 'content': '错误：网络请求重试次数不足，已增加指数退避'},
+    {'type': 'error', 'content': '错误：配置文件格式错误，已添加Schema验证'},
+    {'type': 'error', 'content': '错误：磁盘空间不足导致写入失败，已添加预检查'},
+    {'type': 'error', 'content': '错误：内存碎片问题，已使用对象池优化'},
+    {'type': 'error', 'content': '错误：API限流导致请求被拒绝，已实现自适应限流'},
+    {'type': 'error', 'content': '错误：长文本截断导致信息丢失，已实现智能分块'},
+    {'type': 'error', 'content': '错误：依赖版本冲突，已锁定依赖版本'},
+]
+
+Path('tests/test_data').mkdir(exist_ok=True)
+with open('tests/test_data/test_memories_100.json', 'w', encoding='utf-8') as f:
+    json.dump(TEST_MEMORIES, f, indent=2, ensure_ascii=False)
+
+type_counts = {}
+for item in TEST_MEMORIES:
+    t = item['type']
+    type_counts[t] = type_counts.get(t, 0) + 1
+
+with open('tests/test_data/test_data_stats.json', 'w', encoding='utf-8') as f:
+    json.dump({'total': len(TEST_MEMORIES), 'by_type': type_counts}, f, indent=2)
+
+print(f'✅ 已导出 {len(TEST_MEMORIES)} 条测试记忆')
+print(f'   类型分布: {type_counts}')
+"
+
+echo ""
+echo "=========================================="
+echo "1. 运行单元测试"
+echo "=========================================="
+python -m pytest tests/test_vector_memory.py::TestVectorMemoryUnit -v
+
+echo ""
+echo "=========================================="
+echo "2. 运行集成测试"
+echo "=========================================="
+python -m pytest tests/test_vector_memory.py::TestVectorMemoryIntegration -v --tb=short
+
+echo ""
+echo "=========================================="
+echo "3. 运行验证清单"
+echo "=========================================="
+python -m pytest tests/test_vector_memory.py::TestVerificationChecklist -v --tb=short
+
+echo ""
+echo "=========================================="
+echo "4. 运行性能基准测试"
+echo "=========================================="
+python -m pytest tests/test_vector_memory.py::TestPerformanceBenchmarks -v --tb=short
+
+echo ""
+echo "=========================================="
+echo "测试完成！"
+echo "=========================================="
+echo ""
+echo "测试结果文件:"
+echo "  - tests/test_data/test_memories_100.json"
+echo "  - tests/test_data/test_data_stats.json"
+echo "  - tests/test_data/TEST_REPORT.md"
+echo ""

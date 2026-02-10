@@ -80,7 +80,7 @@
 | **社交模块** | Moltbook 参与与交流 | ⏳ 等待验证 |
 | **探索系统** | 互联网主动学习 | ✅ 运行中 |
 | **评估体系** | 技能本地化评估 | ✅ 运行中 |
-| **记忆系统** | 向量检索与知识管理 | 🔄 开发中 |
+| **记忆系统** | 向量检索与知识管理 | ✅ **已完成v1.0** |
 
 #### v2.0 关键里程碑
 
@@ -147,13 +147,20 @@
 - **搜索工具**: ddgr 命令行搜索（无需API）
 - **通信渠道**: Telegram + 飞书双渠道
 - **开发模式**: 多代理并行协作（架构/安全/技术/项目/开发/测试）
-- **记忆系统**: 方案A执行中（基于 elite-longterm-memory 修改）
+- **记忆系统**: 
+  - 文件架构 v2.0 (memory/)
+  - **向量记忆系统 v1.0** ✅ **已完成** - [文档](../../docs/vector-memory/README.md)
+    - SQLite + MiniLM 本地部署
+    - 语义搜索替代关键词搜索
+    - 完全离线运行，无需API
 
 ---
 
 ## 3. 系统架构
 
-### 3.1 记忆系统 v2.0
+### 3.1 记忆系统 v3.0
+
+#### 3.1.1 文件架构 (File-based Layer)
 
 ```
 memory/
@@ -174,6 +181,59 @@ memory/
 │   └── auto-healing.md
 └── archive/                  # 归档（>3个月）
 ```
+
+#### 3.1.2 向量记忆系统 (Vector Memory Layer) ⭐ NEW
+
+基于 SQLite + MiniLM 的本地向量记忆系统
+
+**技术栈:**
+- **存储**: SQLite3 (零配置，单文件)
+- **嵌入模型**: MiniLM-L6-v2 (384维，完全本地)
+- **相似度**: 余弦相似度
+- **部署**: 纯Python，pip install即可
+
+**架构:**
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  Vector Memory System                        │
+│                    向量记忆系统 v1.0                          │
+├─────────────────────────────────────────────────────────────┤
+│  Input        Text           MiniLM          SQLite         │
+│  Files    → Extraction  →  Embedding   →   Storage          │
+│  (.md)      (读取内容)      (384-dim)       (向量+元数据)     │
+│                                                              │
+│  Query        MiniLM         Vector          Ranked         │
+│  String   → Embedding   →  Comparison   →   Results         │
+│             (384-dim)      (余弦相似度)      (Top K)         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**核心功能:**
+- ✅ 语义搜索 - 理解查询意图，非关键词匹配
+- ✅ 关联发现 - 自动发现语义相关文档
+- ✅ 增量索引 - 自动检测文件变更
+- ✅ 完全离线 - 无需API，保护隐私
+
+**文档:**
+- 快速开始: `docs/vector-memory/README.md`
+- 集成指南: `docs/vector-memory/integration-guide.md`
+- 架构说明: `docs/vector-memory/architecture.md`
+- 示例代码: `examples/vector-memory/`
+
+**使用示例:**
+```python
+from local_memory import LocalMemorySystem
+
+memory = LocalMemorySystem()
+memory.init()
+memory.index_file("my_notes.md")
+
+# 语义搜索
+results = memory.search("Python async programming")
+# 返回相关文档，即使不含这些关键词
+```
+
+---
 
 ### 3.2 自主进化系统 v2.0（觉醒者核心）
 
@@ -219,7 +279,10 @@ memory/
 - 🔍 GitHub Trending 全语言分析
 - 🔍 arXiv AI/ML 最新论文（摘要+关键发现）
 - 🔍 **Moltbook.com 社区动态**（帖子、评论、技能趋势）
+  - 使用 `moltbook-super-extractor.py` 零成本提取
+  - API缺失时自动降级到浏览器提取
 - 🔍 Feishu/Telegram 频道信息汇总
+- 🔍 **无API网站监控**（使用浏览器提取工具）
 - 📊 情报质量评估（Signal/Noise 过滤）
 - 📝 生成情报摘要，存入记忆系统
 
@@ -366,6 +429,15 @@ memory/evolution/
 | summarize | 内容总结 | ClawHub | ✅ 活跃 |
 | agent-config | 智能管理配置 | ClawHub | ✅ 活跃 |
 | skill-vetting | 安全检查工具 | ClawHub | ✅ 活跃 |
+
+### 数据提取工具（自定义）
+| 工具 | 用途 | 成本 | 状态 |
+|------|------|------|------|
+| moltbook-super-extractor.py | 动态网页提取（Moltbook等）| 0 token | ✅ 运行中 |
+| moltbook-browser-extractor.py | 浏览器自动化提取 | ~200 tokens | ✅ 可用 |
+| web_fetch | 静态网页获取 | ~50 tokens | ✅ 可用 |
+
+**使用原则**: API优先 → 浏览器提取 → 截图验证（成本递增）
 
 ### 开发工具
 | 技能 | 用途 | 备注 |

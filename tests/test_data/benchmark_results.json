@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-02-10T07:49:37.034428",
+  "benchmarks": {
+    "indexing": {
+      "10": {
+        "total_time": 3.1951632499694824,
+        "per_doc_ms": 319.51632499694824
+      },
+      "100": {
+        "total_time": 2.259106159210205,
+        "per_doc_ms": 22.59106159210205
+      },
+      "500": {
+        "total_time": 12.23005723953247,
+        "per_doc_ms": 24.46011447906494
+      }
+    },
+    "search_latency": {
+      "avg_ms": 21.84690952301025,
+      "max_ms": 22.389626502990723,
+      "queries_tested": 5
+    },
+    "throughput": {
+      "queries_per_second": 0.0,
+      "total_queries": 0,
+      "total_time": 0.35071229934692383,
+      "threads": 4
+    }
+  }
+}
