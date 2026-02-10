@@ -1,0 +1,62 @@
+{
+  "hourly": {
+    "8": {
+      "activity_level": 0.8823509999999999,
+      "request_types": [
+        "daily_briefing",
+        "email_digest"
+      ],
+      "confidence": 0.3,
+      "last_updated": "2026-02-11T00:43:22.024400"
+    },
+    "14": {
+      "activity_level": 0.51,
+      "request_types": [
+        "search",
+        "general"
+      ],
+      "confidence": 0.1,
+      "last_updated": "2026-02-11T00:43:22.026177"
+    }
+  },
+  "weekly": {
+    "1": {
+      "8": {
+        "activity_level": 0.657,
+        "request_types": [
+          "daily_briefing",
+          "email_digest"
+        ],
+        "confidence": 0.15000000000000002
+      },
+      "14": {
+        "activity_level": 0.51,
+        "request_types": [
+          "search",
+          "general"
+        ],
+        "confidence": 0.1
+      }
+    },
+    "0": {
+      "8": {
+        "activity_level": 0.51,
+        "request_types": [
+          "daily_briefing",
+          "email_digest"
+        ],
+        "confidence": 0.1
+      }
+    },
+    "6": {
+      "8": {
+        "activity_level": 0.3,
+        "request_types": [
+          "daily_briefing"
+        ],
+        "confidence": 0.05
+      }
+    }
+  },
+  "updated_at": "2026-02-11T00:43:22.026194"
+}

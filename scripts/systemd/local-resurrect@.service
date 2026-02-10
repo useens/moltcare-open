@@ -1,0 +1,21 @@
+[Unit]
+Description=LinLin Local VM Resurrection Monitor
+Documentation=https://github.com/useens/linlin-backup
+After=network.target
+
+[Service]
+Type=simple
+User=%I
+WorkingDirectory=%h/.openclaw/workspace
+Environment="WORKSPACE_DIR=%h/.openclaw/workspace"
+Environment="LOG_FILE=%h/.openclaw/logs/local-resurrect.log"
+Environment="CACHE_DIR=%h/.openclaw/.resurrection-cache"
+ExecStart=%h/.openclaw/workspace/scripts/local-resurrect-optimized.sh --daemon
+ExecStop=/bin/kill -TERM $MAINPID
+Restart=always
+RestartSec=60
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

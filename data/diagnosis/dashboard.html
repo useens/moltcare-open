@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自我诊断系统 v5.0 仪表盘</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 20px 40px;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 40px;
+        }
+        
+        .health-score {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #334155;
+        }
+        
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .score-circle.excellent { background: conic-gradient(#22c55e var(--score), #1e293b 0); }
+        .score-circle.good { background: conic-gradient(#3b82f6 var(--score), #1e293b 0); }
+        .score-circle.fair { background: conic-gradient(#f59e0b var(--score), #1e293b 0); }
+        .score-circle.poor { background: conic-gradient(#f97316 var(--score), #1e293b 0); }
+        .score-circle.critical { background: conic-gradient(#ef4444 var(--score), #1e293b 0); }
+        
+        .score-inner {
+            width: 100px;
+            height: 100px;
+            background: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .score-info h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        
+        .score-info p {
+            color: #64748b;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #334155;
+        }
+        
+        .card h3 {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .metric:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-label {
+            color: #94a3b8;
+        }
+        
+        .metric-value {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .metric-value.good { color: #22c55e; }
+        .metric-value.warning { color: #f59e0b; }
+        .metric-value.danger { color: #ef4444; }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-badge.normal {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+        
+        .status-badge.light {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+        
+        .status-badge.medium {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+        
+        .status-badge.severe {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        
+        .suggestion-list {
+            list-style: none;
+        }
+        
+        .suggestion-item {
+            padding: 12px;
+            background: #0f172a;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .suggestion-item.critical {
+            border-left-color: #ef4444;
+        }
+        
+        .suggestion-item.high {
+            border-left-color: #f97316;
+        }
+        
+        .suggestion-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .suggestion-desc {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .feature-item {
+            padding: 10px;
+            background: #0f172a;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 13px;
+        }
+        
+        .feature-item.enabled {
+            border: 1px solid #22c55e;
+            color: #22c55e;
+        }
+        
+        .feature-item.disabled {
+            border: 1px solid #64748b;
+            color: #64748b;
+            opacity: 0.6;
+        }
+        
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #3b82f6;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s;
+        }
+        
+        .refresh-btn:hover {
+            transform: scale(1.1);
+            background: #2563eb;
+        }
+        
+        .refresh-btn.spinning {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: #64748b;
+        }
+        
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔍 自我诊断系统 v5.0</h1>
+        <div class="subtitle">实时监控 · 智能预测 · 自动优化</div>
+    </div>
+    
+    <div class="container">
+        <div id="dashboard">
+            <div class="loading">正在加载诊断数据...</div>
+        </div>
+    </div>
+    
+    <button class="refresh-btn" onclick="refreshData()" id="refreshBtn">↻</button>
+    
+    <script>
+        // 模拟数据（实际使用时替换为API调用）
+        const mockData = {
+            health_score: 87,
+            health_status: 'good',
+            timestamp: new Date().toISOString(),
+            modules: {
+                smart_degrade: {
+                    current_level: 'normal',
+                    quality_score: 0.85,
+                    quality_trend: 'stable',
+                    resource_usage: {
+                        cpu: 25.3,
+                        memory: 42.1,
+                        disk: 37.2
+                    },
+                    network_available: true,
+                    enabled_features: [
+                        'basic_chat', 'file_operations', 'advanced_reasoning',
+                        'context_memory', 'web_search', 'code_execution'
+                    ]
+                },
+                optimization: {
+                    total_suggestions: 12,
+                    executed: 8,
+                    pending: 4,
+                    by_category: {
+                        performance: 3,
+                        configuration: 5,
+                        reliability: 4
+                    },
+                    by_risk_level: {
+                        low: 5,
+                        medium: 5,
+                        high: 2
+                    }
+                },
+                quality_trend: {
+                    period_hours: 24,
+                    sample_count: 156,
+                    statistics: {
+                        overall: { mean: 0.82, min: 0.65, max: 0.95, trend: 'improving' },
+                        hallucination: { mean: 0.88, min: 0.70, max: 0.98, trend: 'stable' },
+                        logic: { mean: 0.85, min: 0.75, max: 0.92, trend: 'improving' },
+                        intent: { mean: 0.78, min: 0.60, max: 0.90, trend: 'improving' }
+                    },
+                    top_issues: [
+                        ['vague_reference', 23],
+                        ['unsupported_number', 15],
+                        ['partial_answer', 12]
+                    ]
+                }
+            },
+            predictions: [
+                {
+                    metric_name: 'disk_usage_/',
+                    current_value: 37.2,
+                    predicted_value: 38.5,
+                    risk_level: 'low',
+                    time_to_threshold: 720,
+                    recommendation: '磁盘空间充足，保持监控'
+                },
+                {
+                    metric_name: 'memory_usage',
+                    current_value: 42.1,
+                    predicted_value: 45.3,
+                    risk_level: 'low',
+                    recommendation: '内存使用正常'
+                }
+            ],
+            suggestions: [
+                {
+                    title: '临时文件清理',
+                    description: '检测到临时文件超过7GB，建议清理',
+                    risk_level: 'low',
+                    category: 'configuration'
+                },
+                {
+                    title: 'API调用频率优化',
+                    description: 'GitHub API调用频率较高，建议启用缓存',
+                    risk_level: 'medium',
+                    category: 'performance'
+                },
+                {
+                    title: '内存泄漏检测',
+                    description: '发现可疑的内存增长模式，建议检查相关进程',
+                    risk_level: 'high',
+                    category: 'reliability'
+                }
+            ]
+        };
+        
+        function getRiskClass(level) {
+            const map = {
+                'low': 'good',
+                'medium': 'warning',
+                'high': 'danger',
+                'critical': 'danger'
+            };
+            return map[level] || '';
+        }
+        
+        function getStatusText(status) {
+            const map = {
+                'excellent': '优秀',
+                'good': '良好',
+                'fair': '一般',
+                'poor': '较差',
+                'critical': '危急'
+            };
+            return map[status] || status;
+        }
+        
+        function renderDashboard(data) {
+            const sd = data.modules?.smart_degrade || {};
+            const opt = data.modules?.optimization || {};
+            const quality = data.modules?.quality_trend || {};
+            
+            const features = sd.enabled_features || [];
+            const allFeatures = [
+                'basic_chat', 'file_operations', 'advanced_reasoning',
+                'context_memory', 'multi_step_planning', 'web_search',
+                'code_execution', 'multimedia_generation', 'experimental_features'
+            ];
+            
+            document.getElementById('dashboard').innerHTML = `
+                <div class="health-score">
+                    <div class="score-circle ${data.health_status}" style="--score: ${data.health_score}deg">
+                        <div class="score-inner">${data.health_score}</div>
+                    </div>
+                    <div class="score-info">
+                        <h2>系统健康评分</h2>
+                        <p>状态: <span class="metric-value ${data.health_status === 'excellent' || data.health_status === 'good' ? 'good' : 'warning'}">${getStatusText(data.health_status)}</span></p>
+                        <p style="margin-top: 8px; color: #64748b; font-size: 14px;">最后更新: ${new Date(data.timestamp).toLocaleString()}</p>
+                    </div>
+                </div>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h3>📊 资源使用</h3>
+                        <div class="metric">
+                            <span class="metric-label">CPU 使用率</span>
+                            <span class="metric-value ${sd.resource_usage?.cpu > 80 ? 'danger' : sd.resource_usage?.cpu > 60 ? 'warning' : 'good'}">${sd.resource_usage?.cpu?.toFixed(1) || 0}%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">内存使用率</span>
+                            <span class="metric-value ${sd.resource_usage?.memory > 80 ? 'danger' : sd.resource_usage?.memory > 60 ? 'warning' : 'good'}">${sd.resource_usage?.memory?.toFixed(1) || 0}%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">磁盘使用率</span>
+                            <span class="metric-value ${sd.resource_usage?.disk > 90 ? 'danger' : sd.resource_usage?.disk > 80 ? 'warning' : 'good'}">${sd.resource_usage?.disk?.toFixed(1) || 0}%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">网络状态</span>
+                            <span class="metric-value good">${sd.network_available ? '✓ 正常' : '✗ 中断'}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>⚙️ 运行模式</h3>
+                        <div class="metric">
+                            <span class="metric-label">降级级别</span>
+                            <span class="status-badge ${sd.current_level}">${sd.current_level?.toUpperCase()}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">质量分数</span>
+                            <span class="metric-value ${sd.quality_score > 0.7 ? 'good' : sd.quality_score > 0.5 ? 'warning' : 'danger'}">${(sd.quality_score * 100).toFixed(1)}%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">质量趋势</span>
+                            <span class="metric-value">${sd.quality_trend === 'improving' ? '↗ 改善' : sd.quality_trend === 'declining' ? '↘ 下降' : '→ 稳定'}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>📈 质量趋势 (24h)</h3>
+                        <div class="metric">
+                            <span class="metric-label">平均综合评分</span>
+                            <span class="metric-value good">${(quality.statistics?.overall?.mean * 100).toFixed(1)}%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">幻觉检测通过率</span>
+                            <span class="metric-value good">${(quality.statistics?.hallucination?.mean * 100).toFixed(1)}%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">逻辑一致性</span>
+                            <span class="metric-value good">${(quality.statistics?.logic?.mean * 100).toFixed(1)}%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">意图匹配度</span>
+                            <span class="metric-value ${quality.statistics?.intent?.mean > 0.7 ? 'good' : 'warning'}">${(quality.statistics?.intent?.mean * 100).toFixed(1)}%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>🔮 预测警报</h3>
+                        ${data.predictions?.length ? data.predictions.map(p => `
+                            <div class="metric">
+                                <span class="metric-label">${p.metric_name}</span>
+                                <span class="metric-value ${getRiskClass(p.risk_level)}">${p.risk_level?.toUpperCase()}</span>
+                            </div>
+                        `).join('') : '<div class="metric"><span class="metric-label" style="color: #64748b;">暂无预测数据</span></div>'}
+                    </div>
+                </div>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h3>💡 优化建议</h3>
+                        <ul class="suggestion-list">
+                            ${data.suggestions?.length ? data.suggestions.map(s => `
+                                <li class="suggestion-item ${s.risk_level}">
+                                    <div class="suggestion-title">${s.title}</div>
+                                    <div class="suggestion-desc">${s.description}</div>
+                                </li>
+                            `).join('') : '<li class="suggestion-item"><div class="suggestion-desc">暂无建议</div></li>'}
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>🎯 功能状态</h3>
+                        <div class="feature-grid">
+                            ${allFeatures.map(f => `
+                                <div class="feature-item ${features.includes(f) ? 'enabled' : 'disabled'}">
+                                    ${f.replace(/_/g, ' ')}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        async function fetchData() {
+            // 实际使用时替换为真实API
+            // const response = await fetch('/api/status');
+            // return await response.json();
+            return mockData;
+        }
+        
+        async function refreshData() {
+            const btn = document.getElementById('refreshBtn');
+            btn.classList.add('spinning');
+            
+            try {
+                const data = await fetchData();
+                renderDashboard(data);
+            } catch (error) {
+                document.getElementById('dashboard').innerHTML = `
+                    <div class="error">加载失败: ${error.message}</div>
+                `;
+            } finally {
+                btn.classList.remove('spinning');
+            }
+        }
+        
+        // 初始加载
+        refreshData();
+        
+        // 自动刷新（每30秒）
+        setInterval(refreshData, 30000);
+    </script>
+</body>
+</html>

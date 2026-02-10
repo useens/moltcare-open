@@ -1,0 +1,130 @@
+{
+  "version": "5.0",
+  "description": "林林v5.0 预判引擎配置",
+  
+  "time_pattern_learning": {
+    "enabled": true,
+    "learning_rate": 0.3,
+    "min_samples_for_pattern": 3,
+    "pattern_decay_days": 90
+  },
+  
+  "context_association": {
+    "enabled": true,
+    "min_association_strength": 0.1,
+    "max_associations_per_source": 10,
+    "association_decay_days": 60
+  },
+  
+  "ab_testing": {
+    "enabled": true,
+    "groups": {
+      "control": {
+        "threshold": 0.7,
+        "strategy": "standard",
+        "weight": 0.4
+      },
+      "treatment_a": {
+        "threshold": 0.6,
+        "strategy": "aggressive",
+        "weight": 0.3
+      },
+      "treatment_b": {
+        "threshold": 0.8,
+        "strategy": "conservative",
+        "weight": 0.3
+      }
+    },
+    "min_samples_for_decision": 100
+  },
+  
+  "realtime_predictor": {
+    "scheduled_interval_minutes": 30,
+    "context_check_interval_minutes": 5,
+    "min_confidence_for_proactive": 0.75,
+    "max_suggestions_per_session": 5,
+    "suggestion_cooldown_hours": 4
+  },
+  
+  "main_flow_integration": {
+    "auto_show_suggestions": true,
+    "min_confidence_to_show": 0.75,
+    "max_suggestions_per_turn": 2,
+    "show_suggestion_reason": true,
+    "allow_user_disable": true
+  },
+  
+  "accuracy_reporting": {
+    "auto_generate": true,
+    "report_interval_days": 7,
+    "report_format": ["json", "markdown"],
+    "retention_days": 365
+  },
+  
+  "prediction_types": {
+    "time_based": {
+      "enabled": true,
+      "weight": 1.0
+    },
+    "context_based": {
+      "enabled": true,
+      "weight": 1.2
+    },
+    "history_based": {
+      "enabled": true,
+      "weight": 1.0
+    },
+    "event_driven": {
+      "enabled": true,
+      "weight": 1.5
+    }
+  },
+  
+  "special_time_rules": {
+    "morning_briefing": {
+      "enabled": true,
+      "hours": [7, 8, 9],
+      "confidence": 0.75
+    },
+    "monday_weekly": {
+      "enabled": true,
+      "weekday": 0,
+      "hours": [8, 9, 10],
+      "confidence": 0.8
+    },
+    "friday_wrapup": {
+      "enabled": true,
+      "weekday": 4,
+      "hours": [15, 16, 17],
+      "confidence": 0.7
+    },
+    "night_mode": {
+      "enabled": true,
+      "start_hour": 22,
+      "end_hour": 6,
+      "confidence": 0.9
+    }
+  },
+  
+  "context_sources": {
+    "calendar": {
+      "enabled": true,
+      "lookahead_hours": 24,
+      "max_events": 10
+    },
+    "email": {
+      "enabled": true,
+      "unread_threshold": 5,
+      "urgent_priority": true
+    },
+    "projects": {
+      "enabled": true,
+      "deadline_lookahead_days": 7,
+      "overdue_alert": true
+    },
+    "tasks": {
+      "enabled": true,
+      "overload_threshold": 10
+    }
+  }
+}

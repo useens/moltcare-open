@@ -1,0 +1,34 @@
+[
+  {
+    "id": "cde476aaf348",
+    "timestamp": "2026-02-11T00:41:55.628433",
+    "category": "reliability",
+    "title": "\u9891\u7e41\u51fa\u73b0: exception",
+    "description": "\u5728\u8fc7\u53bb24\u5c0f\u65f6\u5185\u51fa\u73b0 7 \u6b21",
+    "current_value": "7 \u6b21",
+    "suggested_value": "0 \u6b21",
+    "expected_improvement": "\u68c0\u6d4b\u5230\u5f02\u5e38\uff0c\u5efa\u8bae\u68c0\u67e5\u9519\u8bef\u65e5\u5fd7\u5e76\u4fee\u590d",
+    "risk_level": "medium",
+    "auto_executable": false,
+    "command": null,
+    "executed": false,
+    "execution_result": null,
+    "execution_time": null
+  },
+  {
+    "id": "f3f194c48e66",
+    "timestamp": "2026-02-11T00:41:55.962800",
+    "category": "configuration",
+    "title": "\u4e34\u65f6\u6587\u4ef6\u8fc7\u591a",
+    "description": "\u4e34\u65f6\u6587\u4ef6\u603b\u5927\u5c0f: 7453.6MB",
+    "current_value": "7453.6MB",
+    "suggested_value": "< 200MB",
+    "expected_improvement": "\u91ca\u653e\u78c1\u76d8\u7a7a\u95f4",
+    "risk_level": "low",
+    "auto_executable": true,
+    "command": "find /tmp -type f -atime +3 -delete 2>/dev/null; find ~/.cache -type f -atime +7 -delete 2>/dev/null",
+    "executed": false,
+    "execution_result": null,
+    "execution_time": null
+  }
+]

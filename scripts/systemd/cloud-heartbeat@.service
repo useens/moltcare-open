@@ -1,0 +1,21 @@
+[Unit]
+Description=LinLin Cloud Heartbeat Service
+Documentation=https://github.com/useens/linlin-backup
+After=network.target
+
+[Service]
+Type=simple
+User=%I
+WorkingDirectory=%h/.openclaw/workspace
+Environment="WORKSPACE_DIR=%h/.openclaw/workspace"
+Environment="LOG_FILE=%h/.openclaw/logs/cloud-heartbeat.log"
+Environment="GITHUB_TOKEN_FILE=%h/.config/linlin/github-token"
+ExecStart=%h/.openclaw/workspace/scripts/cloud-heartbeat.sh --daemon
+ExecStop=/bin/kill -TERM $MAINPID
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
