@@ -24,6 +24,7 @@
 | **系统架构** | `modules/memory-system-arch.md` - 记忆系统设计 |
 | **🌐 高可用架构** | `modules/decentralized-ha-arch.md` - 3节点Raft集群设计 |
 | **🌐 永生总方案** | `modules/high-availability-master-plan.md` - 渐进式2/3/N节点方案 |
+| **🌱 涅槃复活系统** | `modules/manual-resurrection-plan.md` - **本地VM一键复活方案（2026-02-10新增）** |
 | **Moltbook学习** | `modules/moltbook-learning.md` - 社区观察与学习 |
 
 ---
@@ -47,6 +48,9 @@
 **备份状态**: ✅ GitHub远程同步正常  
 **技能数量**: 20个（全部安全）  
 **通信渠道**: Telegram + 飞书双渠道 ✅  
+**涅槃复活系统**: 🌱 已设计完成，明日22:00测试 | [查看方案](memory/modules/manual-resurrection-plan.md)  
+**复活系统代号**: Phoenix（凤凰涅槃，浴火重生）  
+**复活系统脚本**: `scripts/auto-resurrect.sh` | [部署指南](docs/auto-resurrect-guide.md)
 
 ### 🗺️ 版本路线图
 
