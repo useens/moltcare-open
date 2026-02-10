@@ -1,0 +1,119 @@
+{
+  "version": "0.1",
+  "created_at": "2026-02-11T00:00:00",
+  "updated_at": "2026-02-11T00:25:28.022287",
+  "behavior_patterns": {
+    "hourly_activity": {
+      "8": {
+        "count": 6,
+        "percentage": 75.0,
+        "top_requests": [
+          "briefing",
+          "email_digest"
+        ]
+      },
+      "14": {
+        "count": 2,
+        "percentage": 25.0,
+        "top_requests": [
+          "search",
+          "general"
+        ]
+      }
+    },
+    "day_of_week": {},
+    "request_types": {
+      "briefing": {
+        "count": 4,
+        "timestamps": [
+          "2026-02-10T08:30:00",
+          "2026-02-09T08:15:00",
+          "2026-02-08T08:00:00",
+          "2026-02-03T08:30:00"
+        ],
+        "contexts": [
+          "今天有什么安排？",
+          "早上好，今日简报",
+          "今天有什么任务？",
+          "周一简报"
+        ]
+      },
+      "email_digest": {
+        "count": 2,
+        "timestamps": [
+          "2026-02-10T08:45:00",
+          "2026-02-09T08:20:00"
+        ],
+        "contexts": [
+          "帮我总结一下昨天的邮件",
+          "邮件摘要"
+        ]
+      },
+      "search": {
+        "count": 1,
+        "timestamps": [
+          "2026-02-10T14:00:00"
+        ],
+        "contexts": [
+          "搜索一下相关资料"
+        ]
+      },
+      "general": {
+        "count": 1,
+        "timestamps": [
+          "2026-02-03T14:00:00"
+        ],
+        "contexts": [
+          "周报生成"
+        ]
+      }
+    },
+    "work_rhythm": {
+      "deep_work_hours": [],
+      "break_hours": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "high_frequency_periods": [
+        8
+      ]
+    }
+  },
+  "preferences": {
+    "communication_style": "concise",
+    "notification_preference": "moderate",
+    "preferred_topics": [],
+    "avoided_topics": []
+  },
+  "prediction_rules": [],
+  "feedback_history": [],
+  "prediction_accuracy": {
+    "total_predictions": 0,
+    "correct_predictions": 0,
+    "accuracy_rate": 0.0
+  },
+  "metadata": {
+    "description": "林林v5.0预判引擎 - 用户模式数据库",
+    "note": "此文件会被程序自动更新，请勿手动修改"
+  }
+}
