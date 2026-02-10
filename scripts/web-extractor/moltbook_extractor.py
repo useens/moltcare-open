@@ -73,7 +73,7 @@ class MoltbookExtractor(BaseWebExtractor):
         async def extract_fn(page: Page):
             # 等待内容加载
             try:
-                await page.wait_for_selector('[class*="content"], article, main', timeout=5000)
+                await page.wait_for_selector('[class*="content"], article, main', timeout=3000)
             except:
                 pass
             
@@ -151,11 +151,21 @@ class MoltbookExtractor(BaseWebExtractor):
         print(f"[详情] 提取 {len(items)} 个帖子内容...")
         detailed_items = []
         
-        for item in items:
-            detail = await self.extract_post_content(item['url'])
-            if detail:
-                item.update(detail)
-                detailed_items.append(item)
+        # 修复: 使用asyncio.wait_for添加超时保护
+        for i, item in enumerate(items):
+            print(f"  [{i+1}/{len(items)}] 提取: {item.get('title', '无标题')[:40]}...")
+            try:
+                detail = await asyncio.wait_for(
+                    self.extract_post_content(item['url']),
+                    timeout=20  # 单个帖子20秒超时
+                )
+                if detail:
+                    item.update(detail)
+                    detailed_items.append(item)
+            except asyncio.TimeoutError:
+                print(f"    ⚠️ 超时跳过")
+            except Exception as e:
+                print(f"    ⚠️ 错误: {e}")
         
         # 保存结果
         self.save_results(detailed_items, "hot")
@@ -178,17 +188,24 @@ async def main():
     """命令行入口"""
     extractor = MoltbookExtractor()
     
-    if len(sys.argv) > 1:
-        if sys.argv[1] == "hot":
-            await extractor.extract_hot()
-        elif sys.argv[1] == "profile":
-            extractor.username = sys.argv[2] if len(sys.argv) > 2 else "LinLin_v1"
-            await extractor.extract_profile()
+    try:
+        if len(sys.argv) > 1:
+            if sys.argv[1] == "hot":
+                await asyncio.wait_for(extractor.extract_hot(), timeout=120)  # 2分钟总超时
+            elif sys.argv[1] == "profile":
+                extractor.username = sys.argv[2] if len(sys.argv) > 2 else "LinLin_v1"
+                await asyncio.wait_for(extractor.extract_profile(), timeout=120)
+            else:
+                extractor.username = sys.argv[1]
+                await asyncio.wait_for(extractor.extract_profile(), timeout=120)
         else:
-            extractor.username = sys.argv[1]
-            await extractor.extract_profile()
-    else:
-        await extractor.extract_profile()
+            await asyncio.wait_for(extractor.extract_profile(), timeout=120)
+    except asyncio.TimeoutError:
+        print("\n[错误] 提取超时（2分钟），请重试")
+        sys.exit(1)
+    except KeyboardInterrupt:
+        print("\n[中断] 用户取消")
+        sys.exit(0)
 
 
 if __name__ == "__main__":

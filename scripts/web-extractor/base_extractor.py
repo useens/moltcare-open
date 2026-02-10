@@ -172,7 +172,10 @@ class BaseWebExtractor(ABC):
             page = await context.new_page()
             
             print(f"[访问] {url}")
-            await page.goto(url, wait_until="networkidle", timeout=30000)
+            # 修复: 使用domcontentloaded代替networkidle，避免hang住
+            await page.goto(url, wait_until="domcontentloaded", timeout=20000)
+            # 额外等待JS渲染
+            await page.wait_for_timeout(2000)
             
             # 等待列表加载
             try:
@@ -228,7 +231,9 @@ class BaseWebExtractor(ABC):
                 page = await browser.new_page()
                 
                 try:
-                    await page.goto(url, wait_until="networkidle", timeout=30000)
+                    # 修复: 使用domcontentloaded代替networkidle
+                    await page.goto(url, wait_until="domcontentloaded", timeout=15000)
+                    await page.wait_for_timeout(1000)  # 等待JS渲染
                     data = await extract_fn(page)
                     data['url'] = url
                     data['extracted_at'] = datetime.now().isoformat()
