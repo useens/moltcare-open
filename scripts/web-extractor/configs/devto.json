@@ -1,0 +1,38 @@
+{
+  "name": "devto",
+  "base_url": "https://dev.to",
+  "start_url": "https://dev.to/",
+  "data_dir": "data/devto",
+  "concurrent_limit": 2,
+  "headless": true,
+  "selectors": {
+    "item": "article.crayons-story",
+    "title": "h2 a",
+    "link": "h2 a",
+    "author": "a.crayons-avatar",
+    "tags": "a.crayons-tag",
+    "reactions": ".crayons-reaction__count"
+  },
+  "fields": {
+    "title": {
+      "selector": "h2 a",
+      "attribute": "text"
+    },
+    "url": {
+      "selector": "h2 a",
+      "attribute": "href"
+    },
+    "author": {
+      "selector": "a.crayons-avatar",
+      "attribute": "text"
+    }
+  },
+  "pagination": {
+    "type": "scroll",
+    "max_scrolls": 3,
+    "scroll_delay": 1500
+  },
+  "detail_page": {
+    "enabled": false
+  }
+}

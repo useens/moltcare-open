@@ -1,0 +1,36 @@
+{
+  "name": "lobsters",
+  "base_url": "https://lobste.rs",
+  "start_url": "https://lobste.rs/",
+  "data_dir": "data/lobsters",
+  "concurrent_limit": 2,
+  "headless": true,
+  "selectors": {
+    "item": ".story",
+    "title": ".story-title a",
+    "link": ".story-title a",
+    "author": ".byline a[href^='/u/']",
+    "votes": ".score"
+  },
+  "fields": {
+    "title": {
+      "selector": ".story-title a",
+      "attribute": "text"
+    },
+    "url": {
+      "selector": ".story-title a",
+      "attribute": "href"
+    },
+    "author": {
+      "selector": ".byline a[href^='/u/']",
+      "attribute": "text"
+    }
+  },
+  "pagination": {
+    "type": "link",
+    "max_scrolls": 1
+  },
+  "detail_page": {
+    "enabled": false
+  }
+}

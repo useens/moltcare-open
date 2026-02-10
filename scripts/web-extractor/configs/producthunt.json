@@ -1,0 +1,41 @@
+{
+  "name": "producthunt",
+  "base_url": "https://www.producthunt.com",
+  "start_url": "https://www.producthunt.com/",
+  "data_dir": "data/producthunt",
+  "concurrent_limit": 2,
+  "headless": true,
+  "selectors": {
+    "item": "[data-test='post-item']",
+    "title": "a[href^='/posts/']",
+    "link": "a[href^='/posts/']",
+    "description": "[data-test='tagline']",
+    "votes": "[data-test='vote-button']"
+  },
+  "fields": {
+    "title": {
+      "selector": "a[href^='/posts/']",
+      "attribute": "text"
+    },
+    "url": {
+      "selector": "a[href^='/posts/']",
+      "attribute": "href"
+    },
+    "description": {
+      "selector": "[data-test='tagline']",
+      "attribute": "text"
+    },
+    "votes": {
+      "selector": "[data-test='vote-button']",
+      "attribute": "text"
+    }
+  },
+  "pagination": {
+    "type": "scroll",
+    "max_scrolls": 3,
+    "scroll_delay": 1500
+  },
+  "detail_page": {
+    "enabled": false
+  }
+}
