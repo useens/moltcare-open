@@ -97,9 +97,9 @@ tar czf "${BACKUP_DIR}/${BACKUP_NAME}.tar.gz" -C /tmp "${BACKUP_NAME}"
 # 7. 清理临时目录
 rm -rf "${TEMP_DIR}"
 
-# 8. 清理旧备份（保留最近30个）
-log_info "清理旧备份（保留最近30个）..."
-ls -1t "${BACKUP_DIR}"/linlin_full_*.tar.gz 2>/dev/null | tail -n +31 | xargs -r rm -f
+# 8. 清理旧备份（保留最近10个）
+log_info "清理旧备份（保留最近10个）..."
+ls -1t "${BACKUP_DIR}"/linlin_full_*.tar.gz 2>/dev/null | tail -n +11 | xargs -r rm -f
 
 BACKUP_SIZE=$(du -h "${BACKUP_DIR}/${BACKUP_NAME}.tar.gz" | cut -f1)
 BACKUP_COUNT=$(ls -1 "${BACKUP_DIR}"/linlin_full_*.tar.gz 2>/dev/null | wc -l)
