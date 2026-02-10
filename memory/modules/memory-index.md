@@ -68,6 +68,10 @@ memory/
 | `scripts/auto-import-trigger.py` | 对话后自动导入触发器 | ⭐⭐⭐⭐ |
 | `scripts/vector-memory-cleanup.py` | 向量记忆整理脚本 | ⭐⭐⭐⭐ |
 | `scripts/moltbook-super-extractor.py` | **Moltbook超级提取器v5.0** | ⭐⭐⭐⭐⭐ |
+| `scripts/web-extractor/` | **通用网页提取器框架v1.0** | ⭐⭐⭐⭐⭐ |
+| `scripts/web-extractor/base_extractor.py` | 基础提取器类（可继承） | ⭐⭐⭐⭐⭐ |
+| `scripts/web-extractor/moltbook_extractor.py` | Moltbook专用提取器v6.0 | ⭐⭐⭐⭐ |
+| `scripts/web-extractor/generic_extractor.py` | 通用配置版提取器 | ⭐⭐⭐⭐⭐ |
 | `modules/skill-localization-criteria.md` | 技能本地化评估标准 | ⭐⭐⭐⭐ |
 | `tags/skills-installed.md` | 已安装技能清单 | ⭐⭐⭐⭐ |
 

@@ -1,0 +1,40 @@
+{
+  "name": "moltbook",
+  "base_url": "https://www.moltbook.com",
+  "start_url": "https://www.moltbook.com/?sort=hot",
+  "data_dir": "data/moltbook",
+  "concurrent_limit": 3,
+  "headless": true,
+  "selectors": {
+    "item": "a[href^=\"/post/\"]",
+    "title": "h1, h2, h3",
+    "link": "a[href^=\"/post/\"]",
+    "content": "[class*=\"content\"], article",
+    "author": "[class*=\"author\"], [href^=\"/u/\"]",
+    "time": "time"
+  },
+  "fields": {
+    "title": {
+      "selector": "h1, h2, h3",
+      "attribute": "text"
+    },
+    "url": {
+      "selector": "a[href^=\"/post/\"]",
+      "attribute": "href"
+    },
+    "post_id": {
+      "selector": "a[href^=\"/post/\"]",
+      "attribute": "href"
+    }
+  },
+  "pagination": {
+    "type": "scroll",
+    "max_scrolls": 5,
+    "scroll_delay": 1000
+  },
+  "detail_page": {
+    "enabled": true,
+    "content_selector": "[class*=\"content\"], article, main",
+    "wait_for": "[class*=\"content\"]"
+  }
+}
