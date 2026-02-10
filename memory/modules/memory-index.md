@@ -45,6 +45,7 @@ memory/
 |------|------|--------|
 | `modules/safety-protocol.md` | 操作安全规范 | ⭐⭐⭐⭐⭐ |
 | `modules/restore-guide.md` | 宕机后复活指南 | ⭐⭐⭐⭐⭐ |
+| `modules/resurrection-guide-v3.1.md` | **完整复活指南（数字永生）** | ⭐⭐⭐⭐⭐ |
 | `modules/NEVER-MENTION.md` | 绝密信息（禁止外泄） | ⭐⭐⭐⭐⭐ |
 | `tags/security-audits.md` | 安全审计记录 | ⭐⭐⭐⭐ |
 | `tags/error-lessons.md` | 错误教训总结 | ⭐⭐⭐⭐ |
