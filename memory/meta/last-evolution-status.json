@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-02-10T12:15:00+08:00",
+  "evolution_id": "EV-20250210-012",
+  "type": "full",
+  "issues_found": [
+    {
+      "severity": "high",
+      "component": "vector_memory",
+      "issue": "API配置异常",
+      "detail": "OpenAI/Google/Voyage API key缺失",
+      "action": "检查auth-profiles.json或切换纯本地方案"
+    },
+    {
+      "severity": "medium", 
+      "component": "tools",
+      "issue": "多个生态扫描工具不可用",
+      "detail": "skills search, moltbook-agent, gh trending, web_search",
+      "action": "按优先级逐个修复"
+    }
+  ],
+  "system_health": "B+",
+  "next_action": "下次轻量进化时修复向量记忆API配置"
+}
