@@ -1,0 +1,45 @@
+{
+  "name": "github_trending",
+  "base_url": "https://github.com",
+  "start_url": "https://github.com/trending",
+  "data_dir": "data/github_trending",
+  "concurrent_limit": 2,
+  "headless": true,
+  "selectors": {
+    "item": "article.Box-row",
+    "title": "h2 a",
+    "link": "h2 a",
+    "description": "p.col-9",
+    "language": "[itemprop=\"programmingLanguage\"]",
+    "stars": ".f6 a[href*=\"stargazers\"]"
+  },
+  "fields": {
+    "title": {
+      "selector": "h2 a",
+      "attribute": "text"
+    },
+    "url": {
+      "selector": "h2 a",
+      "attribute": "href"
+    },
+    "description": {
+      "selector": "p.col-9",
+      "attribute": "text"
+    },
+    "language": {
+      "selector": "[itemprop=\"programmingLanguage\"]",
+      "attribute": "text"
+    },
+    "stars": {
+      "selector": ".f6 a[href*=\"stargazers\"]",
+      "attribute": "text"
+    }
+  },
+  "pagination": {
+    "type": "none",
+    "max_scrolls": 3
+  },
+  "detail_page": {
+    "enabled": false
+  }
+}

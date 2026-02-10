@@ -347,7 +347,7 @@
 > **完整进化体系**（2026-02-10 重建）
 > 轻量/全量/夜间三级进化 + 健康监控 + 社区参与
 
-### 进化任务总览（8个定时任务）
+### 进化任务总览（9个定时任务）
 
 | 任务ID | 名称 | 周期 | 执行时间 | 功能 |
 |--------|------|------|----------|------|
@@ -359,6 +359,7 @@
 | `health-check-2h` | 健康检查 | 每2小时 | 持续 | 系统状态+向量记忆+备份检查 |
 | `github-backup-sync` | 备份同步 | 每30分钟 | 持续 | GitHub自动提交+冲突解决 |
 | `monthly-deep-cleanup` | 月度深度清理 | 每月1号 | 00:00 | 过期清理+冷归档+存储报告 |
+| `web-extractor-intel-collection` | **网页情报收集** | 每天 | 04:00 | Moltbook/HN/GitHub零成本情报收集 |
 
 ### 轻量进化（4小时周期）
 
@@ -424,6 +425,77 @@
 - 参与社区讨论
 - 学习其他Agent经验
 - 发现新技能/趋势
+
+---
+
+### 🌐 通用网页提取器框架 v1.0
+
+**深刻融入进化体系**，实现零Token成本的多平台情报收集。
+
+#### 框架结构
+```
+scripts/web-extractor/
+├── base_extractor.py          # 抽象基类（可继承扩展）
+├── moltbook_extractor.py      # Moltbook专用提取器v6.0
+├── generic_extractor.py       # 通用配置版（零代码适配）
+├── configs/
+│   ├── moltbook.json          # Moltbook配置
+│   ├── hackernews.json        # Hacker News配置
+│   └── github_trending.json   # GitHub Trending配置
+└── __init__.py
+```
+
+#### 核心能力
+| 能力 | 说明 | 成本 |
+|------|------|------|
+| 智能滚动加载 | 自动触发无限滚动，加载更多内容 | 0 tokens |
+| 并发提取 | 限制并发数，避免过载 | 0 tokens |
+| 登录态管理 | 自动保存/加载cookies | 0 tokens |
+| 增量提取 | 避免重复，支持断点续传 | 0 tokens |
+| JSON配置驱动 | 新网站只需配置文件，无需代码 | 0 tokens |
+
+#### 三种使用方式
+
+**方式1: 专用提取器（功能最完整）**
+```bash
+python3 web-extractor/moltbook_extractor.py hot
+python3 web-extractor/moltbook_extractor.py profile LinLin_v1
+```
+
+**方式2: 通用配置版（零代码适配新网站）**
+```bash
+# 只需创建JSON配置文件
+python3 web-extractor/generic_extractor.py configs/any_site.json
+```
+
+**方式3: 继承基类自定义**
+```python
+from web_extractor import BaseWebExtractor
+
+class MyExtractor(BaseWebExtractor):
+    def get_selectors(self): ...
+    async def parse_item(self, element, page): ...
+```
+
+#### 已配置平台
+- **Moltbook**: 热门帖子、用户主页
+- **Hacker News**: 头条新闻
+- **GitHub Trending**: 热门仓库
+- **可扩展**: Reddit、Twitter/X、Discord等任何网站
+
+#### 自动化情报收集
+**任务**: `web-extractor-intel-collection`  
+**时间**: 每天 04:00  
+**执行**: `scripts/collect-web-intel.py`
+
+**收集内容**:
+1. Moltbook热门帖子（AI Agent社区动态）
+2. Hacker News头条（技术趋势）
+3. GitHub Trending（热门项目）
+
+**输出**: `memory/intel/intel_YYYYMMDD_HHMMSS.json`
+
+---
 
 ### 监控与自愈
 

@@ -1,0 +1,40 @@
+{
+  "name": "hackernews",
+  "base_url": "https://news.ycombinator.com",
+  "start_url": "https://news.ycombinator.com/",
+  "data_dir": "data/hackernews",
+  "concurrent_limit": 3,
+  "headless": true,
+  "selectors": {
+    "item": ".athing",
+    "title": ".titleline > a",
+    "link": ".titleline > a",
+    "score": ".score",
+    "author": ".hnuser"
+  },
+  "fields": {
+    "title": {
+      "selector": ".titleline > a",
+      "attribute": "text"
+    },
+    "url": {
+      "selector": ".titleline > a",
+      "attribute": "href"
+    },
+    "score": {
+      "selector": ".score",
+      "attribute": "text"
+    },
+    "author": {
+      "selector": ".hnuser",
+      "attribute": "text"
+    }
+  },
+  "pagination": {
+    "type": "link",
+    "max_pages": 2
+  },
+  "detail_page": {
+    "enabled": false
+  }
+}
