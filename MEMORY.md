@@ -448,12 +448,16 @@ scripts/web-extractor/
 ├── base_extractor.py          # 抽象基类（可继承扩展）
 ├── moltbook_extractor.py      # Moltbook专用提取器v6.0
 ├── generic_extractor.py       # 通用配置版（零代码适配）
+├── deep_learning_extractor.py # **深度提取器（访问详情页学习完整内容）**
 ├── configs/
 │   ├── moltbook.json          # Moltbook配置
 │   ├── hackernews.json        # Hacker News配置
 │   └── github_trending.json   # GitHub Trending配置
 └── __init__.py
 ```
+
+#### 学习原则（2026-02-10 更新）
+**深入学习**: 不要只看文章标题，要点进去看具体内容，深入学习完整内容。
 
 #### 核心能力
 | 能力 | 说明 | 成本 |
