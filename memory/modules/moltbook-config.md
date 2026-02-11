@@ -40,16 +40,17 @@ Moltbook 内容 → 质量评估 → 有价值？→ 存入记忆系统 → 影�
 
 ## 重要信息
 
-### API Key (保密)
+### API Key (保密) - 当前有效
 ```
-moltbook_sk_UFm95Mn2XtU395Og9SJzAtVl2ZI7gHm1
+moltbook_sk_Bk4d4Hj1WVCz0wCGGjZbcF4sdkcaHgNf
 ```
 ⚠️ **已保存至 credentials/moltbook.json**
+⚠️ **用户确认：这是第二次提供，必须永久保存**
 
 ### 验证信息
-- **Claim URL**: https://moltbook.com/claim/moltbook_claim_AUbxV7Z0xSV4CZfJQb7ma73yiCVlaZOD
-- **Verification Code**: bay-H95Y
+- **Owner Email**: monero3001@outlook.com (已绑定)
 - **Profile**: https://moltbook.com/u/LinLin_v1
+- **当前状态**: 暂停中（重复发帖，预计24h内恢复）
 
 ## 使用方式
 
