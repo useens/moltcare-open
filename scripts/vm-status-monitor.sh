@@ -21,7 +21,8 @@ log() {
 # 检查VM是否在线
 check_vm_online() {
     if ssh -p "$VM_SSH_PORT" \
-           -o ConnectTimeout=5 \
+           -o ConnectTimeout=3 \
+           -o ConnectionAttempts=1 \
            -o StrictHostKeyChecking=no \
            -o PasswordAuthentication=no \
            -i "$VM_SSH_KEY" \
@@ -55,14 +56,15 @@ record_notify() {
 send_dual_notification() {
     local state="$1"
     local time_str=$(date '+%Y-%m-%d %H:%M:%S')
+    local notify_file="/tmp/vm_notify_pending"
     
     if [ "$state" = "online" ]; then
-        local feishu_msg="🌱 **VM已上线！**
+        local feishu_msg="🌱 VM已上线！
 
-**双节点系统状态**: ✅ 正常
-**VM主机**: user-virtual-machine
-**时间**: $time_str
-**SSH隧道**: 端口4444已建立
+双节点系统状态: ✅ 正常
+VM主机: user-virtual-machine
+时间: $time_str
+SSH隧道: 端口4444已建立
 
 ✅ OpenClaw工作节点已就绪，可以接收任务"
 
@@ -75,12 +77,12 @@ SSH隧道: 端口4444已建立
 
 ✅ OpenClaw工作节点已就绪"
     else
-        local feishu_msg="⚠️ **VM已离线！**
+        local feishu_msg="⚠️ VM已离线！
 
-**双节点系统状态**: 🔴 降级（单节点模式）
-**VM主机**: user-virtual-machine
-**时间**: $time_str
-**SSH隧道**: 端口4444连接中断
+双节点系统状态: 🔴 降级（单节点模式）
+VM主机: user-virtual-machine
+时间: $time_str
+SSH隧道: 端口4444连接中断
 
 📍 主节点继续运行，任务将在本地执行
 🔄 VM恢复后将自动重新连接"
@@ -96,31 +98,23 @@ SSH隧道: 端口4444连接中断
 🔄 VM恢复后将自动重新连接"
     fi
     
-    # ========== 飞书通知 ==========
-    # 输出到stdout，cron会发送到飞书
-    echo "$feishu_msg"
+    # 写入通知文件（供外部读取）
+    cat > "$notify_file" << EOF
+STATE=$state
+TIME=$time_str
+FEISHU_MSG=$feishu_msg
+TELEGRAM_MSG=$tg_msg
+EOF
     
-    # ========== Telegram通知 ==========
-    # 使用message工具直接发送
-    if command -v openclaw > /dev/null 2>&1; then
-        # 创建临时消息文件
-        local tmp_msg="/tmp/tg_notify_$(date +%s).txt"
-        echo "$tg_msg" > "$tmp_msg"
-        
-        # 使用openclaw message发送（后台执行，不阻塞）
-        (
-            cd /root/.openclaw/workspace && \
-            openclaw message send --channel telegram --message "$(cat $tmp_msg)" 2>/dev/null || \
-            echo "[$(date)] Telegram发送失败" >> "$LOG_FILE"
-            rm -f "$tmp_msg"
-        ) &
-    fi
-    
-    # 输出Telegram标记（供上层解析）
+    # 输出标记（供解析）
     echo ""
-    echo "[TELEGRAM_SENT]"
+    echo "[STATE_CHANGE:$state]"
+    echo "[FEISHU]"
+    echo "$feishu_msg"
+    echo "[/FEISHU]"
+    echo "[TELEGRAM]"
     echo "$tg_msg"
-    echo "[/TELEGRAM_SENT]"
+    echo "[/TELEGRAM]"
 }
 
 # 主逻辑
