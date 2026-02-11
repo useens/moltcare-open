@@ -57,7 +57,20 @@ class MemoryForgettingSystem:
         value = (base * time_decay) + access_bonus
         return min(value, 10.0)
     
-    def find_similar_memories(self, memory_id: str, threshold: float = 0.85) -> List[str]:
+    def find_similar_memories(self, memory_id: str = None, threshold: float = 0.85, min_similarity: float = None) -> List[str]:
+        """查找相似记忆
+        
+        Args:
+            memory_id: 记忆ID（可选，兼容旧版）
+            threshold: 相似度阈值
+            min_similarity: 兼容参数，同threshold
+        """
+        # 兼容min_similarity参数
+        if min_similarity is not None:
+            threshold = min_similarity
+        
+        if not memory_id or memory_id not in self.vms.memories:
+            return []
         """查找相似记忆"""
         if memory_id not in self.vms.memories:
             return []
