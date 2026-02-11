@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-02-11T23:56:23.832185",
+  "components": {
+    "v5.1": {
+      "status": "healthy",
+      "long_term_memories": 24,
+      "associations": 71
+    },
+    "v5.2": {
+      "status": "healthy",
+      "total_memories": 129,
+      "with_vectors": 129
+    },
+    "v5.3": {
+      "status": "healthy"
+    },
+    "v5.4": {
+      "status": "healthy",
+      "patterns": 6
+    },
+    "v5.5": {
+      "status": "healthy",
+      "snapshots": 5,
+      "latest": "snap_20260211_235027.json"
+    },
+    "v6.0": {
+      "status": "healthy",
+      "dashboard": true
+    }
+  }
+}
