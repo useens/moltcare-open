@@ -217,3 +217,4 @@ journalctl -u linlin-resurrection -f
 
 *最后更新: 2026-02-11*  
 *复活系统版本: Phoenix v1.0*
+
