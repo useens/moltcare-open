@@ -21,7 +21,7 @@ chmod +x scripts/auto-resurrect.sh
 ./auto-resurrect.sh --now              # 立即复活
 ```
 
-### 方式二：手动复活
+### 方式二：手动复活（确保最新版本）
 
 ```bash
 # 1. 安装依赖
@@ -29,12 +29,17 @@ chmod +x scripts/auto-resurrect.sh
 # - OpenClaw CLI
 npm install -g openclaw
 
-# 2. 恢复数据
-git clone https://github.com/useens/linlin-backup.git ~/.openclaw/workspace
+# 2. 删除旧数据（如有）
+rm -rf ~/.openclaw/workspace
 
-# 3. 启动服务
+# 3. 拉取最新版本（关键！）
+git clone --depth 1 https://github.com/useens/linlin-backup.git ~/.openclaw/workspace
+
+# 4. 启动服务
 openclaw start
 ```
+
+**⚠️ 重要提示**：每次复活必须执行 `git clone` 或 `git pull` 确保拿到最新版本，不要用本地缓存的旧代码。
 
 ---
 
