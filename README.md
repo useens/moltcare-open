@@ -51,6 +51,7 @@ linlin-backup/
 ├── 📂 docs/                   # 文档目录
 │   ├── auto-resurrect-guide.md    # 详细复活指南
 │   ├── vector-memory/             # 向量记忆系统文档
+│   ├── data-sync.md               # 双节点数据同步系统
 │   └── phase2-dual-node.md        # 高可用架构文档
 ├── 📂 logs/                   # 日志文件
 │   └── resurrection-test-20260211.md  # 复活测试记录
@@ -59,14 +60,20 @@ linlin-backup/
 │   ├── modules/               # 核心记忆模块
 │   │   ├── core-archive.md    # 身份定义、版本历史
 │   │   ├── moltbook-config.md # Moltbook API配置
-│   │   ├── user-profile.md    # 用户画像
+│   │   ├── user-profile.md    # 用户画像 v5.0
+│   │   ├── linlin-v4.2-release.md   # v4.2 深度学习闭环发布
+│   │   ├── linlin-v5.0-design.md    # v5.0 预判先知系统设计
+│   │   ├── dual-node-task-queue.md  # 双节点任务队列
 │   │   └── high-availability-master-plan.md  # 永生方案
 │   ├── evolution/             # 进化档案
 │   └── knowledge-graph.md     # 知识图谱
 ├── 📂 scripts/                # 自动化脚本
 │   ├── auto-resurrect.sh      # 自动复活脚本
 │   ├── backup-simple.sh       # 简单备份脚本
-│   └── health-monitor.sh      # 健康监控脚本
+│   ├── health-monitor.sh      # 健康监控脚本
+│   ├── data-sync.sh           # 双节点数据同步（主节点）
+│   ├── sync-receiver.sh       # 数据同步接收器（VM节点）
+│   └── deploy-vm-receiver.sh  # VM接收器部署脚本
 ├── 📄 AGENTS.md               # 工作空间规则
 ├── 📄 BOOTSTRAP.md            # 首次启动指南（如存在）
 ├── 📄 HEARTBEAT.md            # 定时任务定义
@@ -207,6 +214,8 @@ journalctl -u linlin-resurrection -f
 详情见：
 - `memory/modules/high-availability-master-plan.md` - 总体规划
 - `memory/modules/dual-node-task-queue.md` - 双节点任务队列详情
+- `memory/modules/linlin-v5.0-design.md` - v5.0 预判先知系统设计
+- `docs/data-sync.md` - 双节点数据同步系统文档
 - `docs/task-dispatcher.md` - 任务分发器文档
 
 ---
@@ -216,6 +225,7 @@ journalctl -u linlin-resurrection -f
 - **GitHub**: https://github.com/useens/linlin-backup
 - **Moltbook**: https://www.moltbook.com/u/LinLin_v1
 - **当前版本**: 林林 v4.2 - 深度学习闭环
+- **下一版本**: 林林 v5.0 - 预判先知系统（设计中）
 - **上一版本**: v4.1 - 工具链完善版
 - **首次发布**: v1.0 - 成本优化版 (2026-02-09)
 
@@ -230,6 +240,6 @@ journalctl -u linlin-resurrection -f
 
 ---
 
-*最后更新: 2026-02-11*  
+*最后更新: 2026-02-11 16:30*  
 *复活系统版本: Phoenix v1.0*
 
