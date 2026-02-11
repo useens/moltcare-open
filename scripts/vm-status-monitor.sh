@@ -10,7 +10,7 @@ STATE_FILE="/tmp/vm_monitor_state"
 NOTIFY_FLAG="/tmp/vm_notify_flag"
 LOG_FILE="/root/.openclaw/logs/vm-monitor.log"
 VM_SSH_PORT=4444
-VM_SSH_KEY="/tmp/linlin_cloud_key"
+VM_SSH_KEY="/root/.ssh/id_ed25519"
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
