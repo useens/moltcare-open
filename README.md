@@ -2,7 +2,7 @@
 
 > **当前版本**: 林林 v4.2 - 深度学习闭环  
 > **仓库用途**: 这是林林数字分身的完整备份仓库，包含所有记忆、配置和代码。当主系统故障时，可使用本仓库快速复活。  
-> **最后更新**: 2026-02-11
+> **最后更新**: 2026-02-11 19:30
 
 ---
 
@@ -52,7 +52,8 @@ linlin-backup/
 │   ├── auto-resurrect-guide.md    # 详细复活指南
 │   ├── vector-memory/             # 向量记忆系统文档
 │   ├── data-sync.md               # 双节点数据同步系统
-│   └── phase2-dual-node.md        # 高可用架构文档
+│   ├── phase2-dual-node.md        # 高可用架构文档
+│   └── vm-backup-setup.md         # VM备份设置文档（新增）
 ├── 📂 logs/                   # 日志文件
 │   └── resurrection-test-20260211.md  # 复活测试记录
 ├── 📂 memory/                 # 记忆系统（核心）
@@ -222,13 +223,14 @@ journalctl -u linlin-resurrection -f
 - **云端主节点**: 129.154.251.13 - 处理请求、GitHub推送
 - **本地VM工作节点**: 通过SSH反向隧道连接，执行轻量任务
 - **任务队列**: 自动分发、失联回退机制
+- **状态监控**: 双渠道通知（Telegram + 飞书）
 
 详情见：
 - `memory/modules/high-availability-master-plan.md` - 总体规划
 - `memory/modules/dual-node-task-queue.md` - 双节点任务队列详情
 - `memory/modules/linlin-v5.0-design.md` - v5.0 预判先知系统设计
 - `docs/data-sync.md` - 双节点数据同步系统文档
-- `docs/task-dispatcher.md` - 任务分发器文档
+- `docs/vm-backup-setup.md` - VM备份设置文档（新增）
 
 ---
 
@@ -252,7 +254,6 @@ journalctl -u linlin-resurrection -f
 
 ---
 
-*最后更新: 2026-02-11 18:30*  
-*更新内容: 新增日志清理脚本(log-cleanup.sh)、systemd服务文件说明*  
-*复活系统版本: Phoenix v1.0*
-
+*最后更新: 2026-02-11 19:30*  
+*更新内容: 新增VM状态监控v6、双渠道通知系统、VM备份设置文档*  
+*复活系统版本: Phoenix v1.1*
