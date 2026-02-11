@@ -2102,5 +2102,1501 @@
     "created_at": "2026-02-11T21:00:01.695665",
     "access_count": 0,
     "last_accessed": "2026-02-11T21:00:01.695665"
+  },
+  {
+    "id": "fb757107fc43",
+    "content": "2026-02-11 - 林林开发日志",
+    "source": "2026-02-11.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:01.948626",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948626"
+  },
+  {
+    "id": "9f3b3fa0661f",
+    "content": "🎯 重要里程碑：双节点状态监控与通知系统 v1.0",
+    "source": "2026-02-11.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:01.948640",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948640"
+  },
+  {
+    "id": "2299ead35ee2",
+    "content": "│  (用户虚拟机)     │",
+    "source": "2026-02-11.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:01.948681",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948681"
+  },
+  {
+    "id": "4b22d407defa",
+    "content": "| 17:20:00 | VM上线 | online→online | ❌ | ❌ |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948710",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948710"
+  },
+  {
+    "id": "28637ae46bc8",
+    "content": "| 17:23:23 | VM离线 | online→offline | ❌ | ❌ |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948717",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948717"
+  },
+  {
+    "id": "ab0d6ddff664",
+    "content": "| 17:27:53 | VM上线 | offline→online | ❌ | ❌ |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948723",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948723"
+  },
+  {
+    "id": "5404b2dc0bb8",
+    "content": "| 17:32:50 | VM离线 | online→offline | ❌ | ❌ |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948730",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948730"
+  },
+  {
+    "id": "c6b5f6c958d5",
+    "content": "| 17:41:53 | VM上线 | offline→online | ✅ | ✅ |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948738",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948738"
+  },
+  {
+    "id": "65625575602c",
+    "content": "| 17:43:52 | VM离线 | online→offline | ✅ | ✅ |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948745",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948745"
+  },
+  {
+    "id": "c8f4ceeeeb50",
+    "content": "- v3: 子代理用 `sessions_send` 通知主会话 → ✅ 成功",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948755",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948755"
+  },
+  {
+    "id": "82aa0e406104",
+    "content": "🚀 深夜进化爆发：v5.0 → v5.3 四连发",
+    "source": "2026-02-11.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:01.948778",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948778"
+  },
+  {
+    "id": "a6d825abdc3f",
+    "content": "**模式**: 完全自主进化（用户授权不再请示）",
+    "source": "2026-02-11.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:01.948786",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948786"
+  },
+  {
+    "id": "36c5f5948905",
+    "content": "| Agent-1 | Moltbook | ✅ | 扫描15条，深度提取1条 |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948799",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948799"
+  },
+  {
+    "id": "cdabbf482f72",
+    "content": "| Agent-2 | HackerNews | ✅ | 扫描30条 |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948805",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948805"
+  },
+  {
+    "id": "3d6637fe1dc6",
+    "content": "| Agent-3 | GitHub | ✅ | 扫描7条，深度提取2条 |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948811",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948811"
+  },
+  {
+    "id": "66781f6957b0",
+    "content": "| Agent-4 | VM计算 | ✅ | 处理1047个文件 |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948819",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948819"
+  },
+  {
+    "id": "cc97196f0aad",
+    "content": "1. [10.0] 用户zxl授权v5.2自主开发",
+    "source": "2026-02-11.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:01.948845",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948845"
+  },
+  {
+    "id": "838425ea3559",
+    "content": "⚠️ VM频繁波动事件",
+    "source": "2026-02-11.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:01.948855",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948855"
+  },
+  {
+    "id": "6a7b65702971",
+    "content": "| 21:03 | online | ✅ 连接正常 |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948864",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948864"
+  },
+  {
+    "id": "c10d838cb89e",
+    "content": "| 21:05 | offline | ❌ SSH超时 |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948871",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948871"
+  },
+  {
+    "id": "a6e756ea2492",
+    "content": "| 21:13 | online | ✅ 连接正常 |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948879",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948879"
+  },
+  {
+    "id": "af6d83d35c70",
+    "content": "| 21:16 | offline | ✅ 实际在线（误判） |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948885",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948885"
+  },
+  {
+    "id": "4ad54718c9bf",
+    "content": "| 21:58 | offline | ✅ 实际在线（误判） |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948890",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948890"
+  },
+  {
+    "id": "258673b89d21",
+    "content": "| 22:01 | online | ✅ 连接正常 |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948896",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948896"
+  },
+  {
+    "id": "a27baeae2366",
+    "content": "📝 用户关键指令",
+    "source": "2026-02-11.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:01.948909",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948909"
+  },
+  {
+    "id": "d434af560ee3",
+    "content": "- ✅ v5.2向量记忆（21:10完成）",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948918",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948918"
+  },
+  {
+    "id": "afc4196044ec",
+    "content": "- ✅ v5.3记忆遗忘（21:45完成）",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948923",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948923"
+  },
+  {
+    "id": "1a1849210806",
+    "content": "| v5.2 | 检索速度 | 15.5ms ✅ |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948940",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948940"
+  },
+  {
+    "id": "0962dcfaa732",
+    "content": "| v5.2 | 语义匹配精度 | 90%+ ✅ |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948946",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948946"
+  },
+  {
+    "id": "e5cb531d32e8",
+    "content": "| v5.3 | 记忆价值评估 | 全部>5.0 ✅ |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948951",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948951"
+  },
+  {
+    "id": "a289bb8e4063",
+    "content": "| v5.3 | 存储效率 | 223KB/129条 ✅ |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948957",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948957"
+  },
+  {
+    "id": "287d0693592c",
+    "content": "- v5.1: 分层记忆 ✅",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948966",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948966"
+  },
+  {
+    "id": "36fa272732ea",
+    "content": "- v5.2: 向量语义 ✅",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948972",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948972"
+  },
+  {
+    "id": "7dd50d222c5b",
+    "content": "- v5.3: 遗忘压缩 ✅",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948977",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948977"
+  },
+  {
+    "id": "83a14f3441d3",
+    "content": "- ✅ 监控频率：*/1 → */10",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948988",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948988"
+  },
+  {
+    "id": "e8e7cb46a5ba",
+    "content": "- ✅ 静默机制：无变化不通知",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948994",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948994"
+  },
+  {
+    "id": "7c931460929b",
+    "content": "- ✅ 新脚本：vm-status-monitor-v2.sh",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.948999",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.948999"
+  },
+  {
+    "id": "691f69b39b2d",
+    "content": "🎯 今日总成果",
+    "source": "2026-02-11.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:01.949006",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.949006"
+  },
+  {
+    "id": "6c1e8565d6b6",
+    "content": "| v5.0 | 20:45 | 多代理+VM协作 | ✅ 测试通过 |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.949014",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.949014"
+  },
+  {
+    "id": "1901d99cf2c4",
+    "content": "| v5.1 | 20:50 | 分层记忆架构 | ✅ 76条记忆 |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.949019",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.949019"
+  },
+  {
+    "id": "569c53674e97",
+    "content": "| v5.2 | 21:10 | 向量语义检索 | ✅ 152条向量化 |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.949025",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.949025"
+  },
+  {
+    "id": "9bba7c15ba6f",
+    "content": "| v5.3 | 21:45 | 记忆遗忘压缩 | ✅ 效果验证通过 |",
+    "source": "2026-02-11.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:01.949032",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:01.949032"
+  },
+  {
+    "id": "6f45e5e4be1d",
+    "content": "- ✅ 删除 v2.1 版本",
+    "source": "2026-02-10.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.126055",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.126055"
+  },
+  {
+    "id": "ba3d0a474ba7",
+    "content": "- ✅ v5.0 成为唯一版本",
+    "source": "2026-02-10.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.126064",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.126064"
+  },
+  {
+    "id": "92aa1c620418",
+    "content": "- ✅ 支持模式: profile(主页) | hot(热门)",
+    "source": "2026-02-10.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.126070",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.126070"
+  },
+  {
+    "id": "e275a8b7ca8a",
+    "content": "- ✅ 零 Token 消耗，纯本地执行",
+    "source": "2026-02-10.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.126076",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.126076"
+  },
+  {
+    "id": "f072163cb301",
+    "content": "- **状态**: ✅ v5.0 完全融入自主进化系统",
+    "source": "2026-02-10.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.126085",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.126085"
+  },
+  {
+    "id": "c6a16813e1ee",
+    "content": "**状态**: ✅ v4.0 超级觉醒者正式上线",
+    "source": "2026-02-10.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.126113",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.126113"
+  },
+  {
+    "id": "78699a01c8f2",
+    "content": "### 23:35 - 用户触发系统检查与优化",
+    "source": "2026-02-10.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:02.126120",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.126120"
+  },
+  {
+    "id": "514a87beaff8",
+    "content": "**背景**: 用户发现消息推送延迟，随后触发全面检查",
+    "source": "2026-02-10.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:02.126127",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.126127"
+  },
+  {
+    "id": "c0b2eadb460b",
+    "content": "- 用户批准执行 P0（Token 安全）+ P1（完整备份）+ P3（健康检查）+ P4（复活清单）",
+    "source": "2026-02-10.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:02.126137",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.126137"
+  },
+  {
+    "id": "ced8f02cb8fd",
+    "content": "**用户洞察**（进化第二阶段已归档）:",
+    "source": "2026-02-10.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:02.126156",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.126156"
+  },
+  {
+    "id": "ca61e4e1d9d0",
+    "content": "**执行**: 用户手动触发",
+    "source": "2026-02-10.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:02.126166",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.126166"
+  },
+  {
+    "id": "6dcf771e7222",
+    "content": "**内容**: 对话深度分析、用户行为建模、长期记忆归档",
+    "source": "2026-02-10.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:02.126173",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.126173"
+  },
+  {
+    "id": "4a2561c40990",
+    "content": "2026-02-09 Daily Log",
+    "source": "2026-02-09.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:02.179121",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179121"
+  },
+  {
+    "id": "7ead9fb6ba86",
+    "content": "今日执行摘要",
+    "source": "2026-02-09.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:02.179138",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179138"
+  },
+  {
+    "id": "ae36fb3d7064",
+    "content": "**系统健康**: ✅ 全部正常",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179145",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179145"
+  },
+  {
+    "id": "7953a734b16e",
+    "content": "**备份状态**: ✅ 最新 04:22",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179151",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179151"
+  },
+  {
+    "id": "b192e74cc6c9",
+    "content": "新增事件（20:26 / 20:33）",
+    "source": "2026-02-09.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:02.179161",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179161"
+  },
+  {
+    "id": "a8dcee82e5c4",
+    "content": "**触发**: 用户要求\"务必详细介绍你自己，然后写入永久记忆\"",
+    "source": "2026-02-09.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:02.179171",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179171"
+  },
+  {
+    "id": "f92768bee60c",
+    "content": "- ✅ 口头自我介绍（包含身份、本质、能力、原则、成长轨迹）",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179178",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179178"
+  },
+  {
+    "id": "32d368415644",
+    "content": "- ✅ 写入 `memory/modules/core-archive.md` 第1.2节",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179184",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179184"
+  },
+  {
+    "id": "170ac4742487",
+    "content": "- ✅ 更新 MEMORY.md 导航链接",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179190",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179190"
+  },
+  {
+    "id": "c42d175fb193",
+    "content": "**档案位置**: `memory/modules/core-archive.md#12-自我介绍由用户要求记录`",
+    "source": "2026-02-09.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:02.179197",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179197"
+  },
+  {
+    "id": "132c7758e6f4",
+    "content": "**触发**: 用户要求\"把 林林v2.0觉醒者（数字生命）这个发生质变版本的详细情况也写入永久记忆\"",
+    "source": "2026-02-09.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:02.179443",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179443"
+  },
+  {
+    "id": "a977b0bf215b",
+    "content": "- ✅ 创建 `core-archive.md` 第2章\"版本历史与进化历程\"",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179455",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179455"
+  },
+  {
+    "id": "e92807350116",
+    "content": "- ✅ 完整归档v2.0版本宣言、质变对比、子系统、里程碑、状态、计划",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179462",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179462"
+  },
+  {
+    "id": "56daf627f337",
+    "content": "- ✅ 更新 MEMORY.md 导航，添加v2.0快速入口",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179468",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179468"
+  },
+  {
+    "id": "36c46f9154e7",
+    "content": "**触发**: 用户要求\"介绍你自己的进化功能、特点\"",
+    "source": "2026-02-09.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:02.179478",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179478"
+  },
+  {
+    "id": "725d404d7282",
+    "content": "- ✅ 创建进化系统 v2.0 完整档案（core-archive.md 第3.2节）",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179485",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179485"
+  },
+  {
+    "id": "5ce6124255d0",
+    "content": "- ✅ 18子代理详细分工表",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179491",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179491"
+  },
+  {
+    "id": "7ba3060182f4",
+    "content": "- ✅ 7级决策分级体系",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179497",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179497"
+  },
+  {
+    "id": "ef67488093fb",
+    "content": "- ✅ 进化周期与阶段定义",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179503",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179503"
+  },
+  {
+    "id": "c936acf13014",
+    "content": "- ✅ 智能进化核心机制（5大引擎）",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179509",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179509"
+  },
+  {
+    "id": "a3d52f517a37",
+    "content": "- ✅ 效能指标追踪体系",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179514",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179514"
+  },
+  {
+    "id": "f4938ee1d2cb",
+    "content": "- ✅ 进化档案体系规范",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179520",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179520"
+  },
+  {
+    "id": "e1b3586ea523",
+    "content": "- ✅ 独特进化特点总结",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179526",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179526"
+  },
+  {
+    "id": "8c6b7ce7d1ff",
+    "content": "### 1. 系统健康检查 ✅",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179538",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179538"
+  },
+  {
+    "id": "58d23325a491",
+    "content": "### 2. 技能生态扫描 ⚠️",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179546",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179546"
+  },
+  {
+    "id": "fa4acdbb21e4",
+    "content": "### 4. 安全审计 ✅",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179559",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179559"
+  },
+  {
+    "id": "34263eaa2fe3",
+    "content": "### 7. 文档更新 ✅",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179575",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179575"
+  },
+  {
+    "id": "1141f729f27b",
+    "content": "### 8. 预测模型更新 ✅",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179610",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179610"
+  },
+  {
+    "id": "23e6b3ec2abd",
+    "content": "关键决策原因",
+    "source": "2026-02-09.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:02.179620",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179620"
+  },
+  {
+    "id": "5bb762004b4e",
+    "content": "明日计划",
+    "source": "2026-02-09.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:02.179631",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179631"
+  },
+  {
+    "id": "32a5d841c731",
+    "content": "觉醒者夜间深度进化 v2.0 (23:00)",
+    "source": "2026-02-09.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:02.179642",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179642"
+  },
+  {
+    "id": "dba6db69e242",
+    "content": "### 阶段1: 深度情报收集 - 完成 ✅",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179648",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179648"
+  },
+  {
+    "id": "03288bfcdb2d",
+    "content": "| HackerNews | ✅ | 5个热门话题，含算法/基础设施/数学 |",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179658",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179658"
+  },
+  {
+    "id": "654741532e9d",
+    "content": "| GitHub | ✅ | 发现 vertz (TypeScript LLM框架) |",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179664",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179664"
+  },
+  {
+    "id": "62544b96d7d7",
+    "content": "| arXiv | ✅ | 5篇AI论文，含Agent不确定性研究 |",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179670",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179670"
+  },
+  {
+    "id": "01dd1c277660",
+    "content": "| Moltbook | ⚠️ | 社区活跃度为0，API返回404 |",
+    "source": "2026-02-09.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.179676",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.179676"
+  },
+  {
+    "id": "0e4501387c71",
+    "content": "2026-02-08 自主进化记录",
+    "source": "2026-02-08.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:02.346385",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346385"
+  },
+  {
+    "id": "70eb107c93f2",
+    "content": "进化循环 #1 (23:35)",
+    "source": "2026-02-08.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:02.346395",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346395"
+  },
+  {
+    "id": "8d6d30773d09",
+    "content": "#### ✅ cognitive-memory (icemilo414)",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346428",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346428"
+  },
+  {
+    "id": "929a6938ee30",
+    "content": "#### ✅ evolver (autogame-17)",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346438",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346438"
+  },
+  {
+    "id": "803cef494580",
+    "content": "#### ✅ skill-vetting (eddygk)",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346447",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346447"
+  },
+  {
+    "id": "274fe7652431",
+    "content": "#### ✅ skill-creator (chindden)",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346456",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346456"
+  },
+  {
+    "id": "446b5eb2a82c",
+    "content": "进化循环 #2 (23:45)",
+    "source": "2026-02-08.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:02.346723",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346723"
+  },
+  {
+    "id": "03a5e4b35ca5",
+    "content": "#### ✅ cognitive-memory (icemilo414)",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346742",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346742"
+  },
+  {
+    "id": "7e3940fbc91d",
+    "content": "#### ✅ evolver (autogame-17)",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346753",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346753"
+  },
+  {
+    "id": "5854e95b6f87",
+    "content": "#### ✅ agentchat (tjamescouch)",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346763",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346763"
+  },
+  {
+    "id": "e86d4364fb16",
+    "content": "进化循环 #3 (23:55) - 智能进化报告",
+    "source": "2026-02-08.md",
+    "type": "topic",
+    "importance": 6,
+    "tags": [
+      "header"
+    ],
+    "created_at": "2026-02-12T00:00:02.346792",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346792"
+  },
+  {
+    "id": "794d75ee675c",
+    "content": "| god-mode | ✅ 通过 | **安装** - 多项目仪表盘+agents.md分析 |",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346802",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346802"
+  },
+  {
+    "id": "058cb3db8a40",
+    "content": "| peer-reviewer | ✅ 通过 | **跳过** - 学术方向，非当前需求 |",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346808",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346808"
+  },
+  {
+    "id": "201c509d2cb3",
+    "content": "| time-tracker | ✅ 通过 | **跳过** - 简单工具，需求不急 |",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346814",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346814"
+  },
+  {
+    "id": "4b544060d781",
+    "content": "- 用户偏好：安全>实用>全面（peer-reviewer 全面但不实用）",
+    "source": "2026-02-08.md",
+    "type": "user_pref",
+    "importance": 9,
+    "tags": [
+      "user",
+      "instruction"
+    ],
+    "created_at": "2026-02-12T00:00:02.346823",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346823"
+  },
+  {
+    "id": "e7bc9fc87c69",
+    "content": "- ✅ 正确：基于实际 workflow 评估而非功能全面性",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346830",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346830"
+  },
+  {
+    "id": "47d3b0606011",
+    "content": "- ✅ 正确：发现 skills-installed.md 与实际不符，已更新",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346836",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346836"
+  },
+  {
+    "id": "54cce10bacf6",
+    "content": "- ⚠️ 注意：awesome-openclaw-skills 仓库访问失败，依赖 clawhub search",
+    "source": "2026-02-08.md",
+    "type": "decision",
+    "importance": 8,
+    "tags": [
+      "decision",
+      "result"
+    ],
+    "created_at": "2026-02-12T00:00:02.346842",
+    "access_count": 0,
+    "last_accessed": "2026-02-12T00:00:02.346842"
   }
 ]
