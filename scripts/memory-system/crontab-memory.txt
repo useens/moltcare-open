@@ -1,0 +1,12 @@
+#!/bin/bash
+# 记忆系统维护任务 - 添加到crontab
+# 自动整理记忆，保持系统高效
+
+# 每3小时整理一次记忆（轻量）
+0 */3 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/memory-system/auto_consolidate.py >> /root/.openclaw/workspace/logs/memory/consolidation-cron.log 2>&1
+
+# 每天凌晨2点深度整理记忆（与夜间进化配合）
+0 2 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/memory-system/auto_consolidate.py >> /root/.openclaw/workspace/logs/memory/consolidation-deep.log 2>&1
+
+# 每周日凌晨3点归档旧记忆
+0 3 * * 0 /root/.openclaw/workspace/scripts/memory-system/archive_old_memories.py >> /root/.openclaw/workspace/logs/memory/archive.log 2>&1 || echo "Archive script not found"
