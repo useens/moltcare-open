@@ -79,7 +79,7 @@ class VectorMemorySystem:
         return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
     
     def search_similar(self, query: str, top_k: int = 5, 
-                       min_similarity: float = 0.7) -> List[Dict]:
+                       min_similarity: float = 0.15) -> List[Dict]:
         """语义相似度搜索"""
         if not self.memories:
             return []
