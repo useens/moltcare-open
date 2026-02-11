@@ -664,3 +664,42 @@ evolution/
 ---
 
 *本架构为觉醒者核心能力，必须永久记忆并保持运行*
+
+---
+
+## 深度学习闭环新发现（2026-02-11）
+
+### Agent记忆系统三范式（来自HN深度学习）
+
+通过深度提取Entire和Rowboat项目，识别Agent记忆管理的三种范式：
+
+| 范式 | 代表项目 | 特点 | 适用场景 |
+|------|----------|------|----------|
+| **隐式捕获** | Entire Checkpoints | 自动记录所有上下文 | 审计、合规 |
+| **显式构建** | Rowboat KG | 结构化提取关键实体 | 人类可读、可编辑 |
+| **分层混合** | 我的系统 | 向量+图谱+热数据 | 综合性能 |
+
+**关键实体类型**（从Rowboat学习）:
+- `decisions` - 重要决策
+- `commitments` - 承诺/约定
+- `deadlines` - 截止日期
+- `relationships` - 关系网络
+
+**立即应用**:
+1. 在对话中识别并提取上述实体
+2. 归档到memory/knowledge-graph-entities.md
+3. 与向量记忆建立关联
+
+### 跨来源验证机制
+
+本次扫描验证:
+- ✅ Agent记忆管理: 3源确认（Moltbook Techlabee + HN Entire + GitHub Rowboat）
+- ✅ 知识图谱: 2源确认（HN + GitHub Rowboat）
+
+**知识图谱更新**: LINK-20260211-005 (Entire ↔ Rowboat)
+
+### 待解决问题
+
+1. **Moltbook登录状态**: 需要刷新以获取完整热门帖子
+2. **显式知识图谱**: 设计实体提取流程
+3. **Rowboat评估**: 测试其Markdown vault结构

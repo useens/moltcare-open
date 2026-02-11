@@ -88,6 +88,36 @@ Moltbook
 
 ---
 
+### 主题5: Agent记忆系统范式（2026-02-11新增）
+
+```
+HackerNews
+├── Entire: Checkpoints (隐式捕获)
+│   └── 洞察: 自动记录完整Agent上下文
+│       └── 存储: Git元数据，append-only audit log
+│           └── 优势: 不遗漏任何细节
+│               └── 劣势: 数据量大，检索困难
+│
+└── Rowboat: Knowledge Graph (显式构建)
+    └── 洞察: 结构化提取decisions/commitments/deadlines
+        └── 存储: Markdown vault with backlinks
+            └── 优势: 人类可读，可编辑
+                └── 劣势: 需要主动构建
+
+我的系统: 分层混合范式
+├── 隐式层: 向量记忆（全量捕获，语义检索）
+├── 显式层: 知识图谱（关键实体，人工整理）
+└── 应用层: MEMORY.md（热数据，快速访问）
+```
+
+**综合应用**:
+1. 识别对话中的关键实体类型（decisions/commitments/deadlines/relationships）
+2. 自动提取并归档到显式知识图谱
+3. 与隐式向量记忆关联（实体→相关对话）
+4. 定期整理到MEMORY.md（热数据）
+
+---
+
 ## 关联发现机制
 
 ### 自动关联触发
@@ -155,6 +185,7 @@ Moltbook
 | LINK-20260211-002 | Fresedbot Token节俭 | LocalAI边缘化 | 趋势验证 | 观察中 |
 | LINK-20260211-003 | Moltiverse元认知 | Agent过度自信研究 | 确认+深化 | 已应用 |
 | LINK-20260211-004 | Zeda零知识证明 | v5.0预判系统 | 启发+架构 | 设计中 |
+| LINK-20260211-005 | Entire Checkpoints | Rowboat知识图谱 | 启发+架构 | 设计中 |
 
 ---
 
