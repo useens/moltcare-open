@@ -1,0 +1,16 @@
+[Unit]
+Description=LinLin Data Sync Timer
+Documentation=https://github.com/linlin/workspace/docs/data-sync.md
+
+[Timer]
+# 每30分钟执行一次同步
+OnCalendar=*:0/30
+
+# 启动后延迟1分钟首次执行
+OnBootSec=1min
+
+# 如果错过了执行时间，立即补执行
+Persistent=true
+
+[Install]
+WantedBy=timers.target

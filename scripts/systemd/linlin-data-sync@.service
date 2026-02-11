@@ -1,0 +1,26 @@
+[Unit]
+Description=LinLin Data Sync Service
+Documentation=https://github.com/linlin/workspace/docs/data-sync.md
+After=network.target
+
+[Service]
+Type=oneshot
+User=%I
+WorkingDirectory=/home/%I/.openclaw/workspace
+
+# 执行同步脚本
+ExecStart=/home/%I/.openclaw/workspace/scripts/data-sync.sh sync
+
+# 日志配置
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=linlin-data-sync
+
+# 安全设置
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/%I/.openclaw/workspace
+
+[Install]
+WantedBy=multi-user.target
