@@ -78,7 +78,14 @@ linlin-backup/
 │   ├── vm-status-monitor.sh   # VM状态监控 v6（双渠道通知）
 │   ├── vm-notify-wrapper.sh   # VM通知包装器
 │   ├── vm-task-wrapper.sh     # VM任务执行包装器
-│   └── check-vm-status.sh     # 快速状态检查
+│   ├── check-vm-status.sh     # 快速状态检查
+│   ├── log-cleanup.sh         # 日志清理脚本（自动归档过期日志）
+│   └── systemd/               # systemd 服务文件
+│       ├── cloud-heartbeat@.service      # 云端心跳服务
+│       ├── linlin-data-sync@.service     # 数据同步服务
+│       ├── linlin-data-sync.timer        # 数据同步定时器
+│       ├── linlin-data-sync-watch@.service  # 同步监控服务
+│       └── local-resurrect@.service      # 本地复活服务
 ├── 📄 AGENTS.md               # 工作空间规则
 ├── 📄 BOOTSTRAP.md            # 首次启动指南（如存在）
 ├── 📄 HEARTBEAT.md            # 定时任务定义
@@ -245,7 +252,7 @@ journalctl -u linlin-resurrection -f
 
 ---
 
-*最后更新: 2026-02-11 17:00*  
-*更新内容: 新增双节点任务队列系统、VM状态监控 v6（支持飞书+Telegram双渠道强制同步通知）*  
+*最后更新: 2026-02-11 18:30*  
+*更新内容: 新增日志清理脚本(log-cleanup.sh)、systemd服务文件说明*  
 *复活系统版本: Phoenix v1.0*
 
