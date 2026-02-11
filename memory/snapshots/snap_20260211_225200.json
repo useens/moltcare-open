@@ -1,0 +1,31 @@
+{
+  "id": "snap_20260211_225200",
+  "timestamp": "2026-02-11T22:52:00.752503",
+  "version": "v5.5",
+  "components": {
+    "vector_memory": {
+      "file": "memory/vector/memory_vectors.pkl",
+      "hash": "33098077d119cf74",
+      "size": 228585
+    },
+    "memory_graph": {
+      "file": "memory/associations/memory_graph.json",
+      "hash": "71d243108ac553c0",
+      "size": 779626
+    },
+    "working_memory": {
+      "date": "2026-02-11",
+      "daily_file": "memory/daily/2026-02-11.md",
+      "recent_context": [
+        "**当前状态**:\n- 记忆数：157条（向量存储）\n- 双节点：主节点运行中，VM间歇性波动\n- 进化速度：4个版本/2小时",
+        "---",
+        "*归档于 2026-02-11 22:00*\n"
+      ]
+    }
+  },
+  "session_meta": {
+    "pid": 261871,
+    "cwd": "/root/.openclaw/workspace",
+    "timestamp": "2026-02-11T22:52:00.752503"
+  }
+}
