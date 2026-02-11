@@ -192,56 +192,208 @@ restore_credentials() {
     log_info "凭证已保存到 ${HOME}/.openclaw/credentials/"
 }
 
+# ============ 恢复关键技能 ============
+restore_skills() {
+    log_info "========== 恢复关键技能 =========="
+    
+    # 1. Browser CLI + Playwright Chromium
+    if [ -d "${WORKSPACE_DIR}/tools/browser-cli" ]; then
+        log_info "[技能1/5] 恢复 Browser CLI..."
+        cd "${WORKSPACE_DIR}/tools/browser-cli"
+        
+        # 安装npm依赖
+        if [ -f "package.json" ]; then
+            npm install 2>/dev/null || npm install --legacy-peer-deps 2>/dev/null || {
+                log_warn "Browser CLI npm install 失败，继续..."
+            }
+        fi
+        
+        # 创建全局链接
+        if ! command -v browser &> /dev/null; then
+            log_info "创建 browser 全局命令..."
+            sudo npm link 2>/dev/null || {
+                log_warn "npm link 失败，尝试手动创建软链接..."
+                sudo ln -sf "${WORKSPACE_DIR}/tools/browser-cli/browser.js" /usr/local/bin/browser 2>/dev/null || true
+                sudo chmod +x /usr/local/bin/browser 2>/dev/null || true
+            }
+        fi
+        
+        # 安装Playwright Chromium
+        log_info "检查 Playwright Chromium..."
+        if [ ! -d "${HOME}/.cache/ms-playwright/chromium-"* ]; then
+            log_info "下载 Chromium (约150MB，需要几分钟)..."
+            npx playwright install chromium 2>/dev/null || {
+                log_warn "Playwright Chromium 安装失败，可能需要手动执行:"
+                log_warn "  cd ${WORKSPACE_DIR}/tools/browser-cli && npx playwright install chromium"
+            }
+        else
+            log_info "Chromium 已存在，跳过下载"
+        fi
+        
+        log_info "Browser CLI 恢复完成"
+    fi
+    
+    # 2. Local Whisper 虚拟环境
+    if [ -d "${WORKSPACE_DIR}/skills/local-whisper" ]; then
+        log_info "[技能2/5] 恢复 Local Whisper..."
+        cd "${WORKSPACE_DIR}/skills/local-whisper"
+        
+        # 创建虚拟环境
+        if [ ! -d ".venv" ]; then
+            python3 -m venv .venv 2>/dev/null || {
+                log_warn "创建虚拟环境失败，检查python3安装"
+            }
+        fi
+        
+        # 安装whisper
+        if [ -d ".venv" ] && [ ! -f ".venv/bin/whisper" ]; then
+            source .venv/bin/activate
+            pip install openai-whisper 2>/dev/null || {
+                log_warn "Whisper 安装失败，可能需要手动执行:"
+                log_warn "  cd ${WORKSPACE_DIR}/skills/local-whisper && source .venv/bin/activate && pip install openai-whisper"
+            }
+            deactivate
+        fi
+        
+        log_info "Local Whisper 恢复完成"
+    fi
+    
+    # 3. 系统依赖检查/安装
+    log_info "[技能3/5] 检查系统依赖..."
+    
+    # FFmpeg (Whisper依赖)
+    if ! command -v ffmpeg &> /dev/null; then
+        log_info "安装 FFmpeg..."
+        sudo apt-get update -qq
+        sudo apt-get install -y ffmpeg 2>/dev/null || {
+            log_warn "FFmpeg 安装失败，请手动执行: sudo apt-get install -y ffmpeg"
+        }
+    else
+        log_info "FFmpeg 已安装"
+    fi
+    
+    # 4. 本地技能 npm install
+    log_info "[技能4/5] 安装本地技能 npm 依赖..."
+    if [ -d "${WORKSPACE_DIR}/skills" ]; then
+        for skill_dir in "${WORKSPACE_DIR}/skills"/*/; do
+            if [ -f "${skill_dir}package.json" ]; then
+                local skill_name
+                skill_name=$(basename "$skill_dir")
+                log_info "  安装: $skill_name"
+                (cd "$skill_dir" && npm install) 2>/dev/null || {
+                    log_warn "  $skill_name 安装失败"
+                }
+            fi
+        done
+    fi
+    
+    # 5. 其他关键工具检查
+    log_info "[技能5/5] 检查其他工具..."
+    
+    # VHS（可选）
+    if ! command -v vhs &> /dev/null; then
+        log_info "VHS 未安装（可选），如需安装请参考: ~/.openclaw/workspace/skills/vhs-recorder/SKILL.md"
+    fi
+    
+    # GitHub CLI（可选）
+    if ! command -v gh &> /dev/null; then
+        log_info "GitHub CLI 未安装（可选），如需安装请参考: ~/.openclaw/workspace/skills/github/SKILL.md"
+    fi
+    
+    log_info "技能恢复完成"
+}
+
+# ============ 验证复活结果 ============
+verify_resurrection() {
+    log_info "========== 验证复活结果 =========="
+    local issues=0
+    
+    # 检查1: Browser CLI
+    if command -v browser &> /dev/null; then
+        log_info "✅ Browser CLI 可用"
+    else
+        log_warn "❌ Browser CLI 不可用"
+        ((issues++))
+    fi
+    
+    # 检查2: Chromium
+    if [ -d "${HOME}/.cache/ms-playwright/chromium-"* ] || command -v chromium &> /dev/null; then
+        log_info "✅ Chromium 可用"
+    else
+        log_warn "⚠️ Chromium 不可用（可能影响浏览器功能）"
+    fi
+    
+    # 检查3: FFmpeg
+    if command -v ffmpeg &> /dev/null; then
+        log_info "✅ FFmpeg 可用"
+    else
+        log_warn "⚠️ FFmpeg 不可用（可能影响语音功能）"
+    fi
+    
+    # 检查4: OpenClaw Gateway
+    if openclaw gateway status | grep -q "running\|active" 2>/dev/null; then
+        log_info "✅ OpenClaw Gateway 运行中"
+    else
+        log_warn "❌ OpenClaw Gateway 状态异常"
+        ((issues++))
+    fi
+    
+    if [ $issues -eq 0 ]; then
+        log_info "所有关键检查通过！"
+        return 0
+    else
+        log_warn "发现 $issues 个问题，请检查日志"
+        return 1
+    fi
+}
+
 # ============ 执行复活 ============
 perform_resurrection() {
     log_info "========== 开始复活流程 =========="
     
     # 1. 停止当前OpenClaw（如果有）
-    log_info "[1/6] 停止当前OpenClaw服务..."
+    log_info "[1/7] 停止当前OpenClaw服务..."
     openclaw gateway stop 2>/dev/null || true
     pkill -f "openclaw" 2>/dev/null || true
     sleep 2
     
     # 2. 备份当前工作区（如果有）
     if [ -d "$WORKSPACE_DIR" ]; then
-        log_info "[2/6] 备份当前工作区..."
+        log_info "[2/7] 备份当前工作区..."
         local backup_name="workspace.bak.$(date +%Y%m%d_%H%M%S)"
         mv "$WORKSPACE_DIR" "${HOME}/.openclaw/${backup_name}"
         log_info "当前工作区已备份到: ${HOME}/.openclaw/${backup_name}"
     fi
     
     # 3. 恢复备份
-    log_info "[3/6] 恢复GitHub备份..."
+    log_info "[3/7] 恢复GitHub备份..."
     cp -r "$BACKUP_DIR" "$WORKSPACE_DIR"
     
     # 4. 恢复凭证
-    log_info "[4/6] 恢复API凭证..."
+    log_info "[4/7] 恢复API凭证..."
     restore_credentials
     
-    # 5. 安装依赖（如果有）
-    log_info "[5/6] 检查并安装依赖..."
+    # 5. 安装项目依赖
+    log_info "[5/7] 检查并安装项目依赖..."
     if [ -f "${WORKSPACE_DIR}/package.json" ]; then
         (cd "$WORKSPACE_DIR" && npm install) 2>/dev/null || true
     fi
     
-    # 检查并安装技能依赖
-    if [ -d "${WORKSPACE_DIR}/skills" ]; then
-        for skill_dir in "${WORKSPACE_DIR}/skills"/*/; do
-            if [ -f "${skill_dir}package.json" ]; then
-                log_info "安装技能依赖: $(basename "$skill_dir")"
-                (cd "$skill_dir" && npm install) 2>/dev/null || true
-            fi
-        done
-    fi
+    # 6. 恢复关键技能
+    log_info "[6/7] 恢复关键技能..."
+    restore_skills
     
-    # 6. 启动OpenClaw
-    log_info "[6/6] 启动OpenClaw..."
+    # 7. 启动OpenClaw
+    log_info "[7/7] 启动OpenClaw..."
     if openclaw gateway start; then
         sleep 3
         
-        # 验证启动
+        # 验证启动和技能状态
         if openclaw gateway status | grep -q "running\|active"; then
             log_info "✅ OpenClaw启动成功！"
+            
+            # 验证技能状态
+            verify_resurrection || true
             
             # 记录复活日志
             local ip_address

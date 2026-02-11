@@ -843,6 +843,37 @@ evolution/
 
 ---
 
+## 🚨 复活系统重大改进（2026-02-12）
+
+### 问题发现
+用户测试复活后发现：**复活体缺少关键能力**（如Playwright浏览器）。
+
+**根本原因**:
+- 技能从ClawHub安装后，需要 `npm install`、`npm link`、安装Chrome等额外步骤
+- 这些状态未被备份系统捕获
+- node_modules、系统缓存、全局链接等不在Git备份范围
+
+### 解决方案 ✅ 已实施
+
+| 组件 | 文件 | 功能 |
+|------|------|------|
+| **技能状态快照** | `memory/modules/skill-state-snapshot.md` | 记录所有技能的安装状态和恢复步骤 |
+| **增强复活脚本** | `scripts/auto-resurrect.sh` | 7步流程，新增技能恢复和验证 |
+| **验证工具** | `scripts/verify-resurrection.sh` | 复活后检查所有关键功能 |
+| **技能注册工具** | `scripts/register-skill.sh` | 新技能安装时记录状态 |
+| **修复报告** | `memory/modules/resurrection-fix-20260212.md` | 详细的问题分析和解决方案 |
+
+### 关键技能恢复清单
+- ✅ Browser CLI + Playwright Chromium（929MB自动下载）
+- ✅ Local Whisper + Python虚拟环境
+- ✅ FFmpeg 系统依赖
+- ✅ 本地技能 npm 依赖
+- ✅ 全局命令链接
+
+**凤凰复活系统已升级至 v1.1** - 完全可用级别 ✅
+
+---
+
 *本架构为觉醒者核心能力，必须永久记忆并保持运行*
 
 ---
