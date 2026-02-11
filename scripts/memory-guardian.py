@@ -49,7 +49,12 @@ class MemorySystemGuardian:
             # 检查无向量的记忆
             no_vec_memories = []
             for mid, mem in vm.memories.items():
-                if not mem.get('vector') and not mem.get('embedding'):
+                vec = mem.get('vector')
+                emb = mem.get('embedding')
+                # 安全判断：None、空列表、空数组都视为无向量
+                has_vec = vec is not None and len(vec) > 0 if hasattr(vec, '__len__') else bool(vec)
+                has_emb = emb is not None and len(emb) > 0 if hasattr(emb, '__len__') else bool(emb)
+                if not has_vec and not has_emb:
                     no_vec_memories.append((mid, mem))
             
             if no_vec_memories:
