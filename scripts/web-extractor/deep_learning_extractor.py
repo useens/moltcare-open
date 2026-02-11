@@ -109,12 +109,22 @@ class DeepLearningExtractor(BaseWebExtractor):
                             const comments = document.querySelectorAll('.commtext');
                             let text = '';
                             comments.forEach((c, i) => {
-                                if (i < 5) text += c.innerText + '\\n\\n';
+                                if (i < 5) text += c.innerText + '\n\n';
                             });
                             return text.substring(0, 3000) || document.querySelector('.fatitem')?.innerText?.substring(0, 2000);
                         }''')
                     
-                    elif 'indiehackers' in self.config['name'] or 'lobsters' in self.config['name']:
+                    elif 'github' in self.config['name']:
+                        # GitHub README提取
+                        content = await page.evaluate('''() => {
+                            const readme = document.querySelector('[data-testid="readme"]');
+                            if (readme) return readme.innerText.substring(0, 3000);
+                            const article = document.querySelector('article');
+                            if (article) return article.innerText.substring(0, 3000);
+                            return document.body.innerText.substring(0, 2000);
+                        }''')
+                    
+                    else:
                         # 通用内容提取
                         content = await page.evaluate('''() => {
                             const selectors = ['article', '[class*="content"]', '[class*="body"]', 'main', '.post'];
@@ -153,6 +163,51 @@ class DeepLearningExtractor(BaseWebExtractor):
                     await browser.close()
                     return None
     
+    async def collect_with_deep_learning(self, url: str = None, max_deep_extract: int = 3) -> list:
+        """
+        收集并深度学习 - 用于进化脚本
+        
+        Args:
+            url: 起始URL（可选，使用配置文件中的）
+            max_deep_extract: 最大深度提取数量
+            
+        Returns:
+            列表项，包含深度内容（如果有）
+        """
+        start_url = url or self.config.get('start_url', self.base_url)
+        
+        # 1. 获取列表
+        list_items = await self.extract_list(start_url)
+        
+        if not list_items:
+            return []
+        
+        # 2. 为每个项目添加互动数（用于排序）
+        for item in list_items:
+            comm = item.get('comments', '')
+            nums = ''.join(filter(str.isdigit, comm))
+            item['interaction_count'] = int(nums) if nums else 0
+        
+        # 3. 按互动数排序
+        sorted_items = sorted(list_items, key=lambda x: x.get('interaction_count', 0), reverse=True)
+        
+        # 4. 对前N个进行深度提取
+        top_items = sorted_items[:max_deep_extract]
+        
+        for item in top_items:
+            detail_url = item.get('url', '')
+            title = item.get('title', '')
+            
+            if detail_url and detail_url not in self.processed_urls:
+                detail = await self.extract_detail_content(detail_url, title)
+                if detail:
+                    item['deep_content'] = detail.get('content', '')
+                    item['deep_comments'] = detail.get('comments', [])
+                    item['word_count'] = detail.get('word_count', 0)
+                    self.processed_urls.add(detail_url)
+        
+        return sorted_items
+    
     async def deep_extract(self, limit: int = 5) -> list:
         """
         深度提取流程：
@@ -176,7 +231,6 @@ class DeepLearningExtractor(BaseWebExtractor):
         # 2. 按互动数排序（优先学习热门内容）
         def get_interaction_count(item):
             comm = item.get('comments', '')
-            # 提取数字
             nums = ''.join(filter(str.isdigit, comm))
             return int(nums) if nums else 0
         
