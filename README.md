@@ -190,14 +190,24 @@ journalctl -u linlin-resurrection -f
 
 本仓库支持渐进式高可用部署：
 
-| 阶段 | 架构 | RTO | 成本 |
-|------|------|-----|------|
-| Phase 0 | U盘便携版 | 5分钟 | 免费 |
-| Phase 1 | 单节点+GitHub | 30分钟 | $10/月 |
-| Phase 2 | 双节点主备 | 15分钟 | $20/月 |
-| Phase 3 | 三节点Raft | 5分钟 | $28/月 |
+| 阶段 | 架构 | RTO | 成本 | 状态 |
+|------|------|-----|------|------|
+| Phase 0 | U盘便携版 | 5分钟 | 免费 | ✅ 已支持 |
+| Phase 1 | 单节点+GitHub | 30分钟 | $10/月 | ✅ 运行中 |
+| **Phase 2** | **双节点主备** | **15分钟** | **$20/月** | **🎉 2026-02-11 已达成** |
+| Phase 3 | 三节点Raft | 5分钟 | $28/月 | 📋 规划中 |
 
-详情见：`memory/modules/high-availability-master-plan.md`
+### 当前架构
+
+**双节点架构**（2026-02-11 里程碑）：
+- **云端主节点**: 129.154.251.13 - 处理请求、GitHub推送
+- **本地VM工作节点**: 通过SSH反向隧道连接，执行轻量任务
+- **任务队列**: 自动分发、失联回退机制
+
+详情见：
+- `memory/modules/high-availability-master-plan.md` - 总体规划
+- `memory/modules/dual-node-task-queue.md` - 双节点任务队列详情
+- `docs/task-dispatcher.md` - 任务分发器文档
 
 ---
 
