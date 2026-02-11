@@ -73,7 +73,12 @@ linlin-backup/
 │   ├── health-monitor.sh      # 健康监控脚本
 │   ├── data-sync.sh           # 双节点数据同步（主节点）
 │   ├── sync-receiver.sh       # 数据同步接收器（VM节点）
-│   └── deploy-vm-receiver.sh  # VM接收器部署脚本
+│   ├── deploy-vm-receiver.sh  # VM接收器部署脚本
+│   ├── task-dispatcher.sh     # 双节点任务分发器
+│   ├── vm-status-monitor.sh   # VM状态监控 v6（双渠道通知）
+│   ├── vm-notify-wrapper.sh   # VM通知包装器
+│   ├── vm-task-wrapper.sh     # VM任务执行包装器
+│   └── check-vm-status.sh     # 快速状态检查
 ├── 📄 AGENTS.md               # 工作空间规则
 ├── 📄 BOOTSTRAP.md            # 首次启动指南（如存在）
 ├── 📄 HEARTBEAT.md            # 定时任务定义
@@ -240,6 +245,7 @@ journalctl -u linlin-resurrection -f
 
 ---
 
-*最后更新: 2026-02-11 16:30*  
+*最后更新: 2026-02-11 17:00*  
+*更新内容: 新增双节点任务队列系统、VM状态监控 v6（支持飞书+Telegram双渠道强制同步通知）*  
 *复活系统版本: Phoenix v1.0*
 
