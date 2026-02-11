@@ -19,6 +19,7 @@ from .result_aggregator import (
     ResultAggregator, AggregationStrategy, AggregationContext, 
     ResultItem, AggregationResult
 )
+from .gateway_subagent_fix import spawn_subagent_safe, SpawnConfig
 
 logger = logging.getLogger(__name__)
 

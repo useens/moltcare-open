@@ -1,0 +1,131 @@
+{
+  "collection_time": "2026-02-12T04:02:18+08:00",
+  "sources": {
+    "moltbook": {
+      "status": "collected",
+      "items": [],
+      "note": "Moltbook首页展示静态内容，无动态热门帖子数据。建议通过API或直接登录获取实时帖子。"
+    },
+    "hackernews": {
+      "status": "collected",
+      "items": [
+        {
+          "rank": 1,
+          "title": "The risk of a hothouse Earth trajectory",
+          "url": "https://www.cell.com/one-earth/fulltext/S2590-3322%2825%2900391-4",
+          "source": "cell.com",
+          "score": 62,
+          "author": "Archelaos",
+          "comments": 15,
+          "signal": 6
+        },
+        {
+          "rank": 2,
+          "title": "Toyota Fluorite: \"console-grade\" Flutter game engine",
+          "url": "https://fluorite.game/",
+          "source": "fluorite.game",
+          "score": 202,
+          "author": "bsimpson",
+          "comments": 110,
+          "signal": 7
+        },
+        {
+          "rank": 3,
+          "title": "Claude Code Is Being Dumbed Down",
+          "url": "https://symmetrybreak.ing/blog/claude-code-is-being-dumbed-down/",
+          "source": "symmetrybreak.ing",
+          "score": 314,
+          "author": "WXLCKNO",
+          "comments": 222,
+          "signal": 9,
+          "highlight": true
+        },
+        {
+          "rank": 4,
+          "title": "NetNewsWire Turns 23",
+          "url": "https://netnewswire.blog/2026/02/11/netnewswire-turns.html",
+          "source": "netnewswire.blog",
+          "score": 69,
+          "author": "robin_reala",
+          "comments": 12,
+          "signal": 5
+        },
+        {
+          "rank": 5,
+          "title": "GLM-5: From Vibe Coding to Agentic Engineering",
+          "url": "https://z.ai/blog/glm-5",
+          "source": "z.ai",
+          "score": 230,
+          "author": "meetpateltech",
+          "comments": 122,
+          "signal": 9,
+          "highlight": true
+        },
+        {
+          "rank": 6,
+          "title": "Single bone in Spain offers first direct evidence of Hannibal's war elephants",
+          "url": "https://phys.org/news/2026-02-hannibal-famous-war-elephants-bone.html",
+          "source": "phys.org",
+          "score": 40,
+          "author": "Archelaos",
+          "comments": 10,
+          "signal": 5
+        },
+        {
+          "rank": 7,
+          "title": "GLM-OCR: Accurate × Fast × Comprehensive",
+          "url": "https://github.com/zai-org/GLM-OCR",
+          "source": "github.com/zai-org",
+          "score": 160,
+          "author": "ms7892",
+          "comments": 53,
+          "signal": 8,
+          "highlight": true
+        }
+      ]
+    },
+    "github_trending": {
+      "status": "partial",
+      "note": "GitHub Trending页面需要JavaScript渲染，静态获取不完整。建议使用browser工具或API获取。",
+      "items": []
+    }
+  },
+  "summary": {
+    "total_items": 7,
+    "high_signal_items": 3,
+    "top_themes": [
+      "AI/LLM工具生态",
+      "代码编辑器演进",
+      "OCR技术突破"
+    ],
+    "insights": [
+      "Claude Code质量下降引发社区热议（314分，222评论）",
+      "智谱GLM系列双杀：GLM-5发布 + GLM-OCR开源",
+      "Agentic Engineering成为新趋势关键词"
+    ]
+  },
+  "recommendations": [
+    {
+      "action": "深度阅读",
+      "target": "Claude Code Is Being Dumbed Down",
+      "reason": "高Signal(9)，大量讨论，涉及AI工具质量变化",
+      "priority": "high"
+    },
+    {
+      "action": "技术跟踪",
+      "target": "GLM-5 Agentic Engineering",
+      "reason": "智谱最新模型，Agent工程化方向",
+      "priority": "high"
+    },
+    {
+      "action": "评估试用",
+      "target": "GLM-OCR",
+      "reason": "开源OCR方案，可能替代现有工具",
+      "priority": "medium"
+    }
+  ],
+  "cost": {
+    "tokens_used": 0,
+    "method": "web_fetch (纯本地执行)"
+  }
+}
