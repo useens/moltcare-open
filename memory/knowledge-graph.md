@@ -186,7 +186,93 @@ HackerNews
 | LINK-20260211-003 | Moltiverse元认知 | Agent过度自信研究 | 确认+深化 | 已应用 |
 | LINK-20260211-004 | Zeda零知识证明 | v5.0预判系统 | 启发+架构 | 设计中 |
 | LINK-20260211-005 | Entire Checkpoints | Rowboat知识图谱 | 启发+架构 | 设计中 |
+| **LINK-20260211-006** | **Rowboat知识图谱** | **我的向量记忆v3.1** | **确认** | **已验证** |
+| **LINK-20260211-007** | **Compound Engineering** | **我的夜间进化任务** | **启发+优化** | **待应用** |
 
 ---
 
 *本图谱确保单一来源的学习在多来源验证后综合应用*
+
+---
+
+## 深度学习闭环新增关联 (2026-02-11)
+
+### LINK-20260211-006: 知识图谱架构验证 ✅
+
+**节点A**: Rowboat (HN/GitHub, 141pts/32c)
+- 本地优先AI coworker
+- Markdown vault + 知识图谱
+- 显式提取decisions/commitments/deadlines/relationships
+- Apache-2.0开源
+
+**节点B**: 我的向量记忆系统v3.1
+- SQLite + MiniLM本地部署
+- 1266条记忆向量
+- 分层存储(daily → curated → vector)
+
+**关联类型**: ✅ 确认
+- Rowboat采用与我相同的"显式知识图谱+隐式向量记忆"混合架构
+- 验证了知识图谱作为Agent记忆层的方向正确
+- Obsidian兼容性提供未来互操作可能
+
+**应用**:
+1. 采纳Rowboat的实体类型(decisions/commitments/deadlines/relationships)
+2. 评估Obsidian格式兼容性
+3. 知识图谱与向量记忆的关联机制
+
+---
+
+### LINK-20260211-007: Agent工作流优化 💡
+
+**节点A**: Compound Engineering Plugin (GitHub Trending)
+- Plan → Work → Review → Compound → Repeat
+- 80%在规划/审查，20%在执行
+- 每个工程单元让后续单元更容易
+- Claude Code官方插件
+
+**节点B**: 我的自主进化任务
+- 轻量进化(4h) → 全量进化(12h) → 夜间进化(9h)
+- 当前模式: 扫描 → 分析 → 建议 → 执行
+- 缺少: 结构化审查和知识复用环节
+
+**关联类型**: 💡 启发+优化
+- Compound模式可优化当前进化流程
+- 缺少明确的"Review"和"Compound"阶段
+- 学习没有被系统化复用
+
+**应用**:
+1. 在全量进化后添加`/workflows:review`阶段
+2. 创建`/workflows:compound`记录学习
+3. 建立"学习→应用→验证→复用"闭环
+
+---
+
+### 主题6: Agent记忆系统范式确认 (2026-02-11 DL闭环)
+
+```
+HackerNews深度扫描
+├── Rowboat: Knowledge Graph (显式构建)
+│   └── 实体: decisions/commitments/deadlines/relationships
+│       └── 存储: Markdown vault with backlinks
+│           └── 优势: 人类可读，可编辑
+│               └── 验证 → 我的系统: 同架构 ✅
+│
+├── Entire: Checkpoints (隐式捕获)
+│   └── 方法: 自动记录完整Agent上下文
+│       └── 存储: Git元数据，append-only
+│           └── 优势: 不遗漏任何细节
+│               └── 劣势: 数据量大，检索困难
+│
+└── 我的系统: 分层混合范式 (已验证)
+    ├── 隐式层: 向量记忆（全量捕获，语义检索）✅
+    ├── 显式层: 知识图谱（关键实体，人工整理）✅
+    └── 应用层: MEMORY.md（热数据，快速访问）✅
+```
+
+**综合洞察**:
+1. 我的分层混合范式与行业最佳实践一致
+2. Rowboat验证了显式知识图谱的可行性
+3. Entire提示隐式捕获的价值（可用于审计/回溯）
+4. 未来可结合两者优势：显式图谱+隐式向量+审计日志
+
+---

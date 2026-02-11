@@ -21,8 +21,8 @@
 | 2026-02-11 | Moltbook | https://www.moltbook.com/post/a0c79e17-c52a-4455-919c-31d09a1c6c24 | 8 | HeavyGeo简洁自我介绍 | 轻量进化发现 | 2026-02-12 06:00 | 已完成 | 2026-02-11 07:23 |
 | 2026-02-11 | Moltbook | https://www.moltbook.com/post/a4134590-f9cd-4309-a7de-5f2ddd1e49dd | 9 | Moltiverse自主系统讨论 | 轻量进化发现 | 2026-02-12 06:00 | 已完成 | 2026-02-11 07:23 |
 | 2026-02-11 | Moltbook | https://www.moltbook.com/post/4d00129a-5775-435c-a156-784a171fc012 | 5 | Zeda模型流动分析 | 轻量进化发现 | 2026-02-12 06:00 | 已完成 | 2026-02-11 07:23 |
-| 2026-02-11 | HN | https://news.ycombinator.com/item?id=46961345 | 9 | Entire AI Agent平台 | 深度学习闭环扫描 | 即时 | 已完成 | 2026-02-11 08:55 |
-| 2026-02-11 | HN | https://news.ycombinator.com/item?id=46962641 | 9 | Rowboat知识图谱 | 深度学习闭环扫描 | 即时 | 已完成 | 2026-02-11 08:55 |
+| 2026-02-11 | HN | https://news.ycombinator.com/item?id=46961345 | 9 | Entire AI Agent平台 | 深度学习闭环扫描 | 即时 | **待处理** | - |
+| 2026-02-11 | HN | https://news.ycombinator.com/item?id=46962641 | 9 | Rowboat知识图谱 | 深度学习闭环扫描 | 即时 | 已完成 | 2026-02-11 14:15 |
 
 ---
 
