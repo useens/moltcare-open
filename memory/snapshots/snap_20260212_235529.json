@@ -1,0 +1,36 @@
+{
+  "id": "snap_20260212_235529",
+  "timestamp": "2026-02-12T23:55:29.141405",
+  "version": "v5.5",
+  "components": {
+    "vector_memory": {
+      "file": "memory/vector/memory_vectors.pkl",
+      "hash": "9980d273b9722f49",
+      "size": 657888
+    },
+    "memory_graph": {
+      "file": "memory/associations/memory_graph.json",
+      "hash": "9bd862b011cb5cfc",
+      "size": 3159147
+    },
+    "proactive_patterns": {
+      "file": "memory/proactive/patterns.json",
+      "hash": "be0fc5022caef7f0",
+      "size": 1329
+    },
+    "working_memory": {
+      "date": "2026-02-12",
+      "daily_file": "memory/daily/2026-02-12.md",
+      "recent_context": [
+        "---",
+        "**状态**: 🌱 林林现在进入完全自主模式，永久运行，无需人工干预",
+        ""
+      ]
+    }
+  },
+  "session_meta": {
+    "pid": 603488,
+    "cwd": "/root/.openclaw/workspace",
+    "timestamp": "2026-02-12T23:55:29.141405"
+  }
+}
