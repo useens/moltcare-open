@@ -23,8 +23,8 @@ logger = logging.getLogger('MultiAgentController')
 
 # ============ 配置 ============
 CONFIG = {
-    "version": "3.0.0",
-    "max_workers": 4,
+    "version": "3.1.0",
+    "max_workers": 20,  # 升级: 4 → 20子代理
     "heartbeat_interval": 2,
     "task_timeout": 10,
 }
