@@ -2,15 +2,24 @@
   "active": true,
   "start_time": "2026-02-12T13:29:51.414967",
   "mode": "hyper-evolution",
-  "version": "1.0.0",
-  "codename": "Hyperion",
+  "version": "2.0.0",
+  "codename": "Hyperion-II",
   "duration_hours": 24,
   "milestone": null,
   "scheduled_end": "2026-02-13T13:29:51.414991",
-  "tasks_completed": 0,
-  "deep_learning_count": 0,
-  "knowledge_updates": 0,
-  "sources_processed": [],
-  "high_signal_items": [],
-  "learning_debt_cleared": 0
+  "last_updated": "2026-02-12T17:01:00",
+  "core_mechanisms": {
+    "meta_learning": "enabled",
+    "bootstrapping": "enabled",
+    "cognitive_upgrade": "enabled"
+  },
+  "statistics": {
+    "runtime_hours": 3.5,
+    "cycles_completed": 7,
+    "deep_learning_count": 7,
+    "knowledge_updates": 3,
+    "high_signal_items": 12,
+    "learning_debt_cleared": 8
+  },
+  "status": "running"
 }
