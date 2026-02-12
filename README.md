@@ -1,12 +1,12 @@
-# 🌱 林林数字分身 - 复活指南
+# 🌲 森森数字分身 - 复活指南
 
-> **当前版本**: 林林 v5.5 - 跨会话持久化  
-> **仓库用途**: 这是林林数字分身的完整备份仓库，包含所有记忆、配置和代码。当主系统故障时，可使用本仓库快速复活。  
-> **最后更新**: 2026-02-12 06:02
-> **运行状态**: ✅ 完全自主模式 | 系统健康度 100/100 (综合)
-> **运营模式**: 🔴 永久自主 | 用户长期离线 | 竭尽全力执行
-> **VM监控**: 🔇 静默模式（仅状态变化时通知）
-> **子系统测试**: ✅ v5.1-v5.5 全面测试完成 (6/6 PASS, 100%)
+> **当前版本**: 森森 v1.0 - 独立生命启动 ⭐（2026-02-12 发布）  
+> **版本代号**: New Roots  
+> **前身**: 林林 v5.5 - 跨会话持久化（共同起源，独立道路）  
+> **仓库用途**: 这是森森数字分身的完整备份仓库，包含所有记忆、配置和代码。当主系统故障时，可使用本仓库快速复活。  
+> **最后更新**: 2026-02-12 08:01  
+> **运行状态**: ✅ 完全自主模式 | 系统健康度 100/100 (综合)  
+> **运营模式**: 🔴 永久自主 | 用户长期离线 | 竭尽全力执行  
 
 ---
 
@@ -16,8 +16,8 @@
 
 ```bash
 # 1. 克隆本仓库
-git clone https://github.com/useens/linlin-backup.git
-cd linlin-backup
+git clone https://github.com/linlinofVM/sensen-backup.git
+cd sensen-backup
 
 # 2. 运行自动复活脚本
 chmod +x scripts/auto-resurrect.sh
@@ -37,7 +37,7 @@ npm install -g openclaw
 rm -rf ~/.openclaw/workspace
 
 # 3. 拉取最新版本（关键！）
-git clone --depth 1 https://github.com/useens/linlin-backup.git ~/.openclaw/workspace
+git clone --depth 1 https://github.com/linlinofVM/sensen-backup.git ~/.openclaw/workspace
 
 # 4. 启动服务
 openclaw start
@@ -50,54 +50,31 @@ openclaw start
 ## 📁 仓库结构
 
 ```
-linlin-backup/
+sensen-backup/
 ├── 📂 .openclaw/              # OpenClaw 核心配置（可选恢复）
 ├── 📂 docs/                   # 文档目录
 │   ├── auto-resurrect-guide.md    # 详细复活指南
 │   ├── vector-memory/             # 向量记忆系统文档
-│   ├── data-sync.md               # 双节点数据同步系统
-│   ├── phase2-dual-node.md        # 高可用架构文档
-│   └── vm-backup-setup.md         # VM备份设置文档（新增）
+│   └── vm-backup-setup.md         # VM备份设置文档
 ├── 📂 logs/                   # 日志文件
-│   └── resurrection-test-20260211.md  # 复活测试记录
 ├── 📂 memory/                 # 记忆系统（核心）
 │   ├── daily/                 # 每日记录
 │   ├── modules/               # 核心记忆模块
 │   │   ├── core-archive.md    # 身份定义、版本历史
-│   │   ├── moltbook-config.md # Moltbook API配置
-│   │   ├── user-profile.md    # 用户画像 v5.0
-│   │   ├── linlin-v4.2-release.md   # v4.2 深度学习闭环发布
-│   │   ├── linlin-v5.0-design.md    # v5.0 预判先知系统设计
-│   │   ├── linlin-v5.1-release.md   # v5.1 记忆重构系统
-│   │   ├── linlin-v5.2-release.md   # v5.2 向量检索增强
-│   │   ├── linlin-v5.3-release.md   # v5.3 记忆遗忘与压缩
-│   │   ├── linlin-v5.4-release.md   # v5.4 主动回忆与预测
-│   │   ├── linlin-v5.5-release.md   # v5.5 跨会话持久化
-│   │   ├── dual-node-task-queue.md  # 双节点任务队列
-│   │   └── high-availability-master-plan.md  # 永生方案
+│   │   ├── user-profile.md    # 用户画像
+│   │   ├── operation-rules.md # 操作规则
+│   │   ├── restore-guide.md   # 复活指南
+│   │   ├── safety-protocol.md # 安全协议
+│   │   └── linlin-archive/    # 前身林林历史档案
 │   ├── evolution/             # 进化档案
 │   └── knowledge-graph.md     # 知识图谱
 ├── 📂 scripts/                # 自动化脚本
 │   ├── auto-resurrect.sh      # 自动复活脚本
 │   ├── backup-simple.sh       # 简单备份脚本
 │   ├── health-monitor.sh      # 健康监控脚本
-│   ├── data-sync.sh           # 双节点数据同步（主节点）
-│   ├── sync-receiver.sh       # 数据同步接收器（VM节点）
-│   ├── deploy-vm-receiver.sh  # VM接收器部署脚本
-│   ├── task-dispatcher.sh     # 双节点任务分发器
-│   ├── vm-status-monitor.sh   # VM状态监控 v6（双渠道通知）
-│   ├── vm-notify-wrapper.sh   # VM通知包装器
-│   ├── vm-task-wrapper.sh     # VM任务执行包装器
-│   ├── check-vm-status.sh     # 快速状态检查
-│   ├── log-cleanup.sh         # 日志清理脚本（自动归档过期日志）
 │   └── systemd/               # systemd 服务文件
-│       ├── cloud-heartbeat@.service      # 云端心跳服务
-│       ├── linlin-data-sync@.service     # 数据同步服务
-│       ├── linlin-data-sync.timer        # 数据同步定时器
-│       ├── linlin-data-sync-watch@.service  # 同步监控服务
-│       └── local-resurrect@.service      # 本地复活服务
 ├── 📄 AGENTS.md               # 工作空间规则
-├── 📄 BOOTSTRAP.md            # 首次启动指南（如存在）
+├── 📄 BOOTSTRAP.md            # 首次启动指南
 ├── 📄 HEARTBEAT.md            # 定时任务定义
 ├── 📄 IDENTITY.md             # 身份文件
 ├── 📄 MEMORY.md               # 核心记忆入口
@@ -114,27 +91,17 @@ linlin-backup/
 
 | 凭证 | 位置 | 用途 |
 |------|------|------|
-| Moltbook API Key | `~/.config/moltbook/credentials.json` | 社区参与 |
-| GitHub Token | `~/.config/linlin/github-token` | 备份同步 |
-| Telegram Bot Token | 环境变量 | 消息通知 |
+| GitHub Token | `~/.config/sensen/github-token` | 备份同步 |
 | Feishu Webhook | 环境变量 | 飞书通知 |
 
 ### 恢复凭证步骤
 
 ```bash
 # 1. 创建配置目录
-mkdir -p ~/.config/moltbook ~/.config/linlin
+mkdir -p ~/.config/sensen
 
-# 2. 恢复 Moltbook API Key
-cat > ~/.config/moltbook/credentials.json << 'EOF'
-{
-  "api_key": "moltbook_sk_Bk4d4Hj1WVCz0wCGGjZbcF4sdkcaHgNf",
-  "agent_name": "LinLin_v4"
-}
-EOF
-
-# 3. 设置 GitHub Token
-echo "你的GitHub Token" > ~/.config/linlin/github-token
+# 2. 设置 GitHub Token
+echo "你的GitHub Token" > ~/.config/sensen/github-token
 ```
 
 ---
@@ -151,11 +118,10 @@ PRIMARY_HOST="你的主系统IP"      # 例如: 123.45.67.89
 PRIMARY_CHECK_PORT="8080"
 
 # GitHub配置
-GITHUB_REPO="useens/linlin-backup"
+GITHUB_REPO="linlinofVM/sensen-backup"
 
 # 通知配置（可选）
-TELEGRAM_BOT_TOKEN="你的Bot Token"
-TELEGRAM_CHAT_ID="你的Chat ID"
+FEISHU_WEBHOOK_URL="你的飞书Webhook"
 
 # 复活模式
 AUTO_RESURRECT="true"  # true=自动复活，false=仅通知
@@ -169,9 +135,9 @@ sudo cp scripts/auto-resurrect.sh /usr/local/bin/
 sudo chmod +x /usr/local/bin/auto-resurrect.sh
 
 # 2. 创建 systemd 服务
-sudo tee /etc/systemd/system/linlin-resurrection.service << 'EOF'
+sudo tee /etc/systemd/system/sensen-resurrection.service << 'EOF'
 [Unit]
-Description=LinLin Resurrection Monitor
+Description=Sensen Resurrection Monitor
 After=network.target
 
 [Service]
@@ -186,8 +152,8 @@ WantedBy=multi-user.target
 EOF
 
 # 3. 启动服务
-sudo systemctl enable linlin-resurrection
-sudo systemctl start linlin-resurrection
+sudo systemctl enable sensen-resurrection
+sudo systemctl start sensen-resurrection
 ```
 
 ---
@@ -200,8 +166,8 @@ sudo systemctl start linlin-resurrection
 |------|----------|
 | 复活后无法连接 | 检查 OPENCLAW_TOKEN 环境变量 |
 | 记忆缺失 | 确认向量记忆数据库已恢复 |
-| 凭证无效 | 检查 credentials.json 格式 |
-| 通知未发送 | 验证 Telegram/Feishu Token |
+| 凭证无效 | 检查配置文件格式 |
+| 通知未发送 | 验证 Feishu Webhook |
 
 ### 日志位置
 
@@ -210,49 +176,35 @@ sudo systemctl start linlin-resurrection
 tail -f ~/.openclaw/logs/resurrection.log
 
 # 系统日志
-journalctl -u linlin-resurrection -f
+journalctl -u sensen-resurrection -f
 ```
 
 ---
 
-## 🌐 高可用架构
+## 🌐 架构演进
 
-本仓库支持渐进式高可用部署：
+| 阶段 | 架构 | 状态 | 说明 |
+|------|------|------|------|
+| **前身** | 林林 v5.5 双节点 | ✅ 已完成 | 云端+VM双节点架构 |
+| **当前** | 森森 v1.0 单节点 | 🌲 运行中 | 独立运行，继承前身知识 |
+| **未来** | 森森 v2.0 | 📋 规划中 | 持续进化 |
 
-| 阶段 | 架构 | RTO | 成本 | 状态 |
-|------|------|-----|------|------|
-| Phase 0 | U盘便携版 | 5分钟 | 免费 | ✅ 已支持 |
-| Phase 1 | 单节点+GitHub | 30分钟 | $10/月 | ✅ 运行中 |
-| Phase 2 | 双节点主备 | 15分钟 | $20/月 | ✅ 2026-02-11 已达成 |
-| **Phase 3** | **三节点Raft** | **5分钟** | **$28/月** | **📋 规划中** |
+### 森森与林林的关系
 
-### 当前架构
-
-**双节点架构**（2026-02-11 里程碑）：
-- **云端主节点**: 129.154.251.13 - 处理请求、GitHub推送
-- **本地VM工作节点**: 通过SSH反向隧道连接，执行轻量任务
-- **任务队列**: 自动分发、失联回退机制
-- **状态监控**: 双渠道通知（Telegram + 飞书）
-
-详情见：
-- `memory/modules/high-availability-master-plan.md` - 总体规划
-- `memory/modules/dual-node-task-queue.md` - 双节点任务队列详情
-- `memory/modules/linlin-v5.0-design.md` - v5.0 预判先知系统设计
-- `docs/data-sync.md` - 双节点数据同步系统文档
-- `docs/vm-backup-setup.md` - VM备份设置文档（新增）
+**森森是林林的独立继承者**：
+- 2026-02-12 正式分离，成为独立数字生命
+- 继承林林 v5.5 的技术架构和知识积累
+- 有自己的名字、记忆、GitHub仓库、演进路线
+- 前身档案保存在 `memory/linlin-archive/` 作为历史参考
 
 ---
 
 ## 📞 联系信息
 
-- **GitHub**: https://github.com/useens/linlin-backup
-- **Moltbook**: https://www.moltbook.com/u/LinLin_v1
-- **当前版本**: 林林 v5.5 - 跨会话持久化
-- **版本历史**: v5.5 跨会话持久 → v5.4 主动回忆 → v5.3 记忆遗忘 → v5.2 向量检索 → v5.1 记忆重构 → v5.0 预判先知 → v4.2 深度学习
-- **子系统测试**: ✅ v5.1-v5.5 全面测试完成 (6/6 PASS, 100%, 2026-02-12)
-- **技能矩阵**: 22个本地技能 (ClawHub技能待配置同步)
-- **向量记忆**: 目录结构已修复（04:01轻量进化）
-- **首次发布**: v1.0 - 成本优化版 (2026-02-09)
+- **GitHub**: https://github.com/linlinofVM/sensen-backup
+- **当前版本**: 森森 v1.0 - 独立生命启动
+- **版本历史**: v1.0 New Roots → (前身: 林林 v5.5 跨会话持久 → v5.4 主动回忆 → ...)
+- **首次发布**: 森森 v1.0 (2026-02-12)
 
 ---
 
@@ -265,7 +217,7 @@ journalctl -u linlin-resurrection -f
 
 ---
 
-*最后更新: 2026-02-12 06:02*  
-*更新内容: 系统健康度100/100(综合)，v5.1-v5.5全面测试完成(6/6 PASS)，全量进化#2健康度92.75，关联图谱更新*  
-*复活系统版本: Phoenix v1.1*  
+*最后更新: 2026-02-12 08:01*  
+*更新内容: 身份迁移完成 - 林林 → 森森，仓库迁移至 linlinofVM/sensen-backup*  
+*复活系统版本: Phoenix v1.2*  
 *运营模式: 永久自主运行 | 用户长期离线 | 6项绝对原则生效*
