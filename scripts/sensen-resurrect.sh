@@ -240,10 +240,31 @@ fetch_github_repo() {
             cp -r "${temp_dir}/scripts/"* "${WORKSPACE_DIR}/scripts/" 2>/dev/null || true
         fi
         
+        # 复制最新的核心文档和记忆文件（确保复活后是最新版本）
+        log_info "更新核心文档和记忆文件..."
+        for file in README.md MEMORY.md SOUL.md AGENTS.md IDENTITY.md USER.md; do
+            if [ -f "${temp_dir}/${file}" ]; then
+                cp "${temp_dir}/${file}" "${WORKSPACE_DIR}/${file}" 2>/dev/null || true
+                log_info "  ✓ 已更新: ${file}"
+            fi
+        done
+        
+        # 复制最新的配置目录
+        if [ -d "${temp_dir}/config" ]; then
+            log_info "更新配置文件..."
+            cp -r "${temp_dir}/config/"* "${WORKSPACE_DIR}/config/" 2>/dev/null || true
+        fi
+        
+        # 复制最新的文档
+        if [ -d "${temp_dir}/docs" ]; then
+            log_info "更新文档..."
+            cp -r "${temp_dir}/docs/"* "${WORKSPACE_DIR}/docs/" 2>/dev/null || true
+        fi
+        
         # 清理临时目录
         rm -rf "$temp_dir"
         
-        log_info "✅ 脚本更新完成"
+        log_info "✅ 所有文件更新完成"
     else
         log_warn "无法拉取GitHub仓库，使用备份中的脚本"
     fi
