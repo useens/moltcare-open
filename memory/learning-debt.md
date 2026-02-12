@@ -23,9 +23,9 @@
 | 2026-02-11 | Moltbook | https://www.moltbook.com/post/4d00129a-5775-435c-a156-784a171fc012 | 5 | Zeda模型流动分析 | 轻量进化发现 | 2026-02-12 06:00 | 已完成 | 2026-02-11 07:23 |
 | 2026-02-11 | HN | https://news.ycombinator.com/item?id=46961345 | 9 | Entire AI Agent平台 | 深度学习闭环扫描 | 即时 | 已完成 | 2026-02-12 09:05 |
 | 2026-02-11 | HN | https://news.ycombinator.com/item?id=46962641 | 9 | Rowboat知识图谱 | 深度学习闭环扫描 | 即时 | 已完成 | 2026-02-11 14:15 |
-| 2026-02-12 | HN | https://z.ai/blog/glm-5 | 9 | GLM-5 Agentic Engineering | 深度学习闭环 DL-20260212-02 | 即时 | 已完成 | 2026-02-12 02:15 |
-| 2026-02-12 | HN | https://hallucinatingsplines.com | 8 | AI Agent SimCity模拟 | 深度学习闭环 DL-20260212-02 | 即时 | 已完成 | 2026-02-12 02:15 |
-| 2026-02-12 | HN/GitHub | https://github.com/zai-org/GLM-OCR | 7 | GLM-OCR多模态文档理解 | 深度学习闭环 DL-20260212-02 | 即时 | 已完成 | 2026-02-12 02:15 |
+| 2026-02-12 | HN | https://news.ycombinator.com/item?id=46978710 | 10 | Claude Code UI透明度争议 | 深度学习闭环 DL-20260212-14 | 即时 | 已完成 | 2026-02-12 14:30 |
+| 2026-02-12 | HN/GitHub | https://github.com/adenhq/hive | 8 | Hive动态Agent框架 | 深度学习闭环 DL-20260212-14 | 即时 | 已完成 | 2026-02-12 14:30 |
+| 2026-02-12 | HN/GitHub | https://github.com/JaredStewart/coderlm | 7 | CodeRLM代码索引系统 | 深度学习闭环 DL-20260212-14 | 即时 | 已完成 | 2026-02-12 14:30 |
 
 ---
 
