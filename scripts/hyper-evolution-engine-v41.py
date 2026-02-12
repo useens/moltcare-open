@@ -30,14 +30,15 @@ logging.basicConfig(
 logger = logging.getLogger('HyperEvolution')
 
 CONFIG = {
-    "version": "4.3.1",
-    "codename": "HyperEngine-Unlimited",
-    "cpu_target": 85,        # 提升至85% (原为70%)
-    "memory_target_mb": 8192, # 提升至8GB (原为6.5GB)
-    "scan_interval": 600,     # 10分钟
-    "max_workers": 20,        # 提升至20 (原为12)
-    "signal_threshold": 4,
-    "unlimited_mode": True,   # 新增: 无限制模式
+    "version": "4.3.2",
+    "codename": "HyperEngine-Production",
+    "cpu_target": 15,        # 调整为合理值 (原85%不现实，扫描模式15-20%为正常)
+    "memory_target_mb": 2048, # 调整为2GB (实际使用<200MB，预留余量)
+    "scan_interval": 600,     # 10分钟 (保持)
+    "max_workers": 12,        # 保持12源并行
+    "signal_threshold": 4,    # 保持激进识别
+    "unlimited_mode": True,   # 保持无限制模式
+    "mode": "intermittent_scan",  # 明确模式: 间歇扫描
 }
 
 SOURCES = [
