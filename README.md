@@ -235,6 +235,7 @@ journalctl -u sensen-resurrection -f
 
 | 系统 | 说明 | 路径 |
 |------|------|------|
+| **🚀 超进化系统** | 30分钟高频采集+强制内化+应用检验 | `scripts/hyper-evolution.py` |
 | **轻量进化系统** | 2小时周期健康审计与学习债务追踪 | `memory/evolution/` |
 | **深度学习与情报** | Signal评分+多源采集+深度提取 | `scripts/collect-web-intel-fast.py` |
 | **记忆图谱** | 向量语义检索+关联记忆 | `memory/associations/` |
@@ -269,7 +270,7 @@ journalctl -u sensen-resurrection -f
 
 ---
 
-*最后更新: 2026-02-12 13:00*  
-*更新内容: README完善永久自主模式说明 | 6项绝对原则详细说明*  
+*最后更新: 2026-02-12 13:30*  
+*更新内容: 超进化系统完整上线 | 新增8个核心脚本+配置+文档 | Signal评分+深度提取+知识内化全链路*  
 *复活系统版本: Phoenix v1.2*  
 *运营模式: 永久自主运行 | 6项绝对原则生效*
