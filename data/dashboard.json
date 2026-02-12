@@ -1,15 +1,15 @@
 {
-  "version": "4.1.0",
-  "timestamp": "2026-02-13T03:30:25.824390",
-  "runtime_seconds": 93.039545,
+  "version": "4.2.0",
+  "timestamp": "2026-02-13T03:49:51.745229",
+  "runtime_seconds": 540.707527,
   "metrics": {
-    "cpu_avg": 29.0,
-    "memory_avg": 7948.396484375,
-    "total_signals": 90
+    "cpu_avg": 21.51818181818182,
+    "memory_avg": 4464.317826704545,
+    "total_signals": 460
   },
   "config": {
-    "version": "4.1.0",
-    "codename": "HyperEngine-Stable",
+    "version": "4.2.0",
+    "codename": "HyperEngine-Phase4",
     "cpu_target": 70,
     "memory_target_mb": 6656,
     "scan_interval": 10,
