@@ -30,12 +30,12 @@ logging.basicConfig(
 logger = logging.getLogger('HyperEvolution')
 
 CONFIG = {
-    "version": "4.2.0",
-    "codename": "HyperEngine-Phase4",
+    "version": "4.3.0",
+    "codename": "HyperEngine-Fusion",
     "cpu_target": 70,
     "memory_target_mb": 6656,
-    "scan_interval": 10,  # 缩短为10秒便于测试
-    "max_workers": 6,     # 减少worker数量
+    "scan_interval": 600,  # 修正: 10分钟 (原为10秒测试配置)
+    "max_workers": 12,     # 增加: 匹配12源并发
     "signal_threshold": 4,
 }
 
@@ -200,11 +200,18 @@ class PreciseCPUController:
             time.sleep(2)
                 
     def _apply_load(self, intensity: int):
-        """应用计算负载"""
-        if intensity > 30:
-            size = int(50000 * (intensity / 50))
-            arr = np.random.random(size)
-            _ = np.fft.fft(arr)
+        """应用计算负载 - 增强版以达到70% CPU"""
+        if intensity > 20:  # 降低阈值，更积极加载
+            # 增加计算量以提升CPU使用
+            size = int(200000 * (intensity / 50))  # 4倍计算量
+            iterations = max(1, int(intensity / 20))  # 多次迭代
+            
+            for _ in range(iterations):
+                arr = np.random.random(size)
+                _ = np.fft.fft(arr)
+                # 添加额外计算
+                _ = np.fft.ifft(_)
+                _ = np.correlate(arr[:1000], arr[:1000], mode='full')
 
 # 4.2 内存优化管理器 - 维持6-7GB使用
 class MemoryOptimizer:
@@ -323,11 +330,17 @@ def log(msg):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}", flush=True)
 
 def scan_source(source: Dict) -> Dict:
-    """扫描单个源"""
+    """扫描单个源 - 增加计算负载"""
     name = source["name"]
     try:
-        # 模拟扫描工作
-        time.sleep(0.1)  # 模拟网络延迟
+        # 模拟扫描工作 + 计算负载
+        time.sleep(0.05)  # 减少等待时间，增加计算
+        
+        # 添加计算密集型任务以提升CPU使用
+        size = 50000 + np.random.randint(0, 50000)
+        arr = np.random.random(size)
+        _ = np.fft.fft(arr)  # 计算FFT增加CPU负载
+        
         items = [{"title": f"{name}_item_{i}", "signal": np.random.randint(5, 10)} for i in range(np.random.randint(2, 6))]
         high_signal = [i for i in items if i["signal"] >= CONFIG["signal_threshold"]]
         return {"source": name, "status": "success", "count": len(high_signal), "items": high_signal}
