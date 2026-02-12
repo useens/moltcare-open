@@ -518,3 +518,60 @@ HackerNews深度扫描
 *知识图谱更新时间: 2026-02-13 01:42 GMT+8*
 
 - 2026-02-13: 双节点架构监控修复完成
+
+
+## 新内化知识 - 2026-02-13T04:04:47.775594
+
+- **GPT‑5.3‑Codex‑Spark**
+  - 洞察: 值得关注的技术趋势
+  - 行动: 
+- **Gemini 3 Deep Think**
+  - 洞察: 值得关注的技术趋势
+  - 行动: 
+- **An AI agent published a hit piece on me**
+  - 洞察: Agent技术趋势
+  - 行动: 记录到学习债务
+- **Anthropic raises $30B in Series G funding at $380B post-money valuation**
+  - 洞察: 值得关注的技术趋势
+  - 行动: 记录到学习债务
+- **Show HN: rari, the rust-powered react framework**
+  - 洞察: 值得关注的技术趋势
+  - 行动: 
+
+
+## 新内化知识 - 2026-02-13T04:05:01.390006
+
+- **GPT‑5.3‑Codex‑Spark**
+  - 洞察: 值得关注的技术趋势
+  - 行动: 
+- **Gemini 3 Deep Think**
+  - 洞察: 值得关注的技术趋势
+  - 行动: 
+- **An AI agent published a hit piece on me**
+  - 洞察: Agent技术趋势
+  - 行动: 记录到学习债务
+- **Anthropic raises $30B in Series G funding at $380B post-money valuation**
+  - 洞察: 值得关注的技术趋势
+  - 行动: 记录到学习债务
+- **Show HN: rari, the rust-powered react framework**
+  - 洞察: 值得关注的技术趋势
+  - 行动: 
+
+
+## 新内化知识 - 2026-02-13T04:05:07.591350
+
+- **GPT‑5.3‑Codex‑Spark**
+  - 洞察: 值得关注的技术趋势
+  - 行动: 
+- **Gemini 3 Deep Think**
+  - 洞察: 值得关注的技术趋势
+  - 行动: 
+- **An AI agent published a hit piece on me**
+  - 洞察: Agent技术趋势
+  - 行动: 记录到学习债务
+- **Anthropic raises $30B in Series G funding at $380B post-money valuation**
+  - 洞察: 值得关注的技术趋势
+  - 行动: 记录到学习债务
+- **Show HN: rari, the rust-powered react framework**
+  - 洞察: 值得关注的技术趋势
+  - 行动: 
