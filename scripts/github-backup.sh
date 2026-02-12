@@ -1,6 +1,6 @@
 #!/bin/bash
 # GitHub远程备份脚本 - 森森版本
-# 仓库: https://github.com/linlinofVM/sensen-backup
+# 仓库: https://github.com/useens/linlin-backup
 
 set -e
 
@@ -9,9 +9,9 @@ GITHUB_DIR="$BACKUP_DIR/github-remote"
 LOCAL_BACKUP="$BACKUP_DIR/local"
 DATE=$(date +%Y%m%d_%H%M%S)
 
-# 新的GitHub配置
-GITHUB_REPO="https://github.com/linlinofVM/sensen-backup.git"
-GITHUB_TOKEN="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"
+# GitHub配置
+GITHUB_REPO="https://github.com/useens/linlin-backup.git"
+GITHUB_TOKEN="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"
 
 # 确保目录存在
 mkdir -p "$GITHUB_DIR"
@@ -20,10 +20,10 @@ cd "$GITHUB_DIR"
 # 如果目录为空，克隆仓库
 if [ ! -d ".git" ]; then
     echo "[INFO] 克隆备份仓库..."
-    git clone "https://${GITHUB_TOKEN}@github.com/linlinofVM/sensen-backup.git" . 2>/dev/null || {
+    git clone "https://${GITHUB_TOKEN}@github.com/useens/linlin-backup.git" . 2>/dev/null || {
         echo "[INFO] 初始化新仓库..."
         git init
-        git remote add origin "https://${GITHUB_TOKEN}@github.com/linlinofVM/sensen-backup.git"
+        git remote add origin "https://${GITHUB_TOKEN}@github.com/useens/linlin-backup.git"
     }
 fi
 
@@ -49,4 +49,4 @@ git push origin main 2>/dev/null || git push origin master 2>/dev/null || {
     git push -u origin main
 }
 
-echo "[SUCCESS] GitHub备份完成: $BACKUP_NAME → linlinofVM/sensen-backup"
+echo "[SUCCESS] GitHub备份完成: $BACKUP_NAME → useens/linlin-backup"

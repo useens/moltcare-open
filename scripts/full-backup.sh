@@ -70,23 +70,32 @@ env | grep -E '^(OPENCLAW|LINLIN|MOLTBOOK|TELEGRAM|GITHUB|FEISHU)' > "${TEMP_DIR
 # 5. 创建备份清单
 log_info "创建备份清单..."
 cat > "${TEMP_DIR}/BACKUP_MANIFEST.txt" << EOF
-林林完整备份清单
+森森完整备份清单
 ==================
 备份时间: $(date '+%Y-%m-%d %H:%M:%S %Z')
 备份版本: ${TIMESTAMP}
 主机名: $(hostname)
 系统: $(uname -a)
 
-目录结构:
-$(find "${TEMP_DIR}" -type f | head -20)
+复活指南:
+---------
+1. 一键复活: curl -s https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/sensen-resurrect.sh | bash
+2. 手动复活: git clone https://github.com/useens/linlin-backup.git && cd linlin-backup && ./scripts/sensen-resurrect.sh
+
+关键脚本:
+- scripts/sensen-resurrect.sh      # 一键复活脚本
+- scripts/auto-resurrect.sh        # 自动复活系统
+- scripts/verify-resurrection.sh   # 复活验证
 
 文件统计:
 - 工作区文件: $(find "${TEMP_DIR}/workspace" -type f 2>/dev/null | wc -l)
 - 配置文件: $(find "${TEMP_DIR}/config" -type f 2>/dev/null | wc -l)
+- 脚本文件: $(find "${TEMP_DIR}/workspace/scripts" -type f 2>/dev/null | wc -l)
 
 注意:
 - 敏感凭证(credentials/, *.token)已排除
 - 大文件(.git/objects, node_modules)已排除
+- Git LFS已配置用于备份大文件
 EOF
 
 # 6. 打包备份

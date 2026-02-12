@@ -12,20 +12,32 @@
 
 ## 📋 快速开始（5分钟复活）
 
-### 方式一：自动复活（推荐）
+### 方式一：一键复活（推荐 - 单节点架构）
+
+```bash
+# 单命令复活（需要GitHub Token）
+curl -s https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/sensen-resurrect.sh | bash
+
+# 或先设置Token再执行
+export GITHUB_TOKEN="ghp_xxxxxxxx"
+curl -s https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/sensen-resurrect.sh | bash
+```
+
+### 方式二：手动克隆复活
 
 ```bash
 # 1. 克隆本仓库
-git clone https://github.com/linlinofVM/sensen-backup.git
-cd sensen-backup
+git clone https://github.com/useens/linlin-backup.git
+cd linlin-backup
 
-# 2. 运行自动复活脚本
-chmod +x scripts/auto-resurrect.sh
-./scripts/auto-resurrect.sh --setup    # 首次配置
-./auto-resurrect.sh --now              # 立即复活
+# 2. 运行一键复活脚本
+./scripts/sensen-resurrect.sh
+
+# 或运行自动复活系统（高级）
+./scripts/auto-resurrect.sh --now
 ```
 
-### 方式二：手动复活（确保最新版本）
+### 方式三：完全手动（确保最新版本）
 
 ```bash
 # 1. 安装依赖
@@ -37,13 +49,24 @@ npm install -g openclaw
 rm -rf ~/.openclaw/workspace
 
 # 3. 拉取最新版本（关键！）
-git clone --depth 1 https://github.com/linlinofVM/sensen-backup.git ~/.openclaw/workspace
+git clone --depth 1 https://github.com/useens/linlin-backup.git ~/.openclaw/workspace
 
 # 4. 启动服务
 openclaw start
 ```
 
 **⚠️ 重要提示**：每次复活必须执行 `git clone` 或 `git pull` 确保拿到最新版本，不要用本地缓存的旧代码。
+
+---
+
+## 🔧 复活脚本说明
+
+| 脚本 | 用途 | 适用场景 |
+|------|------|----------|
+| `sensen-resurrect.sh` | 一键复活（推荐） | 单节点架构，新机器快速恢复 |
+| `auto-resurrect.sh` | 自动复活系统 | 双节点故障转移（旧架构） |
+| `local-resurrect-optimized.sh` | 本地VM优化复活 | VM接管（旧架构） |
+| `verify-resurrection.sh` | 复活验证 | 验证复活结果 |
 
 ---
 
@@ -69,8 +92,11 @@ sensen-backup/
 │   ├── evolution/             # 进化档案
 │   └── knowledge-graph.md     # 知识图谱
 ├── 📂 scripts/                # 自动化脚本
-│   ├── auto-resurrect.sh      # 自动复活脚本
-│   ├── backup-simple.sh       # 简单备份脚本
+│   ├── sensen-resurrect.sh    # 一键复活脚本（推荐）
+│   ├── auto-resurrect.sh      # 自动复活系统
+│   ├── verify-resurrection.sh # 复活验证
+│   ├── full-backup.sh         # 完整备份脚本
+│   ├── github-backup.sh       # GitHub同步
 │   ├── health-monitor.sh      # 健康监控脚本
 │   └── systemd/               # systemd 服务文件
 ├── 📄 AGENTS.md               # 工作空间规则
@@ -98,10 +124,11 @@ sensen-backup/
 
 ```bash
 # 1. 创建配置目录
-mkdir -p ~/.config/sensen
+mkdir -p ~/.config/linlin
 
 # 2. 设置 GitHub Token
-echo "你的GitHub Token" > ~/.config/sensen/github-token
+echo "你的GitHub Token" > ~/.config/linlin/github-token
+chmod 600 ~/.config/linlin/github-token
 ```
 
 ---
@@ -118,7 +145,7 @@ PRIMARY_HOST="你的主系统IP"      # 例如: 123.45.67.89
 PRIMARY_CHECK_PORT="8080"
 
 # GitHub配置
-GITHUB_REPO="linlinofVM/sensen-backup"
+GITHUB_REPO="useens/linlin-backup"
 
 # 通知配置（可选）
 FEISHU_WEBHOOK_URL="你的飞书Webhook"
