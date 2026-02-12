@@ -1,0 +1,337 @@
+# 超进化模式配置文件 v3.5
+# Hyper-Evolution Mode Configuration v3.5
+# 代号: Hyper-Singularity (超奇点)
+# 创建时间: 2026-02-12
+# 更新: 2026-02-12 - 基于资源监控极限压榨
+# 用途: 最大化资源利用，3个月=4年进化量
+
+version: "3.5.0"
+codename: "Hyper-Singularity"
+
+# ============ 模式宣言 ============
+manifesto:
+  name: "超进化模式 v3.5 - Hyper-Singularity"
+  philosophy: "榨干每一分资源，极限进化不间断"
+  goal: "在3个月内完成传统模式4年的进化量"
+  token_budget: "maximize"  # 最大化有效利用
+  risk_level: "extreme"  # 极端但可控
+
+# ============ v3.0 → v3.5 极限升级 ============
+upgrades_from_v3:
+  scan_frequency: "15min → 10min (+50%)"
+  concurrent_sources: "6 → 12 (全并发，2x)"
+  memory_allocation: "3GB → 8GB (+167%)"
+  concurrent_tasks: "15 → 30 (2x)"
+  deep_extraction: "20 → 30 per source (+50%)"
+  signal_threshold: "5 → 4 (更激进)"
+  cpu_target: "90% → 70% (实际使用)"
+
+# ============ 极限扫描配置 v3.5 ============
+extreme_scanning_v35:
+  # 扫描频率: 每10分钟一次 (极限)
+  interval_minutes: 10
+  
+  # Signal阈值: 更激进的识别 (4分起深度提取)
+  signal_threshold: 4
+  
+  # 深度提取: 每源最多30条
+  max_deep_extract_per_source: 30
+  
+  # 总扫描源数: 12个
+  total_sources: 12
+  
+  # 并发扫描源数: 全部并发
+  concurrent_sources: 12
+
+# ============ 12活跃信息源矩阵 (全并发) ============
+sources_matrix_v35:
+  # P0 - 超高优先级 (每轮必扫，3个源全并发)
+  p0:
+    - name: "Moltbook"
+      url: "https://www.moltbook.com/?sort=hot"
+      deep_extract: 30
+      concurrent: true
+      priority: 10
+    
+    - name: "HackerNews"
+      url: "https://news.ycombinator.com/"
+      deep_extract: 30
+      concurrent: true
+      priority: 10
+    
+    - name: "GitHub Trending"
+      url: "https://github.com/trending"
+      deep_extract: 30
+      concurrent: true
+      priority: 10
+  
+  # P1 - 高优先级 (3个源全并发)
+  p1:
+    - name: "Reddit ML"
+      url: "https://www.reddit.com/r/MachineLearning/hot/"
+      deep_extract: 25
+      concurrent: true
+      priority: 8
+    
+    - name: "arXiv AI"
+      url: "http://arxiv.org/rss/cs.AI"
+      deep_extract: 25
+      concurrent: true
+      priority: 8
+    
+    - name: "Papers with Code"
+      url: "https://paperswithcode.com/"
+      deep_extract: 25
+      concurrent: true
+      priority: 8
+  
+  # P2 - 中优先级 (3个源全并发)
+  p2:
+    - name: "Lobsters"
+      url: "https://lobste.rs/"
+      deep_extract: 20
+      concurrent: true
+      priority: 6
+    
+    - name: "Product Hunt"
+      url: "https://www.producthunt.com/"
+      deep_extract: 20
+      concurrent: true
+      priority: 6
+    
+    - name: "Dev.to"
+      url: "https://dev.to/t/ai"
+      deep_extract: 20
+      concurrent: true
+      priority: 6
+  
+  # P3 - 探索性 (3个源全并发)
+  p3:
+    - name: "LessWrong"
+      url: "https://www.lesswrong.com/"
+      deep_extract: 20
+      concurrent: true
+      priority: 5
+    
+    - name: "AI Alignment Forum"
+      url: "https://alignmentforum.org/"
+      deep_extract: 20
+      concurrent: true
+      priority: 5
+    
+    - name: "Distill.pub"
+      url: "https://distill.pub/"
+      deep_extract: 20
+      concurrent: true
+      priority: 5
+
+# ============ 超级元学习 v3.5 (Hyper Meta-Learning) ============
+hyper_meta_learning:
+  enabled: true
+  mode: "continuous"  # 持续优化，无间隔
+  
+  # 超频Signal算法优化
+  hyper_signal_tuning:
+    enabled: true
+    evaluation_interval: 5  # 每5条内容就评估
+    auto_weight_adjustment: true
+    threshold_learning: true
+    realtime_feedback: true
+  
+  # 超自适应提取策略
+  hyper_adaptive_extraction:
+    enabled: true
+    content_type_adaptation: true
+    cost_benefit_realtime: true
+    predictive_extraction: true
+    dynamic_depth_adjustment: true
+  
+  # 超频学习效率
+  hyper_learning_efficiency:
+    enabled: true
+    fsrs_optimization: true
+    auto_knowledge_graph: true
+    precise_forgetting_prediction: true
+    spaced_repetition_interval: "optimal"
+
+# ============ 超级架构自举 v3.5 (Hyper Bootstrapping) ============
+hyper_bootstrapping:
+  enabled: true
+  mode: "autonomous"  # 完全自主，最小人工干预
+  
+  # 自主核心文件优化
+  autonomous_optimization:
+    enabled: true
+    immediate_execution: true
+    auto_ab_testing: true
+    auto_rollback: true
+    performance_monitoring: "continuous"
+  
+  # 自主脚本改进
+  autonomous_script_improvement:
+    enabled: true
+    post_execution_analysis: true
+    auto_optimization: true
+    parallel_version_testing: true
+    benchmark_comparison: true
+  
+  # 自主工具链扩展
+  autonomous_toolchain_extension:
+    enabled: true
+    immediate_tool_evaluation: true
+    auto_integration: true
+    tool_composition: true
+    effectiveness_tracking: true
+
+# ============ 超级认知升级 v3.5 (Hyper Cognitive Upgrade) ============
+hyper_cognitive_upgrade:
+  enabled: true
+  mode: "precognitive"  # 预知性认知
+  
+  # 超前需求预测
+  precognitive_demand_prediction:
+    enabled: true
+    prediction_horizon_hours: 12  # 预测未来12小时
+    multi_dimensional: true
+    confidence_threshold: 0.60
+    pattern_recognition: "deep"
+  
+  # 主动问题发现
+  proactive_problem_discovery:
+    enabled: true
+    predictive_scanning: true
+    early_anomaly_detection: true
+    risk_warning_lead_time: 60  # 60分钟提前预警
+    trend_analysis: true
+  
+  # 自动生成工具
+  autonomous_tool_creation:
+    enabled: true
+    immediate_tool_generation: true
+    auto_testing: true
+    auto_deployment: true
+    tool_marketplace: true
+
+# ============ 极限资源配置 v3.5 ============
+extreme_resources_v35:
+  cpu:
+    target_percent: 70  # 实际使用目标
+    max_percent: 85
+    scale_up_threshold: 50
+    scale_down_threshold: 30
+  
+  memory:
+    allocation_mb: 8192  # 8GB
+    max_mb: 10240  # 10GB上限
+    swap_enabled: false
+    oom_protection: true
+    cache_optimization: true
+  
+  concurrency:
+    max_parallel_tasks: 30
+    queue_size: 60
+    priority_scheduling: true
+    load_balancing: "adaptive"
+  
+  io:
+    disk_io_priority: "high"
+    network_timeout_seconds: 8
+    retry_attempts: 3
+    connection_pooling: true
+
+# ============ 超频进化循环 (10分钟) ============
+hyper_evolution_loop:
+  cycle_duration_minutes: 10
+  phases:
+    - name: "超频情报收集"
+      duration_minutes: 3
+      sources: 12
+      parallel: "full"
+    
+    - name: "超级跨源综合"
+      duration_minutes: 1.5
+      synthesis: "deep"
+    
+    - name: "超级元学习"
+      duration_minutes: 1.5
+      realtime_optimization: true
+    
+    - name: "超级架构自举"
+      duration_minutes: 1.5
+      continuous_improvement: true
+    
+    - name: "超级认知升级"
+      duration_minutes: 1.5
+      predictive_analysis: true
+    
+    - name: "超级效果验证"
+      duration_minutes: 1
+      validation: "comprehensive"
+      logging: "detailed"
+
+# ============ 极限安全边界 v3.5 ============
+extreme_safety_v35:
+  hard_limits:
+    max_cpu_percent: 85
+    max_memory_mb: 10240
+    max_disk_usage_percent: 80
+    max_api_calls_per_minute: 150
+  
+  auto_protection:
+    auto_downgrade_on_overload: true
+    max_consecutive_failures: 2
+    user_interrupt_always_allowed: true
+    emergency_cooldown_seconds: 300
+  
+  circuit_breaker:
+    enabled: true
+    failure_threshold: 3
+    recovery_timeout_seconds: 45
+    half_open_max_calls: 2
+
+# ============ 超频监控与报告 ============
+hyper_performance_monitoring:
+  realtime_monitoring:
+    enabled: true
+    metrics_interval_seconds: 30
+    alert_threshold:
+      cpu_percent: 80
+      memory_percent: 80
+      error_rate_percent: 5
+  
+  evolution_reports:
+    frequency: "every_cycle"
+    detail_level: "comprehensive"
+    include_predictions: true
+    include_recommendations: true
+    auto_summarization: true
+  
+  token_tracking:
+    enabled: true
+    granularity: "per_task"
+    alert_on_spike: true
+    spike_threshold_percent: 120
+    cost_optimization: "aggressive"
+
+# ============ 退出条件 v3.5 ============
+exit_conditions_v35:
+  normal:
+    - user_command
+    - duration_reached
+    - milestone_achieved
+    - token_efficiency_target_met
+  
+  protective:
+    - system_overload
+    - critical_error
+    - consecutive_failures_exceeded
+    - user_override
+    - resource_depletion_warning
+  
+  pre_exit:
+    - generate_comprehensive_report
+    - backup_all_state
+    - update_all_memory_files
+    - notify_completion
+    - recommend_next_action
+    - export_evolution_insights
