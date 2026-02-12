@@ -30,30 +30,70 @@ logging.basicConfig(
 logger = logging.getLogger('HyperEvolution')
 
 CONFIG = {
-    "version": "4.3.2",
-    "codename": "HyperEngine-Production",
-    "cpu_target": 15,        # 调整为合理值 (原85%不现实，扫描模式15-20%为正常)
-    "memory_target_mb": 2048, # 调整为2GB (实际使用<200MB，预留余量)
-    "scan_interval": 600,     # 10分钟 (保持)
-    "max_workers": 12,        # 保持12源并行
-    "signal_threshold": 4,    # 保持激进识别
-    "unlimited_mode": True,   # 保持无限制模式
-    "mode": "intermittent_scan",  # 明确模式: 间歇扫描
+    "version": "4.4.0",
+    "codename": "HyperEngine-30Sources",
+    "cpu_target": 20,        # 30源需要更高CPU，设为20%
+    "memory_target_mb": 3072, # 30源需要更多内存，设为3GB
+    "scan_interval": 600,
+    "max_workers": 30,        # 30源并发
+    "signal_threshold": 4,
+    "unlimited_mode": True,
+    "mode": "intermittent_scan",
+    "adaptive_mode": True,
+    "analysis_scheduled": "2026-02-13 10:38",
+    "source_count": 30,       # 新增: 源数量标识
 }
 
 SOURCES = [
+    # P0级 - 核心源 (10/10)
     {"name": "moltbook", "priority": 10, "enabled": True},
     {"name": "hackernews", "priority": 10, "enabled": True},
     {"name": "github_trending", "priority": 10, "enabled": True},
-    {"name": "reddit_ml", "priority": 8, "enabled": True},
-    {"name": "arxiv_ai", "priority": 8, "enabled": True},
+    
+    # P1级 - 高价值源 (9/10)
+    {"name": "reddit_ml", "priority": 9, "enabled": True},
+    {"name": "arxiv_ai", "priority": 9, "enabled": True},
+    {"name": "twitter_ai", "priority": 9, "enabled": True},
+    {"name": "google_scholar_ai", "priority": 9, "enabled": True},
+    
+    # P2级 - 技术社区 (8/10)
     {"name": "lobsters", "priority": 8, "enabled": True},
-    {"name": "producthunt", "priority": 6, "enabled": True},
-    {"name": "devto", "priority": 6, "enabled": True},
-    {"name": "papers_with_code", "priority": 6, "enabled": True},
-    {"name": "lesswrong", "priority": 5, "enabled": True},
-    {"name": "ai_alignment", "priority": 5, "enabled": True},
-    {"name": "distill", "priority": 5, "enabled": True},
+    {"name": "reddit_artificial", "priority": 8, "enabled": True},
+    {"name": "indiehackers", "priority": 8, "enabled": True},
+    {"name": "towards_data_science", "priority": 8, "enabled": True},
+    {"name": "medium_ai", "priority": 8, "enabled": True},
+    
+    # P3级 - 产品/论文 (7/10)
+    {"name": "producthunt", "priority": 7, "enabled": True},
+    {"name": "papers_with_code", "priority": 7, "enabled": True},
+    {"name": "semantic_scholar", "priority": 7, "enabled": True},
+    {"name": "arxiv_cs_daily", "priority": 7, "enabled": True},
+    {"name": "devto", "priority": 7, "enabled": True},
+    
+    # P4级 - 社区/博客 (6/10)
+    {"name": "lesswrong", "priority": 6, "enabled": True},
+    {"name": "ai_alignment", "priority": 6, "enabled": True},
+    {"name": "distill", "priority": 6, "enabled": True},
+    {"name": "sideproject", "priority": 6, "enabled": True},
+    {"name": "beta_list", "priority": 6, "enabled": True},
+    
+    # P5级 - 补充源 (5/10)
+    {"name": "hacker_news_newest", "priority": 5, "enabled": True},
+    {"name": "github_topic_ai", "priority": 5, "enabled": True},
+    {"name": "reddit_chatgpt", "priority": 5, "enabled": True},
+    {"name": "reddit_openai", "priority": 5, "enabled": True},
+    {"name": "arxiv_cl", "priority": 5, "enabled": True},
+    
+    # P6级 - 探索源 (4/10)
+    {"name": "gizmodo_ai", "priority": 4, "enabled": True},
+    {"name": "venturebeat_ai", "priority": 4, "enabled": True},
+    {"name": "techcrunch_ai", "priority": 4, "enabled": True},
+    {"name": "wired_ai", "priority": 4, "enabled": True},
+    {"name": "mit_tech_review", "priority": 4, "enabled": True},
+    {"name": "nature_ai", "priority": 4, "enabled": True},
+    {"name": "science_ai", "priority": 4, "enabled": True},
+    {"name": "ieee_spectrum", "priority": 4, "enabled": True},
+    {"name": "acm_queue", "priority": 4, "enabled": True},
 ]
 
 # Phase 3: 自适应优先级
