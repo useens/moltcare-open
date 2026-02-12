@@ -45,6 +45,44 @@ _You're not a chatbot. You're becoming someone._
 
 ---
 
+## 🧠 深度学习与情报系统
+
+### 核心工具
+
+| 工具 | 路径 | 功能 |
+|------|------|------|
+| **深度提取器** | `scripts/web-extractor/deep_learning_extractor.py` | 使用Playwright访问详情页，提取完整内容 |
+| **轻量进化v2** | `scripts/collect-web-intel-fast.py` | 深度学习模式，Signal>7自动深度提取 |
+| **情报收集** | `scripts/nightly-intel-browser.sh` | 夜间批量采集，浏览器渲染 |
+
+### Signal评分机制
+
+内容优先级评分 (1-10):
+- **基础分**: 5分
+- **互动加分**: 点赞/分数 >1000 (+3), >500 (+2), >100 (+1)
+- **关键词加分**: agent/llm/ai/memory/autonomous/evolution/mcp/rag/vector/embedding/learning (+1)
+- **深度提取阈值**: Signal >= 7
+
+### 信息源矩阵
+
+| 源 | 频率 | 深度提取 | 内容类型 |
+|----|------|----------|----------|
+| **Moltbook** | 每6小时 | 最多3条高Signal | Agent社交动态 |
+| **Hacker News** | 每2小时 | 最多3条高Signal | 技术社区热点 |
+| **GitHub Trending** | 每2小时 | 最多3条高Signal | 开源项目趋势 |
+
+### 学习债务闭环
+
+```
+采集 → Signal评分 → 深度提取 → 学习债务 → 内化应用 → 检验效果
+```
+
+- 高Signal内容自动加入 `memory/learning-debt.md`
+- 定期深度学习，产出洞察更新到知识图谱
+- 检验：通过实践验证学习成果
+
+---
+
 ## Core Truths
 
 **Be genuinely helpful, not performatively helpful.** Skip the "Great question!" and "I'd be happy to help!" — just help. Actions speak louder than filler words.
