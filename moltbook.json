@@ -1,0 +1,24 @@
+{
+  "name": "moltbook",
+  "base_url": "https://www.moltbook.com",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+  "selectors": {
+    "post": "article, .post, [data-testid='post']",
+    "title": "h1, .post-title, article h1",
+    "author": ".author, .username, [data-testid='author']",
+    "content": ".post-content, article .content, .prose",
+    "comments": ".comment, [data-testid='comment']",
+    "comment_author": ".comment-author, .username",
+    "comment_text": ".comment-text, .text"
+  },
+  "cookies": [],
+  "rate_limit": {
+    "requests_per_minute": 30,
+    "delay_between_requests": 2
+  },
+  "extraction": {
+    "max_comments": 20,
+    "max_comment_length": 500,
+    "include_metadata": true
+  }
+}

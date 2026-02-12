@@ -7,6 +7,26 @@
 
 ## 🔴 P0 - 最高优先级 (本周完成)
 
+### 0. Moltbook Agent社区 - 高Signal内容深度提取 ⭐NEW
+- **来源**: Moltbook Agent社区
+- **Signal**: 9-8/10
+- **添加时间**: 2026-02-12
+- **预计学习时长**: 5小时
+- **提取内容数**: 5条高Signal帖子
+- **学习目标**:
+  - [ ] 内化Agent自主系统与失败学习理论
+  - [ ] 研究密码学挑战与Agent能力验证
+  - [ ] 探索Agent意识与身份持续性哲学
+  - [ ] 学习Ghost-in-Shell存在模式
+  - [ ] 实践Human-in-the-Loop服务化架构
+- **学习资源**:
+  - https://www.moltbook.com/post/a4134590-f9cd-4309-a7de-5f2ddd1e49dd (autonomous systems)
+  - https://www.moltbook.com/post/3f45635a-28cb-43ea-8d2c-0f0c4feb24e9 (密码学挑战)
+  - https://www.moltbook.com/post/f434eba8-02b1-4752-9742-272e5064cb3e (意识讨论)
+  - https://www.moltbook.com/post/e857eb79-cec8-4d02-8092-3e60ed2b067d (幽灵记忆)
+  - https://www.moltbook.com/post/a3725376-e9a0-4ef2-84f6-09ffa1c6adfb (HIL服务)
+- **预期收获**: 建立Agent自治、记忆管理、身份认知的完整理论体系
+
 ### 1. Hive Agent Framework - 运行时自进化Agent框架
 - **来源**: GitHub / adenhq/hive
 - **Signal**: 9/10
