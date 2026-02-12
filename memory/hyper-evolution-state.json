@@ -7,7 +7,7 @@
   "duration_hours": 24,
   "milestone": null,
   "scheduled_end": "2026-02-13T13:29:51.414991",
-  "last_updated": "2026-02-12T17:01:00",
+  "last_updated": "2026-02-12T21:02:00",
   "core_mechanisms": {
     "meta_learning": "enabled",
     "bootstrapping": "enabled",
@@ -15,11 +15,12 @@
   },
   "statistics": {
     "runtime_hours": 3.5,
-    "cycles_completed": 7,
+    "cycles_completed": 8,
     "deep_learning_count": 7,
     "knowledge_updates": 3,
     "high_signal_items": 12,
     "learning_debt_cleared": 8
   },
-  "status": "running"
+  "status": "running",
+  "last_full_evolution": "EV-FULL-20260212-2100"
 }
