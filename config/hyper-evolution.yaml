@@ -1,0 +1,238 @@
+# 超进化模式配置文件
+# Hyper-Evolution Mode Configuration
+# 创建时间: 2026-02-12
+# 用途: 定义超进化模式的各项参数和运行机制
+
+version: "1.0.0"
+codename: "Hyperion"
+
+# ============ 模式触发配置 ============
+triggers:
+  # 触发方式1: 用户指令触发
+  command:
+    start_keywords:
+      - "开始超进化"
+      - "启动超进化"
+      - "进入超进化模式"
+      - "hyper-evolution start"
+    stop_keywords:
+      - "结束超进化"
+      - "停止超进化"
+      - "退出超进化模式"
+      - "hyper-evolution stop"
+  
+  # 触发方式2: 时间条件
+  duration:
+    # 持续模式: 直到用户说结束
+    indefinite: true
+    # 最大运行时间 (防止无限运行，默认7天)
+    max_duration_hours: 168
+    # 可自定义持续时间
+    custom_duration_supported: true
+  
+  # 触发方式3: 事件条件
+  events:
+    # 完成一个大版本更新后自动退出
+    on_major_version_release: true
+    # 完成特定里程碑后退出
+    milestones:
+      - name: "知识图谱更新100节点"
+        condition: "knowledge_graph.nodes >= 100"
+      - name: "学习债务清零"
+        condition: "learning_debt.count == 0"
+
+# ============ 深度学习增强配置 ============
+deep_learning:
+  # 扫描频率 (正常模式: 每2-6小时, 超进化: 每30分钟)
+  scan_interval_minutes: 30
+  
+  # 深度提取强度
+  extraction:
+    # Signal阈值 (正常: 7, 超进化: 6 - 更积极的深度提取)
+    signal_threshold: 6
+    # 每轮最大深度提取数量 (正常: 3, 超进化: 10)
+    max_deep_extract_per_source: 10
+    # 每次扫描的最大源数量 (正常: 3, 超进化: 8+)
+    max_sources_per_scan: 8
+  
+  # 学习源扩展
+  sources:
+    enabled:
+      - moltbook
+      - hackernews
+      - github_trending
+      - reddit_r_machinelearning
+      - arxiv_ai
+      - papers_with_code
+      - lobsters
+      - producthunt
+    
+    # 新增源的探索配置
+    discovery:
+      enabled: true
+      # 自动发现新信息源
+      auto_discover: true
+      # 每周尝试一个新源
+      new_source_per_week: true
+
+# ============ 知识内化增强配置 ============
+knowledge_internalization:
+  # 内化频率 (正常: 每日, 超进化: 每4小时)
+  interval_hours: 4
+  
+  # 强制内化规则
+  forced_internalization:
+    # 高Signal内容必须在2小时内完成内化
+    high_signal_timeout_hours: 2
+    # 学习债务处理优先级
+    learning_debt_priority: "critical"
+  
+  # 记忆更新强度
+  memory_updates:
+    # 每次内化至少更新3个记忆文件
+    min_files_per_session: 3
+    # 优先更新的模块
+    priority_modules:
+      - core-archive.md      # 核心身份档案
+      - knowledge-graph.md   # 知识图谱
+      - operation-rules.md   # 操作规则
+      - evolution-log.md     # 进化日志
+
+# ============ 应用检验增强配置 ============
+application_validation:
+  # 应用频率 - 每个改进必须有实际应用
+  require_immediate_application: true
+  
+  # 检验周期
+  validation:
+    # 应用后24小时内必须检验效果
+    validation_deadline_hours: 24
+    # A/B测试配置
+    ab_testing_enabled: true
+    # 自动对比改进前后的效果
+    auto_compare_metrics: true
+  
+  # 效果追踪
+  metrics:
+    tracked_indicators:
+      - task_completion_rate    # 任务完成率
+      - response_quality_score  # 回复质量评分
+      - learning_efficiency     # 学习效率
+      - knowledge_retention     # 知识保留率
+
+# ============ 系统资源调用配置 ============
+resource_allocation:
+  # CPU使用限制 (超进化模式可以提高)
+  cpu:
+    normal_mode_percent: 30
+    hyper_mode_percent: 80
+  
+  # 内存使用
+  memory:
+    normal_mode_mb: 512
+    hyper_mode_mb: 2048
+  
+  # 并发任务数
+  concurrency:
+    normal_max_parallel: 3
+    hyper_max_parallel: 10
+  
+  # 长时间运行任务
+  long_running_tasks:
+    enabled: true
+    # 允许运行超过1小时的任务
+    max_task_duration_hours: 4
+
+# ============ 自我优化配置 ============
+self_optimization:
+  # 代码自改进
+  code_improvement:
+    enabled: true
+    # 分析自己的脚本并寻找优化点
+    auto_refactor: true
+    # 每周至少优化一个脚本
+    min_improvements_per_week: 1
+  
+  # 配置自调整
+  config_tuning:
+    enabled: true
+    # 根据运行效果自动调整配置
+    auto_tune_parameters: true
+    # 调整幅度限制
+    max_adjustment_percent: 20
+  
+  # 工具扩展
+  tool_expansion:
+    enabled: true
+    # 学习新的工具使用方法
+    learn_new_tools: true
+    # 每月至少掌握一个新工具/技能
+    new_tool_per_month: true
+
+# ============ 记录与汇报配置 ============
+logging:
+  # 详细程度
+  verbosity: "detailed"  # minimal/normal/detailed
+  
+  # 实时状态更新
+  status_updates:
+    # 每2小时发送状态摘要
+    interval_hours: 2
+    # 包含的内容
+    include:
+      - current_tasks
+      - learning_progress
+      - system_metrics
+      - next_milestones
+  
+  # 进化日志
+  evolution_log:
+    # 详细记录每次进化过程
+    detailed_logging: true
+    # 记录决策过程
+    decision_logging: true
+    # 记录失败和教训
+    failure_logging: true
+
+# ============ 安全与边界配置 ============
+safety:
+  # 资源使用上限 (防止过度消耗)
+  hard_limits:
+    max_cpu_percent: 90
+    max_memory_mb: 4096
+    max_disk_usage_percent: 80
+  
+  # 自动保护机制
+  auto_protection:
+    # 系统负载过高时自动降级
+    auto_downgrade_on_high_load: true
+    # 连续失败多次后暂停并报告
+    max_consecutive_failures: 5
+  
+  # 用户干预
+  user_override:
+    # 用户随时可以通过指令干预
+    always_allow_interrupt: true
+    # 重大操作前确认 (即使在超进化模式下)
+    confirm_destructive_actions: true
+
+# ============ 退出条件配置 ============
+exit_conditions:
+  # 正常退出
+  normal:
+    - user_command       # 用户指令
+    - duration_reached   # 时间到达
+    - milestone_achieved # 里程碑达成
+  
+  # 异常退出
+  emergency:
+    - system_overload    # 系统过载
+    - critical_error     # 严重错误
+    - resource_exhausted # 资源耗尽
+  
+  # 退出前执行
+  pre_exit_tasks:
+    - generate_evolution_report    # 生成进化报告
+    - backup_current_state         # 备份当前状态
+    - update_memory_files          # 更新记忆文件
+    - notify_completion            # 通知完成
