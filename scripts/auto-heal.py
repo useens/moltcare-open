@@ -743,7 +743,7 @@ class AutoHealSystem:
             degrade_config = {
                 'timestamp': datetime.now().isoformat(),
                 'disabled_features': [
-                    'web_search_caching',
+                    # 'web_search_caching',  # 已删除，使用深度提取+Playwright
                     'detailed_logging',
                     'automatic_backup',
                     'memory_compression'

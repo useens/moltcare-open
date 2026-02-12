@@ -464,7 +464,8 @@ class SmartDegrade:
         self.feature_registry.register('multi_step_planning', 'enhancement', 5, DegradeLevel.LIGHT)
         
         # 可选功能
-        self.feature_registry.register('web_search', 'optional', 6, DegradeLevel.LIGHT)
+        # web_search已删除，使用深度提取+Playwright方案
+        # self.feature_registry.register('web_search', 'optional', 6, DegradeLevel.LIGHT)
         self.feature_registry.register('code_execution', 'optional', 7, DegradeLevel.MEDIUM)
         self.feature_registry.register('multimedia_generation', 'optional', 8, DegradeLevel.LIGHT)
         

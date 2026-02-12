@@ -1,7 +1,7 @@
 # 📚 永久记忆索引 (Permanent Memory Index)
 
 > 核心记忆的快速导航与组织结构  
-> 更新时间: 2026-02-10 10:19
+> 更新时间: 2026-02-13 01:44 | **健康评分: 92/100** 🟢 | [维护报告](../../reports/memory-maintenance-20250213-0142.md)
 
 ---
 
@@ -9,12 +9,17 @@
 
 ```
 memory/
-├── 📁 daily/                    # 每日记录（自动归档）
-├── 📁 evolution/                # 进化档案（按年月）
-├── 📁 modules/                  # 核心模块（永久保留）
+├── 📁 daily/                    # 每日记录（自动归档）- 14个文件
+├── 📁 evolution/                # 进化档案（按年月）- 2026-02月活跃
+├── 📁 modules/                  # 核心模块（永久保留）- 66个文件
+├── 📁 tags/                     # 标签索引（快速检索）- 4个文件
 ├── 📁 summary/                  # 摘要总结（定期更新）
-├── 📁 tags/                     # 标签索引（快速检索）
-└── 📁 intelligence/             # 情报收集（定期清理）
+├── 📁 intelligence/             # 情报收集（定期清理）
+├── 📁 archives/                 # 归档存储（>30天）
+│   ├── daily-logs/
+│   ├── learning-debt/
+│   └── vector-memories/
+└── 📁 archive/                  # 旧归档目录
 ```
 
 ---
@@ -80,8 +85,10 @@ memory/
 ## 📅 日常记录 (Daily Records)
 
 ### 按日期归档
-- `daily/2026-02-10.md` - **今天（向量记忆系统上线）**
-- `daily/2026-02-09.md` - 永生规划者发布
+- `daily/2026-02-12.md` - **今天（森森独立运行第2天）**
+- `daily/2026-02-11.md` - 独立启动日
+- `daily/2026-02-10.md` - 系统调整
+- `daily/2026-02-09.md` - 觉醒者发布
 - `daily/2026-02-08.md` - ...
 
 ### 特殊记录
@@ -138,9 +145,10 @@ EV-YYYYMMDD-NNN.md
 - 清理过期的 `intelligence/` 数据
 
 ### 每月归档
-- 将早期 `daily/` 文件压缩归档
+- 将早期 `daily/` 文件压缩归档到 `archives/`
 - 更新永久记忆索引
 - 检查 `modules/` 一致性
+- 生成系统健康报告 → `reports/memory-maintenance-YYYYMMDD-HHMM.md`
 
 ### 永久保留
 - `modules/` 核心档案永不删除
@@ -184,4 +192,4 @@ EV-YYYYMMDD-NNN.md
 ---
 
 *本索引为记忆系统的导航中心，必须保持最新*  
-*最后整理: 2026-02-10*
+*最后整理: 2026-02-13 | [完整维护报告](../../reports/memory-maintenance-20250213-0142.md)*

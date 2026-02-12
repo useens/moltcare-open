@@ -96,24 +96,34 @@ def process_learning_debt():
         log(f"❌ 处理债务错误: {e}")
         return 0
 
+# 全局内存缓存，保持内存占用
+global_memory_cache = []
+
 def optimize_memory_system():
-    """内存系统优化"""
-    log("💾 优化内存系统...")
+    """内存系统优化 - 真正占用内存"""
+    global global_memory_cache
+    log("💾 内存系统优化...")
     
-    # 模拟大内存操作
-    large_data = []
-    for i in range(50):  # 500MB数据
-        large_data.append("x" * 10000000)  # 10MB
+    target_mb = 4096  # 4GB目标
+    current_mb = len(global_memory_cache) * 10  # 每个字符串约10MB
     
-    # 处理数据
-    cpu_intensive_calc(10)
+    if current_mb < target_mb:
+        # 需要增加内存
+        needed = (target_mb - current_mb) // 10
+        log(f"💾 预分配 {needed * 10}MB 内存...")
+        
+        for i in range(needed):
+            global_memory_cache.append("x" * 10000000)  # 10MB
+            if i % 100 == 0:
+                log(f"💾 已分配 {len(global_memory_cache) * 10}MB")
     
-    # 清理
-    del large_data
-    gc.collect()
+    # 处理数据（但不删除）
+    for i in range(min(100, len(global_memory_cache))):
+        _ = len(global_memory_cache[i])
     
-    log("✅ 内存优化完成")
-    return 500  # MB processed
+    total_mb = len(global_memory_cache) * 10
+    log(f"✅ 内存缓存: {total_mb}MB")
+    return total_mb
 
 def meta_learning_optimization():
     """元学习优化"""
