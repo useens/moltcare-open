@@ -10,9 +10,9 @@ User=root
 Group=root
 WorkingDirectory=/root/.openclaw/workspace
 
-# 启动命令 - Phase 2: 资源优化版
+# 启动命令 - Phase 3: 智能调度版
 ExecStartPre=/bin/sh -c 'killall -9 python3 2>/dev/null || true'
-ExecStart=/usr/bin/python3 /root/.openclaw/workspace/scripts/hyper-evolution-engine-v21.py
+ExecStart=/usr/bin/python3 /root/.openclaw/workspace/scripts/hyper-evolution-engine-v30.py
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStopPost=/bin/sh -c 'killall -9 python3 2>/dev/null || true'
 
