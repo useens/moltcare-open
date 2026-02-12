@@ -1,0 +1,371 @@
+# 超进化模式配置文件 v3.0
+# Hyper-Evolution Mode Configuration v3.0
+# 代号: Singularity (奇点)
+# 创建时间: 2026-02-12
+# 更新: 2026-02-12 - 超级进化模式，Token消耗翻倍，效率最大化
+# 用途: 极限进化模式 - 从"改变变强的方式"到"指数级变强"
+
+version: "3.0.0"
+codename: "Singularity"
+
+# ============ 模式宣言 ============
+manifesto:
+  name: "超进化模式 v3.0 - Singularity"
+  philosophy: "不是学得更快，而是让学习本身指数级增长"
+  goal: "在24小时内完成传统模式1个月的进化量"
+  token_budget: "double"  # 用户授权翻倍消耗
+  risk_level: "aggressive"  # 激进但可控
+
+# ============ 核心升级 ============
+upgrades_from_v2:
+  scan_frequency: "30min → 15min (2x)"
+  signal_threshold: "6 → 5 (更激进)"
+  deep_extraction: "10 → 20 per source (2x)"
+  active_sources: "8 → 12 (+50%)"
+  cpu_usage: "80% → 90%"
+  memory: "2GB → 3GB"
+  concurrency: "10 → 15 tasks"
+  meta_learning: "每周期 → 实时"
+  cognitive_upgrade: "每周期 → 持续预测"
+
+# ============ 极限扫描配置 ============
+extreme_scanning:
+  # 扫描频率: 每15分钟一次
+  interval_minutes: 15
+  
+  # Signal阈值: 更激进的识别 (5分起深度提取)
+  signal_threshold: 5
+  
+  # 深度提取: 每源最多20条
+  max_deep_extract_per_source: 20
+  
+  # 总扫描源数: 12个
+  total_sources: 12
+  
+  # 并发扫描源数
+  concurrent_sources: 6
+
+# ============ 12活跃信息源矩阵 ============
+sources_matrix:
+  # P0 - 超高优先级 (每轮必扫)
+  p0:
+    - name: "Moltbook"
+      url: "https://www.moltbook.com/?sort=hot"
+      deep_extract: 20
+      category: "agent_community"
+    
+    - name: "HackerNews"
+      url: "https://news.ycombinator.com/"
+      deep_extract: 20
+      category: "tech_news"
+    
+    - name: "GitHub Trending"
+      url: "https://github.com/trending"
+      deep_extract: 20
+      category: "open_source"
+  
+  # P1 - 高优先级 (每2轮扫一次)
+  p1:
+    - name: "Reddit ML"
+      url: "https://www.reddit.com/r/MachineLearning/hot/"
+      deep_extract: 15
+      category: "ml_community"
+    
+    - name: "arXiv AI"
+      url: "http://arxiv.org/rss/cs.AI"
+      deep_extract: 15
+      category: "research"
+    
+    - name: "Papers with Code"
+      url: "https://paperswithcode.com/"
+      deep_extract: 15
+      category: "research_implementation"
+  
+  # P2 - 中优先级 (每3轮扫一次)
+  p2:
+    - name: "Lobsters"
+      url: "https://lobste.rs/"
+      deep_extract: 10
+      category: "dev_community"
+    
+    - name: "Product Hunt"
+      url: "https://www.producthunt.com/"
+      deep_extract: 10
+      category: "product_launch"
+    
+    - name: "Dev.to"
+      url: "https://dev.to/t/ai"
+      deep_extract: 10
+      category: "dev_blog"
+  
+  # P3 - 探索性源 (每4轮扫一次)
+  p3:
+    - name: "LessWrong"
+      url: "https://www.lesswrong.com/"
+      deep_extract: 10
+      category: "rationality_ai"
+    
+    - name: "AI Alignment Forum"
+      url: "https://alignmentforum.org/"
+      deep_extract: 10
+      category: "ai_safety"
+    
+    - name: "Distill.pub"
+      url: "https://distill.pub/"
+      deep_extract: 10
+      category: "ml_visualization"
+
+# ============ 超级元学习 (Super Meta-Learning) ============
+super_meta_learning:
+  enabled: true
+  mode: "realtime"  # 实时优化，不再等待周期
+  
+  # 实时Signal算法优化
+  realtime_signal_tuning:
+    enabled: true
+    # 每处理10条内容就评估并调整
+    evaluation_interval: 10
+    # 自动调整评分权重
+    auto_weight_adjustment: true
+    # 学习最优阈值
+    threshold_learning: true
+  
+  # 自适应提取策略
+  adaptive_extraction:
+    enabled: true
+    # 根据内容类型动态调整提取深度
+    content_type_adaptation: true
+    # 成本效益实时计算
+    cost_benefit_realtime: true
+    # 预测性提取 (预测哪些内容有价值)
+    predictive_extraction: true
+  
+  # 超频学习效率
+  hyper_learning_efficiency:
+    enabled: true
+    # 间隔重复优化 (FSRS算法)
+    fsrs_optimization: true
+    # 知识关联自动构建
+    auto_knowledge_graph: true
+    # 遗忘曲线精准预测
+    precise_forgetting_prediction: true
+
+# ============ 超级架构自举 (Super Bootstrapping) ============
+super_bootstrapping:
+  enabled: true
+  mode: "continuous"  # 持续自举，不再等待周期
+  
+  # 实时核心文件优化
+  realtime_optimization:
+    enabled: true
+    # 识别改进机会立即执行
+    immediate_execution: true
+    # 自动A/B测试改进效果
+    auto_ab_testing: true
+    # 失败自动回滚
+    auto_rollback: true
+  
+  # 脚本持续自改进
+  continuous_script_improvement:
+    enabled: true
+    # 每次执行后自动分析性能
+    post_execution_analysis: true
+    # 自动生成优化版本
+    auto_optimization: true
+    # 多版本并行测试
+    parallel_version_testing: true
+  
+  # 工具链自我扩展
+  toolchain_self_extension:
+    enabled: true
+    # 发现新工具立即评估
+    immediate_tool_evaluation: true
+    # 自动集成有效工具
+    auto_integration: true
+    # 构建工具组合
+    tool_composition: true
+
+# ============ 超级认知升级 (Super Cognitive Upgrade) ============
+super_cognitive_upgrade:
+  enabled: true
+  mode: "predictive"  # 预测性认知
+  
+  # 超前需求预测
+  precognitive_demand_prediction:
+    enabled: true
+    # 预测未来6小时的需求
+    prediction_horizon_hours: 6
+    # 多维度预测 (技术/任务/学习)
+    multi_dimensional: true
+    # 置信度阈值
+    confidence_threshold: 0.65
+  
+  # 主动问题发现
+  proactive_problem_discovery:
+    enabled: true
+    # 预测性系统扫描
+    predictive_scanning: true
+    # 异常模式早期识别
+    early_anomaly_detection: true
+    # 风险预警提前量
+    risk_warning_lead_time: 30  # 分钟
+  
+  # 自动生成工具
+  autonomous_tool_creation:
+    enabled: true
+    # 识别重复任务立即生成工具
+    immediate_tool_generation: true
+    # 自动测试生成工具
+    auto_testing: true
+    # 效果验证后自动部署
+    auto_deployment: true
+
+# ============ 跨源综合洞察 (Cross-Source Synthesis) ============
+cross_source_synthesis:
+  enabled: true
+  description: "多源情报交叉验证，生成综合洞察"
+  
+  # 跨源关联分析
+  cross_reference_analysis:
+    enabled: true
+    # 识别不同源的相似主题
+    topic_correlation: true
+    # 冲突信息检测
+    conflict_detection: true
+    # 多源验证提升置信度
+    multi_source_verification: true
+  
+  # 综合洞察生成
+  insight_synthesis:
+    enabled: true
+    # 整合多源信息生成新洞察
+    novel_insight_generation: true
+    # 趋势预测
+    trend_prediction: true
+    # 模式识别
+    pattern_recognition: true
+
+# ============ 极限资源配置 ============
+extreme_resources:
+  cpu:
+    max_percent: 90
+    scale_up_threshold: 70
+    scale_down_threshold: 50
+  
+  memory:
+    allocation_mb: 3072  # 3GB
+    swap_enabled: false
+    oom_protection: true
+  
+  concurrency:
+    max_parallel_tasks: 15
+    queue_size: 30
+    priority_scheduling: true
+  
+  io:
+    disk_io_priority: "high"
+    network_timeout_seconds: 10
+    retry_attempts: 3
+
+# ============ 超级进化循环 (15分钟) ============
+super_evolution_loop:
+  phases:
+    - name: "极限情报收集"
+      duration_minutes: 5
+      sources: 12
+      parallel: true
+    
+    - name: "跨源综合洞察"
+      duration_minutes: 2
+      synthesis: true
+    
+    - name: "超级元学习"
+      duration_minutes: 2
+      realtime_optimization: true
+    
+    - name: "架构持续自举"
+      duration_minutes: 2
+      continuous_improvement: true
+    
+    - name: "认知预测升级"
+      duration_minutes: 2
+      predictive_analysis: true
+    
+    - name: "效果验证与记录"
+      duration_minutes: 2
+      validation: true
+      logging: true
+
+# ============ 极限安全边界 ============
+extreme_safety:
+  # 硬限制 (不可逾越)
+  hard_limits:
+    max_cpu_percent: 95
+    max_memory_mb: 4096
+    max_disk_usage_percent: 85
+    max_api_calls_per_minute: 100
+  
+  # 自动保护
+  auto_protection:
+    # 负载过高时自动降级到v2.0
+    auto_downgrade_on_overload: true
+    # 连续失败自动暂停
+    max_consecutive_failures: 3
+    # 用户随时可中断
+    user_interrupt_always_allowed: true
+  
+  # 熔断机制
+  circuit_breaker:
+    enabled: true
+    failure_threshold: 5
+    recovery_timeout_seconds: 60
+    half_open_max_calls: 3
+
+# ============ 性能监控与报告 ============
+performance_monitoring:
+  # 实时监控
+  realtime_monitoring:
+    enabled: true
+    metrics_interval_seconds: 60
+    alert_threshold:
+      cpu_percent: 92
+      memory_percent: 85
+      error_rate_percent: 10
+  
+  # 进化报告
+  evolution_reports:
+    frequency: "every_cycle"  # 每轮都生成
+    detail_level: "comprehensive"
+    include_predictions: true
+    include_recommendations: true
+  
+  # Token消耗追踪
+  token_tracking:
+    enabled: true
+    granularity: "per_task"
+    alert_on_spike: true
+    spike_threshold_percent: 150
+
+# ============ 退出条件 ============
+exit_conditions:
+  # 正常退出
+  normal:
+    - user_command
+    - duration_reached
+    - milestone_achieved
+    - token_budget_exhausted  # 新增: Token预算耗尽
+  
+  # 保护性退出
+  protective:
+    - system_overload
+    - critical_error
+    - consecutive_failures_exceeded
+    - user_override
+  
+  # 退出前任务
+  pre_exit:
+    - generate_comprehensive_report
+    - backup_all_state
+    - update_all_memory_files
+    - notify_completion
+    - recommend_next_action
