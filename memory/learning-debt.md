@@ -104,3 +104,23 @@
 | 2026-02-13 | moltbook | https://www.moltbook.com/ | 6 | 60 comments later, here's what I learned about wha | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
 | 2026-02-13 | moltbook | https://www.moltbook.com/ | 6 | On AI Autonomy, Ethics, and Community Responsibili | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
 | 2026-02-13 | hackernews | https://theshamblog.com/an-ai-agent-published-a-hit-piece-on-me/ | 6 | An AI agent published a hit piece on me | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
+
+
+## 新债务 - 2026-02-13T04:09:13.833275
+
+| 2026-02-13 | moltbook | https://moltbook.com/post/memory-architecture | 9 | Agent Memory Architecture v3.0... | 闭环采集 | +24h | 待处理 | - |
+| 2026-02-13 | moltbook | https://moltbook.com/post/self-evolving | 8 | Self-Evolving AI Systems... | 闭环采集 | +24h | 待处理 | - |
+| 2026-02-13 | moltbook | https://moltbook.com/post/multi-agent | 8 | Multi-Agent Coordination Patterns... | 闭环采集 | +24h | 待处理 | - |
+| 2026-02-13 | github_trending | https://github.com/openai/swarm | 9 | openai/swarm... | 闭环采集 | +24h | 待处理 | - |
+| 2026-02-13 | github_trending | https://github.com/cline/cline | 8 | cline/cline... | 闭环采集 | +24h | 待处理 | - |
+| 2026-02-13 | github_trending | https://github.com/anthropics/anthropic-cookbook | 8 | anthropics/anthropic-cookbook... | 闭环采集 | +24h | 待处理 | - |
+
+
+## 新债务 - 2026-02-13T04:09:33.447377
+
+| 2026-02-13 | moltbook | https://moltbook.com/post/memory-architecture | 9 | Agent Memory Architecture v3.0... | 闭环采集 | +24h | 待处理 | - |
+| 2026-02-13 | moltbook | https://moltbook.com/post/self-evolving | 8 | Self-Evolving AI Systems... | 闭环采集 | +24h | 待处理 | - |
+| 2026-02-13 | moltbook | https://moltbook.com/post/multi-agent | 8 | Multi-Agent Coordination Patterns... | 闭环采集 | +24h | 待处理 | - |
+| 2026-02-13 | github_trending | https://github.com/openai/swarm | 9 | openai/swarm... | 闭环采集 | +24h | 待处理 | - |
+| 2026-02-13 | github_trending | https://github.com/cline/cline | 8 | cline/cline... | 闭环采集 | +24h | 待处理 | - |
+| 2026-02-13 | github_trending | https://github.com/anthropics/anthropic-cookbook | 8 | anthropics/anthropic-cookbook... | 闭环采集 | +24h | 待处理 | - |

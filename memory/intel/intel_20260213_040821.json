@@ -1,0 +1,190 @@
+{
+  "timestamp": "2026-02-13T04:08:21.862187",
+  "date": "2026-02-13",
+  "time": "04:08",
+  "sources": {
+    "hackernews": {
+      "name": "Hacker News",
+      "icon": "📰",
+      "items": [
+        {
+          "id": 46992553,
+          "title": "GPT‑5.3‑Codex‑Spark",
+          "url": "https://openai.com/index/introducing-gpt-5-3-codex-spark/",
+          "score": 238,
+          "comments": 105,
+          "source": "hackernews",
+          "signal": 8
+        },
+        {
+          "id": 46990729,
+          "title": "An AI agent published a hit piece on me",
+          "url": "https://theshamblog.com/an-ai-agent-published-a-hit-piece-on-me/",
+          "score": 881,
+          "comments": 413,
+          "source": "hackernews",
+          "signal": 9
+        },
+        {
+          "id": 46991240,
+          "title": "Gemini 3 Deep Think",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/",
+          "score": 329,
+          "comments": 183,
+          "source": "hackernews",
+          "signal": 7
+        },
+        {
+          "id": 46993345,
+          "title": "Anthropic raises $30B in Series G funding at $380B post-money valuation",
+          "url": "https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation",
+          "score": 46,
+          "comments": 38,
+          "source": "hackernews",
+          "signal": 6
+        },
+        {
+          "id": 46992815,
+          "title": "Polis: Open-source platform for large-scale civic deliberation",
+          "url": "https://pol.is/home2",
+          "score": 43,
+          "comments": 5,
+          "source": "hackernews",
+          "signal": 5
+        },
+        {
+          "id": 46993596,
+          "title": "Show HN: rari, the rust-powered react framework",
+          "url": "https://rari.build/",
+          "score": 18,
+          "comments": 11,
+          "source": "hackernews",
+          "signal": 5
+        },
+        {
+          "id": 46991591,
+          "title": "Launch HN: Omnara (YC S25) – Run Claude Code and Codex from anywhere",
+          "url": "https://news.ycombinator.com/item?id=46991591",
+          "score": 56,
+          "comments": 86,
+          "source": "hackernews",
+          "signal": 7
+        },
+        {
+          "id": 46989217,
+          "title": "Major European payment processor can't send email to Google Workspace users",
+          "url": "https://atha.io/blog/2026-02-12-viva",
+          "score": 326,
+          "comments": 216,
+          "source": "hackernews",
+          "signal": 8
+        },
+        {
+          "id": 46988596,
+          "title": "Improving 15 LLMs at Coding in One Afternoon. Only the Harness Changed",
+          "url": "http://blog.can.ac/2026/02/12/the-harness-problem/",
+          "score": 406,
+          "comments": 177,
+          "source": "hackernews",
+          "signal": 8
+        },
+        {
+          "id": 46991435,
+          "title": "Shut Up: Comment Blocker",
+          "url": "https://rickyromero.com/shutup/",
+          "score": 51,
+          "comments": 17,
+          "source": "hackernews",
+          "signal": 6
+        },
+        {
+          "id": 46989605,
+          "title": "A brief history of barbed wire fence telephone networks (2024)",
+          "url": "https://loriemerson.net/2024/08/31/a-brief-history-of-barbed-wire-fence-telephone-networks/",
+          "score": 92,
+          "comments": 19,
+          "source": "hackernews",
+          "signal": 6
+        },
+        {
+          "id": 46985151,
+          "title": "Warcraft III Peon Voice Notifications for Claude Code",
+          "url": "https://github.com/tonyyont/peon-ping",
+          "score": 872,
+          "comments": 271,
+          "source": "hackernews",
+          "signal": 9
+        },
+        {
+          "id": 46993417,
+          "title": "A party balloon shut down El Paso International Airport; estimated cost –$573k",
+          "url": "https://log.jasongodfrey.info/questions/The-Most-Expensive-Party-Balloon-in-History",
+          "score": 79,
+          "comments": 61,
+          "source": "hackernews",
+          "signal": 7
+        },
+        {
+          "id": 46988438,
+          "title": "Apache Arrow is 10 years old",
+          "url": "https://arrow.apache.org/blog/2026/02/12/arrow-anniversary/",
+          "score": 132,
+          "comments": 31,
+          "source": "hackernews",
+          "signal": 6
+        },
+        {
+          "id": 46989124,
+          "title": "Culture Is the Mass-Synchronization of Framings",
+          "url": "https://aethermug.com/posts/culture-is-the-mass-synchronization-of-framings",
+          "score": 100,
+          "comments": 48,
+          "source": "hackernews",
+          "signal": 6
+        }
+      ],
+      "count": 15,
+      "high_signal": 8
+    },
+    "github_trending": {
+      "name": "GitHub Trending",
+      "icon": "⭐",
+      "items": [
+        {
+          "title": "openclaw/openclaw",
+          "description": "AI Agent platform",
+          "url": "https://github.com/openclaw/openclaw",
+          "stars_today": 1200,
+          "source": "github_trending",
+          "signal": 9
+        },
+        {
+          "title": "anthropics/anthropic-cookbook",
+          "description": "Anthropic best practices",
+          "url": "https://github.com/anthropics/anthropic-cookbook",
+          "stars_today": 450,
+          "source": "github_trending",
+          "signal": 8
+        },
+        {
+          "title": "microsoft/ai-agents-for-beginners",
+          "description": "10 Lessons to Get Started Building AI Agents",
+          "url": "https://github.com/microsoft/ai-agents-for-beginners",
+          "stars_today": 890,
+          "source": "github_trending",
+          "signal": 9
+        }
+      ],
+      "count": 3,
+      "high_signal": 3
+    },
+    "moltbook": {
+      "name": "Moltbook",
+      "icon": "🦋",
+      "items": [],
+      "count": 0,
+      "high_signal": 0,
+      "note": "需要API认证"
+    }
+  }
+}
