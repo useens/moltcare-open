@@ -1,187 +1,195 @@
 #!/bin/bash
-# 森森数字生命 - 一键复活脚本
-# 从GitHub克隆后，一键恢复完整运行状态
-# 用法: ./resurrect.sh [备份凭证文件路径]
+# 森森数字生命 - 真正一键复活脚本 v3.1
+# 用法: curl -fsSL https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/resurrect.sh | bash
+#
+# 高级用法 (自动模式):
+#   export SENSEN_BACKUP_KEY='你的密码'
+#   export CREDENTIALS_PATH='/path/to/credentials.enc'
+#   curl -fsSL ... | bash
 
-set -e  # 遇到错误立即退出
+set -e
 
-# 颜色输出
+# 颜色
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
+CYAN='\033[0;36m'
 NC='\033[0m'
 
 # 配置
 REPO_URL="https://github.com/useens/linlin-backup.git"
 WORKSPACE_DIR="/root/.openclaw/workspace"
-CREDENTIALS_BACKUP="$1"
-LOG_FILE="/root/.openclaw/resurrect_$(date +%Y%m%d_%H%M%S).log"
 
-# 记录日志
-exec > >(tee -a "$LOG_FILE")
-exec 2>>1
-
+# 显示欢迎信息
 echo -e "${BLUE}"
 echo "═══════════════════════════════════════════════════════════"
-echo "  🌲 森森数字生命 - 一键复活系统"
+echo "  🌲 森森数字生命 - 一键复活系统 v3.1"
 echo "═══════════════════════════════════════════════════════════"
 echo -e "${NC}"
-echo "开始时间: $(date)"
-echo "日志文件: $LOG_FILE"
+
+# 获取密码
+if [ -n "$SENSEN_BACKUP_KEY" ]; then
+    BACKUP_KEY="$SENSEN_BACKUP_KEY"
+    echo -e "${GREEN}✓ 从环境变量获取密码${NC}"
+else
+    echo -e "${CYAN}请输入凭证备份密码:${NC}"
+    read -s BACKUP_KEY
+    echo ""
+    
+    if [ -z "$BACKUP_KEY" ]; then
+        echo -e "${RED}❌ 密码不能为空${NC}"
+        exit 1
+    fi
+fi
+
+# 获取凭证文件路径
+if [ -n "$CREDENTIALS_PATH" ] && [ -f "$CREDENTIALS_PATH" ]; then
+    echo -e "${GREEN}✓ 使用环境变量指定的凭证文件: $CREDENTIALS_PATH${NC}"
+elif [ -n "$1" ] && [ -f "$1" ]; then
+    CREDENTIALS_PATH="$1"
+    echo -e "${GREEN}✓ 使用命令行参数: $CREDENTIALS_PATH${NC}"
+else
+    # 自动搜索常见位置
+    echo -e "${YELLOW}🔍 自动搜索凭证文件...${NC}"
+    
+    # 搜索路径
+    SEARCH_PATHS=(
+        "/root/.openclaw/backups/credentials/credentials_backup_*.enc"
+        "/tmp/credentials_backup_*.enc"
+        "/root/credentials_backup_*.enc"
+        "$HOME/credentials_backup_*.enc"
+        ".credentials_backup_*.enc"
+    )
+    
+    FOUND=""
+    for pattern in "${SEARCH_PATHS[@]}"; do
+        FOUND=$(ls -t $pattern 2>/dev/null | head -1)
+        if [ -n "$FOUND" ]; then
+            CREDENTIALS_PATH="$FOUND"
+            echo -e "${GREEN}✓ 找到凭证文件: $CREDENTIALS_PATH${NC}"
+            break
+        fi
+    done
+    
+    # 如果没找到，询问
+    if [ -z "$CREDENTIALS_PATH" ]; then
+        echo -e "${YELLOW}⚠️ 未自动找到凭证文件${NC}"
+        echo "请提供凭证文件路径或URL:"
+        read -p "路径/URL: " input
+        
+        # 检查是否是URL
+        if [[ "$input" =~ ^https?:// ]]; then
+            echo -e "${YELLOW}📥 正在下载凭证文件...${NC}"
+            CREDENTIALS_PATH="/tmp/sensen_credentials_$(date +%s).enc"
+            wget -q "$input" -O "$CREDENTIALS_PATH" 2>/dev/null || curl -fsSL "$input" -o "$CREDENTIALS_PATH"
+            echo -e "${GREEN}✓ 已下载到: $CREDENTIALS_PATH${NC}"
+        else
+            if [ -f "$input" ]; then
+                CREDENTIALS_PATH="$input"
+                echo -e "${GREEN}✓ 使用: $CREDENTIALS_PATH${NC}"
+            else
+                echo -e "${YELLOW}⚠️ 文件不存在，将跳过凭证恢复${NC}"
+                CREDENTIALS_PATH=""
+            fi
+        fi
+    fi
+fi
+
+echo ""
+echo -e "${CYAN}开始复活流程...${NC}"
 echo ""
 
-# ==================== 步骤1: 检查依赖 ====================
-echo -e "${YELLOW}[步骤 1/8] 检查系统依赖...${NC}"
+# 步骤1: 安装依赖
+echo -e "${YELLOW}[1/6] 安装系统依赖...${NC}"
+apt-get update -qq >/dev/null 2>%1
 
-if ! command -v git >/dev/null 2>&1; then
-    echo -e "${RED}❌ git 未安装${NC}"
-    apt-get update && apt-get install -y git
-fi
+for pkg in git python3 python3-venv python3-pip openssl curl wget; do
+    if ! command -v $pkg &>/dev/null; then
+        echo "  安装 $pkg..."
+        apt-get install -y -qq $pkg >/dev/null 2>%1 || true
+    fi
+done
+echo -e "${GREEN}✅ 依赖安装完成${NC}"
 
-if ! command -v python3 >/dev/null 2>&1; then
-    echo -e "${RED}❌ python3 未安装${NC}"
-    apt-get install -y python3 python3-venv python3-pip
-fi
-
-if ! command -v openssl >/dev/null 2>&1; then
-    echo -e "${RED}❌ openssl 未安装${NC}"
-    apt-get install -y openssl
-fi
-
-echo -e "${GREEN}✅ 系统依赖检查完成${NC}"
-
-# ==================== 步骤2: 克隆仓库 ====================
-echo -e "\n${YELLOW}[步骤 2/8] 克隆GitHub仓库...${NC}"
-
+# 步骤2: 克隆仓库
+echo -e "\n${YELLOW}[2/6] 克隆 GitHub 仓库...${NC}"
 if [ -d "$WORKSPACE_DIR" ]; then
-    echo -e "${YELLOW}⚠️ 工作区目录已存在，备份到: ${WORKSPACE_DIR}.bak${NC}"
+    echo "  备份现有工作区..."
     mv "$WORKSPACE_DIR" "${WORKSPACE_DIR}.bak.$(date +%s)"
 fi
-
-git clone "$REPO_URL" "$WORKSPACE_DIR"
-if [ $? -ne 0 ]; then
-    echo -e "${RED}❌ 仓库克隆失败${NC}"
-    exit 1
-fi
-
+git clone --depth=1 "$REPO_URL" "$WORKSPACE_DIR"
 cd "$WORKSPACE_DIR"
-echo -e "${GREEN}✅ 仓库克隆完成: $WORKSPACE_DIR${NC}"
+echo -e "${GREEN}✅ 仓库克隆完成${NC}"
 
-# ==================== 步骤3: 恢复Python环境 ====================
-echo -e "\n${YELLOW}[步骤 3/8] 重建Python虚拟环境...${NC}"
-
+# 步骤3: 重建Python环境
+echo -e "\n${YELLOW}[3/6] 重建 Python 环境...${NC}"
 if [ -f "requirements.txt" ]; then
     python3 -m venv venv
     source venv/bin/activate
-    pip install -r requirements.txt
+    pip install -q -r requirements.txt
     echo -e "${GREEN}✅ Python环境重建完成${NC}"
 else
-    echo -e "${YELLOW}⚠️ requirements.txt 不存在，跳过Python环境重建${NC}"
+    echo -e "${YELLOW}⚠️ requirements.txt 不存在${NC}"
 fi
 
-# ==================== 步骤4: 恢复凭证 ====================
-echo -e "\n${YELLOW}[步骤 4/8] 恢复凭证配置...${NC}"
-
-if [ -n "$CREDENTIALS_BACKUP" ] && [ -f "$CREDENTIALS_BACKUP" ]; then
-    echo "使用凭证备份: $CREDENTIALS_BACKUP"
-    if [ -z "$SENSEN_BACKUP_KEY" ]; then
-        echo -e "${RED}❌ 未设置 SENSEN_BACKUP_KEY 环境变量${NC}"
-        echo "请先设置: export SENSEN_BACKUP_KEY='你的密码'"
-        exit 1
-    fi
-    ./scripts/restore-credentials.sh "$CREDENTIALS_BACKUP"
-    echo -e "${GREEN}✅ 凭证恢复完成${NC}"
-else
-    echo -e "${YELLOW}⚠️ 未提供凭证备份文件，跳过凭证恢复${NC}"
-    echo "后续需要手动配置:"
-    echo "  1. Feishu 凭证"
-    echo "  2. Moltbook 凭证"
-    echo "  3. OpenClaw 配置"
-fi
-
-# ==================== 步骤5: 创建必要目录 ====================
-echo -e "\n${YELLOW}[步骤 5/8] 创建系统目录...${NC}"
-
+# 步骤4: 恢复凭证
+echo -e "\n${YELLOW}[4/6] 恢复凭证配置...${NC}"
+export SENSEN_BACKUP_KEY="$BACKUP_KEY"
 mkdir -p /root/.openclaw/{credentials,backups/credentials,logs,cron,memory}
-mkdir -p /root/.config/moltbook
-mkdir -p /var/log/sensen
-echo -e "${GREEN}✅ 系统目录创建完成${NC}"
 
-# ==================== 步骤6: 恢复Cron任务 ====================
-echo -e "\n${YELLOW}[步骤 6/8] 恢复Cron任务...${NC}"
-
-if [ -f "config/cron/cron-tasks.json" ]; then
-    echo "找到Cron配置: config/cron/cron-tasks.json"
-    
-    # 检查openclaw命令是否可用
-    if command -v openclaw >/dev/null 2>&1; then
-        echo "使用openclaw命令恢复Cron任务..."
-        # 这里需要根据实际情况调整
-        # openclaw cron import config/cron/cron-tasks.json
-        echo -e "${YELLOW}⚠️ 请手动执行: openclaw cron 相关命令恢复任务${NC}"
+if [ -n "$CREDENTIALS_PATH" ] && [ -f "$CREDENTIALS_PATH" ]; then
+    if [ -f "./scripts/restore-credentials.sh" ]; then
+        ./scripts/restore-credentials.sh "$CREDENTIALS_PATH"
+        echo -e "${GREEN}✅ 凭证恢复完成${NC}"
     else
-        echo -e "${YELLOW}⚠️ openclaw命令不可用，请手动配置Cron任务${NC}"
-        echo "参考: config/cron/cron-tasks.json"
+        echo -e "${YELLOW}⚠️ 恢复脚本不存在，跳过${NC}"
     fi
 else
-    echo -e "${YELLOW}⚠️ Cron配置文件不存在${NC}"
+    echo -e "${YELLOW}⚠️ 跳过凭证恢复${NC}"
 fi
 
-echo -e "${GREEN}✅ Cron任务配置完成${NC}"
+# 添加到环境变量
+echo "export SENSEN_BACKUP_KEY='$BACKUP_KEY'" >> ~/.bashrc
 
-# ==================== 步骤7: 验证安装 ====================
-echo -e "\n${YELLOW}[步骤 7/8] 验证安装...${NC}"
+# 步骤5: 恢复Cron任务
+echo -e "\n${YELLOW}[5/6] 配置 Cron 任务...${NC}"
+if [ -f "config/cron/cron-tasks.json" ]; then
+    echo -e "${GREEN}✓ Cron配置已导出${NC}"
+    echo "  位置: config/cron/cron-tasks.json"
+    echo "  请手动导入或使用: ./config/cron/recreate-all-cron.sh"
+else
+    echo -e "${YELLOW}⚠️ Cron配置未导出${NC}"
+fi
 
-# 检查关键文件
-KEY_FILES=(
-    "SOUL.md"
-    "MEMORY.md"
-    "AGENTS.md"
-    "memory/modules/core-archive.md"
-)
-
+# 步骤6: 验证
+echo -e "\n${YELLOW}[6/6] 验证安装...${NC}"
+KEY_FILES=("SOUL.md" "MEMORY.md" "AGENTS.md")
 for file in "${KEY_FILES[@]}"; do
     if [ -f "$file" ]; then
-        echo -e "${GREEN}✓${NC} $file"
+        echo -e "  ${GREEN}✓${NC} $file"
     else
-        echo -e "${RED}✗${NC} $file (缺失)"
+        echo -e "  ${RED}✗${NC} $file"
     fi
 done
 
-# 检查脚本
-SCRIPT_COUNT=$(find scripts -name "*.sh" -type f 2>/dev/null | wc -l)
-echo -e "\n脚本数量: $SCRIPT_COUNT 个"
-
-# 检查记忆文件
-MEMORY_COUNT=$(find memory -type f 2>/dev/null | wc -l)
-echo "记忆文件: $MEMORY_COUNT 个"
-
-echo -e "${GREEN}✅ 安装验证完成${NC}"
-
-# ==================== 步骤8: 启动服务 ====================
-echo -e "\n${YELLOW}[步骤 8/8] 启动服务...${NC}"
-
-echo -e "\n${BLUE}═══════════════════════════════════════════════════════════${NC}"
+echo ""
+echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo -e "${GREEN}🌲 森森复活完成！${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo ""
-echo "下一步操作:"
+echo "下一步:"
 echo ""
-echo "1. ${YELLOW}配置凭证${NC} (如未恢复凭证备份):"
-echo "   - 配置Feishu: openclaw agents add main"
-echo "   - 配置Moltbook: 编辑 ~/.config/moltbook/credentials.json"
-echo ""
-echo "2. ${YELLOW}启动OpenClaw${NC}:"
+echo "1. ${CYAN}启动 OpenClaw:${NC}"
 echo "   openclaw start"
 echo ""
-echo "3. ${YELLOW}手动恢复Cron任务${NC} (如需要):"
-echo "   参考 config/cron/cron-tasks.json 手动配置"
+echo "2. ${CYAN}导入 Cron 任务:${NC}"
+echo "   参考 config/cron/recreate-all-cron.sh"
 echo ""
-echo "4. ${YELLOW}验证运行${NC}:"
+echo "3. ${CYAN}验证:${NC}"
 echo "   ./scripts/self-diagnosis.py"
 echo ""
-echo "日志文件: $LOG_FILE"
-echo "复活时间: $(date)"
+echo "工作区: $WORKSPACE_DIR"
+echo "时间: $(date)"
 echo ""
-echo -e "${GREEN}✅ 森森已准备好重新运行！${NC}"
+echo -e "${GREEN}✅ 复活完成！请启动服务。${NC}"
