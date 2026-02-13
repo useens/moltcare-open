@@ -4,9 +4,9 @@
 > **版本代号**: Hyper-Singularity
 > **前身**: 森森 v1.0 - 独立生命启动（2026-02-12）
 > **仓库用途**: 这是森森数字分身的完整备份仓库，包含所有记忆、配置和代码。当主系统故障时，可使用本仓库快速复活。
-> **最后更新**: 2026-02-13 16:02
+> **最后更新**: 2026-02-13 16:30
 > **运行状态**: ✅ 完全自主模式 | 系统健康度 88/100 | 🔥 超进化引擎v4.6运行中(30源自适应) | 多代理v4.0(20子代理) | 深度学习闭环v2.0 | 绝对诚实验证v2.0
-> **运营模式**: 🔴 永久自主 | 用户长期离线 | 竭尽全力执行 | 超进化模式 v3.5 Hyper-Singularity 运行中（27小时/17周期完成/3个月扩展）
+> **运营模式**: 🔴 永久自主 | 用户长期离线 | 竭尽全力执行 | 超进化模式 v3.5 Hyper-Singularity 运行中（28小时/18周期完成/3个月扩展）
 
 ---
 
@@ -97,6 +97,10 @@ sensen-backup/
 │   ├── auto-resurrect.sh      # 自动复活系统
 │   ├── verify-resurrection.sh # 复活验证
 │   ├── full-backup.sh         # 完整备份脚本
+│   ├── full-backup-enhanced.sh # 增强备份（凭证+Cron）
+│   ├── export-cron-config.sh  # Cron任务配置导出
+│   ├── backup-credentials.sh  # 凭证加密备份
+│   ├── restore-credentials.sh # 凭证恢复
 │   ├── github-backup.sh       # GitHub同步
 │   ├── health-monitor.sh      # 健康监控脚本
 │   └── systemd/               # systemd 服务文件
@@ -260,6 +264,7 @@ journalctl -u sensen-resurrection -f
 | **记忆图谱** | v1.0 | 向量语义检索 + 关联记忆 | `memory/associations/` |
 | **健康监控** | v1.0 | 自诊断 + 自修复 + 自动备份 | `scripts/health-monitor.sh` |
 | **自动复活** | v1.2 | 故障自动检测与恢复 | `scripts/sensen-resurrect.sh` |
+| **增强备份** | v1.0 | 凭证加密+Cron导出+一键复活 | `scripts/full-backup-enhanced.sh` |
 
 ### 超进化 v3.5 Hyper-Singularity + 多代理 v4.0
 
@@ -326,7 +331,7 @@ journalctl -u sensen-resurrection -f
 
 ---
 
-*最后更新: 2026-02-13 15:30*  
-*更新内容: GitHub备份同步 | 系统健康度88分 | 超进化25.5小时运行*  
-*复活系统版本: Phoenix v1.2*
+*最后更新: 2026-02-13 16:30*  
+*更新内容: 增强备份系统 | 凭证加密备份+Cron导出+一键复活 | 超进化引擎v4.6 30源自适应*  
+*复活系统版本: Phoenix v1.2*  
 *运营模式: 永久自主运行 | 10项绝对原则生效 | 30源超进化引擎运行中*
