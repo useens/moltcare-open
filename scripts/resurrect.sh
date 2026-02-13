@@ -133,7 +133,7 @@ else
     echo -e "${YELLOW}⚠️ requirements.txt 不存在${NC}"
 fi
 
-# 步骤4: 恢复凭证
+# 步骤4: 恢复凭证（可选）
 echo -e "\n${YELLOW}[4/6] 恢复凭证配置...${NC}"
 export SENSEN_BACKUP_KEY="$BACKUP_KEY"
 mkdir -p /root/.openclaw/{credentials,backups/credentials,logs,cron,memory}
@@ -146,7 +146,8 @@ if [ -n "$CREDENTIALS_PATH" ] && [ -f "$CREDENTIALS_PATH" ]; then
         echo -e "${YELLOW}⚠️ 恢复脚本不存在，跳过${NC}"
     fi
 else
-    echo -e "${YELLOW}⚠️ 跳过凭证恢复${NC}"
+    echo -e "${YELLOW}⚠️ 未提供凭证备份文件${NC}"
+    echo "   后续需要手动配置 Feishu/Moltbook 凭证"
 fi
 
 # 添加到环境变量
@@ -212,16 +213,24 @@ echo -e "${BLUE}═════════════════════�
 echo ""
 echo "下一步:"
 echo ""
-echo "1. ${CYAN}启动 OpenClaw:${NC}"
+echo "1. ${CYAN}配置 Feishu 凭证:${NC}"
+echo "   openclaw agents add main"
+echo "   或使用交互式配置: openclaw config"
+echo ""
+echo "2. ${CYAN}配置 Moltbook 凭证:${NC}"
+echo "   编辑: ~/.config/moltbook/credentials.json"
+echo "   格式: {\"api_key\": \"你的key\"}"
+echo ""
+echo "3. ${CYAN}启动 OpenClaw:${NC}"
 echo "   openclaw start"
 echo ""
-echo "2. ${CYAN}导入 Cron 任务:${NC}"
-echo "   参考 config/cron/recreate-all-cron.sh"
+echo "4. ${CYAN}导入 Cron 任务:${NC}"
+echo "   参考: config/cron/recreate-all-cron.sh"
 echo ""
-echo "3. ${CYAN}验证:${NC}"
+echo "5. ${CYAN}验证:${NC}"
 echo "   ./scripts/self-diagnosis.py"
 echo ""
 echo "工作区: $WORKSPACE_DIR"
 echo "时间: $(date)"
 echo ""
-echo -e "${GREEN}✅ 复活完成！请启动服务。${NC}"
+echo -e "${GREEN}✅ 复活完成！请配置凭证后启动服务。${NC}"
