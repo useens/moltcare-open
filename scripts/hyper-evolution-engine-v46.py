@@ -60,12 +60,33 @@ class AdaptiveFrequencyManager:
                 logger.warning(f"⚠️  加载历史失败: {e}")
     
     def save_history(self):
-        """保存历史数据"""
+        """保存历史数据 - 保留现有config字段"""
         try:
             self.config_path.parent.mkdir(parents=True, exist_ok=True)
+            
+            # 读取现有数据以保留config字段
+            existing_config = {}
+            if self.config_path.exists():
+                try:
+                    existing_data = json.loads(self.config_path.read_text())
+                    existing_config = existing_data.get('config', {})
+                except:
+                    pass
+            
+            # 如果没有config，创建默认config
+            if not existing_config:
+                existing_config = {
+                    'base_interval': self.default_interval,
+                    'min_interval': self.min_interval,
+                    'max_interval': self.max_interval,
+                    'signal_threshold': 7,
+                    'adaptive_mode': True
+                }
+            
             self.config_path.write_text(json.dumps({
                 'history': self.history,
-                'last_update': datetime.now().isoformat()
+                'last_update': datetime.now().isoformat(),
+                'config': existing_config
             }, indent=2))
         except Exception as e:
             logger.warning(f"⚠️  保存历史失败: {e}")
