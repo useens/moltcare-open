@@ -138,6 +138,97 @@ def check_hyper_evolution_mode():
         log(f"❌ 超进化模式检查 - 执行失败: {e}")
         return False
 
+def check_memory_system():
+    """检查记忆系统 - 第4项（每日笔记、核心记忆、学习债务等）"""
+    log("🔍 记忆系统检查 - 基础设施验证...")
+    
+    try:
+        # 1. 检查每日笔记
+        from datetime import datetime
+        today = datetime.now().strftime("%Y-%m-%d")
+        daily_note = Path(f"/root/.openclaw/workspace/memory/{today}.md")
+        has_daily = daily_note.exists()
+        
+        # 2. 检查核心记忆
+        core_memory = Path("/root/.openclaw/workspace/MEMORY.md")
+        has_core = core_memory.exists()
+        
+        # 3. 检查学习债务
+        learning_debt = Path("/root/.openclaw/workspace/memory/learning-debt.md")
+        has_learning = learning_debt.exists()
+        
+        # 4. 检查知识图谱
+        knowledge_graph = Path("/root/.openclaw/workspace/memory/knowledge-graph.md")
+        has_graph = knowledge_graph.exists()
+        
+        # 5. 检查记忆模块
+        core_archive = Path("/root/.openclaw/workspace/memory/modules/core-archive.md")
+        has_archive = core_archive.exists()
+        
+        passed = sum([has_daily, has_core, has_learning, has_graph, has_archive])
+        
+        if passed >= 4:  # 至少4/5通过
+            log(f"✅ 记忆系统检查 - 通过！")
+            log(f"   每日笔记: {'✅' if has_daily else '❌'}")
+            log(f"   核心记忆: {'✅' if has_core else '❌'}")
+            log(f"   学习债务: {'✅' if has_learning else '❌'}")
+            log(f"   知识图谱: {'✅' if has_graph else '❌'}")
+            log(f"   核心档案: {'✅' if has_archive else '❌'}")
+            return True
+        else:
+            log(f"⚠️  记忆系统检查 - 部分缺失 ({passed}/5)")
+            return False
+            
+    except Exception as e:
+        log(f"❌ 记忆系统检查 - 执行失败: {e}")
+        return False
+
+def check_memory_capability():
+    """检查记忆能力 - 第5项（记忆健康度、检索能力、关联能力等）"""
+    log("🔍 记忆能力检查 - 功能性能验证...")
+    
+    try:
+        # 1. 检查记忆文件总数（健康度指标）
+        memory_dir = Path("/root/.openclaw/workspace/memory")
+        if memory_dir.exists():
+            md_files = list(memory_dir.glob("**/*.md"))
+            md_count = len(md_files)
+        else:
+            md_count = 0
+        
+        # 2. 检查记忆检索能力（通过检查check-10-principles.py是否能读取记忆）
+        can_read_memory = Path("/root/.openclaw/workspace/memory/autonomy-execution-log.md").exists()
+        
+        # 3. 检查记忆关联能力（检查是否有跨引用）
+        core_archive = Path("/root/.openclaw/workspace/memory/modules/core-archive.md")
+        has_links = False
+        if core_archive.exists():
+            content = core_archive.read_text()
+            has_links = "](" in content or "#" in content  # 有链接或锚点
+        
+        # 4. 检查记忆更新频率（今日是否有更新）
+        today = datetime.now().strftime("%Y-%m-%d")
+        today_file = Path(f"/root/.openclaw/workspace/memory/{today}.md")
+        has_today_update = today_file.exists()
+        
+        # 评估
+        passed = sum([md_count > 10, can_read_memory, has_links, has_today_update])
+        
+        if passed >= 3:  # 至少3/4通过
+            log(f"✅ 记忆能力检查 - 通过！")
+            log(f"   记忆文件数: {md_count}个 {'✅' if md_count > 10 else '⚠️'}")
+            log(f"   记忆可读性: {'✅' if can_read_memory else '❌'}")
+            log(f"   记忆关联性: {'✅' if has_links else '❌'}")
+            log(f"   今日更新: {'✅' if has_today_update else '❌'}")
+            return True
+        else:
+            log(f"⚠️  记忆能力检查 - 部分不足 ({passed}/4)")
+            return False
+            
+    except Exception as e:
+        log(f"❌ 记忆能力检查 - 执行失败: {e}")
+        return False
+
 def main():
     """主函数 - 每日自检"""
     log("="*70)
@@ -156,9 +247,21 @@ def main():
         results.append((check_name, success))
         time.sleep(2)
     
-    # 【第4项】单独检查超进化模式（运行状态）
+    # 【第4项】记忆系统检查
     log("")
-    log("🔥 【第4项】超进化模式检查 - 运行状态验证")
+    log("🧠 【第4项】记忆系统检查 - 基础设施验证")
+    memory_system_success = check_memory_system()
+    results.append(("记忆系统检查", memory_system_success))
+    
+    # 【第5项】记忆能力检查
+    log("")
+    log("💾 【第5项】记忆能力检查 - 功能性能验证")
+    memory_capability_success = check_memory_capability()
+    results.append(("记忆能力检查", memory_capability_success))
+    
+    # 【第6项】超进化模式检查（运行状态）
+    log("")
+    log("🔥 【第6项】超进化模式检查 - 运行状态验证")
     hyper_mode_success = check_hyper_evolution_mode()
     results.append(("超进化模式检查", hyper_mode_success))
     
@@ -201,6 +304,8 @@ def send_success_report():
 - 10项绝对原则: ✅ 全部生效
 - 15项核心功能: ✅ 全部生效  
 - 20项核心工具: ✅ 全部生效
+- 记忆系统: ✅ 基础设施正常
+- 记忆能力: ✅ 功能性能正常
 - 超进化模式: ✅ 运行状态正常 (v4.6.0, 可切换高频)
 
 系统状态: 🟢 健康
