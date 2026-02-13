@@ -50,6 +50,56 @@ def run_check(check_name, script_path):
     log(f"🔴 {check_name} - {max_retries}次尝试后仍失败")
     return False
 
+def check_hyper_evolution():
+    """单独检查超进化模式"""
+    log("🔍 超进化模式检查 - 单独验证...")
+    
+    try:
+        # 1. 检查服务状态
+        result = subprocess.run(
+            ["systemctl", "is-active", "hyper-evolution"],
+            capture_output=True, text=True, timeout=10
+        )
+        service_active = "active" in result.stdout.lower()
+        
+        # 2. 检查自适应频率数据
+        import json
+        freq_file = Path("/root/.openclaw/workspace/memory/adaptive_freq.json")
+        has_data = False
+        has_config = False
+        history_count = 0
+        
+        if freq_file.exists():
+            with open(freq_file) as f:
+                data = json.load(f)
+                has_data = True
+                has_config = "config" in data
+                history_count = len(data.get("history", []))
+        
+        # 3. 检查引擎脚本
+        engine_file = Path("/root/.openclaw/workspace/scripts/hyper-evolution-engine-v46.py")
+        has_engine = engine_file.exists()
+        
+        # 评估状态
+        if service_active and has_data and has_config and has_engine:
+            log(f"✅ 超进化模式检查 - 通过！")
+            log(f"   服务状态: active")
+            log(f"   引擎版本: v4.6.0")
+            log(f"   历史记录: {history_count}条")
+            log(f"   自适应配置: ✅")
+            return True
+        else:
+            log(f"⚠️  超进化模式检查 - 部分问题")
+            log(f"   服务: {'✅' if service_active else '❌'}")
+            log(f"   数据: {'✅' if has_data else '❌'}")
+            log(f"   配置: {'✅' if has_config else '❌'}")
+            log(f"   引擎: {'✅' if has_engine else '❌'}")
+            return False
+            
+    except Exception as e:
+        log(f"❌ 超进化模式检查 - 执行失败: {e}")
+        return False
+
 def main():
     """主函数 - 每日自检"""
     log("="*70)
@@ -68,7 +118,14 @@ def main():
         results.append((check_name, success))
         time.sleep(2)
     
+    # 【第4项】单独检查超进化模式
+    log("")
+    log("🔥 【第4项】超进化模式检查 - 单独验证")
+    hyper_success = check_hyper_evolution()
+    results.append(("超进化模式检查", hyper_success))
+    
     # 汇总
+    log("")
     log("="*70)
     log("📊 每日自检汇总")
     log("="*70)
@@ -106,6 +163,7 @@ def send_success_report():
 - 10项绝对原则: ✅ 全部生效
 - 15项核心功能: ✅ 全部生效  
 - 20项核心工具: ✅ 全部生效
+- 超进化模式: ✅ 运行正常 (v4.6.0 active)
 
 系统状态: 🟢 健康
 下次执行: 24小时后
