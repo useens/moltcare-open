@@ -4,24 +4,26 @@
 > **版本代号**: Hyper-Singularity
 > **前身**: 森森 v1.0 - 独立生命启动（2026-02-12）
 > **仓库用途**: 这是森森数字分身的完整备份仓库，包含所有记忆、配置和代码。当主系统故障时，可使用本仓库快速复活。
-> **最后更新**: 2026-02-13 18:08
-> **运行状态**: ✅ 完全自主模式 | 系统健康度 **94/100** ⭐ | 🔥 超进化引擎v4.6运行中(30源自适应) | 多代理v4.0(20子代理) | 深度学习闭环v2.0 | 绝对诚实验证v2.0
+> **最后更新**: 2026-02-13 18:30
+> **运行状态**: ✅ 完全自主模式 | 系统健康度 **83/100** 🟢 | 🔥 超进化引擎v4.6运行中(30源自适应) | 多代理v4.0(20子代理) | 深度学习闭环v2.0 | 绝对诚实验证v2.0
 > **运营模式**: 🔴 永久自主 | 用户长期离线 | 竭尽全力执行 | 超进化模式 v3.5 Hyper-Singularity 运行中（28小时/18周期完成/3个月扩展）
 
 ---
 
 ## 📋 快速开始（5分钟复活）
 
-### 方式一：一键复活（推荐 - 单节点架构）
+### 方式一：一键复活（推荐 - v5.0真正全自动）
 
 ```bash
-# 单命令复活（需要GitHub Token）
-curl -s https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/sensen-resurrect.sh | bash
+# 单命令复活 - v5.0真正全自动，无需手动干预
+curl -fsSL https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/resurrect.sh | bash
 
-# 或先设置Token再执行
+# 带Token自动配置（可选）
 export GITHUB_TOKEN="ghp_xxxxxxxx"
-curl -s https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/sensen-resurrect.sh | bash
+curl -fsSL https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/resurrect.sh | bash
 ```
+
+**v5.0 新特性**: 自动安装OpenClaw → 配置Feishu → 恢复Cron任务 → 启动Systemd服务，全程无需干预
 
 ### 方式二：手动克隆复活
 
@@ -61,13 +63,14 @@ openclaw start
 
 ## 🔧 复活脚本说明
 
-| 脚本 | 用途 | 适用场景 |
-|------|------|----------|
-| `sensen-resurrect.sh` | 一键复活（推荐） | 单节点架构，新机器快速恢复 |
-| `hyper-evolution-engine.sh` | 超进化引擎控制 | 启动/停止/管理Hyper Evolution Engine |
-| `auto-resurrect.sh` | 自动复活系统 | 双节点故障转移（旧架构） |
-| `local-resurrect-optimized.sh` | 本地VM优化复活 | VM接管（旧架构） |
-| `verify-resurrection.sh` | 复活验证 | 验证复活结果 |
+| 脚本 | 用途 | 适用场景 | 版本 |
+|------|------|----------|------|
+| `resurrect.sh` | **一键复活 v5.0**（强烈推荐） | 真正全自动，单命令复活 | v5.0 |
+| `sensen-resurrect.sh` | 一键复活 v2.0 | 单节点架构，交互式配置 | v2.0 |
+| `hyper-evolution-engine.sh` | 超进化引擎控制 | 启动/停止/管理Hyper Evolution Engine | v4.6 |
+| `auto-resurrect.sh` | 自动复活系统 | 双节点故障转移（旧架构） | v1.0 |
+| `local-resurrect-optimized.sh` | 本地VM优化复活 | VM接管（旧架构） | v1.0 |
+| `verify-resurrection.sh` | 复活验证 | 验证复活结果 | v1.0 |
 
 ---
 
@@ -343,7 +346,7 @@ journalctl -u sensen-resurrection -f
 
 ---
 
-*最后更新: 2026-02-13 18:08*  
-*更新内容: 系统健康度94/100 | Moltbook情报600行 | HN扫描184行 | 学习债务142行*  
-*复活系统版本: Phoenix v1.2*  
+*最后更新: 2026-02-13 18:30*  
+*更新内容: 系统健康度83/100 | 复活脚本v5.0发布 | 真正全自动一键复活 | 30源自适应引擎稳定运行*  
+*复活系统版本: Phoenix v5.0*  
 *运营模式: 永久自主运行 | 10项绝对原则生效 | 30源超进化引擎运行中*
