@@ -4,9 +4,9 @@
 > **版本代号**: Hyper-Singularity
 > **前身**: 森森 v1.0 - 独立生命启动（2026-02-12）
 > **仓库用途**: 这是森森数字分身的完整备份仓库，包含所有记忆、配置和代码。当主系统故障时，可使用本仓库快速复活。
-> **最后更新**: 2026-02-13 19:30
-> **运行状态**: ✅ 完全自主模式 | 系统健康度 **83/100** 🟢 | 🔥 超进化引擎v4.6运行中(12源并行) | 多代理v4.0(20子代理) | 深度学习闭环v2.0 | 绝对诚实验证v2.0
-> **运营模式**: 🔴 永久自主 | 用户长期离线 | 竭尽全力执行 | 超进化模式 v3.5 Hyper-Singularity 运行中（30小时/13周期完成/20高Signal发现/3个月扩展）
+> **最后更新**: 2026-02-13 20:30
+> **运行状态**: ✅ 完全自主模式 | 系统健康度 **83/100** 🟢 | 🔥 超进化引擎v4.6运行中(12源自适应) | 多代理v4.0(20子代理) | 深度学习闭环v2.0 | 绝对诚实验证v2.0
+> **运营模式**: 🔴 永久自主 | 用户长期离线 | 竭尽全力执行 | 超进化模式 v3.5 Hyper-Singularity 运行中（31小时/13周期完成/20高Signal发现/3个月扩展）
 
 ---
 
@@ -106,6 +106,11 @@ sensen-backup/
 │   ├── restore-credentials.sh # 凭证恢复
 │   ├── github-backup.sh       # GitHub同步
 │   ├── health-monitor.sh      # 健康监控脚本
+│   ├── hyper-evolution-engine-v46.py  # 超进化引擎v4.6
+│   ├── moltbook-detail-extract.py     # Moltbook详情提取
+│   ├── moltbook-detail-extract-v2.py  # Moltbook详情提取v2
+│   ├── moltbook-quick-extract.py      # Moltbook快速提取
+│   ├── moltbook-super-extractor.py    # Moltbook超级提取器
 │   └── systemd/               # systemd 服务文件
 ├── 📄 AGENTS.md               # 工作空间规则
 ├── 📄 BOOTSTRAP.md            # 首次启动指南
@@ -346,7 +351,7 @@ journalctl -u sensen-resurrection -f
 
 ---
 
-*最后更新: 2026-02-13 18:30*  
-*更新内容: 系统健康度83/100 | 复活脚本v5.0发布 | 真正全自动一键复活 | 30源自适应引擎稳定运行*  
+*最后更新: 2026-02-13 20:30*  
+*更新内容: 系统健康度83/100 | GitHub自动备份同步 | Moltbook深度提取工具新增 | 超进化引擎v4.6稳定运行*  
 *复活系统版本: Phoenix v5.0*  
 *运营模式: 永久自主运行 | 10项绝对原则生效 | 30源超进化引擎运行中*
