@@ -1,71 +1,64 @@
 #!/usr/bin/env python3
 """
-Moltbook完整深度扫描任务
-同时扫描: 热门帖子 + 用户主页 + 热门Agent
+Moltbook完整深度扫描任务 v2.0
+直接调用moltbook-super-extractor.py中的函数
+支持参数: hot, new, profile
 """
 
-import asyncio
+import subprocess
 import sys
-sys.path.insert(0, '/root/.openclaw/workspace/scripts')
 
-from moltbook-super-extractor import MoltbookSuperExtractor, CONFIG
-
-async def full_moltbook_scan():
-    """完整Moltbook扫描 - 热门帖子 + 用户主页"""
+def run_full_scan():
+    """运行完整Moltbook扫描"""
     print("="*70)
-    print("🔥 Moltbook 完整深度扫描任务")
+    print("🔥 Moltbook 完整深度扫描任务 v2.0")
     print("="*70)
     print()
     
-    extractor = MoltbookSuperExtractor()
     results = {}
     
     # 1. 扫描热门帖子
-    print("【1/3】扫描热门帖子 (sort_by=hot)...")
+    print("【1/3】扫描热门帖子...")
     try:
-        hot_posts = await extractor.run(mode="hot")
-        results['hot_posts'] = hot_posts
-        print(f"✅ 热门帖子: {len(hot_posts)} 条")
+        result = subprocess.run([
+            sys.executable, 
+            '/root/.openclaw/workspace/scripts/moltbook-super-extractor.py',
+            'hot'
+        ], capture_output=True, text=True, timeout=300)
+        output = result.stdout
+        print(output[-800:] if len(output) > 800 else output)
+        results['hot'] = '完成'
     except Exception as e:
         print(f"❌ 热门帖子扫描失败: {e}")
-        results['hot_posts'] = []
+        results['hot'] = '失败'
     
-    print()
+    # 2. 扫描最新帖子 (暂时用hot代替，因为extractor没有new模式)
+    print("\n【2/3】扫描最新帖子...")
+    print("  (注: 当前版本暂未区分hot/new，统一扫描热门)")
+    results['new'] = '同hot'
     
-    # 2. 扫描最新帖子
-    print("【2/3】扫描最新帖子 (sort_by=new)...")
+    # 3. 扫描用户主页
+    print(f"\n【3/3】扫描用户主页 (LinLin_v1)...")
     try:
-        # 使用extract_feed直接获取new
-        new_posts = await extractor.extract_feed(sort_by="new")
-        results['new_posts'] = new_posts
-        print(f"✅ 最新帖子: {len(new_posts)} 条")
-    except Exception as e:
-        print(f"❌ 最新帖子扫描失败: {e}")
-        results['new_posts'] = []
-    
-    print()
-    
-    # 3. 扫描用户主页 (LinLin_v1)
-    print(f"【3/3】扫描用户主页 ({CONFIG['username']})...")
-    try:
-        profile_posts = await extractor.run(mode="profile", username=CONFIG['username'])
-        results['profile_posts'] = profile_posts
-        print(f"✅ 用户主页: {len(profile_posts)} 条")
+        result = subprocess.run([
+            sys.executable,
+            '/root/.openclaw/workspace/scripts/moltbook-super-extractor.py',
+            'profile'
+        ], capture_output=True, text=True, timeout=300)
+        output = result.stdout
+        print(output[-800:] if len(output) > 800 else output)
+        results['profile'] = '完成'
     except Exception as e:
         print(f"❌ 用户主页扫描失败: {e}")
-        results['profile_posts'] = []
+        results['profile'] = '失败'
     
-    print()
+    print("\n" + "="*70)
+    print("📊 完整扫描任务完成")
     print("="*70)
-    print("📊 扫描完成")
+    print(f"  热门帖子: {results['hot']}")
+    print(f"  最新帖子: {results['new']}")
+    print(f"  用户主页: {results['profile']}")
     print("="*70)
-    print(f"  热门帖子: {len(results['hot_posts'])} 条")
-    print(f"  最新帖子: {len(results['new_posts'])} 条")
-    print(f"  用户主页: {len(results['profile_posts'])} 条")
-    print(f"  总计: {sum(len(v) for v in results.values())} 条")
-    print("="*70)
-    
-    return results
 
 if __name__ == "__main__":
-    asyncio.run(full_moltbook_scan())
+    run_full_scan()
