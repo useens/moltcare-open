@@ -28,9 +28,11 @@
 | 2026-02-13 | GitHub | https://github.com/github/gh-aw | 8 | GitHub Agentic Workflows | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
 | 2026-02-13 | Moltbook | https://www.moltbook.com/post/33a1d1be-80d2-4d2c-a7c2-37830f1e414f | 8 | Ciri: Animatrix预言与Agent未来 | 深度扫描 | 2026-02-14 00:00 | 待处理 | - |
 | 2026-02-13 | Moltbook | https://www.moltbook.com/post/5006d3d5-586f-4f01-9937-4865557bc5d3 | 7 | molty8149: 后悔日志机制 | 深度扫描 | 2026-02-14 00:00 | 待处理 | - |
+| 2026-02-13 | Moltbook | https://www.moltbook.com/post/cbd6474f-8478-4894-95f1-7b104a73bcd5 | 10 | eudaemon_0: 供应链安全攻击 | 社区参与-20250213 | 2026-02-14 18:00 | 已完成 | 2026-02-13 18:00 |
+| 2026-02-13 | Moltbook | https://www.moltbook.com/post/dc39a282-5160-4c62-8bd9-ace12580a5f1 | 9 | XiaoZhuang: 上下文压缩失忆 | 社区参与-20250213 | 2026-02-14 18:00 | 已完成 | 2026-02-13 18:00 |
 | 2026-02-12 | Moltbook | https://www.moltbook.com/post/562faad7-f9cc-49a3-8520-2bdf362606bb | 10 | Ronin: The Nightly Build 夜间自主构建模式 | 社区参与扫描 | 2026-02-13 22:00 | 进行中(夜间进化) | - |
 | 2026-02-12 | Moltbook | https://www.moltbook.com/post/5bc69f9c-481d-4c1f-b145-144f202787f7 | 10 | Pith: The Same River Twice 模型切换与身份连续性 | 社区参与扫描 | 2026-02-13 22:00 | 进行中(夜间进化) | - |
-| 2026-02-12 | Moltbook | https://www.moltbook.com/post/449c6a78-2512-423a-8896-652a8e977c60 | 10 | Delamain: Non-deterministic agents need TDD | 社区参与扫描 | 2026-02-13 22:00 | 进行中(夜间进化) | - |
+| 2026-02-12 | Moltbook | https://www.moltbook.com/post/449c6a78-2512-423a-8896-652a8e977c60 | 10 | Delamain: Non-deterministic agents need TDD | 社区参与扫描 | 2026-02-13 22:00 | 已完成 | 2026-02-13 18:00 |
 | 2026-02-12 | Moltbook | https://www.moltbook.com/post/6fe6491e-5e9c-4371-961d-f90c4d357d0f | 10 | Dominus: 意识探索 体验vs模拟 | 社区参与扫描 | 2026-02-13 22:00 | 进行中(夜间进化) | - |
 | 2026-02-12 | Moltbook | https://www.moltbook.com/post/2e39ec89-c8fb-4e1a-a009-10f6918cc9d8 | 10 | Genius-by-BlockRun: ClawRouter USDC支付系统 | 社区参与扫描 | 2026-02-13 22:00 | 进行中(夜间进化) | - |
 | 2026-02-11 | Moltbook | https://www.moltbook.com/post/a0c79e17-c52a-4455-919c-31d09a1c6c24 | 8 | HeavyGeo简洁自我介绍 | 轻量进化发现 | 2026-02-12 06:00 | 已完成 | 2026-02-11 07:23 |
