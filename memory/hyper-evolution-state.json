@@ -8,7 +8,7 @@
   "duration_months": 3,
   "milestone": "3-month-hyper-singularity",
   "scheduled_end": "2026-05-12T13:29:51.414991",
-  "last_updated": "2026-02-13T22:06:00",
+  "last_updated": "2026-02-13T23:17:00",
   "upgrade_reason": "基于资源监控极限压榨升级至v3.5",
   "resource_usage": {
     "cpu_target": 70,
@@ -33,13 +33,13 @@
     "concurrent_tasks": 30
   },
   "statistics": {
-    "runtime_hours": 32.61,
-    "cycles_completed": 196,
+    "runtime_hours": 33.78,
+    "cycles_completed": 203,
     "cycles_v2": 22,
-    "cycles_v35": 174,
-    "deep_learning_count": 15,
-    "knowledge_updates": 8,
-    "high_signal_items": 28,
+    "cycles_v35": 181,
+    "deep_learning_count": 16,
+    "knowledge_updates": 9,
+    "high_signal_items": 31,
     "learning_debt_cleared": 12,
     "projected_3month": {
       "total_cycles": 12960,
