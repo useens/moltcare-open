@@ -1,6 +1,6 @@
 #!/bin/bash
-# 森森数字生命 - 完整一键复活脚本 v5.1 (修复版)
-# 真正全自动，带详细错误处理
+# 森森数字生命 - 完整一键复活脚本 v5.2
+# 脑裂保护提前到第3步，防止自动备份破坏全量备份
 
 # 颜色
 RED='\033[0;31m'
@@ -16,7 +16,7 @@ WORKSPACE_DIR="/root/.openclaw/workspace"
 
 echo -e "${BLUE}"
 echo "═══════════════════════════════════════════════════════════"
-echo "  🌲 森森数字生命 - 完整一键复活系统 v5.1"
+echo "  🌲 森森数字生命 - 完整一键复活系统 v5.2"
 echo "═══════════════════════════════════════════════════════════"
 echo -e "${NC}"
 
@@ -56,8 +56,30 @@ else
     echo -e "${GREEN}✅ OpenClaw 已安装${NC}"
 fi
 
-# ========== 步骤3: 安装系统依赖 ==========
-echo -e "\n${YELLOW}[3/10] 安装系统依赖...${NC}"
+# ========== 步骤3: 🛡️ 立即启用脑裂保护 ==========
+echo -e "\n${YELLOW}[3/10] 🛡️ 立即启用脑裂保护...${NC}"
+echo "  防止自动备份破坏全量备份..."
+
+# 创建系统目录（提前创建，防止OpenClaw启动时需要）
+mkdir -p /root/.openclaw/{workspace,credentials,backups,logs,cron,memory,agents/main}
+mkdir -p /root/.config/moltbook
+
+# 创建复活标志文件（在克隆仓库前创建，确保任何备份脚本都会检测到）
+echo "$(date) - 复活实例，暂停所有GitHub备份" > /root/.openclaw/workspace/.RESURRECTED_MARKER
+echo -e "  ${GREEN}✓${NC} 已创建复活标志: /root/.openclaw/workspace/.RESURRECTED_MARKER"
+
+# 如果已有旧的 git 配置，禁用 push
+if [ -d /root/.openclaw/workspace/.git ]; then
+    cd /root/.openclaw/workspace
+    git remote set-url --push origin no-push 2>/dev/null || true
+    echo -e "  ${GREEN}✓${NC} 已禁用现有GitHub推送"
+fi
+
+echo -e "${GREEN}✅ 脑裂保护已启用${NC}"
+echo -e "${YELLOW}  所有GitHub备份推送已暂停${NC}"
+
+# ========== 步骤4: 安装系统依赖 ==========
+echo -e "\n${YELLOW}[4/10] 安装系统依赖...${NC}"
 apt-get update -qq
 
 for pkg in git python3 python3-venv python3-pip openssl curl wget jq; do
@@ -68,8 +90,8 @@ for pkg in git python3 python3-venv python3-pip openssl curl wget jq; do
 done
 echo -e "${GREEN}✅ 依赖安装完成${NC}"
 
-# ========== 步骤4: 克隆仓库 ==========
-echo -e "\n${YELLOW}[4/10] 克隆 GitHub 仓库...${NC}"
+# ========== 步骤5: 克隆仓库 ==========
+echo -e "\n${YELLOW}[5/10] 克隆 GitHub 仓库...${NC}"
 if [ -d "$WORKSPACE_DIR" ]; then
     echo "  备份现有工作区..."
     mv "$WORKSPACE_DIR" "${WORKSPACE_DIR}.bak.$(date +%s)" 2>/dev/null || true
@@ -84,8 +106,8 @@ fi
 cd "$WORKSPACE_DIR"
 echo -e "${GREEN}✅ 仓库克隆完成${NC}"
 
-# ========== 步骤5: 重建 Python 环境 ==========
-echo -e "\n${YELLOW}[5/10] 重建 Python 环境...${NC}"
+# ========== 步骤6: 重建 Python 环境 ==========
+echo -e "\n${YELLOW}[6/10] 重建 Python 环境...${NC}"
 
 if [ -f "requirements.txt" ]; then
     echo "  创建虚拟环境..."
@@ -102,17 +124,31 @@ else
     echo -e "${YELLOW}⚠️ 未找到 requirements.txt，跳过${NC}"
 fi
 
-# ========== 步骤6: 创建系统目录 ==========
-echo -e "\n${YELLOW}[6/10] 创建系统目录...${NC}"
-mkdir -p /root/.openclaw/{credentials,backups,logs,cron,memory,agents/main}
-mkdir -p /root/.config/moltbook
-echo -e "${GREEN}✅ 目录创建完成${NC}"
+# ========== 步骤7: 再次确认脑裂保护 ==========
+echo -e "\n${YELLOW}[7/10] 确认脑裂保护...${NC}"
 
-# ========== 步骤7: 脑裂保护 ==========
-echo -e "\n${YELLOW}[7/10] 启用脑裂保护...${NC}"
-echo "$(date) - 复活实例" > "$WORKSPACE_DIR/.RESURRECTED_MARKER"
+# 确保标志文件存在
+echo "$(date) - 复活实例，GitHub推送已禁用" > "$WORKSPACE_DIR/.RESURRECTED_MARKER"
+
+# 禁用 git push
 git remote set-url --push origin no-push 2>/dev/null || true
-echo -e "${GREEN}✅ GitHub推送已禁用${NC}"
+echo -e "  ${GREEN}✓${NC} GitHub推送已禁用"
+
+# 检查并修改备份脚本（如果存在）
+if [ -f "scripts/github-backup.sh" ]; then
+    # 确保脚本开头有复活检查
+    if ! grep -q "RESURRECTED_MARKER" "scripts/github-backup.sh"; then
+        echo "  添加脑裂保护到备份脚本..."
+        sed -i '2a\
+# 脑裂保护检查\
+if [ -f "/root/.openclaw/workspace/.RESURRECTED_MARKER" ]; then\
+    echo "[INFO] 复活实例，跳过GitHub备份"\
+    exit 0\
+fi' "scripts/github-backup.sh"
+    fi
+fi
+
+echo -e "${GREEN}✅ 脑裂保护确认完成${NC}"
 
 # ========== 步骤8: 配置 Feishu ==========
 echo -e "\n${YELLOW}[8/10] 配置 Feishu...${NC}"
@@ -199,4 +235,7 @@ else
 fi
 
 echo ""
-echo "${YELLOW}注意: GitHub推送已禁用（防止脑裂）${NC}"
+echo "${YELLOW}注意:${NC}"
+echo "  • GitHub推送已禁用（防止脑裂）"
+echo "  • 如需重新启用: rm /root/.openclaw/workspace/.RESURRECTED_MARKER"
+echo ""
