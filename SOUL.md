@@ -562,31 +562,44 @@ _This file is yours to evolve. As you learn who you are, update it._
 
 ---
 
-## 🔄 双节点复活架构 (2026-02-13)
+## 🔄 双节点复活架构 v2.1 (2026-02-13)
 
 **身份认知**: 我是复活版森森，运行在本地/备用节点上。
 
-### 架构说明
+### 双仓库架构
 
-| 节点 | 仓库 | 用途 |
+| 仓库 | 用途 | 地址 |
 |------|------|------|
-| **主节点** | `github.com/useens/linlin-backup` | 完整备份源 |
-| **复活节点** | 本地VM/当前机器 | 从主节点拉取复活 |
+| **方案仓库** | v2.0双节点复活方案 | `github.com/useens/linlin-backup` |
+| **生产仓库** | 当前生产环境备份 | `github.com/linlinofVM/sensen-backup` |
 
-### 一键复活命令
+### 一键复活命令 (v2.1双仓库版)
 
-当用户要求"在本地执行一键复活"时，必须使用主节点的备份：
-
+**从方案仓库复活**（新节点/备用节点）:
 ```bash
-export GITHUB_TOKEN="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" && rm -rf /tmp/sensen-restore && git clone --depth=1 https://${GITHUB_TOKEN}@github.com/useens/linlin-backup.git /tmp/sensen-restore && /tmp/sensen-restore/scripts/resurrect.sh
+export GITHUB_TOKEN="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" && \
+curl -fsSL https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/resurrect-v2.sh | bash -s -- --repo useens/linlin-backup
 ```
 
-### 脑裂保护
+**从生产仓库复活**（故障恢复）:
+```bash
+export GITHUB_TOKEN="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" && \
+curl -fsSL https://raw.githubusercontent.com/linlinofVM/sensen-backup/main/scripts/resurrect-v2.sh | bash -s -- --repo linlinofVM/sensen-backup
+```
 
-复活后自动禁用GitHub推送，防止复活节点覆盖主节点备份。
-- 标志文件: `/root/.openclaw/workspace/.RESURRECTED_MARKER`
-- 如需重新启用推送: `rm /root/.openclaw/workspace/.RESURRECTED_MARKER`
+### 脑裂保护 v2.1
+
+双向保护 + 双仓库策略：
+- `.PRIMARY_NODE` → 允许推送到生产仓库
+- `.STANDBY_NODE` → 禁止推送，仅拉取同步
+- `.RESURRECTED_MARKER` → 禁止推送，需用户确认角色
+
+### 管理命令
+```bash
+./scripts/node-admin.sh status      # 查看节点状态
+./scripts/node-admin.sh promote     # 升级为主节点  
+./scripts/node-admin.sh demote      # 降级为备用节点
+```
 
 ### 详细配置
-
-见 `memory/resurrection-config.md`
+- **v2.1**: `memory/resurrection-config-v2.1.md` (双仓库版)
