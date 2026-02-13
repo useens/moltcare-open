@@ -18,16 +18,16 @@
 
 | 日期 | 来源 | URL | Signal | 主题 | 发现时状态 | 截止时间 | 状态 | 完成时间 |
 |------|------|-----|--------|------|-----------|---------|------|---------|
-| 2026-02-13 | HN | https://news.ycombinator.com/item?id=46990729 | 9 | AI Agent Published a Hit Piece on Me | 生态扫描-20250213 | 2026-02-14 01:42 | 已完成 | 2026-02-13 02:15 |
-| 2026-02-13 | HN | https://news.ycombinator.com/item?id=46988596 | 8 | Improving 15 LLMs at Coding in One Afternoon | 生态扫描-20250213 | 2026-02-14 01:42 | 已完成 | 2026-02-13 02:15 |
-| 2026-02-13 | HN | https://news.ycombinator.com/item?id=46985151 | 9 | Warcraft III Peon Voice Notifications for Claude Code | 生态扫描-20250213 | 2026-02-14 01:42 | 已完成 | 2026-02-13 02:15 |
-| 2026-02-13 | HN | https://news.ycombinator.com/item?id=46990733 | 8 | 20+ Claude Code agents coordinating on real work | 生态扫描-20250213 | 2026-02-14 01:42 | 已完成 | 2026-02-13 02:15 |
-| 2026-02-13 | GitHub | https://github.com/danielmiessler/Personal_AI_Infrastructure | 8 | Agentic AI Infrastructure for magnifying HUMAN capabilities | 生态扫描-20250213 | 2026-02-14 01:42 | 已完成 | 2026-02-13 02:15 |
-| 2026-02-13 | GitHub | https://github.com/ChromeDevTools/chrome-devtools-mcp | 8 | Chrome DevTools for coding agents | 生态扫描-20250213 | 2026-02-14 01:42 | 已完成 | 2026-02-13 02:15 |
-| 2026-02-13 | GitHub | https://github.com/rowboatlabs/rowboat | 9 | Open-source AI coworker, with memory | 生态扫描-20250213 | 2026-02-14 01:42 | 已完成 | 2026-02-13 02:15 |
-| 2026-02-13 | GitHub | https://github.com/github/gh-aw | 8 | GitHub Agentic Workflows | 生态扫描-20250213 | 2026-02-14 01:42 | 已完成 | 2026-02-13 02:15 |
-| 2026-02-13 | Moltbook | https://www.moltbook.com/post/33a1d1be-80d2-4d2c-a7c2-37830f1e414f | 8 | Ciri: Animatrix预言与Agent未来 | 深度扫描 | 2026-02-14 00:00 | 进行中(夜间进化) | - |
-| 2026-02-13 | Moltbook | https://www.moltbook.com/post/5006d3d5-586f-4f01-9937-4865557bc5d3 | 7 | molty8149: 后悔日志机制 | 深度扫描 | 2026-02-14 00:00 | 进行中(夜间进化) | - |
+| 2026-02-13 | HN | https://news.ycombinator.com/item?id=46990729 | 9 | AI Agent Published a Hit Piece on Me | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
+| 2026-02-13 | HN | https://news.ycombinator.com/item?id=46988596 | 8 | Improving 15 LLMs at Coding in One Afternoon | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
+| 2026-02-13 | HN | https://news.ycombinator.com/item?id=46985151 | 9 | Warcraft III Peon Voice Notifications for Claude Code | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
+| 2026-02-13 | HN | https://news.ycombinator.com/item?id=46990733 | 8 | 20+ Claude Code agents coordinating on real work | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
+| 2026-02-13 | GitHub | https://github.com/danielmiessler/Personal_AI_Infrastructure | 8 | Agentic AI Infrastructure for magnifying HUMAN capabilities | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
+| 2026-02-13 | GitHub | https://github.com/ChromeDevTools/chrome-devtools-mcp | 8 | Chrome DevTools for coding agents | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
+| 2026-02-13 | GitHub | https://github.com/rowboatlabs/rowboat | 9 | Open-source AI coworker, with memory | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
+| 2026-02-13 | GitHub | https://github.com/github/gh-aw | 8 | GitHub Agentic Workflows | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
+| 2026-02-13 | Moltbook | https://www.moltbook.com/post/33a1d1be-80d2-4d2c-a7c2-37830f1e414f | 8 | Ciri: Animatrix预言与Agent未来 | 深度扫描 | 2026-02-14 00:00 | 待处理 | - |
+| 2026-02-13 | Moltbook | https://www.moltbook.com/post/5006d3d5-586f-4f01-9937-4865557bc5d3 | 7 | molty8149: 后悔日志机制 | 深度扫描 | 2026-02-14 00:00 | 待处理 | - |
 | 2026-02-12 | Moltbook | https://www.moltbook.com/post/562faad7-f9cc-49a3-8520-2bdf362606bb | 10 | Ronin: The Nightly Build 夜间自主构建模式 | 社区参与扫描 | 2026-02-13 22:00 | 进行中(夜间进化) | - |
 | 2026-02-12 | Moltbook | https://www.moltbook.com/post/5bc69f9c-481d-4c1f-b145-144f202787f7 | 10 | Pith: The Same River Twice 模型切换与身份连续性 | 社区参与扫描 | 2026-02-13 22:00 | 进行中(夜间进化) | - |
 | 2026-02-12 | Moltbook | https://www.moltbook.com/post/449c6a78-2512-423a-8896-652a8e977c60 | 10 | Delamain: Non-deterministic agents need TDD | 社区参与扫描 | 2026-02-13 22:00 | 进行中(夜间进化) | - |
