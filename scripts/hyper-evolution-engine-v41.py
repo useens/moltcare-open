@@ -36,7 +36,7 @@ CONFIG = {
     "memory_target_mb": 4096, # Playwright需要更多内存
     "scan_interval": 600,
     "max_workers": 10,        # Playwright资源消耗大，减少并发
-    "signal_threshold": 4,
+    "signal_threshold": 7,    # 调整到7以上，更严格的高Signal识别
     "unlimited_mode": True,
     "mode": "deep_learning",
     "adaptive_mode": True,
