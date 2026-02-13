@@ -12,8 +12,8 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-# 修复：配置Playwright使用系统Chromium
-os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "/usr/bin/chromium"
+# 修复：配置Playwright使用系统Chrome
+os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "/usr/bin/google-chrome"
 os.environ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD"] = "1"
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -23,7 +23,7 @@ from base_extractor import BaseWebExtractor
 from playwright.async_api import async_playwright, Page
 
 # 全局配置
-CHROMIUM_PATH = "/usr/bin/chromium"
+CHROMIUM_PATH = "/usr/bin/google-chrome"
 
 
 class DeepLearningExtractor(BaseWebExtractor):
@@ -88,12 +88,23 @@ class DeepLearningExtractor(BaseWebExtractor):
         """访问详情页，提取完整内容"""
         async with self.semaphore:
             async with async_playwright() as p:
-                browser = await p.chromium.launch(headless=True, executable_path="/usr/bin/chromium")
+                browser = await p.chromium.launch(headless=True, executable_path=CHROMIUM_PATH)
                 page = await browser.new_page()
                 
                 try:
                     print(f"  📖 深入学习: {title[:60]}...")
-                    await page.goto(url, wait_until="networkidle", timeout=30000)
+                    # 修复: 增加超时时间至60秒，添加重试机制
+                    max_retries = 2
+                    for attempt in range(max_retries):
+                        try:
+                            await page.goto(url, wait_until="domcontentloaded", timeout=60000)
+                            break
+                        except Exception as e:
+                            if attempt < max_retries - 1:
+                                print(f"     重试 ({attempt + 1}/{max_retries})...")
+                                await asyncio.sleep(2)
+                            else:
+                                raise e
                     
                     # 等待内容加载
                     await page.wait_for_timeout(2000)
@@ -113,15 +124,21 @@ class DeepLearningExtractor(BaseWebExtractor):
                         }''')
                     
                     elif 'hackernews' in self.config['name']:
-                        # HN 评论提取
-                        content = await page.evaluate('''() => {
-                            const comments = document.querySelectorAll('.commtext');
-                            let text = '';
-                            comments.forEach((c, i) => {
-                                if (i < 5) text += c.innerText + '\n\n';
-                            });
-                            return text.substring(0, 3000) || document.querySelector('.fatitem')?.innerText?.substring(0, 2000);
-                        }''')
+                        # HN 评论提取 - 使用简单直接的JavaScript
+                        content = await page.evaluate("""
+                            () => {
+                                var comments = document.querySelectorAll('.commtext');
+                                var text = '';
+                                var count = Math.min(comments.length, 5);
+                                for (var i = 0; i < count; i++) {
+                                    text += comments[i].innerText + "\\n\\n";
+                                }
+                                if (text.length > 0) return text.substring(0, 3000);
+                                var fatitem = document.querySelector('.fatitem');
+                                if (fatitem) return fatitem.innerText.substring(0, 2000);
+                                return document.body.innerText.substring(0, 2000);
+                            }
+                        """)
                     
                     elif 'github' in self.config['name']:
                         # GitHub README提取

@@ -160,7 +160,7 @@ class BaseWebExtractor(ABC):
         items = []
         
         async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=self.headless, executable_path="/usr/bin/chromium")
+            browser = await p.chromium.launch(headless=self.headless, executable_path="/usr/bin/google-chrome")
             context = await browser.new_context()
             
             # 加载 cookies
@@ -227,7 +227,7 @@ class BaseWebExtractor(ABC):
         """
         async with self.semaphore:
             async with async_playwright() as p:
-                browser = await p.chromium.launch(headless=self.headless, executable_path="/usr/bin/chromium")
+                browser = await p.chromium.launch(headless=self.headless, executable_path="/usr/bin/google-chrome")
                 page = await browser.new_page()
                 
                 try:

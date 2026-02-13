@@ -1,0 +1,20 @@
+{
+  "extractor": "github_trending",
+  "base_url": "https://github.com",
+  "extraction_time": "2026-02-13T19:22:33.427961",
+  "count": 1,
+  "items": [
+    {
+      "url": "https://github.com/SynkraAI/aios-core",
+      "title": "SynkraAI / aios-core",
+      "content": "Synkra AIOS: Framework Universal de Agentes IA 🚀\n\n        \n\nFramework de Desenvolvimento Auto-Modificável Alimentado por IA. Fundado em Desenvolvimento Ágil Dirigido por Agentes, oferecendo capacidades revolucionárias para desenvolvimento dirigido por IA e muito mais. Transforme qualquer domínio com expertise especializada de IA: desenvolvimento de software, entretenimento, escrita criativa, estratégia de negócios, bem-estar pessoal e muito mais.\n\nVisão Geral\nPremissa Arquitetural: CLI First\n\nO Synkra AIOS segue uma hierarquia clara de prioridades:\n\nCLI First → Observability Second → UI Third\n\nCamada\tPrioridade\tFoco\tExemplos\nCLI\tMáxima\tOnde a inteligência vive. Toda execução, decisões e automação acontecem aqui.\tAgentes (@dev, @qa), workflows, comandos\nObservability\tSecundária\tObservar e monitorar o que acontece no CLI em tempo real.\tDashboard SSE, logs, métricas, timeline\nUI\tTerciária\tGestão pontual e visualizações quando necessário.\tKanban, settings, story management\n\nPrincípios derivados:\n\nA CLI é a fonte da verdade - dashboards apenas observam\nFuncionalidades novas devem funcionar 100% via CLI antes de ter UI\nA UI nunca deve ser requisito para operação do sistema\nObservabilidade serve para entender o que o CLI está fazendo, não para controlá-lo\n\nAs Duas Inovações Chave do Synkra AIOS:\n\n1. Planejamento Agêntico: Agentes dedicados (analyst, pm, architect) colaboram com você para criar documentos de PRD e Arquitetura detalhados e consistentes. Através de engenharia avançada de prompts e refinamento com human-in-the-loop, estes agentes de planejamento produzem especificações abrangentes que vão muito além da geração genérica de tarefas de IA.\n\n2. Desenvolvimento Contextualizado por Engenharia: O agente sm (Scrum Master) então transforma estes planos detalhados em histórias de desenvolvimento hiperdetalhadas que contêm tudo que o agente dev precisa - contexto completo, detalhes de implementação e orientação arquitetural incorporada diretamente nos arquivos de históri",
+      "comments": [
+        null,
+        null,
+        null
+      ],
+      "word_count": 425,
+      "extracted_at": "2026-02-13T19:22:33.408296"
+    }
+  ]
+}
