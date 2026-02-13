@@ -152,7 +152,7 @@ fi
 # 添加到环境变量
 echo "export SENSEN_BACKUP_KEY='$BACKUP_KEY'" >> ~/.bashrc
 
-# 步骤5: 恢复Cron任务
+# 步骤5: 恢复Cron任务 + 停止GitHub备份（防止脑裂）
 echo -e "\n${YELLOW}[5/6] 配置 Cron 任务...${NC}"
 if [ -f "config/cron/cron-tasks.json" ]; then
     echo -e "${GREEN}✓ Cron配置已导出${NC}"
@@ -161,6 +161,38 @@ if [ -f "config/cron/cron-tasks.json" ]; then
 else
     echo -e "${YELLOW}⚠️ Cron配置未导出${NC}"
 fi
+
+# 🛡️ 停止GitHub备份推送，防止脑裂
+echo -e "\n${YELLOW}[保护机制] 停止GitHub备份推送...${NC}"
+
+# 创建标志文件，阻止备份脚本执行
+echo "$(date) - 复活实例，暂停GitHub备份" > /root/.openclaw/workspace/.RESURRECTED_MARKER
+echo -e "${GREEN}✓ 已创建复活标志文件${NC}"
+
+# 修改git remote，移除push权限
+cd "$WORKSPACE_DIR"
+if git remote get-url origin &>/dev/null; then
+    ORIGINAL_URL=$(git remote get-url origin)
+    echo "$ORIGINAL_URL" > .git/original_remote_url
+    # 设置为只读（通过设置不存在的push URL）
+    git remote set-url --push origin no-push
+    echo -e "${GREEN}✓ GitHub推送已禁用${NC}"
+    echo -e "${YELLOW}  原始URL: $ORIGINAL_URL${NC}"
+    echo -e "${YELLOW}  Push URL: no-push (已禁用)${NC}"
+fi
+
+# 备份并清空github-backup-sync任务配置
+if [ -f "config/cron/cron-tasks.json" ]; then
+    cp config/cron/cron-tasks.json config/cron/cron-tasks.json.backup
+    # 标记github-backup-sync任务为禁用
+    sed -i 's/"github-backup-sync"/"github-backup-sync-DISABLED"/g' config/cron/cron-tasks.json 2>/dev/null || true
+    echo -e "${GREEN}✓ github-backup-sync任务已标记禁用${NC}"
+fi
+
+echo -e "\n${CYAN}═══════════════════════════════════════════════════════════${NC}"
+echo -e "${YELLOW}⚠️  注意: GitHub备份推送已停止，防止与原实例冲突${NC}"
+echo -e "${YELLOW}   如需重新启用，请手动删除 .RESURRECTED_MARKER 文件${NC}"
+echo -e "${CYAN}═══════════════════════════════════════════════════════════${NC}"
 
 # 步骤6: 验证
 echo -e "\n${YELLOW}[6/6] 验证安装...${NC}"

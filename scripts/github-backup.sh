@@ -4,6 +4,13 @@
 
 set -e
 
+# 🛡️ 检查是否是复活实例，防止脑裂
+if [ -f "/root/.openclaw/workspace/.RESURRECTED_MARKER" ]; then
+    echo "[INFO] 检测到复活标志，跳过GitHub备份推送（防止脑裂）"
+    echo "[INFO] 如需重新启用备份，请删除 .RESURRECTED_MARKER 文件"
+    exit 0
+fi
+
 BACKUP_DIR="/root/.openclaw/backups"
 GITHUB_DIR="$BACKUP_DIR/github-remote"
 LOCAL_BACKUP="$BACKUP_DIR/local"

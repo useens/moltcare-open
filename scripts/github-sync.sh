@@ -4,6 +4,13 @@
 
 set -e
 
+# 🛡️ 检查是否是复活实例，防止脑裂
+if [ -f "/root/.openclaw/workspace/.RESURRECTED_MARKER" ]; then
+    echo "[INFO] 检测到复活标志，跳过GitHub同步（防止脑裂）"
+    echo "[INFO] 如需重新启用同步，请删除 .RESURRECTED_MARKER 文件"
+    exit 0
+fi
+
 WORKSPACE="$HOME/.openclaw/workspace"
 LOG_FILE="$WORKSPACE/logs/github-sync.log"
 LOCK_FILE="/tmp/github-sync.lock"
