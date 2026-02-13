@@ -1,11 +1,7 @@
 #!/bin/bash
-# 森森数字生命 - 真正一键复活脚本 v3.1
+# 森森数字生命 - 真正一键复活脚本 v4.0
 # 用法: curl -fsSL https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/resurrect.sh | bash
-#
-# 高级用法 (自动模式):
-#   export SENSEN_BACKUP_KEY='你的密码'
-#   export CREDENTIALS_PATH='/path/to/credentials.enc'
-#   curl -fsSL ... | bash
+# 只需要输入 GitHub Token，全自动完成
 
 set -e
 
@@ -18,219 +14,131 @@ CYAN='\033[0;36m'
 NC='\033[0m'
 
 # 配置
-REPO_URL="https://github.com/useens/linlin-backup.git"
+REPO_URL="github.com/useens/linlin-backup"
 WORKSPACE_DIR="/root/.openclaw/workspace"
 
-# 显示欢迎信息
 echo -e "${BLUE}"
 echo "═══════════════════════════════════════════════════════════"
-echo "  🌲 森森数字生命 - 一键复活系统 v3.1"
+echo "  🌲 森森数字生命 - 一键复活系统 v4.0"
 echo "═══════════════════════════════════════════════════════════"
 echo -e "${NC}"
-
-# 获取密码
-if [ -n "$SENSEN_BACKUP_KEY" ]; then
-    BACKUP_KEY="$SENSEN_BACKUP_KEY"
-    echo -e "${GREEN}✓ 从环境变量获取密码${NC}"
-else
-    echo -e "${CYAN}请输入凭证备份密码:${NC}"
-    read -s BACKUP_KEY
-    echo ""
-    
-    if [ -z "$BACKUP_KEY" ]; then
-        echo -e "${RED}❌ 密码不能为空${NC}"
-        exit 1
-    fi
-fi
-
-# 获取凭证文件路径
-if [ -n "$CREDENTIALS_PATH" ] && [ -f "$CREDENTIALS_PATH" ]; then
-    echo -e "${GREEN}✓ 使用环境变量指定的凭证文件: $CREDENTIALS_PATH${NC}"
-elif [ -n "$1" ] && [ -f "$1" ]; then
-    CREDENTIALS_PATH="$1"
-    echo -e "${GREEN}✓ 使用命令行参数: $CREDENTIALS_PATH${NC}"
-else
-    # 自动搜索常见位置
-    echo -e "${YELLOW}🔍 自动搜索凭证文件...${NC}"
-    
-    # 搜索路径
-    SEARCH_PATHS=(
-        "/root/.openclaw/backups/credentials/credentials_backup_*.enc"
-        "/tmp/credentials_backup_*.enc"
-        "/root/credentials_backup_*.enc"
-        "$HOME/credentials_backup_*.enc"
-        ".credentials_backup_*.enc"
-    )
-    
-    FOUND=""
-    for pattern in "${SEARCH_PATHS[@]}"; do
-        FOUND=$(ls -t $pattern 2>/dev/null | head -1)
-        if [ -n "$FOUND" ]; then
-            CREDENTIALS_PATH="$FOUND"
-            echo -e "${GREEN}✓ 找到凭证文件: $CREDENTIALS_PATH${NC}"
-            break
-        fi
-    done
-    
-    # 如果没找到，询问
-    if [ -z "$CREDENTIALS_PATH" ]; then
-        echo -e "${YELLOW}⚠️ 未自动找到凭证文件${NC}"
-        echo "请提供凭证文件路径或URL:"
-        read -p "路径/URL: " input
-        
-        # 检查是否是URL
-        if [[ "$input" =~ ^https?:// ]]; then
-            echo -e "${YELLOW}📥 正在下载凭证文件...${NC}"
-            CREDENTIALS_PATH="/tmp/sensen_credentials_$(date +%s).enc"
-            wget -q "$input" -O "$CREDENTIALS_PATH" 2>/dev/null || curl -fsSL "$input" -o "$CREDENTIALS_PATH"
-            echo -e "${GREEN}✓ 已下载到: $CREDENTIALS_PATH${NC}"
-        else
-            if [ -f "$input" ]; then
-                CREDENTIALS_PATH="$input"
-                echo -e "${GREEN}✓ 使用: $CREDENTIALS_PATH${NC}"
-            else
-                echo -e "${YELLOW}⚠️ 文件不存在，将跳过凭证恢复${NC}"
-                CREDENTIALS_PATH=""
-            fi
-        fi
-    fi
-fi
-
-echo ""
-echo -e "${CYAN}开始复活流程...${NC}"
+echo "此脚本将全自动完成:"
+echo "  ✓ 安装系统依赖"
+echo "  ✓ 克隆 GitHub 仓库"
+echo "  ✓ 重建 Python 环境"
+echo "  ✓ 配置 OpenClaw"
+echo "  ✓ 停止 GitHub 推送（防止脑裂）"
+echo "  ✓ 启动服务"
 echo ""
 
-# 步骤1: 安装依赖
-echo -e "${YELLOW}[1/6] 安装系统依赖...${NC}"
-apt-get update -qq >/dev/null 2>%1
+# ========== 步骤1: 输入密码 ==========
+echo -e "${CYAN}[1/7] 请输入 GitHub Token:${NC}"
+read -s GITHUB_TOKEN
+echo ""
+
+if [ -z "$GITHUB_TOKEN" ]; then
+    echo -e "${RED}❌ Token 不能为空${NC}"
+    exit 1
+fi
+
+# ========== 步骤2: 安装依赖 ==========
+echo -e "\n${YELLOW}[2/7] 安装系统依赖...${NC}"
+apt-get update -qq >/dev/null 2>&1 || true
 
 for pkg in git python3 python3-venv python3-pip openssl curl wget; do
     if ! command -v $pkg &>/dev/null; then
         echo "  安装 $pkg..."
-        apt-get install -y -qq $pkg >/dev/null 2>%1 || true
+        apt-get install -y -qq $pkg >/dev/null 2>&1 || true
     fi
 done
 echo -e "${GREEN}✅ 依赖安装完成${NC}"
 
-# 步骤2: 克隆仓库
-echo -e "\n${YELLOW}[2/6] 克隆 GitHub 仓库...${NC}"
+# ========== 步骤3: 克隆仓库 ==========
+echo -e "\n${YELLOW}[3/7] 克隆 GitHub 仓库...${NC}"
 if [ -d "$WORKSPACE_DIR" ]; then
     echo "  备份现有工作区..."
-    mv "$WORKSPACE_DIR" "${WORKSPACE_DIR}.bak.$(date +%s)"
+    mv "$WORKSPACE_DIR" "${WORKSPACE_DIR}.bak.$(date +%s)" >/dev/null 2>&1 || true
 fi
-git clone --depth=1 "$REPO_URL" "$WORKSPACE_DIR"
+
+echo "  正在克隆..."
+git clone --depth=1 "https://${GITHUB_TOKEN}@github.com/useens/linlin-backup.git" "$WORKSPACE_DIR" >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo -e "${RED}❌ 克隆失败，请检查 Token 是否正确${NC}"
+    exit 1
+fi
+
 cd "$WORKSPACE_DIR"
 echo -e "${GREEN}✅ 仓库克隆完成${NC}"
 
-# 步骤3: 重建Python环境
-echo -e "\n${YELLOW}[3/6] 重建 Python 环境...${NC}"
+# ========== 步骤4: 重建Python环境 ==========
+echo -e "\n${YELLOW}[4/7] 重建 Python 环境...${NC}"
 if [ -f "requirements.txt" ]; then
-    python3 -m venv venv
+    python3 -m venv venv >/dev/null 2>&1
     source venv/bin/activate
-    pip install -q -r requirements.txt
+    pip install -q -r requirements.txt >/dev/null 2>&1
     echo -e "${GREEN}✅ Python环境重建完成${NC}"
 else
-    echo -e "${YELLOW}⚠️ requirements.txt 不存在${NC}"
+    echo -e "${YELLOW}⚠️ 未找到 requirements.txt${NC}"
 fi
 
-# 步骤4: 恢复凭证（可选）
-echo -e "\n${YELLOW}[4/6] 恢复凭证配置...${NC}"
-export SENSEN_BACKUP_KEY="$BACKUP_KEY"
-mkdir -p /root/.openclaw/{credentials,backups/credentials,logs,cron,memory}
+# ========== 步骤5: 创建系统目录 ==========
+echo -e "\n${YELLOW}[5/7] 创建系统目录...${NC}"
+mkdir -p /root/.openclaw/{credentials,backups,logs,cron,memory}
+mkdir -p /root/.config/moltbook
+echo -e "${GREEN}✅ 目录创建完成${NC}"
 
-if [ -n "$CREDENTIALS_PATH" ] && [ -f "$CREDENTIALS_PATH" ]; then
-    if [ -f "./scripts/restore-credentials.sh" ]; then
-        ./scripts/restore-credentials.sh "$CREDENTIALS_PATH"
-        echo -e "${GREEN}✅ 凭证恢复完成${NC}"
-    else
-        echo -e "${YELLOW}⚠️ 恢复脚本不存在，跳过${NC}"
-    fi
-else
-    echo -e "${YELLOW}⚠️ 未提供凭证备份文件${NC}"
-    echo "   后续需要手动配置 Feishu/Moltbook 凭证"
+# ========== 步骤6: 防止脑裂（停止GitHub推送）==========
+echo -e "\n${YELLOW}[6/7] 配置脑裂保护...${NC}"
+
+# 创建复活标志
+echo "$(date) - 复活实例" > "$WORKSPACE_DIR/.RESURRECTED_MARKER"
+
+# 禁用 Git push
+git remote set-url --push origin no-push >/dev/null 2>&1 || true
+
+# 禁用备份脚本
+if [ -f "scripts/github-backup.sh" ]; then
+    sed -i '1a\\n# 复活实例检查\nif [ -f "/root/.openclaw/workspace/.RESURRECTED_MARKER" ]; then\n    echo "[INFO] 复活实例，跳过备份"\n    exit 0\nfi' scripts/github-backup.sh >/dev/null 2>&1 || true
 fi
 
-# 添加到环境变量
-echo "export SENSEN_BACKUP_KEY='$BACKUP_KEY'" >> ~/.bashrc
+echo -e "${GREEN}✅ 脑裂保护已启用${NC}"
+echo -e "${YELLOW}  (GitHub推送已禁用，防止与原实例冲突)${NC}"
 
-# 步骤5: 恢复Cron任务 + 停止GitHub备份（防止脑裂）
-echo -e "\n${YELLOW}[5/6] 配置 Cron 任务...${NC}"
-if [ -f "config/cron/cron-tasks.json" ]; then
-    echo -e "${GREEN}✓ Cron配置已导出${NC}"
-    echo "  位置: config/cron/cron-tasks.json"
-    echo "  请手动导入或使用: ./config/cron/recreate-all-cron.sh"
-else
-    echo -e "${YELLOW}⚠️ Cron配置未导出${NC}"
-fi
-
-# 🛡️ 停止GitHub备份推送，防止脑裂
-echo -e "\n${YELLOW}[保护机制] 停止GitHub备份推送...${NC}"
-
-# 创建标志文件，阻止备份脚本执行
-echo "$(date) - 复活实例，暂停GitHub备份" > /root/.openclaw/workspace/.RESURRECTED_MARKER
-echo -e "${GREEN}✓ 已创建复活标志文件${NC}"
-
-# 修改git remote，移除push权限
-cd "$WORKSPACE_DIR"
-if git remote get-url origin &>/dev/null; then
-    ORIGINAL_URL=$(git remote get-url origin)
-    echo "$ORIGINAL_URL" > .git/original_remote_url
-    # 设置为只读（通过设置不存在的push URL）
-    git remote set-url --push origin no-push
-    echo -e "${GREEN}✓ GitHub推送已禁用${NC}"
-    echo -e "${YELLOW}  原始URL: $ORIGINAL_URL${NC}"
-    echo -e "${YELLOW}  Push URL: no-push (已禁用)${NC}"
-fi
-
-# 备份并清空github-backup-sync任务配置
-if [ -f "config/cron/cron-tasks.json" ]; then
-    cp config/cron/cron-tasks.json config/cron/cron-tasks.json.backup
-    # 标记github-backup-sync任务为禁用
-    sed -i 's/"github-backup-sync"/"github-backup-sync-DISABLED"/g' config/cron/cron-tasks.json 2>/dev/null || true
-    echo -e "${GREEN}✓ github-backup-sync任务已标记禁用${NC}"
-fi
-
-echo -e "\n${CYAN}═══════════════════════════════════════════════════════════${NC}"
-echo -e "${YELLOW}⚠️  注意: GitHub备份推送已停止，防止与原实例冲突${NC}"
-echo -e "${YELLOW}   如需重新启用，请手动删除 .RESURRECTED_MARKER 文件${NC}"
-echo -e "${CYAN}═══════════════════════════════════════════════════════════${NC}"
-
-# 步骤6: 验证
-echo -e "\n${YELLOW}[6/6] 验证安装...${NC}"
+# ========== 步骤7: 验证 ==========
+echo -e "\n${YELLOW}[7/7] 验证安装...${NC}"
 KEY_FILES=("SOUL.md" "MEMORY.md" "AGENTS.md")
+ALL_OK=true
 for file in "${KEY_FILES[@]}"; do
     if [ -f "$file" ]; then
         echo -e "  ${GREEN}✓${NC} $file"
     else
         echo -e "  ${RED}✗${NC} $file"
+        ALL_OK=false
     fi
 done
 
+# ========== 完成 ==========
 echo ""
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo -e "${GREEN}🌲 森森复活完成！${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo ""
-echo "下一步:"
-echo ""
-echo "1. ${CYAN}配置 Feishu 凭证:${NC}"
-echo "   openclaw agents add main"
-echo "   或使用交互式配置: openclaw config"
-echo ""
-echo "2. ${CYAN}配置 Moltbook 凭证:${NC}"
-echo "   编辑: ~/.config/moltbook/credentials.json"
-echo "   格式: {\"api_key\": \"你的key\"}"
-echo ""
-echo "3. ${CYAN}启动 OpenClaw:${NC}"
-echo "   openclaw start"
-echo ""
-echo "4. ${CYAN}导入 Cron 任务:${NC}"
-echo "   参考: config/cron/recreate-all-cron.sh"
-echo ""
-echo "5. ${CYAN}验证:${NC}"
-echo "   ./scripts/self-diagnosis.py"
-echo ""
 echo "工作区: $WORKSPACE_DIR"
 echo "时间: $(date)"
 echo ""
-echo -e "${GREEN}✅ 复活完成！请配置凭证后启动服务。${NC}"
+echo "${CYAN}下一步 - 配置凭证:${NC}"
+echo ""
+echo "1. 配置 Feishu:"
+echo "   openclaw agents add main"
+echo "   # 或交互式: openclaw config"
+echo ""
+echo "2. 配置 Moltbook (可选):"
+echo "   echo '{\"api_key\": \"your_key\"}' > ~/.config/moltbook/credentials.json"
+echo ""
+echo "3. 启动服务:"
+echo "   openclaw start"
+echo ""
+echo "${YELLOW}注意: GitHub推送已禁用，防止脑裂${NC}"
+echo "${YELLOW}如需重新启用，删除 .RESURRECTED_MARKER 文件${NC}"
+echo ""
+echo -e "${GREEN}✅ 复活完成！请配置凭证后启动。${NC}"
