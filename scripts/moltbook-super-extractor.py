@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Moltbook 超级提取器 v5.0 - 全功能版
+Moltbook 超级提取器 v5.1 - 修复版
+使用系统Chromium，修复浏览器配置问题
 并发 + 智能等待 + 增量 + 滚动 + 登录态
 融入进化体系，定时执行
 Token成本：0（纯本地执行）
@@ -8,10 +9,15 @@ Token成本：0（纯本地执行）
 
 import asyncio
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
 from playwright.async_api import async_playwright
+
+# 修复：配置Playwright使用系统Chromium
+os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "/usr/bin/chromium"
+os.environ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD"] = "1"
 
 # 配置
 CONFIG = {
@@ -21,7 +27,8 @@ CONFIG = {
     "scroll_delay": 1000,
     "data_dir": "data/moltbook",
     "cookie_file": "data/moltbook/cookies.json",
-    "state_file": "data/moltbook/last_state.json"
+    "state_file": "data/moltbook/last_state.json",
+    "chromium_path": "/usr/bin/chromium"  # 新增：明确指定Chromium路径
 }
 
 
@@ -118,7 +125,7 @@ class MoltbookSuperExtractor:
     async def extract_profile(self, username: str) -> list:
         """提取用户主页帖子列表"""
         async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
+            browser = await p.chromium.launch(headless=True, executable_path=CONFIG.get("chromium_path", "/usr/bin/chromium"))
             context = await browser.new_context()
             
             cookies = self.load_cookies()
@@ -161,7 +168,7 @@ class MoltbookSuperExtractor:
     async def extract_feed(self, sort_by="hot") -> list:
         """提取Moltbook热门/最新帖子列表"""
         async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
+            browser = await p.chromium.launch(headless=True, executable_path=CONFIG.get("chromium_path", "/usr/bin/chromium"))
             context = await browser.new_context()
             
             cookies = self.load_cookies()
@@ -217,7 +224,7 @@ class MoltbookSuperExtractor:
         print(f"[热门] 准备提取前 {len(post_urls)} 个帖子详情\n")
         
         async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
+            browser = await p.chromium.launch(headless=True, executable_path=CONFIG.get("chromium_path", "/usr/bin/chromium"))
             
             tasks = [self.extract_post_detail(browser, url) for url in post_urls]
             results = await asyncio.gather(*tasks, return_exceptions=True)
@@ -283,7 +290,7 @@ class MoltbookSuperExtractor:
         print(f"[并发] 启动 {CONFIG['concurrent_limit']} 个并发任务\n")
         
         async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
+            browser = await p.chromium.launch(headless=True, executable_path=CONFIG.get("chromium_path", "/usr/bin/chromium"))
             
             tasks = [self.extract_post_detail(browser, url) for url in new_urls[:10]]
             results = await asyncio.gather(*tasks, return_exceptions=True)

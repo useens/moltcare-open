@@ -1,20 +1,29 @@
 #!/usr/bin/env python3
 """
-深度内容提取器 - 深入学习模式
+深度内容提取器 v2.1 - 修复版
+使用系统Chromium，修复浏览器配置问题
 不只是标题，要点进去看完整内容
 """
 
 import asyncio
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
+
+# 修复：配置Playwright使用系统Chromium
+os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "/usr/bin/chromium"
+os.environ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD"] = "1"
 
 sys.path.insert(0, str(Path(__file__).parent))
 
 from generic_extractor import GenericExtractor
 from base_extractor import BaseWebExtractor
 from playwright.async_api import async_playwright, Page
+
+# 全局配置
+CHROMIUM_PATH = "/usr/bin/chromium"
 
 
 class DeepLearningExtractor(BaseWebExtractor):
@@ -79,7 +88,7 @@ class DeepLearningExtractor(BaseWebExtractor):
         """访问详情页，提取完整内容"""
         async with self.semaphore:
             async with async_playwright() as p:
-                browser = await p.chromium.launch(headless=True)
+                browser = await p.chromium.launch(headless=True, executable_path="/usr/bin/chromium")
                 page = await browser.new_page()
                 
                 try:

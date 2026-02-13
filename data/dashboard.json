@@ -1,20 +1,24 @@
 {
-  "version": "4.3.1",
-  "timestamp": "2026-02-13T07:08:50.581190",
-  "runtime_seconds": 8400.5956,
+  "version": "4.4.0",
+  "timestamp": "2026-02-13T08:24:25.245269",
+  "runtime_seconds": 2400.738459,
   "metrics": {
-    "cpu_avg": 0.8333333333333334,
-    "memory_avg": 3092.6614583333335,
-    "total_signals": 121
+    "cpu_avg": 33.5,
+    "memory_avg": 4844.55859375,
+    "total_signals": 131
   },
   "config": {
-    "version": "4.3.1",
-    "codename": "HyperEngine-Unlimited",
-    "cpu_target": 85,
-    "memory_target_mb": 8192,
+    "version": "4.4.0",
+    "codename": "HyperEngine-30Sources",
+    "cpu_target": 20,
+    "memory_target_mb": 3072,
     "scan_interval": 600,
-    "max_workers": 20,
+    "max_workers": 30,
     "signal_threshold": 4,
-    "unlimited_mode": true
+    "unlimited_mode": true,
+    "mode": "intermittent_scan",
+    "adaptive_mode": true,
+    "analysis_scheduled": "2026-02-13 10:38",
+    "source_count": 30
   }
 }

@@ -30,18 +30,20 @@ logging.basicConfig(
 logger = logging.getLogger('HyperEvolution')
 
 CONFIG = {
-    "version": "4.4.0",
-    "codename": "HyperEngine-30Sources",
-    "cpu_target": 20,        # 30源需要更高CPU，设为20%
-    "memory_target_mb": 3072, # 30源需要更多内存，设为3GB
+    "version": "4.5.0",
+    "codename": "HyperEngine-PlaywrightFixed",
+    "cpu_target": 25,        # Playwright需要更多CPU
+    "memory_target_mb": 4096, # Playwright需要更多内存
     "scan_interval": 600,
-    "max_workers": 30,        # 30源并发
+    "max_workers": 10,        # Playwright资源消耗大，减少并发
     "signal_threshold": 4,
     "unlimited_mode": True,
-    "mode": "intermittent_scan",
+    "mode": "deep_learning",
     "adaptive_mode": True,
     "analysis_scheduled": "2026-02-13 10:38",
-    "source_count": 30,       # 新增: 源数量标识
+    "source_count": 26,
+    "playwright_fixed": True,  # 新增: Playwright已修复
+    "chromium_path": "/usr/bin/chromium",  # 明确指定Chromium路径
 }
 
 SOURCES = [
