@@ -71,7 +71,21 @@
       "total": 30,
       "discovery_rate": 0.0,
       "interval_used": 600
+    },
+    {
+      "timestamp": 1770950852.6716552,
+      "datetime": "2026-02-13T10:47:32.671657",
+      "high_signal": 8,
+      "total": 30,
+      "discovery_rate": 0.26666666666666666,
+      "interval_used": 600
     }
   ],
-  "last_update": "2026-02-13T10:37:32.570909"
+  "last_update": "2026-02-13T10:47:32.671711",
+  "config": {
+    "base_interval": 600,
+    "min_interval": 300,
+    "max_interval": 1800,
+    "signal_threshold": 7
+  }
 }
