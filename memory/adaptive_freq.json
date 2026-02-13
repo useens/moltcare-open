@@ -81,5 +81,12 @@
       "interval_used": 600
     }
   ],
-  "last_update": "2026-02-13T11:57:33.312587"
+  "last_update": "2026-02-13T11:57:33.312587",
+  "config": {
+    "base_interval": 600,
+    "min_interval": 300,
+    "max_interval": 3600,
+    "signal_threshold": 7,
+    "adaptive_mode": true
+  }
 }
