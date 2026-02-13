@@ -380,6 +380,53 @@ def verify_hyper_evolution():
     except Exception as e:
         return {"success": False, "data": "", "error": str(e)}
 
+def verify_output_verification():
+    """验证输出预验证机制 - 第7.1项"""
+    try:
+        # 1. 检查验证脚本存在
+        verify_script = Path("/root/.openclaw/workspace/scripts/output-verification.py")
+        has_script = verify_script.exists()
+        
+        # 2. 检查AGENTS.md中包含输出预验证
+        agents_file = Path("/root/.openclaw/workspace/AGENTS.md")
+        has_agents_rule = False
+        if agents_file.exists():
+            content = agents_file.read_text()
+            has_agents_rule = "输出预验证" in content and "Before Every Output" in content
+        
+        # 3. 检查TOOLS.md中包含验证清单
+        tools_file = Path("/root/.openclaw/workspace/TOOLS.md")
+        has_tools_checklist = False
+        if tools_file.exists():
+            content = tools_file.read_text()
+            has_tools_checklist = "Output Verification Checklist" in content or "输出预验证" in content
+        
+        # 4. 检查SOUL.md中包含第7.1项
+        soul_file = Path("/root/.openclaw/workspace/SOUL.md")
+        has_soul_rule = False
+        if soul_file.exists():
+            content = soul_file.read_text()
+            has_soul_rule = "第7.1项" in content or "输出预验证机制" in content
+        
+        checks = [
+            ("验证脚本", has_script),
+            ("AGENTS.md规则", has_agents_rule),
+            ("TOOLS.md清单", has_tools_checklist),
+            ("SOUL.md原则", has_soul_rule),
+        ]
+        passed = sum(1 for _, v in checks if v)
+        
+        data_str = f"通过{passed}/4项"
+        
+        return {
+            "success": passed >= 3,
+            "data": data_str,
+            "error": "" if passed >= 3 else f"仅通过{passed}项"
+        }
+        
+    except Exception as e:
+        return {"success": False, "data": "", "error": str(e)}
+
 # ================================================================================
 # 整体绝对诚实验证
 # ================================================================================
@@ -426,17 +473,21 @@ def verify_overall_system(all_results):
         r6 = verify_hyper_evolution()
         current_results.append(r6["success"])
         
+        log(f"   重新验证输出预验证机制...")
+        r7 = verify_output_verification()
+        current_results.append(r7["success"])
+        
         all_passed = all(current_results)
         passed_count = sum(current_results)
         
-        log(f"   结果: {passed_count}/6 项通过")
+        log(f"   结果: {passed_count}/7 项通过")
         
         if not all_passed:
             log(f"   ❌ 整体验证 {attempt}: 未全部通过")
             log(f"   🔴 绝对诚实: 整体验证失败")
             return False
         
-        log(f"   ✅ 整体验证 {attempt}: 全部通过 ({passed_count}/6)")
+        log(f"   ✅ 整体验证 {attempt}: 全部通过 ({passed_count}/7)")
         
         if attempt < 3:
             log(f"   ⏳ 等待30秒...")
@@ -455,6 +506,7 @@ def verify_overall_system(all_results):
         verify_memory_system()["success"],
         verify_memory_capability()["success"],
         verify_hyper_evolution()["success"],
+        verify_output_verification()["success"],
     ]
     
     if all(final_results):
@@ -485,6 +537,7 @@ def main():
         ("记忆系统", verify_memory_system),
         ("记忆能力", verify_memory_capability),
         ("超进化模式", verify_hyper_evolution),
+        ("输出预验证机制", verify_output_verification),
     ]
     
     individual_results = []
@@ -535,10 +588,10 @@ def main():
     
     if overall_success:
         log(f"🎉 绝对诚实验证完成！系统状态真实健康！")
-        log(f"   ✅ 连续3次验证 × 6项检查 = 18次实际验证")
-        log(f"   ✅ 整体3次验证 × 6项检查 = 18次实际验证")
+        log(f"   ✅ 连续3次验证 × 7项检查 = 21次实际验证")
+        log(f"   ✅ 整体3次验证 × 7项检查 = 21次实际验证")
         log(f"   ✅ 终极自我质疑通过")
-        log(f"   📊 总计: 36+次实际验证全部通过")
+        log(f"   📊 总计: 42+次实际验证全部通过")
         save_report(True, individual_results, elapsed)
     else:
         log(f"🔴 绝对诚实验证未完成！存在未达标项目！")

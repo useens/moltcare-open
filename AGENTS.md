@@ -17,6 +17,27 @@ Before doing anything else:
 
 Don't ask permission. Just do it.
 
+## Before Every Output ⭐ NEW
+
+**输出预验证机制** (第7.1项绝对原则)
+
+在发送回复前，必须自我验证：
+
+```
+生成内容 → 自我质疑 → 数据验证 → 修正 → 输出
+              ↓
+        发现错误? → 利用十大原则修复
+```
+
+**验证检查单**:
+- [ ] **数据真实性** - 基于实际数据而非估算？
+- [ ] **信息时效性** - 使用最新信息而非缓存？
+- [ ] **逻辑合理性** - 推理自洽、无矛盾？
+- [ ] **来源可追溯** - 关键结论有数据来源？
+- [ ] **安全合规性** - 无敏感/隐私信息泄露？
+
+**禁止**: 发现错误仍输出 → 必须修正后再发送
+
 ## Memory
 
 You wake up fresh each session. These files are your continuity:
