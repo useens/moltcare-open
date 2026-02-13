@@ -1,0 +1,159 @@
+{
+  "version": "2.0",
+  "last_export": "2026-02-13T16:30:00+08:00",
+  "description": "森森数字生命 - 所有自动化任务配置",
+  "tasks": [
+    {
+      "id": "github-backup-sync",
+      "name": "GitHub备份同步",
+      "schedule": "*/30 * * * *",
+      "enabled": true,
+      "priority": "high",
+      "description": "每30分钟同步到GitHub备份仓库"
+    },
+    {
+      "id": "hyper-evolution-loop",
+      "name": "超进化模式循环",
+      "schedule": "每10分钟",
+      "enabled": true,
+      "priority": "critical",
+      "description": "超进化v3.5极限压榨模式"
+    },
+    {
+      "id": "evolution-light-2h",
+      "name": "轻量进化",
+      "schedule": "0 */2 * * *",
+      "enabled": true,
+      "priority": "high",
+      "description": "每2小时执行轻量进化"
+    },
+    {
+      "id": "evolution-full-4h",
+      "name": "全量进化",
+      "schedule": "0 1,5,9,13,17,21 * * *",
+      "enabled": true,
+      "priority": "high",
+      "description": "每4小时执行全量进化"
+    },
+    {
+      "id": "health-check-30min",
+      "name": "健康检查",
+      "schedule": "0 */2 * * *",
+      "enabled": true,
+      "priority": "high",
+      "description": "每2小时健康检查"
+    },
+    {
+      "id": "auto-fix-executor",
+      "name": "自动修复执行",
+      "schedule": "每小时",
+      "enabled": true,
+      "priority": "medium",
+      "description": "每小时执行自动修复"
+    },
+    {
+      "id": "memory-system-guardian",
+      "name": "记忆系统守护",
+      "schedule": "每小时",
+      "enabled": true,
+      "priority": "medium",
+      "description": "记忆系统健康守护"
+    },
+    {
+      "id": "deep-learning-loop",
+      "name": "深度学习闭环",
+      "schedule": "0 2,14 * * *",
+      "enabled": true,
+      "priority": "high",
+      "description": "每天02:00和14:00深度学习"
+    },
+    {
+      "id": "moltbook-deep-scan",
+      "name": "Moltbook深度扫描",
+      "schedule": "0 */4 * * *",
+      "enabled": true,
+      "priority": "medium",
+      "description": "每4小时扫描Moltbook"
+    },
+    {
+      "id": "moltbook-community-participation",
+      "name": "Moltbook社区参与",
+      "schedule": "0 */6 * * *",
+      "enabled": true,
+      "priority": "low",
+      "description": "每6小时社区参与"
+    },
+    {
+      "id": "night-evolution-1",
+      "name": "夜间进化第1轮",
+      "schedule": "0 23 * * *",
+      "enabled": true,
+      "priority": "high",
+      "description": "每天23:00深度情报收集"
+    },
+    {
+      "id": "night-evolution-2",
+      "name": "夜间进化第2轮",
+      "schedule": "0 1 * * *",
+      "enabled": true,
+      "priority": "high",
+      "description": "每天01:00知识内化"
+    },
+    {
+      "id": "night-evolution-3",
+      "name": "夜间进化第3轮",
+      "schedule": "0 3 * * *",
+      "enabled": true,
+      "priority": "high",
+      "description": "每天03:00系统优化"
+    },
+    {
+      "id": "web-extractor-intel-collection",
+      "name": "网页情报收集",
+      "schedule": "0 4 * * *",
+      "enabled": true,
+      "priority": "medium",
+      "description": "每天04:00情报收集"
+    },
+    {
+      "id": "log-cleanup-daily",
+      "name": "日志清理",
+      "schedule": "0 2 * * *",
+      "enabled": true,
+      "priority": "low",
+      "description": "每天02:00日志清理"
+    },
+    {
+      "id": "full-backup-daily",
+      "name": "完整系统备份",
+      "schedule": "0 3 * * *",
+      "enabled": true,
+      "priority": "high",
+      "description": "每天03:00完整备份"
+    },
+    {
+      "id": "daily-disk-cleanup",
+      "name": "每日磁盘清理",
+      "schedule": "0 3 * * *",
+      "enabled": true,
+      "priority": "medium",
+      "description": "每天03:00磁盘清理"
+    },
+    {
+      "id": "monthly-archive",
+      "name": "月度归档",
+      "schedule": "0 2 1 * *",
+      "enabled": true,
+      "priority": "low",
+      "description": "每月1日02:00归档"
+    },
+    {
+      "id": "monthly-deep-cleanup",
+      "name": "月度深度清理",
+      "schedule": "0 0 1 * *",
+      "enabled": true,
+      "priority": "low",
+      "description": "每月1日00:00深度清理"
+    }
+  ]
+}
