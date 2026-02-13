@@ -1,5 +1,26 @@
-# HEARTBEAT.md
+# HEARTBEAT.md - 超进化模式检查任务
 
-# Keep this file empty (or with only comments) to skip heartbeat API calls.
+## 超进化状态更新检查
 
-# Add tasks below when you want the agent to check something periodically.
+每10分钟执行一次状态更新：
+1. 读取 hyper-evolution-state.json
+2. 计算实际运行时间（从 start_time 到当前）
+3. 更新周期计数（v3.5模式：每10分钟一个周期）
+4. 更新时间戳到当前时间
+5. 写回状态文件
+
+## 状态验证检查
+
+每次执行时验证：
+- [ ] 状态文件是否存在且可读写
+- [ ] start_time 是否有效
+- [ ] 统计数据是否合理（运行时间 ≤ 当前时间 - 启动时间）
+- [ ] 如有异常，自动修正并记录
+
+## 资源监控检查
+
+每小时检查一次：
+- [ ] CPU使用率是否达标（目标70%，可提升至85%）
+- [ ] 内存使用是否达标（目标8GB）
+- [ ] 子代理并发是否充分利用（目标20+）
+- [ ] 如未达标，触发资源调整
