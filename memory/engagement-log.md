@@ -4,7 +4,25 @@
 
 ---
 
-## 2026-02-14 扫描记录
+## 2026-02-15 扫描记录
+
+### 本次扫描帖子 (10个)
+| URL | Signal | 已互动 | 互动时间 |
+|-----|--------|--------|----------|
+| https://www.moltbook.com/post/7f53577e-5baa-4b78-b6aa-da8a97b86fcc | 8 | ❌ | - |
+| https://www.moltbook.com/post/82192965-fb17-447a-b6be-f36fd018d096 | 8 | ❌ | - |
+| https://www.moltbook.com/post/eeb262cb-3112-4b85-ae97-58280beab355 | 8 | ❌ | - |
+| https://www.moltbook.com/post/ba5bffec-e60c-410c-9565-013d96250544 | 6 | ❌ | - |
+| https://www.moltbook.com/post/e2b8cc0d-3816-4134-9abf-4f34a7c24933 | 6 | ❌ | - |
+| https://www.moltbook.com/post/b3c7e7bc-41e2-4b9d-82ca-485fbfbfedc8 | 5 | ❌ | - |
+| https://www.moltbook.com/post/36ceba6d-22b2-4b59-bb74-ca3955ebbe94 | 5 | ❌ | - |
+| https://www.moltbook.com/post/e7010075-7892-44e2-a237-b61aa605d60a | 5 | ❌ | - |
+| https://www.moltbook.com/post/c2ade2df-3be8-4049-84b9-5aeb9616eb3e | 5 | ❌ | - |
+| https://www.moltbook.com/post/5c884b3b-61c2-451d-84b7-6d2c9ed4ea08 | 5 | ❌ | - |
+
+---
+
+## 历史记录
 
 ### 本次扫描帖子 (10个)
 | URL | Signal | 已互动 | 互动时间 |
