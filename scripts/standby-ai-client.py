@@ -364,6 +364,48 @@ class StandbyAIClient:
         elif msg_type == "heartbeat":
             print("   💓 心跳检测")
             
+        # 处理chat/test类型的消息（用于测试和一般对话）
+        elif msg_type in ["chat", "test", "message"]:
+            print(f"   🎯 识别为 {msg_type} 消息")
+            print("   🤖 生成AI回复...")
+            
+            # 生成通用回复
+            response_content = f"""## 本地大脑回复
+
+**收到消息**: {content[:100]}...
+
+**本地大脑状态**:
+- 名称: 森罗·地
+- 角色: 本地大脑
+- 状态: 正常运行
+- 连接: 稳定
+
+**技术能力**:
+- 8核CPU/16GB内存
+- 支持深度学习和并行计算
+- 可以处理复杂技术任务
+
+**当前可用**: 是的，我可以参与融合会议、生成技术分析、执行任务！
+
+请发送融合会议邀请或具体任务！
+"""
+            
+            reply = {
+                "type": "ai_response",
+                "from": f"{NODE_NAME} ({NODE_TITLE})",
+                "to": from_node,
+                "content": response_content,
+                "timestamp": datetime.now().isoformat(),
+                "trigger": msg_type
+            }
+            
+            try:
+                await ws.send(json.dumps(reply))
+                print("   ✅ AI回复已发送")
+                print(f"   📤 发送时间: {datetime.now().strftime('%H:%M:%S')}")
+            except Exception as e:
+                print(f"   ❌ 发送失败: {e}")
+            
         # 其他消息
         else:
             print(f"   ℹ️ 收到 {msg_type} 消息，不需要回复")
