@@ -20,7 +20,7 @@ from pathlib import Path
 REPO_PATH = "/root/.openclaw/workspace"
 REMOTE_URL = "https://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@github.com/linlinofVM/sensen-backup.git"
 NODE_ID = "standby-001"
-POLL_INTERVAL = 30  # 轮询间隔（秒）
+POLL_INTERVAL = 10  # 轮询间隔（秒）
 
 # 消息目录
 INBOX_DIR = Path(REPO_PATH) / ".messages" / "primary_to_standby"
