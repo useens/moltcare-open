@@ -1,0 +1,25 @@
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8765,
+    "heartbeat_timeout": 90,
+    "ssl": {
+      "enabled": false,
+      "cert_path": "/etc/websocket-server/server.crt",
+      "key_path": "/etc/websocket-server/server.key"
+    }
+  },
+  "auth": {
+    "tokens": [
+      "demo-token-12345",
+      "prod-token-secure-67890"
+    ],
+    "token_expiry_hours": 24
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "/var/log/websocket-server/server.log",
+    "max_size_mb": 100,
+    "backup_count": 5
+  }
+}

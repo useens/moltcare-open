@@ -1,0 +1,39 @@
+[Unit]
+Description=WebSocket Server - Cloud Node
+Documentation=https://github.com/your-org/websocket-system
+After=network.target
+
+[Service]
+Type=simple
+User=websocket
+Group=websocket
+WorkingDirectory=/opt/websocket-server
+Environment=PYTHONUNBUFFERED=1
+Environment=CONFIG_PATH=/etc/websocket-server/server.json
+
+# 启动命令
+ExecStart=/opt/websocket-server/venv/bin/python /opt/websocket-server/server.py --host 0.0.0.0 --port 8765
+
+# 重启策略
+Restart=always
+RestartSec=5
+StartLimitInterval=60s
+StartLimitBurst=3
+
+# 优雅停止
+TimeoutStopSec=30
+KillSignal=SIGTERM
+
+# 资源限制
+LimitNOFILE=65535
+LimitNPROC=4096
+
+# 安全设置
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/log/websocket-server
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
