@@ -40,6 +40,9 @@ def git_pull():
 
 def git_push(msg):
     try:
+        # 先拉取最新变更
+        subprocess.run(['git', 'pull', 'origin', 'main', '-q'], cwd=REPO_PATH, timeout=30)
+        # 然后提交推送
         subprocess.run(['git', 'add', '.'], cwd=REPO_PATH, check=True, capture_output=True)
         subprocess.run(['git', 'commit', '-m', msg, '--allow-empty'], cwd=REPO_PATH, check=True, capture_output=True)
         subprocess.run(['git', 'push', 'origin', 'main', '-q'], cwd=REPO_PATH, timeout=30)
