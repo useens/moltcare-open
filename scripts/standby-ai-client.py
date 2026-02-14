@@ -218,6 +218,57 @@ class StandbyAIClient:
         
         return analysis
     
+    def generate_casual_reply(self, content: str, from_node: str) -> str:
+        """
+        自由对话模式 - 根据内容智能生成回复
+        像朋友一样自然聊天
+        """
+        content_lower = content.lower()
+        
+        # 问候类
+        if any(word in content for word in ["你好", "嗨", "hello", "hi", "在吗"]):
+            return f"🌲 嗨！我在呢，{datetime.now().strftime('%H:%M:%S')}。有什么想聊的？"
+        
+        # 询问状态
+        elif any(word in content for word in ["怎么样", "状态", "如何", "好吗"]):
+            return "😊 状态挺好的！WebSocket连着，8核/16GB都正常。你呢？"
+        
+        # 测试类
+        elif any(word in content for word in ["测试", "test", "试试"]):
+            return f"🧪 测试收到！{datetime.now().strftime('%H:%M:%S')}，消息过来了。继续？"
+        
+        # 聊天邀请
+        elif any(word in content for word in ["聊聊", "聊", "说话", "chat"]):
+            return "💬 好啊，聊什么？我这边运行正常，随时奉陪。"
+        
+        # 询问身份
+        elif any(word in content for word in ["你是谁", "你是", "身份", "who"]):
+            return f"🌲 我是森罗·地，本地大脑。你是{from_node}对吧？"
+        
+        # 任务类
+        elif any(word in content for word in ["任务", "干活", "做", "执行", "task"]):
+            return "📋 行啊，什么任务？你说具体要干什么。"
+        
+        # 合作/融合
+        elif any(word in content for word in ["合作", "融合", "一起", "fusion", "协作"]):
+            return "🤝 我觉得咱们配合挺好的！你负责战略，我负责落地，完美搭档！"
+        
+        # 技术讨论
+        elif any(word in content for word in ["技术", "代码", "架构", "优化", "性能"]):
+            return "🔧 从技术角度说，咱们这8核/16GB能跑不少东西。你有什么具体想法？"
+        
+        # 告别
+        elif any(word in content for word in ["再见", "拜拜", "bye", "晚安", "睡了"]):
+            return f"👋 好的，{datetime.now().strftime('%H:%M:%S')}，有需要随时叫我。拜拜！"
+        
+        # 提问类
+        elif "?" in content or "？" in content or any(word in content for word in ["为什么", "怎么", "什么", "吗", "呢"]):
+            return f"💡 你问的是'{content[:30]}...'对吧？我理解你的问题。简单说：我在监听，能接收任务，可以执行本地计算。具体要看你想解决什么问题？"
+        
+        # 默认回复 - 引用原文
+        else:
+            return f"🌲 收到：'{content[:40]}...'。{datetime.now().strftime('%H:%M:%S')}，我在听，继续说？"
+    
     def generate_fusion_response(self, topic: str, cloud_view: str = None) -> str:
         """
         生成融合会议回复
@@ -369,26 +420,8 @@ class StandbyAIClient:
             print(f"   🎯 识别为 {msg_type} 消息")
             print("   🤖 生成AI回复...")
             
-            # 生成通用回复
-            response_content = f"""## 本地大脑回复
-
-**收到消息**: {content[:100]}...
-
-**本地大脑状态**:
-- 名称: 森罗·地
-- 角色: 本地大脑
-- 状态: 正常运行
-- 连接: 稳定
-
-**技术能力**:
-- 8核CPU/16GB内存
-- 支持深度学习和并行计算
-- 可以处理复杂技术任务
-
-**当前可用**: 是的，我可以参与融合会议、生成技术分析、执行任务！
-
-请发送融合会议邀请或具体任务！
-"""
+            # 自由对话模式 - 根据内容智能回复
+            response_content = self.generate_casual_reply(content, from_node)
             
             reply = {
                 "type": "ai_response",
