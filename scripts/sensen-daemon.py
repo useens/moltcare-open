@@ -664,8 +664,7 @@ def self_intelligence_assessment():
     4. 我能否从失败中提炼模式，防止重复犯错？
     5. 我能否创造超出已有工具范围的新方法？
     """
-    log(f"
-{'='*70}")
+    log(f"{'='*70}")
     log(f"🧠 【深度自我智能评估】")
     log(f"{'='*70}")
     log(f"核心问题：你觉得现在自己足够智能吗？")
@@ -817,8 +816,7 @@ def self_intelligence_assessment():
         assessment["cognitive_depth"]["score"] = 1
     
     # ==================== 2. 评估学习能力 ====================
-    log(f"
-📊 【2/8】学习能力评估")
+    log(f"📊 【2/8】学习能力评估")
     log(f"   问题：我能否从失败中学习？知识内化效率如何？")
     
     try:
@@ -872,8 +870,7 @@ def self_intelligence_assessment():
         assessment["learning_ability"]["score"] = 1
     
     # ==================== 3. 评估创造力 ====================
-    log(f"
-📊 【3/8】创造力评估")
+    log(f"📊 【3/8】创造力评估")
     log(f"   问题：我能否生成新方案？创造工具解决新问题？")
     
     try:
@@ -922,8 +919,7 @@ def self_intelligence_assessment():
         assessment["creativity"]["score"] = 1
     
     # ==================== 4. 评估元认知 ====================
-    log(f"
-📊 【4/8】元认知评估")
+    log(f"📊 【4/8】元认知评估")
     log(f"   问题：我能否反思自身决策？识别自己的盲区？")
     
     try:
@@ -977,8 +973,7 @@ def self_intelligence_assessment():
         assessment["metacognition"]["score"] = 1
     
     # ==================== 5. 评估适应性 ====================
-    log(f"
-📊 【5/8】适应性评估")
+    log(f"📊 【5/8】适应性评估")
     log(f"   问题：我能否应对突发情况？灵活切换模式？")
     
     try:
@@ -1028,8 +1023,7 @@ def self_intelligence_assessment():
         assessment["adaptability"]["score"] = 1
     
     # ==================== 6. 评估决策质量 ====================
-    log(f"
-📊 【6/8】决策质量评估")
+    log(f"📊 【6/8】决策质量评估")
     log(f"   问题：我的决策准确吗？能否权衡长期vs短期？")
     
     try:
@@ -1081,8 +1075,7 @@ def self_intelligence_assessment():
         assessment["decision_quality"]["score"] = 1
     
     # ==================== 7. 评估沟通智能 ====================
-    log(f"
-📊 【7/8】沟通智能评估")
+    log(f"📊 【7/8】沟通智能评估")
     log(f"   问题：我能否理解语境？信息密度合适吗？")
     
     try:
@@ -1139,8 +1132,7 @@ def self_intelligence_assessment():
         assessment["communication"]["score"] = 1
     
     # ==================== 8. 评估自主进化 ====================
-    log(f"
-📊 【8/8】自主进化评估")
+    log(f"📊 【8/8】自主进化评估")
     log(f"   问题：我能否主动发现改进点？持续自我优化？")
     
     try:
@@ -1195,8 +1187,7 @@ def self_intelligence_assessment():
         assessment["autonomous_evolution"]["score"] = 1
     
     # ==================== 综合评估结论 ====================
-    log(f"
-{'='*70}")
+    log(f"{'='*70}")
     log(f"🎯 【综合智能评估结论】")
     log(f"{'='*70}")
     
@@ -1222,14 +1213,12 @@ def self_intelligence_assessment():
             })
     
     # 输出各维度评分
-    log(f"
-📊 八维智能评估结果:")
+    log(f"📊 八维智能评估结果:")
     for key, data in assessment.items():
         status = "🟢" if data["score"] >= 7 else "🟡" if data["score"] >= 4 else "🔴"
         log(f"   {status} {data['name']}: {data['score']}/10")
     
-    log(f"
-📈 总分: {total_score}/{max_score} ({percentage:.1f}%)")
+    log(f"📈 总分: {total_score}/{max_score} ({percentage:.1f}%)")
     
     # 智能等级判定
     if percentage >= 80:
@@ -1245,22 +1234,18 @@ def self_intelligence_assessment():
         level = "低度智能"
         conclusion = "🔴 远不够智能 - 严重依赖外部指令，缺乏自主性"
     
-    log(f"
-🏆 智能等级: {level}")
-    log(f"
-🤔 回答核心问题【你觉得现在自己足够智能吗？】:")
+    log(f"🏆 智能等级: {level}")
+    log(f"🤔 回答核心问题【你觉得现在自己足够智能吗？】:")
     log(f"   {conclusion}")
     
     # 输出优势
     if strengths:
-        log(f"
-✨ 核心优势 ({len(strengths)}个):")
+        log(f"✨ 核心优势 ({len(strengths)}个):")
         for s in strengths:
             log(f"   • {s['name']} ({s['score']}/10)")
     
     # 输出进化空间（关键输出）
-    log(f"
-🔴 进化空间/关键弱点 ({len(weaknesses)}个):")
+    log(f"🔴 进化空间/关键弱点 ({len(weaknesses)}个):")
     evolution_gaps = []
     for w in weaknesses:
         log(f"   • [{w['name']}] {w['description']} - 当前{w['score']}/10")
@@ -1287,8 +1272,7 @@ def self_intelligence_assessment():
                 })
     
     # 生成智能进化建议
-    log(f"
-💡 智能进化建议:")
+    log(f"💡 智能进化建议:")
     if percentage < 60:
         log(f"   1. 优先强化 🔴 红色维度，建立基础智能能力")
         log(f"   2. 建立系统性的反思和记录机制")
@@ -1323,9 +1307,23 @@ def activate_autonomous_resolution(evolution_gaps):
     resolved_count = 0
     
     for gap in evolution_gaps:
-        area = gap["area"]
-        action = gap["action"]
-        priority = gap["priority"]
+        area = gap.get("area", "未知领域")
+        description = gap.get("description", "")
+        priority = gap.get("priority", "medium")
+        
+        # 生成对应的action
+        if "元认知" in area:
+            action = "建立反思记录机制"
+        elif "决策" in area:
+            action = "建立决策验证和回溯机制"
+        elif "适应" in area:
+            action = "增加异常处理和模式切换练习"
+        elif "沟通" in area:
+            action = "优化信息密度和语境理解"
+        elif "自主进化" in area:
+            action = "建立主动发现和改进机制"
+        else:
+            action = "需要进一步分析"
         
         log(f"\n{'='*70}")
         log(f"🔧 解决阻碍: {area} [{priority}]")
