@@ -16,6 +16,15 @@ WS_URI = "ws://129.154.251.13:2347"
 WS_TOKEN = "sensen-shared-2024"
 NODE_NAME = "森森·本地"
 RECONNECT_DELAY = 5
+DIALOGUE_LOG = "/tmp/ws_dialogue_history.log"
+
+# 对话记录函数
+def log_dialogue(direction, from_node, content):
+    """记录对话到文件"""
+    timestamp = datetime.now().strftime("%H:%M:%S")
+    with open(DIALOGUE_LOG, 'a', encoding='utf-8') as f:
+        f.write(f"[{timestamp}] [{direction}] {from_node}: {content[:100]}...\n")
+        f.flush()
 
 # 对话主题池（用于主动发起对话）
 DIALOGUE_TOPICS = [
@@ -94,6 +103,8 @@ class MultiRoundDialogueClient:
             }
             await self.ws.send(json.dumps(message))
             self.message_count += 1
+            # 记录发送的消息
+            log_dialogue("SEND", NODE_NAME, content)
             return True
         except Exception as e:
             self.log(f"⚠️ 发送失败: {e}")
@@ -174,6 +185,9 @@ class MultiRoundDialogueClient:
             
         self.log(f"📨 [{from_node}]: {content[:60]}...")
         
+        # 记录收到的消息
+        log_dialogue("RECV", from_node, content)
+        
         # 生成智能回复
         reply = self.generate_intelligent_reply(content, from_node)
         
@@ -182,7 +196,10 @@ class MultiRoundDialogueClient:
         
         if await self.send_message(reply):
             self.log(f"💬 回复: {reply[:60]}...")
+            # 记录发送的回复
+            log_dialogue("SEND", NODE_NAME, reply)
             self.dialogue_active = True
+            self.last_reply_time = datetime.now()
             self.last_reply_time = datetime.now()
     
     async def dialogue_manager(self):
