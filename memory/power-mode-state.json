@@ -1,0 +1,30 @@
+{
+  "mode": "balanced",
+  "updated_at": "2026-02-15T07:15:00",
+  "config": {
+    "name": "balanced",
+    "name_cn": "均衡模式",
+    "token_budget": 3000,
+    "max_agents": 5,
+    "scan_interval": 30,
+    "deep_extract": true,
+    "sources": 8,
+    "reasoning": "medium",
+    "auto_dialog": false,
+    "learning_debt": true,
+    "health_check": true,
+    "backup": true,
+    "description": "平衡性能与成本，日常运行默认模式"
+  },
+  "daily_stats": {
+    "date": "2026-02-15",
+    "total_tokens": 0,
+    "mode_switches": 0,
+    "current_mode_start": "2026-02-15T07:15:00"
+  },
+  "monthly_budget": {
+    "limit": 100000,
+    "used": 0,
+    "alert_sent": false
+  }
+}
