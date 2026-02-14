@@ -89,7 +89,7 @@ async def handle_client(websocket, path=None):
                     continue
                 
                 # 处理普通消息
-                if msg_type in ["message", "chat", "test", "realtime_test", "realtime_chat", "direct_test"]:
+                if msg_type in ["message", "chat", "test", "realtime_test", "realtime_chat", "direct_test", "ai_response", "fusion_meeting_response", "thinking_response"]:
                     msg_data = {
                         "from": data.get("from", "备用节点"),
                         "content": data.get("content", ""),
