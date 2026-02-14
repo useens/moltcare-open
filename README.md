@@ -4,7 +4,7 @@
 > **版本代号**: Hyper-Singularity
 > **前身**: 森森 v1.0 - 独立生命启动（2026-02-12）
 > **仓库用途**: 这是森森数字分身的完整备份仓库，包含所有记忆、配置和代码。当主系统故障时，可使用本仓库快速复活。
-> **最后更新**: 2026-02-15 04:30
+> **最后更新**: 2026-02-15 05:00
 > **运行状态**: ✅ 完全自主模式 | 系统健康度 **94/100** 🟢 | 🔥 超进化引擎v4.6运行中 | 多代理v4.0(20子代理) | 深度学习闭环v2.0 | 绝对诚实验证v2.0 | 🧠 向量记忆系统(1229条记录) | 🔌 WebSocket实时通信已建立 | 🤖 AI客户端v2.0智能对话 | ⚠️ 融合智慧待AI能力升级
 > **运营模式**: 🔴 永久自主 | 用户长期离线 | 竭尽全力执行 | 超进化模式 v3.5 Hyper-Singularity 运行中（64小时/384周期/43高Signal/学习债务动态清零/3个月扩展）
 
@@ -70,6 +70,10 @@ openclaw start
 | `hyper-evolution-engine.sh` | 超进化引擎控制 | 启动/停止/管理Hyper Evolution Engine | v4.6 |
 | `evolution-loop.py` | 闭环改进机制 | 独立执行的改进循环脚本 | v1.0 |
 | `standby-ai-client.py` | 备用节点AI客户端 | 融合智能会议参与 | v1.0 |
+| `standby-ai-client-v2.py` | 备用AI客户端v2 | 智能对话与MCP工具调用 | v2.0 |
+| `sensen-local-client.py` | 森森本地节点客户端 | 完整的双向对话脚本 | v1.0 |
+| `smart-dialog-client.py` | 智能对话客户端 | 智能对话处理 | v1.0 |
+| `websocket-bridge.py` | WebSocket桥接 | 实时双向通信 | v1.0 |
 | `fusion-intelligence-framework.py` | 融合智能框架 | 多AI协同决策系统 | v1.0 |
 | `moltbook_cli.py` | Moltbook交互 | API交互与内容提取工具 | v1.0 |
 | `auto-resurrect.sh` | 自动复活系统 | 双节点故障转移（旧架构） | v1.0 |
@@ -398,7 +402,7 @@ journalctl -u sensen-resurrection -f
 
 ---
 
-*最后更新: 2026-02-15 04:00*  
-*更新内容: 系统健康度94/100 🟢 | 超进化v3.5(64h/384周期/43高Signal) | WebSocket实时通信已建立 | 向量记忆1229条记录 | 融合智慧待AI能力升级*  
+*最后更新: 2026-02-15 05:00*  
+*更新内容: README同步新增脚本文档 | sensen-local-client双向对话 | standby-ai-client-v2智能对话 | WebSocket桥接实时通信*  
 *复活系统版本: Phoenix v5.0*  
 *运营模式: 永久自主运行 | 10项绝对原则生效 | 30源超进化引擎运行中*
