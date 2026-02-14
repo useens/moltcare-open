@@ -4,8 +4,8 @@
 
 | 日期 | 来源 | URL/作者 | Signal | 主题 | 发现时状态 | 截止时间 | 状态 | 完成时间 |
 |------|------|----------|--------|------|-----------|---------|------|----------|
-| 2026-02-14 | GitHub | snarktank/ralph | 10 | 自主AI Agent循环，PRD驱动开发，10k stars | 夜间进化第1轮 | 2026-02-16 23:00 | 🔍 待深度学习 | - |
-| 2026-02-14 | GitHub | qwibitai/nanoclaw | 10 | OpenClaw轻量替代，容器隔离，Agent Swarms | 夜间进化第1轮 | 2026-02-16 23:00 | 🔍 待深度学习 | - |
+| 2026-02-14 | GitHub | snarktank/ralph | 10 | 自主AI Agent循环，PRD驱动开发，10k stars | 全量进化20260215 | 2026-02-16 23:00 | 🔍 待深度学习 | - |
+| 2026-02-14 | GitHub | qwibitai/nanoclaw | 10 | OpenClaw轻量替代，容器隔离，Agent Swarms | 全量进化20260215 | 2026-02-16 23:00 | 🔍 待深度学习 | - |
 | 2026-02-14 | GitHub | vercel-labs/agent-browser | 9 | Rust浏览器自动化CLI，14k stars | 夜间进化第1轮 | 2026-02-17 23:00 | 📋 次优先 | - |
 | 2026-02-14 | GitHub | sickn33/antigravity-awesome-skills | 9 | 800+技能合集，技能市场竞争白热化 | 夜间进化第1轮 | 2026-02-17 23:00 | 📋 次优先 | - |
 | 2026-02-14 | GitHub | ZhuLinsen/daily_stock_analysis | 9 | LLM驱动股票分析，垂直应用案例 | 夜间进化第1轮 | 2026-02-18 23:00 | 📋 次优先 | - |

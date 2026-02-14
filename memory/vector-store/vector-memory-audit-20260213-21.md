@@ -1,0 +1,1 @@
+/root/.openclaw/workspace/memory/vector/vector-memory-audit-20260213-21.md
