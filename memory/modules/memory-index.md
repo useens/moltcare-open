@@ -1,7 +1,7 @@
 # 📚 永久记忆索引 (Permanent Memory Index)
 
 > 核心记忆的快速导航与组织结构  
-> 更新时间: 2026-02-13 01:44 | **健康评分: 92/100** 🟢 | [维护报告](../../reports/memory-maintenance-20250213-0142.md)
+> 更新时间: 2026-02-14 13:05 | **健康评分: 92/100** 🟢 | [维护报告](../../reports/memory-maintenance-20260214-1305.md)
 
 ---
 
@@ -62,6 +62,8 @@ memory/
 | `modules/autonomous-evolution-v1.2.md` | 自主进化v1.2设计 | ⭐⭐⭐⭐ |
 | `modules/task-optimization.md` | 任务执行优化记录 | ⭐⭐⭐ |
 | `modules/multi-agent-improvements.md` | 多代理改进方案 | ⭐⭐⭐⭐ |
+| `modules/dual-node-task-queue.md` | 双节点任务队列设计 | ⭐⭐⭐⭐ |
+| `modules/branch-strategy.md` | 分支策略规范 | ⭐⭐⭐ |
 
 ### 社区运营
 | 文件 | 内容 | 重要性 |
@@ -79,6 +81,9 @@ memory/
 | `scripts/web-extractor/generic_extractor.py` | 通用配置版提取器 | ⭐⭐⭐⭐⭐ |
 | `modules/skill-localization-criteria.md` | 技能本地化评估标准 | ⭐⭐⭐⭐ |
 | `tags/skills-installed.md` | 已安装技能清单 | ⭐⭐⭐⭐ |
+| `modules/moltbook-learning.md` | Moltbook学习记录汇总 | ⭐⭐⭐⭐ |
+| `modules/moltbook-scan-summary-20260212-1000.md` | Moltbook扫描摘要 | ⭐⭐⭐ |
+| `modules/moltbook-account-status.md` | Moltbook账户状态 | ⭐⭐⭐ |
 
 ---
 
@@ -192,4 +197,4 @@ EV-YYYYMMDD-NNN.md
 ---
 
 *本索引为记忆系统的导航中心，必须保持最新*  
-*最后整理: 2026-02-13 | [完整维护报告](../../reports/memory-maintenance-20250213-0142.md)*
+*最后整理: 2026-02-14 | [完整维护报告](../../reports/memory-maintenance-20260214-1305.md)*

@@ -1,0 +1,132 @@
+{
+  "timestamp": "2026-02-15T01:10:41.947019",
+  "system": {
+    "cpu": {
+      "usage": 0.5,
+      "cores": 4,
+      "status": "ok"
+    },
+    "memory": {
+      "total_gb": 23.441055297851562,
+      "used_gb": 3.167377471923828,
+      "usage": 13.5,
+      "status": "ok"
+    },
+    "disk": {
+      "total_gb": 97.37789154052734,
+      "used_gb": 43.92715835571289,
+      "free_gb": 48.460208892822266,
+      "usage": 47.5,
+      "status": "ok"
+    },
+    "network": {
+      "bytes_sent_mb": 7913.396617889404,
+      "bytes_recv_mb": 2945.083122253418
+    },
+    "load": {
+      "1min": 0.34228515625,
+      "5min": 0.36376953125,
+      "15min": 0.1728515625
+    },
+    "uptime": {
+      "days": 1,
+      "hours": 22,
+      "minutes": 34
+    }
+  },
+  "hyper_evolution": {
+    "active": true,
+    "mode": "hyper-evolution",
+    "version": "3.5.0",
+    "runtime_hours": 59.68,
+    "deep_learning_count": 1,
+    "knowledge_updates": 0,
+    "learning_debt_cleared": 0
+  },
+  "learning_debt": {
+    "exists": true,
+    "size_kb": 7.169921875,
+    "lines": 80,
+    "high_signal_items": 0,
+    "last_update": "2026-02-15 01:02",
+    "status": "ok"
+  },
+  "automation": {
+    "log_manager": {
+      "last_run": "2026-02-15T01:08:47.171272",
+      "hours_ago": 0.0,
+      "status": "ok"
+    },
+    "backup_check": {
+      "status": "unknown",
+      "last_run": null
+    },
+    "health_check": {
+      "status": "unknown",
+      "last_run": null
+    },
+    "intel_scheduler": {
+      "last_run": "2026-02-15T01:09:21.737033",
+      "hours_ago": 0.0,
+      "status": "ok"
+    }
+  },
+  "scripts": {
+    "scripts/hyper-evolution.py": {
+      "exists": true,
+      "size_kb": 11.294921875,
+      "last_modified": "2026-02-12",
+      "age_days": 2.5,
+      "syntax_ok": true,
+      "status": "ok"
+    },
+    "scripts/collect-web-intel-fast.py": {
+      "exists": true,
+      "size_kb": 6.7578125,
+      "last_modified": "2026-02-11",
+      "age_days": 3.2,
+      "syntax_ok": true,
+      "status": "ok"
+    },
+    "scripts/meta-learning-engine.py": {
+      "exists": true,
+      "size_kb": 12.2529296875,
+      "last_modified": "2026-02-12",
+      "age_days": 2.4,
+      "syntax_ok": true,
+      "status": "ok"
+    },
+    "scripts/bootstrapping-system.py": {
+      "exists": true,
+      "size_kb": 12.3291015625,
+      "last_modified": "2026-02-12",
+      "age_days": 2.4,
+      "syntax_ok": true,
+      "status": "ok"
+    },
+    "scripts/auto-log-manager.py": {
+      "exists": true,
+      "size_kb": 12.2822265625,
+      "last_modified": "2026-02-15",
+      "age_days": 0.0,
+      "syntax_ok": true,
+      "status": "ok"
+    },
+    "scripts/auto-backup-check.py": {
+      "exists": true,
+      "size_kb": 14.943359375,
+      "last_modified": "2026-02-15",
+      "age_days": 0.0,
+      "syntax_ok": true,
+      "status": "ok"
+    },
+    "scripts/auto-health-check.py": {
+      "exists": true,
+      "size_kb": 16.8798828125,
+      "last_modified": "2026-02-15",
+      "age_days": 0.0,
+      "syntax_ok": true,
+      "status": "ok"
+    }
+  }
+}

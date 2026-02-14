@@ -71,7 +71,7 @@ class VectorStore:
         self,
         db_path: Union[str, Path],
         table_name: str = "memories",
-        embedding_dim: int = 1024,
+        embedding_dim: int = 384,
     ):
         """
         初始化向量存储

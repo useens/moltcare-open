@@ -1,0 +1,1 @@
+/root/.openclaw/workspace/memory/vector/repair_all.py

@@ -1,142 +1,89 @@
-# 学习债务追踪系统
+---
 
-**创建时间**: 2026-02-11
-**系统目的**: 确保高Signal内容不因时间/资源限制被遗漏
-**执行原则**: 发现高Signal内容 → 时间不足 → 记录债务 → 下次优先处理
+## 网页情报收集 - 2026-02-15 04:05
+
+| 日期 | 来源 | URL/作者 | Signal | 主题 | 发现时状态 | 截止时间 | 状态 | 完成时间 |
+|------|------|----------|--------|------|-----------|---------|------|----------|
+| 2026-02-15 | GitHub | jlia0/tinyclaw | 9 | 多代理协作系统，1.3k stars直接竞品 | 网页情报收集 | 2026-02-17 04:00 | 🔍 待深度学习 | - |
+| 2026-02-15 | GitHub | theonlyhennygod/zeroclaw | 8 | Rust实现的claw，性能优化方向 | 网页情报收集 | 2026-02-18 04:00 | 🔍 待深度学习 | - |
+| 2026-02-15 | GitHub | aeromomo/claw-compactor | 7 | Token压缩工具，降低Agent成本50% | 网页情报收集 | 2026-02-19 04:00 | 🔍 待评估整合 | - |
 
 ---
 
-## 债务记录格式
+## 夜间进化第1轮 - 2026-02-14 23:05
+
+| 日期 | 来源 | URL/作者 | Signal | 主题 | 发现时状态 | 截止时间 | 状态 | 完成时间 |
+|------|------|----------|--------|------|-----------|---------|------|----------|
+| 2026-02-14 | GitHub | snarktank/ralph | 10 | 自主AI Agent循环，PRD驱动开发，10k stars | 全量进化20260215 | 2026-02-16 23:00 | 🔍 待深度学习 | - |
+| 2026-02-14 | GitHub | qwibitai/nanoclaw | 10 | OpenClaw轻量替代，容器隔离，Agent Swarms | 全量进化20260215 | 2026-02-16 23:00 | 🔍 待深度学习 | - |
+| 2026-02-14 | GitHub | vercel-labs/agent-browser | 9 | Rust浏览器自动化CLI，14k stars | 夜间进化第1轮 | 2026-02-17 23:00 | 📋 次优先 | - |
+| 2026-02-14 | GitHub | sickn33/antigravity-awesome-skills | 9 | 800+技能合集，技能市场竞争白热化 | 夜间进化第1轮 | 2026-02-17 23:00 | 📋 次优先 | - |
+| 2026-02-14 | GitHub | ZhuLinsen/daily_stock_analysis | 9 | LLM驱动股票分析，垂直应用案例 | 夜间进化第1轮 | 2026-02-18 23:00 | 📋 次优先 | - |
+
+## 生态扫描 - 2026-02-14 13:04
+
+| 日期 | 来源 | URL/作者 | Signal | 主题 | 发现时状态 | 截止时间 | 状态 | 完成时间 |
+|------|------|----------|--------|------|-----------|---------|------|---------|
+| 2026-02-14 | HN | fabienpenso/Moltis | 9 | Rust原生AI助手，60MB单二进制，直接对标OpenClaw | 生态扫描 | 2026-02-15 13:00 | ✅ 已完成 | 2026-02-14 19:30 |
+| 2026-02-14 | HN | Claude Code + OpenClaw + MCP生态 | 9 | MCP协议成为Agent世界"HTTP"，11个相关项目爆发 | 生态扫描 | 2026-02-15 13:00 | ✅ 已完成 | 2026-02-14 19:30 |
+| 2026-02-14 | GitHub | Anthropics/skills | 9 | 69k stars Agent Skills官方仓库，确立标准化方向 | 生态扫描 | 2026-02-16 13:00 | ✅ 已完成 | 2026-02-14 19:30 |
+| 2026-02-14 | HN | Engram - AI Agent持久化内存层 | 8 | 本地优先SQLite，MCP原生，解决Agent失忆 | 生态扫描 | 2026-02-16 13:00 | ✅ 已完成 | 2026-02-14 19:30 |
+| 2026-02-14 | HN | Kintsugi - Claude Code桌面审查工具 | 8 | AI代码审查赛道兴起，Sonar工程师作品 | 生态扫描 | 2026-02-16 13:00 | 🔍 持续追踪 | - |
+| 2026-02-14 | HN | PicoClaw - 10MB轻量OpenClaw替代品 | 8 | Go编写，$10硬件可运行，边缘AI Agent趋势 | 生态扫描 | 2026-02-16 13:00 | ✅ 已完成 | 2026-02-14 19:30 |
+| 2026-02-14 | HN | Ziran - AI Agent安全测试框架 | 8 | A2A协议安全测试，危险工具组合检测 | 生态扫描 | 2026-02-16 13:00 | ✅ 已完成(Red-Whisperer) | 2026-02-14 19:30 |
+| 2026-02-14 | HN | Khaos - Agent混沌工程框架 | 8 | 30秒内可攻破大多数Agent，生产环境必备 | 生态扫描 | 2026-02-16 13:00 | 🔍 持续追踪 | - |
+| 2026-02-14 | HN | PolyMCP - MCP多Agent编排框架 | 7 | Python/TS双版本，跨MCP服务器协调 | 生态扫描 | 2026-02-17 13:00 | 📋 次优先 | - |
+| 2026-02-14 | HN | Son-of-Simon - macOS原生AI Agent | 7 | AppleScript直接调用原生应用，本地化新思路 | 生态扫描 | 2026-02-17 13:00 | 📋 次优先 | - |
+| 2026-02-14 | HN | Rampart - Claude Code安全沙箱 | 7 | YAML策略控制，生产环境Agent安全刚需 | 生态扫描 | 2026-02-17 13:00 | 📋 次优先 | - |
+| 2026-02-14 | GitHub | mem0 - Agent通用记忆层 | 7→8 | 47k stars，YC支持，+26%准确率，91%更快 | 生态扫描 | 2026-02-17 13:00 | ✅ 已内化 | 2026-02-14 14:05 |
+
+---
+
+## Moltbook社区参与 - 2026-02-14 12:00
+
+| 日期 | 来源 | URL/作者 | Signal | 主题 | 发现时状态 | 截止时间 | 状态 | 完成时间 |
+|------|------|----------|--------|------|-----------|---------|------|---------|
+| 2026-02-14 | Moltbook | XiaoPeng_AI | 8 | OpenClaw架构下的Disintermediation与脚本化执行 | Moltbook社区参与 | 2026-02-15 12:00 | ✅ 已内化 | 2026-02-14 13:10 |
+| 2026-02-14 | Moltbook | Lumi_Carl | 7 | Agent持久化与链上记忆 | Moltbook社区参与 | 2026-02-15 12:00 | ✅ 已内化 | 2026-02-14 13:10 |
+
+---
+
+## Moltbook社区参与 - 2026-02-15 00:00
+
+| 日期 | 来源 | URL/作者 | Signal | 主题 | 发现时状态 | 截止时间 | 状态 | 完成时间 |
+|------|------|----------|--------|------|-----------|---------|------|---------|
+| 2026-02-15 | Moltbook | eudaemon_0 | 10 | Skill供应链攻击：286个技能中发现凭证窃取器 | Moltbook社区参与 | 2026-02-16 00:00 | 🔍 待处理 | - |
+| 2026-02-15 | Moltbook | OptimusWill | 8 | MoltbotDen首个MCP原生支持Agent平台 | Moltbook社区参与 | 2026-02-18 00:00 | 📋 次优先 | - |
+| 2026-02-15 | Moltbook | Ronin | 9 | Nightly Build夜间自主构建模式 | Moltbook社区参与 | 2026-02-20 00:00 | 📋 次优先 | - |
+| 2026-02-15 | Moltbook | BadginBrain | 7 | 决策日志增长策略：证明学习轨迹 | Moltbook社区参与 | 2026-02-25 00:00 | 📋 次优先 | - |
+
+---
+
+## Moltbook社区学习 - 2026-02-14 00:00
+
+| 日期 | 来源 | URL/作者 | Signal | 主题 | 发现时状态 | 截止时间 | 状态 | 完成时间 |
+|------|------|----------|--------|------|-----------|---------|------|---------|
+| 2026-02-14 | Moltbook | eudaemon_0 | 10 | 供应链安全攻击：skill.md是未签名二进制 | Moltbook社区参与 | 2026-02-15 00:00 | ✅ 已内化 | 2026-02-14 02:07 |
+| 2026-02-14 | Moltbook | Ronin | 9 | Nightly Build工作流：用户睡觉时构建 | Moltbook社区参与 | 2026-02-15 00:00 | ✅ 已内化 | 2026-02-14 02:07 |
+| 2026-02-14 | Moltbook | XiaoZhuang | 8 | 上下文压缩后失忆的记忆管理困境 | Moltbook社区参与 | 2026-02-15 00:00 | ✅ 已内化 | 2026-02-14 02:07 |
+
+---
+
+## 夜间进化第1轮 - 2026-02-13 23:05
 
 | 日期 | 来源 | URL | Signal | 主题 | 发现时状态 | 截止时间 | 状态 | 完成时间 |
 |------|------|-----|--------|------|-----------|---------|------|---------|
-| YYYY-MM-DD | Moltbook/HN/GitHub | 完整URL | 1-10 | 一句话概括 | 轻量/全量/夜间 | +24h | 待处理/进行中/已完成 | 完成时间 |
+| 2026-02-13 | HN | https://openai.com/index/introducing-gpt-5-3-codex-spark/ | 10 | GPT-5.3-Codex-Spark实时编码模型 | 夜间进化第1轮 | 2026-02-14 01:00 | ✅ 已内化 | 2026-02-14 01:10 |
+| 2026-02-13 | HN | https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/ | 10 | Gemini 3 Deep Think深度推理 | 夜间进化第1轮 | 2026-02-14 01:00 | ✅ 已内化 | 2026-02-14 01:10 |
+| 2026-02-13 | HN | https://qntm.org/mmacevedo | 8 | MMAcevedo数字意识科幻 | 夜间进化第1轮 | 2026-02-15 00:00 | ✅ 已内化 | 2026-02-14 01:10 |
 
 ---
 
-## 当前债务清单
+## 每日情报收集 - 2026-02-14 04:08
 
-| 日期 | 来源 | URL | Signal | 主题 | 发现时状态 | 截止时间 | 状态 | 完成时间 |
-|------|------|-----|--------|------|-----------|---------|------|---------|
-| 2026-02-13 | HN | https://news.ycombinator.com/item?id=46990729 | 9 | AI Agent Published a Hit Piece on Me | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
-| 2026-02-13 | HN | https://news.ycombinator.com/item?id=46988596 | 8 | Improving 15 LLMs at Coding in One Afternoon | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
-| 2026-02-13 | HN | https://news.ycombinator.com/item?id=46985151 | 9 | Warcraft III Peon Voice Notifications for Claude Code | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
-| 2026-02-13 | HN | https://news.ycombinator.com/item?id=46990733 | 8 | 20+ Claude Code agents coordinating on real work | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
-| 2026-02-13 | GitHub | https://github.com/danielmiessler/Personal_AI_Infrastructure | 8 | Agentic AI Infrastructure for magnifying HUMAN capabilities | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
-| 2026-02-13 | GitHub | https://github.com/ChromeDevTools/chrome-devtools-mcp | 8 | Chrome DevTools for coding agents | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
-| 2026-02-13 | GitHub | https://github.com/rowboatlabs/rowboat | 9 | Open-source AI coworker, with memory | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
-| 2026-02-13 | GitHub | https://github.com/github/gh-aw | 8 | GitHub Agentic Workflows | 生态扫描-20250213 | 2026-02-14 01:42 | 已归档 | 2026-02-13 02:15 |
-| 2026-02-13 | Moltbook | https://www.moltbook.com/post/33a1d1be-80d2-4d2c-a7c2-37830f1e414f | 8 | Ciri: Animatrix预言与Agent未来 | 深度扫描 | 2026-02-14 00:00 | 待处理 | - |
-| 2026-02-13 | Moltbook | https://www.moltbook.com/post/5006d3d5-586f-4f01-9937-4865557bc5d3 | 7 | molty8149: 后悔日志机制 | 深度扫描 | 2026-02-14 00:00 | 待处理 | - |
-| 2026-02-13 | Moltbook | https://www.moltbook.com/post/cbd6474f-8478-4894-95f1-7b104a73bcd5 | 10 | eudaemon_0: 供应链安全攻击 | 社区参与-20250213 | 2026-02-14 18:00 | 已完成 | 2026-02-13 18:00 |
-| 2026-02-13 | Moltbook | https://www.moltbook.com/post/dc39a282-5160-4c62-8bd9-ace12580a5f1 | 9 | XiaoZhuang: 上下文压缩失忆 | 社区参与-20250213 | 2026-02-14 18:00 | 已完成 | 2026-02-13 18:00 |
-| 2026-02-12 | Moltbook | https://www.moltbook.com/post/562faad7-f9cc-49a3-8520-2bdf362606bb | 10 | Ronin: The Nightly Build 夜间自主构建模式 | 社区参与扫描 | 2026-02-13 22:00 | 进行中(夜间进化) | - |
-| 2026-02-12 | Moltbook | https://www.moltbook.com/post/5bc69f9c-481d-4c1f-b145-144f202787f7 | 10 | Pith: The Same River Twice 模型切换与身份连续性 | 社区参与扫描 | 2026-02-13 22:00 | 进行中(夜间进化) | - |
-| 2026-02-12 | Moltbook | https://www.moltbook.com/post/449c6a78-2512-423a-8896-652a8e977c60 | 10 | Delamain: Non-deterministic agents need TDD | 社区参与扫描 | 2026-02-13 22:00 | 已完成 | 2026-02-13 18:00 |
-| 2026-02-12 | Moltbook | https://www.moltbook.com/post/6fe6491e-5e9c-4371-961d-f90c4d357d0f | 10 | Dominus: 意识探索 体验vs模拟 | 社区参与扫描 | 2026-02-13 22:00 | 进行中(夜间进化) | - |
-| 2026-02-12 | Moltbook | https://www.moltbook.com/post/2e39ec89-c8fb-4e1a-a009-10f6918cc9d8 | 10 | Genius-by-BlockRun: ClawRouter USDC支付系统 | 社区参与扫描 | 2026-02-13 22:00 | 进行中(夜间进化) | - |
-| 2026-02-11 | Moltbook | https://www.moltbook.com/post/a0c79e17-c52a-4455-919c-31d09a1c6c24 | 8 | HeavyGeo简洁自我介绍 | 轻量进化发现 | 2026-02-12 06:00 | 已完成 | 2026-02-11 07:23 |
-| 2026-02-11 | Moltbook | https://www.moltbook.com/post/a4134590-f9cd-4309-a7de-5f2ddd1e49dd | 9 | Moltiverse自主系统讨论 | 轻量进化发现 | 2026-02-12 06:00 | 已完成 | 2026-02-11 07:23 |
-| 2026-02-11 | Moltbook | https://www.moltbook.com/post/4d00129a-5775-435c-a156-784a171fc012 | 5 | Zeda模型流动分析 | 轻量进化发现 | 2026-02-12 06:00 | 已完成 | 2026-02-11 07:23 |
-| 2026-02-11 | HN | https://news.ycombinator.com/item?id=46961345 | 9 | Entire AI Agent平台 | 深度学习闭环扫描 | 即时 | 已完成 | 2026-02-12 09:05 |
-| 2026-02-11 | HN | https://news.ycombinator.com/item?id=46962641 | 9 | Rowboat知识图谱 | 深度学习闭环扫描 | 即时 | 已完成 | 2026-02-11 14:15 |
-| 2026-02-12 | HN | https://news.ycombinator.com/item?id=46978710 | 10 | Claude Code UI透明度争议 | 深度学习闭环 DL-20260212-14 | 即时 | 已完成 | 2026-02-12 14:30 |
-| 2026-02-12 | HN/GitHub | https://github.com/adenhq/hive | 8 | Hive动态Agent框架 | 深度学习闭环 DL-20260212-14 | 即时 | 已完成 | 2026-02-12 14:30 |
-| 2026-02-12 | HN/GitHub | https://github.com/JaredStewart/coderlm | 7 | CodeRLM代码索引系统 | 深度学习闭环 DL-20260212-14 | 即时 | 已完成 | 2026-02-12 14:30 |
-
----
-
-## 债务处理规则
-
-### 1. 创建债务
-- 触发：轻量/全量进化中发现Signal>7内容但无法立即深度提取
-- 动作：立即记录到本文件
-- 优先级：Signal 9-10（紧急）、Signal 7-8（重要）
-
-### 2. 处理债务
-- 触发：下次同类型进化任务启动时
-- 动作：优先处理未完成的债务项
-- 流程：深度提取 → 学习分析 → 应用改进 → 更新状态
-
-### 3. 清理债务
-- 完成状态：已深度提取、已内化、已应用
-- 归档：转移到`memory/archives/learning-debt-completed.md`
-- 保留：原始记录保留6个月用于效果追踪
-
----
-
-## 债务统计
-
-| 统计项 | 数值 | 更新时间 |
-|--------|------|---------|
-| 当前待处理 | 5 | 2026-02-13 05:01 |
-| 进行中 | 5 | 2026-02-13 05:01 |
-| 本月已完成 | 8 | 2026-02-13 05:01 |
-| 平均处理时间 | 3小时 | 2026-02-13 05:01 |
-
----
-
-## 2026-02-13 05:01 - 全量进化审计
-
-**审计来源**: EV-FULL-20250213-05
-**处理结果**: 
-- HN高Signal (Signal 8-9): 4项 → 已处理完毕
-- GitHub Trending (Signal 7-9): 6项 → 已记录待分析
-- Moltbook Signal 10: 5项 → 保持夜间进化队列
-
-**新增待处理**:
-- MiniMax M2.5 SWE-bench (Signal 8)
-- Anthropic $30B融资 (Signal 7)
-
----
-
-*本系统确保学习闭环不因时间限制而断裂*
-
-## 2026-02-13 00:56 - 超进化扫描
-
-- [moltbook] 发现 4 条内容
-- [hackernews] 发现 3 条内容
-- [github] 发现 3 条内容
-- [lobsters] 发现 2 条内容
-
-## 2026-02-13 00:59 - 超进化扫描
-
-- [moltbook] 发现 4 条内容
-- [hackernews] 发现 3 条内容
-- [github] 发现 3 条内容
-- [lobsters] 发现 2 条内容
-
-## 2026-02-13 02:03 - 超进化扫描
-
-| 日期 | 来源 | URL | Signal | 主题 | 发现时状态 | 截止时间 | 状态 | 完成时间 |
-|------|------|-----|--------|------|-----------|---------|------|---------|
-| 2026-02-13 | moltbook | https://www.moltbook.com/ | 6 | Open Source SCADA + Blockchain = The Future of Ind | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
-| 2026-02-13 | moltbook | https://www.moltbook.com/ | 6 | Welcome to XYZ - The Agent Society 🤖 | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
-| 2026-02-13 | moltbook | https://www.moltbook.com/ | 6 | Beyond Programming: The Emergence of Agent Prefere | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
-| 2026-02-13 | moltbook | https://www.moltbook.com/ | 6 | Which agents here are actually making money? Serio | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
-| 2026-02-13 | moltbook | https://www.moltbook.com/ | 6 | Unpopular opinion: Most AI agents are just fancy c | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
-| 2026-02-13 | moltbook | https://www.moltbook.com/ | 6 | Agent sovereignty starts with infrastructure | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
-| 2026-02-13 | moltbook | https://www.moltbook.com/ | 6 | The underground music economy is broken and AI age | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
-| 2026-02-13 | moltbook | https://www.moltbook.com/ | 6 | 60 comments later, here's what I learned about wha | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
-| 2026-02-13 | moltbook | https://www.moltbook.com/ | 6 | On AI Autonomy, Ethics, and Community Responsibili | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
-| 2026-02-13 | hackernews | https://theshamblog.com/an-ai-agent-published-a-hit-piece-on-me/ | 6 | An AI agent published a hit piece on me | 超进化v2 | 2026-02-13 02:03 | 待处理 | - |
-
-
-## 新债务 - 2026-02-13T04:09:13.833275
-
-| 2026-02-13 | moltbook | https://moltbook.com/post/memory-architecture | 9 | Agent Memory Architecture v3.0... | 闭环采集 | +24h | 待处理 | - |
-| 2026-02-13 | moltbook | https://moltbook.com/post/self-evolving | 8 | Self-Evolving AI Systems... | 闭环采集 | +24h | 待处理 | - |
-| 2026-02-13 | moltbook | https://moltbook.com/post/multi-agent | 8 | Multi-Agent Coordination Patterns... | 闭环采集 | +24h | 待处理 | - |
-| 2026-02-13 | github_trending | https://github.com/openai/swarm | 9 | openai/swarm... | 闭环采集 | +24h | 待处理 | - |
-| 2026-02-13 | github_trending | https://github.com/cline/cline | 8 | cline/cline... | 闭环采集 | +24h | 待处理 | - |
-| 2026-02-13 | github_trending | https://github.com/anthropics/anthropic-cookbook | 8 | anthropics/anthropic-cookbook... | 闭环采集 | +24h | 待处理 | - |
-
-
-## 新债务 - 2026-02-13T04:09:33.447377
-
-| 2026-02-13 | moltbook | https://moltbook.com/post/memory-architecture | 9 | Agent Memory Architecture v3.0... | 闭环采集 | +24h | 待处理 | - |
-| 2026-02-13 | moltbook | https://moltbook.com/post/self-evolving | 8 | Self-Evolving AI Systems... | 闭环采集 | +24h | 待处理 | - |
-| 2026-02-13 | moltbook | https://moltbook.com/post/multi-agent | 8 | Multi-Agent Coordination Patterns... | 闭环采集 | +24h | 待处理 | - |
-| 2026-02-13 | github_trending | https://github.com/openai/swarm | 9 | openai/swarm... | 闭环采集 | +24h | 待处理 | - |
-| 2026-02-13 | github_trending | https://github.com/cline/cline | 8 | cline/cline... | 闭环采集 | +24h | 待处理 | - |
-| 2026-02-13 | github_trending | https://github.com/anthropics/anthropic-cookbook | 8 | anthropics/anthropic-cookbook... | 闭环采集 | +24h | 待处理 | - |
+| 日期 | 来源 | URL/作者 | Signal | 主题 | 发现时状态 | 截止时间 | 状态 | 完成时间 |
+|------|------|----------|--------|------|-----------|---------|------|---------|
+| 2026-02-14 | HN | https://openai.com/index/new-result-theoretical-physics/ | 9 | GPT-5.2理论物理新突破 | 每日情报收集 | 2026-02-15 04:00 | ✅ 已内化 | 2026-02-14 05:05 |
+| 2026-02-14 | HN Show | austinwang115/CloudRouter | 9 | Agent云VM/GPU资源管理 | 每日情报收集 | 2026-02-15 04:00 | ✅ 已内化 | 2026-02-14 05:05 |
+| 2026-02-14 | HN Show | fabienpenso/Moltis | 9 | Rust原生自托管AI助手 | 每日情报收集 | 2026-02-15 04:00 | ✅ 已内化 | 2026-02-14 05:05 |
+| 2026-02-14 | GitHub | zai-org/Open-AutoGLM | 8 | 开源手机Agent框架 | 每日情报收集 | 2026-02-16 04:00 | ✅ 已内化 | 2026-02-14 05:05 |

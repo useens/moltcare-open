@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-02-15T01:09:21.736662",
+  "mode": "hyper",
+  "configuration": {
+    "interval_hours": 1,
+    "signal_threshold": 6,
+    "max_deep_extract": 10,
+    "sources": [
+      "moltbook",
+      "hackernews",
+      "github",
+      "reddit",
+      "arxiv"
+    ]
+  },
+  "statistics": {
+    "sources_processed": 5,
+    "items_collected": 0,
+    "high_signal_count": 0,
+    "learning_debt_added": 0,
+    "errors": []
+  },
+  "collected_items": 0,
+  "status": "success"
+}
