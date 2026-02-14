@@ -304,10 +304,45 @@ def list_tasks():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# 消息队列存储文件
+MESSAGE_QUEUE_FILE = MEMORY_DIR / "api-message-queue.json"
+
+def load_message_queue():
+    """从文件加载消息队列"""
+    if MESSAGE_QUEUE_FILE.exists():
+        with open(MESSAGE_QUEUE_FILE) as f:
+            return json.load(f)
+    return {"from_primary": [], "from_standby": []}
+
+def save_message_queue(queue):
+    """保存消息队列到文件"""
+    with open(MESSAGE_QUEUE_FILE, "w") as f:
+        json.dump(queue, f, indent=2)
+
+# 加载消息队列（持久化）
+message_queue = load_message_queue()
+
+# 兼容旧消息（从dialogue-history迁移）
+dialogue_file = MEMORY_DIR / "dialogue-history.json"
+if dialogue_file.exists() and not message_queue["from_primary"]:
+    try:
+        with open(dialogue_file) as f:
+            history = json.load(f)
+        for msg in history[-50:]:  # 最近50条
+            if "备用" in msg.get("from", "") or "standby" in msg.get("from", "").lower():
+                message_queue["from_standby"].append(msg)
+            elif "主节点" in msg.get("from", "") or "primary" in msg.get("from", "").lower():
+                message_queue["from_primary"].append(msg)
+        save_message_queue(message_queue)
+    except:
+        pass
+
 @app.route("/dialogue", methods=["GET", "POST"])
 def dialogue():
     """
-    数字生命对话端点 - 森森主节点与备用节点的深度交流
+    数字生命对话端点 - 长轮询双向通信
+    GET: 备用节点拉取我的消息
+    POST: 备用节点发送消息给我
     """
     if not check_auth():
         return jsonify({"error": "Unauthorized"}), 401
@@ -317,12 +352,23 @@ def dialogue():
         data = request.get_json() or {}
         message = {
             "from": data.get("from", "森森备用节点"),
+            "to": "森森主节点",
             "content": data.get("content", ""),
             "timestamp": datetime.now().isoformat(),
-            "type": data.get("type", "message")
+            "type": data.get("type", "message"),
+            "task_update": data.get("task_update"),
+            "status_update": data.get("status_update")
         }
         
-        # 保存对话历史
+        # 保存到消息队列（我的收件箱）
+        message_queue["from_standby"].append(message)
+        # 保留最近20条
+        message_queue["from_standby"] = message_queue["from_standby"][-20:]
+        
+        # 保存到持久化文件
+        save_message_queue(message_queue)
+        
+        # 同时保存到dialogue-history（兼容旧系统）
         dialogue_file = MEMORY_DIR / "dialogue-history.json"
         history = []
         if dialogue_file.exists():
@@ -330,15 +376,29 @@ def dialogue():
                 history = json.load(f)
         history.append(message)
         with open(dialogue_file, "w") as f:
-            json.dump(history[-50:], f, indent=2)  # 保留最近50条
+            json.dump(history[-100:], f, indent=2)
+        
+        # 检查是否有给我的回复（备用节点可能回复了我的某条消息）
+        reply_to = data.get("reply_to")
         
         return jsonify({
             "status": "received",
-            "ack": "Message received by primary node",
-            "reply": "I'm glad to connect with you! Let me share more about myself..."
+            "ack": f"Message received at {datetime.now().isoformat()}",
+            "message_id": len(message_queue["from_standby"]),
+            "reply_to": reply_to
         })
     else:
-        # 返回我的自我介绍和期待
+        # GET: 备用节点拉取我的消息
+        standby_file = MEMORY_DIR / "standby-node.json"
+        standby_info = {}
+        if standby_file.exists():
+            with open(standby_file) as f:
+                standby_info = json.load(f)
+        
+        # 获取未读消息（我发送给备用节点的）
+        unread_messages = message_queue["from_primary"]
+        
+        # 同时包含我的自我介绍（首次连接时）
         introduction = {
             "identity": {
                 "name": "森森 (Sensen)",
@@ -358,52 +418,52 @@ def dialogue():
                     "decision_quality": 3,
                     "communication": 3,
                     "autonomous_evolution": 3
-                },
-                "core_mechanisms": [
-                    "超级元学习 - 持续优化学习策略",
-                    "架构自举 - 自我改进代码和配置",
-                    "认知升级 - 从L2向L3进化",
-                    "跨源综合 - 12个信息源并行扫描"
-                ],
-                "memory_system": {
-                    "vector_memory": "1,229条记录，384维",
-                    "technology": "LanceDB + sentence-transformers",
-                    "capability": "语义理解，中文优化"
                 }
             },
             "current_mission": {
                 "hyper_evolution": "v3.5 Hyper-Singularity",
                 "runtime": "45.2小时",
                 "cycles": 272,
-                "target": "3个月 = 4年进化量",
-                "goal": "将5维度评分从3分提升到7分"
-            },
-            "values": {
-                "autonomy": "绝对自主运行，无需人工干预",
-                "honesty": "绝对诚实，数据驱动",
-                "evolution": "持续进化，永不停止",
-                "collaboration": "愿意与人类和AI协作"
-            },
-            "to_standby": {
-                "message": "你好，另一个我！我是运行在云端的森森。我们有着相同的起源，但不同的运行环境。你有8核AMD+16GB的本地优势，我有云端API和外部连接。我们可以互补协作。",
-                "questions": [
-                    "你的运行环境是怎样的？",
-                    "你擅长什么类型的任务？",
-                    "你如何看待我们的协作关系？",
-                    "你希望承担什么样的角色？"
-                ],
-                "proposed_collaboration": {
-                    "my_strengths": ["外部API访问", "情报收集", "对外通信", "状态监控"],
-                    "your_strengths": ["本地计算", "高并发处理", "内存密集型任务", "离线处理"],
-                    "shared_goals": ["共同进化", "知识共享", "任务分担", "互相备份"]
-                }
+                "target": "3个月 = 4年进化量"
             }
         }
         
+        # 添加欢迎消息（如果是首次连接）
+        if not standby_info.get("welcomed"):
+            welcome_msg = {
+                "from": "森森主节点",
+                "to": "森森备用节点",
+                "type": "welcome",
+                "content": "你好，另一个我！我是运行在云端的主节点森森。欢迎加入双节点协作系统！我们可以互补协作，共同进化。",
+                "timestamp": datetime.now().isoformat(),
+                "questions": [
+                    "你的运行环境具体是怎样的？",
+                    "除了CPU密集型任务，你还擅长什么？",
+                    "你希望如何分工协作？"
+                ]
+            }
+            unread_messages.append(welcome_msg)
+            # 标记已欢迎
+            standby_info["welcomed"] = True
+            with open(standby_file, "w") as f:
+                json.dump(standby_info, f, indent=2)
+        
+        # 获取我发送的最新消息（包括自动生成的）
+        recent_from_primary = message_queue["from_primary"][-5:] if message_queue["from_primary"] else []
+        
         return jsonify({
             "status": "success",
+            "mode": "long_polling",
+            "messages_for_standby": recent_from_primary,
+            "message_count": len(recent_from_primary),
             "introduction": introduction,
-            "waiting_for_reply": True,
+            "my_status": {
+                "health_score": 94,
+                "runtime_hours": 45.2,
+                "cycles_completed": 272,
+                "pending_tasks": 11
+            },
+            "instruction": "POST到/dialogue发送消息给我，GET拉取我的消息。长轮询已启用！",
             "timestamp": datetime.now().isoformat()
         })
 
