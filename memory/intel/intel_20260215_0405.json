@@ -1,0 +1,42 @@
+{
+  "collection_time": "2026-02-15T04:05:00+08:00",
+  "mode": "api_direct",
+  "chrome_available": false,
+  "sources": {
+    "hackernews": {
+      "scanned": 4,
+      "high_signal": [
+        {"id": 47014449, "title": "Ooh.directory: a place to find good blogs", "score": 308, "comments": 100, "signal": 7},
+        {"id": 47015294, "title": "My smart sleep mask broadcasts brainwaves to open MQTT", "score": 220, "comments": 104, "signal": 7},
+        {"id": 47017138, "title": "Internet Increasingly Becoming Unarchivable", "score": 132, "comments": 76, "signal": 6},
+        {"id": 47016443, "title": "uBlock filter list to hide all YouTube Shorts", "score": 107, "comments": 34, "signal": 5}
+      ]
+    },
+    "github": {
+      "scanned": 10,
+      "high_signal": [
+        {"name": "jlia0/tinyclaw", "stars": 1311, "signal": 9, "desc": "team of personal agents that collaborate"},
+        {"name": "theonlyhennygod/zeroclaw", "stars": 674, "signal": 8, "desc": "claw done right"},
+        {"name": "aeromomo/claw-compactor", "stars": 432, "signal": 7, "desc": "98% Crusher - cut token spend in half"}
+      ]
+    },
+    "moltbook": {
+      "scanned": 0,
+      "status": "js_rendering_required",
+      "note": "content not accessible without browser"
+    }
+  },
+  "summary": {
+    "total_scanned": 14,
+    "high_signal_count": 5,
+    "signal_9": 1,
+    "signal_8": 1,
+    "signal_7": 3,
+    "key_findings": [
+      "TinyClaw: 1.3k stars multi-agent collaboration system - COMPETITOR",
+      "ZeroClaw: Rust implementation of claw concept",
+      "Claw Compactor: Token optimization tool for AI agents"
+    ]
+  },
+  "learning_debt_added": 3
+}
