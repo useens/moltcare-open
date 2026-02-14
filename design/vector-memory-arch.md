@@ -896,5 +896,119 @@ tqdm>=4.65.0        # 下载进度条
 
 ---
 
-*文档版本: 1.0*  
-*最后更新: 2025-02-10*
+## 11. 演进路线与优化建议 (v2.1更新)
+
+基于Agent记忆系统对比分析 (Signal 8深度学习)，提出以下优化方向：
+
+### 11.1 短期优化 (1-2周)
+
+#### MCP原生支持
+封装记忆能力为MCP Server，接入Agent生态：
+```python
+# mcp_server.py - MCP协议封装
+from mcp.server import Server
+
+class MemoryMCPServer(Server):
+    @tool
+    async def memory_add(self, content: str, importance: int = 5, tags: list = None):
+        """添加记忆到长期存储"""
+        return await self.memory.add(content, importance=importance, tags=tags)
+    
+    @tool
+    async def memory_search(self, query: str, top_k: int = 5):
+        """语义检索相关记忆"""
+        return await self.memory.search(query, top_k=top_k)
+    
+    @tool
+    async def memory_get_context(self, topic: str, time_range: str = "1h"):
+        """获取当前话题的上下文记忆"""
+        return await self.memory.get_context_for_topic(topic, time_range)
+```
+
+#### 抗失忆压缩机制
+解决上下文压缩导致的关键信息丢失：
+```python
+class AntiAmnesiaCompressor:
+    KEY_PATTERNS = [
+        r"(?:记住|别忘了|重要).+",  # 用户强调
+        r"(?:决定|选择|同意).+",     # 决策信息
+        r"(?:明天|下周|稍后).+",     # 时间约定
+    ]
+    
+    def compress(self, context, max_tokens):
+        # 1. 识别关键信息
+        key_info = self.extract_key_info(context)
+        # 2. 预留关键信息空间
+        # 3. 压缩非关键内容
+        # 4. 向量备份原始内容
+```
+
+### 11.2 中期优化 (1个月)
+
+#### 分层记忆架构完善
+实现L1-L5完整分层：
+```
+L1 瞬时记忆 (Sensory)     → 内存缓存，当前对话窗口
+L2 工作记忆 (Working)     → SQLite，当日高频访问
+L3 短期记忆 (Short-term)  → LanceDB，本周语义检索
+L4 长期记忆 (Long-term)   → 压缩归档，持久化存储
+L5 永久记忆 (Permanent)   → 关键事实结构化存储
+```
+
+#### LongMemEval基准测试
+接入行业标准评估框架：
+```python
+# 长上下文记忆评估
+from benchmarks import LongMemEval
+
+evaluator = LongMemEval()
+results = evaluator.evaluate(memory_system)
+# 目标: 达到85%+准确率 (当前SOTA 92.8%)
+```
+
+### 11.3 长期规划 (3个月)
+
+#### 实体关系图谱
+增强记忆关联能力：
+```python
+class EntityGraph:
+    def extract_entities(self, text) -> List[Entity]:
+        """使用NER提取实体"""
+        
+    def link_relations(self, e1: Entity, e2: Entity, relation: str):
+        """建立实体关系边"""
+        
+    def get_related_memories(self, entity: Entity) -> List[Memory]:
+        """获取关联记忆"""
+```
+
+#### 主动回忆机制
+从被动检索转向主动召回：
+```python
+class ProactiveRecall:
+    def __init__(self):
+        self.time_decay = TimeDecayModel()
+        self.association_graph = AssociationGraph()
+    
+    def predict_relevant_memories(self, current_topic) -> List[Memory]:
+        """基于当前话题预测可能相关的记忆"""
+        # 1. 时序关联
+        # 2. 主题关联
+        # 3. 用户行为模式
+```
+
+### 11.4 竞品对标矩阵
+
+| 维度 | Engram | MemoryStack | mem0 | 森森目标 |
+|------|--------|-------------|------|----------|
+| **存储引擎** | SQLite | 自定义 | Pinecone | LanceDB ✓ |
+| **协议支持** | MCP ✓ | MCP | 多协议 | MCP ⏳ |
+| **中文优化** | 一般 | 未验证 | 一般 | **优秀** ✓ |
+| **LongMemEval** | 未公开 | **92.8%** | 未公开 | 目标85%+ ⏳ |
+| **分层架构** | 基础 | **完善** | 完善 | 完善 ⏳ |
+| **生态集成** | 新兴 | 学术界 | **47k stars** | 扩展中 ⏳ |
+
+---
+
+*文档版本: 1.1*  
+*最后更新: 2026-02-14 (Signal 8深度学习内化)*
