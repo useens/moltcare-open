@@ -1,0 +1,29 @@
+{
+  "mode": "frozen",
+  "reason": "Token紧急保护",
+  "started_at": "2026-02-14T19:00:00+08:00",
+  "scheduled_recovery": "2026-02-14T22:30:00+08:00",
+  "duration_hours": 3.5,
+  "token_reduction": "99%",
+  "actions_taken": [
+    "禁用evolution-light-2h",
+    "禁用moltbook-community-participation",
+    "禁用moltbook-deep-scan",
+    "禁用evolution-full-4h",
+    "禁用night-evolution-1",
+    "禁用night-evolution-2"
+  ],
+  "preserved_services": [
+    "闭环改进机制 (evolution-loop)",
+    "auto-fix-executor",
+    "github-backup-sync",
+    "memory-system-guardian",
+    "auto-password-guard",
+    "log-cleanup-daily",
+    "full-backup-daily",
+    "daily-disk-cleanup"
+  ],
+  "estimated_daily_tokens_before": "475000",
+  "estimated_daily_tokens_after": "5000",
+  "recovery_task_id": "b1991463-27e8-4179-8ce0-28e1791f9788"
+}

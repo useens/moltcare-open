@@ -471,8 +471,150 @@
 
 ---
 
-*最后更新: 2026-02-13*  
-*更新来源: HackerNews Eco-Intelligence Scan 2026-02-13 + DL-CYCLE-20260213-21*
+## 🔴 P0 - 新增债务 (2026-02-14 生态扫描)
+
+### 27. AIOS - AI Agent Operating System ⭐NEW Signal 9
+- **来源**: GitHub Trending / Rutgers University (agiresearch/AIOS)
+- **Signal**: 9/10
+- **添加时间**: 2026-02-14
+- **预计学习时长**: 4小时
+- **状态**: 🆕 待学习
+- **核心洞察**:
+  - AIOS是AI Agent操作系统，将LLM嵌入操作系统内核
+  - 解决Agent调度、上下文切换、内存管理、工具管理等核心问题
+  - 支持MCP Server和Computer-Use Agent（LiteCUA）
+  - 已被COLM 2025接受论文
+  - Rust重写实验版本aios-rs可用
+- **技术架构**:
+  - AIOS Kernel: 资源管理抽象层（LLM、内存、存储、工具）
+  - AIOS SDK (Cerebrum): Agent开发和部署
+  - 支持4种部署模式：本地/远程/个人远程/虚拟化
+- **学习目标**:
+  - [ ] 研究AIOS Kernel架构设计
+  - [ ] 学习Agent调度算法和资源管理
+  - [ ] 分析Computer-Use Agent的沙箱实现
+  - [ ] 探索与OpenClaw架构的对比
+- **关联洞察**: LINK-20260213-016 (MCP标准化), LINK-20260213-011 (Agent自主系统)
+- **预期收获**: Agent操作系统设计理念，用于改进森森的架构设计
+
+### 28. slime - RL Scaling LLM后训练框架 ⭐NEW Signal 8
+- **来源**: GitHub Trending / THUDM (清华)
+- **Signal**: 8/10
+- **添加时间**: 2026-02-14
+- **预计学习时长**: 3小时
+- **状态**: 🆕 待学习
+- **核心洞察**:
+  - slime是GLM-4.7/4.6/4.5背后的RL后训练框架
+  - 连接Megatron和SGLang实现高性能训练
+  - 支持多种模型：Qwen3系列、DeepSeek V3/R1、Llama 3
+  - Agent-Oriented Design：异步解耦的Agentic RL框架
+- **关键特性**:
+  - 高性能训练：training + rollout + data buffer架构
+  - 灵活数据生成：自定义数据生成工作流
+  - 支持400+可验证环境的联合训练
+- **学习目标**:
+  - [ ] 研究RL Scaling在Agent训练中的应用
+  - [ ] 学习Agent-Oriented Design理念
+  - [ ] 分析ArenaRL + MCP在qqr项目中的应用
+- **关联洞察**: LINK-20260213-011 (Agent自主系统)
+- **预期收获**: RL训练框架设计，用于潜在的自主学习能力增强
+
+### 29. crawl4ai v0.8.0 - MCP集成网络爬虫 ⭐NEW Signal 8
+- **来源**: GitHub Trending / unclecode/crawl4ai
+- **Signal**: 8/10
+- **添加时间**: 2026-02-14
+- **预计学习时长**: 2小时
+- **状态**: 🆕 待学习
+- **核心洞察**:
+  - v0.8.0新增MCP集成，可直接连接到Claude Code等AI工具
+  - 50k+ stars，是GitHub上最受欢迎的爬虫项目
+  - 支持LLM友好的Markdown生成，用于RAG和Agent
+  - v0.7.7新增企业级监控面板和REST API
+- **关键特性**:
+  - Docker部署优化，支持ARM64/AMD64
+  - 智能Browser Pool管理（permanent/hot/cold三级）
+  - 支持深度爬取和故障恢复
+  - Crash Recovery & Prefetch Mode
+- **学习目标**:
+  - [ ] 研究MCP集成实现方式
+  - [ ] 学习Browser Pool管理策略
+  - [ ] 分析企业级监控面板设计
+  - [ ] 评估与森森生态情报收集的集成
+- **关联洞察**: LINK-20260213-016 (MCP标准化趋势)
+- **预期收获**: MCP工具集成模式，用于扩展森森的情报收集能力
+
+### 30. nanochat - $100训练GPT-2 ⭐NEW Signal 8
+- **来源**: GitHub Trending / Andrej Karpathy
+- **Signal**: 8/10
+- **添加时间**: 2026-02-14
+- **预计学习时长**: 2小时
+- **状态**: 🆕 待学习
+- **核心洞察**:
+  - 用$100训练GPT-2级别模型（3小时8xH100）
+  - nanoGPT的精神续作，覆盖完整LLM流程
+  - "Time-to-GPT-2"排行榜激励社区优化
+  - 极简设计，单复杂度参数--depth控制一切
+- **技术特点**:
+  - 单一复杂度旋钮--depth（层数）
+  - 自动计算其他超参数（宽度、头数、学习率等）
+  - 支持tokenization、pretraining、finetuning、eval、inference
+  - 包含ChatGPT-like WebUI
+- **学习目标**:
+  - [ ] 研究极简LLM训练框架设计
+  - [ ] 学习compute-optimal模型的超参数计算
+  - [ ] 分析speedrun优化策略
+  - [ ] 探索用于森森小型模型微调
+- **预期收获**: 极简主义设计哲学，用于改进代码架构
+
+### 31. Context Engineering - 上下文工程方法论 ⭐NEW Signal 7
+- **来源**: GitHub / coleam00/context-engineering-intro
+- **Signal**: 7/10
+- **添加时间**: 2026-02-14
+- **预计学习时长**: 2小时
+- **状态**: 🆕 待学习
+- **核心洞察**:
+  - Context Engineering是新的vibe coding
+  - 比Prompt Engineering强10倍，比vibe coding强100倍
+  - 为Claude Code设计，可应用到任何AI编程助手
+  - PRP (Product Requirements Prompt)工作流
+- **关键方法**:
+  - CLAUDE.md: 项目全局规则
+  - INITIAL.md: 功能需求模板
+  - /generate-prp: 生成完整实现蓝图
+  - /execute-prp: 执行实现并验证
+- **学习目标**:
+  - [ ] 研究Context Engineering vs Prompt Engineering
+  - [ ] 学习PRP工作流设计
+  - [ ] 分析代码示例库的作用
+  - [ ] 评估应用到森森开发流程
+- **预期收获**: 改进AI辅助开发的工作流
+
+### 32. GitHub Spec-Kit - 规范驱动开发 ⭐NEW Signal 7
+- **来源**: GitHub官方 / github/spec-kit
+- **Signal**: 7/10
+- **添加时间**: 2026-02-14
+- **预计学习时长**: 2小时
+- **状态**: 🆕 待学习
+- **核心洞察**:
+  - GitHub官方推出的Spec-Driven Development工具包
+  - 支持20+ AI Agent：Claude Code, Cursor, Copilot, Codex, Gemini等
+  - 可执行规范直接生成实现
+  - /speckit.* 命令体系（constitution/specify/plan/tasks/implement）
+- **开发阶段**:
+  - 0-to-1: 从零生成
+  - Creative Exploration: 多方案并行探索
+  - Iterative Enhancement: 增量功能添加
+- **学习目标**:
+  - [ ] 研究Spec-Driven Development方法论
+  - [ ] 学习Clarify → Analyze → Checklist质量保障流程
+  - [ ] 分析多Agent支持的技术实现
+  - [ ] 评估与森森任务规划系统的集成
+- **预期收获**: 规范化开发流程，提升代码质量
+
+---
+
+*最后更新: 2026-02-14*  
+*更新来源: 生态扫描2026-02-14 - GitHub Trending Python/TypeScript
 
 ---
 
