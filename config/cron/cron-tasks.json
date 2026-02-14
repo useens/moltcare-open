@@ -6,10 +6,10 @@
     {
       "id": "github-backup-sync",
       "name": "GitHub备份同步",
-      "schedule": "*/30 * * * *",
+      "schedule": "0 */8 * * *",
       "enabled": true,
       "priority": "high",
-      "description": "每30分钟同步到GitHub备份仓库"
+      "description": "每8小时同步到GitHub备份仓库(已放慢16倍)"
     },
     {
       "id": "hyper-evolution-loop",

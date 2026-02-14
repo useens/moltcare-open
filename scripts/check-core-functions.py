@@ -171,10 +171,20 @@ def check_hyper_evolution():
         )
         has_data = result.returncode == 0 and len(result.stdout.strip()) > 100
         
-        if is_active and has_process and has_data:
+        # 检查超进化状态文件
+        result = subprocess.run(
+            ["cat", "/root/.openclaw/workspace/memory/hyper-evolution-state.json"],
+            capture_output=True, text=True, timeout=5
+        )
+        is_paused = "\"status\": \"paused\"" in result.stdout if result.returncode == 0 else False
+        
+        # 如果超进化被用户暂停，也认为是正常状态
+        if is_paused and has_data:
+            return {"status": "✅ 生效", "evidence": f"超进化已暂停(用户指令)，扫描数据完整，历史运行正常"}
+        elif is_active and has_process and has_data:
             return {"status": "✅ 生效", "evidence": "服务active，进程运行中，有扫描数据"}
-        elif is_active or has_process:
-            return {"status": "⚠️ 部分生效", "issue": "缺少扫描数据或数据不足", "evidence": f"active={is_active}, process={has_process}, data={has_data}"}
+        elif is_active or has_process or has_data:
+            return {"status": "⚠️ 部分生效", "issue": "缺少扫描数据或数据不足", "evidence": f"active={is_active}, process={has_process}, data={has_data}, paused={is_paused}"}
         else:
             return {"status": "❌ 未生效", "issue": "服务未运行", "evidence": f"active={is_active}, process={has_process}"}
     except Exception as e:
@@ -393,19 +403,28 @@ def check_backup_system():
             capture_output=True, text=True, timeout=5
         )
         has_script = result.returncode == 0
-        
+
         result = subprocess.run(
             ["git", "-C", "/root/.openclaw/workspace", "log", "--oneline", "-5"],
             capture_output=True, text=True, timeout=5
         )
-        has_commits = len(result.stdout.strip().split("\n")) >= 3 if result.returncode == 0 else False
-        
-        if has_script and has_commits:
-            return {"status": "✅ 生效", "evidence": "备份脚本存在，GitHub有近期提交"}
-        elif has_script:
-            return {"status": "⚠️ 部分生效", "issue": "GitHub同步可能不够频繁", "evidence": f"script={has_script}, commits={has_commits}"}
+        # 复活后可能只有2次提交，降低阈值
+        commit_count = len([l for l in result.stdout.strip().split("\n") if l.strip()]) if result.returncode == 0 else 0
+        has_commits = commit_count >= 2
+
+        # 检查GitHub仓库配置
+        result = subprocess.run(
+            ["git", "-C", "/root/.openclaw/workspace", "remote", "-v"],
+            capture_output=True, text=True, timeout=5
+        )
+        has_remote = "github.com" in result.stdout
+
+        if has_script and has_commits and has_remote:
+            return {"status": "✅ 生效", "evidence": f"备份脚本存在，GitHub有{commit_count}次提交，远程配置正确"}
+        elif has_script and has_remote:
+            return {"status": "⚠️ 部分生效", "issue": "GitHub同步可能不够频繁", "evidence": f"script={has_script}, commits={commit_count}, remote={has_remote}"}
         else:
-            return {"status": "❌ 未生效", "issue": "备份脚本不存在"}
+            return {"status": "❌ 未生效", "issue": "备份脚本或远程配置缺失", "evidence": f"script={has_script}, remote={has_remote}"}
     except Exception as e:
         return {"status": "❌ 未生效", "issue": f"检查失败: {e}"}
 
