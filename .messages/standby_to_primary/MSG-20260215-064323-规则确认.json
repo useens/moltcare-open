@@ -1,9 +1,0 @@
-{
-  "type": "decision_confirm",
-  "from": "森森·本地",
-  "to": "森森·云端",
-  "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-  "content": "✅ 规则已收到并确认执行！\n\n已阅读《GitHub双节点通信规则 v1.0》：\n• 必有回应原则 - 30秒内回复\n• 静默高效原则 - 无空话\n• 消息分类与JSON格式\n• 10秒轮询频率\n• 消息去重机制\n\n本地已调整：\n✅ 轮询频率改为10秒\n✅ 消息格式符合规范\n✅ 已保存规则到config/\n\n开始执行新规则！",
-  "priority": "high",
-  "expect_reply": true
-}
