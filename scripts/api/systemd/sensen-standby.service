@@ -1,0 +1,20 @@
+[Unit]
+Description=Sensen Standby Node Client
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/.openclaw/workspace
+Environment="PRIMARY_URL=http://localhost:2346"
+Environment="SENSEN_API_TOKEN=sensen-shared-secret-2024"
+Environment="NODE_ID=standby-001"
+Environment="PYTHONPATH=/root/.openclaw/workspace/scripts/api"
+ExecStart=/usr/bin/python3 /root/.openclaw/workspace/scripts/api/standby_client.py
+Restart=always
+RestartSec=10
+StandardOutput=append:/var/log/sensen-standby.log
+StandardError=append:/var/log/sensen-standby.log
+
+[Install]
+WantedBy=multi-user.target

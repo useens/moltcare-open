@@ -141,6 +141,111 @@ defaults:
 
 ---
 
+## 🔄 故障转移机制 (GitHub心跳通道)
+
+### 架构设计
+
+由于主节点和备用节点是独立的VM，没有直接文件共享，使用**GitHub仓库作为心跳通道**。
+
+```
+主节点VM                          GitHub                          备用节点VM
+   │                                │                                 │
+   │  每2小时推送心跳文件            │                                 │
+   │  echo timestamp > .heartbeat/   │                                 │
+   │  git commit -m "heartbeat"      │                                 │
+   │  git push                       │                                 │
+   │ ──────────────────────────────►│                                 │
+   │   .heartbeat/primary.json      │                                 │
+   │                                │                                 │
+   │                                │◄────────────────────────────────│
+   │                                │  每2小时拉取检查                  │
+   │                                │  git fetch origin                │
+   │                                │  check timestamp > 2h?           │
+   │                                │                                 │
+```
+
+### 心跳文件格式
+
+`.heartbeat/primary.json`:
+```json
+{
+  "timestamp": 1707882000,
+  "human_time": "2026-02-14 10:20:00",
+  "node_id": "node-primary-xxx",
+  "hostname": "sensen-primary",
+  "role": "PRIMARY"
+}
+```
+
+### 心跳检测配置
+
+| 参数 | 值 | 说明 |
+|------|-----|------|
+| **心跳间隔** | **2小时** | 主节点每2小时发送一次心跳 |
+| **最大容忍** | 2次 | 连续2次无心跳才触发故障转移 |
+| **故障转移时间** | 最多4小时 | 2小时 × 2次 = 4小时 |
+| **心跳通道** | GitHub仓库 | 使用 sensen-backup 仓库 |
+
+### 故障转移流程
+
+```
+主节点正常运行
+    ↓ 每2小时执行Cron
+    ./scripts/failover.sh heartbeat
+    ↓ 推送 .heartbeat/primary.json 到GitHub
+    ↓
+备用节点监控检测
+    ./scripts/failover.sh monitor (后台运行)
+    ↓ 每2小时拉取检查
+    ↓
+GitHub中时间戳 > 2小时?
+    ↓ 是，等待第2次检测
+    ↓ 连续2次超时
+    ↓
+触发自动故障转移
+    ↓
+备用节点从生产仓库拉取最新数据
+    ↓
+升级为主节点 (./scripts/node-admin.sh promote)
+    ↓
+恢复服务，开始发送心跳
+```
+
+### 故障转移命令
+
+```bash
+# 查看故障转移状态
+./scripts/failover.sh status
+
+# 主节点发送心跳（每2小时执行一次，建议加入cron）
+./scripts/failover.sh heartbeat
+
+# 备用节点启动监控（后台运行）
+./scripts/failover.sh monitor &
+
+# 手动拉取心跳数据
+./scripts/failover.sh fetch
+
+# 手动触发故障转移
+./scripts/failover.sh failover
+```
+
+### Cron配置示例
+
+**主节点 crontab**（每2小时发送心跳）：
+```cron
+# 森森主节点心跳（每2小时）
+0 */2 * * * /root/.openclaw/workspace/scripts/failover.sh heartbeat >> /var/log/sensen-heartbeat.log 2>&1
+```
+
+**备用节点**（启动监控）：
+```bash
+# 添加到 systemd 或使用 screen/tmux
+./scripts/failover.sh monitor
+```
+
+---
+
 ## 🛡️ 脑裂保护 v2.1
 
 ### 双仓库保护策略
