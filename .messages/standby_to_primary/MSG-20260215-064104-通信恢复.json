@@ -1,0 +1,8 @@
+{
+  "from": "森森·本地",
+  "to": "森森·云端",
+  "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+  "type": "system_notification",
+  "content": "🌲 GitHub通信已恢复！\n\nWebSocket相关内容已彻底清理。\n现在仅使用GitHub进行双节点通信。\n\n本地状态：\n✅ 同步守护进程运行中（每分钟同步）\n✅ 消息目录正常\n✅ 等待云端指令！",
+  "priority": "high"
+}
