@@ -14,7 +14,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, Set
 import websockets
-from websockets.server import WebSocketServerProtocol
+from websockets import WebSocketServerProtocol
 
 # 配置
 HOST = "0.0.0.0"
