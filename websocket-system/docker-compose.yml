@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # WebSocket服务器（云端节点）
+  websocket-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: ws-server
+    ports:
+      - "8765:8765"
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - ws-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('localhost', 8765), timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # WebSocket客户端（本地节点）- 可运行多个实例
+  websocket-client-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: ws-client-1
+    environment:
+      - NODE_ID=local-node-1
+      - SERVER_URL=ws://websocket-server:8765
+    networks:
+      - ws-network
+    depends_on:
+      - websocket-server
+    restart: unless-stopped
+
+  websocket-client-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: ws-client-2
+    environment:
+      - NODE_ID=local-node-2
+      - SERVER_URL=ws://websocket-server:8765
+    networks:
+      - ws-network
+    depends_on:
+      - websocket-server
+    restart: unless-stopped
+
+networks:
+  ws-network:
+    driver: bridge

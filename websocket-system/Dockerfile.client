@@ -1,0 +1,13 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# 安装依赖
+RUN pip install --no-cache-dir websockets psutil
+
+# 复制客户端代码
+COPY src/client.py /app/
+COPY config/client.json /app/config/
+
+# 运行客户端
+CMD ["python", "client.py", "--url", "ws://websocket-server:8765", "--node-id", "local-node-docker"]
