@@ -1,14 +1,14 @@
 {
-  "active": true,
+  "active": false,
   "start_time": "2026-02-12T13:29:51.414967",
-  "mode": "hyper-evolution",
+  "mode": "normal",
   "version": "3.5.0",
   "codename": "Hyper-Singularity",
   "duration_hours": 2160,
   "duration_months": 3,
   "milestone": "3-month-hyper-singularity",
   "scheduled_end": "2026-05-12T13:29:51.414991",
-  "last_updated": "2026-02-15T05:35:41.038720",
+  "last_updated": "2026-02-15T05:38:54.893697",
   "last_health_check": "2026-02-15T04:18:00",
   "fusion_intelligence_status": "对话测试完成，备用节点能引用原文回复，但仍以模板回复为主，已修改standby-ai-client.py添加自由对话模式，等待备用节点更新代码后重启服务",
   "honest_assessment": "对话测试成功启动，备用节点有部分智能（引用原文），但自由对话能力尚未启用，需要备用节点更新代码",
@@ -72,7 +72,7 @@
       "evolution_equivalent_years": 4
     }
   },
-  "status": "active_3month_hyper_singularity",
+  "status": "stopped_by_user",
   "phase": "hyper_singularity_stable",
   "milestones": {
     "week1": "2026-02-19",
@@ -83,5 +83,8 @@
   "high_signal_items": [
     "item_2026-02-14T23:05:21.474061"
   ],
-  "deep_learning_count": 1
+  "deep_learning_count": 1,
+  "end_time": "2026-02-15T05:38:54.893697",
+  "actual_runtime_hours": 64.2,
+  "stop_reason": "用户手动停止"
 }
