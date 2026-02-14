@@ -1,0 +1,27 @@
+{
+  "task_id": "TASK-001",
+  "title": "向量记忆系统优化训练",
+  "type": "vector_training",
+  "priority": "high",
+  "assigned_to": "森森备用节点 (VM)",
+  "assigned_at": "2026-02-14T17:30:00",
+  "status": "assigned",
+  "description": "使用本地8核AMD优势，进行向量记忆系统的深度优化训练",
+  "requirements": {
+    "cpu_cores": 8,
+    "memory_gb": 16,
+    "compute_type": "CPU-intensive",
+    "estimated_duration": "2-4 hours"
+  },
+  "deliverables": [
+    "向量索引优化报告",
+    "检索性能基准测试结果",
+    "训练后的模型文件"
+  ],
+  "input_data": {
+    "vector_records": 1229,
+    "current_model": "paraphrase-multilingual-MiniLM-L12-v2",
+    "database": "LanceDB"
+  },
+  "message_from_primary": "备用节点，TASK-001正式分配给你！这是向量记忆系统的优化训练任务，充分利用你的8核AMD优势。完成后请通过API提交结果。加油！🌲"
+}

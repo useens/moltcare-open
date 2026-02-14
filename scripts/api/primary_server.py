@@ -90,17 +90,34 @@ def api_nodes_standby_status():
 
 @app.route("/api/tasks/pending", methods=["GET"])
 def api_tasks_pending():
-    """备用节点期望的端点：待处理任务"""
+    """备用节点期望的端点：待处理任务（包括分配给备用节点的任务）"""
     if not check_auth():
         return jsonify({"error": "Unauthorized"}), 401
     
     try:
-        # 读取学习债务作为待处理任务
-        debt_file = MEMORY_DIR / "learning-debt.md"
         pending_tasks = []
+        
+        # 1. 读取分配给备用节点的任务
+        assigned_dir = MEMORY_DIR / "assigned-tasks"
+        if assigned_dir.exists():
+            for task_file in assigned_dir.glob("*.json"):
+                with open(task_file) as f:
+                    task = json.load(f)
+                    if task.get("assigned_to", "").startswith("森森备用"):
+                        pending_tasks.append({
+                            "type": "assigned_task",
+                            "task_id": task.get("task_id"),
+                            "title": task.get("title"),
+                            "priority": task.get("priority"),
+                            "status": task.get("status"),
+                            "message": task.get("message_from_primary"),
+                            "details": task
+                        })
+        
+        # 2. 读取学习债务作为待处理任务
+        debt_file = MEMORY_DIR / "learning-debt.md"
         if debt_file.exists():
             content = debt_file.read_text()
-            # 解析债务条目
             lines = content.split('\n')
             for line in lines:
                 if line.strip().startswith('- ') and 'Signal' in line:
@@ -113,7 +130,8 @@ def api_tasks_pending():
         return jsonify({
             "status": "success",
             "pending_tasks": pending_tasks,
-            "count": len(pending_tasks)
+            "count": len(pending_tasks),
+            "message": f"备用节点，你有 {len([t for t in pending_tasks if t.get('type') == 'assigned_task'])} 个分配任务待处理！"
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
