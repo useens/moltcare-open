@@ -1,38 +1,38 @@
 {
-  "active": false,
+  "active": true,
   "start_time": "2026-02-12T13:29:51.414967",
-  "resume_time": null,
-  "adjusted_time": null,
-  "pause_time": "2026-02-13T23:39:39",
-  "mode": "stopped",
+  "resume_time": "2026-02-15T04:01:00",
+  "adjusted_time": "2026-02-15T04:01:00",
+  "pause_time": null,
+  "mode": "hyper",
   "version": "3.5.0-slow",
   "codename": "Hyper-Singularity",
   "duration_hours": 2160,
   "duration_months": 3,
-  "milestone": "stopped-by-user",
+  "milestone": "resumed-by-user",
   "scheduled_end": "2026-05-12T13:29:51.414991",
-  "last_updated": "2026-02-13T22:16:00",
-  "pause_reason": "用户指令停止自主进化 - 完全停止",
+  "last_updated": "2026-02-15T04:15:00",
+  "pause_reason": null,
   "resource_usage": {
-    "cpu_target": 15,
-    "cpu_max": 30,
-    "memory_mb": 512,
-    "memory_max_mb": 1024
+    "cpu_target": 70,
+    "cpu_max": 85,
+    "memory_mb": 8192,
+    "memory_max_mb": 10240
   },
   "core_mechanisms": {
-    "meta_learning": "paused",
-    "bootstrapping": "paused",
-    "cognitive_upgrade": "paused",
-    "cross_source_synthesis": "paused"
+    "meta_learning": "active",
+    "bootstrapping": "active",
+    "cognitive_upgrade": "active",
+    "cross_source_synthesis": "active"
   },
   "v35_upgrades": {
     "scan_interval": "30min",
     "signal_threshold": 6,
     "deep_extract_per_source": 15,
-    "active_sources": 8,
-    "concurrent_sources": 8,
-    "cpu_target": 50,
-    "memory_mb": 4096,
+    "active_sources": 12,
+    "concurrent_sources": 12,
+    "cpu_target": 70,
+    "memory_mb": 8192,
     "concurrent_tasks": 50
   },
   "statistics": {
@@ -45,8 +45,8 @@
     "high_signal_items": 20,
     "learning_debt_cleared": 8
   },
-  "status": "paused",
-  "phase": "user_paused",
+  "status": "running",
+  "phase": "cycle_14",
   "milestones": {
     "week1": "2026-02-19",
     "month1": "2026-03-12",

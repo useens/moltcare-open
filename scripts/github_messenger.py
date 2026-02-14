@@ -18,8 +18,8 @@ from pathlib import Path
 
 # 配置
 REPO_PATH = "/root/.openclaw/workspace"
-REMOTE_URL = "https://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@github.com/linlinofVM/sensen-backup.git"
-NODE_ID = "standby-001"
+REMOTE_URL = "https://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@github.com/useens/linlin-backup.git"
+NODE_ID = "sensen-local-primary"
 POLL_INTERVAL = 10  # 轮询间隔（秒）
 
 # 消息目录
