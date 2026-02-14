@@ -36,13 +36,13 @@ class IntelScheduler:
         
         # 配置
         self.config = {
-            "normal_mode": {
+            "normal": {
                 "interval_hours": 6,
                 "signal_threshold": 7,
                 "max_deep_extract": 3,
                 "sources": ["moltbook", "hackernews", "github"]
             },
-            "hyper_mode": {
+            "hyper": {
                 "interval_hours": 1,
                 "signal_threshold": 6,
                 "max_deep_extract": 10,
