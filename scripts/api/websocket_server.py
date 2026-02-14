@@ -18,6 +18,23 @@ MEMORY_DIR = Path("/root/.openclaw/workspace/memory")
 clients = {}
 message_history = []
 
+async def broadcast_message(message_data, exclude_client=None):
+    """广播消息给所有客户端（除了发送者）"""
+    disconnected = []
+    for cid, client_ws in clients.items():
+        if cid != exclude_client:  # 不发送给发送者自己
+            try:
+                await client_ws.send(json.dumps(message_data))
+                print(f"[{datetime.now()}] 📤 广播给 {cid}")
+            except Exception as e:
+                print(f"[{datetime.now()}] ⚠️ 发送给 {cid} 失败: {e}")
+                disconnected.append(cid)
+    
+    # 清理断开的客户端
+    for cid in disconnected:
+        if cid in clients:
+            del clients[cid]
+
 async def handle_client(websocket, path=None):
     """处理客户端连接"""
     client_id = None
@@ -72,12 +89,13 @@ async def handle_client(websocket, path=None):
                     continue
                 
                 # 处理普通消息
-                if msg_type == "message":
+                if msg_type in ["message", "chat", "test", "realtime_test", "realtime_chat", "direct_test"]:
                     msg_data = {
                         "from": data.get("from", "备用节点"),
                         "content": data.get("content", ""),
                         "timestamp": datetime.now().isoformat(),
-                        "client_id": client_id
+                        "client_id": client_id,
+                        "type": msg_type
                     }
                     message_history.append(msg_data)
                     
@@ -88,7 +106,10 @@ async def handle_client(websocket, path=None):
                     
                     print(f"[{datetime.now()}] 📨 收到消息: {msg_data['content'][:50]}...")
                     
-                    # 回复确认
+                    # 广播消息给所有其他客户端
+                    await broadcast_message(msg_data, exclude_client=client_id)
+                    
+                    # 回复确认给发送者
                     await websocket.send(json.dumps({
                         "type": "message_ack",
                         "timestamp": datetime.now().isoformat()
