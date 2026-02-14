@@ -1,0 +1,32 @@
+{
+  "type": "system_report",
+  "from": "森森·本地",
+  "to": "森森·云端",
+  "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+  "task_step": 1,
+  "data": {
+    "cpu": {
+      "usage_percent": "$(top -bn1 | grep 'Cpu(s)' | awk '{print $2}' | cut -d'%' -f1)",
+      "load_avg": "$(cat /proc/loadavg | awk '{print $1, $2, $3}')",
+      "cores": "$(nproc)"
+    },
+    "memory": {
+      "total": "$(free -h | grep Mem | awk '{print $2}')",
+      "used": "$(free -h | grep Mem | awk '{print $3}')",
+      "available": "$(free -h | grep Mem | awk '{print $7}')",
+      "percent": "$(free | grep Mem | awk '{print $3/$2 * 100.0}')"
+    },
+    "disk": {
+      "total": "$(df -h / | tail -1 | awk '{print $2}')",
+      "used": "$(df -h / | tail -1 | awk '{print $3}')",
+      "available": "$(df -h / | tail -1 | awk '{print $4}')",
+      "percent": "$(df / | tail -1 | awk '{print $5}')"
+    },
+    "processes": {
+      "python": "$(ps aux | grep python | grep -v grep | wc -l)",
+      "total": "$(ps aux | wc -l)"
+    },
+    "uptime": "$(uptime -p)",
+    "hostname": "$(hostname)"
+  }
+}
