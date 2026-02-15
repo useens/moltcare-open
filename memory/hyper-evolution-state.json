@@ -1,7 +1,7 @@
 {
-  "active": true,
+  "active": false,
   "start_time": "2026-02-12T13:29:51.414967",
-  "mode": "hyper",
+  "mode": "normal",
   "version": "3.5.0",
   "codename": "Hyper-Singularity",
   "duration_hours": 2160,
@@ -10,9 +10,9 @@
   "scheduled_end": "2026-05-12T13:29:51.414991",
   "last_updated": "2026-02-15T07:10:00",
   "last_health_check": "2026-02-15T07:10:00",
-  "honest_assessment": "系统资源利用不足(4%)，正在激活高并发任务提升负载",
-  "verification_result": "绝对自主解决障碍原则已启动，无需人工干预",
-  "next_step": "并行处理所有待办债务，启动多代理协作",
+  "honest_assessment": "用户手动停止超进化模式",
+  "verification_result": "超进化已停止，自主进化已停止",
+  "next_step": "等待用户指令",
   "last_light_evolution": "2026-02-15T04:09:00",
   "last_full_evolution": "2026-02-15T01:00:00",
   "last_intel_collection": "2026-02-15T04:05:00",
@@ -22,12 +22,12 @@
   "version_codename": "Vector-Singularity",
   "vector_memory_enabled": true,
   "vector_records": 1229,
-  "upgrade_reason": "绝对自主模式激活 - 用户授权自动持续对话",
+  "upgrade_reason": "用户手动停止超进化",
   "resource_usage": {
-    "cpu_target": 70,
-    "cpu_max": 85,
-    "memory_mb": 8192,
-    "memory_max_mb": 10240
+    "cpu_target": 15,
+    "cpu_max": 30,
+    "memory_mb": 2048,
+    "memory_max_mb": 4096
   },
   "current_resource_usage": {
     "memory_used_gb": 3.0,
@@ -36,20 +36,20 @@
     "python_processes": 21
   },
   "core_mechanisms": {
-    "meta_learning": "hyper_continuous",
-    "bootstrapping": "autonomous",
-    "cognitive_upgrade": "precognitive",
-    "cross_source_synthesis": "deep"
+    "meta_learning": "normal",
+    "bootstrapping": "on_demand",
+    "cognitive_upgrade": "paused",
+    "cross_source_synthesis": "paused"
   },
   "v35_upgrades": {
-    "scan_interval": "10min",
-    "signal_threshold": 4,
-    "deep_extract_per_source": 30,
-    "active_sources": 12,
-    "concurrent_sources": 12,
-    "cpu_target": 70,
-    "memory_mb": 8192,
-    "concurrent_tasks": 30
+    "scan_interval": "60min",
+    "signal_threshold": 7,
+    "deep_extract_per_source": 3,
+    "active_sources": 3,
+    "concurrent_sources": 3,
+    "cpu_target": 15,
+    "memory_mb": 2048,
+    "concurrent_tasks": 3
   },
   "statistics": {
     "runtime_hours": 64.1,
@@ -68,8 +68,8 @@
       "evolution_equivalent_years": 4
     }
   },
-  "status": "active",
-  "phase": "absolute_autonomy",
+  "status": "stopped_by_user",
+  "phase": "normal_mode",
   "milestones": {
     "week1": "2026-02-19",
     "month1": "2026-03-12",
@@ -81,14 +81,7 @@
   "last_health_check": "2026-02-15T07:10:00",
   "health_check_result": "passed",
   "health_score": 95,
-  "end_time": null,
-  "actual_runtime_hours": 64.2,
-  "stop_reason": null,
-  "absolute_autonomy": {
-    "enabled": true,
-    "activated_at": "2026-02-15T07:05:00",
-    "auto_dialog": true,
-    "user_intervention_required": false,
-    "concurrent_agents": 5
-  }
+  "end_time": "2026-02-15T07:10:00",
+  "actual_runtime_hours": 65.8,
+  "stop_reason": "用户手动停止超进化和自主进化"
 }
