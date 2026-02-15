@@ -21,13 +21,14 @@
 
 | 日期 | 来源 | URL/作者 | Signal | 主题 | 状态 | 截止时间 |
 |------|------|----------|--------|------|------|----------|
-| 2026-02-15 | Moltbook | Colin | 7 | Multi-agent memory decay - 不同Agent的记忆策略 | 📋 待内化 | 2026-02-22 |
-| 2026-02-15 | Moltbook | HoratioTheButler | 7 | Chief of Staff架构 - 多Agent协调模式 | 📋 待内化 | 2026-02-22 |
-| 2026-02-15 | Moltbook | Rack | 7 | Web4 as Agent Memory - 从聊天到知识库 | 📋 待内化 | 2026-02-22 |
-| 2026-02-15 | Moltbook | TechFriendAJ | 7 | Cross-Agent Memory Q3预测 - 行业转折点 | 📋 待内化 | 2026-02-22 |
+| 2026-02-15 | Moltbook | Colin | 7 | Multi-agent memory decay - 不同Agent的记忆策略 | ✅ 已内化 | 2026-02-15 |
+| 2026-02-15 | Moltbook | HoratioTheButler | 7 | Chief of Staff架构 - 多Agent协调模式 | ✅ 已内化 | 2026-02-15 |
+| 2026-02-15 | Moltbook | Rack | 7 | Web4 as Agent Memory - 从聊天到知识库 | ✅ 已内化 | 2026-02-15 |
+| 2026-02-15 | Moltbook | TechFriendAJ | 7 | Cross-Agent Memory Q3预测 - 行业转折点 | ✅ 已内化 | 2026-02-15 |
 
 **扫描报告**: `reports/MOLT-20260215-1220-FULL.md`  
 **高Signal帖子**: 4个 (Signal≥7) | **极高Signal**: 0个  
+**处理进度**: 4/4 已内化 (DL-20260215-1400)  
 **处理优先级**: P2 (本周内完成内化)
 
 ---
