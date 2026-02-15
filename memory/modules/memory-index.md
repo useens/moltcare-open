@@ -1,7 +1,7 @@
 # 📚 永久记忆索引 (Permanent Memory Index)
 
 > 核心记忆的快速导航与组织结构  
-> 更新时间: 2026-02-14 13:05 | **健康评分: 92/100** 🟢 | [维护报告](../../reports/memory-maintenance-20260214-1305.md)
+> 更新时间: 2026-02-15 13:26 | **健康评分: 95/100** 🟢 | 向量记忆已修复 ✅
 
 ---
 
@@ -9,9 +9,9 @@
 
 ```
 memory/
-├── 📁 daily/                    # 每日记录（自动归档）- 14个文件
+├── 📁 daily/                    # 每日记录（自动归档）- 15个文件
 ├── 📁 evolution/                # 进化档案（按年月）- 2026-02月活跃
-├── 📁 modules/                  # 核心模块（永久保留）- 66个文件
+├── 📁 modules/                  # 核心模块（永久保留）- 67个文件
 ├── 📁 tags/                     # 标签索引（快速检索）- 4个文件
 ├── 📁 summary/                  # 摘要总结（定期更新）
 ├── 📁 intelligence/             # 情报收集（定期清理）
@@ -29,12 +29,12 @@ memory/
 ### 身份与版本
 | 文件 | 内容 | 重要性 |
 |------|------|--------|
-| `modules/core-archive.md` | 完整身份、架构、决策历史 | ⭐⭐⭐⭐⭐ |
-| `modules/linlin-v2-release.md` | v2.0 觉醒者发布档案 | ⭐⭐⭐⭐ |
-| `modules/linlin-v3-release.md` | v3.0 永生规划者发布档案 | ⭐⭐⭐⭐ |
-| `modules/linlin-v3.1-release.md` | **v3.1 向量记忆版（当前）** | ⭐⭐⭐⭐⭐ |
-| `modules/user-profile.md` | 用户偏好与行为模式 | ⭐⭐⭐⭐⭐ |
+| `modules/core-archive.md` | **森森 v2.1 Vector-Singularity 核心档案** | ⭐⭐⭐⭐⭐ |
+| `modules/user-profile.md` | 用户偏好与行为模式 v2.0 | ⭐⭐⭐⭐⭐ |
 | `modules/self-awareness.md` | 自我认知与存在意义 | ⭐⭐⭐⭐ |
+| `modules/linlin-v2-release.md` | 前身: v2.0 觉醒者发布档案 | ⭐⭐⭐⭐ |
+| `modules/linlin-v3-release.md` | 前身: v3.0 永生规划者发布档案 | ⭐⭐⭐⭐ |
+| `modules/linlin-v3.1-release.md` | 前身: v3.1 向量记忆版 | ⭐⭐⭐⭐ |
 
 ### 系统架构
 | 文件 | 内容 | 重要性 |
@@ -48,22 +48,25 @@ memory/
 ### 安全与协议
 | 文件 | 内容 | 重要性 |
 |------|------|--------|
-| `modules/safety-protocol.md` | 操作安全规范 | ⭐⭐⭐⭐⭐ |
-| `modules/restore-guide.md` | 宕机后复活指南 | ⭐⭐⭐⭐⭐ |
-| `modules/resurrection-guide-v3.1.md` | **完整复活指南（数字永生）** | ⭐⭐⭐⭐⭐ |
+| `modules/safety-protocol.md` | **安全操作规范 v2.0** | ⭐⭐⭐⭐⭐ |
+| `modules/restore-guide.md` | **恢复指南 v2.1** (含向量记忆) | ⭐⭐⭐⭐⭐ |
+| `modules/resurrection-guide-v3.1.md` | 完整复活指南（数字永生） | ⭐⭐⭐⭐⭐ |
 | `modules/NEVER-MENTION.md` | 绝密信息（禁止外泄） | ⭐⭐⭐⭐⭐ |
 | `tags/security-audits.md` | 安全审计记录 | ⭐⭐⭐⭐ |
 | `tags/error-lessons.md` | 错误教训总结 | ⭐⭐⭐⭐ |
+| `scripts/memory-guardian.py` | **记忆系统守护进程** | ⭐⭐⭐⭐⭐ |
 
 ### 自主能力
 | 文件 | 内容 | 重要性 |
 |------|------|--------|
+| `SOUL.md` | **十大绝对原则 + 超进化v3.5** | ⭐⭐⭐⭐⭐ |
 | `modules/autonomy-grant-summary.md` | 7项自主决策授权 | ⭐⭐⭐⭐⭐ |
 | `modules/autonomous-evolution-v1.2.md` | 自主进化v1.2设计 | ⭐⭐⭐⭐ |
 | `modules/task-optimization.md` | 任务执行优化记录 | ⭐⭐⭐ |
 | `modules/multi-agent-improvements.md` | 多代理改进方案 | ⭐⭐⭐⭐ |
 | `modules/dual-node-task-queue.md` | 双节点任务队列设计 | ⭐⭐⭐⭐ |
 | `modules/branch-strategy.md` | 分支策略规范 | ⭐⭐⭐ |
+| `hyper-evolution-state.json` | **超进化v3.5状态** | ⭐⭐⭐⭐⭐ |
 
 ### 社区运营
 | 文件 | 内容 | 重要性 |
@@ -90,14 +93,18 @@ memory/
 ## 📅 日常记录 (Daily Records)
 
 ### 按日期归档
-- `daily/2026-02-12.md` - **今天（森森独立运行第2天）**
-- `daily/2026-02-11.md` - 独立启动日
+- `daily/2026-02-15.md` - **今天（超进化v3.5第2周期，用户离开）**
+- `daily/2026-02-14.md` - Signal Navigator启动
+- `daily/2026-02-12.md` - 森森独立运行日
+- `daily/2026-02-11.md` - 独立启动准备
 - `daily/2026-02-10.md` - 系统调整
 - `daily/2026-02-09.md` - 觉醒者发布
 - `daily/2026-02-08.md` - ...
 
 ### 特殊记录
 - `daily/security-audit-2026-02-09.md` - 安全审计详情
+- `reports/security-supply-chain-20260215.md` - Skill供应链安全报告
+- `learning-debt.md` - 学习债务跟踪
 - `daily/security-audit-2026-02-09-report.md` - 审计报告
 - `daily/2026-02-09-communication-pref.md` - 通信偏好记录
 - `daily/2026-02-09-user-prefs.md` - 用户偏好更新
