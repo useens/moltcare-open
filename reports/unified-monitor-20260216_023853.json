@@ -1,0 +1,37 @@
+{
+  "memory": {
+    "status": "healthy",
+    "issues": [],
+    "fixed": []
+  },
+  "cron": {
+    "status": "healthy",
+    "issues": [],
+    "fixed": []
+  },
+  "storage": {
+    "status": "degraded",
+    "issues": [
+      "大文件数量过多: 17"
+    ],
+    "fixed": [
+      "大文件数量过多: 17"
+    ]
+  },
+  "git": {
+    "status": "degraded",
+    "issues": [
+      "有未提交的变更"
+    ],
+    "fixed": [
+      "有未提交的变更"
+    ]
+  },
+  "summary": {
+    "timestamp": "2026-02-16T02:38:53.792686",
+    "all_healthy": false,
+    "total_issues": 2,
+    "fixed_issues": 2,
+    "components_checked": 4
+  }
+}
