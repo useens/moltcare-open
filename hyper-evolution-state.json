@@ -2,8 +2,8 @@
   "version": "3.5",
   "status": "active",
   "start_time": "2026-02-15T13:16:00+08:00",
-  "last_update": "2026-02-15T13:26:00+08:00",
-  "cycle_count": 2,
+  "last_update": "2026-02-15T13:36:00+08:00",
+  "cycle_count": 3,
   "target_cycles": 12960,
   "resources": {
     "cpu_target": 70,
@@ -11,8 +11,8 @@
     "concurrent_agents_target": 20
   },
   "current_stats": {
-    "cpu_load": 0.03,
-    "memory_used_gb": 2.7,
+    "cpu_load": 0.46,
+    "memory_used_gb": 2.6,
     "python_processes": 20
   }
 }
