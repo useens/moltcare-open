@@ -30,6 +30,9 @@ credentials/
 
 # 向量存储临时文件
 data/vector_memory/*.lance/_transactions/
+data/vector_memory/*.lance/_versions/
+data/vector_memory/*.lance/data/
 data/vector_memory/*.lance/*.txn
 **/._transactions/
 **/*.txn
+**/*.manifest
