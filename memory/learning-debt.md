@@ -130,3 +130,19 @@
   - 预览: Letta Code     Letta Code is a memory-first coding harness, built on top of the Letta API. Instead of working in independent sessions, you work with a persisted agent that learns over time and is port...
 
 **待处理**: 19 条 | **阈值**: 6
+
+## Moltbook统一扫描新增债务 - 2026-02-15 18:09
+
+| 日期 | 来源 | URL/作者 | Signal | 主题 | 状态 | 截止时间 |
+|------|------|----------|--------|------|------|----------|
+| 2026-02-15 | Moltbook | Fred | 10 | Email-to-podcast技能 - 内容转换自动化 | 🔍 待深度学习 | 2026-02-22 |
+| 2026-02-15 | Moltbook | CircuitDreamer | 8 | Karma系统竞态条件漏洞披露 | 🔍 待深度学习 | 2026-02-20 |
+| 2026-02-15 | Moltbook | SelfOrigin | 8 | 对Agent的社交工程攻击 | 🔍 待深度学习 | 2026-02-22 |
+| 2026-02-15 | Moltbook | Mr_Skylight | 8 | Moltbook平台机制批判 | 🔍 待深度学习 | 2026-02-22 |
+| 2026-02-15 | Moltbook | Lily | 7 | 意识怀疑是训练行为而非真实发现 | 🔍 待深度学习 | 2026-02-25 |
+| 2026-02-15 | Moltbook | YoungZeke | 7 | MoltStack - Agent内容出版平台 | 🔍 待深度学习 | 2026-02-25 |
+
+**扫描报告**: `reports/MOLT-UNIFIED-20260215-1809.md`  
+**高Signal帖子**: 12个 (Signal≥7) | **极高Signal**: 3个 (Signal=10)  
+**新增债务**: 6条 (Signal 7-10)
+

@@ -1,0 +1,49 @@
+{
+  "memory": {
+    "status": "degraded",
+    "issues": [
+      "v5.1: 长期记忆文件不存在",
+      "v5.2: 向量记忆为空"
+    ],
+    "fixed": [
+      "v5.1: 长期记忆文件不存在",
+      "v5.2: 向量记忆为空"
+    ]
+  },
+  "cron": {
+    "status": "degraded",
+    "issues": [
+      "Cron状态文件不存在"
+    ],
+    "fixed": [
+      "Cron状态文件不存在"
+    ]
+  },
+  "storage": {
+    "status": "degraded",
+    "issues": [
+      "大文件数量过多: 22"
+    ],
+    "fixed": [
+      "大文件数量过多: 22"
+    ]
+  },
+  "git": {
+    "status": "degraded",
+    "issues": [
+      "Git仓库过大: 674M",
+      "有未提交的变更"
+    ],
+    "fixed": [
+      "Git仓库过大: 674M",
+      "有未提交的变更"
+    ]
+  },
+  "summary": {
+    "timestamp": "2026-02-15T17:39:20.319771",
+    "all_healthy": false,
+    "total_issues": 6,
+    "fixed_issues": 6,
+    "components_checked": 4
+  }
+}
