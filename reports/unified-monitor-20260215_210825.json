@@ -1,0 +1,31 @@
+{
+  "memory": {
+    "status": "healthy",
+    "issues": [],
+    "fixed": []
+  },
+  "cron": {
+    "status": "healthy",
+    "issues": [],
+    "fixed": []
+  },
+  "storage": {
+    "status": "degraded",
+    "issues": [
+      "大文件数量过多: 17"
+    ],
+    "fixed": []
+  },
+  "git": {
+    "status": "healthy",
+    "issues": [],
+    "fixed": []
+  },
+  "summary": {
+    "timestamp": "2026-02-15T21:08:25.111744",
+    "all_healthy": false,
+    "total_issues": 1,
+    "fixed_issues": 0,
+    "components_checked": 4
+  }
+}
