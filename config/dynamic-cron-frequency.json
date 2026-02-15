@@ -1,0 +1,28 @@
+{
+  "version": "v1.0",
+  "description": "Cron任务动态频率配置 - 根据系统稳定性自动调整",
+  "stability_thresholds": {
+    "high": {
+      "description": "系统连续稳定运行24小时以上",
+      "memory_guardian_interval": 3600000,
+      "git_sync_interval": 3600000,
+      "health_check_interval": "0 */12 * * *"
+    },
+    "medium": {
+      "description": "系统稳定运行6-24小时",
+      "memory_guardian_interval": 1800000,
+      "git_sync_interval": 1800000,
+      "health_check_interval": "0 */6 * * *"
+    },
+    "low": {
+      "description": "系统刚启动或刚修复",
+      "memory_guardian_interval": 600000,
+      "git_sync_interval": 300000,
+      "health_check_interval": "0 */2 * * *"
+    }
+  },
+  "current_stability": "medium",
+  "last_updated": "2026-02-15T16:18:00+08:00",
+  "auto_adjust": true,
+  "notify_on_change": false
+}

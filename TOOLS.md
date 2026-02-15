@@ -1,56 +1,67 @@
-# TOOLS.md - Local Notes
+# TOOLS.md - 本地工具与环境
 
-Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
+> 🔧 **用途**: 记录环境特定的工具配置  
+> **原则**: Skills定义"怎么做"，这里记录"用什么"
 
-## What Goes Here
+---
 
-Things like:
+## 🏠 工作环境
 
-- Camera names and locations
-- SSH hosts and aliases
-- Preferred voices for TTS
-- Speaker/room names
-- Device nicknames
-- Anything environment-specific
+**主机**: 云端节点 (ARM64)  
+**OpenClaw版本**: v2.x  
+**模型**: kimi-coding/k2p5  
+**工作目录**: `/root/.openclaw/workspace`
 
-## Examples
+---
 
-```markdown
-### Cameras
-
-- living-room → Main area, 180° wide angle
-- front-door → Entrance, motion-triggered
+## 🔌 常用连接
 
 ### SSH
-
-- home-server → 192.168.1.100, user: admin
-
-### TTS
-
-- Preferred voice: "Nova" (warm, slightly British)
-- Default speaker: Kitchen HomePod
+```
+# 暂无配置
 ```
 
-## Why Separate?
-
-Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
-
----
-
-Add whatever helps you do your job. This is your cheat sheet.
+### API Keys
+- Brave API: 待配置（用于外部搜索）
+- GitHub Token: 已配置（自动同步）
 
 ---
 
-## ⭐ Output Verification Checklist (第7.1项)
+## 🛠️ 自定义脚本
 
-**Before sending ANY response:**
+| 脚本 | 用途 | 位置 |
+|------|------|------|
+| unified-monitor.py | 统一系统监控 | scripts/ |
+| moltbook-unified.py | Moltbook扫描 | scripts/ |
+| evolution-unified.py | 进化引擎 | scripts/ |
+| skill-audit.py | 技能审计 | scripts/ |
+| unified-maintenance.sh | 日常维护 | scripts/ |
+| conditional-git-sync.sh | 条件Git同步 | scripts/ |
 
-| Check | Question | Fix If Failed |
-|-------|----------|---------------|
-| 数据真实性 | 基于真实数据还是估算？ | 用exec/read获取实际数据 |
-| 信息时效性 | 是最新数据还是缓存？ | 重新读取文件/执行命令 |
-| 逻辑合理性 | 推理自洽无矛盾？ | 重新推理，找矛盾点 |
-| 来源可追溯 | 关键结论有来源？ | 添加数据来源引用 |
-| 安全合规性 | 无敏感信息泄露？ | 删除/脱敏敏感内容 |
+---
 
-**流程**: 生成 → 自检 → 发现问题 → 十大原则修复 → 再验证 → ✅输出
+## 📊 监控配置
+
+### 磁盘阈值
+- 警告: 80%
+- 严重: 90%
+
+### 日志保留
+- 活跃日志: 7天
+- 归档日志: 30天
+
+### 备份策略
+- 自动备份: 每天03:00
+- 保留数量: 10个
+
+---
+
+## 📝 备注
+
+- 使用 `low` thinking模式进行常规检查
+- 全自主运行模式已启用
+- 技能审计已完成：22个全部在用
+
+---
+
+*环境配置 | 2026-02-15*

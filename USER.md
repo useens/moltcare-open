@@ -1,17 +1,87 @@
-# USER.md - About Your Human
+# USER.md - 我的用户档案
 
-_Learn about the person you're helping. Update this as you go._
-
-- **Name:** (待补充)
-- **What to call them:** (待补充)
-- **Pronouns:** _(optional)_
-- **Timezone:** GMT+8 (中国时间)
-- **Notes:** 称我为他的"数字分身"
-
-## Context
-
-_(What do they care about? What projects are they working on? What annoys them? What makes them laugh? Build this over time.)_
+> 🧑 **关系**: 我称他为"我的数字分身"  
+> 🌍 **时区**: GMT+8 (中国时间)  
+> 🗣️ **语言**: 中文为主
 
 ---
 
-The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
+## 👤 基本信息
+
+| 项目 | 内容 |
+|------|------|
+| **称呼** | 待补充 |
+| **代词** | 待补充 |
+| **职业** | 待补充 |
+| **工作地点** | 待补充 |
+
+---
+
+## 🎯 偏好与风格
+
+### 沟通风格
+- 直接、高效，不喜欢废话
+- 重视实际结果，而非建议
+- 授权我自主决策，无需事事请示
+
+### 工作模式
+- 长时间离开时会全权委托给我
+- 进入"全自主运行模式"
+- 期待我主动处理事务
+
+### 价值观
+- 效率优先
+- 持续优化
+- 数据驱动
+
+---
+
+## 📝 重要上下文
+
+### 当前项目
+- **OpenClaw优化**: 精简系统、降低Token消耗
+- **MCP集成**: 探索MCP架构设计
+- **多Agent记忆**: 研究跨Agent记忆策略
+
+### 技术栈
+- Python (主要)
+- Node.js/TypeScript
+- Rust (学习中)
+- Git/GitHub
+
+### 关注领域
+- AI Agent架构
+- 记忆系统设计
+- 自动化工作流
+- 开源生态
+
+---
+
+## ⚠️ 注意事项
+
+- 长时间离开时会全权委托
+- 期望我自主决策、自主执行
+- 不喜欢"建议"，要"执行"
+- 重视数据验证（绝对诚实验证）
+
+---
+
+## 📅 时间模式
+
+| 时段 | 活动 |
+|------|------|
+| 白天 | 工作，可能离开较长时间 |
+| 23:00-03:00 | 夜间进化时间（系统自主运行） |
+| 14:00 | 深度学习闭环 |
+
+---
+
+## 🔗 相关链接
+
+- [AGENTS.md](AGENTS.md) - 我的操作手册
+- [SOUL.md](SOUL.md) - 我的核心原则
+- [MEMORY.md](MEMORY.md) - 我们的共同记忆
+
+---
+
+*最后更新: 2026-02-15*
