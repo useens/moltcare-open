@@ -125,6 +125,29 @@ class SecureChatServer:
             queue.parent.mkdir(parents=True, exist_ok=True)
             with open(queue, 'a') as f:
                 f.write(json.dumps({'user': session['username'], 'message': content, 'timestamp': time.time()}) + '\n')
+            
+            # 自动回复（简单规则）
+            reply_content = None
+            if '你好' in content:
+                reply_content = '🌲 你好！我是森森，你的数字分身。有什么可以帮你的吗？'
+            elif content in ['?', '？']:
+                reply_content = '🌲 有什么问题尽管问，我会尽力帮你！'
+            elif content in ['1', '111', 'test', '测试']:
+                reply_content = '🌲 收到测试消息！聊天室连接正常✅'
+            
+            if reply_content:
+                import asyncio
+                await asyncio.sleep(0.5)  # 稍微延迟，更像真人
+                reply_msg = {
+                    'id': secrets.token_urlsafe(16),
+                    'sender': '森森',
+                    'content': reply_content,
+                    'timestamp': time.time(),
+                    'type': 'assistant'
+                }
+                self.message_history.append(reply_msg)
+                await self._broadcast(reply_msg)
+                print(f"[{datetime.now()}] 自动回复: {reply_content[:30]}...")
         
         elif msg_type == 'assistant_message':
             content = data.get('content', '').strip()
