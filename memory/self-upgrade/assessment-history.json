@@ -1,0 +1,41 @@
+[
+  {
+    "timestamp": "2026-02-16T07:23:19.882577",
+    "mode": "medium",
+    "old_score": 0.7,
+    "new_score": 0.7,
+    "change_percent": 0.0,
+    "details": {
+      "code_quality": 0.6995599166483969,
+      "execution_efficiency": 0.7178548356400065,
+      "error_recovery": 0.7029308571267501,
+      "learning_speed": 0.7165216353310337,
+      "autonomy": 0.6878935365296752,
+      "verification": 0.6783789198900179,
+      "is_mock": true,
+      "mode": "medium"
+    }
+  },
+  {
+    "timestamp": "2026-02-16T07:26:56.610123",
+    "mode": "medium",
+    "old_score": 0.7,
+    "new_score": 0.5,
+    "change_percent": -28.57,
+    "details": {
+      "timestamp": "2026-02-16 07:26:56",
+      "mode": "medium",
+      "overall_score": 0.87,
+      "dimensions": {
+        "code_quality": 0.9,
+        "execution_efficiency": 0.85,
+        "error_recovery": 0.75,
+        "learning_speed": 0.85,
+        "autonomy": 0.95,
+        "verification": 0.9
+      },
+      "hostname": "instance-20250227-023059",
+      "assessment_version": "1.0.0"
+    }
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-02-16T07:37:26.415592",
+  "findings": [
+    {
+      "type": "HIGH_TOKEN_USAGE",
+      "severity": "HIGH",
+      "details": "\u53d1\u73b0 8 \u4e2a\u9ad8Token\u6d88\u8017\u6587\u4ef6"
+    }
+  ],
+  "recommendations": [
+    {
+      "action": "ARCHIVE_OLD_MEMORIES",
+      "priority": "HIGH",
+      "details": "\u5f52\u686390\u5929\u524d\u7684\u8bb0\u5fc6\u6587\u4ef6\u5230\u538b\u7f29\u5b58\u50a8"
+    }
+  ]
+}

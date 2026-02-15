@@ -189,12 +189,43 @@ class StorageSystem(SystemComponent):
         return status, issues
     
     def fix(self) -> bool:
-        """执行存储清理"""
+        """执行轻量级存储清理（不执行完整备份）"""
         try:
-            cleanup_script = WORKSPACE / "scripts" / "unified-maintenance.sh"
-            if cleanup_script.exists():
-                subprocess.run(["bash", str(cleanup_script)], 
-                             capture_output=True, timeout=300)
+            logger.info("  🔧 执行轻量级清理...")
+            
+            # 1. 清理Python缓存
+            subprocess.run(
+                ["find", str(WORKSPACE), "-type", "d", "-name", "__pycache__", "-exec", "rm", "-rf", "{}", "+"],
+                capture_output=True, timeout=30
+            )
+            subprocess.run(
+                ["find", str(WORKSPACE), "-name", "*.pyc", "-delete"],
+                capture_output=True, timeout=30
+            )
+            
+            # 2. 截断大日志文件（超过50MB）
+            log_dir = WORKSPACE / "logs"
+            if log_dir.exists():
+                for log_file in log_dir.glob("*.log"):
+                    if log_file.stat().st_size > 50 * 1024 * 1024:
+                        logger.info(f"    截断大日志: {log_file.name}")
+                        subprocess.run(
+                            ["bash", "-c", f"tail -n 1000 '{log_file}' > '{log_file}.tmp' && mv '{log_file}.tmp' '{log_file}'"],
+                            capture_output=True, timeout=10
+                        )
+            
+            # 3. 清理reports目录的旧文件（保留最近30天）
+            reports_dir = WORKSPACE / "reports"
+            if reports_dir.exists():
+                cutoff = datetime.now() - timedelta(days=30)
+                for report_file in reports_dir.glob("*"):
+                    if report_file.is_file():
+                        mtime = datetime.fromtimestamp(report_file.stat().st_mtime)
+                        if mtime < cutoff:
+                            report_file.unlink()
+                            logger.info(f"    删除旧报告: {report_file.name}")
+            
+            logger.info("  ✅ 轻量级清理完成")
             return True
         except Exception as e:
             logger.error(f"存储系统修复失败: {e}")

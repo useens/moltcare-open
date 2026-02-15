@@ -1,0 +1,64 @@
+[
+  {
+    "verification_id": "20260216_072854",
+    "timestamp": "2026-02-16T07:30:24.531487",
+    "trigger_type": "test",
+    "assessment_data": {},
+    "stages": [
+      {
+        "name": "\u9a8c\u8bc11: \u57fa\u7840\u529f\u80fd\u68c0\u67e5",
+        "passed": true,
+        "results": {
+          "check_system_health": {
+            "passed": true,
+            "message": "\u7cfb\u7edf\u8d1f\u8f7d\u6b63\u5e38: 0.09228515625"
+          },
+          "check_disk_space": {
+            "passed": true,
+            "message": "\u78c1\u76d8\u7a7a\u95f4\u5145\u8db3: 41%"
+          },
+          "check_memory_usage": {
+            "passed": true,
+            "message": "\u5185\u5b58\u4f7f\u7528\u6b63\u5e38: 11.0%"
+          }
+        }
+      },
+      {
+        "name": "\u9a8c\u8bc12: \u6838\u5fc3\u811a\u672c\u68c0\u67e5",
+        "passed": true,
+        "results": {
+          "check_script_syntax": {
+            "passed": true,
+            "message": "\u6240\u6709\u811a\u672c\u8bed\u6cd5\u6b63\u786e"
+          },
+          "check_service_status": {
+            "passed": true,
+            "message": "\u5347\u7ea7\u670d\u52a1\u8fd0\u884c\u6b63\u5e38"
+          },
+          "check_log_integrity": {
+            "passed": true,
+            "message": "\u65e5\u5fd7\u5b8c\u6574\uff0c\u53d1\u73b0 0 \u4e2a\u9519\u8bef"
+          }
+        }
+      },
+      {
+        "name": "\u9a8c\u8bc13: \u6027\u80fd\u57fa\u51c6\u68c0\u67e5",
+        "passed": true,
+        "results": {
+          "check_response_time": {
+            "passed": true,
+            "message": "\u54cd\u5e94\u65f6\u95f4\u6b63\u5e38: 0.01s"
+          },
+          "check_resource_usage": {
+            "passed": true,
+            "message": "\u53d1\u73b0 1 \u4e2a\u5347\u7ea7\u76f8\u5173\u8fdb\u7a0b"
+          },
+          "check_error_rate": {
+            "passed": true,
+            "message": "\u9519\u8bef\u7387\u6b63\u5e38: 5.3%"
+          }
+        }
+      }
+    ]
+  }
+]
