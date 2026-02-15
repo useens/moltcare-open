@@ -60,7 +60,7 @@ class SystemComponent:
         return False
 
 
-class MemorySystem(Component):
+class MemorySystem(SystemComponent):
     """v5.1-v5.5 记忆系统检查"""
     
     def check(self) -> Tuple[str, List[str]]:
@@ -123,7 +123,7 @@ class MemorySystem(Component):
             return False
 
 
-class CronSystem(Component):
+class CronSystem(SystemComponent):
     """Cron任务系统检查"""
     
     def check(self) -> Tuple[str, List[str]]:
@@ -159,7 +159,7 @@ class CronSystem(Component):
             return False
 
 
-class StorageSystem(Component):
+class StorageSystem(SystemComponent):
     """存储系统检查"""
     
     def check(self) -> Tuple[str, List[str]]:
@@ -201,7 +201,7 @@ class StorageSystem(Component):
             return False
 
 
-class GitSystem(Component):
+class GitSystem(SystemComponent):
     """Git仓库检查"""
     
     def check(self) -> Tuple[str, List[str]]:
