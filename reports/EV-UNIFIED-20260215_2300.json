@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-02-15T23:00:08.341329",
+  "phases": [
+    {
+      "name": "情报收集",
+      "start_time": "2026-02-15T23:00:08.341365",
+      "end_time": "2026-02-15T23:00:08.341637",
+      "results": {
+        "sources_checked": [
+          "moltbook",
+          "system_health"
+        ],
+        "high_signal_items": [],
+        "total_items": 2,
+        "pending_debts": 23
+      }
+    }
+  ],
+  "summary": {
+    "total_phases": 1,
+    "successful_phases": 1,
+    "total_duration": 0.000272
+  }
+}
