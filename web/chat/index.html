@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="森森安全聊天室 - 端到端加密通信">
+    <title>🤖 森森·安全聊天室</title>
+    <link rel="stylesheet" href="chat.css?v=4">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+</head>
+<body>
+    <!-- 登录界面 -->
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <div class="logo">🤖</div>
+            <h1>森森·安全聊天室</h1>
+            <p class="subtitle">端到端加密通信</p>
+            
+            <form id="login-form" class="login-form">
+                <div class="input-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" name="username" placeholder="请输入用户名" required autocomplete="username">
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" name="password" placeholder="请输入密码" required autocomplete="current-password">
+                    <button type="button" class="toggle-password" id="toggle-password">👁️</button>
+                </div>
+                
+                <div class="remember-me">
+                    <label>
+                        <input type="checkbox" id="remember-me">
+                        <span>记住我 (7天)</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-login" id="btn-login">
+                    <span class="btn-text">进入聊天室</span>
+                    <span class="btn-loading" style="display: none;">连接中...</span>
+                </button>
+            </form>
+            
+            <div id="login-error" class="error-message"></div>
+            
+            <div class="security-info">
+                <div class="security-item">
+                    <span class="icon">🔒</span>
+                    <span>WSS加密传输</span>
+                </div>
+                <div class="security-item">
+                    <span class="icon">🛡️</span>
+                    <span>JWT认证</span>
+                </div>
+                <div class="security-item">
+                    <span class="icon">💾</span>
+                    <span>内存存储</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 聊天界面 -->
+    <div id="chat-screen" class="screen">
+        <!-- 头部 -->
+        <header class="chat-header">
+            <div class="header-left">
+                <div class="logo-small">🤖</div>
+                <div class="header-info">
+                    <h2>森森</h2>
+                    <span class="status" id="connection-status">
+                        <span class="status-dot connecting"></span>
+                        <span class="status-text">连接中...</span>
+                    </span>
+                </div>
+            </div>
+            <div class="header-right">
+                <span class="user-name" id="current-user"></span>
+                <button class="btn-icon" id="btn-settings" title="设置">⚙️</button>
+                <button class="btn-icon" id="btn-logout" title="退出">🚪</button>
+            </div>
+        </header>
+        
+        <!-- 消息区域 -->
+        <main class="chat-main">
+            <div id="messages" class="messages">
+                <div class="welcome-message">
+                    <div class="welcome-icon">🤖</div>
+                    <h3>欢迎来到森森安全聊天室</h3>
+                    <p>您的消息将被安全加密传输，不会存储在任何服务器上。</p>
+                    <p class="hint">提示: 直接在下方输入消息即可与森森对话</p>
+                </div>
+            </div>
+            
+            <!-- 打字中提示 -->
+            <div id="typing-indicator" class="typing-indicator" style="display: none;">
+                <span class="typing-text">森森正在输入</span>
+                <span class="typing-dots">
+                    <span></span><span></span><span></span>
+                </span>
+            </div>
+            
+            <!-- 滚动到底部按钮 -->
+            <button id="scroll-bottom" class="scroll-bottom" style="display: none;">⬇️ 新消息</button>
+        </main>
+        
+        <!-- 输入区域 -->
+        <footer class="chat-footer">
+            <div class="input-container">
+                <button class="btn-icon btn-emoji" title="表情">😊</button>
+                <textarea 
+                    id="message-input" 
+                    placeholder="输入消息... (Enter发送, Shift+Enter换行)"
+                    rows="1"
+                    maxlength="2000"
+                ></textarea>
+                <div class="input-actions">
+                    <span class="char-count" id="char-count">0/2000</span>
+                    <button class="btn-send" id="btn-send" title="发送">➤</button>
+                </div>
+            </div>
+            <div class="footer-info">
+                <span class="encryption-badge">🔒 WSS加密</span>
+                <span class="privacy-note">消息不落盘</span>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 设置弹窗 -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>设置</h3>
+                <button class="btn-close" id="btn-close-settings">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-item">
+                    <label>消息通知</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="setting-notifications" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>声音提示</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="setting-sound" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>自动滚动</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="setting-autoscroll" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>字体大小</label>
+                    <select id="setting-fontsize">
+                        <option value="small">小</option>
+                        <option value="medium" selected>中</option>
+                        <option value="large">大</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label>主题</label>
+                    <select id="setting-theme">
+                        <option value="dark" selected>深色</option>
+                        <option value="light">浅色</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="btn-clear-history">清空历史</button>
+                <button class="btn-primary" id="btn-save-settings">保存</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 表情选择器 -->
+    <div id="emoji-picker" class="emoji-picker">
+        <div class="emoji-tabs">
+            <button class="emoji-tab active" data-category="smileys">😀</button>
+            <button class="emoji-tab" data-category="nature">🌲</button>
+            <button class="emoji-tab" data-category="food">🍎</button>
+            <button class="emoji-tab" data-category="activity">⚽</button>
+        </div>
+        <div class="emoji-list" id="emoji-list">
+            <!-- 表情通过JS动态加载 -->
+        </div>
+    </div>
+    
+    <!-- 通知 -->
+    <div id="notification" class="notification"></div>
+    
+    <script src="chat.js?v=4"></script>
+</body>
+</html>
