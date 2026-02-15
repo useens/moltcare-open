@@ -78,6 +78,27 @@ class SecureChatServer:
             else:
                 await websocket.send(json.dumps({'type': 'auth_result', 'success': False, 'error': '用户名或密码错误'}))
         
+        elif msg_type == 'token_auth':
+            token = data.get('token')
+            try:
+                import jwt
+                payload = jwt.decode(token, self.config['jwt_secret'], algorithms=['HS256'])
+                username = payload.get('username')
+                
+                # Token 有效，生成新 token（续期）
+                new_token = jwt.encode({
+                    'username': username,
+                    'exp': datetime.utcnow() + timedelta(hours=24)
+                }, self.config['jwt_secret'], algorithm='HS256')
+                
+                self.clients[websocket] = {'username': username, 'token': new_token}
+                await websocket.send(json.dumps({'type': 'auth_result', 'success': True, 'token': new_token, 'username': username}))
+                print(f"[{datetime.now()}] Token认证: {username}")
+            except jwt.ExpiredSignatureError:
+                await websocket.send(json.dumps({'type': 'auth_result', 'success': False, 'error': 'Token已过期，请重新登录'}))
+            except jwt.InvalidTokenError:
+                await websocket.send(json.dumps({'type': 'auth_result', 'success': False, 'error': '无效的Token'}))
+        
         elif msg_type == 'message':
             if websocket not in self.clients:
                 return
