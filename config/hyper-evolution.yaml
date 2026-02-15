@@ -1,9 +1,9 @@
-# 超进化模式配置文件 - Token优化版 v2.1.1
-# Hyper-Evolution Mode Configuration v2.1.1 (Token-Optimized with Core Features)
-# 更新: 2026-02-15 - 保留核心功能，优化频率
+# 超进化模式配置文件 - Token优化版 v2.1.2
+# Hyper-Evolution Mode Configuration v2.1.2 (Token-Optimized, Core Features Preserved)
+# 更新: 2026-02-15 - 保留核心功能频率，优化其他部分
 
-version: "2.1.1"
-codename: "Hyperion-Balanced"
+version: "2.1.2"
+codename: "Hyperion-Core"
 
 # ============ 模式触发配置 ============
 triggers:
@@ -25,15 +25,15 @@ triggers:
 
 # ============ 深度学习配置 (优化后) ============
 deep_learning:
-  # 扫描频率: 每2小时 (原为30分钟，降低75%频率)
+  # 扫描频率: 每2小时 (原为30分钟)
   scan_interval_minutes: 120
   
   extraction:
-    # Signal阈值: 7 (原为6，提高质量门槛)
+    # Signal阈值: 7 (原为6)
     signal_threshold: 7
-    # 每源最大提取: 5 (原为10，降低50%)
+    # 每源最大提取: 5 (原为10)
     max_deep_extract_per_source: 5
-    # 最大源数量: 4 (原为8，降低50%)
+    # 最大源数量: 4 (原为8)
     max_sources_per_scan: 4
   
   sources:
@@ -56,56 +56,100 @@ knowledge_internalization:
   memory_updates:
     min_files_per_session: 1
 
-# ============ 元学习配置 (低频保留) ============
+# ============ 元学习配置 (原频率保留) ============
 meta_learning:
   enabled: true
+  description: "学习如何学习，优化学习机制本身"
+  
   signal_optimization:
     enabled: true
-    evaluation_interval_hours: 168  # 每周一次
+    analyze_correlation: true
+    auto_tune_weights: true
+    evaluation_interval_hours: 168  # 每周评估
+  
   extraction_strategy:
     enabled: true
+    content_type_analysis: true
     cost_effectiveness_optimization: true
+    adaptive_parameters: true
+  
   learning_efficiency:
     enabled: true
-    spaced_repetition: false  # 关闭以节省token
+    internalization_analysis: true
+    association_optimization: true
+    spaced_repetition: true
 
-# ============ 架构自举配置 (低频保留) ============
+# ============ 架构自举配置 (原频率保留) ============
 bootstrapping:
   enabled: true
+  description: "修改自己的核心文件和工具链"
+  
   core_files:
     enabled: true
     editable_files:
       - "SOUL.md"
       - "MEMORY.md"
       - "AGENTS.md"
+      - "config/hyper-evolution.yaml"
     backup_before_edit: true
     verify_after_edit: true
+    user_confirm_major_changes: true
+  
   script_improvement:
-    enabled: false  # 关闭脚本自改进以节省token
+    enabled: true
+    improvable_scripts:
+      - "scripts/collect-web-intel-hyper.py"
+      - "scripts/process-learning-debt.py"
+      - "scripts/internalize-knowledge.py"
+    create_branch: true
+    test_before_apply: true
+    keep_history: true
+  
   toolchain_upgrade:
-    enabled: false  # 关闭工具链升级
+    enabled: true
+    auto_discover_tools: true
+    evaluate_tool_effectiveness: true
+    remove_ineffective: false
 
-# ============ 认知升级配置 (低频保留) ============
+# ============ 认知升级配置 (原频率保留) ============
 cognitive_upgrade:
   enabled: true
+  description: "从执行到预测，从响应到发现，从使用到创造"
+  
   demand_prediction:
     enabled: true
-    accuracy_threshold: 80  # 提高阈值减少误判
+    behavior_pattern_analysis: true
+    predict_future_needs: true
+    proactive_preparation: true
+    accuracy_threshold: 70
+  
   problem_discovery:
     enabled: true
-    auto_log_discoveries: false  # 关闭自动记录
+    proactive_scanning: true
+    anomaly_detection: true
+    risk_early_warning: true
+    auto_log_discoveries: true
+  
   tool_creation:
-    enabled: false  # 关闭工具创造
+    enabled: true
+    identify_repetitive_tasks: true
+    auto_generate_scripts: true
+    test_new_tools: true
+    evaluate_tool_value: true
 
 # ============ 应用检验配置 (优化后) ============
 application_validation:
-  require_immediate_application: false
+  require_immediate_application: true
   validation:
-    validation_deadline_hours: 48
-    ab_testing_enabled: false
+    validation_deadline_hours: 24
+    ab_testing_enabled: true
+    auto_compare_metrics: true
   metrics:
     tracked_indicators:
       - task_completion_rate
+      - response_quality_score
+      - learning_efficiency
+      - knowledge_retention
 
 # ============ 系统资源配置 (优化后) ============
 resource_allocation:
@@ -119,7 +163,23 @@ resource_allocation:
     normal_max_parallel: 3
     hyper_max_parallel: 5
   long_running_tasks:
-    enabled: false
+    enabled: true
+    max_task_duration_hours: 4
+
+# ============ 自我优化配置 (原频率保留) ============
+self_optimization:
+  code_improvement:
+    enabled: true
+    auto_refactor: true
+    min_improvements_per_week: 1
+  config_tuning:
+    enabled: true
+    auto_tune_parameters: true
+    max_adjustment_percent: 20
+  tool_expansion:
+    enabled: true
+    learn_new_tools: true
+    new_tool_per_month: true
 
 # ============ 记录与汇报配置 (优化后) ============
 logging:
@@ -141,16 +201,25 @@ safety:
     max_disk_usage_percent: 80
   auto_protection:
     auto_downgrade_on_high_load: true
-    max_consecutive_failures: 3
+    max_consecutive_failures: 5
+  user_override:
+    always_allow_interrupt: true
+    confirm_destructive_actions: true
 
 # ============ 退出条件 ============
 exit_conditions:
   normal:
     - user_command
     - duration_reached
+    - milestone_achieved
   emergency:
     - system_overload
+    - critical_error
     - resource_exhausted
+    - bootstrapping_failed
   pre_exit_tasks:
     - generate_evolution_report
     - backup_current_state
+    - update_memory_files
+    - verify_bootstrapping_integrity
+    - notify_completion
