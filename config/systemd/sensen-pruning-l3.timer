@@ -1,0 +1,11 @@
+[Unit]
+Description=森森L3深度评估定时器
+Requires=sensen-pruning.service
+
+[Timer]
+# 每天04:00执行L3深度评估
+OnCalendar=*-*-* 04:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

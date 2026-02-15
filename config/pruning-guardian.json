@@ -1,0 +1,62 @@
+{
+  "version": "1.0",
+  "description": "森森系统精简守护进程配置",
+  "thinking_modes": {
+    "L2_Medium": {
+      "description": "快速扫描和精简执行",
+      "frequency": "每6小时",
+      "depth": "表面检查，关键指标",
+      "operations": ["重复检测", "备份清理", "日志轮转", "临时文件清理"]
+    },
+    "L3_High": {
+      "description": "深度评估和架构分析",
+      "frequency": "每天04:00",
+      "depth": "根因分析，架构建议",
+      "operations": ["系统评估", "精简方案制定", "架构建议", "风险评估"]
+    }
+  },
+  "triggers": {
+    "L3_auto_trigger": {
+      "script_count_critical": 250,
+      "token_anomaly_detected": true,
+      "architecture_change_needed": true,
+      "disk_usage_critical": 90
+    }
+  },
+  "l2_scan_interval_hours": 6,
+  "l3_scan_time": "04:00",
+  "auto_prune": false,
+  "dry_run": true,
+  "retention": {
+    "backup_count": 3,
+    "trash_days": 30,
+    "log_days": 7
+  },
+  "protected_paths": [
+    "AGENTS.md",
+    "SOUL.md",
+    "USER.md",
+    "IDENTITY.md",
+    "MEMORY.md",
+    "learning-debt.md",
+    ".git",
+    "scripts/backup",
+    "memory",
+    "data/vector_memory"
+  ],
+  "safe_operations": {
+    "duplicate_cleanup": true,
+    "old_backup_cleanup": true,
+    "trash_cleanup": true,
+    "temp_file_cleanup": true,
+    "empty_log_cleanup": true
+  },
+  "thresholds": {
+    "script_count_warning": 200,
+    "script_count_critical": 250,
+    "backup_size_gb": 1.5,
+    "duplicate_groups": 5,
+    "token_log_age_hours": 24,
+    "large_file_mb": 100
+  }
+}

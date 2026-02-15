@@ -1,0 +1,25 @@
+[Unit]
+Description=森森系统精简守护进程
+Documentation=https://github.com/sensen/docs/pruning
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/.openclaw/workspace
+ExecStart=/usr/bin/python3 scripts/self-pruning/pruning-guardian.py --daemon
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=60
+
+# 资源限制
+MemoryMax=256M
+CPUQuota=5%
+
+# 日志
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=sensen-pruning
+
+[Install]
+WantedBy=multi-user.target

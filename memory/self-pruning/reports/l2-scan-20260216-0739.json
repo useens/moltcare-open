@@ -1,0 +1,45 @@
+{
+  "scan_type": "L2_QUICK_SCAN",
+  "thinking_level": "Medium",
+  "timestamp": "2026-02-16T07:39:52.156865",
+  "execution_time_seconds": 0.01,
+  "metrics": {
+    "total_scripts": 242,
+    "python_scripts": 153,
+    "bash_scripts": 89,
+    "backup_size_gb": 2.01,
+    "backup_count": 7,
+    "duplicate_groups": 0,
+    "trash_files": 21
+  },
+  "findings_count": 3,
+  "critical_count": 0,
+  "warning_count": 2,
+  "findings": [
+    {
+      "level": "WARNING",
+      "category": "\u81c3\u80bf",
+      "message": "\u811a\u672c\u6570\u91cf\u504f\u9ad8: 242\u4e2a",
+      "recommendation": "\u8003\u8651\u7cbe\u7b80"
+    },
+    {
+      "level": "WARNING",
+      "category": "\u5b58\u50a8",
+      "message": "\u5907\u4efd\u5360\u7528\u8fc7\u5927: 2.01GB (7\u4e2a\u6587\u4ef6)",
+      "recommendation": "\u6e05\u7406\u65e7\u5907\u4efd\uff0c\u4fdd\u7559\u7b56\u7565\u4f18\u5316"
+    },
+    {
+      "level": "INFO",
+      "category": "\u6e05\u7406",
+      "message": ".trash\u76ee\u5f55\u670921\u4e2a\u6587\u4ef6\u5f85\u6e05\u7406",
+      "recommendation": "\u53ef\u5b89\u5168\u5220\u9664\u6216\u5f52\u6863"
+    }
+  ],
+  "recommendations": {
+    "l2_actions": [
+      "\u6e05\u7406.trash\u76ee\u5f55",
+      "\u6e05\u7406\u65e7\u5907\u4efd"
+    ],
+    "l3_required": false
+  }
+}
