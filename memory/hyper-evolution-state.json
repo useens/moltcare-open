@@ -38,14 +38,16 @@
     "cross_source_synthesis": "active"
   },
   "v35_upgrades": {
-    "scan_interval": "10min",
-    "signal_threshold": 6,
-    "deep_extract_per_source": 10,
-    "active_sources": 12,
-    "concurrent_sources": 8,
-    "cpu_target": 70,
-    "memory_mb": 8192,
-    "concurrent_tasks": 20
+    "scan_interval": "60min",
+    "signal_threshold": 7,
+    "deep_extract_per_source": 5,
+    "active_sources": 6,
+    "concurrent_sources": 6,
+    "cpu_target": 60,
+    "memory_mb": 4096,
+    "concurrent_tasks": 8,
+    "optimization_level": "moderate",
+    "internalization_interval_hours": 12
   },
   "statistics": {
     "runtime_hours": 0.87,

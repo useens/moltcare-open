@@ -25,16 +25,16 @@ triggers:
 
 # ============ 深度学习配置 (优化后) ============
 deep_learning:
-  # 扫描频率: 每2小时 (原为30分钟)
-  scan_interval_minutes: 120
+  # 扫描频率: 每60分钟 (中度优化)
+  scan_interval_minutes: 60
   
   extraction:
-    # Signal阈值: 7 (原为6)
+    # Signal阈值: 7 (过滤中等价值内容)
     signal_threshold: 7
-    # 每源最大提取: 5 (原为10)
+    # 每源最大提取: 5 (平衡深度与成本)
     max_deep_extract_per_source: 5
-    # 最大源数量: 4 (原为8)
-    max_sources_per_scan: 4
+    # 最大源数量: 6 (保留多样性)
+    max_sources_per_scan: 6
   
   sources:
     enabled:
@@ -46,8 +46,8 @@ deep_learning:
 
 # ============ 知识内化配置 (优化后) ============
 knowledge_internalization:
-  # 内化频率: 每8小时 (原为4小时)
-  interval_hours: 8
+  # 内化频率: 每12小时 (批量处理，减少碎片化)
+  interval_hours: 12
   
   forced_internalization:
     high_signal_timeout_hours: 24
@@ -158,10 +158,10 @@ resource_allocation:
     hyper_mode_percent: 60
   memory:
     normal_mode_mb: 512
-    hyper_mode_mb: 1024
+    hyper_mode_mb: 2048
   concurrency:
     normal_max_parallel: 3
-    hyper_max_parallel: 5
+    hyper_max_parallel: 8
   long_running_tasks:
     enabled: true
     max_task_duration_hours: 4
