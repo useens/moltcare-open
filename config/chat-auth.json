@@ -2,9 +2,14 @@
   "jwt_secret": "V83n6w2qPLp5Vd84a2H1DAylv_OInIG6ug2BvYB-CjM",
   "users": {
     "admin": {
-      "password_hash": "$2b$12$etwQ8DY8N8QlzW2FJVL04OTDdtYH9p2.TMqyk0ain4SDQ.UuXI436",
+      "password_hash": "$2b$12$8MRxDVcem22ZKcDghynNs.cHItp3qpoWZwp0TB9XzZpM5T2biuxzW",
       "role": "admin",
       "created_at": "2026-02-15T08:00:00"
+    },
+    "assistant": {
+      "password_hash": "$2b$12$Q1BPsa9iKfGKRerTRXYUD.cdgjmaVWIr7YnPho7iQOOBXNa.TOGk6",
+      "role": "assistant",
+      "created_at": "2026-02-15T11:00:00"
     }
   },
   "settings": {

@@ -41,9 +41,22 @@ class ChatQueueProcessor:
         return time.strftime('%H:%M:%S')
     
     async def send_reply(self, content):
-        """发送回复到聊天室"""
+        """发送回复到聊天室 - 使用专用认证"""
         try:
             async with websockets.connect(WS_URL) as ws:
+                # 先认证
+                await ws.send(json.dumps({
+                    'type': 'auth',
+                    'username': 'assistant',
+                    'password': 'assistant_secret_key_2024'
+                }))
+                auth_resp = await asyncio.wait_for(ws.recv(), timeout=5)
+                auth_result = json.loads(auth_resp)
+                if not auth_result.get('success'):
+                    print(f"[{self._now()}] ✗ 认证失败")
+                    return False
+                
+                # 发送消息
                 message = {
                     'type': 'assistant_message',
                     'sender': '森森',

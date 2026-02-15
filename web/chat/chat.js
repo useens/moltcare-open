@@ -6,8 +6,8 @@
 // 配置
 const CONFIG = {
     WS_HOST: window.location.hostname || 'localhost',
-    WS_PORT: window.location.port || (window.location.protocol === 'https:' ? 443 : 80),
-    WS_PATH: '/ws',
+    WS_PORT: 8765,
+    WS_PATH: '/',
     RECONNECT_INTERVAL: 3000,
     MAX_RECONNECT_ATTEMPTS: 5,
     TOKEN_KEY: 'sensen_chat_token',
