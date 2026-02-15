@@ -34,11 +34,6 @@ def log(msg, level="INFO"):
 # ================================================================================
 # 绝对诚实验证核心机制
 # ================================================================================
-# ================================================================================
-# 全局配置 - 可通过命令行参数覆盖
-# ================================================================================
-FAST_MODE = False  # 快速模式标志
-
 class HonestVerification:
     """
     绝对诚实验证机制
@@ -46,16 +41,13 @@ class HonestVerification:
     - 验证间隔≥30秒（禁止形式主义）
     - 必须基于实际数据验证（不能只看代码存在）
     - 终极自我质疑 - "真的吗？？？"
-    - 【快速模式】间隔3秒，用于手动执行
     """
     
     def __init__(self, name):
         self.name = name
         self.pass_count = 0
-        # 快速模式：1次验证；标准模式：3次验证
-        self.required_passes = 1 if FAST_MODE else 3
-        # 快速模式：3秒间隔；标准模式：30秒间隔
-        self.min_interval = 3 if FAST_MODE else 30
+        self.required_passes = 3
+        self.min_interval = 30  # 秒
         
     def verify(self, check_func, *args, **kwargs):
         """
@@ -1854,21 +1846,9 @@ def activate_autonomous_resolution(evolution_gaps):
 
 def main():
     """主函数 - 每日自检（绝对诚实验证版）"""
-    import argparse
-    
-    parser = argparse.ArgumentParser(description='森森守护进程 v2.0')
-    parser.add_argument('--fast', action='store_true', help='快速模式：间隔3秒，1次验证')
-    parser.add_argument('--daemon', action='store_true', help='后台模式（标准验证）')
-    args = parser.parse_args()
-    
-    global FAST_MODE
-    FAST_MODE = args.fast
-    
-    mode_str = "【快速模式】间隔3秒，1次验证" if FAST_MODE else "【标准模式】间隔30秒，3次验证"
-    
     log("="*70)
     log("🌲 森森守护进程 v2.0 启动")
-    log(f"   {mode_str}")
+    log("   【绝对诚实验证机制】连续3次验证 + 间隔≥30秒 + 终极自我质疑")
     log("="*70)
     
     start_time = time.time()
@@ -1931,16 +1911,11 @@ def main():
     log(f"")
     
     if overall_success:
-        if FAST_MODE:
-            log(f"🎉 快速验证完成！系统状态健康！")
-            log(f"   ✅ 1次验证 × 7项检查 = 7次实际验证")
-            log(f"   ⚡ 快速模式用于手动检查，标准模式用于定时任务")
-        else:
-            log(f"🎉 绝对诚实验证完成！系统状态真实健康！")
-            log(f"   ✅ 连续3次验证 × 7项检查 = 21次实际验证")
-            log(f"   ✅ 整体3次验证 × 7项检查 = 21次实际验证")
-            log(f"   ✅ 终极自我质疑通过")
-            log(f"   📊 总计: 42+次实际验证全部通过")
+        log(f"🎉 绝对诚实验证完成！系统状态真实健康！")
+        log(f"   ✅ 连续3次验证 × 7项检查 = 21次实际验证")
+        log(f"   ✅ 整体3次验证 × 7项检查 = 21次实际验证")
+        log(f"   ✅ 终极自我质疑通过")
+        log(f"   📊 总计: 42+次实际验证全部通过")
     else:
         log(f"🔴 绝对诚实验证未完成！存在未达标项目！")
         log(f"   请修复后重新运行守护进程")
@@ -1977,8 +1952,7 @@ def main():
     
     log(f"{'='*70}")
     log(f"守护进程本次执行完成")
-    if not FAST_MODE:
-        log(f"下次执行: 24小时后")
+    log(f"下次执行: 24小时后")
     log(f"{'='*70}")
 
 if __name__ == "__main__":
