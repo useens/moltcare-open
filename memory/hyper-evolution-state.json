@@ -1,33 +1,29 @@
 {
-  "active": false,
-  "start_time": "2026-02-12T13:29:51.414967",
-  "mode": "normal",
+  "active": true,
+  "start_time": "2026-02-15T09:09:04.065924",
+  "mode": "hyper-evolution",
   "version": "3.5.0",
   "codename": "Hyper-Singularity",
   "duration_hours": 2160,
   "duration_months": 3,
   "milestone": "3-month-hyper-singularity",
-  "scheduled_end": "2026-05-12T13:29:51.414991",
-  "last_updated": "2026-02-15T08:56:07.295011",
-  "last_health_check": "2026-02-15T08:56:07.295011",
-  "honest_assessment": "\u7528\u6237\u624b\u52a8\u505c\u6b62\u8d85\u8fdb\u5316\u6a21\u5f0f",
-  "verification_result": "\u8d85\u8fdb\u5316\u5df2\u505c\u6b62\uff0c\u81ea\u4e3b\u8fdb\u5316\u5df2\u505c\u6b62",
-  "next_step": "\u7b49\u5f85\u7528\u6237\u6307\u4ee4",
-  "last_light_evolution": "2026-02-15T04:09:00",
-  "last_full_evolution": "2026-02-15T01:00:00",
-  "last_intel_collection": "2026-02-15T04:05:00",
+  "scheduled_end": "2026-05-15T09:09:04.065924",
+  "last_updated": "2026-02-15T09:09:04.065924",
+  "last_health_check": "2026-02-15T09:09:04.065924",
+  "last_light_evolution": "2026-02-15T09:09:04.065924",
+  "last_full_evolution": "2026-02-15T09:09:04.065924",
+  "last_intel_collection": "2026-02-15T09:09:04.065924",
   "health_score": 95,
-  "last_audit": "2026-02-15T07:10:00",
+  "last_audit": "2026-02-15T09:09:04.065924",
   "system_version": "2.1.0",
   "version_codename": "Vector-Singularity",
   "vector_memory_enabled": true,
   "vector_records": 1229,
-  "upgrade_reason": "\u7528\u6237\u624b\u52a8\u505c\u6b62\u8d85\u8fdb\u5316",
   "resource_usage": {
-    "cpu_target": 15,
-    "cpu_max": 30,
-    "memory_mb": 2048,
-    "memory_max_mb": 4096
+    "cpu_target": 70,
+    "cpu_max": 85,
+    "memory_mb": 8192,
+    "memory_max_mb": 16384
   },
   "current_resource_usage": {
     "memory_used_gb": 3.0,
@@ -36,30 +32,30 @@
     "python_processes": 21
   },
   "core_mechanisms": {
-    "meta_learning": "normal",
-    "bootstrapping": "on_demand",
-    "cognitive_upgrade": "paused",
-    "cross_source_synthesis": "paused"
+    "meta_learning": "active",
+    "bootstrapping": "active",
+    "cognitive_upgrade": "active",
+    "cross_source_synthesis": "active"
   },
   "v35_upgrades": {
-    "scan_interval": "60min",
-    "signal_threshold": 7,
-    "deep_extract_per_source": 3,
-    "active_sources": 3,
-    "concurrent_sources": 3,
-    "cpu_target": 15,
-    "memory_mb": 2048,
-    "concurrent_tasks": 3
+    "scan_interval": "10min",
+    "signal_threshold": 6,
+    "deep_extract_per_source": 10,
+    "active_sources": 12,
+    "concurrent_sources": 8,
+    "cpu_target": 70,
+    "memory_mb": 8192,
+    "concurrent_tasks": 20
   },
   "statistics": {
-    "runtime_hours": 64.1,
-    "cycles_completed": 406,
-    "cycles_v2": 22,
-    "cycles_v35": 384,
-    "deep_learning_count": 19,
-    "knowledge_updates": 13,
-    "high_signal_items": 41,
-    "learning_debt_cleared": 15,
+    "runtime_hours": 0,
+    "cycles_completed": 0,
+    "cycles_v2": 0,
+    "cycles_v35": 0,
+    "deep_learning_count": 0,
+    "knowledge_updates": 0,
+    "high_signal_items": 0,
+    "learning_debt_cleared": 0,
     "projected_3month": {
       "total_cycles": 12960,
       "total_sources_scanned": 155520,
@@ -68,18 +64,16 @@
       "evolution_equivalent_years": 4
     }
   },
-  "status": "stopped_by_user",
-  "phase": "normal_mode",
+  "status": "running",
+  "phase": "hyper-evolution",
   "milestones": {
-    "week1": "2026-02-19",
-    "month1": "2026-03-12",
-    "month2": "2026-04-12",
-    "month3": "2026-05-12"
+    "week1": "2026-02-22",
+    "month1": "2026-03-15",
+    "month2": "2026-04-15",
+    "month3": "2026-05-15"
   },
   "high_signal_items": [],
-  "deep_learning_count": 1,
+  "deep_learning_count": 0,
   "health_check_result": "passed",
-  "end_time": "2026-02-15T07:10:00",
-  "actual_runtime_hours": 67.4,
-  "stop_reason": "\u7528\u6237\u624b\u52a8\u505c\u6b62\u8d85\u8fdb\u5316\u548c\u81ea\u4e3b\u8fdb\u5316"
+  "stop_reason": null
 }
