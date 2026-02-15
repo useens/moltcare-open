@@ -1,9 +1,9 @@
-# 超进化模式配置文件 - Token优化版 v2.1
-# Hyper-Evolution Mode Configuration v2.1 (Token-Optimized)
-# 更新: 2026-02-15 - 大幅优化以降低Token消耗
+# 超进化模式配置文件 - Token优化版 v2.1.1
+# Hyper-Evolution Mode Configuration v2.1.1 (Token-Optimized with Core Features)
+# 更新: 2026-02-15 - 保留核心功能，优化频率
 
-version: "2.1.0"
-codename: "Hyperion-Lean"
+version: "2.1.1"
+codename: "Hyperion-Balanced"
 
 # ============ 模式触发配置 ============
 triggers:
@@ -42,7 +42,7 @@ deep_learning:
       - github_trending
       - moltbook
     discovery:
-      enabled: false  # 关闭自动发现
+      enabled: false
 
 # ============ 知识内化配置 (优化后) ============
 knowledge_internalization:
@@ -50,29 +50,58 @@ knowledge_internalization:
   interval_hours: 8
   
   forced_internalization:
-    high_signal_timeout_hours: 24  # 延长至24小时
-    learning_debt_priority: "high"  # 降低优先级
+    high_signal_timeout_hours: 24
+    learning_debt_priority: "high"
   
   memory_updates:
-    min_files_per_session: 1  # 每次仅更新1个文件
+    min_files_per_session: 1
 
-# ============ 元学习配置 (优化后) ============
+# ============ 元学习配置 (低频保留) ============
 meta_learning:
-  enabled: false  # 临时关闭，后续按需开启
+  enabled: true
+  signal_optimization:
+    enabled: true
+    evaluation_interval_hours: 168  # 每周一次
+  extraction_strategy:
+    enabled: true
+    cost_effectiveness_optimization: true
+  learning_efficiency:
+    enabled: true
+    spaced_repetition: false  # 关闭以节省token
 
-# ============ 架构自举配置 (优化后) ============
+# ============ 架构自举配置 (低频保留) ============
 bootstrapping:
-  enabled: false  # 临时关闭，重大变更时手动开启
+  enabled: true
+  core_files:
+    enabled: true
+    editable_files:
+      - "SOUL.md"
+      - "MEMORY.md"
+      - "AGENTS.md"
+    backup_before_edit: true
+    verify_after_edit: true
+  script_improvement:
+    enabled: false  # 关闭脚本自改进以节省token
+  toolchain_upgrade:
+    enabled: false  # 关闭工具链升级
 
-# ============ 认知升级配置 (优化后) ============
+# ============ 认知升级配置 (低频保留) ============
 cognitive_upgrade:
-  enabled: false  # 临时关闭
+  enabled: true
+  demand_prediction:
+    enabled: true
+    accuracy_threshold: 80  # 提高阈值减少误判
+  problem_discovery:
+    enabled: true
+    auto_log_discoveries: false  # 关闭自动记录
+  tool_creation:
+    enabled: false  # 关闭工具创造
 
 # ============ 应用检验配置 (优化后) ============
 application_validation:
-  require_immediate_application: false  # 关闭强制检验
+  require_immediate_application: false
   validation:
-    validation_deadline_hours: 48  # 延长至48小时
+    validation_deadline_hours: 48
     ab_testing_enabled: false
   metrics:
     tracked_indicators:
@@ -82,37 +111,37 @@ application_validation:
 resource_allocation:
   cpu:
     normal_mode_percent: 30
-    hyper_mode_percent: 60  # 降低至60%
+    hyper_mode_percent: 60
   memory:
     normal_mode_mb: 512
-    hyper_mode_mb: 1024  # 降低至1GB
+    hyper_mode_mb: 1024
   concurrency:
     normal_max_parallel: 3
-    hyper_max_parallel: 5  # 降低至5
+    hyper_max_parallel: 5
   long_running_tasks:
-    enabled: false  # 关闭长时任务
+    enabled: false
 
 # ============ 记录与汇报配置 (优化后) ============
 logging:
-  verbosity: "minimal"  # 极简日志
+  verbosity: "minimal"
   status_updates:
-    interval_hours: 6  # 每6小时
+    interval_hours: 6
     include:
       - system_metrics
   evolution_log:
     detailed_logging: false
     decision_logging: false
-    failure_logging: true  # 仅记录失败
+    failure_logging: true
 
 # ============ 安全配置 ============
 safety:
   hard_limits:
-    max_cpu_percent: 70  # 降低上限
+    max_cpu_percent: 70
     max_memory_mb: 2048
     max_disk_usage_percent: 80
   auto_protection:
     auto_downgrade_on_high_load: true
-    max_consecutive_failures: 3  # 更敏感
+    max_consecutive_failures: 3
 
 # ============ 退出条件 ============
 exit_conditions:
