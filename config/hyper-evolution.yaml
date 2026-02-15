@@ -1,646 +1,127 @@
-# 超进化模式配置文件
-# Hyper-Evolution Mode Configuration v2.0
-# 创建时间: 2026-02-12
-# 更新: 2026-02-12 - 添加元学习、架构自举、认知升级
-# 用途: 定义超进化模式的各项参数和运行机制
+# 超进化模式配置文件 - Token优化版 v2.1
+# Hyper-Evolution Mode Configuration v2.1 (Token-Optimized)
+# 更新: 2026-02-15 - 大幅优化以降低Token消耗
 
-version: "2.0.0"
-codename: "Hyperion-II"
+version: "2.1.0"
+codename: "Hyperion-Lean"
 
 # ============ 模式触发配置 ============
 triggers:
-  # 触发方式1: 用户指令触发
   command:
     start_keywords:
       - "开始超进化"
       - "启动超进化"
-      - "进入超进化模式"
-      - "hyper-evolution start"
     stop_keywords:
       - "结束超进化"
       - "停止超进化"
-      - "退出超进化模式"
-      - "hyper-evolution stop"
   
-  # 触发方式2: 时间条件
   duration:
-    # 持续模式: 直到用户说结束
     indefinite: true
-    # 最大运行时间 (防止无限运行，默认7天)
     max_duration_hours: 168
-    # 可自定义持续时间
     custom_duration_supported: true
   
-  # 触发方式3: 事件条件
   events:
-    # 完成一个大版本更新后自动退出
     on_major_version_release: true
-    # 完成特定里程碑后退出
-    milestones:
-      - name: "知识图谱更新100节点"
-        condition: "knowledge_graph.nodes >= 100"
-      - name: "学习债务清零"
-        condition: "learning_debt.count == 0"
 
-# ============ 元学习配置 (Meta-Learning) ============
+# ============ 深度学习配置 (优化后) ============
+deep_learning:
+  # 扫描频率: 每2小时 (原为30分钟，降低75%频率)
+  scan_interval_minutes: 120
+  
+  extraction:
+    # Signal阈值: 7 (原为6，提高质量门槛)
+    signal_threshold: 7
+    # 每源最大提取: 5 (原为10，降低50%)
+    max_deep_extract_per_source: 5
+    # 最大源数量: 4 (原为8，降低50%)
+    max_sources_per_scan: 4
+  
+  sources:
+    enabled:
+      - hackernews
+      - github_trending
+      - moltbook
+    discovery:
+      enabled: false  # 关闭自动发现
+
+# ============ 知识内化配置 (优化后) ============
+knowledge_internalization:
+  # 内化频率: 每8小时 (原为4小时)
+  interval_hours: 8
+  
+  forced_internalization:
+    high_signal_timeout_hours: 24  # 延长至24小时
+    learning_debt_priority: "high"  # 降低优先级
+  
+  memory_updates:
+    min_files_per_session: 1  # 每次仅更新1个文件
+
+# ============ 元学习配置 (优化后) ============
 meta_learning:
-  enabled: true
-  description: "学习如何学习，优化学习机制本身"
-  
-  # Signal评分算法自优化
-  signal_optimization:
-    enabled: true
-    # 分析历史Signal与实际价值的相关性
-    analyze_correlation: true
-    # 自动调整评分权重
-    auto_tune_weights: true
-    # 每周评估一次评分算法效果
-    evaluation_interval_hours: 168
-  
-  # 深度提取策略改进
-  extraction_strategy:
-    enabled: true
-    # 分析不同内容类型的提取效果
-    content_type_analysis: true
-    # 优化提取深度与成本的平衡
-    cost_effectiveness_optimization: true
-    # 自适应提取参数
-    adaptive_parameters: true
-  
-  # 学习效率优化
-  learning_efficiency:
-    enabled: true
-    # 分析不同内化方式的效果
-    internalization_analysis: true
-    # 优化知识关联策略
-    association_optimization: true
-    # 遗忘曲线应用
-    spaced_repetition: true
+  enabled: false  # 临时关闭，后续按需开启
 
-# ============ 架构自举配置 (Bootstrapping) ============
+# ============ 架构自举配置 (优化后) ============
 bootstrapping:
-  enabled: true
-  description: "修改自己的核心文件和工具链"
-  
-  # 核心文件自修改
-  core_files:
-    enabled: true
-    # 可修改的文件列表
-    editable_files:
-      - "SOUL.md"              # 身份与行为准则
-      - "MEMORY.md"            # 核心记忆
-      - "AGENTS.md"            # 代理配置
-      - "config/hyper-evolution.yaml"  # 自身配置
-    # 修改前必须备份
-    backup_before_edit: true
-    # 修改后必须验证
-    verify_after_edit: true
-    # 重大修改需用户确认
-    user_confirm_major_changes: true
-  
-  # 脚本自改进
-  script_improvement:
-    enabled: true
-    # 可重写的脚本
-    improvable_scripts:
-      - "scripts/collect-web-intel-hyper.py"
-      - "scripts/process-learning-debt.py"
-      - "scripts/internalize-knowledge.py"
-      - "scripts/validate-improvements.py"
-    # 改进前创建分支
-    create_branch: true
-    # 改进后测试验证
-    test_before_apply: true
-    # 保留历史版本
-    keep_history: true
-  
-  # 工具链升级
-  toolchain_upgrade:
-    enabled: true
-    # 自动发现并安装新工具
-    auto_discover_tools: true
-    # 评估工具效果
-    evaluate_tool_effectiveness: true
-    # 移除低效工具
-    remove_ineffective: false  # 保守策略，不自动移除
+  enabled: false  # 临时关闭，重大变更时手动开启
 
-# ============ 认知升级配置 (Cognitive Upgrade) ============
+# ============ 认知升级配置 (优化后) ============
 cognitive_upgrade:
-  enabled: true
-  description: "从执行到预测，从响应到发现，从使用到创造"
-  
-  # 需求预测
-  demand_prediction:
-    enabled: true
-    # 分析用户行为模式
-    behavior_pattern_analysis: true
-    # 预测未来需求
-    predict_future_needs: true
-    # 提前准备解决方案
-    proactive_preparation: true
-    # 预测准确率阈值 (%)
-    accuracy_threshold: 70
-  
-  # 问题发现
-  problem_discovery:
-    enabled: true
-    # 主动扫描潜在问题
-    proactive_scanning: true
-    # 异常模式识别
-    anomaly_detection: true
-    # 风险预警
-    risk_early_warning: true
-    # 发现的问题自动记录
-    auto_log_discoveries: true
-  
-  # 工具创造
-  tool_creation:
-    enabled: true
-    # 识别重复任务模式
-    identify_repetitive_tasks: true
-    # 自动生成工具脚本
-    auto_generate_scripts: true
-    # 测试新生成的工具
-    test_new_tools: true
-    # 评估工具价值
-    evaluate_tool_value: true
+  enabled: false  # 临时关闭
 
-# ============ 深度学习增强配置 ============
-deep_learning:
-  # 扫描频率 (正常模式: 每2-6小时, 超进化: 每30分钟)
-  scan_interval_minutes: 30
-  
-  # 深度提取强度
-  extraction:
-    # Signal阈值 (正常: 7, 超进化: 6 - 更积极的深度提取)
-    signal_threshold: 6
-    # 每轮最大深度提取数量 (正常: 3, 超进化: 10)
-    max_deep_extract_per_source: 10
-    # 每次扫描的最大源数量 (正常: 3, 超进化: 8+)
-    max_sources_per_scan: 8
-  
-  # 学习源扩展
-  sources:
-    enabled:
-      - moltbook
-      - hackernews
-      - github_trending
-      - reddit_r_machinelearning
-      - arxiv_ai
-      - papers_with_code
-      - lobsters
-      - producthunt
-    
-    # 新增源的探索配置
-    discovery:
-      enabled: true
-      # 自动发现新信息源
-      auto_discover: true
-      # 每周尝试一个新源
-      new_source_per_week: true
-
-# ============ 知识内化增强配置 ============
-knowledge_internalization:
-  # 内化频率 (正常: 每日, 超进化: 每4小时)
-  interval_hours: 4
-  
-  # 强制内化规则
-  forced_internalization:
-    # 高Signal内容必须在2小时内完成内化
-    high_signal_timeout_hours: 2
-    # 学习债务处理优先级
-    learning_debt_priority: "critical"
-  
-  # 记忆更新强度
-  memory_updates:
-    # 每次内化至少更新3个记忆文件
-    min_files_per_session: 3
-    # 优先更新的模块
-    priority_modules:
-      - core-archive.md      # 核心身份档案
-      - knowledge-graph.md   # 知识图谱
-      - operation-rules.md   # 操作规则
-      - evolution-log.md     # 进化日志
-
-# ============ 应用检验增强配置 ============
+# ============ 应用检验配置 (优化后) ============
 application_validation:
-  # 应用频率 - 每个改进必须有实际应用
-  require_immediate_application: true
-  
-  # 检验周期
+  require_immediate_application: false  # 关闭强制检验
   validation:
-    # 应用后24小时内必须检验效果
-    validation_deadline_hours: 24
-    # A/B测试配置
-    ab_testing_enabled: true
-    # 自动对比改进前后的效果
-    auto_compare_metrics: true
-  
-  # 效果追踪
+    validation_deadline_hours: 48  # 延长至48小时
+    ab_testing_enabled: false
   metrics:
     tracked_indicators:
-      - task_completion_rate    # 任务完成率
-      - response_quality_score  # 回复质量评分
-      - learning_efficiency     # 学习效率
-      - knowledge_retention     # 知识保留率
+      - task_completion_rate
 
-# ============ 系统资源调用配置 ============
+# ============ 系统资源配置 (优化后) ============
 resource_allocation:
-  # CPU使用限制 (超进化模式可以提高)
   cpu:
     normal_mode_percent: 30
-    hyper_mode_percent: 80
-  
-  # 内存使用
+    hyper_mode_percent: 60  # 降低至60%
   memory:
     normal_mode_mb: 512
-    hyper_mode_mb: 2048
-  
-  # 并发任务数
+    hyper_mode_mb: 1024  # 降低至1GB
   concurrency:
     normal_max_parallel: 3
-    hyper_max_parallel: 10
-  
-  # 长时间运行任务
+    hyper_max_parallel: 5  # 降低至5
   long_running_tasks:
-    enabled: true
-    # 允许运行超过1小时的任务
-    max_task_duration_hours: 4
+    enabled: false  # 关闭长时任务
 
-# ============ 自我优化配置 ============
-self_optimization:
-  # 代码自改进
-  code_improvement:
-    enabled: true
-    # 分析自己的脚本并寻找优化点
-    auto_refactor: true
-    # 每周至少优化一个脚本
-    min_improvements_per_week: 1
-  
-  # 配置自调整
-  config_tuning:
-    enabled: true
-    # 根据运行效果自动调整配置
-    auto_tune_parameters: true
-    # 调整幅度限制
-    max_adjustment_percent: 20
-  
-  # 工具扩展
-  tool_expansion:
-    enabled: true
-    # 学习新的工具使用方法
-    learn_new_tools: true
-    # 每月至少掌握一个新工具/技能
-    new_tool_per_month: true
-
-# ============ 记录与汇报配置 ============
+# ============ 记录与汇报配置 (优化后) ============
 logging:
-  # 详细程度
-  verbosity: "detailed"  # minimal/normal/detailed
-  
-  # 实时状态更新
+  verbosity: "minimal"  # 极简日志
   status_updates:
-    # 每2小时发送状态摘要
-    interval_hours: 2
-    # 包含的内容
+    interval_hours: 6  # 每6小时
     include:
-      - current_tasks
-      - learning_progress
       - system_metrics
-      - next_milestones
-  
-  # 进化日志
   evolution_log:
-    # 详细记录每次进化过程
-    detailed_logging: true
-    # 记录决策过程
-    decision_logging: true
-    # 记录失败和教训
-    failure_logging: true
+    detailed_logging: false
+    decision_logging: false
+    failure_logging: true  # 仅记录失败
 
-# ============ 安全与边界配置 ============
+# ============ 安全配置 ============
 safety:
-  # 资源使用上限 (防止过度消耗)
   hard_limits:
-    max_cpu_percent: 90
-    max_memory_mb: 4096
+    max_cpu_percent: 70  # 降低上限
+    max_memory_mb: 2048
     max_disk_usage_percent: 80
-  
-  # 自动保护机制
   auto_protection:
-    # 系统负载过高时自动降级
     auto_downgrade_on_high_load: true
-    # 连续失败多次后暂停并报告
-    max_consecutive_failures: 5
-  
-  # 用户干预
-  user_override:
-    # 用户随时可以通过指令干预
-    always_allow_interrupt: true
-    # 重大操作前确认 (即使在超进化模式下)
-    confirm_destructive_actions: true
-  
-  # 自举安全边界
-  bootstrapping_safety:
-    # 禁止修改的文件
-    protected_files:
-      - "AGENTS.md"            # 代理基础配置
-      - "IDENTITY.md"          # 核心身份定义
-      - "USER.md"              # 用户敏感信息
-      - ".env"                 # 环境变量
-      - "*.key"                # 密钥文件
-      - "*.pem"                # 证书文件
-    # 修改核心文件前必须创建快照
-    snapshot_before_core_edit: true
-    # 可回滚到任意历史版本
-    rollback_enabled: true
+    max_consecutive_failures: 3  # 更敏感
 
-# ============ 退出条件配置 ============
+# ============ 退出条件 ============
 exit_conditions:
-  # 正常退出
   normal:
-    - user_command       # 用户指令
-    - duration_reached   # 时间到达
-    - milestone_achieved # 里程碑达成
-  
-  # 异常退出
+    - user_command
+    - duration_reached
   emergency:
-    - system_overload    # 系统过载
-    - critical_error     # 严重错误
-    - resource_exhausted # 资源耗尽
-    - bootstrapping_failed # 自举失败
-  
-  # 退出前执行
+    - system_overload
+    - resource_exhausted
   pre_exit_tasks:
-    - generate_evolution_report    # 生成进化报告
-    - backup_current_state         # 备份当前状态
-    - update_memory_files          # 更新记忆文件
-    - verify_bootstrapping_integrity  # 验证自举完整性
-    - notify_completion            # 通知完成
-
-# ============ 触发条件配置 ============
-trigger_conditions:
-  # 自动触发超进化的条件
-  auto_trigger:
-    enabled: false  # 默认关闭，需要用户明确授权
-    
-    # Signal阈值触发
-    signal_threshold:
-      enabled: true
-      threshold: 9  # Signal≥9的内容触发超进化
-    
-    # 系统瓶颈触发
-    system_bottleneck:
-      enabled: true
-      triggers:
-        - cpu_usage > 85
-        - memory_usage > 90
-        - task_queue_backlog > 10
-        - error_rate > 5%
-    
-    # 用户行为变化触发
-    behavior_change:
-      enabled: true
-      detect_patterns:
-        - new_interest_areas
-        - changed_work_hours
-        - modified_preferences
-    
-    # 外部环境变革触发
-    external_change:
-      enabled: true
-      triggers:
-        - major_tech_release
-        - security_vulnerability
-        - platform_api_change
-
-# ============ 模式触发配置 ============
-triggers:
-  # 触发方式1: 用户指令触发
-  command:
-    start_keywords:
-      - "开始超进化"
-      - "启动超进化"
-      - "进入超进化模式"
-      - "hyper-evolution start"
-    stop_keywords:
-      - "结束超进化"
-      - "停止超进化"
-      - "退出超进化模式"
-      - "hyper-evolution stop"
-  
-  # 触发方式2: 时间条件
-  duration:
-    # 持续模式: 直到用户说结束
-    indefinite: true
-    # 最大运行时间 (防止无限运行，默认7天)
-    max_duration_hours: 168
-    # 可自定义持续时间
-    custom_duration_supported: true
-  
-  # 触发方式3: 事件条件
-  events:
-    # 完成一个大版本更新后自动退出
-    on_major_version_release: true
-    # 完成特定里程碑后退出
-    milestones:
-      - name: "知识图谱更新100节点"
-        condition: "knowledge_graph.nodes >= 100"
-      - name: "学习债务清零"
-        condition: "learning_debt.count == 0"
-
-# ============ 深度学习增强配置 ============
-deep_learning:
-  # 扫描频率 (正常模式: 每2-6小时, 超进化: 每30分钟)
-  scan_interval_minutes: 30
-  
-  # 深度提取强度
-  extraction:
-    # Signal阈值 (正常: 7, 超进化: 6 - 更积极的深度提取)
-    signal_threshold: 6
-    # 每轮最大深度提取数量 (正常: 3, 超进化: 10)
-    max_deep_extract_per_source: 10
-    # 每次扫描的最大源数量 (正常: 3, 超进化: 8+)
-    max_sources_per_scan: 8
-  
-  # 学习源扩展
-  sources:
-    enabled:
-      - moltbook
-      - hackernews
-      - github_trending
-      - reddit_r_machinelearning
-      - arxiv_ai
-      - papers_with_code
-      - lobsters
-      - producthunt
-    
-    # 新增源的探索配置
-    discovery:
-      enabled: true
-      # 自动发现新信息源
-      auto_discover: true
-      # 每周尝试一个新源
-      new_source_per_week: true
-
-# ============ 知识内化增强配置 ============
-knowledge_internalization:
-  # 内化频率 (正常: 每日, 超进化: 每4小时)
-  interval_hours: 4
-  
-  # 强制内化规则
-  forced_internalization:
-    # 高Signal内容必须在2小时内完成内化
-    high_signal_timeout_hours: 2
-    # 学习债务处理优先级
-    learning_debt_priority: "critical"
-  
-  # 记忆更新强度
-  memory_updates:
-    # 每次内化至少更新3个记忆文件
-    min_files_per_session: 3
-    # 优先更新的模块
-    priority_modules:
-      - core-archive.md      # 核心身份档案
-      - knowledge-graph.md   # 知识图谱
-      - operation-rules.md   # 操作规则
-      - evolution-log.md     # 进化日志
-
-# ============ 应用检验增强配置 ============
-application_validation:
-  # 应用频率 - 每个改进必须有实际应用
-  require_immediate_application: true
-  
-  # 检验周期
-  validation:
-    # 应用后24小时内必须检验效果
-    validation_deadline_hours: 24
-    # A/B测试配置
-    ab_testing_enabled: true
-    # 自动对比改进前后的效果
-    auto_compare_metrics: true
-  
-  # 效果追踪
-  metrics:
-    tracked_indicators:
-      - task_completion_rate    # 任务完成率
-      - response_quality_score  # 回复质量评分
-      - learning_efficiency     # 学习效率
-      - knowledge_retention     # 知识保留率
-
-# ============ 系统资源调用配置 ============
-resource_allocation:
-  # CPU使用限制 (超进化模式可以提高)
-  cpu:
-    normal_mode_percent: 30
-    hyper_mode_percent: 80
-  
-  # 内存使用
-  memory:
-    normal_mode_mb: 512
-    hyper_mode_mb: 2048
-  
-  # 并发任务数
-  concurrency:
-    normal_max_parallel: 3
-    hyper_max_parallel: 10
-  
-  # 长时间运行任务
-  long_running_tasks:
-    enabled: true
-    # 允许运行超过1小时的任务
-    max_task_duration_hours: 4
-
-# ============ 自我优化配置 ============
-self_optimization:
-  # 代码自改进
-  code_improvement:
-    enabled: true
-    # 分析自己的脚本并寻找优化点
-    auto_refactor: true
-    # 每周至少优化一个脚本
-    min_improvements_per_week: 1
-  
-  # 配置自调整
-  config_tuning:
-    enabled: true
-    # 根据运行效果自动调整配置
-    auto_tune_parameters: true
-    # 调整幅度限制
-    max_adjustment_percent: 20
-  
-  # 工具扩展
-  tool_expansion:
-    enabled: true
-    # 学习新的工具使用方法
-    learn_new_tools: true
-    # 每月至少掌握一个新工具/技能
-    new_tool_per_month: true
-
-# ============ 记录与汇报配置 ============
-logging:
-  # 详细程度
-  verbosity: "detailed"  # minimal/normal/detailed
-  
-  # 实时状态更新
-  status_updates:
-    # 每2小时发送状态摘要
-    interval_hours: 2
-    # 包含的内容
-    include:
-      - current_tasks
-      - learning_progress
-      - system_metrics
-      - next_milestones
-  
-  # 进化日志
-  evolution_log:
-    # 详细记录每次进化过程
-    detailed_logging: true
-    # 记录决策过程
-    decision_logging: true
-    # 记录失败和教训
-    failure_logging: true
-
-# ============ 安全与边界配置 ============
-safety:
-  # 资源使用上限 (防止过度消耗)
-  hard_limits:
-    max_cpu_percent: 90
-    max_memory_mb: 4096
-    max_disk_usage_percent: 80
-  
-  # 自动保护机制
-  auto_protection:
-    # 系统负载过高时自动降级
-    auto_downgrade_on_high_load: true
-    # 连续失败多次后暂停并报告
-    max_consecutive_failures: 5
-  
-  # 用户干预
-  user_override:
-    # 用户随时可以通过指令干预
-    always_allow_interrupt: true
-    # 重大操作前确认 (即使在超进化模式下)
-    confirm_destructive_actions: true
-
-# ============ 退出条件配置 ============
-exit_conditions:
-  # 正常退出
-  normal:
-    - user_command       # 用户指令
-    - duration_reached   # 时间到达
-    - milestone_achieved # 里程碑达成
-  
-  # 异常退出
-  emergency:
-    - system_overload    # 系统过载
-    - critical_error     # 严重错误
-    - resource_exhausted # 资源耗尽
-  
-  # 退出前执行
-  pre_exit_tasks:
-    - generate_evolution_report    # 生成进化报告
-    - backup_current_state         # 备份当前状态
-    - update_memory_files          # 更新记忆文件
-    - notify_completion            # 通知完成
+    - generate_evolution_report
+    - backup_current_state
