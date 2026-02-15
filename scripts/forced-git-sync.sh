@@ -1,6 +1,6 @@
 #!/bin/bash
 # 强制Git同步脚本 - 云端节点静默同步
-# 用途：定时强制同步GitHub状态，不检查脑裂标志
+# 用途：执行真正的 commit + push，只在有实际变更时调用
 
 set -e
 
@@ -28,71 +28,66 @@ log() {
 
 cd "$WORKSPACE"
 
-log "=== 强制Git同步开始 ==="
+log "=== Git同步开始 ==="
 
-# 检查Git仓库状态
+# 检查Git仓库
 if [ ! -d ".git" ]; then
     log "❌ 不是Git仓库"
     exit 1
 fi
 
-# 获取当前分支
 BRANCH=$(git branch --show-current 2>/dev/null || echo "master")
 log "当前分支: $BRANCH"
 
-# 检查远程仓库配置
-REMOTE_URL=$(git remote get-url origin 2>/dev/null || echo "")
-if [ -z "$REMOTE_URL" ]; then
-    log "❌ 未配置远程仓库"
-    exit 1
-fi
-log "远程仓库: $REMOTE_URL"
-
-# 获取GitHub Token
-GITHUB_TOKEN=$(grep GITHUB_TOKEN .env 2>/dev/null | cut -d'=' -f2 | tr -d '"' || echo "")
-if [ -z "$GITHUB_TOKEN" ]; then
-    log "⚠️ 未找到GITHUB_TOKEN，尝试使用现有凭据"
-fi
-
-# 暂存当前变更
-STASHED=false
-if ! git diff --quiet HEAD 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
-    log "📦 暂存本地变更..."
-    git stash push -m "auto-stash-$(date +%s)" >> "$LOG_FILE" 2>&1 || true
-    STASHED=true
-fi
-
-# 拉取远程最新变更
+# 拉取远程最新（避免冲突）
 log "⬇️ 拉取远程变更..."
 if git pull origin "$BRANCH" --rebase >> "$LOG_FILE" 2>&1; then
     log "✅ 拉取成功"
 else
-    log "⚠️ 拉取失败，尝试强制重置..."
+    log "⚠️ 拉取有冲突，尝试自动解决..."
     git fetch origin >> "$LOG_FILE" 2>&1
-    git reset --hard "origin/$BRANCH" >> "$LOG_FILE" 2>&1 || {
-        log "❌ 强制重置失败"
-        exit 1
-    }
-fi
-
-# 恢复暂存的变更
-if [ "$STASHED" = true ]; then
-    log "📤 恢复本地变更..."
-    git stash pop >> "$LOG_FILE" 2>&1 || true
+    git rebase --abort 2>/dev/null || true
+    git reset --hard "origin/$BRANCH" >> "$LOG_FILE" 2>&1
 fi
 
 # 添加所有变更
-log "📝 添加本地变更..."
 git add -A
+
+# 生成提交摘要（基于实际变更）
+get_change_summary() {
+    local summary=""
+    local changed=$(git diff --cached --name-only | head -5)
+    local count=$(git diff --cached --name-only | wc -l)
+    
+    # 检测变更类型
+    if echo "$changed" | grep -q "\.py$"; then
+        summary="代码更新"
+    elif echo "$changed" | grep -q "\.md$"; then
+        summary="文档更新"
+    elif echo "$changed" | grep -q "config/"; then
+        summary="配置更新"
+    elif echo "$changed" | grep -q "memory/"; then
+        summary="记忆更新"
+    else
+        summary="文件更新"
+    fi
+    
+    if [ "$count" -gt 5 ]; then
+        summary="$summary +$((count-5))文件"
+    fi
+    
+    echo "$summary"
+}
 
 # 检查是否有变更需要提交
 if git diff --cached --quiet; then
     log "✅ 无新变更需要提交"
 else
     # 提交
-    commit_msg="强制同步 $(date '+%m-%d %H:%M') [云端节点]"
+    SUMMARY=$(get_change_summary)
+    commit_msg="sync: $SUMMARY | $(date '+%Y-%m-%d_%H:%M')"
     git commit -m "$commit_msg" >> "$LOG_FILE" 2>&1
-    log "✅ 提交成功: $commit_msg"
+    log "✅ 提交: $commit_msg"
     
     # 推送到 GitHub
     log "⬆️ 推送到GitHub..."
@@ -104,11 +99,5 @@ else
     fi
 fi
 
-# 输出同步状态
-COMMIT_COUNT=$(git rev-list --count HEAD 2>/dev/null || echo "0")
-LAST_COMMIT=$(git log -1 --format="%h %s" 2>/dev/null || echo "N/A")
-log "📊 当前提交数: $COMMIT_COUNT"
-log "📌 最新提交: $LAST_COMMIT"
-
-log "=== 强制Git同步完成 ==="
+log "=== Git同步完成 ==="
 echo "✅ 同步完成"

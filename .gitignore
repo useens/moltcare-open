@@ -27,3 +27,9 @@ credentials/
 
 # 向量记忆系统数据库
 *.db
+
+# 向量存储临时文件
+data/vector_memory/*.lance/_transactions/
+data/vector_memory/*.lance/*.txn
+**/._transactions/
+**/*.txn
