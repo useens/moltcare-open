@@ -72,8 +72,10 @@
     "month2": "2026-04-15",
     "month3": "2026-05-15"
   },
-  "high_signal_items": [],
-  "deep_learning_count": 0,
+  "high_signal_items": [
+    "item_2026-02-15T09:14:37.040041"
+  ],
+  "deep_learning_count": 1,
   "health_check_result": "passed",
   "stop_reason": null
 }
