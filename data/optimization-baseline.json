@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-02-15T17:45:44.156028",
+  "score": {
+    "total": 72.5,
+    "breakdown": {}
+  },
+  "dimensions": {
+    "token_waste": {
+      "waste_rate": 15.2,
+      "efficiency": 84.8
+    },
+    "bloat": {
+      "bloat_score": 28.5,
+      "total_files": 28141
+    },
+    "duplication": {
+      "duplicate_rate": 8.3
+    },
+    "invalidity": {
+      "invalidity_rate": 12.1
+    },
+    "coupling": {
+      "coupling_score": 22.4
+    },
+    "storage": {
+      "storage_efficiency": 75.2,
+      "total_size_mb": 1665.5883626937866
+    }
+  }
+}

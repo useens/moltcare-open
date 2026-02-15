@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-02-15T17:45:47.345347",
+  "opportunities": [
+    {
+      "id": "temp-cleanup",
+      "name": "\u4e34\u65f6\u6587\u4ef6\u6e05\u7406",
+      "priority": "P0",
+      "action": "delete",
+      "target_type": "files",
+      "targets": [
+        {
+          "path": "core/vector_memory/__pycache__/embedder.cpython-311.pyc",
+          "size": 18880
+        },
+        {
+          "path": "core/vector_memory/__pycache__/vector_store.cpython-311.pyc",
+          "size": 20748
+        },
+        {
+          "path": "core/vector_memory/__pycache__/memory_manager.cpython-311.pyc",
+          "size": 28759
+        },
+        {
+          "path": "core/vector_memory/__pycache__/memory_search.cpython-311.pyc",
+          "size": 18377
+        },
+        {
+          "path": "core/vector_memory/__pycache__/__init__.cpython-311.pyc",
+          "size": 2229
+        },
+        {
+          "path": "core/vector_memory/__pycache__",
+          "size": 4096
+        }
+      ],
+      "estimated_saving_mb": 0.0887765884399414,
+      "description": "\u6e05\u7406 6 \u4e2a\u4e34\u65f6\u6587\u4ef6",
+      "risk_level": "low"
+    },
+    {
+      "id": "config-merge",
+      "name": "\u914d\u7f6e\u5408\u5e76",
+      "priority": "P2",
+      "action": "merge",
+      "target_type": "configs",
+      "targets": [
+        {
+          "path": "logs/cron-health.log"
+        },
+        {
+          "path": "logs/.dedup_cache/cron-health.hash"
+        },
+        {
+          "path": "logs/memory/consolidation-cron.log"
+        },
+        {
+          "path": "scripts/setup-hyper-cron.sh"
+        },
+        {
+          "path": "scripts/setup-automation-cron.sh"
+        }
+      ],
+      "estimated_saving_mb": 0,
+      "description": "\u5408\u5e76 11 \u4e2a\u5206\u6563\u7684cron\u914d\u7f6e",
+      "risk_level": "medium"
+    }
+  ],
+  "summary": {
+    "total_opportunities": 2,
+    "p0_count": 1,
+    "p1_count": 0,
+    "p2_count": 1,
+    "estimated_saving_mb": 0.09,
+    "estimated_saving_percent": 0
+  }
+}

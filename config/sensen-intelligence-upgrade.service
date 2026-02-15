@@ -1,0 +1,15 @@
+[Unit]
+Description=Sensen Intelligence Upgrade Daemon
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /root/.openclaw/workspace/scripts/intelligence-upgrade-daemon.py
+Restart=always
+RestartSec=10
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

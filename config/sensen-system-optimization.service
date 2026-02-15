@@ -1,0 +1,16 @@
+[Unit]
+Description=Sensen System Optimization Daemon
+After=network.target sensen-intelligence-upgrade.service
+Wants=sensen-intelligence-upgrade.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /root/.openclaw/workspace/scripts/system-optimization-daemon.py
+Restart=always
+RestartSec=10
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

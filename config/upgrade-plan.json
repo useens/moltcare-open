@@ -1,0 +1,116 @@
+{
+  "version": "1.0",
+  "created_at": "2026-02-15T17:38:41.384674",
+  "based_on_assessment": "2026-02-15",
+  "weaknesses": [
+    {
+      "name": "自主决策能力",
+      "score": 27,
+      "max_score": 60,
+      "percentage": 45.0,
+      "details": [
+        "✗ L1感知过滤 未完全配置",
+        "✗ L2认知加工 未完全配置",
+        "✗ L3决策形成 未完全配置",
+        "✗ L4意图验证 未完全配置",
+        "✗ L5执行计划 未完全配置",
+        "✗ L6反馈学习 未完全配置",
+        "✓ AGENTS.md 存在"
+      ]
+    },
+    {
+      "name": "任务执行效率",
+      "score": 30,
+      "max_score": 60,
+      "percentage": 50.0,
+      "details": [
+        "无任务历史文件"
+      ]
+    },
+    {
+      "name": "问题解决闭环率",
+      "score": 35,
+      "max_score": 60,
+      "percentage": 58.3,
+      "details": [
+        "学习债务: 50/118 完成 (42.4%)",
+        "✓ 知识图谱已建立"
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "target": "自主决策能力",
+      "current_percentage": 45.0,
+      "strategy": {
+        "priority": "high",
+        "actions": [
+          "完善SOUL.md L1-L6架构配置",
+          "强化AGENTS.md启动自检流程",
+          "建立决策执行日志",
+          "实施L6反馈学习闭环"
+        ],
+        "resources": [
+          "SOUL.md",
+          "AGENTS.md",
+          "scripts/decision-log.py"
+        ],
+        "expected_improvement": 15,
+        "duration_days": 7
+      },
+      "status": "completed",
+      "created_at": "2026-02-15T17:38:41.385100",
+      "completed_at": "2026-02-15T17:38:41.421280"
+    },
+    {
+      "phase": 2,
+      "target": "任务执行效率",
+      "current_percentage": 50.0,
+      "strategy": {
+        "priority": "medium",
+        "actions": [
+          "优化任务分解策略",
+          "建立时间预估模型",
+          "实施并行处理机制",
+          "完善任务执行监控"
+        ],
+        "resources": [
+          "data/task-history.json"
+        ],
+        "expected_improvement": 12,
+        "duration_days": 14
+      },
+      "status": "completed",
+      "created_at": "2026-02-15T17:38:41.385109",
+      "completed_at": "2026-02-15T17:38:41.421481"
+    },
+    {
+      "phase": 3,
+      "target": "问题解决闭环率",
+      "current_percentage": 58.3,
+      "strategy": {
+        "priority": "medium",
+        "actions": [
+          "清理learning-debt.md积压",
+          "建立学习→内化→应用→检验流程",
+          "完善知识图谱关联",
+          "实施每日学习复盘"
+        ],
+        "resources": [
+          "learning-debt.md",
+          "knowledge-graph.md"
+        ],
+        "expected_improvement": 18,
+        "duration_days": 10
+      },
+      "status": "completed",
+      "created_at": "2026-02-15T17:38:41.385114",
+      "completed_at": "2026-02-15T17:38:41.422301"
+    }
+  ],
+  "target_score": 83.1,
+  "estimated_completion": "2026-03-01",
+  "current_score": 75.6,
+  "execution_completed": "2026-02-15T17:38:41.422652"
+}

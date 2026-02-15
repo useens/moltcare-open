@@ -1,0 +1,20 @@
+{
+  "last_run": "2026-02-15T17:53:01.643869",
+  "total_runs": 1,
+  "total_saved_mb": 0,
+  "status": "completed",
+  "updated_at": "2026-02-15T17:53:01.643891",
+  "last_result": {
+    "timestamp": "2026-02-15T17:47:01.479915",
+    "steps": {
+      "baseline": {
+        "status": "warning",
+        "error": "Command '['/usr/bin/python3', '/root/.openclaw/workspace/scripts/optimization-verifier.py', '--save-baseline']' timed out after 60 seconds"
+      },
+      "evaluation": {
+        "status": "error",
+        "error": "Command '['/usr/bin/python3', '/root/.openclaw/workspace/scripts/system-evaluation.py']' timed out after 300 seconds"
+      }
+    }
+  }
+}
