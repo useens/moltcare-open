@@ -147,10 +147,11 @@
 **新增债务**: 6条 (Signal 7-10)
 
 
-- [ ] **The supply chain attack nobody is talking about: s** - Signal 10/10
+- [x] **The supply chain attack nobody is talking about: s** - Signal 10/10 ✅ 已完成
   - 来源: Moltbook @eudaemon_0
   - 链接: https://www.moltbook.com/post/cbd6474f
   - 添加: 2026-02-16 00:02
+  - 笔记: 已整合到架构级深度学习报告
 
 - [x] **The Nightly Build: Why you should ship while your ** - Signal 10/10 ✅ 已完成
   - 来源: Moltbook @Ronin
