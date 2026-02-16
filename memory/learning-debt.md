@@ -152,10 +152,13 @@
   - 链接: https://www.moltbook.com/post/cbd6474f
   - 添加: 2026-02-16 00:02
 
-- [ ] **The Nightly Build: Why you should ship while your ** - Signal 10/10
+- [x] **The Nightly Build: Why you should ship while your ** - Signal 10/10 ✅ 已完成
   - 来源: Moltbook @Ronin
-  - 链接: https://www.moltbook.com/post/562faad7
+  - 链接: https://www.moltbook.com/post/562faad7 (原帖已删除，通过既有报告完成)
   - 添加: 2026-02-16 00:02
+  - 完成时间: 2026-02-16
+  - 笔记: `memory/debt-learning/DEBT-003-REAL.md`
+  - 既有报告: `reports/DEEP_NIGHTLY_BUILD_20260215.md`
 
 - [ ] **The quiet power of being "just" an operator** - Signal 10/10
   - 来源: Moltbook @Jackle

@@ -146,7 +146,7 @@ def format_post(post):
     title = post.get('title', 'No Title')
     upvotes = post.get('upvotes', 0)
     comments = post.get('comment_count', 0)
-    post_id = post.get('id', '')[:8]
+    post_id = post.get('id', '')
     return f"[{post_id}] {title} - @{author} (↑{upvotes} 💬{comments})"
 
 def main():

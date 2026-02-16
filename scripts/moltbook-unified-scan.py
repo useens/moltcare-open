@@ -18,6 +18,39 @@ REPORTS_DIR = WORKSPACE / "reports"
 DATA_DIR = WORKSPACE / "data"
 MEMORY_DIR = WORKSPACE / "memory"
 
+def validate_uuid(post_id: str) -> bool:
+    """验证是否为有效的UUID格式 (8-4-4-4-12)"""
+    if not post_id:
+        return False
+    pattern = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$'
+    return bool(re.match(pattern, post_id.lower()))
+
+def validate_post_data(post: dict) -> tuple[bool, str]:
+    """验证帖子数据完整性
+    
+    Returns:
+        (is_valid, error_message)
+    """
+    post_id = post.get('id', '')
+    
+    # 检查ID是否存在
+    if not post_id:
+        return False, "帖子ID为空"
+    
+    # 检查ID格式
+    if len(post_id) == 8:
+        return False, f"短ID格式: '{post_id}' (应为完整UUID)"
+    
+    if not validate_uuid(post_id):
+        return False, f"无效UUID格式: '{post_id}'"
+    
+    # 检查URL是否使用完整ID
+    url = post.get('url', '')
+    if post_id not in url:
+        return False, f"URL不包含完整ID: '{url}'"
+    
+    return True, ""
+
 def get_hot_posts(limit=50):
     """获取热门帖子"""
     result = subprocess.run(
@@ -69,13 +102,19 @@ def parse_posts(output):
     
     for line in lines:
         # 匹配: [post_id] Title - @author (↑upvotes 💬comments)
-        match = re.search(r'\[([a-f0-9]+)\]\s+(.+?)\s+-\s+@(\w+)\s+\(↑(\d+)\s+💬(\d+)\)', line)
+        # UUID格式: 8-4-4-4-12 (36字符) 或短ID (8字符)
+        match = re.search(r'\[([a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}|[a-f0-9]{8})\]\s+(.+?)\s+-\s+@(\w+)\s+\(↑(\d+)\s+💬(\d+)\)', line)
         if match:
             post_id = match.group(1)
             title = match.group(2)
             author = match.group(3)
             upvotes = int(match.group(4))
             comments = int(match.group(5))
+            
+            # 验证ID长度，如果是短ID则跳过并警告
+            if len(post_id) == 8:
+                print(f"   ⚠️ 警告: 检测到短ID '{post_id}'，已跳过。请检查moltbook_cli.py是否返回完整UUID。")
+                continue
             
             signal = calculate_signal(title, upvotes, comments)
             
@@ -154,6 +193,28 @@ def update_learning_debt(high_signal_posts):
     """更新学习债务"""
     debt_file = MEMORY_DIR / "learning-debt.md"
     
+    # 先验证所有帖子数据
+    valid_posts = []
+    skipped_posts = []
+    
+    for post in high_signal_posts:
+        is_valid, error_msg = validate_post_data(post)
+        if is_valid:
+            valid_posts.append(post)
+        else:
+            skipped_posts.append((post.get('title', 'Unknown'), error_msg))
+    
+    if skipped_posts:
+        print(f"   ⚠️ 跳过 {len(skipped_posts)} 个无效帖子:")
+        for title, error in skipped_posts[:5]:  # 只显示前5个
+            print(f"      - {title[:40]}...: {error}")
+        if len(skipped_posts) > 5:
+            print(f"      ... 还有 {len(skipped_posts) - 5} 个")
+    
+    if not valid_posts:
+        print("   ❌ 没有有效的帖子可以添加")
+        return 0
+    
     if not debt_file.exists():
         base_content = "# 学习债务\n\n待深度学习的内容。\n\n"
     else:
@@ -164,7 +225,7 @@ def update_learning_debt(high_signal_posts):
     new_entries = []
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
     
-    for post in high_signal_posts:
+    for post in valid_posts:
         entry = f"\n- [ ] **{post['title'][:50]}** - Signal {post['signal']}/10\n"
         entry += f"  - 来源: Moltbook @{post['author']}\n"
         entry += f"  - 链接: {post['url']}\n"
@@ -177,7 +238,7 @@ def update_learning_debt(high_signal_posts):
     
     added_count = 0
     for entry in new_entries:
-        post_id_match = re.search(r'/post/([a-f0-9]+)', entry)
+        post_id_match = re.search(r'/post/([a-f0-9-]+)', entry)
         if post_id_match:
             post_id = post_id_match.group(1)
             if post_id not in existing:
@@ -300,14 +361,35 @@ def main():
     posts = parse_posts(output)
     print(f"   ✅ 解析到 {len(posts)} 个帖子")
     
+    # 验证帖子数据完整性
+    print("\n🔐 验证帖子数据...")
+    valid_count = 0
+    invalid_count = 0
+    for post in posts:
+        is_valid, error = validate_post_data(post)
+        if is_valid:
+            valid_count += 1
+        else:
+            invalid_count += 1
+            if invalid_count <= 3:  # 只显示前3个错误
+                print(f"   ❌ {post.get('title', 'Unknown')[:40]}...: {error}")
+    
+    print(f"   ✅ 有效: {valid_count} | ⚠️ 无效: {invalid_count}")
+    
+    if invalid_count > 0:
+        print(f"   ⚠️ 警告: 检测到 {invalid_count} 个无效帖子，请检查数据源")
+    
+    # 过滤有效帖子继续处理
+    valid_posts = [p for p in posts if validate_post_data(p)[0]]
+    
     # 2. 分析趋势
     print("\n📊 分析社区趋势...")
-    trends = analyze_trends(posts)
+    trends = analyze_trends(valid_posts)
     print(f"   平均Signal: {trends['avg_signal']:.1f}/10")
     print(f"   高Signal帖子: {trends['signal_dist']['high']} 个")
     
     # 3. 识别高Signal内容
-    high_signal = [p for p in posts if p["signal"] >= 7]
+    high_signal = [p for p in valid_posts if p["signal"] >= 7]
     print(f"\n🎯 Signal≥7 的帖子 ({len(high_signal)}个):")
     for p in high_signal[:5]:
         print(f"   [{p['signal']}/10] {p['title'][:50]}...")
@@ -319,7 +401,7 @@ def main():
     
     # 5. 生成报告
     print("\n📄 生成报告...")
-    report_file = generate_report(posts, trends)
+    report_file = generate_report(valid_posts, trends)
     print(f"   ✅ 报告已保存: {report_file}")
     
     print("\n" + "=" * 60)
