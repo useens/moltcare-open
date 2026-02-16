@@ -1,0 +1,82 @@
+# 双模型任务路由规则
+# 定义任务复杂度评估和模型选择策略
+
+# 轻量模式触发条件 (使用 Nemotron-Nano)
+lightweight_patterns:
+  - pattern: "^你好|^嗨|^Hello|^Hi"
+    type: greeting
+    priority: high
+  
+  - pattern: "^测试|^test"
+    type: test
+    priority: high
+  
+  - pattern: "^(是|否|对|不对|好的|知道了)$"
+    type: short_response
+    priority: high
+  
+  - pattern: "HEARTBEAT|心跳|状态检查"
+    type: system_check
+    priority: critical
+  
+  - max_tokens_estimate: 200
+    context_length: < 2000
+    type: short_query
+    priority: medium
+
+# 深度模式触发条件 (使用 Kimi K2.5)
+deep_patterns:
+  - pattern: "(写|编写|生成|创建).*(代码|程序|脚本)"
+    type: code_generation
+    priority: critical
+  
+  - pattern: "(分析|深度|详细|架构|设计)"
+    type: analysis
+    priority: high
+  
+  - pattern: "(比较|对比|评估|优化)"
+    type: comparison
+    priority: high
+  
+  - pattern: "(为什么|如何|解释).*(原理|机制|概念)"
+    type: explanation
+    priority: medium
+  
+  - min_context_length: 10000
+    type: long_context
+    priority: high
+  
+  - requires_reasoning: true
+    type: reasoning_task
+    priority: critical
+
+# 模型配置
+models:
+  primary:
+    id: "kimi-coding/k2p5"
+    alias: "Kimi K2.5"
+    context_window: 262144
+    max_tokens: 8192
+    cost_per_1k_input: 0.0001
+    cost_per_1k_output: 0.0001
+    
+  lightweight:
+    id: "nvidia/nemotron-nano"
+    alias: "Nemotron-Nano"
+    context_window: 128000
+    max_tokens: 4096
+    cost_per_1k_input: 0.00001
+    cost_per_1k_output: 0.00001
+
+# 路由策略
+routing_strategy:
+  default: primary
+  auto_route: true
+  fallback_on_error: true
+  cost_optimization: true
+  
+  # 阈值设置
+  thresholds:
+    max_lightweight_context: 5000
+    max_lightweight_output: 1000
+    confidence_threshold: 0.7
