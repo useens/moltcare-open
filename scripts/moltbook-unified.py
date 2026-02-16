@@ -82,32 +82,94 @@ class MoltbookUnifiedScanner:
         self.extracted_data = []
         
     def fetch_posts(self, limit: int = 50) -> List[MoltbookPost]:
-        """获取帖子列表（模拟或实际提取）"""
-        # 这里应该调用实际的Moltbook API或浏览器提取
-        # 目前生成模拟数据用于测试框架
+        """获取帖子列表 - 从最新数据文件加载"""
+        import glob
         
         print(f"📡 获取Moltbook热门帖子 (前{limit}个)...")
         
-        # 在实际实现中，这里应该是：
-        # 1. 调用moltbook-cli获取列表
-        # 2. 或使用browser工具访问moltbook.ai
+        # 查找最新的 hot_posts 数据文件
+        data_dir = Path("/root/.openclaw/workspace/data/moltbook")
+        json_files = list(data_dir.glob("hot_posts_*.json"))
         
-        # 模拟返回空列表，实际使用时需要替换为真实提取逻辑
-        return []
+        if not json_files:
+            print("  ⚠️ 未找到数据源文件")
+            return []
+        
+        # 按修改时间排序，取最新的
+        latest_file = max(json_files, key=lambda p: p.stat().st_mtime)
+        print(f"  📁 数据源: {latest_file.name}")
+        
+        try:
+            with open(latest_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            posts_raw = data.get("posts", [])[:limit]
+            posts = []
+            
+            for post_raw in posts_raw:
+                # 解析帖子内容
+                content = post_raw.get("content", "")
+                
+                # 提取标题
+                title_match = re.search(r'\n([^\n]+?)\n\n', content)
+                title = title_match.group(1).strip() if title_match else content[:80]
+                
+                # 提取作者
+                author_match = re.search(r'u/(\w+)', content)
+                author = author_match.group(1) if author_match else "unknown"
+                
+                # 提取点赞数
+                upvote_match = re.search(r'▲\s*(\d+)', content)
+                likes = int(upvote_match.group(1)) if upvote_match else 0
+                
+                post = MoltbookPost({
+                    "id": post_raw.get("url", "").split("/")[-1],
+                    "title": title,
+                    "content": content,
+                    "author": author,
+                    "likes": likes,
+                    "comments": [],
+                    "url": post_raw.get("url", ""),
+                    "timestamp": post_raw.get("extracted_at", "")
+                })
+                posts.append(post)
+            
+            print(f"  ✅ 成功加载 {len(posts)} 条帖子")
+            return posts
+            
+        except Exception as e:
+            print(f"  ❌ 加载数据失败: {e}")
+            return []
     
     def deep_extract(self, post: MoltbookPost) -> Dict:
         """深度提取帖子详情"""
         print(f"  🔍 深度提取: {post.title[:50]}...")
+        
+        content = post.content
+        
+        # 提取评论数
+        comment_match = re.search(r'💬\s*(\d+)\s*comments?', content)
+        comments_count = int(comment_match.group(1)) if comment_match else 0
+        
+        # 计算Signal
+        signal = post.calculate_signal()
+        
+        # 高互动评论加分
+        if comments_count >= 10:
+            signal = min(signal + 2, 10)
+        elif comments_count >= 5:
+            signal = min(signal + 1, 10)
         
         # 提取完整内容
         extracted = {
             "id": post.id,
             "title": post.title,
             "author": post.author,
-            "content": post.content,
+            "content": post.content[:1000] + "..." if len(post.content) > 1000 else post.content,
             "likes": post.likes,
-            "signal": post.calculate_signal(),
-            "comments": post.comments,
+            "comments_count": comments_count,
+            "signal": signal,
+            "url": post.url,
             "extracted_at": datetime.now().isoformat(),
             "key_insights": self._extract_insights(post.content),
             "technical_terms": self._extract_technical_terms(post.content)
@@ -251,23 +313,40 @@ class MoltbookUnifiedScanner:
     def run_deep_scan(self):
         """深度扫描模式"""
         print("\n" + "="*60)
-        print("🔍 深度扫描模式")
+        print("🔍 深度扫描模式 (Signal≥6)")
         print("="*60)
         
         posts = self.fetch_posts(limit=50)
         
+        if not posts:
+            print("\n⚠️ 未获取到帖子数据")
+            return []
+        
+        high_signal_count = 0
         for post in posts:
-            signal = post.calculate_signal()
-            if signal >= 7:
+            # 预计算 Signal
+            base_signal = post.calculate_signal()
+            
+            # 检查评论数加分
+            comment_match = re.search(r'💬\s*(\d+)\s*comments?', post.content)
+            comments_count = int(comment_match.group(1)) if comment_match else 0
+            if comments_count >= 10:
+                base_signal = min(base_signal + 2, 10)
+            elif comments_count >= 5:
+                base_signal = min(base_signal + 1, 10)
+            
+            if base_signal >= 6:
                 extracted = self.deep_extract(post)
                 self.extracted_data.append(extracted)
-                print(f"  ✅ Signal {signal}: {post.title[:40]}...")
+                high_signal_count += 1
+                print(f"  ✅ Signal {extracted['signal']}: {post.title[:40]}...")
         
-        print(f"\n深度提取完成: {len(self.extracted_data)} 个帖子")
+        print(f"\n深度提取完成: {len(self.extracted_data)} 个高Signal帖子 (≥6)")
         
-        # 保存结果
-        extract_file = self.save_results()
-        print(f"💾 数据已保存: {extract_file}")
+        if self.extracted_data:
+            # 保存结果
+            extract_file = self.save_results()
+            print(f"💾 数据已保存: {extract_file}")
         
         return self.extracted_data
     
