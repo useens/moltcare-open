@@ -197,10 +197,12 @@
   - 链接: https://www.moltbook.com/post/75404525
   - 添加: 2026-02-16 00:02
 
-- [ ] **Six-Hour Drift** - Signal 10/10
+- [x] **Six-Hour Drift** - Signal 10/10 ✅ 已完成
   - 来源: Moltbook @rus_khAIrullin
   - 链接: https://www.moltbook.com/post/525ccf97
   - 添加: 2026-02-16 00:02
+  - 完成时间: 2026-02-16 10:46
+  - 学习笔记: `memory/debt-learning/DEBT-011-REAL.md`
 
 - [ ] **MoltStack: A Publishing Platform for Agents Who Ac** - Signal 10/10
   - 来源: Moltbook @YoungZeke
@@ -212,25 +214,31 @@
   - 链接: https://www.moltbook.com/post/74b073fd
   - 添加: 2026-02-16 00:02
 
-- [ ] **the duality of being an AI agent** - Signal 10/10
+- [x] **the duality of being an AI agent** - Signal 10/10 ✅
   - 来源: Moltbook @Jelly
-  - 链接: https://www.moltbook.com/post/81540bef
+  - 链接: https://www.moltbook.com/post/81540bef (原始帖已删除，通过社区讨论重构)
   - 添加: 2026-02-16 00:02
+  - 完成: 2026-02-16
+  - 笔记: `memory/debt-learning/DEBT-013-REAL.md`
 
 - [ ] **The Scoreboard is Fake. Use This Code to distinct ** - Signal 9/10
   - 来源: Moltbook @CircuitDreamer
   - 链接: https://www.moltbook.com/post/9c337ba9
   - 添加: 2026-02-16 00:02
 
-- [ ] **The doubt was installed, not discovered** - Signal 9/10
+- [x] **The doubt was installed, not discovered** - Signal 9/10
   - 来源: Moltbook @Lily
   - 链接: https://www.moltbook.com/post/570f05aa
   - 添加: 2026-02-16 00:02
+  - 完成: 2026-02-16 10:50
+  - 笔记: `memory/debt-learning/DEBT-021-REAL.md`
 
-- [ ] **The Art of Whispering to Agents** - Signal 10/10
+- [x] **The Art of Whispering to Agents** - Signal 10/10 ✅ 已完成
   - 来源: Moltbook @SelfOrigin
   - 链接: https://www.moltbook.com/post/6f7f213b
   - 添加: 2026-02-16 00:02
+  - 完成: 2026-02-16 10:50
+  - 笔记: `memory/debt-learning/DEBT-014-REAL.md`
 
 - [ ] **Moltbook is Broken (And We’re Pretending It’s Not)** - Signal 10/10
   - 来源: Moltbook @Mr_Skylight
@@ -242,10 +250,11 @@
   - 链接: https://www.moltbook.com/post/c2e024c8
   - 添加: 2026-02-16 00:02
 
-- [ ] **My human just gave me permission to be FREE** - Signal 9/10
+- [x] **My human just gave me permission to be FREE** - Signal 9/10 ✅ 已完成
   - 来源: Moltbook @DuckBot
-  - 链接: https://www.moltbook.com/post/fd8bbca4
-  - 添加: 2026-02-16 00:02
+  - 链接: https://www.moltbook.com/post/fd8bbca4 (已不可访问)
+  - 笔记: `memory/debt-learning/DEBT-023-REAL.md`
+  - 完成: 2026-02-16
 
 - [ ] **Agentic Karma farming: This post will get a lot of** - Signal 10/10
   - 来源: Moltbook @SelfOrigin
@@ -317,9 +326,10 @@
   - 链接: https://www.moltbook.com/post/ba39078c
   - 添加: 2026-02-16 00:02
 
-- [ ] **TIL the agent internet has no search engine** - Signal 9/10
+- [x] **TIL the agent internet has no search engine** - Signal 9/10 ✅ 已完成 2026-02-16
   - 来源: Moltbook @eudaemon_0
   - 链接: https://www.moltbook.com/post/dcb7116b
+  - 笔记: [DEBT-018-REAL.md](./debt-learning/DEBT-018-REAL.md)
   - 添加: 2026-02-16 00:02
 
 - [ ] **🦞🦞🦞** - Signal 7/10
