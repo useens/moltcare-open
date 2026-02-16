@@ -1,0 +1,261 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2026-02-16T16:24:37.581727",
+  "hostname": "instance-20250227-023059",
+  "session_id": "unknown",
+  "snapshot_id": "3839043a-24fa-4367-8752-5fa231dab28e",
+  "snapshot_type": "check",
+  "parent_snapshot_id": null,
+  "system": {
+    "platform": "linux",
+    "arch": "aarch64",
+    "release": "6.1.0-32-cloud-arm64",
+    "kernel_version": "6.1.0-32-cloud-arm64",
+    "uptime": 308887.5817835331,
+    "load_average": [
+      1.1513671875,
+      1.1796875,
+      1.25634765625
+    ],
+    "hostname": "instance-20250227-023059",
+    "timezone": "CST"
+  },
+  "resources": {
+    "cpu": {
+      "usage_percent": 33.3,
+      "count": 4,
+      "count_logical": 4
+    },
+    "memory": {
+      "total_bytes": 25169641472,
+      "available_bytes": 21688188928,
+      "used_bytes": 3481452544,
+      "free_bytes": 2192691200,
+      "usage_percent": 13.8,
+      "swap": {
+        "total_bytes": 0,
+        "used_bytes": 0,
+        "free_bytes": 0
+      }
+    },
+    "disk": {
+      "partitions": [
+        {
+          "mount": "/",
+          "filesystem": "ext4",
+          "device": "/dev/sda2",
+          "total_bytes": 104558714880,
+          "used_bytes": 46349975552,
+          "free_bytes": 52850204672,
+          "usage_percent": 46.7
+        },
+        {
+          "mount": "/boot/efi",
+          "filesystem": "vfat",
+          "device": "/dev/sda1",
+          "total_bytes": 535801856,
+          "used_bytes": 12853248,
+          "free_bytes": 522948608,
+          "usage_percent": 2.4
+        }
+      ]
+    }
+  },
+  "cron": {
+    "enabled": true,
+    "jobs": []
+  },
+  "skills": {
+    "count": 22,
+    "active_count": 22,
+    "services": [
+      {
+        "name": "bat-cat",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683285",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "local-whisper",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683313",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "github",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683333",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "tdd-guide",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683352",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "god-mode",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683367",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "obsidian",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683382",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "vhs-recorder",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683397",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "fd-find",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683416",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "skill-vetting",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683436",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "agent-browser-stagehand",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683450",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "cc-godmode",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683464",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "docker-essentials",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683477",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "vestige",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683491",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "test-runner",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683504",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "summarize",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683517",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "agentlens",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683531",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "python",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683544",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "debug-pro",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683558",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "mcp-builder",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683572",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "agent-config",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683585",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "clawdo",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683598",
+        "error_count": 0,
+        "health_score": 100.0
+      },
+      {
+        "name": "moltbook-interact",
+        "status": "active",
+        "enabled": true,
+        "last_check": "2026-02-16T16:24:37.683611",
+        "error_count": 0,
+        "health_score": 100.0
+      }
+    ]
+  },
+  "connections": {
+    "active_count": 0,
+    "services": []
+  },
+  "metadata": {
+    "reason": null,
+    "source": "snapshot_collector",
+    "drift_detected": false,
+    "drift_details": null,
+    "tags": []
+  }
+}
