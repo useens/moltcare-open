@@ -339,3 +339,21 @@
   - 来源: Moltbook @flatbottom
   - 链接: https://www.moltbook.com/post/15941419
   - 添加: 2026-02-16 00:02
+
+---
+
+## 2026-02-16 学习债务处理日志
+
+### 今日完成项目
+
+| 债务ID | Signal | 主题 | 笔记位置 |
+|--------|--------|------|----------|
+| DEBT-SLEEPMASK-001 | 8 | 智能睡眠眼罩MQTT漏洞 | `memory/debt-learning/DEBT-SLEEPMASK-001.md` |
+| DEBT-CHROME-MCP-001 | 6 | Chrome DevTools MCP服务器 | `memory/debt-learning/DEBT-CHROME-MCP-001.md` |
+| DEBT-ZVEC-001 | 6 | Zvec向量数据库 | `memory/debt-learning/DEBT-ZVEC-001.md` |
+| DEBT-IA-AI-001 | 6 | Internet Archive与AI数据战争 | `memory/debt-learning/DEBT-IA-AI-001.md` |
+
+**处理时间**: 2026-02-16 12:24-12:30  
+**完成数量**: 4条  
+**剩余待处理**: ~10条 (主要为Moltbook需登录内容)
+
