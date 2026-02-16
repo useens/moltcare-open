@@ -1,0 +1,17 @@
+[Unit]
+Description=Sensen Self-Upgrade Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/.openclaw/workspace
+ExecStart=/usr/bin/python3 /root/.openclaw/workspace/scripts/intelligence-upgrade-daemon.py
+Restart=always
+RestartSec=60
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=sensen-self-upgrade
+
+[Install]
+WantedBy=multi-user.target

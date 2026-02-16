@@ -1,0 +1,11 @@
+[Unit]
+Description=Sensen Self-Upgrade Timer
+
+[Timer]
+OnCalendar=02:00:00
+OnCalendar=*-*-* 00,06,12,18:00:00
+OnBootSec=1min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
