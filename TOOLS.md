@@ -24,6 +24,7 @@
 ### API Keys
 - Brave API: 待配置（用于外部搜索）
 - GitHub Token: 已配置（自动同步）
+- GLM-5 (zai): 已配置
 
 ---
 
