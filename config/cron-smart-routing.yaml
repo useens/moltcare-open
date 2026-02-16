@@ -1,0 +1,102 @@
+# 夜间进化智能路由配置
+# 为Cron任务优化成本和性能
+
+# 生产模式任务（低成本执行）
+production_tasks:
+  unified-monitor-check:
+    model: "nvidia-build/deepseek-ai/deepseek-v3.2"  # ds
+    alias: "ds"
+    thinking: "off"
+    reason: "监控任务，简单检查即可"
+  
+  unified-maintenance-daily:
+    model: "nvidia-build/deepseek-ai/deepseek-v3.2"  # ds
+    alias: "ds"
+    thinking: "off"
+    reason: "日常维护脚本执行"
+  
+  auto-password-guard:
+    model: "nvidia-build/z-ai/glm4.7"  # glm
+    alias: "glm"
+    reason: "快速安全检查"
+  
+  credentials-backup-weekly:
+    model: "nvidia-build/deepseek-ai/deepseek-v3.2"  # ds
+    alias: "ds"
+    reason: "备份任务，稳定可靠"
+  
+  monthly-archive:
+    model: "nvidia-build/deepseek-ai/deepseek-v3.2"  # ds
+    alias: "ds"
+    reason: "归档任务"
+
+# 开发模式任务（根据复杂度选择）
+development_tasks:
+  # 情报收集（大数据量，适合kimi的256k）
+  evolution-intelligence:
+    primary:
+      model: "nvidia-build/moonshotai/kimi-k2.5"  # kimi免费版
+      alias: "kimi"
+      thinking: "on"
+      reason: "256k上下文适合处理大量Moltbook/HN数据"
+    fallback:
+      model: "kimi-coding/k2p5"  # k2p5付费版
+      condition: "Signal>9或架构级议题"
+      reason: "高Signal内容需要深度分析"
+  
+  # Moltbook扫描（文档处理）
+  moltbook-unified-scan:
+    primary:
+      model: "nvidia-build/moonshotai/kimi-k2.5"  # kimi免费版
+      alias: "kimi"
+      thinking: "on"
+      reason: "256k上下文，处理长文档"
+    fallback:
+      model: "kimi-coding/k2p5"
+      condition: "Signal>8或需要代码分析"
+  
+  # 知识内化（推理为主）
+  evolution-knowledge:
+    primary:
+      model: "nvidia-build/deepseek-ai/deepseek-v3.2"  # ds
+      alias: "ds"
+      thinking: "on"
+      reason: "知识整合需要强推理能力"
+    fallback:
+      model: "kimi-coding/k2p5"
+      condition: "代码相关或架构设计"
+  
+  # 深度学习（架构级，保留付费）
+  evolution-deep-learning:
+    primary:
+      model: "kimi-coding/k2p5"  # k2p5付费
+      alias: "k2p5"
+      thinking: "high"
+      reason: "Signal 9-10架构级内容，需要最强能力"
+    cost_optimization:
+      condition: "Signal<9"
+      switch_to: "nvidia-build/deepseek-ai/deepseek-v3.2"
+      reason: "非核心议题可用免费模型"
+  
+  # 月度深度清理
+  monthly-deep-cleanup:
+    model: "nvidia-build/deepseek-ai/deepseek-v3.2"  # ds
+    alias: "ds"
+    thinking: "off"
+
+# Signal智能降级规则
+signal_routing:
+  Signal_1_6:  # 低价值
+    model: "nvidia-build/deepseek-ai/deepseek-v3.2"
+    action: "drill-down"
+    depth: "shallow"
+  
+  Signal_7_8:  # 中等价值
+    model: "nvidia-build/moonshotai/kimi-k2.5"
+    action: "deep_extract"
+    depth: "medium"
+  
+  Signal_9_10:  # 高价值
+    model: "kimi-coding/k2p5"
+    action: "architectural_analysis"
+    depth: "high"
