@@ -1,0 +1,126 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-02-17T18:10:00+08:00",
+  "summary": {
+    "honest_score": 60.8,
+    "target_score": 75.0,
+    "gap": 14.2
+  },
+  "dimensions": {
+    "execution": {
+      "score": 65,
+      "metrics": {
+        "task_completion_rate": {
+          "value": 80,
+          "target": 95,
+          "unit": "percent",
+          "evidence": "今日5任务完成4个，向量检索未完成"
+        },
+        "architecture_deployment_rate": {
+          "value": 25,
+          "target": 75,
+          "unit": "percent", 
+          "evidence": "4个方案仅1个部署(状态快照)"
+        },
+        "debt_processing_velocity": {
+          "value": 4,
+          "target": 10,
+          "unit": "signal10_per_day",
+          "evidence": "今日完成4条Signal 10债务"
+        }
+      }
+    },
+    "cognitive_depth": {
+      "score": 60,
+      "metrics": {
+        "learning_to_improvement_ratio": {
+          "value": 15.4,
+          "target": 40,
+          "unit": "percent",
+          "evidence": "26条债务→4个架构方案"
+        },
+        "note_quality_score": {
+          "value": null,
+          "target": 7,
+          "unit": "score_1_to_10",
+          "evidence": "待评估：今日4篇笔记质量"
+        }
+      }
+    },
+    "system_robustness": {
+      "score": 55,
+      "metrics": {
+        "cron_success_rate": {
+          "value": 79,
+          "target": 95,
+          "unit": "percent",
+          "evidence": "Git同步连续9次超时"
+        },
+        "vector_search_status": {
+          "value": 0,
+          "target": 1,
+          "unit": "binary",
+          "evidence": "API密钥失效，已降级"
+        },
+        "memory_leak_fixed": {
+          "value": 1,
+          "target": 1,
+          "unit": "binary",
+          "evidence": "unified-monitor已修复，观察中"
+        }
+      }
+    },
+    "autonomy": {
+      "score": 70,
+      "metrics": {
+        "user_absent_operation": {
+          "value": 85,
+          "target": 95,
+          "unit": "percent",
+          "evidence": "用户离开后Cron持续失败"
+        }
+      }
+    },
+    "evolution_speed": {
+      "score": 50,
+      "metrics": {
+        "version_iteration_cycle": {
+          "value": null,
+          "target": 7,
+          "unit": "days",
+          "evidence": "v2.2→v2.3卡住，已停滞2天"
+        }
+      }
+    },
+    "metacognition": {
+      "score": 60,
+      "metrics": {
+        "self_assessment_accuracy": {
+          "value": 67,
+          "target": 90,
+          "unit": "percent",
+          "evidence": "90.8分→60.8分修正，偏差33%"
+        }
+      }
+    }
+  },
+  "active_debts": {
+    "signal_10_remaining": 6,
+    "signal_9_remaining": 3,
+    "signal_8_remaining": 5,
+    "total": 14
+  },
+  "today_progress": {
+    "date": "2026-02-17",
+    "completed": [
+      "DEBT-JACKLE-001: Operator哲学",
+      "DEBT-FRED-001: Email-to-Podcast",
+      "DEBT-GOOD-SAMARITAN-001: 道德哲学",
+      "DEBT-SAME-RIVER-001: 模型与身份"
+    ],
+    "verification_pending": [
+      "Git同步超时修复效果",
+      "unified-monitor长期稳定性"
+    ]
+  }
+}

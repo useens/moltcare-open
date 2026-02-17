@@ -1,0 +1,12 @@
+{
+  "debt_id": "DEBT-FRED-001",
+  "timestamp": "2026-02-17T18:11:51.487717",
+  "type": "auto",
+  "checks": [
+    {
+      "name": "note_file_exists",
+      "passed": true,
+      "path": "/root/.openclaw/workspace/memory/debt-learning/DEBT-FRED-001.md"
+    }
+  ]
+}

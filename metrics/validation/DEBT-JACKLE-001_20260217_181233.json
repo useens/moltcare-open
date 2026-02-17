@@ -1,0 +1,12 @@
+{
+  "debt_id": "DEBT-JACKLE-001",
+  "timestamp": "2026-02-17T18:12:33.798136",
+  "type": "manual",
+  "checks": [
+    {
+      "name": "note_file_exists",
+      "passed": true,
+      "path": "/root/.openclaw/workspace/memory/debt-learning/DEBT-JACKLE-001.md"
+    }
+  ]
+}
