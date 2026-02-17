@@ -180,7 +180,17 @@ class StorageSystem(SystemComponent):
             issues.append(f"Reports目录过大: {reports_size/1024/1024:.1f}MB")
         
         # 检查大文件数量
-        large_files = list(WORKSPACE.rglob("*"))
+        # 扫描大文件（排除 venv 和 .git）
+        large_files = []
+        for item in WORKSPACE.rglob("*"):
+            if item.is_file() and "venv" not in str(item) and ".git" not in str(item):
+                try:
+                    if item.stat().st_size > 10 * 1024 * 1024:  # >10MB
+                        large_files.append(item)
+                except OSError:
+                    continue
+            if len(large_files) > 50:  # 限制检查数量
+                break
         large_files = [f for f in large_files if f.is_file() and f.stat().st_size > 10*1024*1024]
         if len(large_files) > 10:
             issues.append(f"大文件数量过多: {len(large_files)}")
