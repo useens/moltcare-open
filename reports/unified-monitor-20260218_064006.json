@@ -1,0 +1,33 @@
+{
+  "memory": {
+    "status": "healthy",
+    "issues": [],
+    "fixed": []
+  },
+  "cron": {
+    "status": "healthy",
+    "issues": [],
+    "fixed": []
+  },
+  "storage": {
+    "status": "healthy",
+    "issues": [],
+    "fixed": []
+  },
+  "git": {
+    "status": "degraded",
+    "issues": [
+      "有未提交的变更"
+    ],
+    "fixed": [
+      "有未提交的变更"
+    ]
+  },
+  "summary": {
+    "timestamp": "2026-02-18T06:40:06.422128",
+    "all_healthy": false,
+    "total_issues": 1,
+    "fixed_issues": 1,
+    "components_checked": 4
+  }
+}
