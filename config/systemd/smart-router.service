@@ -1,0 +1,47 @@
+[Unit]
+Description=Smart Router Service - Intelligent Model Routing
+Documentation=file:///root/.openclaw/workspace/scripts/smart-router-service.py
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/root/.openclaw/workspace
+
+# 启动命令
+ExecStart=/usr/bin/python3 /root/.openclaw/workspace/scripts/smart-router-service.py
+
+# 优雅停止
+ExecStop=/bin/kill -TERM $MAINPID
+ExecStopPost=/bin/rm -f /tmp/smart-router.sock
+
+# 重启策略
+Restart=always
+RestartSec=10
+StartLimitInterval=60
+StartLimitBurst=5
+
+# 资源限制
+LimitNOFILE=65536
+LimitNPROC=4096
+MemoryMax=512M
+CPUQuota=50%
+
+# 环境变量
+Environment="PYTHONPATH=/root/.openclaw/workspace"
+Environment="PYTHONUNBUFFERED=1"
+
+# 安全性
+NoNewPrivileges=true
+ProtectSystem=no
+ProtectHome=no
+PrivateTmp=yes
+
+# 日志
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=smart-router
+
+[Install]
+WantedBy=multi-user.target

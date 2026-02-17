@@ -1,0 +1,125 @@
+# 智能路由配置 v3.0 - 成本优先
+# 与 scripts/smart_router.py 保持一致
+
+# ============ 模型定义 ============
+models:
+  # 免费+稳定 - 优先使用
+  step:
+    alias: "step"
+    full_name: "nvidia-build/stepfun-ai/step-3.5-flash"
+    tier: "free_fast"
+    stable: true
+    best_for: ["快速响应", "默认首选"]
+  
+  ds:
+    alias: "ds"
+    full_name: "nvidia-build/deepseek-ai/deepseek-v3.2"
+    tier: "free_fast"
+    stable: true
+    best_for: ["代码任务", "技术任务"]
+  
+  glm:
+    alias: "glm"
+    full_name: "nvidia-build/z-ai/glm4.7"
+    tier: "free_fast"
+    stable: true
+    best_for: ["中文任务", "通用对话"]
+  
+  # 付费 - 仅Signal>=9
+  k2p5:
+    alias: "k2p5"
+    full_name: "kimi-coding/k2p5"
+    tier: "paid"
+    stable: true
+    best_for: ["Signal>=9", "高价值内容"]
+
+# ============ Signal分级路由 ============
+signal_routing:
+  Signal_1_4:    # 低价值
+    model: "step"
+    thinking: "off"
+    reason: "快速处理"
+  
+  Signal_5_6:    # 中低价值
+    model: "ds"
+    thinking: "concise"
+    reason: "精简处理"
+  
+  Signal_7_8:    # 中高价值
+    model: "glm"
+    thinking: "on"
+    reason: "完整分析"
+  
+  Signal_9_10:   # 高价值 - 唯一付费场景
+    model: "k2p5"
+    thinking: "stream"
+    reason: "深度处理，值得付费"
+
+# ============ Cron任务路由 ============
+cron_tasks:
+  # 生产模式任务 (低成本)
+  unified-monitor-check:
+    model: "step"
+    thinking: "off"
+    reason: "监控检查，快速响应"
+  
+  unified-maintenance-daily:
+    model: "step"
+    thinking: "off"
+    reason: "日常维护"
+  
+  stability-snapshot-hourly:
+    model: "step"
+    thinking: "off"
+    reason: "快照创建，快速完成"
+  
+  nightly-evolution:
+    model: "ds"
+    thinking: "on"
+    reason: "进化任务，需要推理"
+  
+  # 开发模式任务 (按Signal)
+  evolution-intelligence:
+    signal_based: true
+    reason: "Moltbook扫描，按Signal路由"
+  
+  moltbook-unified-scan:
+    signal_based: true
+    reason: "Moltbook扫描，按Signal路由"
+  
+  evolution-knowledge:
+    signal_based: true
+    reason: "知识内化，按Signal路由"
+  
+  evolution-deep-learning:
+    signal_based: true
+    reason: "深度学习，按Signal路由"
+
+# ============ 任务类型快速路由 ============
+task_patterns:
+  # 极简任务
+  simple:
+    patterns: ["^你好", "^状态", "^检查", "HEARTBEAT"]
+    model: "step"
+    thinking: "off"
+  
+  # 代码任务
+  code:
+    patterns: ["代码", "编程", "脚本", "Python", "debug"]
+    model: "ds"
+    thinking: "on"
+  
+  # 中文任务
+  chinese:
+    patterns: ["中文", "翻译"]
+    model: "glm"
+    thinking: "on"
+
+# ============ 回退链配置 ============
+fallback_chain:
+  # 避免使用排队模型 (qwen/kimi25/glm5)
+  primary: "step"
+  secondary: "ds"
+  tertiary: "glm"
+  # 付费兜底 (Signal>=9时)
+  paid_fallback: "k2p5"

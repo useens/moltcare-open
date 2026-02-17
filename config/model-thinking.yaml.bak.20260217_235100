@@ -1,0 +1,24 @@
+# 模型与thinking模式默认配置
+# 第一阶段：免费模型默认开启thinking
+
+free_models:
+  - name: ds
+    model_id: nvidia-build/deepseek-ai/deepseek-v3.2
+    thinking: on
+    description: DeepSeek V3.2 - 通用均衡
+  
+  - name: glm
+    model_id: nvidia-build/z-ai/glm4.7
+    thinking: on
+    description: GLM-4.7 - 中文优化
+  
+  - name: kimi
+    model_id: nvidia-build/moonshotai/kimi-k2.5
+    thinking: on
+    description: Kimi K2.5 - 长上下文+图像
+
+paid_models:
+  - name: k2p5
+    model_id: kimi-coding/k2p5
+    thinking: off
+    description: Kimi K2.5 Coding - 最强代码能力
