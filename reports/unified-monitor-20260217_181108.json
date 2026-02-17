@@ -1,0 +1,35 @@
+{
+  "memory": {
+    "status": "healthy",
+    "issues": [],
+    "fixed": []
+  },
+  "cron": {
+    "status": "healthy",
+    "issues": [],
+    "fixed": []
+  },
+  "storage": {
+    "status": "healthy",
+    "issues": [],
+    "fixed": []
+  },
+  "git": {
+    "status": "degraded",
+    "issues": [
+      "Git仓库过大: 502M",
+      "有未提交的变更"
+    ],
+    "fixed": [
+      "Git仓库过大: 502M",
+      "有未提交的变更"
+    ]
+  },
+  "summary": {
+    "timestamp": "2026-02-17T18:11:08.937470",
+    "all_healthy": false,
+    "total_issues": 2,
+    "fixed_issues": 2,
+    "components_checked": 4
+  }
+}
