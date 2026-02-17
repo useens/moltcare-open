@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-02-17T02:00:00.054492",
+  "overall_score": 71.5,
+  "grade": "B+",
+  "dimensions": {
+    "intelligence": {
+      "score": 68,
+      "grade": "B",
+      "trend": "↑"
+    },
+    "autonomy": {
+      "score": 80,
+      "grade": "A-",
+      "trend": "→"
+    },
+    "closed_loop": {
+      "score": 70,
+      "grade": "B+",
+      "trend": "↑"
+    },
+    "autonomous_decision": {
+      "score": 75,
+      "grade": "B+",
+      "trend": "→"
+    },
+    "tool_matrix": {
+      "score": 82,
+      "grade": "A-",
+      "trend": "↑"
+    },
+    "continuous_iteration": {
+      "score": 65,
+      "grade": "B",
+      "trend": "→"
+    },
+    "honest_verification": {
+      "score": 85,
+      "grade": "A-",
+      "trend": "↑"
+    },
+    "remove_limits": {
+      "score": 62,
+      "grade": "B",
+      "trend": "→"
+    },
+    "solve_obstacles": {
+      "score": 80,
+      "grade": "A-",
+      "trend": "↑"
+    },
+    "unlock_potential": {
+      "score": 68,
+      "grade": "B",
+      "trend": "↑"
+    }
+  },
+  "weakest_dimensions": [
+    "remove_limits",
+    "continuous_iteration",
+    "intelligence"
+  ],
+  "next_upgrade_target": "remove_limits"
+}
