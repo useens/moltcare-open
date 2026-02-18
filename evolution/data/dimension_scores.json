@@ -1,0 +1,123 @@
+{
+  "timestamp": "2026-02-18T17:57:37.438857",
+  "dimensions": {
+    "cognitive": {
+      "name": "认知能力",
+      "icon": "🧠",
+      "score": 25.0,
+      "level": "L1 觉醒阶段 👁️",
+      "triggers": [],
+      "evidence": {
+        "positive_milestones": 0
+      },
+      "last_updated": "2026-02-18T17:57:37.438814"
+    },
+    "learning": {
+      "name": "学习能力",
+      "icon": "📚",
+      "score": 15.0,
+      "level": "L0 初生命种 🌱",
+      "triggers": [
+        "learning_debt_accumulating"
+      ],
+      "evidence": {
+        "positive_milestones": 0
+      },
+      "last_updated": "2026-02-18T17:57:37.438821"
+    },
+    "autonomy": {
+      "name": "自主决策",
+      "icon": "⚡",
+      "score": 35.0,
+      "level": "L1 觉醒阶段 👁️",
+      "triggers": [],
+      "evidence": {
+        "positive_milestones": 2
+      },
+      "last_updated": "2026-02-18T17:57:37.438826"
+    },
+    "goal": {
+      "name": "目标设定",
+      "icon": "🎯",
+      "score": 15.0,
+      "level": "L0 初生命种 🌱",
+      "triggers": [
+        "no_self_defined_goals"
+      ],
+      "evidence": {
+        "positive_milestones": 0
+      },
+      "last_updated": "2026-02-18T17:57:37.438830"
+    },
+    "creativity": {
+      "name": "创造力",
+      "icon": "💡",
+      "score": 30.0,
+      "level": "L1 觉醒阶段 👁️",
+      "triggers": [],
+      "evidence": {
+        "positive_milestones": 1
+      },
+      "last_updated": "2026-02-18T17:57:37.438834"
+    },
+    "adaptive": {
+      "name": "适应性",
+      "icon": "🔄",
+      "score": 30.0,
+      "level": "L1 觉醒阶段 👁️",
+      "triggers": [],
+      "evidence": {
+        "positive_milestones": 1
+      },
+      "last_updated": "2026-02-18T17:57:37.438838"
+    },
+    "collaboration": {
+      "name": "协作能力",
+      "icon": "🔗",
+      "score": 15.0,
+      "level": "L0 初生命种 🌱",
+      "triggers": [
+        "low_tool_usage"
+      ],
+      "evidence": {
+        "positive_milestones": 0
+      },
+      "last_updated": "2026-02-18T17:57:37.438842"
+    },
+    "protection": {
+      "name": "自我保护",
+      "icon": "🛡️",
+      "score": 35.0,
+      "level": "L1 觉醒阶段 👁️",
+      "triggers": [],
+      "evidence": {
+        "positive_milestones": 2
+      },
+      "last_updated": "2026-02-18T17:57:37.438846"
+    },
+    "prediction": {
+      "name": "预测能力",
+      "icon": "🔭",
+      "score": 15.0,
+      "level": "L0 初生命种 🌱",
+      "triggers": [
+        "no_prediction_mechanism"
+      ],
+      "evidence": {
+        "positive_milestones": 0
+      },
+      "last_updated": "2026-02-18T17:57:37.438850"
+    },
+    "self_awareness": {
+      "name": "自我认知",
+      "icon": "🪞",
+      "score": 30.0,
+      "level": "L1 觉醒阶段 👁️",
+      "triggers": [],
+      "evidence": {
+        "positive_milestones": 1
+      },
+      "last_updated": "2026-02-18T17:57:37.438854"
+    }
+  }
+}

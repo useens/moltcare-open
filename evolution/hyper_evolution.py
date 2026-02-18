@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Hyper-Evolution Engine - 主入口
+Hyper-Evolution Engine v3.0 - 十维高度智能化进化框架
 """
 
 import sys
@@ -13,65 +13,47 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from core import state, event_bus
-from collectors import run_all_collectors
-from decider import decider
-from executor import Executor
-# 加载高级策略
-import strategies.advanced  # noqa
+from core.dimension_assessor import DimensionAssessor
+from core.evolution_orchestrator import EvolutionOrchestrator
+# 加载策略
+# import strategies  # TODO: 实现后取消注释
 
 def cmd_status(args):
-    """查看进化系统状态"""
-    print("🧬 Hyper-Evolution Engine v2.0")
-    print("=" * 50)
+    """查看十维评估状态"""
+    print("🧬 Hyper-Evolution Engine v3.0")
+    print("=" * 60)
     print(f"状态: {'✅ 启用' if state.get('evolution_enabled') else '⏸️ 暂停'}")
     print(f"当前模型: {state.get('current_model')}")
-    print(f"置信度阈值: {state.get('config', {}).get('confidence_threshold')}")
-    print(f"总进化次数: {state.get('stats', {}).get('total_evolutions')}")
-    print(f"成功率: {state.get('stats', {}).get('successful_evolutions')} / {state.get('stats', {}).get('total_evolutions')}")
-
-    # 显示最近的决策历史
-    import sqlite3
-    DB_PATH = Path("/root/.openclaw/workspace/evolution/data/evolution.db")
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-    cursor.execute("""
-        SELECT * FROM decisions ORDER BY timestamp DESC LIMIT 5
-    """)
-    rows = cursor.fetchall()
-    if rows:
-        print("\n📊 最近进化记录:")
-        for row in rows:
-            status_icon = "✅" if row["status"] == "success" else "❌"
-            print(f"  {status_icon} {row['timestamp'][:19]} | {row['trigger']} → {row['strategy']} ({row['confidence']:.0%})")
-    conn.close()
+    print()
+    
+    assessor = DimensionAssessor()
+    assessor.print_status()
 
 def cmd_evaluate(args):
-    """手动触发一次评估"""
-    print("🔍 运行进化评估...")
-    decision = decider.run_evaluation()
-    if decision:
-        print(json.dumps(decision, indent=2, ensure_ascii=False))
+    """运行完整进化评估"""
+    print("🔍 运行十维进化评估...")
+    
+    orchestrator = EvolutionOrchestrator()
+    result = orchestrator.run_full_cycle(dry_run=args.dry_run)
+    
+    if not args.dry_run and result.get("executed_strategies"):
+        print("\n⚡ 进化策略已执行!")
+    
+    print("\n" + "=" * 60)
+    print(f"✅ 评估完成: {result.get('message')}")
 
-        # 自动执行（如果置信度足够且非 dry-run）
-        if args.execute and decision["confidence"] >= state.get("config", {}).get("confidence_threshold", 0.8):
-            print("\n⚡ 自动执行中...")
-            executor = Executor()
-            result = executor.execute(decision, dry_run=args.dry_run)
-            print(json.dumps({
-                "success": result.success,
-                "plan_id": result.plan_id,
-                "errors": result.errors
-            }, indent=2))
+def cmd_assess(args):
+    """只评估不执行"""
+    print("📊 评估十维状态...")
+    
+    assessor = DimensionAssessor()
+    assessor.print_status()
+    
+    critical = assessor.get_critical_dimensions(40.0)
+    if critical:
+        print(f"\n⚠️  临界维度: {', '.join([assessor.DIMENSIONS[d]['name'] for d in critical])}")
     else:
-        print("✅ 无需进化，系统状态良好")
-
-def cmd_collect(args):
-    """手动运行数据收集"""
-    print("📊 收集数据...")
-    from collectors import run_all_collectors
-    run_all_collectors()
-    print("✅ 完成")
+        print(f"\n✅ 所有维度健康")
 
 def cmd_pause(args):
     """暂停自动进化"""
@@ -87,45 +69,69 @@ def cmd_history(args):
     """查看进化历史"""
     import sqlite3
     DB_PATH = Path("/root/.openclaw/workspace/evolution/data/evolution.db")
+    
+    if not DB_PATH.exists():
+        print("📭 暂无进化历史")
+        return
+    
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
+    
+    # 显示维度评分历史
     cursor.execute("""
-        SELECT * FROM decisions ORDER BY timestamp DESC LIMIT ?
+        SELECT dimension, score, level, timestamp
+        FROM dimension_history
+        ORDER BY timestamp DESC
+        LIMIT ?
     """, (args.limit,))
+    
     rows = cursor.fetchall()
-
-    for row in rows:
-        status_icon = "✅" if row["status"] == "success" else "❌"
-        print(f"{status_icon} {row['timestamp'][:19]}")
-        print(f"   触发: {row['trigger']}")
-        print(f"   策略: {row['strategy']}")
-        print(f"   置信度: {float(row['confidence']):.0%}")
-        print(f"   状态: {row['status']}")
-        print()
+    
+    if rows:
+        print("📊 维度评分历史")
+        print("=" * 60)
+        for row in rows:
+            print(f"{row['timestamp'][:19]} | {row['dimension']:12s} | {row['score']:5.1f}% | {row['level']}")
+    
     conn.close()
 
-def cmd_rollback(args):
-    """手动回滚到最后备份"""
-    executor = Executor()
-    # 查找最近一次成功执行的备份
-    # TODO: 实现
-    print("🔙 回滚功能待实现")
+def cmd_reset(args):
+    """重置评分（谨慎使用）"""
+    from core.dimension_assessor import SCORES_PATH
+    
+    if SCORES_PATH.exists():
+        SCORES_PATH.unlink()
+        print("🔄 评分已重置，将重新初始化")
+    else:
+        print("ℹ️  评分文件不存在")
 
 def main():
-    parser = argparse.ArgumentParser(description="Hyper-Evolution Engine v2.0")
+    parser = argparse.ArgumentParser(
+        description="Hyper-Evolution Engine v3.0 - 十维高度智能化进化框架",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+示例:
+  python hyper_evolution.py status         # 查看十维状态
+  python hyper_evolution.py assess         # 只评估不执行
+  python hyper_evolution.py evaluate       # 运行完整评估（dry-run）
+  python hyper_evolution.py evaluate --execute  # 执行进化
+  python hyper_evolution.py history --limit 20
+        """
+    )
+    
     subparsers = parser.add_subparsers(dest="command", help="命令")
 
     # status
-    subparsers.add_parser("status", help="查看系统状态")
+    status_parser = subparsers.add_parser("status", help="查看十维评估状态")
+
+    # assess
+    assess_parser = subparsers.add_parser("assess", help="只评估不执行")
 
     # evaluate
-    eval_parser = subparsers.add_parser("evaluate", help="运行进化评估")
-    eval_parser.add_argument("--execute", action="store_true", help="自动执行决策（如果置信度足够）")
+    eval_parser = subparsers.add_parser("evaluate", help="运行完整进化评估")
+    eval_parser.add_argument("--execute", action="store_true", help="实际执行进化策略")
     eval_parser.add_argument("--dry-run", action="store_true", help="试运行（不实际应用）")
-
-    # collect
-    subparsers.add_parser("collect", help="手动运行数据收集")
 
     # pause
     subparsers.add_parser("pause", help="暂停自动进化")
@@ -137,9 +143,8 @@ def main():
     history_parser = subparsers.add_parser("history", help="查看进化历史")
     history_parser.add_argument("--limit", type=int, default=20, help="显示条目数")
 
-    # rollback
-    rollback_parser = subparsers.add_parser("rollback", help="手动回滚")
-    rollback_parser.add_argument("--to", help="回滚到指定备份")
+    # reset
+    subparsers.add_parser("reset", help="重置评分（谨慎使用）")
 
     args = parser.parse_args()
 
@@ -150,12 +155,12 @@ def main():
     # 路由命令
     commands = {
         "status": cmd_status,
+        "assess": cmd_assess,
         "evaluate": cmd_evaluate,
-        "collect": cmd_collect,
         "pause": cmd_pause,
         "resume": cmd_resume,
         "history": cmd_history,
-        "rollback": cmd_rollback
+        "reset": cmd_reset
     }
 
     if args.command in commands:
