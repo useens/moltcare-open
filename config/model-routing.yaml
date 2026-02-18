@@ -1,0 +1,80 @@
+# 智能模型路由配置
+# 根据任务复杂度自动选择模型和thinking模式
+# 支持：step（默认）、k2p5（复杂）、nvidia-kimi（图像）
+
+rules:
+  # 图片/图像任务 → nvidia-kimi
+  - pattern: "(图片|截图|照片|图像|视觉|识别|OCR|图表|流程图)"
+    model: "nvidia-build/moonshotai/kimi-k2.5"
+    thinking: "on"
+    reason: "图片或视觉任务，Kimi 支持多模态和256k上下文"
+    confidence: 90
+
+  # 代码任务 → k2p5（默认代码模型）
+  - pattern: "(代码|编程|函数|类|模块|bug|调试|报错|修复|算法|架构|重构|Python|JavaScript|Java|Go|Rust|API|接口|数据库|SQL|前端|后端|devops)"
+    model: "kimi-coding/k2p5"
+    thinking: "auto"  # 根据难度自动分级
+    reason: "代码开发任务，k2p5 最强代码能力"
+    confidence: 85
+    difficulty: true  # 启用智能分级
+
+  # 中文优化 → step（默认模型）
+  - pattern: "(中文|翻译|文案|本地化|快速响应|简单|轻量级)"
+    model: "nvidia-build/stepfun-ai/step-3.5-flash"
+    thinking: "on"
+    reason: "中文或快速任务，step 高效响应"
+    confidence: 70
+
+  # 默认 → step
+  - pattern: ".*"
+    model: "nvidia-build/stepfun-ai/step-3.5-flash"
+    thinking: "on"
+    reason: "默认通用模型"
+    confidence: 50
+
+# 难度分级规则
+difficulty:
+  L1:
+    thinking: "off"
+    triggers: ["你好", "在吗", "状态", "当前", "几点", "日期", "确认", "取消"]
+    max_length: 50
+  L2:
+    thinking: "concise"
+    triggers: ["语法", "报错", "示例", "修复", "简单", "配置", "基本"]
+    max_code_lines: 20
+  L3:
+    thinking: "on"
+    triggers: ["函数", "模块", "实现", "接口", "测试", "优化"]
+    min_code_lines: 20
+    max_code_lines: 100
+  L4:
+    thinking: "on"
+    triggers: ["架构", "设计", "策略", "复杂算法", "分布式", "并发", "性能"]
+    min_code_lines: 100
+  L5:
+    thinking: "stream"
+    triggers: ["从零设计", "核心架构", "大规模", "高可用", "容灾", "疑难bug", "深度优化"]
+    min_code_lines: 200
+
+# 子代理路由规则
+subagent_routing:
+  enabled: true
+  pre_spawn_evaluation: true
+  default_model: "nvidia-build/stepfun-ai/step-3.5-flash"
+  complex_model: "kimi-coding/k2p5"
+  difficulty_threshold: 3  # L3以上用复杂模型
+
+# 用户确认机制
+confirmation:
+  enabled: true
+  timeout_seconds: 5
+  auto_accept_confidence: 90  # 置信度>=90%自动执行
+
+# 模型别名映射
+aliases:
+  step: "nvidia-build/stepfun-ai/step-3.5-flash"
+  k2p5: "kimi-coding/k2p5"
+  nvidia-kimi: "nvidia-build/moonshotai/kimi-k2.5"
+  nvidia-glm: "nvidia-build/z-ai/glm4.7"
+  nvidia-ds: "nvidia-build/deepseek-ai/deepseek-v3.2"
+  nvidia-qwen: "nvidia-build/qwen/qwen3.5-397b-a17b"

@@ -10,13 +10,16 @@ echo "任务: $USER_TASK"
 echo "目标Agent: $AGENT_ID"
 echo ""
 
-# 调用统一路由脚本
-ROUTING_RESULT=$(/root/.openclaw/workspace/scripts/smart-router-unified.sh "$USER_TASK" "unknown")
+# 调用统一路由脚本（输出JSON在最后一行）
+ROUTING_RESULT=$(/root/.openclaw/workspace/scripts/smart-router-unified.sh "$USER_TASK" "unknown" 2>/dev/null)
 
-# 提取建议模型和thinking模式
-SUGGESTED_MODEL=$(echo "$ROUTING_RESULT" | grep "建议:" | awk '{print $2}')
-THINKING_MODE=$(echo "$ROUTING_RESULT" | grep "Thinking模式:" | awk '{print $2}')
-REASON=$(echo "$ROUTING_RESULT" | grep "原因:" | cut -d: -f2-)
+# 提取最后一行JSON
+JSON_LINE=$(echo "$ROUTING_RESULT" | tail -n1)
+
+# 解析JSON
+SUGGESTED_MODEL=$(echo "$JSON_LINE" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data.get('suggested_model',''))" 2>/dev/null)
+THINKING_MODE=$(echo "$JSON_LINE" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data.get('thinking',''))" 2>/dev/null)
+REASON=$(echo "$JSON_LINE" | python3 -c "import sys,json; data=json.load(sys.stdin); print(data.get('reason',''))" 2>/dev/null)
 
 echo ""
 echo "=== 路由决策 ==="
@@ -25,24 +28,8 @@ echo "Thinking: $THINKING_MODE"
 echo "原因: $REASON"
 echo ""
 
-# 映射模型名称到完整路径
-case "$SUGGESTED_MODEL" in
-    "ds")
-        FULL_MODEL="nvidia-build/deepseek-ai/deepseek-v3.2"
-        ;;
-    "kimi")
-        FULL_MODEL="nvidia-build/moonshotai/kimi-k2.5"
-        ;;
-    "glm")
-        FULL_MODEL="nvidia-build/z-ai/glm4.7"
-        ;;
-    "k2p5")
-        FULL_MODEL="kimi-coding/k2p5"
-        ;;
-    *)
-        FULL_MODEL="nvidia-build/deepseek-ai/deepseek-v3.2"
-        ;;
-esac
+# 模型名称已经是完整路径，直接使用
+FULL_MODEL="$SUGGESTED_MODEL"
 
 # 输出sessions_spawn命令（方便调用）
 echo "=== 生成spawn命令 ==="

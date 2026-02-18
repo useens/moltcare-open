@@ -26,8 +26,8 @@
 - GitHub Token: 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 (已配置)
 - GitHub Repo: https://github.com/linlinofVM/sensen-backup
 - GLM-5 (zai): 已配置
-- 飞书 App ID: cli_a906761bf2789bd3 (已配置)
-- 飞书 App Secret: GqdUWwF3xbNNlI8PTf6YjrrJtajqXZfa (已配置)
+- 飞书 App ID: cli_a90df96070b89cc6 (已配置)
+- 飞书 App Secret: nGjBQGcB2cF0ZSiEAUQXwc3LgUfE2vnk (已配置)
 - NVIDIA Build API: nvapi-vKzaxx... (已配置) - 模型: step-3.5-flash
 
 ---
