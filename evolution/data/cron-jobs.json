@@ -1,0 +1,62 @@
+{
+  "version": "1.0",
+  "created_at": "2026-02-18T18:31:35.902553",
+  "description": "超进化引擎v3.0自动化调度",
+  "sessionTarget": "main",
+  "jobs": [
+    {
+      "id": "EVO-001",
+      "name": "轻量评估 - 每小时",
+      "description": "每小时执行轻量十维评估，跟踪维度变化",
+      "enabled": true,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 3600000,
+        "anchorMs": 0
+      },
+      "payload": {
+        "kind": "systemEvent",
+        "text": "运行超进化引擎轻量评估\n命令: python3 /root/.openclaw/workspace/evolution/hyper_evolution.py assess"
+      },
+      "delivery": {
+        "mode": "none"
+      }
+    },
+    {
+      "id": "EVO-002",
+      "name": "完整评估 - 每6小时",
+      "description": "每6小时执行完整评估（dry-run），决策但不执行",
+      "enabled": true,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 21600000,
+        "anchorMs": 0
+      },
+      "payload": {
+        "kind": "systemEvent",
+        "text": "运行超进化引擎完整评估（dry-run）\n命令: python3 /root/.openclaw/workspace/evolution/hyper_evolution.py evaluate"
+      },
+      "delivery": {
+        "mode": "none"
+      }
+    },
+    {
+      "id": "EVO-003",
+      "name": "实际进化 - 每天18:00",
+      "description": "每天18:00执行实际进化，执行策略",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 18 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "payload": {
+        "kind": "systemEvent",
+        "text": "运行超进化引擎实际进化\n命令: python3 /root/.openclaw/workspace/evolution/hyper_evolution.py evaluate --execute"
+      },
+      "delivery": {
+        "mode": "announce"
+      }
+    }
+  ]
+}
