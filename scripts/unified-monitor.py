@@ -274,13 +274,49 @@ class GitSystem(SystemComponent):
         return status, issues
     
     def fix(self) -> bool:
-        """执行Git清理"""
+        """执行Git修复：提交变更并推送"""
         try:
-            # 执行gc
+            # 1. 添加所有变更
+            logger.info(f"    添加所有变更...")
             subprocess.run(
-                ["git", "-C", str(WORKSPACE), "gc", "--aggressive", "--prune=now"],
-                capture_output=True, timeout=300
+                ["git", "-C", str(WORKSPACE), "add", "-A"],
+                capture_output=True, timeout=60
             )
+            
+            # 2. 提交（如果有变更）
+            result = subprocess.run(
+                ["git", "-C", str(WORKSPACE), "status", "--porcelain"],
+                capture_output=True, text=True
+            )
+            
+            if result.stdout.strip():
+                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+                commit_msg = f"【AUTO】心跳检查自动提交 - {timestamp}"
+                subprocess.run(
+                    ["git", "-C", str(WORKSPACE), "commit", "-m", commit_msg],
+                    capture_output=True, timeout=60
+                )
+                logger.info(f"    ✅ 已提交：{commit_msg}")
+            
+            # 3. 推送到远程
+            logger.info(f"    推送到远程...")
+            push_result = subprocess.run(
+                ["git", "-C", str(WORKSPACE), "push", "origin", "main"],
+                capture_output=True, timeout=120
+            )
+            
+            if push_result.returncode == 0:
+                logger.info(f"    ✅ 推送成功")
+            else:
+                logger.warning(f"    ⚠️ 推送失败（可能远程不可达）")
+            
+            # 4. 执行gc清理
+            subprocess.run(
+                ["git", "-C", str(WORKSPACE), "gc", "--prune=now"],
+                capture_output=True, timeout=120
+            )
+            logger.info(f"    ✅ 仓库清理完成")
+            
             return True
         except Exception as e:
             logger.error(f"Git系统修复失败: {e}")

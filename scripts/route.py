@@ -6,40 +6,63 @@ import re
 from typing import Dict, Optional
 
 # ============ 模型定义 ============
+# 2026-02-18 更新：根据 OpenClaw 需求优化模型选择
 MODELS = {
-    "step": {
-        "full": "nvidia-build/stepfun-ai/step-3.5-flash",
-        "name": "step",
-        "cost": "免费",
-        "speed": "最快",
-    },
     "glm": {
         "full": "nvidia-build/z-ai/glm4.7",
         "name": "glm",
         "cost": "免费",
         "speed": "快",
+        "strength": "⭐ 主模型 - 工具调用 + JSON 格式化 + 中文",
+    },
+    "step": {
+        "full": "nvidia-build/stepfun-ai/step-3.5-flash",
+        "name": "step",
+        "cost": "免费",
+        "speed": "最快",
+        "strength": "⚡ 快速响应 - 简单检查任务",
     },
     "kimi": {
         "full": "nvidia-build/moonshotai/kimi-k2.5",
         "name": "kimi",
         "cost": "免费",
         "speed": "中",
+        "strength": "📚 大上下文 - 文档扫描（256k）",
     },
     "k2p5": {
         "full": "kimi-coding/k2p5",
         "name": "k2p5",
         "cost": "付费",
         "speed": "中",
+        "strength": "💎 最强 - 深度架构 + Signal≥9",
     },
 }
 
 # ============ 路由规则（核心） ============
+# 2026-02-18 更新：GLM-4.7 更适合 OpenClaw 核心任务（工具调用、JSON 格式化、中文）
 ROUTE_RULES = {
-    # 生产任务 - step（免费且最快）
+    # OpenClaw 核心工具任务 - glm（最佳工具调用 + JSON 格式化稳定性）
+    "tool": {"model": "glm", "thinking": "on"},
+    "exec": {"model": "glm", "thinking": "on"},
+    "write": {"model": "glm", "thinking": "on"},
+    "read": {"model": "glm", "thinking": "off"},
+    "file": {"model": "glm", "thinking": "on"},
+    "feishu": {"model": "glm", "thinking": "on"},
+    "bitable": {"model": "glm", "thinking": "on"},
+    "wiki": {"model": "glm", "thinking": "on"},
+
+    # 简单检查任务 - step（快速响应）
     "heartbeat": {"model": "step", "thinking": "off"},
-    "monitor": {"model": "step", "thinking": "off"},
-    "unified-monitor": {"model": "step", "thinking": "off"},
-    "maintenance": {"model": "step", "thinking": "off"},
+    "status": {"model": "step", "thinking": "off"},
+    "check": {"model": "step", "thinking": "off"},
+
+    # 需要复杂逻辑的监控任务 - glm（推理深度）
+    "monitor": {"model": "glm", "thinking": "on"},
+    "unified-monitor": {"model": "glm", "thinking": "on"},
+    "daemon": {"model": "glm", "thinking": "on"},
+
+    # 维护任务 - glm（稳定性优先）
+    "maintenance": {"model": "glm", "thinking": "on"},
     "snapshot": {"model": "step", "thinking": "off"},
     "backup": {"model": "step", "thinking": "off"},
     "archive": {"model": "step", "thinking": "off"},
@@ -57,12 +80,13 @@ ROUTE_RULES = {
 
     # 深度任务 - k2p5（唯一付费场景）
     "deep": {"model": "k2p5", "thinking": "stream"},
-    "code": {"model": "k2p5", "thinking": "on"},
+    "code": {"model": "glm", "thinking": "on"},  # 代码用 glm 也足够，减少成本
     "architecture": {"model": "k2p5", "thinking": "stream"},
 }
 
 # ============ 回退链 ============
-FALLBACK_CHAIN = ["step", "glm", "kimi", "k2p5"]
+# 2026-02-18 更新：GLM-4.7 为主模型，step 为快速备选
+FALLBACK_CHAIN = ["glm", "step", "kimi", "k2p5"]
 
 # ============ 主路由函数 ============
 
@@ -102,12 +126,12 @@ def route(task_type: str, signal: Optional[int] = None) -> Dict:
             "reason": f"任务类型: {task_type}",
         }
 
-    # 默认使用 step
+    # 默认使用 glm（适合 OpenClaw 工具调用场景）
     return {
-        "model": "step",
-        "full_model": MODELS["step"]["full"],
-        "thinking": "off",
-        "reason": "未知任务类型，使用默认模型 step",
+        "model": "glm",
+        "full_model": MODELS["glm"]["full"],
+        "thinking": "on",
+        "reason": "未知任务类型，使用默认模型 glm（工具调用优化）",
     }
 
 def _find_route(task_type: str) -> Optional[Dict]:
