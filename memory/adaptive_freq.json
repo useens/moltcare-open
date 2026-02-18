@@ -1,38 +1,6 @@
 {
   "history": [
     {
-      "timestamp": 1771419054.8085785,
-      "datetime": "2026-02-18T20:50:54.808580",
-      "high_signal": 7,
-      "total": 30,
-      "discovery_rate": 0.23333333333333334,
-      "interval_used": 600
-    },
-    {
-      "timestamp": 1771419654.8255074,
-      "datetime": "2026-02-18T21:00:54.825509",
-      "high_signal": 5,
-      "total": 30,
-      "discovery_rate": 0.16666666666666666,
-      "interval_used": 600
-    },
-    {
-      "timestamp": 1771420254.9246187,
-      "datetime": "2026-02-18T21:10:54.924620",
-      "high_signal": 8,
-      "total": 30,
-      "discovery_rate": 0.26666666666666666,
-      "interval_used": 600
-    },
-    {
-      "timestamp": 1771420855.0245624,
-      "datetime": "2026-02-18T21:20:55.024564",
-      "high_signal": 0,
-      "total": 30,
-      "discovery_rate": 0.0,
-      "interval_used": 600
-    },
-    {
       "timestamp": 1771421455.124669,
       "datetime": "2026-02-18T21:30:55.124671",
       "high_signal": 4,
@@ -79,9 +47,41 @@
       "total": 30,
       "discovery_rate": 0.26666666666666666,
       "interval_used": 600
+    },
+    {
+      "timestamp": 1771425055.7051659,
+      "datetime": "2026-02-18T22:30:55.705167",
+      "high_signal": 6,
+      "total": 30,
+      "discovery_rate": 0.2,
+      "interval_used": 600
+    },
+    {
+      "timestamp": 1771425655.8060105,
+      "datetime": "2026-02-18T22:40:55.806012",
+      "high_signal": 5,
+      "total": 30,
+      "discovery_rate": 0.16666666666666666,
+      "interval_used": 600
+    },
+    {
+      "timestamp": 1771426255.9055152,
+      "datetime": "2026-02-18T22:50:55.905517",
+      "high_signal": 5,
+      "total": 30,
+      "discovery_rate": 0.16666666666666666,
+      "interval_used": 600
+    },
+    {
+      "timestamp": 1771426976.0065048,
+      "datetime": "2026-02-18T23:02:56.006506",
+      "high_signal": 8,
+      "total": 30,
+      "discovery_rate": 0.26666666666666666,
+      "interval_used": 600
     }
   ],
-  "last_update": "2026-02-18T22:20:55.616763",
+  "last_update": "2026-02-18T23:02:56.006677",
   "config": {
     "base_interval": 600,
     "min_interval": 300,
