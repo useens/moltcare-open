@@ -46,3 +46,6 @@ reports/*.json
 
 # 自我升级评估报告（临时）
 memory/self-upgrade/assessment_report_*.json
+
+# 剪枝计划（动态生成，不跟踪）
+memory/self-pruning/deep-reports/pruning-plan-*.json
