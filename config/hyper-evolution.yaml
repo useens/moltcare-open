@@ -81,7 +81,7 @@ meta_learning:
 
 # ============ 架构自举配置 (原频率保留) ============
 bootstrapping:
-  enabled: true
+  enabled: false  # 用户暂停 - 2026-02-18
   description: "修改自己的核心文件和工具链"
   
   core_files:
