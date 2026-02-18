@@ -14,6 +14,7 @@
 
 # 临时文件
 *.log
+*.log.*
 *.tmp
 *.swp
 *.swo
@@ -36,3 +37,12 @@ data/vector_memory/*.lance/*.txn
 **/._transactions/
 **/*.txn
 **/*.manifest
+
+# Daemon 状态文件（临时）
+daemon-status-*.json
+
+# 监控报告（临时）
+reports/*.json
+
+# 自我升级评估报告（临时）
+memory/self-upgrade/assessment_report_*.json
