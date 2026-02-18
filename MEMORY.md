@@ -49,6 +49,9 @@
 | [IDENTITY.md](IDENTITY.md) | 我的身份 |
 | [TOOLS.md](TOOLS.md) | 工具配置 |
 | [HEARTBEAT.md](HEARTBEAT.md) | 心跳检查 |
+| [smart-router.md](smart-router.md) | 智能路由设计（v1.0）|
+| [docs/SMART-ROUTING-USAGE.md](docs/SMART-ROUTING-USAGE.md) | 智能路由使用指南 |
+| [docs/smart-router-tracking.md](docs/smart-router-tracking.md) | 智能路由成本追踪 |
 
 ### 记忆模块
 - `memory/learning-debt.md` - 学习债务
