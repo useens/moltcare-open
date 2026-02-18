@@ -4,17 +4,29 @@
 
 from typing import Dict, Any, Optional
 
-# 导入各维度策略模块
-from evolution.strategies.cognitive import STRATEGIES as COGNITIVE_STRATEGIES
-from evolution.strategies.learning import LEARNING_STRATEGIES, get_strategy as get_learning_strategy
-from evolution.strategies.autonomy import AUTONOMY_STRATEGIES, get_strategy as get_autonomy_strategy
-from evolution.strategies.goal import GOAL_STRATEGIES, get_strategy as get_goal_strategy
-from evolution.strategies.creativity import CREATIVITY_STRATEGIES, get_strategy as get_creativity_strategy
-from evolution.strategies.adaptive import ADAPTIVE_STRATEGIES, get_strategy as get_adaptive_strategy
-from evolution.strategies.collaboration import COLLABORATION_STRATEGIES, get_strategy as get_collaboration_strategy
-from evolution.strategies.protection import PROTECTION_STRATEGIES, get_strategy as get_protection_strategy
-from evolution.strategies.prediction import PREDICTION_STRATEGIES, get_strategy as get_prediction_strategy
-from evolution.strategies.self_awareness import SELF_AWARENESS_STRATEGIES, get_strategy as get_self_awareness_strategy
+# 尝试导入各维度策略模块（支持不同运行路径）
+try:
+    from strategies.cognitive import STRATEGIES as COGNITIVE_STRATEGIES
+    from strategies.learning import LEARNING_STRATEGIES, get_strategy as get_learning_strategy
+    from strategies.autonomy import AUTONOMY_STRATEGIES, get_strategy as get_autonomy_strategy
+    from strategies.goal import GOAL_STRATEGIES, get_strategy as get_goal_strategy
+    from strategies.creativity import CREATIVITY_STRATEGIES, get_strategy as get_creativity_strategy
+    from strategies.adaptive import ADAPTIVE_STRATEGIES, get_strategy as get_adaptive_strategy
+    from strategies.collaboration import COLLABORATION_STRATEGIES, get_strategy as get_collaboration_strategy
+    from strategies.protection import PROTECTION_STRATEGIES, get_strategy as get_protection_strategy
+    from strategies.prediction import PREDICTION_STRATEGIES, get_strategy as get_prediction_strategy
+    from strategies.self_awareness import SELF_AWARENESS_STRATEGIES, get_strategy as get_self_awareness_strategy
+except ImportError:
+    from evolution.strategies.cognitive import STRATEGIES as COGNITIVE_STRATEGIES
+    from evolution.strategies.learning import LEARNING_STRATEGIES, get_strategy as get_learning_strategy
+    from evolution.strategies.autonomy import AUTONOMY_STRATEGIES, get_strategy as get_autonomy_strategy
+    from evolution.strategies.goal import GOAL_STRATEGIES, get_strategy as get_goal_strategy
+    from evolution.strategies.creativity import CREATIVITY_STRATEGIES, get_strategy as get_creativity_strategy
+    from evolution.strategies.adaptive import ADAPTIVE_STRATEGIES, get_strategy as get_adaptive_strategy
+    from evolution.strategies.collaboration import COLLABORATION_STRATEGIES, get_strategy as get_collaboration_strategy
+    from evolution.strategies.protection import PROTECTION_STRATEGIES, get_strategy as get_protection_strategy
+    from evolution.strategies.prediction import PREDICTION_STRATEGIES, get_strategy as get_prediction_strategy
+    from evolution.strategies.self_awareness import SELF_AWARENESS_STRATEGIES, get_strategy as get_self_awareness_strategy
 
 # 统一策略字典
 ALL_STRATEGIES: Dict[str, Dict] = {

@@ -91,3 +91,6 @@ class StateManager:
 # 全局实例
 state = StateManager()
 event_bus = state.event_bus
+
+# EvolutionState 是 StateManager 的别名，用于编排器
+EvolutionState = StateManager

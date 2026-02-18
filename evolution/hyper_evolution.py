@@ -34,7 +34,7 @@ def cmd_evaluate(args):
     print("🔍 运行十维进化评估...")
     
     orchestrator = EvolutionOrchestrator()
-    result = orchestrator.run_full_cycle(dry_run=args.dry_run)
+    result = orchestrator.run_evolution_cycle(dry_run=args.dry_run)
     
     if not args.dry_run and result.get("executed_strategies"):
         print("\n⚡ 进化策略已执行!")

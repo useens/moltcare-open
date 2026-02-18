@@ -1,107 +1,165 @@
-#!/usr/bin/env python3
 """
-进化编排器 - 协调评估、决策、执行流程
+进化编排器 - 管理进化周期
 """
 
+import json
+import sqlite3
 from datetime import datetime
-from pathlib import Path
 from typing import Dict, List, Optional
-from .dimension_assessor import DimensionAssessor
-from . import state, event_bus, Event
+from pathlib import Path
+from core.dimension_assessor import DimensionAssessor, DimensionScore
+from core import EvolutionState
+
+# 尝试导入策略模块（支持不同运行路径）
+try:
+    from strategies import ALL_STRATEGIES
+except ImportError:
+    from evolution.strategies import ALL_STRATEGIES
+
+try:
+    from collectors import run_all_collectors
+except ImportError:
+    from evolution.collectors import run_all_collectors
 
 class EvolutionOrchestrator:
-    """进化编排器"""
+    """进化编排器 - 管理完整的进化周期"""
     
-    def __init__(self):
+    def __init__(self, data_dir: str = "evolution/data"):
+        self.data_dir = Path(data_dir)
+        self.data_dir.mkdir(parents=True, exist_ok=True)
+        
+        self.db_path = self.data_dir / "evolution.db"
+        self.scores_path = self.data_dir / "dimension_scores.json"
+        
         self.assessor = DimensionAssessor()
-        self.state = state
+        self.state = EvolutionState()
+        self.execution_history = []
         
-    def run_full_cycle(self, dry_run: bool = False) -> Dict:
-        """运行完整进化周期
+        self._init_database()
+    
+    def _init_database(self):
+        """初始化数据库"""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
         
-        Returns:
-            {
-                "success": bool,
-                "dimension_scores": {...},
-                "evolution_decisions": [...],
-                "executed_strategies": [...]
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS evolution_cycles (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                timestamp TEXT NOT NULL,
+                status TEXT NOT NULL,
+                decisions TEXT,
+                execution_results TEXT,
+                created_at TEXT DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+        
+        conn.commit()
+        conn.close()
+    
+    def _save_scores(self, scores: Dict):
+        """保存维度分数到JSON文件"""
+        formatted = {}
+        for dim_id, score in scores.items():
+            formatted[dim_id] = {
+                "name": score.name,
+                "icon": score.icon,
+                "score": score.score,
+                "level": str(score.level),
+                "triggers": score.triggers,
+                "evidence": score.evidence,
+                "last_updated": score.last_updated
             }
-        """
-        print("🚀 开始完整进化周期...")
         
-        # 1. 评估所有维度
-        print("\n1️⃣ 评估十维状态...")
-        dimension_data = self._collect_dimension_data()
-        scores = self.assessor.assess_all(dimension_data)
+        with open(self.scores_path, 'w', encoding='utf-8') as f:
+            json.dump(formatted, f, indent=2, ensure_ascii=False)
+    
+    def run_evolution_cycle(self, dry_run: bool = True) -> Dict:
+        """运行完整的进化周期"""
+        print("\n🚀 开始完整进化周期...\n")
         
-        # 2. 打印当前状态
+        # 1. 收集所有维度数据
+        print("1️⃣ 评估十维状态...")
+        collector_data = run_all_collectors()
+        
+        # 2. 评估十维状态
+        scores = self.assessor.assess_all(collector_data)
+        self._save_scores(scores)
         self.assessor.print_status()
         
-        # 3. 检测需要进化的维度
-        critical_dimensions = self.assessor.get_critical_dimensions(40.0)
+        # 3. 决策：哪些维度需要进化
+        print("\n2️⃣ 决策进化方向...")
+        decisions = []
+        for dim_id, dim_data in collector_data.items():
+            if dim_data.get("triggers"):
+                decision = self._select_evolution_strategy(dim_id, dim_data)
+                if decision:
+                    decisions.append(decision)
         
-        if not critical_dimensions:
-            print("\n✅ 所有维度状态良好，无需进化")
-            return {
-                "success": True,
-                "dimension_scores": self._format_scores(scores),
-                "evolution_decisions": [],
-                "executed_strategies": [],
-                "message": "所有维度健康"
-            }
+        print(f"\n3️⃣ 检测到 {len(decisions)} 个需要进化的维度")
         
-        print(f"\n2️⃣ 检测到 {len(critical_dimensions)} 个需要进化的维度")
+        # 4. 执行决策
+        if not dry_run and decisions:
+            print("\n4️⃣ 执行进化策略...")
+            for i, decision in enumerate(decisions, 1):
+                print(f"   [{i}/{len(decisions)}] {decision['dimension_name']}: {decision['strategy']}")
+                result = self._execute_strategy(decision, dry_run)
+                
+                if result:
+                    self.execution_history.append(result)
         
-        # 4. 为每个临界维度选择策略
-        evolution_decisions = []
-        for dim_id in critical_dimensions:
-            decision = self._select_evolution_strategy(dim_id, dimension_data[dim_id])
-            if decision:
-                evolution_decisions.append(decision)
+        # 5. 保存执行记录
+        self._save_cycle_to_db(collector_data, decisions, dry_run)
         
-        # 5. 执行策略（如果非 dry_run）
-        executed_strategies = []
-        if not dry_run and evolution_decisions:
-            print(f"\n3️⃣ 执行 {len(evolution_decisions)} 个进化策略...")
-            for decision in evolution_decisions:
-                result = self._execute_strategy(decision, dry_run=dry_run)
-                executed_strategies.append(result)
-        else:
-            print(f"\n3️⃣ Dry-run 模式，跳过执行")
-        
-        # 6. 重新评估
-        if not dry_run and executed_strategies:
+        # 6. 重新评估（如果执行了策略）
+        if not dry_run:
             print("\n4️⃣ 重新评估...")
-            new_scores = self.assessor.assess_all(self._collect_dimension_data())
+            new_scores = self.assessor.assess_all(run_all_collectors())
             
-            # 检查是否有改进
-            improvement = self._check_improvement(scores, new_scores)
-            print(f"   进化效果: {improvement}")
+            # 计算变化
+            changes = []
+            for dim_id in scores:
+                old_score = scores[dim_id].score
+                new_score = new_scores[dim_id].score
+                if abs(new_score - old_score) > 0.1:
+                    changes.append(f"{self.assessor.DIMENSIONS[dim_id]['name']}: {old_score:.1f}% → {new_score:.1f}%")
+            
+            if changes:
+                print(f"   进化效果: ✨ 变化检测")
+                for change in changes:
+                    print(f"      {change}")
+            else:
+                print("   进化效果: ➡️  无变化")
         
-        # 发布事件
-        event_bus.publish(Event(
-            type="evolution.cycle_completed",
-            source="EvolutionOrchestrator",
-            timestamp=datetime.now(),
-            data={
-                "decisions_made": len(evolution_decisions),
-                "strategies_executed": len(executed_strategies),
-                "critical_dimensions": critical_dimensions
+        # 返回周期结果
+        result = {
+            "status": "completed",
+            "decisions_count": len(decisions),
+            "executed": not dry_run,
+            "scores": {
+                dim_id: score.score
+                for dim_id, score in scores.items()
             }
+        }
+        
+        return result
+    
+    def _save_cycle_to_db(self, collector_data: Dict, decisions: List, dry_run: bool):
+        """保存进化周期到数据库"""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            INSERT INTO evolution_cycles (timestamp, status, decisions, execution_results)
+            VALUES (?, ?, ?, ?)
+        ''', (
+            datetime.now().isoformat(),
+            "dry_run" if dry_run else "completed",
+            json.dumps(decisions, ensure_ascii=False),
+            json.dumps(self.execution_history, ensure_ascii=False)
         ))
         
-        return {
-            "success": True,
-            "dimension_scores": self._format_scores(scores),
-            "evolution_decisions": evolution_decisions,
-            "executed_strategies": executed_strategies,
-            "message": f"完成 {len(evolution_decisions)} 个进化决策"
-        }
-    
-    def _collect_dimension_data(self) -> Dict[str, Dict]:
-        """收集各维度数据"""
-        from collectors import run_all_collectors
-        return run_all_collectors()
+        conn.commit()
+        conn.close()
     
     def _select_evolution_strategy(self, dim_id: str, dim_data: Dict) -> Optional[Dict]:
         """为维度选择进化策略"""
@@ -249,31 +307,13 @@ class EvolutionOrchestrator:
         return None
     
     def _execute_strategy(self, decision: Dict, dry_run: bool) -> Dict:
-        """执行进化策略"""
+        """执行进化策略 - 使用统一策略注册中心"""
+        dimension = decision["dimension"]
         strategy_name = decision["strategy"]
-        
-        # 尝试从认知策略库中获取
-        try:
-            from strategies.cognitive import STRATEGIES as COG_STRATEGIES
-            if strategy_name in COG_STRATEGIES:
-                strategy = COG_STRATEGIES[strategy_name]
-        except:
-            strategy = None
-        
-        if strategy is None:
-            # 策略未实现
-            return {
-                "dimension": decision["dimension"],
-                "strategy": strategy_name,
-                "success": None,
-                "dry_run": dry_run,
-                "message": "策略未实现",
-                "timestamp": datetime.now().isoformat()
-            }
         
         if dry_run:
             return {
-                "dimension": decision["dimension"],
+                "dimension": dimension,
                 "strategy": strategy_name,
                 "success": None,
                 "dry_run": True,
@@ -282,23 +322,52 @@ class EvolutionOrchestrator:
             }
         
         try:
-            result = strategy.execute(decision)
+            # 从统一策略注册中心获取策略（已在顶部导入）
+            if dimension not in ALL_STRATEGIES:
+                return {
+                    "dimension": dimension,
+                    "strategy": strategy_name,
+                    "success": False,
+                    "message": f"未知维度: {dimension}",
+                    "timestamp": datetime.now().isoformat()
+                }
+            
+            dim_strategies = ALL_STRATEGIES[dimension]
+            
+            if strategy_name not in dim_strategies:
+                return {
+                    "dimension": dimension,
+                    "strategy": strategy_name,
+                    "success": False,
+                    "message": f"未找到策略: {strategy_name}",
+                    "timestamp": datetime.now().isoformat()
+                }
+            
+            strategy = dim_strategies[strategy_name]
+            
+            # 执行策略
+            evidence = decision.get("evidence", {})
+            result = strategy.execute(evidence)
+            
             return {
-                "dimension": decision["dimension"],
+                "dimension": dimension,
                 "strategy": strategy_name,
-                "success": result.get("status") == "success",
+                "success": result.get("success", True),
                 "dry_run": False,
-                "actions": result.get("actions", []),
-                "message": result.get("status"),
+                "actions": result.get("actions_taken", []),
+                "message": result.get("message", "策略执行完成"),
                 "timestamp": datetime.now().isoformat()
             }
+            
         except Exception as e:
+            import traceback
             return {
-                "dimension": decision["dimension"],
+                "dimension": dimension,
                 "strategy": strategy_name,
                 "success": False,
                 "dry_run": False,
-                "error": str(e),
+                "message": f"执行失败: {str(e)}",
+                "error": traceback.format_exc(),
                 "timestamp": datetime.now().isoformat()
             }
     
@@ -309,25 +378,34 @@ class EvolutionOrchestrator:
                 "name": score.name,
                 "icon": score.icon,
                 "score": score.score,
-                "level": score.level
+                "level": str(score.level),
+                "triggers": score.triggers,
+                "evidence": score.evidence
             }
             for dim_id, score in scores.items()
         }
     
-    def _check_improvement(self, old_scores: Dict, new_scores: Dict) -> str:
-        """检查进化效果"""
-        old_avg = sum(s.score for s in old_scores.values()) / len(old_scores)
-        new_avg = sum(s.score for s in new_scores.values()) / len(new_scores)
-        diff = new_avg - old_avg
+    def get_history(self, limit: int = 10) -> List[Dict]:
+        """获取进化历史"""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
         
-        if diff > 0:
-            return f"✅ 提升 +{diff:.1f} 分 ({old_avg:.1f} → {new_avg:.1f})"
-        elif diff < 0:
-            return f"⚠️  下降 {diff:.1f} 分 ({old_avg:.1f} → {new_avg:.1f})"
-        else:
-            return f"➡️  无变化 ({old_avg:.1f} 分)"
-
-if __name__ == "__main__":
-    orchestrator = EvolutionOrchestrator()
-    result = orchestrator.run_full_cycle(dry_run=True)
-    print(json.dumps(result, indent=2, ensure_ascii=False))
+        cursor.execute('''
+            SELECT id, timestamp, status, decisions
+            FROM evolution_cycles
+            ORDER BY timestamp DESC
+            LIMIT ?
+        ''', (limit,))
+        
+        results = cursor.fetchall()
+        conn.close()
+        
+        return [
+            {
+                "id": row[0],
+                "timestamp": row[1],
+                "status": row[2],
+                "decisions": json.loads(row[3]) if row[3] else []
+            }
+            for row in results
+        ]

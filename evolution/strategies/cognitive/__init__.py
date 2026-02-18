@@ -4,7 +4,15 @@ import subprocess
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any
-from ...core import state
+
+# 尝试导入核心模块
+try:
+    from ...core import state
+except ImportError:
+    # 备用导入（当作为脚本直接运行时）
+    import sys
+    sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+    from core import state
 
 class DeepReasoningStrategy:
     """深化推理策略 - 提升推理链深度"""
