@@ -28,6 +28,8 @@
 - GLM-5 (zai): 已配置
 - 飞书 App ID: cli_a906761bf2789bd3 (已配置)
 - 飞书 App Secret: GqdUWwF3xbNNlI8PTf6YjrrJtajqXZfa (已配置)
+- NVIDIA Build API: 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 (已配置)
+  - 模型: moonshotai/kimi-k2.5, z-ai/glm4.7, stepfun-ai/step-3.5-flash
 
 ---
 
