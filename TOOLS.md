@@ -23,8 +23,11 @@
 
 ### API Keys
 - Brave API: 待配置（用于外部搜索）
-- GitHub Token: 已配置（自动同步）
+- GitHub Token: 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 (已配置)
+- GitHub Repo: https://github.com/linlinofVM/sensen-backup
 - GLM-5 (zai): 已配置
+- 飞书 App ID: cli_a906761bf2789bd3 (已配置)
+- 飞书 App Secret: GqdUWwF3xbNNlI8PTf6YjrrJtajqXZfa (已配置)
 
 ---
 
