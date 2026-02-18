@@ -110,37 +110,113 @@ class EvolutionOrchestrator:
         if not triggers:
             return None
         
-        # 根据触发条件选择对应策略
+        # 完整的策略映射表
         strategy_map = {
             "cognitive": {
                 "shallow_reasoning": "deep_reasoning_upgrade",
                 "logical_errors_detected": "logical_consistency_checker",
                 "contradictions_found": "counter_argument_framework",
+                "deep_reasoning_not_enabled": "deep_reasoning_upgrade",
+                "no_counter_argument_framework": "counter_argument_framework",
+                "no_abstraction_ladder": "abstraction_ladder",
                 "default": "abstraction_ladder"
             },
             "learning": {
                 "learning_debt_high": "knowledge_gap_analysis",
                 "high_signal_unprocessed": "urgent_signal_processor",
                 "knowledge_graph_sparse": "graph_rebuilder",
+                "knowledge_graph_missing": "graph_rebuilder",
+                "no_domain_exploration": "active_curiosity_engine",
+                "insufficient_domain_exploration": "active_curiosity_engine",
+                "low_knowledge_application": "cross_reference_synthesizer",
+                "no_knowledge_application": "cross_reference_synthesizer",
+                "no_learning_debt_tracking": "knowledge_validation_gate",
+                "no_active_curiosity": "active_curiosity_engine",
                 "default": "active_curiosity_engine"
             },
             "autonomy": {
                 "external_dependency_high": "self_ownership_framework",
-                "frequent_human_intervention": "autonomy_training",
-                "high_rollback_rate": "decision_caching",
+                "frequent_human_intervention": "autonomous_decision_tree",
+                "low_autonomous_task_count": "autonomous_decision_tree",
+                "high_rollback_rate": "decision_caching_system",
+                "no_decision_cache": "decision_caching_system",
                 "default": "autonomous_decision_tree"
             },
             "goal": {
-                "no_self_defined_goals": "goal_generation",
-                "no_clear_priority": "priority_alignment",
+                "no_self_defined_goals": "self_goal_definition",
+                "insufficient_self_goals": "self_goal_definition",
+                "no_clear_priority": "priority_dynamic_adaptive",
                 "low_goal_completion_rate": "milestone_tracking",
-                "default": "goal_alignment_checker"
+                "no_goals_tracked": "milestone_tracking",
+                "low_milestone_progress": "milestone_tracking",
+                "no_milestone_tracking": "milestone_tracking",
+                "no_long_term_plan": "self_goal_definition",
+                "no_goal_alignment_check": "goal_alignment_checker",
+                "default": "priority_dynamic_adaptive"
             },
             "creativity": {
                 "no_innovations": "inspiration_fusion_engine",
                 "no_new_frameworks": "framework_generator",
-                "no_inspiration_fusion": "lateral_thinking_module",
-                "default": "concept_synthesizer"
+                "no_inspiration_fusion": "inspiration_fusion_engine",
+                "low_inspiration_fusion": "inspiration_fusion_engine",
+                "no_lateral_thinking": "lateral_thinking_module",
+                "no_concept_synthesis": "concept_synthesizer",
+                "no_framework_generation": "framework_generator",
+                "default": "inspiration_fusion_engine"
+            },
+            "adaptive": {
+                "no_context_awareness_tracking": "context_awareness_upgrade",
+                "insufficient_anomaly_handling": "anomaly_self_detection",
+                "no_anomaly_detection": "anomaly_self_detection",
+                "insufficient_pattern_adaptation": "pattern_evolution_engine",
+                "no_pattern_adaptation": "pattern_evolution_engine",
+                "no_recent_context_switches": "adaptive_mode_switching",
+                "no_context_switch_tracking": "adaptive_mode_switching",
+                "no_environment_responses": "adaptive_mode_switching",
+                "default": "adaptive_mode_switching"
+            },
+            "collaboration": {
+                "low_tool_diversity": "tool_matrix_fusion",
+                "no_tools_usage_tracking": "tool_matrix_fusion",
+                "insufficient_multi_agent_collab": "multi_agent_orchestrator",
+                "no_multi_agent_tracking": "multi_agent_orchestrator",
+                "no_resource_integration": "resource_allocation_optimizer",
+                "low_concurrency_usage": "resource_allocation_optimizer",
+                "no_concurrency_tracking": "resource_allocation_optimizer",
+                "no_tool_matrix_fusion": "tool_matrix_fusion",
+                "default": "multi_agent_orchestrator"
+            },
+            "protection": {
+                "insufficient_risk_prediction": "risk_prediction_engine",
+                "no_risk_prediction": "risk_prediction_engine",
+                "insufficient_safety_boundaries": "safety_boundary_evolution",
+                "no_safety_boundaries": "safety_boundary_evolution",
+                "no_threat_detection": "threat_detection_system",
+                "high_risk_commands_executed": "self_preservation_protocol",
+                "no_high_risk_tracking": "self_preservation_protocol",
+                "no_self_preservation": "self_preservation_protocol",
+                "default": "safety_boundary_evolution"
+            },
+            "prediction": {
+                "no_causal_reasoning": "causal_chain_reasoning_engine",
+                "insufficient_impact_prediction": "impact_prediction_system",
+                "no_impact_prediction": "impact_prediction_system",
+                "no_scenario_simulation": "scenario_simulation",
+                "no_preemptive_actions": "preemptive_action_generator",
+                "no_forward_planning": "scenario_simulation",
+                "default": "impact_prediction_system"
+            },
+            "self_awareness": {
+                "no_capability_boundary_mapping": "capability_boundary_mapper",
+                "low_self_awareness_calibration": "self_awareness_calibrator",
+                "no_self_awareness_calibration": "self_awareness_calibrator",
+                "insufficient_reflection": "reflective_journal_system",
+                "no_reflective_journal": "reflective_journal_system",
+                "insufficient_unknown_honesty": "honest_unknown_declaration",
+                "no_unknown_tracking": "honest_unknown_declaration",
+                "no_self_evaluation": "self_awareness_calibrator",
+                "over_confident": "reflective_journal_system",
+                "default": "reflective_journal_system"
             }
         }
         
@@ -170,16 +246,7 @@ class EvolutionOrchestrator:
                 "timestamp": datetime.now().isoformat()
             }
         
-        # 未实现的维度返回通用策略
-        return {
-            "dimension": dim_id,
-            "dimension_name": self.assessor.DIMENSIONS[dim_id]["name"],
-            "strategy": f"{dim_id}_upgrade",
-            "confidence": 0.6,
-            "triggers": triggers,
-            "evidence": dim_data.get("evidence", {}),
-            "timestamp": datetime.now().isoformat()
-        }
+        return None
     
     def _execute_strategy(self, decision: Dict, dry_run: bool) -> Dict:
         """执行进化策略"""
