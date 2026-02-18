@@ -1,0 +1,27 @@
+# 模型提供商配置
+# NVIDIA Build 平台
+
+providers:
+  nvidia-build:
+    name: "NVIDIA Build"
+    baseUrl: "https://integrate.api.nvidia.com/v1"
+    apiKey: "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"
+    api: "openai-completions"
+    enabled: true
+
+# 模型配置
+models:
+  - id: "stepfun-ai/step-3.5-flash"
+    name: "step-3.5-flash"
+    alias: "step"
+    provider: nvidia-build
+    description: "Step-3.5-Flash - 快速响应"
+    context_window: 128000
+    max_tokens: 4096
+    thinking: concise
+    tier: free
+
+# 默认设置
+defaults:
+  chat: "stepfun-ai/step-3.5-flash"
+  fast: "stepfun-ai/step-3.5-flash"
