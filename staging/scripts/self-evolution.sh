@@ -13,7 +13,7 @@ EVOLUTION_MARKER="$WORKSPACE/.evolution-active"
 mkdir -p "$STAGING/logs"
 
 log() {
-    echo "[$(date '+%H:%M:%S')] $1" | tee -a "$LOG"
+    echo "[$(date '+%H:%M:%S')] $1" >> "$LOG"
 }
 
 # ============ 阶段1: 检测 ============
