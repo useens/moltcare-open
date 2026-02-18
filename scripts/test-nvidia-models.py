@@ -15,9 +15,9 @@ BASE_URL = "https://integrate.api.nvidia.com/v1"
 
 # 测试模型
 MODELS = [
-    "nvidia-build/moonshotai/kimi-k2.5",
-    "nvidia-build/z-ai/glm4.7",
-    "nvidia-build/stepfun-ai/step-3.5-flash"
+    "moonshotai/kimi-k2.5",
+    "z-ai/glm4.7",
+    "stepfun-ai/step-3.5-flash"
 ]
 
 def test_model(model_id):

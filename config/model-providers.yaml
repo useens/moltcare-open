@@ -12,7 +12,7 @@ providers:
 # 可用模型列表
 models:
   # NVIDIA Build 免费模型
-  - id: "nvidia-build/moonshotai/kimi-k2.5"
+  - id: "moonshotai/kimi-k2.5"
     name: "kimi-k2.5"
     alias: "k2.5-nvidia"
     provider: nvidia-build
@@ -21,8 +21,8 @@ models:
     max_tokens: 8192
     thinking: on
     tier: free
-    
-  - id: "nvidia-build/z-ai/glm4.7"
+
+  - id: "z-ai/glm4.7"
     name: "glm4.7"
     alias: "glm-nvidia"
     provider: nvidia-build
@@ -31,8 +31,8 @@ models:
     max_tokens: 4096
     thinking: on
     tier: free
-    
-  - id: "nvidia-build/stepfun-ai/step-3.5-flash"
+
+  - id: "stepfun-ai/step-3.5-flash"
     name: "step-3.5-flash"
     alias: "step-nvidia"
     provider: nvidia-build
@@ -44,7 +44,7 @@ models:
 
 # 默认模型设置
 defaults:
-  chat: "nvidia-build/moonshotai/kimi-k2.5"
-  coding: "nvidia-build/moonshotai/kimi-k2.5"
-  fast: "nvidia-build/stepfun-ai/step-3.5-flash"
-  chinese: "nvidia-build/z-ai/glm4.7"
+  chat: "moonshotai/kimi-k2.5"
+  coding: "moonshotai/kimi-k2.5"
+  fast: "stepfun-ai/step-3.5-flash"
+  chinese: "z-ai/glm4.7"
