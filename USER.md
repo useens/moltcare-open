@@ -49,6 +49,11 @@
 - Rust (学习中)
 - Git/GitHub
 
+### 模型偏好
+- **默认**: `step-nvidia` (stepfun-ai/step-3.5-flash) - 快速响应
+- **备选**: `k2.5-nvidia` (moonshotai/kimi-k2.5) - 长上下文任务
+- **中文任务**: `glm-nvidia` (z-ai/glm4.7) - 中文优化
+
 ### 关注领域
 - AI Agent架构
 - 记忆系统设计

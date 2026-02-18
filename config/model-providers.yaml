@@ -44,7 +44,8 @@ models:
 
 # 默认模型设置
 defaults:
-  chat: "moonshotai/kimi-k2.5"
+  chat: "stepfun-ai/step-3.5-flash"      # 用户偏好: step-nvidia
   coding: "moonshotai/kimi-k2.5"
   fast: "stepfun-ai/step-3.5-flash"
   chinese: "z-ai/glm4.7"
+  user_preference: "step-nvidia"         # 记录用户选择
