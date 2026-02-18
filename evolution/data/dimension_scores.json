@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-18T18:24:20.259495",
+  "timestamp": "2026-02-18T18:24:38.582494",
   "dimensions": {
     "cognitive": {
       "name": "认知能力",
@@ -21,7 +21,7 @@
         "counter_argument_framework_exists": false,
         "abstraction_ladder_exists": false
       },
-      "last_updated": "2026-02-18T18:24:20.259432"
+      "last_updated": "2026-02-18T18:24:38.582437"
     },
     "learning": {
       "name": "学习能力",
@@ -34,7 +34,7 @@
       "evidence": {
         "error": "unsupported operand type(s) for /: 'PosixPath' and 'LearningCollector'"
       },
-      "last_updated": "2026-02-18T18:24:20.259453"
+      "last_updated": "2026-02-18T18:24:38.582454"
     },
     "autonomy": {
       "name": "自主决策",
@@ -52,7 +52,7 @@
         "self_solved_problems": 0,
         "cached_decisions": 0
       },
-      "last_updated": "2026-02-18T18:24:20.259459"
+      "last_updated": "2026-02-18T18:24:38.582460"
     },
     "goal": {
       "name": "目标设定",
@@ -75,7 +75,7 @@
         "has_long_term_plan": false,
         "goal_alignment_score": 0
       },
-      "last_updated": "2026-02-18T18:24:20.259464"
+      "last_updated": "2026-02-18T18:24:38.582465"
     },
     "creativity": {
       "name": "创造力",
@@ -97,7 +97,7 @@
         "concepts_synthesized": 0,
         "frameworks_generated": 0
       },
-      "last_updated": "2026-02-18T18:24:20.259469"
+      "last_updated": "2026-02-18T18:24:38.582469"
     },
     "adaptive": {
       "name": "适应性",
@@ -118,7 +118,7 @@
         "context_switches": 0,
         "environment_responses": 0
       },
-      "last_updated": "2026-02-18T18:24:20.259473"
+      "last_updated": "2026-02-18T18:24:38.582474"
     },
     "collaboration": {
       "name": "协作能力",
@@ -139,7 +139,7 @@
         "concurrent_tasks": 0,
         "tool_matrix_fusions": 0
       },
-      "last_updated": "2026-02-18T18:24:20.259478"
+      "last_updated": "2026-02-18T18:24:38.582478"
     },
     "protection": {
       "name": "自我保护",
@@ -161,7 +161,7 @@
         "high_risk_executed": 0,
         "self_preservation_protocols": 0
       },
-      "last_updated": "2026-02-18T18:24:20.259482"
+      "last_updated": "2026-02-18T18:24:38.582482"
     },
     "prediction": {
       "name": "预测能力",
@@ -182,7 +182,7 @@
         "preemptive_actions": 0,
         "forward_plans": 0
       },
-      "last_updated": "2026-02-18T18:24:20.259487"
+      "last_updated": "2026-02-18T18:24:38.582486"
     },
     "self_awareness": {
       "name": "自我认知",
@@ -204,7 +204,7 @@
         "self_evaluations": 0,
         "avg_self_evaluation": 0
       },
-      "last_updated": "2026-02-18T18:24:20.259491"
+      "last_updated": "2026-02-18T18:24:38.582491"
     }
   }
 }
