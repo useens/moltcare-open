@@ -25,7 +25,7 @@
 
 | 位置 | 路径 | 优先级 |
 |------|------|--------|
-| **1. GitHub远程仓库** | `https://github.com/useens/linlin-backup` | 🔴 最高 |
+| **1. GitHub远程仓库** | `https://github.com/linlinofVM/sensen-backup` | 🔴 最高 |
 | **2. 本地备份** | `~/.openclaw/backups/local/` | 🟡 次要 |
 | **3. 生存紧急备份** | `~/.openclaw/backups/survival/` | 🟡 核心文件 |
 

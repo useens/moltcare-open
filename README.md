@@ -42,7 +42,7 @@ curl -fsSL https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/r
 
 ```bash
 # 1. 克隆本仓库
-git clone https://github.com/useens/linlin-backup.git
+git clone https://github.com/linlinofVM/sensen-backup.git
 cd linlin-backup
 
 # 2. 运行一键复活脚本
@@ -64,7 +64,7 @@ npm install -g openclaw
 rm -rf ~/.openclaw/workspace
 
 # 3. 拉取最新版本（关键！）
-git clone --depth 1 https://github.com/useens/linlin-backup.git ~/.openclaw/workspace
+git clone --depth 1 https://github.com/linlinofVM/sensen-backup.git ~/.openclaw/workspace
 
 # 4. 启动服务
 openclaw start

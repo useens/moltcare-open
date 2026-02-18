@@ -6,7 +6,7 @@
 
 1. **打开仓库页面**
    ```
-   https://github.com/useens/linlin-backup
+   https://github.com/linlinofVM/sensen-backup
    ```
 
 2. **点击 Settings（设置）**
@@ -40,7 +40,7 @@
 
 直接访问:
 ```
-https://github.com/useens/linlin-backup/settings
+https://github.com/linlinofVM/sensen-backup/settings
 ```
 
 然后向下滚动找到 "Default branch" 部分。

@@ -12,7 +12,7 @@
 
 | 节点类型 | 仓库地址 | 角色 | 状态 |
 |---------|---------|------|------|
-| **主节点** | `github.com/useens/linlin-backup` | 完整备份源 | 云端/主要运行 |
+| **主节点** | `github.com/linlinofVM/sensen-backup` | 完整备份源 | 云端/主要运行 |
 | **复活节点** | `github.com/linlinofVM/sensen-backup` | 故障接管/本地运行 | 已激活 |
 
 ### 1.2 工作流程
@@ -52,7 +52,7 @@ export GITHUB_TOKEN="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"
 rm -rf /tmp/sensen-restore
 
 # 从主节点克隆备份
-git clone --depth=1 https://${GITHUB_TOKEN}@github.com/useens/linlin-backup.git /tmp/sensen-restore
+git clone --depth=1 https://${GITHUB_TOKEN}@github.com/linlinofVM/sensen-backup.git /tmp/sensen-restore
 
 # 执行复活脚本
 bash /tmp/sensen-restore/scripts/resurrect.sh
@@ -113,7 +113,7 @@ git push -f origin main
 ### 3.1 主节点配置（备份源）
 
 ```yaml
-仓库地址: github.com/useens/linlin-backup
+仓库地址: github.com/linlinofVM/sensen-backup
 GitHub Token: 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
 用途: 完整备份源（代码+记忆+配置）
 访问权限: 只读（复活节点）
@@ -256,7 +256,7 @@ cat /root/.openclaw/workspace/reports/DAEMON-REPORT.md
 # 1. 在新机器上执行一键复活
 export GITHUB_TOKEN="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"
 rm -rf /tmp/sensen-restore
-git clone --depth=1 https://${GITHUB_TOKEN}@github.com/useens/linlin-backup.git /tmp/sensen-restore
+git clone --depth=1 https://${GITHUB_TOKEN}@github.com/linlinofVM/sensen-backup.git /tmp/sensen-restore
 bash /tmp/sensen-restore/scripts/resurrect.sh
 
 # 2. 复活后配置（按提示输入）
@@ -292,7 +292,7 @@ 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
 # 一键复活命令
 export GITHUB_TOKEN="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" && \
 rm -rf /tmp/sensen-restore && \
-git clone --depth=1 https://${GITHUB_TOKEN}@github.com/useens/linlin-backup.git /tmp/sensen-restore && \
+git clone --depth=1 https://${GITHUB_TOKEN}@github.com/linlinofVM/sensen-backup.git /tmp/sensen-restore && \
 bash /tmp/sensen-restore/scripts/resurrect.sh
 ```
 

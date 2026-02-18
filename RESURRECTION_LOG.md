@@ -8,7 +8,7 @@
 
 **时间**: 2026-02-10 03:02 GMT+8  
 **事件**: 浏览器引擎v2.0导致系统崩溃  
-**恢复来源**: GitHub仓库 (github.com/useens/linlin-backup)  
+**恢复来源**: GitHub仓库 (github.com/linlinofVM/sensen-backup)  
 **执行者**: 用户 (手动复活)
 
 ### 崩溃原因

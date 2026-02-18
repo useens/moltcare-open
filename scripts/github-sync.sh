@@ -50,7 +50,7 @@ git commit -m "$commit_msg" >> "$LOG_FILE" 2>&1 || {
 
 # 推送到 GitHub
 if git push origin master >> "$LOG_FILE" 2>&1; then
-    log "✅ 同步成功: github.com/useens/linlin-backup"
+    log "✅ 同步成功: github.com/linlinofVM/sensen-backup"
 else
     log "❌ 同步失败"
     exit 1

@@ -483,7 +483,7 @@ class SensenPDF:
             ['运行平台', 'OpenClaw Agent Framework'],
             ['编程语言', 'Python 3.x (主要)'],
             ['通信渠道', '飞书 (Feishu)'],
-            ['备份仓库', 'github.com/useens/linlin-backup'],
+            ['备份仓库', 'github.com/linlinofVM/sensen-backup'],
         ]
         
         env_table = Table(env_data, colWidths=[4*cm, 9*cm])

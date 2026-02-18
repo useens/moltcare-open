@@ -601,7 +601,7 @@ class SensenPDFv2:
             ('运行平台', 'OpenClaw Agent Framework'),
             ('编程语言', 'Python 3.x (主要)'),
             ('通信渠道', '飞书 (Feishu)'),
-            ('备份仓库', 'github.com/useens/linlin-backup'),
+            ('备份仓库', 'github.com/linlinofVM/sensen-backup'),
         ]
         self.add_info_card(env_items)
         
