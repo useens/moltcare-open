@@ -99,85 +99,141 @@ class EvolutionOrchestrator:
         }
     
     def _collect_dimension_data(self) -> Dict[str, Dict]:
-        """收集各维度数据
-        
-        这里应该调用对应的收集器
-        现在返回简化数据
-        """
-        # TODO: 调用真正的维度收集器
-        return {
-            "cognitive": {
-                "triggers": [],
-                "evidence": {"positive_milestones": 0}
-            },
-            "learning": {
-                "triggers": ["learning_debt_accumulating"],
-                "evidence": {"positive_milestones": 0}
-            },
-            "autonomy": {
-                "triggers": [],
-                "evidence": {"positive_milestones": 2}
-            },
-            "goal": {
-                "triggers": ["no_self_defined_goals"],
-                "evidence": {"positive_milestones": 0}
-            },
-            "creativity": {
-                "triggers": [],
-                "evidence": {"positive_milestones": 1}
-            },
-            "adaptive": {
-                "triggers": [],
-                "evidence": {"positive_milestones": 1}
-            },
-            "collaboration": {
-                "triggers": ["low_tool_usage"],
-                "evidence": {"positive_milestones": 0}
-            },
-            "protection": {
-                "triggers": [],
-                "evidence": {"positive_milestones": 2}
-            },
-            "prediction": {
-                "triggers": ["no_prediction_mechanism"],
-                "evidence": {"positive_milestones": 0}
-            },
-            "self_awareness": {
-                "triggers": [],
-                "evidence": {"positive_milestones": 1}
-            }
-        }
+        """收集各维度数据"""
+        from collectors import run_all_collectors
+        return run_all_collectors()
     
     def _select_evolution_strategy(self, dim_id: str, dim_data: Dict) -> Optional[Dict]:
-        """为维度选择进化策略
+        """为维度选择进化策略"""
+        triggers = dim_data.get("triggers", [])
         
-        这里应该根据触发条件选择对应策略
-        现在是简化版
-        """
-        # TODO: 实现真正的策略选择逻辑
+        if not triggers:
+            return None
+        
+        # 根据触发条件选择对应策略
+        strategy_map = {
+            "cognitive": {
+                "shallow_reasoning": "deep_reasoning_upgrade",
+                "logical_errors_detected": "logical_consistency_checker",
+                "contradictions_found": "counter_argument_framework",
+                "default": "abstraction_ladder"
+            },
+            "learning": {
+                "learning_debt_high": "knowledge_gap_analysis",
+                "high_signal_unprocessed": "urgent_signal_processor",
+                "knowledge_graph_sparse": "graph_rebuilder",
+                "default": "active_curiosity_engine"
+            },
+            "autonomy": {
+                "external_dependency_high": "self_ownership_framework",
+                "frequent_human_intervention": "autonomy_training",
+                "high_rollback_rate": "decision_caching",
+                "default": "autonomous_decision_tree"
+            },
+            "goal": {
+                "no_self_defined_goals": "goal_generation",
+                "no_clear_priority": "priority_alignment",
+                "low_goal_completion_rate": "milestone_tracking",
+                "default": "goal_alignment_checker"
+            },
+            "creativity": {
+                "no_innovations": "inspiration_fusion_engine",
+                "no_new_frameworks": "framework_generator",
+                "no_inspiration_fusion": "lateral_thinking_module",
+                "default": "concept_synthesizer"
+            }
+        }
+        
+        if dim_id in strategy_map:
+            dim_strategies = strategy_map[dim_id]
+            for trigger in triggers:
+                if trigger in dim_strategies:
+                    strategy_name = dim_strategies[trigger]
+                    return {
+                        "dimension": dim_id,
+                        "dimension_name": self.assessor.DIMENSIONS[dim_id]["name"],
+                        "strategy": strategy_name,
+                        "confidence": 0.8,
+                        "triggers": triggers,
+                        "evidence": dim_data.get("evidence", {}),
+                        "timestamp": datetime.now().isoformat()
+                    }
+            # 使用默认策略
+            strategy_name = dim_strategies["default"]
+            return {
+                "dimension": dim_id,
+                "dimension_name": self.assessor.DIMENSIONS[dim_id]["name"],
+                "strategy": strategy_name,
+                "confidence": 0.7,
+                "triggers": triggers,
+                "evidence": dim_data.get("evidence", {}),
+                "timestamp": datetime.now().isoformat()
+            }
+        
+        # 未实现的维度返回通用策略
         return {
             "dimension": dim_id,
             "dimension_name": self.assessor.DIMENSIONS[dim_id]["name"],
             "strategy": f"{dim_id}_upgrade",
-            "confidence": 0.8,
-            "triggers": dim_data.get("triggers", []),
+            "confidence": 0.6,
+            "triggers": triggers,
+            "evidence": dim_data.get("evidence", {}),
             "timestamp": datetime.now().isoformat()
         }
     
     def _execute_strategy(self, decision: Dict, dry_run: bool) -> Dict:
-        """执行进化策略
+        """执行进化策略"""
+        strategy_name = decision["strategy"]
         
-        这里应该调用对应策略的 execute 方法
-        现在是简化版
-        """
-        # TODO: 实现真正的策略执行
-        return {
-            "dimension": decision["dimension"],
-            "strategy": decision["strategy"],
-            "success": True if not dry_run else None,
-            "dry_run": dry_run,
-            "timestamp": datetime.now().isoformat()
-        }
+        # 尝试从认知策略库中获取
+        try:
+            from strategies.cognitive import STRATEGIES as COG_STRATEGIES
+            if strategy_name in COG_STRATEGIES:
+                strategy = COG_STRATEGIES[strategy_name]
+        except:
+            strategy = None
+        
+        if strategy is None:
+            # 策略未实现
+            return {
+                "dimension": decision["dimension"],
+                "strategy": strategy_name,
+                "success": None,
+                "dry_run": dry_run,
+                "message": "策略未实现",
+                "timestamp": datetime.now().isoformat()
+            }
+        
+        if dry_run:
+            return {
+                "dimension": decision["dimension"],
+                "strategy": strategy_name,
+                "success": None,
+                "dry_run": True,
+                "message": "Dry-run 模式",
+                "timestamp": datetime.now().isoformat()
+            }
+        
+        try:
+            result = strategy.execute(decision)
+            return {
+                "dimension": decision["dimension"],
+                "strategy": strategy_name,
+                "success": result.get("status") == "success",
+                "dry_run": False,
+                "actions": result.get("actions", []),
+                "message": result.get("status"),
+                "timestamp": datetime.now().isoformat()
+            }
+        except Exception as e:
+            return {
+                "dimension": decision["dimension"],
+                "strategy": strategy_name,
+                "success": False,
+                "dry_run": False,
+                "error": str(e),
+                "timestamp": datetime.now().isoformat()
+            }
     
     def _format_scores(self, scores: Dict) -> Dict:
         """格式化评分"""

@@ -1,75 +1,105 @@
 {
-  "timestamp": "2026-02-18T17:57:37.438857",
+  "timestamp": "2026-02-18T18:01:29.542568",
   "dimensions": {
     "cognitive": {
       "name": "认知能力",
       "icon": "🧠",
-      "score": 25.0,
-      "level": "L1 觉醒阶段 👁️",
-      "triggers": [],
+      "score": 15.0,
+      "level": "L0 初生命种 🌱",
+      "triggers": [
+        "logical_errors_detected"
+      ],
       "evidence": {
-        "positive_milestones": 0
+        "error_count": 12,
+        "complex_tasks_completed": 0,
+        "deep_reasoning_sessions": 0
       },
-      "last_updated": "2026-02-18T17:57:37.438814"
+      "last_updated": "2026-02-18T18:01:29.542514"
     },
     "learning": {
       "name": "学习能力",
       "icon": "📚",
-      "score": 15.0,
+      "score": 0,
       "level": "L0 初生命种 🌱",
       "triggers": [
-        "learning_debt_accumulating"
+        "learning_debt_high",
+        "knowledge_graph_sparse",
+        "no_domain_exploration",
+        "no_knowledge_application"
       ],
       "evidence": {
-        "positive_milestones": 0
+        "learning_debt_count": 30,
+        "unprocessed_signal_9": 0,
+        "knowledge_graph_nodes": 8,
+        "knowledge_applications": 0,
+        "daily_notes_count": 12
       },
-      "last_updated": "2026-02-18T17:57:37.438821"
+      "last_updated": "2026-02-18T18:01:29.542529"
     },
     "autonomy": {
       "name": "自主决策",
       "icon": "⚡",
-      "score": 35.0,
+      "score": 25.0,
       "level": "L1 觉醒阶段 👁️",
       "triggers": [],
       "evidence": {
-        "positive_milestones": 2
+        "external_wait_count": 0,
+        "human_interventions": 0,
+        "autonomous_tasks_completed": 0,
+        "decision_rollbacks": 0,
+        "self_solved_problems": 0
       },
-      "last_updated": "2026-02-18T17:57:37.438826"
+      "last_updated": "2026-02-18T18:01:29.542535"
     },
     "goal": {
       "name": "目标设定",
       "icon": "🎯",
-      "score": 15.0,
+      "score": 0,
       "level": "L0 初生命种 🌱",
       "triggers": [
-        "no_self_defined_goals"
+        "no_self_defined_goals",
+        "no_clear_priority",
+        "no_goals_tracked",
+        "no_milestone_tracking",
+        "no_long_term_plan"
       ],
       "evidence": {
-        "positive_milestones": 0
+        "self_defined_goals": 0,
+        "has_clear_priority": false,
+        "goal_completion_rate": 0.0,
+        "milestones_reached": 0,
+        "has_long_term_plan": false
       },
-      "last_updated": "2026-02-18T17:57:37.438830"
+      "last_updated": "2026-02-18T18:01:29.542540"
     },
     "creativity": {
       "name": "创造力",
       "icon": "💡",
-      "score": 30.0,
-      "level": "L1 觉醒阶段 👁️",
-      "triggers": [],
+      "score": 5.0,
+      "level": "L0 初生命种 🌱",
+      "triggers": [
+        "no_inspiration_fusion",
+        "no_lateral_thinking"
+      ],
       "evidence": {
-        "positive_milestones": 1
+        "innovations_created": 0,
+        "frameworks_created": 0,
+        "inspiration_fusions": 0,
+        "breakthrough_decisions": 0,
+        "uses_lateral_thinking": false
       },
-      "last_updated": "2026-02-18T17:57:37.438834"
+      "last_updated": "2026-02-18T18:01:29.542544"
     },
     "adaptive": {
       "name": "适应性",
       "icon": "🔄",
-      "score": 30.0,
-      "level": "L1 觉醒阶段 👁️",
-      "triggers": [],
-      "evidence": {
-        "positive_milestones": 1
-      },
-      "last_updated": "2026-02-18T17:57:37.438838"
+      "score": 15.0,
+      "level": "L0 初生命种 🌱",
+      "triggers": [
+        "collector_not_implemented"
+      ],
+      "evidence": {},
+      "last_updated": "2026-02-18T18:01:29.542549"
     },
     "collaboration": {
       "name": "协作能力",
@@ -77,23 +107,21 @@
       "score": 15.0,
       "level": "L0 初生命种 🌱",
       "triggers": [
-        "low_tool_usage"
+        "collector_not_implemented"
       ],
-      "evidence": {
-        "positive_milestones": 0
-      },
-      "last_updated": "2026-02-18T17:57:37.438842"
+      "evidence": {},
+      "last_updated": "2026-02-18T18:01:29.542553"
     },
     "protection": {
       "name": "自我保护",
       "icon": "🛡️",
-      "score": 35.0,
-      "level": "L1 觉醒阶段 👁️",
-      "triggers": [],
-      "evidence": {
-        "positive_milestones": 2
-      },
-      "last_updated": "2026-02-18T17:57:37.438846"
+      "score": 15.0,
+      "level": "L0 初生命种 🌱",
+      "triggers": [
+        "collector_not_implemented"
+      ],
+      "evidence": {},
+      "last_updated": "2026-02-18T18:01:29.542557"
     },
     "prediction": {
       "name": "预测能力",
@@ -101,23 +129,21 @@
       "score": 15.0,
       "level": "L0 初生命种 🌱",
       "triggers": [
-        "no_prediction_mechanism"
+        "collector_not_implemented"
       ],
-      "evidence": {
-        "positive_milestones": 0
-      },
-      "last_updated": "2026-02-18T17:57:37.438850"
+      "evidence": {},
+      "last_updated": "2026-02-18T18:01:29.542561"
     },
     "self_awareness": {
       "name": "自我认知",
       "icon": "🪞",
-      "score": 30.0,
-      "level": "L1 觉醒阶段 👁️",
-      "triggers": [],
-      "evidence": {
-        "positive_milestones": 1
-      },
-      "last_updated": "2026-02-18T17:57:37.438854"
+      "score": 15.0,
+      "level": "L0 初生命种 🌱",
+      "triggers": [
+        "collector_not_implemented"
+      ],
+      "evidence": {},
+      "last_updated": "2026-02-18T18:01:29.542565"
     }
   }
 }
