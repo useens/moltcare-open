@@ -52,7 +52,7 @@ class StateManager:
             "created_at": datetime.now().isoformat(),
             "last_updated": datetime.now().isoformat(),
             "evolution_enabled": True,
-            "current_model": "nvidia-build/stepfun-ai/step-3.5-flash",
+            "current_model": "nvidia-build/z-ai/glm4.7",
             "stats": {
                 "total_evolutions": 0,
                 "successful_evolutions": 0,
