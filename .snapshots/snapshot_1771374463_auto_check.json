@@ -1,0 +1,29 @@
+{
+  "timestamp": 1771374463.2857552,
+  "datetime": "2026-02-18T08:27:43.285757",
+  "label": "auto_check",
+  "context_hash": "eab400d46e76905a",
+  "performance_metrics": {
+    "timestamp": 1771374463.4531562,
+    "memory_usage_mb": 3221,
+    "disk_usage_percent": 45,
+    "cpu_usage_percent": 50.0,
+    "context_window_usage": 0.5,
+    "recent_error_rate": 0.0,
+    "response_time_ms": 100
+  },
+  "system_state": {
+    "pid": 2458069,
+    "cwd": "/root/.openclaw/workspace",
+    "env_hash": "c73b7f7f0f9fd13d"
+  },
+  "memory_stats": {
+    "learning_debt_count": 30,
+    "snapshot_count": 10
+  },
+  "git_state": {
+    "branch": "main",
+    "uncommitted_files": 0,
+    "clean": true
+  }
+}
