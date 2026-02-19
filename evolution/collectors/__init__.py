@@ -894,3 +894,6 @@ if __name__ == "__main__":
     import json
     data = run_all_collectors()
     print(json.dumps(data, indent=2, ensure_ascii=False))
+
+# 兼容性别名（修复导入错误）
+assess_all_dimensions = run_all_collectors
