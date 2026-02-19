@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .header {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 16px; font-weight: 600; color: #58a6ff; }
+        .status { display: flex; gap: 12px; align-items: center; }
+        .status-indicator {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #238636;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 12px;
+            height: calc(100vh - 60px);
+        }
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #30363d;
+        }
+        .avatar {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 700;
+        }
+        .agent-grok { background: #58a6ff; color: #0d1117; }
+        .agent-harper { background: #a371f7; color: #0d1117; }
+        .agent-benjamin { background: #3fb950; color: #0d1117; }
+        .agent-lucas { background: #d29922; color: #0d1117; }
+        .agent-info h3 { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+        .agent-info .role { font-size: 11px; color: #8b949e; }
+        .thinking-content {
+            flex: 1;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #c9d1d9;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        .thinking-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .thinking-content::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 3px;
+        }
+        .status-line {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #30363d;
+            font-size: 11px;
+            color: #8b949e;
+        }
+        .typing::after {
+            content: '▋';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        /* 最终答案面板 */
+        .final-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #161b22;
+            border-top: 2px solid #58a6ff;
+            padding: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .final-panel.show {
+            transform: translateY(0);
+        }
+        .final-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: #58a6ff;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .final-content {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #e6edf3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔮 Multi-Agent Discussion Panel</h1>
+        <div class="status">
+            <span id="discussion-status">讨论中...</span>
+            <div class="status-indicator"></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="avatar agent-grok">G</div>
+                <div class="agent-info">
+                    <h3>Grok</h3>
+                    <div class="role">队长 · 整合决策</div>
+                </div>
+            </div>
+            <div class="thinking-content" id="grok-thoughts"></div>
+            <div class="status-line">等待其他专家意见...</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="avatar agent-harper">H</div>
+                <div class="agent-info">
+                    <h3>Harper</h3>
+                    <div class="role">搜索 · 验证专家</div>
+                </div>
+            </div>
+            <div class="thinking-content typing" id="harper-thoughts">正在分析相关信息...</div>
+            <div class="status-line">检索外部数据源...</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="avatar agent-benjamin">B</div>
+                <div class="agent-info">
+                    <h3>Benjamin</h3>
+                    <div class="role">逻辑 · 推理专家</div>
+                </div>
+            </div>
+            <div class="thinking-content typing" id="benjamin-thoughts">构建推理链条...</div>
+            <div class="status-line">验证逻辑一致性...</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="avatar agent-lucas">L</div>
+                <div class="agent-info">
+                    <h3>Lucas</h3>
+                    <div class="role">工具 · 执行专家</div>
+                </div>
+            </div>
+            <div class="thinking-content typing" id="lucas-thoughts">准备计算和代码...</div>
+            <div class="status-line">评估可行性...</div>
+        </div>
+    </div>
+    
+    <div class="final-panel" id="final-panel">
+        <div class="final-header">✅ 团队共识结论</div>
+        <div class="final-content" id="final-answer"></div>
+    </div>
+
+    <script>
+        // 模拟实时更新讨论内容
+        function updateThoughts(agent, content) {
+            const el = document.getElementById(agent + '-thoughts');
+            if (el) {
+                el.textContent = content;
+                el.classList.remove('typing');
+            }
+        }
+
+        function showFinalAnswer(answer) {
+            document.getElementById('final-answer').textContent = answer;
+            document.getElementById('final-panel').classList.add('show');
+            document.getElementById('discussion-status').textContent = '讨论完成';
+        }
+
+        // 示例：可以被外部调用来更新内容
+        window.updateAgentThoughts = updateThoughts;
+        window.showConsensus = showFinalAnswer;
+    </script>
+</body>
+</html>
