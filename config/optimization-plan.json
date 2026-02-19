@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-02-19T04:01:00.247904",
+  "timestamp": "2026-02-20T02:00:31.960052",
   "opportunities": [
     {
       "id": "temp-cleanup",
@@ -10,8 +10,8 @@
       "target_type": "files",
       "targets": [
         {
-          "path": "evolution/__pycache__/hyper_evolution.cpython-311.pyc",
-          "size": 8705
+          "path": "local-memory-system/__pycache__/local_memory.cpython-311.pyc",
+          "size": 31366
         },
         {
           "path": "evolution/strategies/autonomy/__pycache__/__init__.cpython-311.pyc",
@@ -20,10 +20,6 @@
         {
           "path": "evolution/strategies/__pycache__/__init__.cpython-311.pyc",
           "size": 5179
-        },
-        {
-          "path": "evolution/strategies/__pycache__/advanced.cpython-311.pyc",
-          "size": 7015
         },
         {
           "path": "evolution/strategies/goal/__pycache__/__init__.cpython-311.pyc",
@@ -63,7 +59,7 @@
         },
         {
           "path": "evolution/collectors/__pycache__/__init__.cpython-311.pyc",
-          "size": 46585
+          "size": 46583
         },
         {
           "path": "evolution/core/__pycache__/dimension_assessor.cpython-311.pyc",
@@ -78,140 +74,144 @@
           "size": 5922
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/impl.cpython-311.pyc",
-          "size": 11513
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/build_meta.cpython-311.pyc",
+          "size": 28161
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/types.cpython-311.pyc",
-          "size": 634
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/errors.cpython-311.pyc",
+          "size": 2965
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/utils.cpython-311.pyc",
-          "size": 4175
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/__init__.cpython-311.pyc",
+          "size": 13940
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/_staggered.cpython-311.pyc",
-          "size": 8912
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/py34compat.cpython-311.pyc",
+          "size": 731
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/__init__.cpython-311.pyc",
-          "size": 577
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/installer.cpython-311.pyc",
+          "size": 5628
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/typing_inspection/__pycache__/typing_objects.cpython-311.pyc",
-          "size": 17240
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/develop.cpython-311.pyc",
+          "size": 10933
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/typing_inspection/__pycache__/introspection.cpython-311.pyc",
-          "size": 19114
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/dist_info.cpython-311.pyc",
+          "size": 7995
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/typing_inspection/__pycache__/__init__.cpython-311.pyc",
-          "size": 208
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/install_lib.cpython-311.pyc",
+          "size": 8427
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/_entry_points.cpython-311.pyc",
-          "size": 5213
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/build_py.cpython-311.pyc",
+          "size": 23191
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/version.cpython-311.pyc",
-          "size": 451
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/register.cpython-311.pyc",
+          "size": 1141
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/_itertools.cpython-311.pyc",
-          "size": 1168
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/install_scripts.cpython-311.pyc",
+          "size": 4294
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/_reqs.cpython-311.pyc",
-          "size": 1150
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/build_clib.cpython-311.pyc",
+          "size": 4180
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/unicode_utils.cpython-311.pyc",
-          "size": 1833
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/rotate.cpython-311.pyc",
+          "size": 4201
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/logging.cpython-311.pyc",
-          "size": 2111
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/py36compat.cpython-311.pyc",
+          "size": 8051
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/_path.cpython-311.pyc",
-          "size": 1489
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/egg_info.cpython-311.pyc",
+          "size": 40853
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/glob.cpython-311.pyc",
-          "size": 6578
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/editable_wheel.cpython-311.pyc",
+          "size": 51428
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/msvc.cpython-311.pyc",
-          "size": 64194
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/setopt.cpython-311.pyc",
+          "size": 7693
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/wheel.cpython-311.pyc",
-          "size": 15507
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/saveopts.cpython-311.pyc",
+          "size": 1381
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/_deprecation_warning.cpython-311.pyc",
-          "size": 656
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/upload.cpython-311.pyc",
+          "size": 1105
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/archive_util.cpython-311.pyc",
-          "size": 10178
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/alias.cpython-311.pyc",
+          "size": 3917
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/namespaces.cpython-311.pyc",
-          "size": 5676
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/build.cpython-311.pyc",
+          "size": 7005
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/extension.cpython-311.pyc",
-          "size": 6821
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/install.cpython-311.pyc",
+          "size": 6830
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/sandbox.cpython-311.pyc",
-          "size": 27347
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/easy_install.cpython-311.pyc",
+          "size": 121515
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/launch.cpython-311.pyc",
-          "size": 1544
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/bdist_egg.cpython-311.pyc",
+          "size": 25599
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/monkey.cpython-311.pyc",
-          "size": 7021
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/upload_docs.cpython-311.pyc",
+          "size": 11956
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/package_index.cpython-311.pyc",
-          "size": 62140
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/bdist_rpm.cpython-311.pyc",
+          "size": 2205
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/windows_support.cpython-311.pyc",
-          "size": 1448
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/build_ext.cpython-311.pyc",
+          "size": 22025
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/discovery.cpython-311.pyc",
-          "size": 31142
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/test.cpython-311.pyc",
+          "size": 14634
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/_imp.cpython-311.pyc",
-          "size": 3669
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/__init__.cpython-311.pyc",
+          "size": 650
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/dist.cpython-311.pyc",
-          "size": 63809
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/install_egg_info.cpython-311.pyc",
+          "size": 5356
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/depends.cpython-311.pyc",
-          "size": 7989
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/sdist.cpython-311.pyc",
+          "size": 13453
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/_importlib.cpython-311.pyc",
-          "size": 1969
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/_distutils/__pycache__/py39compat.cpython-311.pyc",
+          "size": 1006
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/dep_util.cpython-311.pyc",
-          "size": 1304
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/_distutils/__pycache__/_log.cpython-311.pyc",
+          "size": 294
+        },
+        {
+          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/_distutils/__pycache__/ccompiler.cpython-311.pyc",
+          "size": 46331
         }
       ],
-      "estimated_saving_mb": 29.216970443725586,
-      "description": "\u6e05\u7406 1651 \u4e2a\u4e34\u65f6\u6587\u4ef6",
+      "estimated_saving_mb": 29.10807514190674,
+      "description": "\u6e05\u7406 1636 \u4e2a\u4e34\u65f6\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -225,20 +225,20 @@
           "path": "evolution/data/cron-jobs.json"
         },
         {
+          "path": "logs/cron-system.log"
+        },
+        {
+          "path": "logs/cron-evolution.log"
+        },
+        {
+          "path": "logs/cron-decision.log"
+        },
+        {
           "path": "logs/.dedup_cache/cron-health.hash"
-        },
-        {
-          "path": "scripts/setup-hyper-cron.sh"
-        },
-        {
-          "path": "scripts/select-cron-model.sh"
-        },
-        {
-          "path": "scripts/setup-automation-cron.sh"
         }
       ],
       "estimated_saving_mb": 0,
-      "description": "\u5408\u5e76 16 \u4e2a\u5206\u6563\u7684cron\u914d\u7f6e",
+      "description": "\u5408\u5e76 20 \u4e2a\u5206\u6563\u7684cron\u914d\u7f6e",
       "risk_level": "medium"
     }
   ],
@@ -247,7 +247,7 @@
     "p0_count": 1,
     "p1_count": 0,
     "p2_count": 1,
-    "estimated_saving_mb": 29.22,
+    "estimated_saving_mb": 29.11,
     "estimated_saving_percent": 0
   }
 }

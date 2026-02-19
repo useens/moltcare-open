@@ -381,6 +381,80 @@
         }
       ],
       "all_three_passed": true
+    },
+    {
+      "timestamp": "2026-02-20T02:01:00.222561",
+      "type": "upgrade_verification",
+      "passed": true,
+      "results": [
+        {
+          "verification_num": 1,
+          "timestamp": "2026-02-20T02:00:00.221233",
+          "passed": true,
+          "details": [
+            {
+              "check": "综合评分",
+              "before": 0,
+              "after": 75.6,
+              "improved": true,
+              "delta": 75.6
+            },
+            {
+              "check": "维度改善",
+              "before": "0维度",
+              "after": "6/6改善",
+              "improved": true
+            }
+          ],
+          "before_score": 0,
+          "after_score": 75.6
+        },
+        {
+          "verification_num": 2,
+          "timestamp": "2026-02-20T02:00:30.221780",
+          "passed": true,
+          "details": [
+            {
+              "check": "综合评分",
+              "before": 0,
+              "after": 75.6,
+              "improved": true,
+              "delta": 75.6
+            },
+            {
+              "check": "维度改善",
+              "before": "0维度",
+              "after": "6/6改善",
+              "improved": true
+            }
+          ],
+          "before_score": 0,
+          "after_score": 75.6
+        },
+        {
+          "verification_num": 3,
+          "timestamp": "2026-02-20T02:01:00.222401",
+          "passed": true,
+          "details": [
+            {
+              "check": "综合评分",
+              "before": 0,
+              "after": 75.6,
+              "improved": true,
+              "delta": 75.6
+            },
+            {
+              "check": "维度改善",
+              "before": "0维度",
+              "after": "6/6改善",
+              "improved": true
+            }
+          ],
+          "before_score": 0,
+          "after_score": 75.6
+        }
+      ],
+      "all_three_passed": true
     }
   ]
 }

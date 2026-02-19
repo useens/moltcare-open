@@ -29,8 +29,10 @@ find "$LOG_DIR" -name "*.log" -mtime +7 2>/dev/null | while read logfile; do
     echo "归档日志: $logfile"
 done
 
-# 删除30天前的归档
-find "$ARCHIVE_DIR/logs" -name "*.gz" -mtime +30 -delete 2>/dev/null
+# 删除30天前的归档 - 确保目录存在
+if [ -d "$ARCHIVE_DIR/logs" ]; then
+    find "$ARCHIVE_DIR/logs" -name "*.gz" -mtime +30 -delete 2>/dev/null || true
+fi
 
 # 清理临时文件
 find /tmp -name "openclaw_*" -mtime +1 -delete 2>/dev/null || true
@@ -65,7 +67,8 @@ mkdir -p "$BACKUP_DIR"
 BACKUP_FILE="$BACKUP_DIR/workspace_backup_$TIMESTAMP.tar.gz"
 
 # 创建完整备份（排除不必要的目录）
-tar -czf "$BACKUP_FILE" \
+set +e
+tar -czf "$BACKUP_FILE" --warning=no-file-changed \
     --exclude="backups" \
     --exclude="archives" \
     --exclude=".git" \
@@ -74,6 +77,14 @@ tar -czf "$BACKUP_FILE" \
     --exclude="*.pyc" \
     -C "$(dirname $WORKSPACE)" \
     "$(basename $WORKSPACE)"
+TAR_EXIT_CODE=$?
+set -e
+
+if [ $TAR_EXIT_CODE -ne 0 ]; then
+    echo "⚠️ 备份完成但有警告 (退出码: $TAR_EXIT_CODE)"
+else
+    echo "✓ 备份成功完成"
+fi
 
 echo "[$(date)] 备份完成: $BACKUP_FILE"
 
