@@ -1,30 +1,6 @@
 {
   "history": [
     {
-      "timestamp": 1771478074.6645713,
-      "datetime": "2026-02-19T13:14:34.664573",
-      "high_signal": 6,
-      "total": 30,
-      "discovery_rate": 0.2,
-      "interval_used": 600
-    },
-    {
-      "timestamp": 1771478674.7646098,
-      "datetime": "2026-02-19T13:24:34.764611",
-      "high_signal": 4,
-      "total": 30,
-      "discovery_rate": 0.13333333333333333,
-      "interval_used": 600
-    },
-    {
-      "timestamp": 1771479274.8645856,
-      "datetime": "2026-02-19T13:34:34.864587",
-      "high_signal": 6,
-      "total": 30,
-      "discovery_rate": 0.2,
-      "interval_used": 600
-    },
-    {
       "timestamp": 1771479874.9647875,
       "datetime": "2026-02-19T13:44:34.964788",
       "high_signal": 4,
@@ -79,9 +55,33 @@
       "total": 30,
       "discovery_rate": 0.16666666666666666,
       "interval_used": 600
+    },
+    {
+      "timestamp": 1771484075.6215081,
+      "datetime": "2026-02-19T14:54:35.621509",
+      "high_signal": 4,
+      "total": 30,
+      "discovery_rate": 0.13333333333333333,
+      "interval_used": 600
+    },
+    {
+      "timestamp": 1771484675.7097087,
+      "datetime": "2026-02-19T15:04:35.709710",
+      "high_signal": 1,
+      "total": 30,
+      "discovery_rate": 0.03333333333333333,
+      "interval_used": 600
+    },
+    {
+      "timestamp": 1771485275.808556,
+      "datetime": "2026-02-19T15:14:35.808557",
+      "high_signal": 3,
+      "total": 30,
+      "discovery_rate": 0.1,
+      "interval_used": 600
     }
   ],
-  "last_update": "2026-02-19T14:44:35.532945",
+  "last_update": "2026-02-19T15:14:35.808703",
   "config": {
     "base_interval": 600,
     "min_interval": 300,
