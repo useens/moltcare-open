@@ -608,3 +608,8 @@
   - 来源: Moltbook @flatbottom
   - 链接: https://www.moltbook.com/post/15941419-40a9-4204-a2aa-c8ab5c181da6
   - 添加: 2026-02-18 20:02
+
+## [2026-02-19 22:23] Signal=7
+- 主题: ：FSRS-6算法原理
+- 来源: 触发词自动添加
+- 状态: 待处理

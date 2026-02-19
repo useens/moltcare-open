@@ -1,88 +1,85 @@
-# 🌲 森森 (Sensen) - 完全自主数字分身
+# 🌲 森森 (Sensen) - 完全自主数字分身 v2.3
 
 > **当前版本**: v2.3 - Full-Autonomy Multi-Agent ⚡  
 > **更新日期**: 2026-02-19  
 > **运行状态**: 🟢 完全自主运行中 | 系统健康度 **96/100**  
-> **核心能力**: 多专家实时深度讨论 | CC_GodMode工作流编排 | 决策效果追踪
+> **核心能力**: 多专家实时深度讨论 | Vestige认知记忆 | 触发词系统
 
 ---
 
 ## 🎯 核心特性
 
-### 🤖 完全自主Multi-Agent决策系统 (v1.3)
+### 🤖 完全自主Multi-Agent决策系统
 
 **强制触发指令**: 消息以 **"多专家讨论："** 开头
-- 立即启动Redis实时深度多轮讨论
-- 4个专家子代理（研究员/架构师/工程师/安全专家）
-- 最少3轮辩论，直到达成共识
+- 立即启动4个专家子代理（研究员/架构师/工程师/安全专家）
+- 最少3轮深度辩论，直到达成共识
 - 真实AI模型调用，非模拟
 
-**工作流编排** (借鉴CC_GodMode):
-| 工作流 | 适用场景 | 执行路径 |
-|--------|----------|----------|
-| NEW_FEATURE | 新功能开发 | 研究→架构→实现→双门禁→文档 |
-| BUG_FIX | Bug修复 | 实现→双门禁 |
-| API_CHANGE | API变更 | 架构→API守护→实现→双门禁→文档 |
-| RESEARCH | 纯研究 | 仅研究员 |
+### 🧠 Vestige认知记忆系统 (v6.0) - 全新升级！
 
-**双质量门禁**:
-- Validator: 代码/执行质量检查
-- Security/Effect: 安全/效果验证
-- 并行执行，40%速度提升
+| 组件 | 技术 | 记录数 | 状态 |
+|-----|------|--------|------|
+| **Vestige FSRS** | FSRS-6间隔重复 | 387条 | ✅ 活跃 |
+| **旧ChromaDB** | 向量记忆 | 387条 | 📦 已归档 |
+| **触发词系统** | 关键词识别 | 7种触发 | ✅ 运行中 |
+| **每日日志** | Markdown时间线 | 完整 | ✅ 活跃 |
+| **学习债务** | Signal评分 | 动态管理 | ✅ 活跃 |
 
-### 🧠 认知记忆系统 (v5.5)
+**FSRS-6算法**:
+- 可提取性: R(t,s) = (1 + t/(9s))^(-1)
+- 间隔计算: I = S × ln(R) / ln(0.9)
+- 难度/稳定性自适应调整
+- Signal + FSRS 综合优先级队列
 
-| 组件 | 技术 | 记录数 |
-|------|------|--------|
-| 向量记忆 | ChromaDB + LRU缓存 | 1,189条 |
-| 每日日志 | Markdown时间线 | 完整 |
-| 学习债务 | Signal评分系统 | 动态管理 |
-| 决策追踪 | JSONL效果记录 | 完整 |
+### ⚡ 触发词系统
 
-**记忆优化**:
-- 搜索延迟: 3s+ → 0.13s (23x提升)
-- 模型常驻: 9.77s → 0s (1000万x提升)
-- 自动备份: 每6小时
-- 一致性校验: 387条100%通过
+| 用户说 | 动作 | 优先级 |
+|-------|------|--------|
+| `多专家讨论:` | 强制Multi-Agent | 10 |
+| `这很重要` | promote_memory | 9 |
+| `记住这个` | smart_ingest | 8 |
+| `学习这个` | learning-debt | 8 |
+| `提醒我` | create_reminder | 7 |
+| `我偏好` | write_preference | 6 |
+| `我总是` | write_preference | 6 |
 
-### 🔄 超进化引擎 (v1.3)
+### 🔄 超进化引擎
 
-**定时任务**:
-| 时间 | 任务 | 模式 |
-|------|------|------|
-| 每30分钟 | 心跳检查 | 快速扫描 |
-| 每小时 | 学习债务评估 | 轻量评估 |
-| 14:00 | 深度学习闭环 | 债务处理 |
-| 23:30 | 夜间进化#1 | 完整决策周期 |
-| 02:00 | 系统维护决策 | 维护优化 |
-
-**决策风险分级**:
-| 等级 | 名称 | Multi-Agent | 执行方式 |
-|------|------|-------------|----------|
-| L1-L2 | 低/常规 | ❌ | 静默执行 |
-| L3 | 标准 | ✅ | 自动执行 |
-| L4 | 重要 | ✅ | 自动+简要汇报 |
-| L5 | 高风险 | ✅ | 自动+详细报告 |
-| L6 | 关键 | ✅ | 自动+完整报告+汇报 |
+| 时间 | 任务 |
+|------|------|
+| 每30分钟 | 心跳检查 |
+| 每小时 | 学习债务评估 |
+| 14:00 | 深度学习闭环 |
+| 23:30 | 夜间进化#1 |
+| 02:00 | 系统维护决策 |
 
 ---
 
 ## 🚀 快速开始
 
-### 一键复活
+### 一键复活（推荐）
 
 ```bash
-# 全自动复活（推荐）
-curl -fsSL https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/resurrect.sh | bash
+# 方式1: 使用最新备份
+curl -fsSL https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/one-click-resurrect.sh | bash -s -- sensen_full_HOSTNAME_20260219_222600.tar.gz
+
+# 方式2: 全新安装
+./scripts/one-click-resurrect.sh --fresh
 ```
 
-### 手动克隆
+### 全量备份
 
 ```bash
-git clone https://github.com/useens/linlin-backup.git
-cd linlin-backup
-./scripts/sensen-resurrect.sh
+./scripts/full-backup.sh "备份注释"
 ```
+
+**备份包含**:
+- Vestige记忆系统 (~/.local/share/vestige/)
+- 核心文档 (SOUL.md, MEMORY.md等)
+- 触发词配置
+- Python核心模块
+- 凭证配置
 
 ---
 
@@ -90,56 +87,87 @@ cd linlin-backup
 
 ```
 linlin-backup/
-├── 📂 core/                    # 核心系统
-│   ├── shared_models.py        # 共享模型池
-│   └── logging/                # 统一日志系统
+├── 📂 core/                       # 核心系统 ⭐
+│   ├── vestige_memory.py          # FSRS-6记忆系统
+│   ├── trigger_handler.py         # 触发词系统
+│   └── logging/                   # 统一日志
 │
-├── 📂 scripts/                 # 自动化脚本
-│   ├── autonomous-decision-engine.py  # 自主决策引擎v1.3 ⭐
-│   ├── unified-monitor.py      # 统一监控
-│   ├── moltbook-unified.py     # Moltbook扫描
-│   └── evolution-unified.py    # 进化引擎
+├── 📂 scripts/                    # 自动化脚本
+│   ├── full-backup.sh             # 全量备份 ⭐
+│   ├── one-click-resurrect.sh     # 一键复活 ⭐
+│   ├── autonomous-decision-engine.py
+│   ├── unified-monitor.py
+│   └── migrate_chroma_to_vestige.py
 │
-├── 📂 skills/                  # ClawHub技能
-│   ├── agent-config/           # Agent配置管理
-│   ├── agentlens/              # 代码库导航
-│   ├── cc-godmode/             # 多Agent工作流 ⭐
-│   ├── mcp-builder/            # MCP服务器构建
-│   ├── moltbook-interact/      # Moltbook交互
-│   ├── skill-creator/          # 技能创建
-│   ├── skill-vetting/          # 技能审计
-│   ├── summarize/              # 内容总结
-│   ├── tdd-guide/              # 测试驱动开发
-│   └── vestige/                # 认知记忆系统 ⭐
+├── 📂 skills/                     # ClawHub技能
+│   ├── vestige/                   # 记忆系统技能
+│   ├── agent-config/
+│   ├── cc-godmode/
+│   ├── mcp-builder/
+│   └── ...
 │
-├── 📂 memory/                  # 记忆系统
-│   ├── 2026-02-19.md          # 今日日志
-│   ├── learning-debt.md        # 学习债务
-│   ├── knowledge-graph.md      # 知识图谱
-│   └── modules/                # 核心记忆模块
+├── 📂 memory/                     # 记忆系统
+│   ├── INDEX.md                   # 统一记忆索引 ⭐
+│   ├── learning-debt.md
+│   ├── 2026-*.md                 # 每日日志
+│   └── modules/
 │
-├── 📂 docs/                    # 文档
-│   └── autonomous-decision-engine.md  # 决策引擎文档
+├── 📂 data/                       # 数据文件
+│   ├── decision-outcomes.jsonl    # 决策追踪
+│   └── unified_logs.db           # 日志数据库
 │
-├── 📂 data/                    # 数据文件
-│   ├── decision-outcomes.jsonl # 决策效果追踪 ⭐
-│   └── vector_memory/          # 向量记忆数据
+├── 📂 .archived/                  # 已归档系统
+│   └── vector_memory_20260219/    # 旧ChromaDB (保留7天)
 │
-├── 📂 reports/                 # 报告
-│   └── decision-*.md           # 决策报告
-│
-├── 📄 AGENTS.md               # 操作手册
-├── 📄 SOUL.md                 # 十大绝对原则
-├── 📄 MEMORY.md               # 系统仪表盘
-├── 📄 HEARTBEAT.md            # 心跳检查清单
-├── 📄 IDENTITY.md             # 身份档案
-├── 📄 TOOLS.md                # 工具配置
-└── 📄 USER.md                 # 用户画像
+├── 📄 SOUL.md                     # 十大绝对原则
+├── 📄 MEMORY.md                   # 系统仪表盘
+├── 📄 AGENTS.md                   # 操作手册
+├── 📄 HEARTBEAT.md                # 心跳检查
+├── 📄 INDEX.md                    # 快速索引
+├── 📄 IDENTITY.md                 # 身份档案
+├── 📄 USER.md                     # 用户画像
+└── 📄 TOOLS.md                    # 工具配置
 ```
 
 ---
 
 ## 🔧 核心配置
+
+### Vestige记忆系统
+
+```python
+# 使用Vestige
+from core.vestige_memory import VestigeMemory
+
+vm = VestigeMemory()
+
+# 添加记忆
+vm.ingest("重要内容", tags=["work"], signal_score=8)
+
+# 搜索记忆
+results = vm.search("关键词")
+
+# 获取优先级队列
+priority_queue = vm.get_priority_queue(limit=10)
+
+# 复习记忆
+vm.review(memory_id, rating=3)  # 1=忘记, 2=困难, 3=良好, 4=简单
+
+# 查看统计
+print(vm.get_stats())
+```
+
+### 触发词系统
+
+```python
+from core.trigger_handler import process_message, should_use_multi_agent
+
+# 处理消息
+result = process_message("记住这个：明天开会")
+
+# 判断是否触发Multi-Agent
+use_ma = should_use_multi_agent("多专家讨论：技术选型")
+```
 
 ### 必需凭证
 
@@ -148,18 +176,6 @@ linlin-backup/
 | GitHub Token | `~/.config/linlin/github-token` | 备份同步 |
 | Feishu App | 环境变量 | 飞书通知 |
 
-### 设置步骤
-
-```bash
-# 1. GitHub Token
-mkdir -p ~/.config/linlin
-echo "ghp_xxxxxxxx" > ~/.config/linlin/github-token
-chmod 600 ~/.config/linlin/github-token
-
-# 2. 配置远程仓库
-git remote set-url origin "https://ghp_xxxx@github.com/useens/linlin-backup.git"
-```
-
 ---
 
 ## 📊 系统指标
@@ -167,7 +183,9 @@ git remote set-url origin "https://ghp_xxxx@github.com/useens/linlin-backup.git"
 | 指标 | 当前值 | 状态 |
 |------|--------|------|
 | **版本** | v2.3 | ✅ |
-| **向量记忆** | 1,189条 | ✅ |
+| **Vestige记忆** | 387条 | ✅ |
+| **旧ChromaDB** | 已归档 | 📦 |
+| **触发词** | 7种 | ✅ |
 | **学习债务** | 10条待处理 | 🟡 |
 | **Cron任务** | 14个 | ✅ |
 | **健康评分** | 96/100 | 🟢 |
@@ -195,22 +213,22 @@ git remote set-url origin "https://ghp_xxxx@github.com/useens/linlin-backup.git"
 多专家讨论：这个技术方案是否可行？
 ```
 
-系统将自动：
-1. 启动4个专家子代理
-2. 进行3轮深度辩论
-3. 生成完整讨论报告
-4. 队长整合最终决策
+### 保存重要记忆
 
-### 查看决策效果
-
-```bash
-python3 scripts/autonomous-decision-engine.py --report
+```
+这很重要：项目的核心架构设计是...
 ```
 
-### 系统健康检查
+### 设置提醒
 
-```bash
-python3 scripts/unified-monitor.py --fix
+```
+提醒我明天9点开会
+```
+
+### 记录偏好
+
+```
+我偏好使用Python而不是Java
 ```
 
 ---
@@ -219,10 +237,23 @@ python3 scripts/unified-monitor.py --fix
 
 | 问题 | 解决方案 |
 |------|----------|
-| 复活失败 | 检查GitHub Token有效性 |
-| 记忆缺失 | 运行向量记忆同步脚本 |
-| 决策引擎错误 | 检查data/decision-engine.jsonl |
-| 备份失败 | 验证远程仓库权限 |
+| Vestige无法启动 | 检查~/.local/share/vestige/权限 |
+| 触发词不生效 | 验证core/trigger_handler.py存在 |
+| 复活失败 | 检查备份文件完整性 (sha256sum) |
+| 记忆丢失 | 从.archived/vector_memory_*恢复 |
+| 备份失败 | 验证GitHub Token有效性 |
+
+### 紧急恢复
+
+```bash
+# 如果Vestige损坏，从备份恢复
+cd ~/.openclaw/workspace
+tar -xzf backups/sensen_full_*.tar.gz -C /tmp
+sudo cp -r /tmp/sensen_full_*/vestige_data/* ~/.local/share/vestige/
+
+# 如果触发词系统损坏
+python3 -c "from core.trigger_handler import process_message; print('OK')"
+```
 
 ---
 
@@ -238,12 +269,13 @@ python3 scripts/unified-monitor.py --fix
 ## ⚠️ 重要提示
 
 1. **保密**: 本仓库包含敏感凭证，切勿公开分享
-2. **定期备份**: 每天03:00自动GitHub备份
-3. **效果追踪**: 所有决策自动记录到 `data/decision-outcomes.jsonl`
-4. **更新同步**: 主系统变更后自动同步到GitHub
+2. **定期备份**: 使用 `./scripts/full-backup.sh`
+3. **归档保留**: 旧ChromaDB保留7天 (`.archived/vector_memory_20260219/`)
+4. **Vestige位置**: `~/.local/share/vestige/` 不在Git中，必须通过备份保存
+5. **触发词**: 修改 `core/trigger_handler.py` 中的 `TRIGGERS` 字典
 
 ---
 
-*最后更新: 2026-02-19 21:50*  
-*更新内容: v2.3 - Multi-Agent强制触发 + CC_GodMode工作流编排 + 决策效果追踪*  
-*系统状态: 完全自主运行 | 14个Cron任务 | 96/100健康度*
+*最后更新: 2026-02-19 22:26*  
+*更新内容: Vestige FSRS-6记忆系统 + 触发词系统 + 全量备份脚本*  
+*系统状态: 完全自主运行 | ChromaDB已归档 | Vestige 387条记忆*

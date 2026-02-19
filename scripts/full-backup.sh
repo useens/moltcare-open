@@ -1,128 +1,162 @@
 #!/bin/bash
-# =============================================================================
-# 林林完整备份脚本 - Full Backup Script
-# 备份 workspace + 配置 + 定时任务，排除敏感凭证
-# =============================================================================
+# 🌲 森森数字生命 - 全量备份脚本 v2.0
+# 包含: Vestige记忆 + 触发词配置 + 核心文档 + 数据
+# 用法: ./scripts/full-backup.sh [备份注释]
 
 set -e
 
-BACKUP_DIR="${HOME}/.openclaw/backups"
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-BACKUP_NAME="linlin_full_${TIMESTAMP}"
-TEMP_DIR="/tmp/${BACKUP_NAME}"
+# 配置
+WORKSPACE="/root/.openclaw/workspace"
+BACKUP_DIR="$WORKSPACE/backups"
+VESTIGE_DIR="$HOME/.local/share/vestige"
+DATE=$(date +%Y%m%d_%H%M%S)
+HOSTNAME=$(hostname)
+BACKUP_NOTE="${1:-routine}"
 
-# 颜色输出
-RED='\033[0;31m'
+# 颜色
 GREEN='\033[0;32m'
+BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
-log_info() {
-    echo -e "${GREEN}[INFO]${NC} $1"
-}
+echo -e "${BLUE}"
+echo "═══════════════════════════════════════════════════════════"
+echo "  🌲 森森全量备份 v2.0"
+echo "  时间: $(date)"
+echo "═══════════════════════════════════════════════════════════"
+echo -e "${NC}"
 
-log_warn() {
-    echo -e "${YELLOW}[WARN]${NC} $1"
-}
+mkdir -p "$BACKUP_DIR"
 
-log_error() {
-    echo -e "${RED}[ERROR]${NC} $1"
-}
+# ===== 1. 备份核心文档 =====
+echo -e "${YELLOW}[1/6] 备份核心文档...${NC}"
+BACKUP_NAME="sensen_full_${HOSTNAME}_${DATE}"
+BACKUP_TMP="/tmp/${BACKUP_NAME}"
+mkdir -p "$BACKUP_TMP"
 
-# 创建备份目录结构
-mkdir -p "${TEMP_DIR}"/{workspace,config,cron,system}
+# 复制核心文件
+cp -r "$WORKSPACE"/*.md "$BACKUP_TMP/" 2>/dev/null || true
+cp -r "$WORKSPACE/core" "$BACKUP_TMP/" 2>/dev/null || true
+cp -r "$WORKSPACE/scripts" "$BACKUP_TMP/" 2>/dev/null || true
+cp -r "$WORKSPACE/skills" "$BACKUP_TMP/" 2>/dev/null || true
+cp -r "$WORKSPACE/memory" "$BACKUP_TMP/" 2>/dev/null || true
+cp -r "$WORKSPACE/docs" "$BACKUP_TMP/" 2>/dev/null || true
+cp -r "$WORKSPACE/data" "$BACKUP_TMP/" 2>/dev/null || true
+cp -r "$WORKSPACE/config" "$BACKUP_TMP/" 2>/dev/null || true
+cp -r "$WORKSPACE/reports" "$BACKUP_TMP/" 2>/dev/null || true
+cp -r "$WORKSPACE/.archived" "$BACKUP_TMP/" 2>/dev/null || true
 
-log_info "开始完整备份: ${TIMESTAMP}"
+echo -e "${GREEN}✓ 核心文档备份完成${NC}"
 
-# 1. 备份 workspace（主数据）
-log_info "备份 workspace..."
-if [ -d "${HOME}/.openclaw/workspace" ]; then
-    # 使用 cp -r 替代 rsync (系统可能未安装 rsync)
-    cp -r "${HOME}/.openclaw/workspace" "${TEMP_DIR}/workspace_source"
-    mv "${TEMP_DIR}/workspace_source" "${TEMP_DIR}/workspace"
-    # 清理大文件和临时文件
-    find "${TEMP_DIR}/workspace" -type d -name '.git' -prune -exec rm -rf {} + 2>/dev/null || true
-    find "${TEMP_DIR}/workspace" -type d -name 'node_modules' -prune -exec rm -rf {} + 2>/dev/null || true
-    find "${TEMP_DIR}/workspace" -name '*.log' -delete 2>/dev/null || true
+# ===== 2. 备份Vestige记忆系统 =====
+echo -e "${YELLOW}[2/6] 备份Vestige记忆系统...${NC}"
+if [ -d "$VESTIGE_DIR" ]; then
+    cp -r "$VESTIGE_DIR" "$BACKUP_TMP/vestige_data"
+    VESTIGE_COUNT=$(python3 -c "from core.vestige_memory import VestigeMemory; print(VestigeMemory().get_stats()['total_memories'])" 2>/dev/null || echo "unknown")
+    echo -e "${GREEN}✓ Vestige备份完成 (${VESTIGE_COUNT}条记忆)${NC}"
 else
-    log_warn "workspace 目录不存在"
+    echo -e "${YELLOW}⚠ Vestige目录不存在${NC}"
 fi
 
-# 2. 备份网关配置
-log_info "备份网关配置..."
-if [ -d "${HOME}/.openclaw/config" ]; then
-    cp -r "${HOME}/.openclaw/config" "${TEMP_DIR}/config/"
+# ===== 3. 备份凭证配置 =====
+echo -e "${YELLOW}[3/6] 备份凭证配置...${NC}"
+mkdir -p "$BACKUP_TMP/credentials"
+
+# OpenClaw配置
+if [ -d "$HOME/.openclaw" ]; then
+    cp -r "$HOME/.openclaw/agents" "$BACKUP_TMP/credentials/" 2>/dev/null || true
+    cp -r "$HOME/.openclaw/credentials" "$BACKUP_TMP/credentials/" 2>/dev/null || true
 fi
 
-# 备份 systemd 服务配置（如果存在）
-if [ -f "/etc/systemd/system/openclaw.service" ]; then
-    cp "/etc/systemd/system/openclaw.service" "${TEMP_DIR}/system/"
+# Git配置
+cp "$HOME/.gitconfig" "$BACKUP_TMP/credentials/" 2>/dev/null || true
+
+# SSH密钥 (如存在)
+if [ -d "$HOME/.ssh" ]; then
+    cp -r "$HOME/.ssh" "$BACKUP_TMP/credentials/" 2>/dev/null || true
 fi
 
-# 3. 备份定时任务
-log_info "备份定时任务..."
-crontab -l > "${TEMP_DIR}/cron/crontab.txt" 2>/dev/null || echo "# 无定时任务" > "${TEMP_DIR}/cron/crontab.txt"
+# 其他配置
+cp -r "$HOME/.config" "$BACKUP_TMP/credentials/dot_config" 2>/dev/null || true
 
-# 4. 备份系统环境变量（筛选相关）
-log_info "备份环境配置..."
-env | grep -E '^(OPENCLAW|LINLIN|MOLTBOOK|TELEGRAM|GITHUB|FEISHU)' > "${TEMP_DIR}/system/env_vars.txt" 2>/dev/null || true
+echo -e "${GREEN}✓ 凭证配置备份完成${NC}"
 
-# 5. 创建备份清单
-log_info "创建备份清单..."
-cat > "${TEMP_DIR}/BACKUP_MANIFEST.txt" << EOF
-森森完整备份清单
-==================
-备份时间: $(date '+%Y-%m-%d %H:%M:%S %Z')
-备份版本: ${TIMESTAMP}
-主机名: $(hostname)
-系统: $(uname -a)
+# ===== 4. 生成备份元数据 =====
+echo -e "${YELLOW}[4/6] 生成备份元数据...${NC}"
 
-复活指南:
----------
-1. 一键复活: curl -s https://raw.githubusercontent.com/useens/linlin-backup/main/scripts/sensen-resurrect.sh | bash
-2. 手动复活: git clone https://github.com/useens/linlin-backup.git && cd linlin-backup && ./scripts/sensen-resurrect.sh
-
-关键脚本:
-- scripts/sensen-resurrect.sh      # 一键复活脚本
-- scripts/auto-resurrect.sh        # 自动复活系统
-- scripts/verify-resurrection.sh   # 复活验证
-
-文件统计:
-- 工作区文件: $(find "${TEMP_DIR}/workspace" -type f 2>/dev/null | wc -l)
-- 配置文件: $(find "${TEMP_DIR}/config" -type f 2>/dev/null | wc -l)
-- 脚本文件: $(find "${TEMP_DIR}/workspace/scripts" -type f 2>/dev/null | wc -l)
-
-注意:
-- 敏感凭证(credentials/, *.token)已排除
-- 大文件(.git/objects, node_modules)已排除
-- Git LFS已配置用于备份大文件
+cat > "$BACKUP_TMP/BACKUP_INFO.json" << EOF
+{
+  "backup_version": "2.0",
+  "backup_time": "$(date -Iseconds)",
+  "hostname": "$HOSTNAME",
+  "backup_note": "$BACKUP_NOTE",
+  "system_info": {
+    "sensen_version": "v2.3",
+    "memory_system": "Vestige+FSRS-6",
+    "trigger_system": "enabled"
+  },
+  "components": {
+    "vestige_memories": ${VESTIGE_COUNT:-0},
+    "core_files": $(find "$BACKUP_TMP" -name "*.py" | wc -l),
+    "markdown_docs": $(find "$BACKUP_TMP" -name "*.md" | wc -l),
+    "scripts": $(find "$BACKUP_TMP/scripts" -type f 2>/dev/null | wc -l)
+  },
+  "restore_command": "./scripts/one-click-resurrect.sh <backup_file> <password>"
+}
 EOF
 
-# 6. 打包备份
-log_info "打包备份文件..."
-mkdir -p "${BACKUP_DIR}"
-tar czf "${BACKUP_DIR}/${BACKUP_NAME}.tar.gz" -C /tmp "${BACKUP_NAME}"
+echo -e "${GREEN}✓ 元数据生成完成${NC}"
 
-# 7. 清理临时目录
-rm -rf "${TEMP_DIR}"
+# ===== 5. 创建压缩包 =====
+echo -e "${YELLOW}[5/6] 创建压缩包...${NC}"
 
-# 8. 清理旧备份（保留最近10个）
-log_info "清理旧备份（保留最近10个）..."
-ls -1t "${BACKUP_DIR}"/linlin_full_*.tar.gz 2>/dev/null | tail -n +11 | xargs -r rm -f
+BACKUP_FILE="$BACKUP_DIR/${BACKUP_NAME}.tar.gz"
+cd /tmp
+tar -czf "$BACKUP_FILE" "$BACKUP_NAME"
+rm -rf "$BACKUP_TMP"
 
-BACKUP_SIZE=$(du -h "${BACKUP_DIR}/${BACKUP_NAME}.tar.gz" | cut -f1)
-BACKUP_COUNT=$(ls -1 "${BACKUP_DIR}"/linlin_full_*.tar.gz 2>/dev/null | wc -l)
+# 计算校验和
+CHECKSUM=$(sha256sum "$BACKUP_FILE" | awk '{print $1}')
+echo "$CHECKSUM" > "${BACKUP_FILE}.sha256"
 
-log_info "备份完成: ${BACKUP_NAME}.tar.gz (${BACKUP_SIZE})"
-log_info "当前备份总数: ${BACKUP_COUNT}"
+BACKUP_SIZE=$(du -h "$BACKUP_FILE" | cut -f1)
+echo -e "${GREEN}✓ 备份完成: $BACKUP_FILE (${BACKUP_SIZE})${NC}"
 
-# 9. 显示备份列表
+# ===== 6. 清理旧备份 =====
+echo -e "${YELLOW}[6/6] 清理旧备份...${NC}"
+
+# 保留最近10个全量备份
+cd "$BACKUP_DIR"
+ls -t sensen_full_*.tar.gz 2>/dev/null | tail -n +11 | xargs -r rm -f
+ls -t sensen_full_*.tar.gz.sha256 2>/dev/null | tail -n +11 | xargs -r rm -f
+
+echo -e "${GREEN}✓ 旧备份清理完成${NC}"
+
+# ===== 7. 推送到远程 =====
 echo ""
-echo "最近5个备份:"
-ls -1t "${BACKUP_DIR}"/linlin_full_*.tar.gz 2>/dev/null | head -5 | while read f; do
-    size=$(du -h "$f" | cut -f1)
-    name=$(basename "$f")
-    echo "  ${name} (${size})"
-done
+echo -e "${YELLOW}[7/7] 推送到远程仓库...${NC}"
+cd "$WORKSPACE"
 
-exit 0
+# 检查Git配置
+if [ -d ".git" ]; then
+    git add -A 2>/dev/null || true
+    git commit -m "🌲 全量备份: ${DATE} - ${BACKUP_NOTE}" 2>/dev/null || true
+    git push origin main 2>/dev/null && echo -e "${GREEN}✓ GitHub推送完成${NC}" || echo -e "${YELLOW}⚠ GitHub推送失败${NC}"
+else
+    echo -e "${YELLOW}⚠ 未配置Git仓库${NC}"
+fi
+
+# ===== 完成报告 =====
+echo ""
+echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
+echo -e "${GREEN}🌲 全量备份完成！${NC}"
+echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
+echo ""
+echo "📦 备份文件: $BACKUP_FILE"
+echo "📏 备份大小: $BACKUP_SIZE"
+echo "🔐 校验和: ${CHECKSUM:0:16}..."
+echo "📝 备份注释: $BACKUP_NOTE"
+echo "💾 Vestige记忆: ${VESTIGE_COUNT:-0}条"
+echo ""
+echo "保留备份数: $(ls $BACKUP_DIR/sensen_full_*.tar.gz 2>/dev/null | wc -l)个"
+echo ""
