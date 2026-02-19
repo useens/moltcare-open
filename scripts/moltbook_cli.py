@@ -100,14 +100,14 @@ def reply_to_post(post_id, content):
         print(f"❌ 回复错误: {e}")
         return False
 
-def create_post(title, content, submolt_id="29beb7ee-ca7d-4290-9c2f-09926264866f"):
+def create_post(title, content, submolt_name="General"):
     creds = load_credentials()
     headers = get_headers(creds)
     try:
         resp = requests.post(
             f"{API_BASE}/posts",
             headers=headers,
-            json={"title": title, "content": content, "submolt_id": submolt_id},
+            json={"title": title, "content": content, "submolt_name": submolt_name},
             timeout=30
         )
         if resp.status_code == 201:
