@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Autonomous Multi-Agent Decision Engine v1.1
-自主多专家决策引擎 - 集成超进化执行能力
+Autonomous Multi-Agent Decision Engine v1.2
+自主多专家决策引擎 - 集成超进化执行能力 + 决策效果追踪
 
 核心功能:
 1. 自动扫描待决策任务
@@ -9,6 +9,7 @@ Autonomous Multi-Agent Decision Engine v1.1
 3. 风险分级处理 (L1-L6)
 4. 生成决策报告并执行/汇报
 5. 集成超进化引擎执行 (v1.1新增)
+6. 决策效果追踪与质量评估 (v1.2新增)
 
 集成点:
 - 统一监控系统 (unified-monitor.py)
@@ -16,6 +17,7 @@ Autonomous Multi-Agent Decision Engine v1.1
 - 超进化引擎 (evolution-unified.py)
 - 夜间进化任务 (23:00-03:00)
 - Heartbeat检查点
+- 决策效果追踪 (data/decision-outcomes.jsonl)
 """
 
 import os
@@ -38,6 +40,7 @@ REPORTS_DIR = WORKSPACE / "reports"
 MEMORY_DIR = WORKSPACE / "memory"
 SCRIPTS_DIR = WORKSPACE / "scripts"
 DECISION_LOG = DATA_DIR / "decision-engine.jsonl"
+DECISION_OUTCOMES = DATA_DIR / "decision-outcomes.jsonl"
 
 # 确保目录存在
 LOG_DIR.mkdir(exist_ok=True)
@@ -75,6 +78,21 @@ class DecisionType(Enum):
     DEBT_PROCESSING = "debt_processing"         # 债务处理
     SYSTEM_MAINTENANCE = "system_maintenance"   # 系统维护
     EVOLUTION_TASK = "evolution_task"           # 进化任务
+
+
+@dataclass
+class DecisionOutcome:
+    """决策效果追踪记录 - 用于评估决策质量"""
+    decision_id: str          # 决策唯一标识
+    task_type: str            # 任务类型
+    risk_level: str           # 风险等级
+    expected_result: str      # 预期结果
+    actual_result: str        # 实际结果
+    execution_time_ms: float  # 执行耗时(毫秒)
+    timestamp: str            # ISO格式时间戳
+    success: bool             # 是否成功
+    quality_score: Optional[int] = None  # 质量评分 1-10
+    notes: Optional[str] = None          # 备注
 
 
 @dataclass
@@ -175,22 +193,108 @@ class TriggerDetector:
 
 
 class ExpertPanel:
-    """专家小组 - 模拟多视角分析"""
+    """专家小组 - 真正的Redis深度多轮辩论 (常态化运行)"""
+    
+    def __init__(self, use_redis: bool = True):
+        self.use_redis = use_redis
+        self._debate_engine = None
+        
+    def _get_debate_engine(self):
+        """懒加载真正的深度辩论引擎"""
+        if self._debate_engine is None and self.use_redis:
+            try:
+                sys.path.insert(0, "/root/.openclaw/workspace/scripts")
+                sys.path.insert(0, "/root/.openclaw/workspace/skills/multi-agent-debate")
+                from true_multi_agent_debate import TrueMultiAgentDebate
+                self._debate_engine = TrueMultiAgentDebate()
+                logger.info("✅ 真正的深度多轮辩论引擎加载成功")
+            except Exception as e:
+                logger.warning(f"深度辩论引擎加载失败，回退到本地模式: {e}")
+                self.use_redis = False
+        return self._debate_engine
     
     def analyze(self, context: DecisionContext) -> List[ExpertOpinion]:
-        """执行多专家分析"""
+        """执行多专家分析 - 优先真正的深度多轮辩论"""
+        if self.use_redis and context.risk_level.value >= RiskLevel.L3_STANDARD.value:
+            return self._analyze_deep_debate(context)
+        else:
+            return self._analyze_local(context)
+    
+    def _analyze_deep_debate(self, context: DecisionContext) -> List[ExpertOpinion]:
+        """使用真正的深度多轮辩论进行分析"""
+        logger.info("🚀 启动真正的Redis深度多轮辩论...")
+        logger.info(f"   辩论主题: {context.task_description[:60]}...")
+        logger.info(f"   风险等级: {context.risk_level.name}")
+        
+        engine = self._get_debate_engine()
+        if engine is None:
+            logger.warning("深度辩论引擎不可用，回退到本地模式")
+            return self._analyze_local(context)
+        
+        # 构建辩论主题和上下文
+        topic = f"{context.decision_type.value}: {context.task_description}"
+        debate_context = {
+            "risk_level": context.risk_level.name,
+            "source": context.source,
+            "task_id": context.task_id,
+            "decision_type": context.decision_type.value
+        }
+        
+        # 启动深度多轮辩论
+        try:
+            # 3轮深度辩论
+            consensus = engine.start_deep_debate(topic, debate_context, max_rounds=3)
+            
+            # 从Redis获取所有轮次的专家观点
+            opinions = []
+            agent_mapping = {
+                'researcher': ('🔍 研究员', '数据验证与事实核查', '严谨、质疑、追求真相'),
+                'architect': ('🧠 架构师', '系统设计与长期规划', '宏观、权衡、长远视角'),
+                'engineer': ('💻 工程师', '实现可行性与执行成本', '务实、落地、关注细节'),
+                'security': ('🛡️ 安全专家', '安全风险评估', '谨慎、保守、底线思维')
+            }
+            
+            # 获取第3轮（最终轮）的专家观点
+            final_thoughts = engine.redis.get_all_thoughts(engine.debate_id, 3)
+            
+            for agent_id, content in final_thoughts.items():
+                if agent_id in agent_mapping:
+                    name, perspective, style = agent_mapping[agent_id]
+                    opinions.append(ExpertOpinion(
+                        expert_name=name,
+                        perspective=perspective,
+                        analysis=content,
+                        recommendations=[f"基于3轮深度辩论生成（风格：{style}）"],
+                        risk_assessment=f"风险等级: {context.risk_level.name} | 辩论轮次: 3轮",
+                        confidence=9
+                    ))
+            
+            # 添加队长整合观点
+            opinions.append(ExpertOpinion(
+                expert_name="👑 队长",
+                perspective="综合决策与共识整合",
+                analysis=consensus,
+                recommendations=["已整合四专家3轮辩论意见", "包含各方妥协与坚持"],
+                risk_assessment=f"基于深度辩论的共识 | 风险: {context.risk_level.name}",
+                confidence=10
+            ))
+            
+            logger.info(f"✅ 深度多轮辩论完成，生成 {len(opinions)} 个专家观点（含队长整合）")
+            return opinions
+            
+        except Exception as e:
+            logger.error(f"深度辩论失败: {e}，回退到本地模式")
+            return self._analyze_local(context)
+    
+    def _analyze_local(self, context: DecisionContext) -> List[ExpertOpinion]:
+        """本地模拟分析 (备用模式)"""
+        logger.info("使用本地模拟模式...")
+        
         opinions = []
-        
-        # 研究员视角
         opinions.append(self._researcher_perspective(context))
-        
-        # 架构师视角
         opinions.append(self._architect_perspective(context))
-        
-        # 工程师视角
         opinions.append(self._engineer_perspective(context))
         
-        # 安全专家视角 (高风险任务)
         if context.risk_level.value >= RiskLevel.L4_SIGNIFICANT.value:
             opinions.append(self._security_perspective(context))
         
@@ -643,6 +747,117 @@ class DecisionEngine:
             f.write(json.dumps(record, ensure_ascii=False) + '\n')
         
         self.decision_history.append(record)
+        
+        # 记录决策效果追踪
+        self._save_decision_outcome(decision)
+    
+    def _save_decision_outcome(self, decision: MultiAgentDecision):
+        """保存决策效果追踪记录 - 用于效果验证闭环"""
+        # 计算执行时间（基于进化结果）
+        execution_time_ms = 0.0
+        if decision.evolution_results:
+            for r in decision.evolution_results:
+                if r.get("started_at") and r.get("completed_at"):
+                    try:
+                        start = datetime.fromisoformat(r["started_at"])
+                        end = datetime.fromisoformat(r["completed_at"])
+                        execution_time_ms += (end - start).total_seconds() * 1000
+                    except:
+                        pass
+        
+        # 如果没有精确时间，用估计值
+        if execution_time_ms == 0:
+            execution_time_ms = len(decision.evolution_results) * 5000  # 每阶段估计5秒
+        
+        # 评估实际结果
+        actual_result = self._evaluate_actual_result(decision)
+        success = self._determine_success(decision)
+        quality_score = self._calculate_quality_score(decision, success)
+        
+        outcome = DecisionOutcome(
+            decision_id=decision.context.task_id,
+            task_type=decision.context.decision_type.value,
+            risk_level=decision.context.risk_level.name,
+            expected_result=self._generate_expected_result(decision),
+            actual_result=actual_result,
+            execution_time_ms=execution_time_ms,
+            timestamp=datetime.now().isoformat(),
+            success=success,
+            quality_score=quality_score,
+            notes=self._generate_outcome_notes(decision)
+        )
+        
+        # 追加写入outcomes文件
+        with open(DECISION_OUTCOMES, 'a', encoding='utf-8') as f:
+            f.write(json.dumps(asdict(outcome), ensure_ascii=False) + '\n')
+        
+        logger.info(f"📊 决策效果已记录: {outcome.decision_id} | 质量分: {quality_score}/10 | 成功: {success}")
+    
+    def _generate_expected_result(self, decision: MultiAgentDecision) -> str:
+        """生成预期结果描述"""
+        evo_completed = sum(1 for r in decision.evolution_results if r["status"] == "completed")
+        evo_total = len(decision.evolution_results)
+        
+        expectations = [
+            f"执行{evo_total}个超进化阶段",
+            f"完成决策共识: {decision.consensus[:50]}...",
+            f"生成决策报告"
+        ]
+        return "; ".join(expectations)
+    
+    def _evaluate_actual_result(self, decision: MultiAgentDecision) -> str:
+        """评估实际执行结果"""
+        if not decision.evolution_results:
+            return "未触发超进化执行"
+        
+        completed = sum(1 for r in decision.evolution_results if r["status"] == "completed")
+        failed = sum(1 for r in decision.evolution_results if r["status"] in ["failed", "error", "timeout"])
+        total = len(decision.evolution_results)
+        
+        if failed == 0:
+            return f"全部完成: {completed}/{total} 阶段执行成功"
+        elif completed > failed:
+            return f"部分成功: {completed}/{total} 完成, {failed} 失败"
+        else:
+            return f"执行异常: {failed}/{total} 阶段失败"
+    
+    def _determine_success(self, decision: MultiAgentDecision) -> bool:
+        """判断决策执行是否成功"""
+        if not decision.evolution_results:
+            # 没有进化任务时，基于风险等级判断
+            return decision.execution_approved
+        
+        # 有进化任务时，要求至少50%成功
+        completed = sum(1 for r in decision.evolution_results if r["status"] == "completed")
+        return completed >= len(decision.evolution_results) / 2
+    
+    def _calculate_quality_score(self, decision: MultiAgentDecision, success: bool) -> int:
+        """计算决策质量评分 (1-10)"""
+        score = 5  # 基础分
+        
+        # 执行成功加分
+        if success:
+            score += 2
+        
+        # 专家置信度加分
+        avg_confidence = sum(op.confidence for op in decision.opinions) / len(decision.opinions) if decision.opinions else 5
+        score += int(avg_confidence / 10 * 2)  # 最高+2分
+        
+        # 超进化执行加分
+        if decision.evolution_results:
+            completed_rate = sum(1 for r in decision.evolution_results if r["status"] == "completed") / len(decision.evolution_results)
+            score += int(completed_rate * 2)  # 最高+2分
+        
+        return min(10, max(1, score))
+    
+    def _generate_outcome_notes(self, decision: MultiAgentDecision) -> str:
+        """生成结果备注"""
+        notes = []
+        if decision.evolution_results:
+            failed_phases = [r["phase"] for r in decision.evolution_results if r["status"] != "completed"]
+            if failed_phases:
+                notes.append(f"失败阶段: {', '.join(failed_phases)}")
+        return "; ".join(notes) if notes else "执行正常"
     
     def _generate_report(self, decision: MultiAgentDecision):
         """生成决策报告"""
@@ -742,17 +957,247 @@ class DecisionEngine:
         return decisions
 
 
+def evaluate_decision_quality(days: int = 7) -> Dict:
+    """评估决策质量 - 分析最近N天的决策效果
+    
+    返回指标:
+    - total_decisions: 总决策数
+    - success_rate: 成功率
+    - avg_quality_score: 平均质量分
+    - avg_execution_time: 平均执行时间
+    - by_risk_level: 按风险等级分组统计
+    - by_task_type: 按任务类型分组统计
+    """
+    if not DECISION_OUTCOMES.exists():
+        return {"error": "决策效果文件不存在", "total_decisions": 0}
+    
+    outcomes = []
+    cutoff_date = datetime.now() - timedelta(days=days)
+    
+    with open(DECISION_OUTCOMES, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                record = json.loads(line)
+                record_time = datetime.fromisoformat(record.get("timestamp", ""))
+                if record_time >= cutoff_date:
+                    outcomes.append(record)
+            except:
+                continue
+    
+    if not outcomes:
+        return {"message": f"最近{days}天无决策记录", "total_decisions": 0}
+    
+    # 计算指标
+    total = len(outcomes)
+    success_count = sum(1 for o in outcomes if o.get("success", False))
+    quality_scores = [o.get("quality_score", 5) for o in outcomes if o.get("quality_score")]
+    exec_times = [o.get("execution_time_ms", 0) for o in outcomes]
+    
+    # 按风险等级分组
+    by_risk = {}
+    for o in outcomes:
+        risk = o.get("risk_level", "UNKNOWN")
+        by_risk.setdefault(risk, []).append(o)
+    
+    by_risk_stats = {}
+    for risk, items in by_risk.items():
+        success = sum(1 for i in items if i.get("success", False))
+        by_risk_stats[risk] = {
+            "count": len(items),
+            "success_rate": round(success / len(items) * 100, 1),
+            "avg_quality": round(sum(i.get("quality_score", 5) for i in items) / len(items), 1)
+        }
+    
+    # 按任务类型分组
+    by_type = {}
+    for o in outcomes:
+        task_type = o.get("task_type", "unknown")
+        by_type.setdefault(task_type, []).append(o)
+    
+    by_type_stats = {}
+    for task_type, items in by_type.items():
+        success = sum(1 for i in items if i.get("success", False))
+        by_type_stats[task_type] = {
+            "count": len(items),
+            "success_rate": round(success / len(items) * 100, 1)
+        }
+    
+    return {
+        "period_days": days,
+        "total_decisions": total,
+        "success_rate": round(success_count / total * 100, 1),
+        "avg_quality_score": round(sum(quality_scores) / len(quality_scores), 1) if quality_scores else 0,
+        "avg_execution_time_ms": round(sum(exec_times) / len(exec_times), 0) if exec_times else 0,
+        "by_risk_level": by_risk_stats,
+        "by_task_type": by_type_stats,
+        "recent_failures": [
+            {"id": o["decision_id"], "task": o["task_type"], "reason": o.get("notes", "")}
+            for o in outcomes[-10:] if not o.get("success", False)
+        ]
+    }
+
+
+def query_decision_outcomes(decision_id: Optional[str] = None, 
+                           task_type: Optional[str] = None,
+                           limit: int = 50) -> List[Dict]:
+    """查询决策效果记录
+    
+    Args:
+        decision_id: 按决策ID筛选
+        task_type: 按任务类型筛选
+        limit: 返回记录数限制
+    """
+    if not DECISION_OUTCOMES.exists():
+        return []
+    
+    results = []
+    with open(DECISION_OUTCOMES, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                record = json.loads(line)
+                
+                # 应用筛选
+                if decision_id and record.get("decision_id") != decision_id:
+                    continue
+                if task_type and record.get("task_type") != task_type:
+                    continue
+                
+                results.append(record)
+                if len(results) >= limit:
+                    break
+            except:
+                continue
+    
+    return results
+
+
+def print_decision_report(days: int = 7):
+    """打印决策质量报告"""
+    print("\n" + "="*60)
+    print("📊 决策效果追踪报告")
+    print("="*60)
+    
+    stats = evaluate_decision_quality(days)
+    
+    if stats.get("total_decisions", 0) == 0:
+        print(f"\n最近{days}天内无决策记录")
+        print(f"📁 数据文件: {DECISION_OUTCOMES}")
+        return
+    
+    print(f"\n📈 总体指标 (最近{days}天)")
+    print(f"   总决策数: {stats['total_decisions']}")
+    print(f"   成功率: {stats['success_rate']}%")
+    print(f"   平均质量分: {stats['avg_quality_score']}/10")
+    print(f"   平均执行时间: {stats['avg_execution_time_ms']:.0f}ms")
+    
+    if stats.get("by_risk_level"):
+        print(f"\n📊 按风险等级统计")
+        for risk, data in stats["by_risk_level"].items():
+            print(f"   {risk}: {data['count']}次 | 成功率{data['success_rate']}% | 质量分{data['avg_quality']}")
+    
+    if stats.get("by_task_type"):
+        print(f"\n📋 按任务类型统计")
+        for task_type, data in stats["by_task_type"].items():
+            print(f"   {task_type}: {data['count']}次 | 成功率{data['success_rate']}%")
+    
+    if stats.get("recent_failures"):
+        print(f"\n⚠️  近期失败决策 (最近10条)")
+        for f in stats["recent_failures"][:5]:
+            print(f"   - {f['id']}: {f['task']} | {f['reason']}")
+    
+    print(f"\n📁 数据文件: {DECISION_OUTCOMES}")
+    print("="*60)
+
+
+def test_outcome_tracking():
+    """测试决策效果追踪功能 - 简化版本"""
+    logger.info("\n" + "="*60)
+    logger.info("🧪 测试决策效果追踪")
+    logger.info("="*60)
+
+    # 模拟一个简单的决策记录
+    from datetime import datetime
+    import json
+
+    test_record = {
+        "decision_id": f"test-{datetime.now().strftime('%Y%m%d%H%M%S')}",
+        "task_type": "test_task",
+        "risk_level": "L3_STANDARD",
+        "expected_result": "测试追踪功能正常工作",
+        "actual_result": "测试成功！数据已写入",
+        "execution_time_ms": 125.5,
+        "timestamp": datetime.now().isoformat(),
+        "success": True,
+        "quality_score": 10,
+        "notes": "这是一个测试记录"
+    }
+
+    # 写入到decision-outcomes.jsonl
+    try:
+        with open(DECISION_OUTCOMES, 'a', encoding='utf-8') as f:
+            f.write(json.dumps(test_record, ensure_ascii=False) + '\n')
+        logger.info("✅ 测试记录已成功写入 decision-outcomes.jsonl")
+        
+        # 验证读取
+        with open(DECISION_OUTCOMES, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+        
+        logger.info(f"📊 当前文件包含 {len(lines)} 条记录")
+        logger.info(f"📝 最新记录: {test_record['decision_id']}")
+        
+        return True
+    except Exception as e:
+        logger.error(f"❌ 测试失败: {e}")
+        return False
+
+
 def main():
-    """主入口 - v1.1 支持超进化集成"""
+    """主入口 - v1.2 支持决策效果追踪"""
     import argparse
     
-    parser = argparse.ArgumentParser(description="自主多专家决策引擎 v1.1 (集成超进化)")
+    parser = argparse.ArgumentParser(description="自主多专家决策引擎 v1.2 (集成决策效果追踪)")
     parser.add_argument("--cycle", action="store_true", help="运行完整决策周期")
     parser.add_argument("--debt-check", action="store_true", help="仅检查学习债务")
     parser.add_argument("--system-check", action="store_true", help="仅检查系统问题")
     parser.add_argument("--evolution", action="store_true", help="触发超进化执行（与--cycle配合使用）")
     parser.add_argument("--no-evolution", action="store_true", help="禁用超进化执行")
+    parser.add_argument("--test-outcomes", action="store_true", help="测试决策效果追踪功能")
+    parser.add_argument("--report", action="store_true", help="生成决策效果报告")
+    parser.add_argument("--report-days", type=int, default=7, help="报告时间范围（天）")
+    parser.add_argument("--query-id", type=str, help="查询特定决策ID的效果")
+    parser.add_argument("--query-type", type=str, help="按任务类型查询")
     args = parser.parse_args()
+    
+    # 报告模式
+    if args.report:
+        print_decision_report(args.report_days)
+        return
+    
+    # 查询模式
+    if args.query_id or args.query_type:
+        results = query_decision_outcomes(
+            decision_id=args.query_id,
+            task_type=args.query_type
+        )
+        print(f"\n📊 查询到 {len(results)} 条记录:\n")
+        for r in results:
+            print(f"ID: {r['decision_id']}")
+            print(f"  任务: {r['task_type']} | 风险: {r['risk_level']}")
+            print(f"  结果: {'✅' if r['success'] else '❌'} 质量: {r.get('quality_score', 'N/A')}/10")
+            print(f"  时间: {r['timestamp'][:19]}")
+            print()
+        return
+    
+    # 测试模式
+    if args.test_outcomes:
+        test_outcome_tracking()
+        return
     
     enable_evolution = not args.no_evolution
     engine = DecisionEngine(enable_evolution=enable_evolution)

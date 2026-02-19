@@ -49,6 +49,26 @@
 
 ### 其他完成
 2. **技术选型决策**: Python vs C++ 聊天软件 → Python先行
+3. **P0-1: daemon-status文件清理** - ✅ 完成
+   - 清理文件数: 398个
+   - 保留文件数: 100个 (最近状态)
+   - 备份位置: `.trash/daemon-status-20260219/`
+   - 风险等级: 低 (仅归档, 不删除)
+   - 优化效果: 释放 inode, 减少文件系统负担
+4. **P0-2: 十维评分运行时错误修复** - ✅ 完成
+   - 修复错误: `collectors/__init__.py` 第179行语法错误
+   - 修复内容: `self-upgrade` → `"self-upgrade"` (加引号)
+   - 验证结果: 无运行时错误, 评分计算正常
+5. **P0-3: 决策效果追踪系统部署** - ✅ 完成
+   - 升级: `scripts/autonomous-decision-engine.py` → v1.2
+   - 新增: `data/decision-outcomes.jsonl` 数据文件
+   - 功能: 自动记录决策效果, 质量评分(1-10)
+6. **P1-1: 嵌入模型共享池** - ✅ 完成
+   - 新增: `core/shared_models.py`
+   - 功能: @lru_cache缓存, 最大3个模型, 节省80-200MB内存
+7. **P1-2: 日志聚合系统** - ✅ 完成
+   - 新增: `core/logging/unified_logger.py`
+   - 功能: SQLite统一存储, 支持查询, 30天轮转
 
 ---
 

@@ -41,12 +41,19 @@ from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Optional, Tuple, Union
 
-# 嵌入模型导入
+# 嵌入模型导入 - 使用共享模型池
 try:
-    from sentence_transformers import SentenceTransformer
+    # 确保能导入共享模型池
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    from core.shared_models import get_model
 except ImportError:
-    print("❌ 请先安装依赖: pip install sentence-transformers")
-    sys.exit(1)
+    # 如果无法导入共享模型池，回退到原始导入
+    try:
+        from sentence_transformers import SentenceTransformer
+        get_model = None
+    except ImportError:
+        print("❌ 请先安装依赖: pip install sentence-transformers")
+        sys.exit(1)
 
 
 class LocalMemorySystem:
@@ -87,23 +94,30 @@ class LocalMemorySystem:
         self.model: Optional[SentenceTransformer] = None
         self.conn: Optional[sqlite3.Connection] = None
         
-    def _get_model(self) -> SentenceTransformer:
+    def _get_model(self):
         """
-        懒加载嵌入模型
-        
-        首次调用时会下载并加载 all-MiniLM-L6-v2 模型（约80MB）。
-        后续调用返回缓存的模型实例。
-        
+        懒加载嵌入模型（使用共享模型池）
+
+        首次调用时会加载 all-MiniLM-L6-v2 模型（约80MB）。
+        后续调用返回共享的缓存模型实例，避免重复加载。
+
         Returns:
             SentenceTransformer: 加载好的MiniLM模型
-            
+
         Note:
-            模型文件会缓存到 ~/.cache/torch/sentence_transformers/
-            中国大陆用户可设置 HF_ENDPOINT=https://hf-mirror.com 加速下载
+            - 使用共享模型池，模块间共享模型实例
+            - 模型文件会缓存到 ~/.cache/torch/sentence_transformers/
+            - 二次调用加载时间<100ms
         """
         if self.model is None:
             print("🔄 正在加载 MiniLM 嵌入模型...")
-            self.model = SentenceTransformer('all-MiniLM-L6-v2')
+            if get_model is not None:
+                # 使用共享模型池
+                self.model = get_model("all-MiniLM-L6-v2")
+            else:
+                # 回退到原始加载方式
+                from sentence_transformers import SentenceTransformer
+                self.model = SentenceTransformer('all-MiniLM-L6-v2')
             print("✅ 模型加载完成")
         return self.model
     

@@ -16,6 +16,15 @@ from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
 
+# 导入共享模型池
+try:
+    from core.shared_models import get_model
+    USE_SHARED_POOL = True
+except ImportError:
+    get_model = None
+    USE_SHARED_POOL = False
+    logger.warning("无法导入共享模型池，将使用独立模型实例")
+
 
 @dataclass
 class EmbeddingConfig:
@@ -219,46 +228,57 @@ class Embedder:
     
     def _load_model(self):
         """
-        加载嵌入模型（带缓存）
-        
+        加载嵌入模型（使用共享模型池）
+
         Returns:
             SentenceTransformer模型实例
         """
         model_name = self.config.model_name
+
+        # 优先使用共享模型池
+        if USE_SHARED_POOL:
+            logger.info(f"从共享模型池加载: {model_name}")
+            return get_model(
+                model_name,
+                device=self.config.device if self.config.device != "auto" else None,
+                trust_remote_code=self.config.trust_remote_code,
+            )
+
+        # 回退到原有缓存机制
         cache_key = f"{model_name}_{self.config.device}"
-        
+
         # 检查缓存
         if cache_key in self._model_cache:
-            logger.info(f"使用缓存模型: {model_name}")
+            logger.info(f"使用类级缓存模型: {model_name}")
             return self._model_cache[cache_key]
-        
+
         try:
             from sentence_transformers import SentenceTransformer
-            
+
             logger.info(f"正在加载模型: {model_name}")
-            
+
             # 确定设备
             device = self.config.device
             if device == "auto":
                 import torch
                 device = "cuda" if torch.cuda.is_available() else "cpu"
-            
+
             model = SentenceTransformer(
                 model_name,
                 device=device,
                 trust_remote_code=self.config.trust_remote_code,
             )
-            
+
             # 设置最大序列长度
             if hasattr(model, "max_seq_length"):
                 model.max_seq_length = self.config.max_seq_length
-            
+
             # 存入缓存
             self._model_cache[cache_key] = model
             logger.info(f"模型加载完成，使用设备: {device}")
-            
+
             return model
-            
+
         except ImportError:
             raise ImportError(
                 "sentence-transformers未安装，请运行: "

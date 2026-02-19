@@ -176,7 +176,7 @@ class LearningCollector(BaseDimensionCollector):
         evidence["daily_notes_count"] = len(daily_notes)
         
         # 主动好奇心引擎检查
-        curiosity_file = workspace / "memory" / self-upgrade / "curiosity-questions.log"
+        curiosity_file = workspace / "memory" / "self-upgrade" / "curiosity-questions.log"
         if curiosity_file.exists():
             evidence["active_curiosity_questions"] = len(curiosity_file.read_text().split("\n"))
         else:

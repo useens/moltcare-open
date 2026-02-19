@@ -15,7 +15,14 @@ import lancedb
 import pyarrow as pa
 from tqdm import tqdm
 
-from sentence_transformers import SentenceTransformer
+# 使用共享模型池
+try:
+    from core.shared_models import get_model
+    USE_SHARED_POOL = True
+except ImportError:
+    from sentence_transformers import SentenceTransformer
+    get_model = None
+    USE_SHARED_POOL = False
 
 # 配置
 MEMORY_DIR = Path('/root/.openclaw/workspace/memory')
@@ -203,11 +210,15 @@ def import_memories():
         print("   ⚠️  将清空后重新导入...")
         store.delete_all()
     
-    # 3. 加载模型
+    # 3. 加载模型（使用共享模型池）
     print("\n🔧 加载嵌入模型...")
     print(f"   模型: {MODEL_NAME}")
-    model = SentenceTransformer(MODEL_NAME, device="cpu")
-    print("   ✓ 模型加载完成")
+    if USE_SHARED_POOL:
+        model = get_model(MODEL_NAME, device="cpu")
+        print("   ✓ 模型加载完成（来自共享池）")
+    else:
+        model = SentenceTransformer(MODEL_NAME, device="cpu")
+        print("   ✓ 模型加载完成")
     
     # 4. 批量编码
     encoded_records = batch_encode(all_chunks, model, batch_size=BATCH_SIZE)
