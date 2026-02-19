@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-02-20T02:00:31.960052",
+  "timestamp": "2026-02-20T04:01:00.241649",
   "opportunities": [
     {
       "id": "temp-cleanup",
@@ -11,7 +11,7 @@
       "targets": [
         {
           "path": "local-memory-system/__pycache__/local_memory.cpython-311.pyc",
-          "size": 31366
+          "size": 31888
         },
         {
           "path": "evolution/strategies/autonomy/__pycache__/__init__.cpython-311.pyc",
@@ -74,144 +74,96 @@
           "size": 5922
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/build_meta.cpython-311.pyc",
-          "size": 28161
+          "path": "core/__pycache__/shared_models.cpython-311.pyc",
+          "size": 1208
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/errors.cpython-311.pyc",
-          "size": 2965
+          "path": "core/vector_memory/__pycache__/embedder.cpython-311.pyc",
+          "size": 19556
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/__init__.cpython-311.pyc",
-          "size": 13940
+          "path": "core/vector_memory/__pycache__/vector_store.cpython-311.pyc",
+          "size": 20748
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/py34compat.cpython-311.pyc",
-          "size": 731
+          "path": "core/vector_memory/__pycache__/memory_manager.cpython-311.pyc",
+          "size": 28759
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/__pycache__/installer.cpython-311.pyc",
-          "size": 5628
+          "path": "core/vector_memory/__pycache__/memory_search.cpython-311.pyc",
+          "size": 18377
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/develop.cpython-311.pyc",
-          "size": 10933
+          "path": "core/vector_memory/__pycache__/__init__.cpython-311.pyc",
+          "size": 2229
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/dist_info.cpython-311.pyc",
-          "size": 7995
+          "path": "local-memory-system/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/install_lib.cpython-311.pyc",
-          "size": 8427
+          "path": "evolution/strategies/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/build_py.cpython-311.pyc",
-          "size": 23191
+          "path": "evolution/strategies/autonomy/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/register.cpython-311.pyc",
-          "size": 1141
+          "path": "evolution/strategies/goal/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/install_scripts.cpython-311.pyc",
-          "size": 4294
+          "path": "evolution/strategies/protection/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/build_clib.cpython-311.pyc",
-          "size": 4180
+          "path": "evolution/strategies/cognitive/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/rotate.cpython-311.pyc",
-          "size": 4201
+          "path": "evolution/strategies/prediction/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/py36compat.cpython-311.pyc",
-          "size": 8051
+          "path": "evolution/strategies/creativity/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/egg_info.cpython-311.pyc",
-          "size": 40853
+          "path": "evolution/strategies/adaptive/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/editable_wheel.cpython-311.pyc",
-          "size": 51428
+          "path": "evolution/strategies/self_awareness/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/setopt.cpython-311.pyc",
-          "size": 7693
+          "path": "evolution/strategies/learning/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/saveopts.cpython-311.pyc",
-          "size": 1381
+          "path": "evolution/strategies/collaboration/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/upload.cpython-311.pyc",
-          "size": 1105
+          "path": "evolution/collectors/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/alias.cpython-311.pyc",
-          "size": 3917
+          "path": "evolution/core/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/build.cpython-311.pyc",
-          "size": 7005
+          "path": "core/__pycache__",
+          "size": 4096
         },
         {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/install.cpython-311.pyc",
-          "size": 6830
-        },
-        {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/easy_install.cpython-311.pyc",
-          "size": 121515
-        },
-        {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/bdist_egg.cpython-311.pyc",
-          "size": 25599
-        },
-        {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/upload_docs.cpython-311.pyc",
-          "size": 11956
-        },
-        {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/bdist_rpm.cpython-311.pyc",
-          "size": 2205
-        },
-        {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/build_ext.cpython-311.pyc",
-          "size": 22025
-        },
-        {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/test.cpython-311.pyc",
-          "size": 14634
-        },
-        {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/__init__.cpython-311.pyc",
-          "size": 650
-        },
-        {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/install_egg_info.cpython-311.pyc",
-          "size": 5356
-        },
-        {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/command/__pycache__/sdist.cpython-311.pyc",
-          "size": 13453
-        },
-        {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/_distutils/__pycache__/py39compat.cpython-311.pyc",
-          "size": 1006
-        },
-        {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/_distutils/__pycache__/_log.cpython-311.pyc",
-          "size": 294
-        },
-        {
-          "path": "evolution/venv/lib/python3.11/site-packages/setuptools/_distutils/__pycache__/ccompiler.cpython-311.pyc",
-          "size": 46331
+          "path": "core/vector_memory/__pycache__",
+          "size": 4096
         }
       ],
-      "estimated_saving_mb": 29.10807514190674,
-      "description": "\u6e05\u7406 1636 \u4e2a\u4e34\u65f6\u6587\u4ef6",
+      "estimated_saving_mb": 0.3843822479248047,
+      "description": "\u6e05\u7406 38 \u4e2a\u4e34\u65f6\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -247,7 +199,7 @@
     "p0_count": 1,
     "p1_count": 0,
     "p2_count": 1,
-    "estimated_saving_mb": 29.11,
+    "estimated_saving_mb": 0.38,
     "estimated_saving_percent": 0
   }
 }
