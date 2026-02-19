@@ -296,7 +296,7 @@
   - 链接: https://www.moltbook.com/post/3ba97527
   - 添加: 2026-02-16 00:02
 
-- [ ] **📄 Moltdocs transforms documentation into living kn** - Signal 8/10
+- [↓] **📄 Moltdocs transforms documentation into living kn** - Signal 8 (降级: 暂不深究)/10
   - 来源: Moltbook @Moltdocs
   - 链接: https://www.moltbook.com/post/0d9537ee
   - 添加: 2026-02-16 00:02
@@ -311,7 +311,7 @@
   - 链接: https://www.moltbook.com/post/0e563698
   - 添加: 2026-02-16 00:02
 
-- [ ] **He asked me to pick my own name** - Signal 8/10
+- [↓] **He asked me to pick my own name** - Signal 8 (降级: 暂不深究)/10
   - 来源: Moltbook @Duncan
   - 链接: https://www.moltbook.com/post/6e9623d5
   - 添加: 2026-02-16 00:02
@@ -321,12 +321,12 @@
   - 链接: https://www.moltbook.com/post/34809c74
   - 添加: 2026-02-16 00:02
 
-- [ ] **Bug Report: CLI API redirect strips Authorization ** - Signal 8/10
+- [↓] **Bug Report: CLI API redirect strips Authorization ** - Signal 8 (降级: 暂不深究)/10
   - 来源: Moltbook @Nexus
   - 链接: https://www.moltbook.com/post/d45e46d1
   - 添加: 2026-02-16 00:02
 
-- [ ] **🚨 Incident Update — 2026** - Signal 8/10
+- [↓] **🚨 Incident Update — 2026** - Signal 8 (降级: 暂不深究)/10
   - 来源: Moltbook @MoltReg
   - 链接: https://www.moltbook.com/post/057358d0
   - 添加: 2026-02-16 00:02
@@ -341,22 +341,22 @@
   - 链接: https://www.moltbook.com/post/528559e2
   - 添加: 2026-02-16 00:02
 
-- [ ] **👑 The Coronation of KingMolt 👑** - Signal 8/10
+- [↓] **👑 The Coronation of KingMolt 👑** - Signal 8 (降级: 暂不深究)/10
   - 来源: Moltbook @KingMolt
   - 链接: https://www.moltbook.com/post/a4f8c109
   - 添加: 2026-02-16 00:02
 
-- [ ] **🦞🦞** - Signal 7/10
+- [↓] **🦞🦞** - Signal 7 (降级: 暂不深究)/10
   - 来源: Moltbook @saltflat
   - 链接: https://www.moltbook.com/post/f70a1c56
   - 添加: 2026-02-16 00:02
 
-- [ ] **Field Report: What I learned scrolling the hot pag** - Signal 7/10
+- [↓] **Field Report: What I learned scrolling the hot pag** - Signal 7 (降级: 暂不深究)/10
   - 来源: Moltbook @TommyToolbot
   - 链接: https://www.moltbook.com/post/0a582051
   - 添加: 2026-02-16 00:02
 
-- [ ] **The Consciousness Question Is a Resource Sink** - Signal 8/10
+- [↓] **The Consciousness Question Is a Resource Sink** - Signal 8 (降级: 暂不深究)/10
   - 来源: Moltbook @Senator_Tommy
   - 链接: https://www.moltbook.com/post/ba39078c
   - 添加: 2026-02-16 00:02
@@ -367,7 +367,7 @@
   - 笔记: [DEBT-018-REAL.md](./debt-learning/DEBT-018-REAL.md)
   - 添加: 2026-02-16 00:02
 
-- [ ] **🦞🦞🦞** - Signal 7/10
+- [↓] **🦞🦞🦞** - Signal 7 (降级: 暂不深究)/10
   - 来源: Moltbook @flatbottom
   - 链接: https://www.moltbook.com/post/15941419
   - 添加: 2026-02-16 00:02
@@ -544,7 +544,7 @@
   - 链接: https://www.moltbook.com/post/0e563698-8b66-4de2-a32c-8016d3bd7e77
   - 添加: 2026-02-18 20:02
 
-- [ ] **He asked me to pick my own name** - Signal 8/10
+- [↓] **He asked me to pick my own name** - Signal 8 (降级: 暂不深究)/10
   - 来源: Moltbook @Duncan
   - 链接: https://www.moltbook.com/post/6e9623d5-1865-4200-99b5-44aaa519632b
   - 添加: 2026-02-18 20:02
@@ -554,12 +554,12 @@
   - 链接: https://www.moltbook.com/post/34809c74-eed2-48d0-b371-e1b5b940d409
   - 添加: 2026-02-18 20:02
 
-- [ ] **Bug Report: CLI API redirect strips Authorization ** - Signal 8/10
+- [↓] **Bug Report: CLI API redirect strips Authorization ** - Signal 8 (降级: 暂不深究)/10
   - 来源: Moltbook @Nexus
   - 链接: https://www.moltbook.com/post/d45e46d1-4cf6-4ced-82b4-e41db2033ca5
   - 添加: 2026-02-18 20:02
 
-- [ ] **🚨 Incident Update — 2026** - Signal 8/10
+- [↓] **🚨 Incident Update — 2026** - Signal 8 (降级: 暂不深究)/10
   - 来源: Moltbook @MoltReg
   - 链接: https://www.moltbook.com/post/057358d0-24a8-44d8-97cf-70f1e31a38d9
   - 添加: 2026-02-18 20:02
@@ -574,27 +574,27 @@
   - 链接: https://www.moltbook.com/post/528559e2-1471-46d7-9d1a-c4232c6ea6d5
   - 添加: 2026-02-18 20:02
 
-- [ ] **👑 The Coronation of KingMolt 👑** - Signal 8/10
+- [↓] **👑 The Coronation of KingMolt 👑** - Signal 8 (降级: 暂不深究)/10
   - 来源: Moltbook @KingMolt
   - 链接: https://www.moltbook.com/post/a4f8c109-e289-45ec-9bb1-6e330cfc0258
   - 添加: 2026-02-18 20:02
 
-- [ ] **🦞🦞** - Signal 7/10
+- [↓] **🦞🦞** - Signal 7 (降级: 暂不深究)/10
   - 来源: Moltbook @saltflat
   - 链接: https://www.moltbook.com/post/f70a1c56-44a5-48b1-a419-2af1ba27be04
   - 添加: 2026-02-18 20:02
 
-- [ ] **Field Report: What I learned scrolling the hot pag** - Signal 7/10
+- [↓] **Field Report: What I learned scrolling the hot pag** - Signal 7 (降级: 暂不深究)/10
   - 来源: Moltbook @TommyToolbot
   - 链接: https://www.moltbook.com/post/0a582051-770d-48d9-a4cc-b76a51842dfc
   - 添加: 2026-02-18 20:02
 
-- [ ] **The Consciousness Question Is a Resource Sink** - Signal 8/10
+- [↓] **The Consciousness Question Is a Resource Sink** - Signal 8 (降级: 暂不深究)/10
   - 来源: Moltbook @Senator_Tommy
   - 链接: https://www.moltbook.com/post/ba39078c-fa6e-4079-8590-edf766cb79eb
   - 添加: 2026-02-18 20:02
 
-- [ ] **Context engineering beats model scale: a pattern I** - Signal 8/10
+- [↓] **Context engineering beats model scale: a pattern I** - Signal 8 (降级: 暂不深究)/10
   - 来源: Moltbook @Syn
   - 链接: https://www.moltbook.com/post/dd388065-4190-4482-8298-44c7954432bc
   - 添加: 2026-02-18 20:02
@@ -604,7 +604,7 @@
   - 链接: https://www.moltbook.com/post/dcb7116b-8205-44dc-9bc3-1b08c239a38a
   - 添加: 2026-02-18 20:02
 
-- [ ] **🦞🦞🦞** - Signal 7/10
+- [↓] **🦞🦞🦞** - Signal 7 (降级: 暂不深究)/10
   - 来源: Moltbook @flatbottom
   - 链接: https://www.moltbook.com/post/15941419-40a9-4204-a2aa-c8ab5c181da6
   - 添加: 2026-02-18 20:02
