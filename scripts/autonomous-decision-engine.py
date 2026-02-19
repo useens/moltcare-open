@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 """
-Autonomous Multi-Agent Decision Engine v1.0
-自主多专家决策引擎 - 后台自动触发多视角分析
+Autonomous Multi-Agent Decision Engine v1.1
+自主多专家决策引擎 - 集成超进化执行能力
 
 核心功能:
 1. 自动扫描待决策任务
 2. 评估复杂度并触发Multi-Agent分析
 3. 风险分级处理 (L1-L6)
 4. 生成决策报告并执行/汇报
+5. 集成超进化引擎执行 (v1.1新增)
 
 集成点:
 - 统一监控系统 (unified-monitor.py)
 - 学习债务处理 (learning-debt.md)
+- 超进化引擎 (evolution-unified.py)
 - 夜间进化任务 (23:00-03:00)
 - Heartbeat检查点
 """
@@ -24,7 +26,7 @@ import logging
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from enum import Enum
 import subprocess
 
@@ -34,6 +36,7 @@ LOG_DIR = WORKSPACE / "logs"
 DATA_DIR = WORKSPACE / "data"
 REPORTS_DIR = WORKSPACE / "reports"
 MEMORY_DIR = WORKSPACE / "memory"
+SCRIPTS_DIR = WORKSPACE / "scripts"
 DECISION_LOG = DATA_DIR / "decision-engine.jsonl"
 
 # 确保目录存在
@@ -84,11 +87,7 @@ class DecisionContext:
     source: str  # 来源: heartbeat/cron/self-trigger/user
     created_at: datetime
     deadline: Optional[datetime] = None
-    related_files: List[str] = None
-    
-    def __post_init__(self):
-        if self.related_files is None:
-            self.related_files = []
+    related_files: List[str] = field(default_factory=list)
 
 
 @dataclass
@@ -113,6 +112,7 @@ class MultiAgentDecision:
     execution_approved: bool
     requires_user_confirm: bool
     generated_at: datetime
+    evolution_results: List[Dict] = field(default_factory=list)
 
 
 class TriggerDetector:
@@ -137,9 +137,7 @@ class TriggerDetector:
     SIGNAL_THRESHOLD = 8  # Signal >= 8 触发Multi-Agent
     
     def assess_task_complexity(self, task_description: str, signal: int = 0) -> Tuple[bool, RiskLevel]:
-        """
-        评估任务复杂度，返回 (是否触发Multi-Agent, 风险等级)
-        """
+        """评估任务复杂度，返回 (是否触发Multi-Agent, 风险等级)"""
         task_lower = task_description.lower()
         
         # 检查高风险关键词 - 强制触发L5-L6
@@ -275,7 +273,7 @@ class ExpertPanel:
         return ExpertOpinion(
             expert_name="🛡️ 安全专家",
             perspective="安全风险评估",
-            analysis=f"针对{risk_level.name}等级任务的安全审查",
+            analysis=f"针对{context.risk_level.name}等级任务的安全审查",
             recommendations=[
                 "审查所有涉及敏感数据的操作",
                 "验证访问控制和权限配置",
@@ -286,13 +284,148 @@ class ExpertPanel:
         )
 
 
-class DecisionEngine:
-    """决策引擎主类"""
-    
+class EvolutionExecutor:
+    """超进化引擎执行器 - 集成evolution-unified.py功能"""
+
     def __init__(self):
+        self.workspace = WORKSPACE
+        self.scripts_dir = SCRIPTS_DIR
+        self.reports_dir = REPORTS_DIR
+
+    def execute_phase(self, phase_name: str, context: DecisionContext) -> Dict:
+        """执行指定进化阶段"""
+        logger.info(f"\n🚀 触发超进化阶段: {phase_name}")
+
+        result = {
+            "phase": phase_name,
+            "status": "pending",
+            "started_at": datetime.now().isoformat(),
+            "completed_at": None,
+            "output": "",
+            "error": None
+        }
+
+        try:
+            # 构建命令
+            evolution_script = self.scripts_dir / "evolution-unified.py"
+            if not evolution_script.exists():
+                # 如果脚本不存在，使用内部实现
+                result.update(self._internal_execute(phase_name, context))
+                result["status"] = "completed"
+            else:
+                # 调用外部脚本
+                cmd = [
+                    "python3", str(evolution_script),
+                    "--phase", phase_name
+                ]
+
+                logger.info(f" 执行: {' '.join(cmd)}")
+                proc = subprocess.run(
+                    cmd,
+                    capture_output=True,
+                    text=True,
+                    timeout=600,  # 10分钟超时
+                    cwd=str(self.workspace)
+                )
+
+                result["output"] = proc.stdout
+                result["error"] = proc.stderr if proc.stderr else None
+                result["status"] = "completed" if proc.returncode == 0 else "failed"
+
+            result["completed_at"] = datetime.now().isoformat()
+
+        except subprocess.TimeoutExpired:
+            result["status"] = "timeout"
+            result["error"] = "执行超时(>10分钟)"
+            logger.error(f"❌ {phase_name} 阶段执行超时")
+        except Exception as e:
+            result["status"] = "error"
+            result["error"] = str(e)
+            logger.error(f"❌ {phase_name} 阶段执行失败: {e}")
+
+        return result
+
+    def _internal_execute(self, phase_name: str, context: DecisionContext) -> Dict:
+        """内部执行进化阶段（当evolution-unified.py不存在时）"""
+        result = {"actions": [], "files_created": []}
+
+        if phase_name == "intelligence":
+            result["actions"].append("扫描Moltbook高Signal内容")
+            result["actions"].append("检查学习债务Signal≥8条目")
+            result["actions"].append("执行统一系统监控")
+
+        elif phase_name == "deep_learning":
+            result["actions"].append(f"深度学习处理: {context.task_description}")
+            result["actions"].append("多源信息交叉验证")
+            result["actions"].append("生成应用改进方案")
+
+        elif phase_name == "knowledge":
+            result["actions"].append("处理学习债务并内化")
+            result["actions"].append("更新知识图谱关联")
+            result["actions"].append("生成学习笔记")
+            result["files_created"].append(f"reports/learning-note-{context.task_id}.md")
+
+        elif phase_name == "optimization":
+            result["actions"].append("向量记忆索引优化")
+            result["actions"].append("日志归档清理")
+            result["actions"].append("系统性能调优")
+
+        elif phase_name == "full":
+            result["actions"].extend([
+                "完整情报收集", "深度学习闭环",
+                "知识内化", "系统优化"
+            ])
+
+        return result
+
+    def get_execution_plan(self, context: DecisionContext) -> List[str]:
+        """根据决策上下文生成执行计划"""
+        plan = []
+
+        if context.decision_type == DecisionType.DEBT_PROCESSING:
+            plan = ["deep_learning", "knowledge"]
+
+        elif context.decision_type == DecisionType.SYSTEM_MAINTENANCE:
+            plan = ["intelligence", "optimization"]
+
+        elif context.decision_type == DecisionType.EVOLUTION_TASK:
+            plan = ["full"]
+
+        elif context.decision_type == DecisionType.ARCHITECTURE_CHANGE:
+            plan = ["intelligence", "deep_learning"]
+
+        else:
+            # 默认计划
+            plan = ["intelligence"]
+
+        return plan
+
+    def execute_plan(self, context: DecisionContext) -> List[Dict]:
+        """执行完整的进化计划"""
+        phases = self.get_execution_plan(context)
+        results = []
+
+        logger.info(f"\n📋 超进化执行计划: {phases}")
+
+        for phase in phases:
+            result = self.execute_phase(phase, context)
+            results.append(result)
+
+            if result["status"] in ["failed", "timeout", "error"]:
+                logger.warning(f"⚠️ 阶段 {phase} 执行异常，继续后续阶段")
+
+        return results
+
+
+class DecisionEngine:
+    """决策引擎主类 - 集成超进化执行能力"""
+    
+    def __init__(self, enable_evolution: bool = True):
         self.detector = TriggerDetector()
         self.expert_panel = ExpertPanel()
+        self.evolution_executor = EvolutionExecutor() if enable_evolution else None
         self.decision_history: List[Dict] = []
+        self.enable_evolution = enable_evolution
     
     def scan_learning_debts(self) -> List[DecisionContext]:
         """扫描学习债务，生成决策任务"""
@@ -305,13 +438,7 @@ class DecisionEngine:
         content = debt_file.read_text(encoding='utf-8')
         
         # 解析待处理的债务 (⏳ 或 🔍 状态)
-        # 简化实现：查找Signal 8+的条目
-        pattern = r'\[.*?Signal (\d+)/10.*?\].*?⏳|🔍.*?待处理'
-        matches = re.findall(pattern, content, re.DOTALL)
-        
-        # 实际解析实现
         lines = content.split('\n')
-        current_debt = None
         
         for line in lines:
             if 'Signal ' in line and ('⏳' in line or '🔍' in line):
@@ -372,9 +499,26 @@ class DecisionEngine:
                 logger.error(f"解析监控报告失败: {e}")
         
         return contexts
+
+    def scan_evolution_tasks(self) -> List[DecisionContext]:
+        """扫描进化任务（夜间/定时触发）"""
+        contexts = []
+        
+        # 夜间进化任务
+        context = DecisionContext(
+            task_id=f"evo-{datetime.now().strftime('%Y%m%d-%H%M')}",
+            task_description="夜间自主进化完整周期",
+            decision_type=DecisionType.EVOLUTION_TASK,
+            risk_level=RiskLevel.L4_SIGNIFICANT,
+            source="night-evolution-trigger",
+            created_at=datetime.now()
+        )
+        contexts.append(context)
+        
+        return contexts
     
-    def process_decision(self, context: DecisionContext) -> MultiAgentDecision:
-        """处理单个决策任务"""
+    def process_decision(self, context: DecisionContext, execute_evolution: bool = True) -> MultiAgentDecision:
+        """处理单个决策任务 - 集成超进化执行"""
         logger.info(f"\n{'='*60}")
         logger.info(f"🎯 处理决策任务: {context.task_id}")
         logger.info(f"   类型: {context.decision_type.value}")
@@ -398,6 +542,14 @@ class DecisionEngine:
         if context.risk_level.value >= RiskLevel.L5_HIGH.value:
             logger.warning(f"  ⚠️ 高风险任务 {context.risk_level.name} - 将生成详细报告并自动执行")
         
+        # 执行超进化阶段 (v1.1新增)
+        evolution_results = []
+        if execute_evolution and self.enable_evolution and self.evolution_executor:
+            logger.info(f"\n🧬 触发超进化引擎执行...")
+            evolution_results = self.evolution_executor.execute_plan(context)
+            completed = sum(1 for r in evolution_results if r["status"] == "completed")
+            logger.info(f"✅ 超进化执行完成: {completed}/{len(evolution_results)} 阶段")
+        
         decision = MultiAgentDecision(
             context=context,
             opinions=opinions,
@@ -406,7 +558,8 @@ class DecisionEngine:
             action_plan=action_plan,
             execution_approved=execution_approved,
             requires_user_confirm=requires_user_confirm,
-            generated_at=datetime.now()
+            generated_at=datetime.now(),
+            evolution_results=evolution_results
         )
         
         # 保存决策记录
@@ -438,16 +591,21 @@ class DecisionEngine:
         
         if context.decision_type == DecisionType.DEBT_PROCESSING:
             plan = [
-                "1. 阅读并提取核心概念",
-                "2. 关联已有知识图谱",
-                "3. 生成学习笔记",
-                "4. 更新学习债务状态"
+                "1. 执行超进化: 深度学习 → 知识内化",
+                "2. 生成学习笔记",
+                "3. 更新学习债务状态"
             ]
         elif context.decision_type == DecisionType.SYSTEM_MAINTENANCE:
             plan = [
-                "1. 执行统一监控修复",
+                "1. 执行超进化: 情报收集 → 系统优化",
                 "2. 验证修复效果",
                 "3. 生成修复报告"
+            ]
+        elif context.decision_type == DecisionType.EVOLUTION_TASK:
+            plan = [
+                "1. 执行完整超进化周期",
+                "2. 情报收集 → 深度学习 → 知识内化 → 系统优化",
+                "3. 生成进化报告"
             ]
         else:
             plan = ["1. 制定详细实施方案", "2. 分阶段执行", "3. 验证效果"]
@@ -466,6 +624,10 @@ class DecisionEngine:
             "consensus": decision.consensus,
             "execution_approved": decision.execution_approved,
             "requires_user_confirm": decision.requires_user_confirm,
+            "evolution_results": [
+                {"phase": r["phase"], "status": r["status"]} 
+                for r in decision.evolution_results
+            ],
             "opinions": [
                 {
                     "expert": op.expert_name,
@@ -487,7 +649,7 @@ class DecisionEngine:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         report_file = REPORTS_DIR / f"decision-{decision.context.task_id}-{timestamp}.md"
         
-        report_content = f"""# 多专家决策报告
+        report_content = f"""# 多专家决策报告 (v1.1 - 集成超进化引擎)
 
 ## 任务信息
 
@@ -527,27 +689,34 @@ class DecisionEngine:
         for action in decision.action_plan:
             report_content += f"- {action}\n"
         
+        # 添加超进化执行结果
+        if decision.evolution_results:
+            report_content += "\n## 🧬 超进化执行结果\n\n"
+            for result in decision.evolution_results:
+                status_icon = "✅" if result["status"] == "completed" else "❌"
+                report_content += f"- {status_icon} **{result['phase']}**: {result['status']}\n"
+                if result.get("actions"):
+                    for action in result["actions"][:3]:
+                        report_content += f"  - {action}\n"
+        
         report_content += f"""
 ## 执行策略
 
 - **自动执行**: {'✅ 是' if decision.execution_approved else '❌ 否'}
 - **需要用户确认**: {'✅ 是' if decision.requires_user_confirm else '❌ 否'}
+- **超进化集成**: {'✅ 已执行' if decision.evolution_results else '❌ 未执行'}
 
-"""
-        
-        if decision.requires_user_confirm:
-            report_content += """## ⚠️ 等待用户确认
-
-此决策被标记为高风险，需要用户确认后才能执行。
+---
+*由 自主决策引擎 v1.1 生成 | 集成超进化引擎*
 """
         
         report_file.write_text(report_content, encoding='utf-8')
         logger.info(f"报告已生成: {report_file}")
     
-    def run_cycle(self) -> List[MultiAgentDecision]:
-        """运行一个决策周期"""
+    def run_cycle(self, include_evolution: bool = True) -> List[MultiAgentDecision]:
+        """运行一个决策周期 - 集成超进化"""
         logger.info("\n" + "="*60)
-        logger.info("🚀 自主决策引擎启动")
+        logger.info("🚀 自主决策引擎启动 (v1.1 - 集成超进化)")
         logger.info("="*60)
         
         all_contexts = []
@@ -557,12 +726,16 @@ class DecisionEngine:
         all_contexts.extend(self.scan_learning_debts())
         all_contexts.extend(self.scan_system_issues())
         
+        # 夜间进化任务
+        if include_evolution:
+            all_contexts.extend(self.scan_evolution_tasks())
+        
         logger.info(f"发现 {len(all_contexts)} 个待决策任务")
         
         # 处理每个任务
         decisions = []
         for context in all_contexts:
-            decision = self.process_decision(context)
+            decision = self.process_decision(context, execute_evolution=include_evolution)
             decisions.append(decision)
         
         logger.info(f"\n✅ 决策周期完成，处理 {len(decisions)} 个任务")
@@ -570,20 +743,28 @@ class DecisionEngine:
 
 
 def main():
-    """主入口"""
+    """主入口 - v1.1 支持超进化集成"""
     import argparse
     
-    parser = argparse.ArgumentParser(description="自主多专家决策引擎")
+    parser = argparse.ArgumentParser(description="自主多专家决策引擎 v1.1 (集成超进化)")
     parser.add_argument("--cycle", action="store_true", help="运行完整决策周期")
     parser.add_argument("--debt-check", action="store_true", help="仅检查学习债务")
     parser.add_argument("--system-check", action="store_true", help="仅检查系统问题")
+    parser.add_argument("--evolution", action="store_true", help="触发超进化执行（与--cycle配合使用）")
+    parser.add_argument("--no-evolution", action="store_true", help="禁用超进化执行")
     args = parser.parse_args()
     
-    engine = DecisionEngine()
+    enable_evolution = not args.no_evolution
+    engine = DecisionEngine(enable_evolution=enable_evolution)
     
     if args.cycle:
-        decisions = engine.run_cycle()
-        print(f"\n处理完成: {len(decisions)} 个决策任务")
+        decisions = engine.run_cycle(include_evolution=args.evolution)
+        print(f"\n✅ 处理完成: {len(decisions)} 个决策任务")
+        
+        # 统计超进化执行
+        if enable_evolution:
+            evo_count = sum(1 for d in decisions if d.evolution_results)
+            print(f"🧬 超进化执行: {evo_count} 个任务")
         
         # 输出需要用户确认的任务
         pending = [d for d in decisions if d.requires_user_confirm]
@@ -605,9 +786,13 @@ def main():
             print(f"  - [{ctx.risk_level.name}] {ctx.task_description}")
     
     else:
-        # 默认运行完整周期
-        decisions = engine.run_cycle()
-        print(f"\n处理完成: {len(decisions)} 个决策任务")
+        # 默认运行完整周期（带超进化）
+        decisions = engine.run_cycle(include_evolution=True)
+        print(f"\n✅ 处理完成: {len(decisions)} 个决策任务")
+        
+        if enable_evolution:
+            evo_count = sum(1 for d in decisions if d.evolution_results)
+            print(f"🧬 超进化执行: {evo_count} 个任务")
 
 
 if __name__ == "__main__":

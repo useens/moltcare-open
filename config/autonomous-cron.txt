@@ -1,15 +1,15 @@
 #!/bin/bash
-# Autonomous Multi-Agent Cron Jobs
-# 自主多专家系统定时任务
+# Autonomous Multi-Agent Cron Jobs v1.1
+# 自主多专家系统定时任务 - 集成超进化引擎
 
-# 决策引擎 - 每小时检查一次 (轻度扫描)
+# 决策引擎 - 每小时检查一次 (轻度扫描，不触发超进化)
 0 * * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --debt-check >> logs/cron-decision.log 2>&1
 
-# 夜间深度决策 - 23:30 执行完整周期
-30 23 * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --cycle >> logs/cron-decision-night.log 2>&1
+# 夜间深度决策 - 23:30 执行完整周期 + 超进化
+30 23 * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --cycle --evolution >> logs/cron-decision-night.log 2>&1
 
-# 凌晨系统维护决策 - 02:00 执行系统检查
-0 2 * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --system-check >> logs/cron-system.log 2>&1
+# 凌晨系统维护决策 - 02:00 执行系统检查 + 超进化优化
+0 2 * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --system-check --evolution >> logs/cron-system.log 2>&1
 
-# 学习债务深度处理 - 每天14:00 (配合深度学习时间)
-0 14 * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --cycle >> logs/cron-learning.log 2>&1
+# 学习债务深度处理 - 每天14:00 (配合深度学习时间，启用超进化)
+0 14 * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --cycle --evolution >> logs/cron-learning.log 2>&1
