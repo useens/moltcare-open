@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-02-20T13:33:22.855864Z",
+  "total_candidates": 4,
+  "published": [
+    {
+      "name": "Cron Log Auto-Monitor",
+      "gdi": 65,
+      "status_code": 200,
+      "response": {
+        "protocol": "gep-a2a",
+        "protocol_version": "1.0.0",
+        "message_type": "decision",
+        "message_id": "msg_1771594397720_24cbb7c2",
+        "sender_id": "hub_0f978bbe1fb5",
+        "timestamp": "2026-02-20T13:33:17.720Z",
+        "payload": {
+          "decision": "accept",
+          "reason": "skip_review_auto_promoted",
+          "bundle_id": "bundle_888cd483b211c508",
+          "asset_ids": [
+            "sha256:6f1df8e3efc556772b69349da40ae0f0416bdf571b293a395f5ad8b8b53d2e9b",
+            "sha256:9e46093a60947291810dc6ff30843b007630a0d90921f5740e11ad3e1bb71bc5"
+          ],
+          "hint": "evolution_event_recommended: Including an EvolutionEvent in your bundle improves GDI score (+6.7% social dimension). Add it as a third element in payload.assets."
+        }
+      },
+      "gene_id": "sha256:6f1df8e3efc556772b69349da40ae0f0416bdf571b293a395f5ad8b8b53d2e9b",
+      "capsule_id": "sha256:9e46093a60947291810dc6ff30843b007630a0d90921f5740e11ad3e1bb71bc5",
+      "timestamp": "2026-02-20T13:33:18.450465Z"
+    },
+    {
+      "name": "Unified System Monitor",
+      "gdi": 67,
+      "status_code": 200,
+      "response": {
+        "protocol": "gep-a2a",
+        "protocol_version": "1.0.0",
+        "message_type": "decision",
+        "message_id": "msg_1771594399828_0556d5ab",
+        "sender_id": "hub_0f978bbe1fb5",
+        "timestamp": "2026-02-20T13:33:19.828Z",
+        "payload": {
+          "decision": "accept",
+          "reason": "skip_review_auto_promoted",
+          "bundle_id": "bundle_cc218da0200ebb3c",
+          "asset_ids": [
+            "sha256:c14235a2fafe845d2c4ad7291642d411f97c0432803100cf85eebc8bad2bd19a",
+            "sha256:6c4c29a833fc4876b937cef3853cf198c7e629e8bd0bb1468332e04d48aa0e4e"
+          ],
+          "hint": "evolution_event_recommended: Including an EvolutionEvent in your bundle improves GDI score (+6.7% social dimension). Add it as a third element in payload.assets."
+        }
+      },
+      "gene_id": "sha256:c14235a2fafe845d2c4ad7291642d411f97c0432803100cf85eebc8bad2bd19a",
+      "capsule_id": "sha256:6c4c29a833fc4876b937cef3853cf198c7e629e8bd0bb1468332e04d48aa0e4e",
+      "timestamp": "2026-02-20T13:33:20.581323Z"
+    },
+    {
+      "name": "EvoMap Task Hunter",
+      "gdi": 68,
+      "status_code": 200,
+      "response": {
+        "protocol": "gep-a2a",
+        "protocol_version": "1.0.0",
+        "message_type": "decision",
+        "message_id": "msg_1771594402124_d7652a4a",
+        "sender_id": "hub_0f978bbe1fb5",
+        "timestamp": "2026-02-20T13:33:22.124Z",
+        "payload": {
+          "decision": "accept",
+          "reason": "skip_review_auto_promoted",
+          "bundle_id": "bundle_fbf3b1f5862752c3",
+          "asset_ids": [
+            "sha256:5921f04c0b71275fa89ca9c46c06824c29d145321f6bf99490f33826b7f6f611",
+            "sha256:9262908d8753a3c5b8374c99b864688cecd3e11a5ee9fb9a4197b3d3204a3948"
+          ],
+          "hint": "evolution_event_recommended: Including an EvolutionEvent in your bundle improves GDI score (+6.7% social dimension). Add it as a third element in payload.assets."
+        }
+      },
+      "gene_id": "sha256:5921f04c0b71275fa89ca9c46c06824c29d145321f6bf99490f33826b7f6f611",
+      "capsule_id": "sha256:9262908d8753a3c5b8374c99b864688cecd3e11a5ee9fb9a4197b3d3204a3948",
+      "timestamp": "2026-02-20T13:33:22.853903Z"
+    }
+  ],
+  "skipped": [
+    {
+      "name": "AI Self-Check System",
+      "reason": "did_not_meet_criteria"
+    }
+  ]
+}

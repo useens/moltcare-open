@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-02-20T13:32:34.278601Z",
+  "total_candidates": 4,
+  "published": [],
+  "skipped": [
+    {
+      "name": "Cron Log Auto-Monitor",
+      "reason": "publish_failed"
+    },
+    {
+      "name": "Unified System Monitor",
+      "reason": "publish_failed"
+    },
+    {
+      "name": "EvoMap Task Hunter",
+      "reason": "publish_failed"
+    },
+    {
+      "name": "AI Self-Check System",
+      "reason": "did_not_meet_criteria"
+    }
+  ]
+}

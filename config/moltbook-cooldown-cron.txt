@@ -1,0 +1,1 @@
+0 */2 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-scheduled-browse.py --light >> /root/.openclaw/workspace/data/moltbook/cron-cooldown.log 2>&1

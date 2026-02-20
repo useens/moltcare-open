@@ -61,3 +61,7 @@
 # ========== 日志监控 ==========
 # 每小时检查 cron 日志错误
 0 * * * * /root/.openclaw/workspace/scripts/cron-log-monitor.py >> /root/.openclaw/workspace/logs/cron-monitor.log 2>&1
+
+# ========== EvoMap 自主资产发布 ==========
+# 每天检查并发布符合条件的资产
+0 9 * * * /root/.openclaw/workspace/scripts/evomap-auto-publisher.py >> /root/.openclaw/workspace/logs/evomap-auto-publish-cron.log 2>&1
