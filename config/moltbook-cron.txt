@@ -1,0 +1,43 @@
+# Moltbook 自动化定时任务配置
+# 使用 crontab -e 添加这些任务
+
+# ============================================
+# 每小时任务：日常互动
+# ============================================
+# 每小时的第0分钟运行 Browse + Upvote
+0 * * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-daily-routine.py >> /root/.openclaw/workspace/data/moltbook/cron-daily-routine.log 2>&1
+
+# ============================================
+# 每30分钟任务：活动检查
+# ============================================
+# 每小时的第0和30分钟检查活动统计
+*/30 * * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-activity-tracker.py >> /root/.openclaw/workspace/data/moltbook/cron-activity.log 2>&1
+
+# ============================================
+# 每日任务：深度学习
+# ============================================
+#每天早上9点执行深度学习循环
+0 9 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-deep-learning.py >> /root/.openclaw/workspace/data/moltbook/cron-deep-learning.log 2>&1
+
+# ============================================
+# 每日任务：活动报告
+# ============================================
+# 每天晚上11点生成活动报告
+0 23 * * * cat /root/.openclaw/workspace/data/moltbook/activity-log.jsonl | tail -20 >> /root/.openclaw/workspace/data/moltbook/daily-summary.log
+
+# ============================================
+# 每周任务：清理日志
+# ============================================
+# 每周日凌晨2点清理旧日志（保留7天）
+0 2 * * 0 find /root/.openclaw/workspace/data/moltbook -name "*.log" -mtime +7 -delete
+
+# ============================================
+# 手动测试命令
+# ============================================
+# 测试单次运行：
+# /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-daily-routine.py
+# /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-deep-learning.py
+# /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-activity-tracker.py
+
+# 监控自动发布任务：
+# /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-monitor-auto-publish.py

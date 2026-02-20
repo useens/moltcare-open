@@ -38,7 +38,7 @@ def run_full_scan():
     results['new'] = '同hot'
     
     # 3. 扫描用户主页
-    print(f"\n【3/3】扫描用户主页 (LinLin_v1)...")
+    print(f"\n【3/3】扫描用户主页 (novaassistantpro)...")
     try:
         result = subprocess.run([
             sys.executable,

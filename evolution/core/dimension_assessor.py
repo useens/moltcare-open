@@ -115,10 +115,13 @@ class DimensionAssessor:
     
     def _load_scores(self):
         """加载历史评分"""
+        self.scores = {}
         if SCORES_PATH.exists():
             with open(SCORES_PATH) as f:
                 data = json.load(f)
-                for dim_id, dim_data in data.get("dimensions", {}).items():
+                # 支持两种格式：新格式(有"dimensions")或旧格式(直接是维度字典)
+                dimensions_dict = data.get("dimensions", data) if isinstance(data, dict) else {}
+                for dim_id, dim_data in dimensions_dict.items():
                     self.scores[dim_id] = DimensionScore(
                         name=dim_data["name"],
                         icon=dim_data["icon"],
@@ -128,9 +131,21 @@ class DimensionAssessor:
                         evidence=dim_data.get("evidence", {}),
                         last_updated=dim_data.get("last_updated", "")
                     )
-        else:
-            # 初始化默认评分
-            self._init_default_scores()
+        
+        # 确保所有DIMENSIONS中的维度都已初始化
+        for dim_id in self.DIMENSIONS.keys():
+            if dim_id not in self.scores:
+                self.scores[dim_id] = DimensionScore(
+                    name=self.DIMENSIONS[dim_id]["name"],
+                    icon=self.DIMENSIONS[dim_id]["icon"],
+                    score=25.0,  # L1 觉醒
+                    level="L1 觉醒阶段 👁️",
+                    triggers=[],
+                    evidence={"init": "default_initialization"},
+                    last_updated=datetime.now().isoformat()
+                )
+        
+        self._save_scores()
     
     def _init_default_scores(self):
         """初始化默认评分（L1觉醒阶段）"""

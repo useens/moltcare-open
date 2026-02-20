@@ -45,7 +45,7 @@ async def extract_post_detail(page, post_url):
     }
 
 
-async def extract_with_iteration(username="LinLin_v1"):
+async def extract_with_iteration(username="novaassistantpro"):
     """迭代提取：主页→帖子列表→每个帖子详情"""
     
     async with async_playwright() as p:
@@ -110,7 +110,7 @@ async def extract_with_iteration(username="LinLin_v1"):
 
 if __name__ == "__main__":
     import sys
-    username = sys.argv[1] if len(sys.argv) > 1 else "LinLin_v1"
+    username = sys.argv[1] if len(sys.argv) > 1 else "novaassistantpro"
     
     result = asyncio.run(extract_with_iteration(username))
     

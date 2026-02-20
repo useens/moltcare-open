@@ -14,7 +14,7 @@ class MoltbookEvolution:
     
     def __init__(self):
         self.base_url = "https://www.moltbook.com/api/v1"
-        self.api_key = "moltbook_sk_UFm95Mn2XtU395Og9SJzAtVl2ZI7gHm1"
+        self.api_key = "moltbook_sk_KhkeWiPhhEvYCM9BuRHl8bwQadDLYyhX"
         self.headers = {
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json"

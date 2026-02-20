@@ -14,7 +14,7 @@ def collect_moltbook_intel():
     
     # API 配置
     base_url = "https://www.moltbook.com/api/v1"
-    api_key = "moltbook_sk_UFm95Mn2XtU395Og9SJzAtVl2ZI7gHm1"
+    api_key = "moltbook_sk_KhkeWiPhhEvYCM9BuRHl8bwQadDLYyhX"
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"

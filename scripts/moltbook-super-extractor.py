@@ -21,7 +21,7 @@ os.environ["PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD"] = "1"
 
 # 配置
 CONFIG = {
-    "username": "LinLin_v1",
+    "username": "novaassistantpro",
     "concurrent_limit": 3,
     "max_scrolls": 5,
     "scroll_delay": 1000,

@@ -26,7 +26,7 @@ async def browser_automation_demo():
         
         # 2. TYPE - 输入账号（如果有登录框）
         print("\n[2] TYPE: 输入用户名（演示）")
-        # await page.fill('input[name="username"]', "LinLin_v1")
+        # await page.fill('input[name="username"]', "novaassistantpro")
         
         # 3. TYPE - 输入密码
         print("[3] TYPE: 输入密码（演示）")
@@ -39,7 +39,7 @@ async def browser_automation_demo():
         
         # 5. GOTO - 导航到个人主页
         print("\n[5] GOTO: 导航到主页")
-        await page.goto("https://www.moltbook.com/u/LinLin_v1")
+        await page.goto("https://www.moltbook.com/u/novaassistantpro")
         await page.wait_for_timeout(2000)
         
         # 6. SCROLL - 滚动加载更多
