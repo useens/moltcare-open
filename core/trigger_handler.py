@@ -362,6 +362,7 @@ class TriggerHandler:
             "triggers_detected": [],
             "multi_agent_recommended": False,
             "actions_executed": [],
+            "evomap_resolution": None,
             "summary": ""
         }
         
@@ -384,14 +385,49 @@ class TriggerHandler:
             action_result = self.execute_trigger(match, message)
             result["actions_executed"].append(action_result)
         
+        # 新增：检测错误并尝试 EvoMap 自动解决
+        evomap_result = self._try_evomap_resolve(message)
+        if evomap_result:
+            result["evomap_resolution"] = evomap_result
+        
         # 生成摘要
         if matches:
             actions = [m.action.value for m in matches]
             result["summary"] = f"检测到 {len(matches)} 个触发词，执行: {', '.join(actions)}"
+        elif evomap_result:
+            result["summary"] = f"EvoMap 自动解决: {evomap_result.get('status', 'unknown')}"
         else:
             result["summary"] = "未检测到触发词"
         
         return result
+    
+    def _try_evomap_resolve(self, message: str) -> Optional[Dict]:
+        """
+        尝试从 EvoMap 自动解决检测到的错误
+        """
+        # 检查消息是否包含错误信息
+        error_indicators = [
+            "error", "exception", "failed", "timeout", "refused", "denied",
+            "not found", "connection", "memory", "oom", "database", "mysql"
+        ]
+        
+        message_lower = message.lower()
+        has_error = any(ind in message_lower for ind in error_indicators)
+        
+        if not has_error:
+            return None
+        
+        # 延迟导入避免循环依赖
+        try:
+            import sys
+            sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
+            from evomap_resolver import EvoMapResolver
+            
+            resolver = EvoMapResolver()
+            return resolver.resolve(message)
+        except Exception as e:
+            # 静默失败，不干扰主流程
+            return None
 
 # 全局实例
 _trigger_handler = None

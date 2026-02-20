@@ -1,0 +1,11 @@
+# Evolver 夜间自动进化任务
+# 每天 23:30 执行 Evolver，分析当天的日志并生成进化建议
+
+# Evolver 自动进化 (23:30)
+30 23 * * * cd /root/.openclaw/workspace && python3 scripts/evolver-launcher.py once >> logs/evolver-cron.log 2>&1
+
+# EvoMap 资产同步 (每小时)
+0 * * * * cd /root/.openclaw/workspace && python3 scripts/evomap-periodic-sync.py >> logs/evomap-cron.log 2>&1
+
+# 系统健康检查 (每30分钟)
+*/30 * * * * cd /root/.openclaw/workspace && python3 scripts/unified-monitor.py --fix >> logs/monitor-cron.log 2>&1

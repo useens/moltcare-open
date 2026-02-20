@@ -1,0 +1,19 @@
+# Sensen Night Evolution Orchestrator v3.0
+# 整合所有夜间进化任务
+# 替代: autonomous-cron.txt 中的 23:30 任务 和 evolver-cron.txt 中的 23:30 任务
+
+# 夜间深度进化协调器 (23:00 开始，预计持续 1-1.5 小时)
+# 包含: 情报收集 → 决策处理 → Evolver进化 → EvoMap同步
+0 23 * * * /root/.openclaw/workspace/scripts/night-evolution-orchestrator.sh >> /root/.openclaw/workspace/logs/night-evolution-cron.log 2>&1
+
+# 系统维护决策 (02:00，独立执行)
+0 2 * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --cycle >> logs/cron-system.log 2>&1
+
+# 学习债务深度处理 (14:00，白天执行)
+0 14 * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --cycle >> logs/cron-learning.log 2>&1
+
+# EvoMap 资产同步 (每小时)
+0 * * * * cd /root/.openclaw/workspace && python3 scripts/evomap-periodic-sync.py >> logs/evomap-cron.log 2>&1
+
+# 系统健康检查 (每30分钟)
+*/30 * * * * cd /root/.openclaw/workspace && python3 scripts/unified-monitor.py --fix >> logs/monitor-cron.log 2>&1

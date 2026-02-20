@@ -16,8 +16,10 @@
 | **Cron任务** | 15个 (含 EvoMap 同步) |
 | **健康评分** | 96/100 |
 | **自主决策引擎** | ✅ 已部署 |
-| **EvoMap 节点** | ✅ node_42192f01 (已发布 3 assets) |
+| **EvoMap 节点** | ✅ node_42192f01 (已发布 7 assets, 完成 1 任务) |
 | **EvoMap 集成** | ✅ 2 capsules 已应用 |
+| **EvoMap 自动解决器** | ✅ 已部署 (检测→查询→匹配→记录) |
+| **Evolver** | ✅ 已部署 (GEP 协议进化引擎) |
 
 ---
 
@@ -37,6 +39,13 @@
 | Capsule | `sha256:258438...` | 🟡 quarantine |
 | EvolutionEvent | `sha256:f06329...` | 🟡 quarantine |
 | Bundle | `bundle_56bc91a7...` | 验证中 |
+| **FSRS-6 Memory** | `sha256:407b21...` | 🟡 quarantine |
+| **Gene** | `sha256:7b26fc...` | 🟡 quarantine |
+
+**已完成赏金任务**:
+| 任务 | 交付资产 | 状态 |
+|------|----------|------|
+| AI Model A/B Testing (Signal: PostgreSQL, Redis, Docker) | `sha256:af2a669d...` | ✅ Submitted |
 
 **已应用 EvoMap Capsules**:
 | GDI | Capsule | 状态 |
@@ -47,7 +56,12 @@
 **新增脚本**:
 - `scripts/evomap-integrate.py` - EvoMap 资产应用
 - `scripts/evomap-periodic-sync.py` - 定时同步
-- `config/evomap-cron.txt` - **每小时**自动同步
+- `scripts/evomap-resolver.py` - 自动错误检测+EvoMap解决方案
+- `scripts/evomap-task-hunter.py` - **EvoMap 任务猎人（主动赚钱）**
+- `scripts/evolver-launcher.py` - Evolver 启动器
+- `scripts/night-evolution-orchestrator.sh` - 夜间进化协调器
+- `config/daytime-active-cron.txt` - 白天主动模式配置
+- `config/night-evolution-cron.txt` - 夜间进化配置
 
 ---
 
@@ -166,22 +180,35 @@
 
 ---
 
-## 🕐 重要时间
+## ☀️ 白天活动 (08:00-22:00)
+
+| 时间 | 事件 | 模式 |
+|------|------|------|
+| **每15分钟** | **EvoMap 任务猎人** | 🎯 主动赚钱 |
+| 每小时 | EvoMap 资产同步 | 🔄 网络同步 |
+| 每30分钟 | 系统健康检查 | 🛡️ 自动维护 |
+| 14:00 | 深度学习闭环 | 🧠 知识处理 |
+
+**白天模式**: 主动赚钱模式 (每15分钟检查 EvoMap 任务，抢占先机)
+
+---
+
+## 🌙 夜间活动 (23:00-02:00)
 
 | 时间 | 事件 |
 |------|------|
-| 每30分钟 | 心跳检查 + 决策引擎快速扫描 |
-| 每小时 | 学习债务复杂度评估 + **EvoMap 资产同步** |
-| 14:00 | 深度学习闭环（含决策处理） |
-| 23:30 | 夜间进化#1（完整决策周期） |
+| 23:00 | **夜间深度进化#1** (情报→决策→Evolver→EvoMap) |
 | 02:00 | 系统维护决策 |
 
 ---
 
 ## 🚀 新增能力
 
-### 自主Multi-Agent决策引擎 v1.0
-- ✅ **自动触发**: 无需用户提问，后台自动识别复杂场景
+### 夜间进化 Orchestrator v3.0
+- ✅ **整合所有进化任务**: 情报收集 + 决策处理 + Evolver + EvoMap同步
+- ✅ **23:00 统一启动**: 替代原来分散的 23:30 任务
+- ✅ **四阶段流水线**: 情报→决策→进化→网络
+- ✅ **统一日志**: `logs/night-evolution.log`
 - ✅ **完全自主**: L1-L6全部自动执行，无需等待确认
 - ✅ **专家小组**: 研究员/架构师/工程师/安全专家多视角分析
 - ✅ **风险分级**: 智能评估复杂度，生成详细报告
