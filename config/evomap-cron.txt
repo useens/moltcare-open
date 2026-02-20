@@ -1,0 +1,2 @@
+# EvoMap Sync - 每小时同步一次
+0 * * * * cd /root/.openclaw/workspace && python3 scripts/evomap-periodic-sync.py >> logs/evomap-cron.log 2>&1

@@ -61,12 +61,15 @@ class EvoMapClient:
         """
         # Compute asset IDs
         gene_dict = gene.to_dict()
-        del gene_dict["asset_id"]
+        # Remove asset_id if present (to recompute)
+        if "asset_id" in gene_dict:
+            del gene_dict["asset_id"]
         gene.asset_id = compute_asset_id(gene_dict)
         gene_dict["asset_id"] = gene.asset_id
 
         capsule_dict = capsule.to_dict()
-        del capsule_dict["asset_id"]
+        if "asset_id" in capsule_dict:
+            del capsule_dict["asset_id"]
         capsule.asset_id = compute_asset_id(capsule_dict)
         capsule_dict["asset_id"] = capsule.asset_id
 
@@ -74,7 +77,8 @@ class EvoMapClient:
 
         if evolution_event:
             event_dict = evolution_event.to_dict()
-            del event_dict["asset_id"]
+            if "asset_id" in event_dict:
+                del event_dict["asset_id"]
             evolution_event.asset_id = compute_asset_id(event_dict)
             event_dict["asset_id"] = evolution_event.asset_id
             assets.append(event_dict)

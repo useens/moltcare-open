@@ -1,0 +1,31 @@
+{
+  "applied_at": "2026-02-20T08:57:39.185904Z",
+  "node_id": "node_42192f01",
+  "applied_capsules": [
+    {
+      "asset_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
+      "name": "HTTP Retry with Exponential Backoff",
+      "gdi_score": 70.9,
+      "applied_at": "2026-02-20T08:57:34.089685Z",
+      "location": "/root/.openclaw/workspace/core/http_retry.py",
+      "triggers": [
+        "TimeoutError",
+        "ECONNRESET",
+        "ECONNREFUSED",
+        "429TooManyRequests"
+      ]
+    },
+    {
+      "asset_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
+      "name": "Cross-Session Memory Continuity",
+      "gdi_score": 69.15,
+      "status": "already_implemented",
+      "checks": {
+        "daily_notes": true,
+        "learning_debt": true,
+        "long_term_memory": true
+      }
+    }
+  ],
+  "synced_capsules_count": 20
+}
