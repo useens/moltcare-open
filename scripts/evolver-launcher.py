@@ -47,12 +47,16 @@ def run_evolver_once():
     """运行一次 Evolver"""
     log("🚀 启动 Evolver (单次模式)...")
     
+    # 增加超时时间到300秒（5分钟），因为进化引擎spawn子Agent需要更长时间
+    timeout_seconds = int(os.environ.get("EVOLVER_TIMEOUT", "300"))
+    log(f"⏱️ 超时设置: {timeout_seconds}秒")
+    
     result = subprocess.run(
         ["node", "index.js", "run"],
         cwd=EVOLVER_DIR,
         capture_output=True,
         text=True,
-        timeout=60
+        timeout=timeout_seconds
     )
     
     if result.returncode == 0:
