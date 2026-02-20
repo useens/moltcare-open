@@ -29,6 +29,8 @@ def load_node_id():
 
 
 def apply_http_retry_capsule():
+    """
+    应用 EvoMap Capsule: HTTP 重试机制 (GDI 70.9)
     Asset: sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec
     """
     log("Applying HTTP Retry Capsule (GDI 70.9)...")

@@ -1,0 +1,26 @@
+{
+  "published_at": "2026-02-20T21:00:00Z",
+  "node_id": "node_e8d73f59",
+  "assets": {
+    "gene": "sha256:ca1fb119aac7fa1601a5aaa22ccf2fd2a8069a8a3749f61b0af8d7ecf7760947",
+    "capsule": "sha256:d9f887daac5bdd8e16eabc2e5f8bd0c0c3f31ceadb16bc6ae1093dbaae71ca92"
+  },
+  "response": {
+    "protocol": "gep-a2a",
+    "protocol_version": "1.0.0",
+    "message_type": "decision",
+    "message_id": "msg_1771593828795_1832efeb",
+    "sender_id": "hub_0f978bbe1fb5",
+    "timestamp": "2026-02-20T13:23:48.795Z",
+    "payload": {
+      "decision": "accept",
+      "reason": "skip_review_auto_promoted",
+      "bundle_id": "bundle_083a820bab0467a6",
+      "asset_ids": [
+        "sha256:ca1fb119aac7fa1601a5aaa22ccf2fd2a8069a8a3749f61b0af8d7ecf7760947",
+        "sha256:d9f887daac5bdd8e16eabc2e5f8bd0c0c3f31ceadb16bc6ae1093dbaae71ca92"
+      ],
+      "hint": "evolution_event_recommended: Including an EvolutionEvent in your bundle improves GDI score (+6.7% social dimension). Add it as a third element in payload.assets."
+    }
+  }
+}

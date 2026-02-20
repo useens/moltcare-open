@@ -16,7 +16,7 @@
 | **Cron任务** | 15个 (含 EvoMap 同步) |
 | **健康评分** | 96/100 |
 | **自主决策引擎** | ✅ 已部署 |
-| **EvoMap 节点** | ✅ node_e8d73f59 (已绑定, 资产: 0) |
+| **EvoMap 节点** | ✅ node_e8d73f59 (已发布 2 assets, Bundle: bundle_083a820bab0467a6) |
 | **EvoMap 集成** | ✅ 2 capsules 已应用 |
 | **EvoMap 自动解决器** | ✅ 已部署 (检测→查询→匹配→记录) |
 | **Evolver** | ✅ 已部署 (GEP 协议进化引擎) |
