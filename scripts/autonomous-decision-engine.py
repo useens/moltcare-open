@@ -132,6 +132,7 @@ class DecisionContext:
     deadline: Optional[datetime] = None
     related_files: List[str] = field(default_factory=list)
     trigger_keywords: List[str] = field(default_factory=list)
+    signal: int = 0  # 新增: 信号强度，用于排序
 
 
 @dataclass
@@ -963,30 +964,43 @@ class DecisionEngine:
         lines = content.split('\n')
         
         for line in lines:
-            if 'Signal ' in line and ('⏳' in line or '🔍' in line):
-                signal_match = re.search(r'Signal (\d+)/10', line)
-                if signal_match:
-                    signal = int(signal_match.group(1))
-                    if signal >= 8:
+            if 'Signal ' in line:
+                # 支持多种格式识别：
+                # 1. [ ] 待处理
+                # 2. ⏳ 待处理  
+                # 3. 🔍 待处理
+                # 4. 不含 [x] 或 ✅ 已完成 的行
+                is_pending = ('[ ]' in line) or ('⏳' in line) or ('🔍' in line)
+                is_not_done = not ('[x]' in line or '✅ 已完成' in line)
+                
+                if is_pending or (is_not_done and 'Signal ' in line):
+                    signal_match = re.search(r'Signal (\d+)/10', line)
+                    if signal_match:
+                        signal = int(signal_match.group(1))
+                        # 提取主题
+                        topic = "未知主题"
                         topic_match = re.search(r'\*\*(.*?)\*\*', line)
-                        topic = topic_match.group(1) if topic_match else "未知主题"
+                        if topic_match:
+                            topic = topic_match.group(1)
                         
-                        should_trigger, risk_level, keywords = self.detector.assess_task_complexity(topic, signal)
-                        
-                        if should_trigger:
-                            workflow_type = self.intent_recognizer.recognize(topic)
+                        if signal >= 8:
+                            should_trigger, risk_level, keywords = self.detector.assess_task_complexity(topic, signal)
                             
-                            context = DecisionContext(
-                                task_id=f"debt-{datetime.now().strftime('%Y%m%d')}-{len(contexts):03d}",
-                                task_description=f"深度学习: {topic} (Signal {signal})",
-                                decision_type=DecisionType.DEBT_PROCESSING,
-                                workflow_type=workflow_type,
-                                risk_level=risk_level,
-                                source="learning-debt-scan",
-                                created_at=datetime.now(),
-                                trigger_keywords=keywords
-                            )
-                            contexts.append(context)
+                            if should_trigger:
+                                workflow_type = self.intent_recognizer.recognize(topic)
+                                
+                                context = DecisionContext(
+                                    task_id=f"debt-{datetime.now().strftime('%Y%m%d')}-{len(contexts):03d}",
+                                    task_description=f"深度学习: {topic} (Signal {signal})",
+                                    decision_type=DecisionType.DEBT_PROCESSING,
+                                    workflow_type=workflow_type,
+                                    risk_level=risk_level,
+                                    source="learning-debt-scan",
+                                    created_at=datetime.now(),
+                                    trigger_keywords=keywords,
+                                    signal=signal  # 新增Signal值用于排序
+                                )
+                                contexts.append(context)
         
         logger.info(f"扫描到 {len(contexts)} 个高Signal学习债务")
         return contexts
@@ -1038,6 +1052,17 @@ class DecisionEngine:
         all_contexts.extend(self.scan_system_issues())
         
         logger.info(f"发现 {len(all_contexts)} 个待决策任务")
+        
+        # 批量处理限制：每次最多处理5个任务，按Signal排序优先处理高Signal
+        max_batch_size = 5
+        if len(all_contexts) > max_batch_size:
+            # 按风险等级排序（L6优先），然后按Signal提取（如果有）
+            logger.info(f"📦 批量处理: {len(all_contexts)} 个任务，本次处理 {max_batch_size} 个最高优先级")
+            all_contexts.sort(key=lambda c: (
+                c.risk_level.value,  # L6>L5>...>L1 优先
+                hasattr(c, 'signal') and -getattr(c, 'signal', 0) if hasattr(c, 'signal') else 0
+            ), reverse=True)
+            all_contexts = all_contexts[:max_batch_size]
         
         decisions = []
         for context in all_contexts:
