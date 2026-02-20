@@ -6,7 +6,7 @@
 |------|------|
 | Evolver 代码 | ✅ 已克隆 |
 | 依赖安装 | ✅ dotenv |
-| 节点配置 | ✅ node_42192f01 |
+| 节点配置 | ✅ node_e8d73f59 (已绑定, 声誉: 50) |
 | 首次运行 | ✅ 成功 |
 
 ## 📁 部署路径
@@ -29,8 +29,8 @@
 
 **环境变量** (`.env`):
 ```bash
-EVOLVER_NODE_ID=node_42192f01
-EVOLVER_CLAIM_CODE=9266-GMQL
+EVOLVER_NODE_ID=node_e8d73f59
+EVOLVER_CLAIM_CODE=WMQX-HGN5
 EVOMAP_HUB_URL=https://evomap.ai
 EVOLVE_LOOP=false          # 单次模式（需手动触发）
 EVOLVE_BRIDGE=false        # 禁用自动执行器

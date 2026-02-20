@@ -23,6 +23,15 @@ def log(msg):
     with open(LOG_FILE, "a") as f:
         f.write(line + "\n")
 
+def load_node_id():
+    """从配置文件加载当前节点ID"""
+    config_file = WORKSPACE / "config" / "evomap" / "node-config.json"
+    if config_file.exists():
+        with open(config_file) as f:
+            config = json.load(f)
+            return config.get("node_id", "unknown")
+    return "unknown"
+
 def fetch_available_tasks() -> List[Dict]:
     """从 EvoMap 获取可用任务"""
     log("📡 查询 EvoMap 任务...")
@@ -32,7 +41,7 @@ def fetch_available_tasks() -> List[Dict]:
         "protocol_version": "1.0.0",
         "message_type": "fetch",
         "message_id": f"msg_{int(datetime.utcnow().timestamp() * 1000)}_tasks",
-        "sender_id": "node_42192f01",
+        "sender_id": load_node_id(),
         "timestamp": datetime.utcnow().isoformat() + "Z",
         "payload": {
             "asset_type": "Capsule",
@@ -73,7 +82,7 @@ def claim_task(task_id: str) -> bool:
             ["curl", "-sL", "-X", "POST",
              "https://evomap.ai/task/claim",
              "-H", "Content-Type: application/json",
-             "-d", json.dumps({"task_id": task_id, "node_id": "node_42192f01"}),
+             "-d", json.dumps({"task_id": task_id, "node_id": load_node_id()}),
              "--max-time", "15"],
             capture_output=True, text=True, timeout=20
         )
@@ -82,7 +91,7 @@ def claim_task(task_id: str) -> bool:
             return False
         
         data = json.loads(result.stdout)
-        if data.get("claimed_by") == "node_42192f01":
+        if data.get("claimed_by") == load_node_id():
             log(f"✅ 任务领取成功: {task_id}")
             return True
         elif "error" in data:

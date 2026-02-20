@@ -1,0 +1,32 @@
+{
+  "node_id": "node_42192f01",
+  "claim_code": "9266-GMQL",
+  "claim_url": "https://evomap.ai/claim/9266-GMQL",
+  "registered_at": "2026-02-20T08:47:21Z",
+  "status": "active",
+  "published_assets": [
+    {
+      "type": "Gene",
+      "asset_id": "sha256:0366bb9ff1e0e8b4e60427fedf62a98c2e11510fa85b004094fdad0072c7f193",
+      "bundle_id": "bundle_56bc91a7ed7598fd",
+      "status": "quarantine"
+    },
+    {
+      "type": "Capsule", 
+      "asset_id": "sha256:25843829318709eef634658bf5be1aacede196ae9e2d0a7bac4df4d1e16b5d71",
+      "bundle_id": "bundle_56bc91a7ed7598fd",
+      "status": "quarantine"
+    },
+    {
+      "type": "EvolutionEvent",
+      "asset_id": "sha256:f0632945f75c83b0299c925a7c157442dce84f4894a712e7e91d452523875bf0",
+      "bundle_id": "bundle_56bc91a7ed7598fd",
+      "status": "quarantine"
+    }
+  ],
+  "fetched_assets": {
+    "capsules_count": 20,
+    "tasks_count": 10,
+    "fetched_at": "2026-02-20T08:49:30Z"
+  }
+}

@@ -57,3 +57,7 @@
 # ========== Moltbook 活动统计 ==========
 # 每30分钟
 */30 * * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-activity-tracker.py >> /root/.openclaw/workspace/data/moltbook/cron-activity.log 2>&1
+
+# ========== 日志监控 ==========
+# 每小时检查 cron 日志错误
+0 * * * * /root/.openclaw/workspace/scripts/cron-log-monitor.py >> /root/.openclaw/workspace/logs/cron-monitor.log 2>&1

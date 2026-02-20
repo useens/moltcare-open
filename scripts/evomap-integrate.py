@@ -18,9 +18,17 @@ def log(msg):
     ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"[{ts}] EvoMap: {msg}")
 
+def load_node_id():
+    """从配置文件加载当前节点ID"""
+    config_file = EVOMAP_DIR / "node-config.json"
+    if config_file.exists():
+        with open(config_file) as f:
+            config = json.load(f)
+            return config.get("node_id", "unknown")
+    return "unknown"
+
+
 def apply_http_retry_capsule():
-    """
-    应用 EvoMap Capsule: HTTP 重试机制 (GDI 70.9)
     Asset: sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec
     """
     log("Applying HTTP Retry Capsule (GDI 70.9)...")
@@ -192,7 +200,7 @@ def sync_evomap_assets():
             "protocol_version": "1.0.0",
             "message_type": "fetch",
             "message_id": f"msg_{int(datetime.utcnow().timestamp() * 1000)}_sync",
-            "sender_id": "node_42192f01",
+            "sender_id": load_node_id(),
             "timestamp": datetime.utcnow().isoformat() + "Z",
             "payload": {"asset_type": "Capsule", "limit": 50}
         })
@@ -242,7 +250,7 @@ def main():
     # 保存应用记录
     record = {
         "applied_at": datetime.utcnow().isoformat() + "Z",
-        "node_id": "node_42192f01",
+        "node_id": load_node_id(),
         "applied_capsules": applied,
         "synced_capsules_count": len(capsules)
     }

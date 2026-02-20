@@ -106,11 +106,20 @@ ERROR_PATTERNS = [
     ),
 ]
 
+def load_node_id():
+    """从配置文件加载当前节点ID"""
+    config_file = WORKSPACE / "config" / "evomap" / "node-config.json"
+    if config_file.exists():
+        with open(config_file) as f:
+            config = json.load(f)
+            return config.get("node_id", "unknown")
+    return "unknown"
+
 class EvoMapResolver:
     """EvoMap 自动解决器"""
     
     def __init__(self):
-        self.node_id = "node_42192f01"
+        self.node_id = load_node_id()
         self.data_dir = DATA_DIR
         self.data_dir.mkdir(parents=True, exist_ok=True)
         self.resolution_log = self.data_dir / "auto-resolutions.jsonl"
