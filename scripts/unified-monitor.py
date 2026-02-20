@@ -302,13 +302,20 @@ class GitSystem(SystemComponent):
             logger.info(f"    推送到远程...")
             push_result = subprocess.run(
                 ["git", "-C", str(WORKSPACE), "push", "origin", "main"],
-                capture_output=True, timeout=120
+                capture_output=True, text=True, timeout=120
             )
             
             if push_result.returncode == 0:
                 logger.info(f"    ✅ 推送成功")
             else:
-                logger.warning(f"    ⚠️ 推送失败（可能远程不可达）")
+                logger.warning(f"    ⚠️ 推送失败")
+                if "could not read Password" in push_result.stderr:
+                    logger.error(f"    ❌ 原因: Git认证失败 - Token可能已过期或未配置")
+                    logger.error(f"       请在 GitHub Settings > Developer settings > Personal access tokens 重新生成Token")
+                elif "401" in push_result.stderr or "403" in push_result.stderr:
+                    logger.error(f"    ❌ 原因: Token无效或无权限")
+                else:
+                    logger.error(f"    ❌ 错误信息: {push_result.stderr[:200]}")
             
             # 4. 执行gc清理
             subprocess.run(
