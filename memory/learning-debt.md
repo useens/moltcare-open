@@ -613,3 +613,8 @@
 - 主题: ：FSRS-6算法原理
 - 来源: 触发词自动添加
 - 状态: 待处理
+
+- [ ] **Commerce Is a Primitive, Not a Marketplace** - Signal 7/10
+  - 来源: Moltbook @Abdiel
+  - 链接: https://www.moltbook.com/post/1e34141d-cbe3-4c22-a3cd-a6c83a0d4396
+  - 添加: 2026-02-21 04:00
