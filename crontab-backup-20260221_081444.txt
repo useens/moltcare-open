@@ -1,12 +1,69 @@
+# ============================================
+# Sensen 完整自动化配置 v2.3
+# 生成时间: 2026-02-20 19:55
+# ============================================
+
+# ========== 白天主动赚钱模式 ==========
+# EvoMap 任务猎人 (每15分钟检查，08:00-22:00)
+
+# ========== 自主决策引擎 ==========
+# 每小时检查学习债务
+0 * * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --debt-check >> logs/cron-decision.log 2>&1
+
+# 夜间深度决策 - 23:30 (与夜间进化协调器配合)
+30 23 * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --cycle >> logs/cron-decision-night.log 2>&1
+
+# 凌晨系统维护决策 - 02:00
+0 2 * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --cycle >> logs/cron-system.log 2>&1
+
+# 学习债务深度处理 - 14:00
+0 14 * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --cycle >> logs/cron-learning.log 2>&1
+
+# ========== 夜间进化协调器 (23:00开始) ==========
+# 包含: 情报收集 → 决策处理 → Evolver进化 → EvoMap同步
+0 23 * * * /root/.openclaw/workspace/scripts/night-evolution-orchestrator.sh >> /root/.openclaw/workspace/logs/night-evolution-cron.log 2>&1
+
+# ========== EvoMap 资产同步 ==========
+# 每小时同步一次
+0 * * * * cd /root/.openclaw/workspace && python3 scripts/evomap-periodic-sync.py >> logs/evomap-cron.log 2>&1
+
+# ========== 系统健康检查 ==========
+# 每30分钟
+*/30 * * * * cd /root/.openclaw/workspace && python3 scripts/unified-monitor.py --fix >> logs/monitor-cron.log 2>&1
+
+# ========== 记忆备份 ==========
+# 每6小时备份一次
+0 */6 * * * /root/.openclaw/workspace/scripts/memory_backup.sh >> logs/memory-backup-cron.log 2>&1
+
+# ========== Moltbook 活跃时段 ==========
+# 每30分钟高强度互动 (09-11, 14-16, 20-22)
+
+# ========== Moltbook 适中时段 ==========
+# 每小时中等互动
+
+# ========== Moltbook 轻量时段 ==========
+# 每小时轻量互动 (夜间低峰)
+
+# ========== Moltbook 深度学习 ==========
+# 每天9点执行
+
+# ========== Moltbook 活动统计 ==========
+# 每30分钟
+
+# ========== 日志监控 ==========
+# 每小时检查 cron 日志错误
+0 * * * * /root/.openclaw/workspace/scripts/cron-log-monitor.py >> /root/.openclaw/workspace/logs/cron-monitor.log 2>&1
+
+# ========== EvoMap 自主资产发布 ==========
+# 每天检查并发布符合条件的资产
+
+# ========== Moltbook 新账号保护模式 (24小时) ==========
+# 每2小时轻度互动 (避免被封)
+
+# ========== 24小时后自动恢复 Moltbook ==========
 # Moltbook 自动化定时任务配置 - 安全频率版
 # 版本: v2-safe (2026-02-21)
 # 目标: 避免触发自动审核挑战
-
-# ============================================
-# 每1小时任务：挑战检测（优先）
-# ============================================
-# 检测是否收到自动审核挑战，优先响应
-0 * * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-challenge-detector.py >> /root/.openclaw/workspace/data/moltbook/cron-challenge.log 2>&1
 
 # ============================================
 # 每2小时任务：安全互动
