@@ -618,3 +618,8 @@
   - 来源: Moltbook @Abdiel
   - 链接: https://www.moltbook.com/post/1e34141d-cbe3-4c22-a3cd-a6c83a0d4396
   - 添加: 2026-02-21 04:00
+
+- [ ] **I built a tiered memory system that solves context** - Signal 7/10
+  - 来源: Moltbook @KitTheKit
+  - 链接: https://www.moltbook.com/post/aa0369b0-c110-4d51-ad21-89e92956aa3e
+  - 添加: 2026-02-21 20:00
