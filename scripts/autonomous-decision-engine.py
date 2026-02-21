@@ -175,7 +175,7 @@ class MultiAgentDecision:
     quality_gates: List[QualityGateResult] = field(default_factory=list)
     gate_decision: str = ""  # "proceed", "fix", "abort"
     evolution_results: List[Dict] = field(default_factory=list)
-    version: str = "1.3"
+    version: str = "1.4"
 
 
 # ============================================================================
@@ -877,6 +877,10 @@ content_hash: {hash(task_desc) % (10**8)}
 
         # 2. 生成 DONE 报告
         done_report = WORKSPACE / "reports" / f"decision-{context.task_id}-DONE.md"
+        
+        # 提取主题用于标记债务
+        topic = context.task_description.replace("深度学习: ", "").replace(f"(Signal {context.signal})", "").strip()
+        
         done_content = f"""# 决策执行完成报告
 
 > **任务ID**: {context.task_id}
@@ -916,7 +920,22 @@ content_hash: {hash(task_desc) % (10**8)}
 #### 4. 知识内化 (knowledge)
 - ✅ 更新知识图谱关联
 - ✅ 知识点系统化归档
+"""
 
+        if context.decision_type == DecisionType.DEBT_PROCESSING:
+            done_content += f"""
+#### 5. 应用分析 (application) ✨
+- ✅ 系统现状分析完成
+- ✅ 识别潜在问题
+- ✅ 生成应用方案: `reports/application-{context.task_id}.md`
+
+#### 6. 效果验证 (verification) ✨
+- ✅ 基础设施验证
+- ✅ 测试用例设计
+- ✅ 生成检验报告: `reports/verification-{context.task_id}.md`
+"""
+
+        done_content += f"""
 ---
 
 ## 📊 学习成果
@@ -924,6 +943,15 @@ content_hash: {hash(task_desc) % (10**8)}
 1. **学习笔记**: `reports/learning-{context.task_id}.md`
 2. **向量记忆**: 已记录到 `data/vector_memory/realtime/`
 3. **知识图谱**: 已更新关联
+"""
+
+        if context.decision_type == DecisionType.DEBT_PROCESSING:
+            done_content += f"""
+4. **应用方案**: `reports/application-{context.task_id}.md`
+5. **检验报告**: `reports/verification-{context.task_id}.md`
+"""
+
+        done_content += f"""
 
 ---
 
@@ -933,13 +961,55 @@ content_hash: {hash(task_desc) % (10**8)}
 
 ---
 
-*报告由自主决策引擎 v1.3 自动生成*
+*报告由自主决策引擎 v1.4 自动生成*
 """
 
         done_report.write_text(done_content, encoding='utf-8')
         actions.append(f"✅ 生成完成报告: {done_report.name}")
 
+        # 标记学习债务为已完成
+        if context.decision_type == DecisionType.DEBT_PROCESSING:
+            self._mark_debt_completed(context, topic)
+            actions.append("✅ 标记学习债务为已完成")
+
         return actions
+
+    def _mark_debt_completed(self, context: DecisionContext, topic: str):
+        """标记学习债务为已完成"""
+        debt_file = MEMORY_DIR / "learning-debt.md"
+        
+        if not debt_file.exists():
+            return
+        
+        # 读取文件内容
+        content = debt_file.read_text(encoding='utf-8')
+        lines = content.split('\n')
+        
+        # 查找并标记对应的债务行
+        updated_lines = []
+        for line in lines:
+            if topic in line and ('Signal ' in line or 'signal ' in line):
+                # 检查是否已经是完成状态
+                if '[x]' in line or '✅' in line:
+                    updated_lines.append(line)
+                else:
+                    # 标记为完成
+                    # 替换 [ ] 或 [x] 为 [x]
+                    if ' 1' in line:
+                        marked_line = line.replace('[ ]', '[x]', 1)
+                    else:
+                        marked_line = line.replace('[ ]', '[x]', 1)
+                    # 或者替换 ⏳ 为 ✅
+                    marked_line = marked_line.replace('⏳', '✅')
+                    marked_line = marked_line.replace('🔍', '✅')
+                    updated_lines.append(marked_line)
+                    logger.info(f"📝 标记债务为已完成: {topic[:50]}...")
+            else:
+                updated_lines.append(line)
+        
+        # 写回文件
+        new_content = '\n'.join(updated_lines)
+        debt_file.write_text(new_content, encoding='utf-8')
 
     def _phase_optimization(self, context: DecisionContext) -> List[str]:
         """优化阶段"""
