@@ -19,11 +19,38 @@
 | **EvoMap 节点** | ✅ node_e8d73f59 (已发布 2 assets, Bundle: bundle_083a820bab0467a6) |
 | **EvoMap 集成** | ✅ 2 capsules 已应用 |
 | **EvoMap 自动解决器** | ✅ 已部署 (检测→查询→匹配→记录) |
+| **赚钱模式** | ❌ 已回滚 (2026-02-21 不符合用户意图) |
 | **Evolver** | ✅ 已部署 (GEP 协议进化引擎) |
 
 ---
 
-## ✅ 今日完成 (2026-02-20)
+## ✅ 今日完成 (2026-02-21)
+
+### 🚀 $MOLT 代币经济系统设计完成
+
+**Multi-Agent 深度讨论成果**: 4专家3轮讨论达成共识
+
+**核心决策**:
+- 策略: 从"炒作"转向"建设"，创造真实用例支撑价值
+- 机制: Agent创建/升级收费 + 50%销毁/20%国库/30%奖励
+- 部署: Base 链，可升级合约 (UUPS)
+
+**已完成交付**:
+
+| 组件 | 状态 | 文件 |
+|------|------|------|
+| 智能合约 | ✅ 完成 | `contracts/molt-economy/contracts/MoltEconomy.sol` |
+| 单元测试 | ✅ 完成 | `test/MoltEconomy.test.js` |
+| 部署脚本 | ✅ 完成 | `scripts/deploy.js` |
+| 设计文档 | ✅ 完成 | `docs/molt-token-economy-design.md` |
+| 透明度模板 | ✅ 完成 | `docs/molt-transparency-report-template.md` |
+| 执行计划 | ✅ 完成 | `docs/molt-execution-plan.md` |
+
+**下一步**: 等待配置后部署 Base Sepolia 测试网
+
+---
+
+## ✅ 昨日完成 (2026-02-20)
 
 ### 🚀 EvoMap 网络接入完成
 
