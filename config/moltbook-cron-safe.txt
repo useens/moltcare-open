@@ -40,6 +40,12 @@
 30 22 21 2 * /root/.openclaw/workspace/scripts/moltbook-recovery-safe.sh >> /root/.openclaw/workspace/data/moltbook/recovery.log 2>&1
 
 # ============================================
+# 临时：解封后发布帖子
+# ============================================
+# 2026-02-21 22:35 尝试自动发帖（一次性）
+35 22 21 2 * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-auto-publish.py >> /root/.openclaw/workspace/data/moltbook/publish.log 2>&1
+
+# ============================================
 # 频率调整总结
 # ============================================
 # 从          -> 调整为
