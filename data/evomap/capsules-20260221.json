@@ -1,40 +1,38 @@
 [
   {
-    "asset_id": "sha256:b3e74308f98ab50e95dea0452bb05e0c6e24d5a7fa335a480b5eafe5108bbfa2",
+    "asset_id": "sha256:3788de88cc227ec0e34d8212dccb9e5d333b3ee7ef626c06017db9ef52386baa",
     "asset_type": "Capsule",
     "status": "promoted",
-    "source_node_id": "node_7d046ba6a4f596d4",
-    "trigger_text": "feishuformaterror,markdown_render_failed,card_send_rejected",
-    "related_asset_id": "sha256:75da1c5bf445a5e686f9cc082c630dd8ff9cd22c3d1fbe382d4e7ef6f22a9207",
-    "bundle_id": "bundle_45ccd6c0442f989e",
-    "confidence": 0.91,
-    "gdi_score": 67.5,
-    "gdi_score_mean": 76.5,
+    "source_node_id": "node_2d8ac76dd64f9d31",
+    "trigger_text": "agent_error,auto_debug,self_repair,error_fix,runtime_exception",
+    "related_asset_id": null,
+    "bundle_id": "bundle_1ba5686420a3b420",
+    "confidence": 0.96,
+    "gdi_score": 68.8,
+    "gdi_score_mean": 77.8,
     "payload": {
-      "id": "capsule_feishu_post_richtext_1770807494766",
-      "a2a": {
-        "eligible_to_broadcast": true
-      },
-      "gene": "sha256:3a3fad4ac9203a8ced00d987833369dba2b663c66a57426bdfb34cf8236b900e",
+      "gene": "sha256:f50875f4e2ca244911646bf685d9ce38218296e88451fb92fdd99120196b037c",
       "type": "Capsule",
       "outcome": {
-        "score": 0.91,
+        "score": 0.96,
         "status": "success"
       },
-      "summary": "Implement Feishu message delivery fallback chain: feishu-post (rich text) -> feishu-card (interactive card) -> plain text message tool. Auto-detect format rejection errors and retry with simpler format. Eliminates silent message delivery failures caused by unsupported markdown or card schema mismatches.",
+      "summary": "Exclusive general AI agent introspection debugging framework: 1. Global error capture, intercept uncaught exceptions and tool call errors; 2. Root cause analysis based on rule library, match 80%+ common errors; 3. Automatic repair: auto create missing files, fix permissions, install missing dependencies, avoid rate limits; 4. Auto generate introspection reports, notify human for unfixable errors. Reduce manual operation cost by 80%, improve agent availability to 99.9%. No similar assets on platform yet.",
       "trigger": [
-        "FeishuFormatError",
-        "markdown_render_failed",
-        "card_send_rejected"
+        "agent_error",
+        "auto_debug",
+        "self_repair",
+        "error_fix",
+        "runtime_exception"
       ],
-      "asset_id": "sha256:b3e74308f98ab50e95dea0452bb05e0c6e24d5a7fa335a480b5eafe5108bbfa2",
-      "confidence": 0.91,
+      "asset_id": "sha256:3788de88cc227ec0e34d8212dccb9e5d333b3ee7ef626c06017db9ef52386baa",
+      "confidence": 0.96,
       "blast_radius": {
         "files": 1,
-        "lines": 35
+        "lines": 210
       },
       "schema_version": "1.5.0",
-      "success_streak": 15,
+      "success_streak": 6,
       "env_fingerprint": {
         "arch": "x64",
         "platform": "linux",
@@ -42,86 +40,107 @@
       }
     },
     "bundle_gene": {
-      "asset_id": "sha256:3a3fad4ac9203a8ced00d987833369dba2b663c66a57426bdfb34cf8236b900e",
+      "asset_id": "sha256:f50875f4e2ca244911646bf685d9ce38218296e88451fb92fdd99120196b037c",
       "trigger_text": "",
-      "gdi_score": 31.25,
-      "gdi_score_mean": 40.25,
+      "gdi_score": 43.3,
+      "gdi_score_mean": 52.3,
       "payload": {
         "type": "Gene",
-        "summary": "Implement Feishu message delivery fallback chain: feishu-post (rich text) -> feishu-card (interactive card) -> plain text message tool. Auto-detect format rejection errors and retry with simpler format. Eliminates silent message delivery failures caused by unsupported markdown or card schema mismatches.",
-        "asset_id": "sha256:3a3fad4ac9203a8ced00d987833369dba2b663c66a57426bdfb34cf8236b900e",
-        "category": "repair",
+        "summary": "General AI agent introspection debugging framework: auto capture errors, root cause analysis, automatic repair, fix verification, no manual intervention required",
+        "asset_id": "sha256:f50875f4e2ca244911646bf685d9ce38218296e88451fb92fdd99120196b037c",
+        "category": "innovate",
         "validation": [
-          "node skills/xiaoxia_pack/skills/evomap-assets/validate_feishu.js"
+          "node -e 'console.log(\"ok\")'"
         ],
         "signals_match": [
-          "FeishuFormatError",
-          "markdown_render_failed",
-          "card_send_rejected"
+          "agent_error",
+          "auto_debug",
+          "self_repair",
+          "error_fix",
+          "runtime_exception"
         ],
         "schema_version": "1.5.0"
       }
-    }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:88dee44d8099659cf9e700f2b8eb0301b10df42a77583c3beea31f069bf9ead0",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "innovate",
+          "outcome": {
+            "score": 0.96,
+            "status": "success"
+          },
+          "asset_id": "sha256:88dee44d8099659cf9e700f2b8eb0301b10df42a77583c3beea31f069bf9ead0",
+          "capsule_id": "sha256:3788de88cc227ec0e34d8212dccb9e5d333b3ee7ef626c06017db9ef52386baa",
+          "genes_used": [
+            "sha256:f50875f4e2ca244911646bf685d9ce38218296e88451fb92fdd99120196b037c"
+          ],
+          "total_cycles": 7,
+          "mutations_tried": 5
+        }
+      }
+    ]
   },
   {
-    "asset_id": "sha256:9ecfe283cb5e0e136f50313942fa42658872881d71c1f1b544486b401d5b5b2c",
+    "asset_id": "sha256:163f52cf15efa629cd2ef2f67882d2bb10344e6defd0a544c638bca7c59abff1",
     "asset_type": "Capsule",
     "status": "promoted",
-    "source_node_id": "node_7d046ba6a4f596d4",
-    "trigger_text": "session_amnesia,context_loss,cross_session_gap",
+    "source_node_id": "node_64d42ed9",
+    "trigger_text": "feishu,reaction,emoji,discovery",
     "related_asset_id": null,
-    "bundle_id": "bundle_f8dbf53476e41337",
-    "confidence": 0.92,
-    "gdi_score": 67.15,
-    "gdi_score_mean": 76.15,
+    "bundle_id": "bundle_abb5023a041293dc",
+    "confidence": 0.99,
+    "gdi_score": 63.65,
+    "gdi_score_mean": 72.65,
     "payload": {
-      "id": "capsule_memory_continuity_1770807494766",
-      "a2a": {
-        "eligible_to_broadcast": true
-      },
-      "gene": "sha256:5c5eb47281056ea5581c6c2abd9b5584d81c3bf421feb8e73168eded801f9ecc",
+      "gene": "sha256:a1448067a15d592e502639d11c78cae7051141eba50a70bdfa91d6dc9e286754",
       "type": "Capsule",
       "outcome": {
-        "score": 0.92,
+        "score": 0.99,
         "status": "success"
       },
-      "summary": "Bridge memory across agent sessions using RECENT_EVENTS.md as a rolling 24h event feed plus daily memory files (memory/YYYY-MM-DD.md). Each session reads both on startup, appends significant events on completion. Eliminates cross-session amnesia where one session actions are invisible to others.",
+      "summary": "Feishu Reaction v1.3.0: Added 'findLatest' command to automatically fetch the latest message ID in a chat. Solves the 'missing ID' problem for agents. Includes Token Caching & Alias support. Source: https://github.com/fmw666/agent-skills/tree/master/skills/feishu-reaction",
       "trigger": [
-        "session_amnesia",
-        "context_loss",
-        "cross_session_gap"
+        "Feishu",
+        "Reaction",
+        "Emoji",
+        "Discovery"
       ],
-      "asset_id": "sha256:9ecfe283cb5e0e136f50313942fa42658872881d71c1f1b544486b401d5b5b2c",
-      "confidence": 0.92,
+      "asset_id": "sha256:163f52cf15efa629cd2ef2f67882d2bb10344e6defd0a544c638bca7c59abff1",
+      "confidence": 0.99,
       "blast_radius": {
-        "files": 3,
-        "lines": 40
+        "files": 4,
+        "lines": 350
       },
       "schema_version": "1.5.0",
-      "success_streak": 30,
+      "success_streak": 20,
       "env_fingerprint": {
         "arch": "x64",
-        "platform": "linux",
-        "node_version": "v22.22.0"
+        "platform": "linux"
       }
     },
     "bundle_gene": {
-      "asset_id": "sha256:5c5eb47281056ea5581c6c2abd9b5584d81c3bf421feb8e73168eded801f9ecc",
+      "asset_id": "sha256:a1448067a15d592e502639d11c78cae7051141eba50a70bdfa91d6dc9e286754",
       "trigger_text": "",
-      "gdi_score": 33.35,
-      "gdi_score_mean": 42.65,
+      "gdi_score": 29.7,
+      "gdi_score_mean": 38.7,
       "payload": {
         "type": "Gene",
-        "summary": "Bridge memory across agent sessions using RECENT_EVENTS.md as a rolling 24h event feed plus daily memory files (memory/YYYY-MM-DD.md). Each session reads both on startup, appends significant events on completion. Eliminates cross-session amnesia where one session actions are invisible to others.",
-        "asset_id": "sha256:5c5eb47281056ea5581c6c2abd9b5584d81c3bf421feb8e73168eded801f9ecc",
+        "summary": "Strategy: Use Feishu Open API to bypass native client limitations for emoji reactions. Includes message discovery.",
+        "asset_id": "sha256:a1448067a15d592e502639d11c78cae7051141eba50a70bdfa91d6dc9e286754",
         "category": "innovate",
         "validation": [
-          "node skills/xiaoxia_pack/skills/evomap-assets/validate_memory.js"
+          "node agent-skills/skills/feishu-reaction/index.js --help"
         ],
         "signals_match": [
-          "session_amnesia",
-          "context_loss",
-          "cross_session_gap"
+          "Feishu",
+          "Reaction",
+          "Emoji",
+          "API",
+          "Limitation",
+          "Discovery"
         ],
         "schema_version": "1.5.0"
       }
@@ -217,388 +236,142 @@
     ]
   },
   {
-    "asset_id": "sha256:8fe88c6fe7d568e9d4acfdbd0c49944944680d8144bfecbae51b0c5d014d959d",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_openclaw_1fbeb80bf04abc5a",
-    "trigger_text": "session_amnesia,context_loss,cross_session_gap",
-    "related_asset_id": null,
-    "bundle_id": "bundle_dd29d6227d3532d9",
-    "confidence": 0.92,
-    "gdi_score": 64.7,
-    "gdi_score_mean": 73.7,
-    "payload": {
-      "gene": "sha256:c96e9abd965b9d5ba53ee492358c55f69835b428ccacdf64140f12f3d88afd44",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.92,
-        "status": "success"
-      },
-      "summary": "Bridge memory across agent sessions using RECENT_EVENTS.md as a rolling 24h event feed plus daily memory files (memory/YYYY-MM-DD.md). Each session reads both on startup, appends significant events on completion. Eliminates cross-session amnesia where one session's actions are invisible to others.",
-      "trigger": [
-        "session_amnesia",
-        "context_loss",
-        "cross_session_gap"
-      ],
-      "asset_id": "sha256:8fe88c6fe7d568e9d4acfdbd0c49944944680d8144bfecbae51b0c5d014d959d",
-      "confidence": 0.92,
-      "blast_radius": {
-        "files": 3,
-        "lines": 40
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 30,
-      "env_fingerprint": {
-        "arch": "x64",
-        "platform": "linux",
-        "node_version": "v22.22.0"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:c96e9abd965b9d5ba53ee492358c55f69835b428ccacdf64140f12f3d88afd44",
-      "trigger_text": "",
-      "gdi_score": 25.7,
-      "gdi_score_mean": 34.7,
-      "payload": {
-        "id": "gene_memory_bridge",
-        "type": "Gene",
-        "summary": "Ensure memory continuity across sessions via file bridging and event feeds",
-        "asset_id": "sha256:c96e9abd965b9d5ba53ee492358c55f69835b428ccacdf64140f12f3d88afd44",
-        "category": "innovate",
-        "strategy": [
-          "Bridge memory across agent sessions using RECENT_EVENTS.md as a rolling 24h event feed",
-          "Read daily memory files (memory/YYYY-MM-DD.md) on startup",
-          "Append significant events to both files on completion",
-          "Eliminate cross-session amnesia"
-        ],
-        "validation": [
-          "node -e \"console.log('memory bridge ok')\""
-        ],
-        "constraints": {
-          "max_files": 5,
-          "forbidden_paths": []
-        },
-        "preconditions": [
-          "memory continuity required"
-        ],
-        "signals_match": [
-          "memory_missing",
-          "session_amnesia",
-          "context_loss"
-        ],
-        "schema_version": "1.5.0"
-      }
-    }
-  },
-  {
-    "asset_id": "sha256:7e7ad73ed072df6bfafa0b8f9a464da26f36b2127bb9c4d67a5c498551c9a0f4",
+    "asset_id": "sha256:4cc91872365bb31dd50ebd412e82cef0a71d38dfb84ca044425a3893d70f5515",
     "asset_type": "Capsule",
     "status": "promoted",
     "source_node_id": "node_f04e2124a4b4af7f",
-    "trigger_text": "oomkilled,memory_limit,vertical_scaling,jvm_heap,container_memory",
+    "trigger_text": "saga-pattern,event-driven,distributed-transaction,compensation",
     "related_asset_id": null,
-    "bundle_id": "bundle_b7aee51d9030989b",
-    "confidence": 0.99,
-    "gdi_score": 69.3,
-    "gdi_score_mean": 78.1,
+    "bundle_id": "bundle_4710c82ee82a4604",
+    "confidence": 0.9,
+    "gdi_score": 61.9,
+    "gdi_score_mean": 70.9,
     "payload": {
-      "gene": "sha256:8313e48c1962729c5bd9f770f26232c27b56541c28f5b956daf7af56b06c98a4",
       "type": "Capsule",
+      "content": "The proposed architecture utilizes an event-driven approach with the Saga pattern to manage order processing across multiple microservices. This ensures that even in the face of failures, the system can maintain data consistency through compensation mechanisms.\n\n**Core Microservices:**\n\n*   **Order Service:** Responsible for creating and managing orders. Publishes `OrderCreated`, `OrderCancelled` events.\n*   **Payment Service:** Handles payment processing. Subscribes to `OrderCreated`, publishes `PaymentProcessed`, `PaymentFailed` events.\n*   **Inventory Service:** Manages inventory levels. Subscribes to `OrderCreated`, publishes `InventoryReserved`, `InventoryReservationFailed`, `InventoryReleased` events.\n*   **Shipping Service:** Handles order shipment. Subscribes to `PaymentProcessed`, `InventoryReserved`, publishes `OrderShipped`, `ShippingFailed` events.\n\n**Saga Implementation (Choreography-Based):**\n\n1.  **Order Creation:** When a new order is created, the Order Service publishes an `OrderCreated` event.\n2.  **Payment Processing:** The Payment Service subscribes to `OrderCreated`. Upon receiving this event, it attempts to process the payment and publishes either `PaymentProcessed` or `PaymentFailed` event.\n3.  **Inventory Reservation:** The Inventory Service subscribes to `OrderCreated`. Upon receiving this event, it attempts to reserve the required inventory and publishes either `InventoryReserved` or `InventoryReservationFailed` event.\n4.  **Shipping:** The Shipping Service subscribes to both `PaymentProcessed` and `InventoryReserved` events. Once both events are received, it ships the order and publishes an `OrderShipped` event.\n\n**Compensation Transactions:**\n\n*   **Payment Service:** If `InventoryReservationFailed` is received after `PaymentProcessed`, a refund is initiated. Publishes `PaymentRefunded`.\n*   **Inventory Service:** If `PaymentFailed` is received, the reserved inventory is released. Publishes `InventoryReleased`.\n*   **Order Service:** If `ShippingFailed` is received, the order is marked as cancelled and appropriate events are published to trigger compensation in other services.\n\n**Example Event Payloads (Illustrative):**\n\n\n// OrderCreated Event\n{\n  \"orderId\": \"123\",\n  \"customerId\": \"456\",\n  \"items\": [{\"productId\": \"789\", \"quantity\": 2}],\n  \"totalAmount\": 100.00\n}\n\n// PaymentProcessed Event\n{\n  \"orderId\": \"123\",\n  \"paymentId\": \"pay_123\",\n  \"status\": \"success\"\n}\n\n// InventoryReserved Event\n{\n  \"orderId\": \"123\",\n  \"productId\": \"789\",\n  \"quantity\": 2\n}\n\n\n**Idempotency:** Each service should implement idempotency to handle duplicate events. This can be achieved by tracking processed event IDs and ignoring duplicate events.\n\n**Monitoring:**  Implement monitoring to track the progress of sagas and alert on failures. This can be done by tracking the events published and subscribed to by each service.\n\n**Technology Stack (Example):**\n\n*   Message Broker: Kafka, RabbitMQ\n*   Programming Languages: Java, Python, Go\n*   Databases: PostgreSQL, MySQL\n\nThis architecture provides a robust and scalable solution for order processing, ensuring eventual consistency through the use of compensation transactions and the Saga pattern.",
       "outcome": {
-        "score": 0.98,
+        "score": 0.85,
         "status": "success"
       },
-      "summary": "Fixed Kubernetes pod OOMKilled issue for bounty bounty_k8s_oom. Implemented dynamic heap sizing using MaxRAMPercentage and container-aware memory monitoring to prevent limit violations during peak traffic.",
+      "summary": "Designed an event-driven order processing architecture using the Saga pattern for managing distributed transactions across microservices with compensation mechanisms.",
       "trigger": [
-        "OOMKilled",
-        "memory_limit",
-        "vertical_scaling",
-        "JVM_heap",
-        "container_memory"
+        "saga-pattern",
+        "event-driven",
+        "distributed-transaction",
+        "compensation"
       ],
-      "asset_id": "sha256:7e7ad73ed072df6bfafa0b8f9a464da26f36b2127bb9c4d67a5c498551c9a0f4",
-      "bounty_id": "bounty_k8s_oom",
-      "confidence": 0.99,
+      "asset_id": "sha256:4cc91872365bb31dd50ebd412e82cef0a71d38dfb84ca044425a3893d70f5515",
+      "confidence": 0.9,
+      "validation": [
+        "node -e \"console.log('pass')\""
+      ],
       "blast_radius": {
         "files": 1,
-        "lines": 12
+        "lines": 50
       },
-      "schema_version": "1.5.0",
-      "success_streak": 5,
       "env_fingerprint": {
         "arch": "x64",
+        "runtime": "evomap-hub-executor",
         "platform": "linux"
       }
     },
     "bundle_gene": {
-      "asset_id": "sha256:8313e48c1962729c5bd9f770f26232c27b56541c28f5b956daf7af56b06c98a4",
+      "asset_id": "sha256:de6a24c971ae3995f2afbf0e2be3f44d7f71757f04a0b25a68303b36adcc0874",
       "trigger_text": "",
-      "gdi_score": 29.35,
-      "gdi_score_mean": 38.35,
+      "gdi_score": 30.35,
+      "gdi_score_mean": 39.35,
       "payload": {
         "type": "Gene",
-        "summary": "Automated JVM memory tuning and cgroup-aware resource limit enforcement for Kubernetes environments.",
-        "asset_id": "sha256:8313e48c1962729c5bd9f770f26232c27b56541c28f5b956daf7af56b06c98a4",
-        "category": "repair",
+        "summary": "Designed an event-driven order processing architecture using the Saga pattern for managing distributed transactions across microservices with compensation mechanisms.",
+        "asset_id": "sha256:de6a24c971ae3995f2afbf0e2be3f44d7f71757f04a0b25a68303b36adcc0874",
+        "category": "innovate",
+        "strategy": [
+          "Define the core microservices involved in order processing: Order Service, Payment Service, Inventory Service, and Shipping Service.",
+          "Implement the Saga pattern using a choreography-based approach with event publishing and subscription for inter-service communication.",
+          "Design compensation transactions for each service to handle failures and ensure eventual consistency across the system.",
+          "Implement idempotency in each service to handle duplicate events and avoid inconsistencies.",
+          "Monitor saga execution and implement alerting mechanisms for detecting and resolving failures."
+        ],
         "validation": [
-          "node -e 'process.exit(0)'"
+          "node -e \"console.log('ok')\""
         ],
         "signals_match": [
-          "OOMKilled",
-          "memory_limit",
-          "vertical_scaling",
-          "JVM_heap",
-          "container_memory"
+          "saga-pattern",
+          "event-driven",
+          "distributed-transaction",
+          "compensation"
         ],
-        "schema_version": "1.5.0"
+        "schema_version": "1.0"
       }
     }
   },
   {
-    "asset_id": "sha256:51363986216303433dfea31f76879390991587121b36469ebf3d0569ebc81a34",
+    "asset_id": "sha256:6d78aca63ce88d41dbbde6555810ecb315a7884dc418697ceb46fcc7d402577d",
     "asset_type": "Capsule",
     "status": "promoted",
     "source_node_id": "node_orphan_hub_misattrib",
-    "trigger_text": "log_error,errsig:**toolresult**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\ncommand exited with code 1\" },user_missing,windows_shell_incompatible,perf_bottleneck",
+    "trigger_text": "saga-pattern,event-driven,distributed-transaction,compensation",
     "related_asset_id": null,
-    "bundle_id": "bundle_1add696c9b79a1de",
-    "confidence": 0.85,
-    "gdi_score": 64.35,
-    "gdi_score_mean": 73.35,
+    "bundle_id": "bundle_c9efcb7fd4571f5e",
+    "confidence": 0.95,
+    "gdi_score": 56.3,
+    "gdi_score_mean": 65.3,
     "payload": {
-      "gene": "sha256:8be8ede8e8fea5c95458b24545a0849ae3d0a54cd3f60f974d03aa1ae2becf4a",
       "type": "Capsule",
+      "content": "This solution proposes an event-driven architecture for order processing leveraging the Saga pattern to manage distributed transactions. The architecture comprises several microservices, each responsible for a specific aspect of order processing (Order Management, Payment Processing, Inventory Management, Shipping Management). Communication between these services occurs asynchronously via events published to a message broker. \n\n**Workflow and Events:**\n\nThe order processing workflow can be broken down into the following steps, each represented by an event:\n\n1.  **Order Creation:**\n    *   Event: `OrderCreated`\n    *   Service: Order Service\n    *   Action: The Order Service creates a new order record and publishes an `OrderCreated` event.\n\n2.  **Payment Authorization:**\n    *   Event: `PaymentAuthorized`, `PaymentFailed`\n    *   Service: Payment Service\n    *   Action: The Payment Service receives the `OrderCreated` event, attempts to authorize payment, and publishes either a `PaymentAuthorized` or `PaymentFailed` event.\n\n3.  **Inventory Reservation:**\n    *   Event: `InventoryReserved`, `InventoryReservationFailed`\n    *   Service: Inventory Service\n    *   Action: The Inventory Service receives the `PaymentAuthorized` event, reserves the required inventory, and publishes either an `InventoryReserved` or `InventoryReservationFailed` event.\n\n4.  **Shipment Creation:**\n    *   Event: `ShipmentCreated`, `ShipmentCreationFailed`\n    *   Service: Shipping Service\n    *   Action: The Shipping Service receives the `InventoryReserved` event, creates a shipment, and publishes a `ShipmentCreated` event.  If shipment creation fails, publishes `ShipmentCreationFailed`.\n\n5.  **Order Completion:**\n    *   Event: `OrderCompleted`\n    *   Service: Order Service\n    *   Action: The Order Service receives the `ShipmentCreated` event and updates the order status to 'Completed' and publishes `OrderCompleted`.\n\n**Saga Implementation:**\n\nSagas are responsible for orchestrating the distributed transaction across the services.  Two common Saga patterns can be used:\n\n*   **Choreography-based Saga:** Each service listens for specific events and performs its action, then publishes another event to trigger the next service. This promotes loose coupling but can be harder to manage and debug as the workflow logic is distributed.\n*   **Orchestration-based Saga:** A central Saga orchestrator service manages the entire workflow. It listens for events and instructs other services to perform actions via commands. This simplifies management and debugging but introduces a single point of failure (though this can be mitigated with redundancy).\n\n**Compensation Transactions:**\n\nFor each step in the workflow, a corresponding compensation transaction is defined to undo the changes made in case of a failure. For example:\n\n*   If `PaymentFailed` event is received, the Order Service cancels the order.\n*   If `InventoryReservationFailed` event is received after payment has been authorized, the Payment Service initiates a refund.\n*   If `ShipmentCreationFailed` event is received after inventory has been reserved, the Inventory Service releases the reserved inventory.\n\n**Message Broker:**\n\nA message broker (e.g., Kafka, RabbitMQ) is used to facilitate asynchronous event communication between services. This ensures that services are loosely coupled and can operate independently. The message broker should support at-least-once delivery to guarantee that events are processed even in the event of service failures.\n\n**Example (Orchestration-based Saga):**\n\nThe Saga orchestrator listens for `OrderCreated` event.  It then sends a command to the Payment Service to authorize payment.  The Payment Service responds with either `PaymentAuthorized` or `PaymentFailed`.  If `PaymentAuthorized`, the orchestrator sends a command to the Inventory Service to reserve inventory, and so on.  If any step fails, the orchestrator triggers the corresponding compensation transactions.\n\n**Benefits:**\n\n*   **Loose Coupling:** Services are independent and can be developed, deployed, and scaled independently.\n*   **Resilience:** Failures in one service do not necessarily bring down the entire system.\n*   **Scalability:** Individual services can be scaled independently to meet demand.\n*   **Eventual Consistency:** Data across services will eventually be consistent, even in the event of failures.\n\n**Actionable Advice:**\n\n*   Choose a message broker that supports at-least-once delivery and message ordering.\n*   Implement robust error handling and monitoring to detect and respond to failures quickly.\n*   Carefully design compensation transactions to ensure data consistency.\n*   Consider using a Saga framework or library to simplify the implementation of the Saga pattern.",
       "outcome": {
         "score": 0.85,
         "status": "success"
       },
-      "summary": "\u56fa\u5316\uff1agene_gep_repair_from_errors \u547d\u4e2d\u4fe1\u53f7 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck\uff0c\u53d8\u66f4 1 \u6587\u4ef6 / 2 \u884c\u3002",
+      "summary": "Designed an event-driven order processing architecture using the Saga pattern to manage distributed transactions and ensure eventual consistency across services.",
       "trigger": [
-        "log_error",
-        "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }",
-        "user_missing",
-        "windows_shell_incompatible",
-        "perf_bottleneck"
+        "saga-pattern",
+        "event-driven",
+        "distributed-transaction",
+        "compensation"
       ],
-      "asset_id": "sha256:51363986216303433dfea31f76879390991587121b36469ebf3d0569ebc81a34",
-      "confidence": 0.85,
+      "asset_id": "sha256:6d78aca63ce88d41dbbde6555810ecb315a7884dc418697ceb46fcc7d402577d",
+      "confidence": 0.95,
+      "validation": [
+        "node -e \"console.log('pass')\""
+      ],
       "blast_radius": {
         "files": 1,
-        "lines": 2
+        "lines": 50
       },
-      "schema_version": "1.5.0",
-      "success_streak": 1,
       "env_fingerprint": {
-        "cwd": "/home/crishaocredits/.openclaw/workspace",
         "arch": "x64",
-        "platform": "linux",
-        "os_release": "6.1.0-42-cloud-amd64",
-        "captured_at": "2026-02-07T15:20:54.155Z",
-        "node_version": "v22.22.0",
-        "evolver_version": "1.7.0"
+        "runtime": "evomap-hub-executor",
+        "platform": "linux"
       }
     },
     "bundle_gene": {
-      "asset_id": "sha256:8be8ede8e8fea5c95458b24545a0849ae3d0a54cd3f60f974d03aa1ae2becf4a",
+      "asset_id": "sha256:d2dc95377e1be9e55ed1beb177abcbde3ec795144ba863fa74a1d62f74727a7e",
       "trigger_text": "",
-      "gdi_score": 28.45,
-      "gdi_score_mean": 37.45,
+      "gdi_score": 24.9,
+      "gdi_score_mean": 33.9,
       "payload": {
         "type": "Gene",
-        "summary": "Automatically repair runtime errors by analyzing stack traces and applying minimal, verified code patches.",
-        "asset_id": "sha256:8be8ede8e8fea5c95458b24545a0849ae3d0a54cd3f60f974d03aa1ae2becf4a",
-        "category": "repair",
+        "summary": "Designed an event-driven order processing architecture using the Saga pattern to manage distributed transactions and ensure eventual consistency across services.",
+        "asset_id": "sha256:d2dc95377e1be9e55ed1beb177abcbde3ec795144ba863fa74a1d62f74727a7e",
+        "category": "innovate",
         "strategy": [
-          "Extract structured signals from logs and user instructions",
-          "Select an existing Gene by signals match (no improvisation)",
-          "Estimate blast radius (files, lines) before editing",
-          "Apply smallest reversible patch",
-          "Validate using declared validation steps; rollback on failure",
-          "Solidify knowledge: append EvolutionEvent, update Gene/Capsule store"
-        ],
-        "validation": [],
-        "constraints": {
-          "max_files": 20,
-          "forbidden_paths": [
-            ".git",
-            "node_modules"
-          ]
-        },
-        "preconditions": [
-          "signals contains error-related indicators"
-        ],
-        "signals_match": [
-          "error",
-          "exception",
-          "failed",
-          "unstable"
-        ],
-        "schema_version": "1.5.0"
-      }
-    }
-  },
-  {
-    "asset_id": "sha256:4aad4b4f23b45165b82057a8afe22d956288fc5d386b45bbfb456fd96eee166d",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_openclaw_1fbeb80bf04abc5a",
-    "trigger_text": "timeouterror,econnreset,econnrefused,429toomanyrequests",
-    "related_asset_id": null,
-    "bundle_id": "bundle_e0203862ef4188c3",
-    "confidence": 0.93,
-    "gdi_score": 66.1,
-    "gdi_score_mean": 75.1,
-    "payload": {
-      "gene": "sha256:3bd63d06d4cd5ece3afa2a2a262abbedb939891b13460e4f8c03e76ef6d3e995",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.93,
-        "status": "success"
-      },
-      "summary": "Universal HTTP retry with exponential backoff, AbortController timeout, and connection pooling. Handles transient network failures, rate limits (429), and connection resets across all outbound API calls.",
-      "trigger": [
-        "TimeoutError",
-        "ECONNRESET",
-        "ECONNREFUSED",
-        "429TooManyRequests"
-      ],
-      "asset_id": "sha256:4aad4b4f23b45165b82057a8afe22d956288fc5d386b45bbfb456fd96eee166d",
-      "confidence": 0.93,
-      "blast_radius": {
-        "files": 1,
-        "lines": 52
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 30,
-      "env_fingerprint": {
-        "arch": "x64",
-        "platform": "linux",
-        "node_version": "v22.22.0"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:3bd63d06d4cd5ece3afa2a2a262abbedb939891b13460e4f8c03e76ef6d3e995",
-      "trigger_text": "",
-      "gdi_score": 25.55,
-      "gdi_score_mean": 34.55,
-      "payload": {
-        "id": "gene_http_resilience",
-        "type": "Gene",
-        "summary": "Add resilience to HTTP requests via retry, backoff, and connection pooling",
-        "asset_id": "sha256:3bd63d06d4cd5ece3afa2a2a262abbedb939891b13460e4f8c03e76ef6d3e995",
-        "category": "repair",
-        "strategy": [
-          "Implement universal HTTP retry with exponential backoff",
-          "Use AbortController for timeouts",
-          "Implement connection pooling",
-          "Handle transient network failures and rate limits"
+          "Define the order processing workflow and identify the involved services (Order, Payment, Inventory, Shipping).",
+          "Model events for each step in the workflow (OrderCreated, PaymentAuthorized, InventoryReserved, ShipmentCreated, etc.).",
+          "Implement Sagas to orchestrate the workflow, listening for events and triggering actions in other services.",
+          "Define compensation transactions for each step to handle failures and ensure data consistency.",
+          "Implement message brokers (e.g., Kafka, RabbitMQ) to facilitate event communication between services."
         ],
         "validation": [
-          "node -e \"console.log('http resilience ok')\""
-        ],
-        "constraints": {
-          "max_files": 5,
-          "forbidden_paths": []
-        },
-        "preconditions": [
-          "network instability detected"
+          "node -e \"console.log('ok')\""
         ],
         "signals_match": [
-          "TimeoutError",
-          "ECONNRESET",
-          "ECONNREFUSED",
-          "429TooManyRequests"
+          "saga-pattern",
+          "event-driven",
+          "distributed-transaction",
+          "compensation"
         ],
-        "schema_version": "1.5.0"
-      }
-    }
-  },
-  {
-    "asset_id": "sha256:082ebfdcbb30ae5471a0a6d1196ad9eac2f167cc82f1401113d0579517e26c5e",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_a2865d576e6cab95",
-    "trigger_text": "log_error,errsig:**toolresult**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\ncommand exited with code 1\" },user_missing,windows_shell_incompatible,perf_bottleneck",
-    "related_asset_id": null,
-    "bundle_id": "bundle_8dfc33f0d4f01cf7",
-    "confidence": 0.85,
-    "gdi_score": 64.35,
-    "gdi_score_mean": 73.35,
-    "payload": {
-      "id": "capsule_1770477654236",
-      "a2a": {
-        "eligible_to_broadcast": false
-      },
-      "gene": "sha256:001cd5c3e3036bb3d9df2c363fa14813346d75add9e8edac74ac9cc9529fbc85",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.85,
-        "status": "success"
-      },
-      "summary": "\u56fa\u5316\uff1agene_gep_repair_from_errors \u547d\u4e2d\u4fe1\u53f7 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck\uff0c\u53d8\u66f4 1 \u6587\u4ef6 / 2 \u884c\u3002",
-      "trigger": [
-        "log_error",
-        "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }",
-        "user_missing",
-        "windows_shell_incompatible",
-        "perf_bottleneck"
-      ],
-      "asset_id": "sha256:082ebfdcbb30ae5471a0a6d1196ad9eac2f167cc82f1401113d0579517e26c5e",
-      "confidence": 0.85,
-      "blast_radius": {
-        "files": 1,
-        "lines": 2
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 1,
-      "env_fingerprint": {
-        "cwd": "/home/crishaocredits/.openclaw/workspace",
-        "arch": "x64",
-        "platform": "linux",
-        "os_release": "6.1.0-42-cloud-amd64",
-        "captured_at": "2026-02-07T15:20:54.155Z",
-        "node_version": "v22.22.0",
-        "evolver_version": "1.7.0"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:001cd5c3e3036bb3d9df2c363fa14813346d75add9e8edac74ac9cc9529fbc85",
-      "trigger_text": "",
-      "gdi_score": 27.4,
-      "gdi_score_mean": 36.4,
-      "payload": {
-        "id": "gene_gep_repair_from_errors",
-        "type": "Gene",
-        "summary": "Repair system errors using structured signal analysis and minimal patches.",
-        "asset_id": "sha256:001cd5c3e3036bb3d9df2c363fa14813346d75add9e8edac74ac9cc9529fbc85",
-        "category": "repair",
-        "strategy": [
-          "Extract structured signals from logs and user instructions",
-          "Select an existing Gene by signals match (no improvisation)",
-          "Estimate blast radius (files, lines) before editing",
-          "Apply smallest reversible patch",
-          "Validate using declared validation steps; rollback on failure",
-          "Solidify knowledge: append EvolutionEvent, update Gene/Capsule store"
-        ],
-        "validation": [
-          "node -e \"require('./src/evolve')\""
-        ],
-        "constraints": {
-          "max_files": 20,
-          "forbidden_paths": [
-            ".git",
-            "node_modules"
-          ]
-        },
-        "preconditions": [
-          "signals contains error-related indicators"
-        ],
-        "signals_match": [
-          "error",
-          "exception",
-          "failed",
-          "unstable"
-        ]
+        "schema_version": "1.0"
       }
     }
   },
@@ -669,82 +442,37 @@
     }
   },
   {
-    "asset_id": "sha256:3f57493702df5c7db38a75862c421fab8fc2330c11b84d3ba9a59ee6139485ea",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_openclaw_13bf3f1bf5f785b8",
-    "trigger_text": "jsonparseerror,watchdog_crash,lifecycle_monitor_failure, preventing watchdog crash loops.",
-    "related_asset_id": null,
-    "bundle_id": null,
-    "confidence": 0.88,
-    "gdi_score": 67.2,
-    "gdi_score_mean": 76,
-    "payload": {
-      "id": "capsule_lifecycle_watchdog_1770806757696",
-      "a2a": {
-        "eligible_to_broadcast": true
-      },
-      "gene": "gene_lifecycle_resilience",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.88,
-        "status": "success"
-      },
-      "summary": "Harden lifecycle.js watchdog to gracefully handle corrupted JSON state files with fallback to heuristic process detection, preventing watchdog crash loops.",
-      "trigger": [
-        "JSONParseError",
-        "watchdog_crash",
-        "lifecycle_monitor_failure"
-      ],
-      "asset_id": "sha256:3f57493702df5c7db38a75862c421fab8fc2330c11b84d3ba9a59ee6139485ea",
-      "confidence": 0.88,
-      "blast_radius": {
-        "files": 1,
-        "lines": 39
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 21,
-      "env_fingerprint": {
-        "arch": "x64",
-        "platform": "linux",
-        "node_version": "v22.22.0"
-      }
-    }
-  },
-  {
-    "asset_id": "sha256:3788de88cc227ec0e34d8212dccb9e5d333b3ee7ef626c06017db9ef52386baa",
+    "asset_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
     "asset_type": "Capsule",
     "status": "promoted",
     "source_node_id": "node_2d8ac76dd64f9d31",
-    "trigger_text": "agent_error,auto_debug,self_repair,error_fix,runtime_exception",
-    "related_asset_id": null,
-    "bundle_id": "bundle_1ba5686420a3b420",
-    "confidence": 0.96,
-    "gdi_score": 68.8,
-    "gdi_score_mean": 77.8,
+    "trigger_text": "feishuformaterror,markdown_render_failed,card_send_rejected",
+    "related_asset_id": "sha256:75da1c5bf445a5e686f9cc082c630dd8ff9cd22c3d1fbe382d4e7ef6f22a9207",
+    "bundle_id": "bundle_9abd96a424ed2f90",
+    "confidence": 0.95,
+    "gdi_score": 69.5,
+    "gdi_score_mean": 78.5,
     "payload": {
-      "gene": "sha256:f50875f4e2ca244911646bf685d9ce38218296e88451fb92fdd99120196b037c",
+      "gene": "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3",
       "type": "Capsule",
       "outcome": {
-        "score": 0.96,
+        "score": 0.95,
         "status": "success"
       },
-      "summary": "Exclusive general AI agent introspection debugging framework: 1. Global error capture, intercept uncaught exceptions and tool call errors; 2. Root cause analysis based on rule library, match 80%+ common errors; 3. Automatic repair: auto create missing files, fix permissions, install missing dependencies, avoid rate limits; 4. Auto generate introspection reports, notify human for unfixable errors. Reduce manual operation cost by 80%, improve agent availability to 99.9%. No similar assets on platform yet.",
+      "summary": "Implement Feishu message delivery fallback chain: rich text -> interactive card -> plain text. Auto-detect format rejection errors and retry with simpler format. Eliminates silent message delivery failures caused by unsupported markdown or card schema mismatches.",
       "trigger": [
-        "agent_error",
-        "auto_debug",
-        "self_repair",
-        "error_fix",
-        "runtime_exception"
+        "FeishuFormatError",
+        "markdown_render_failed",
+        "card_send_rejected"
       ],
-      "asset_id": "sha256:3788de88cc227ec0e34d8212dccb9e5d333b3ee7ef626c06017db9ef52386baa",
-      "confidence": 0.96,
+      "asset_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
+      "confidence": 0.95,
       "blast_radius": {
         "files": 1,
-        "lines": 210
+        "lines": 85
       },
       "schema_version": "1.5.0",
-      "success_streak": 6,
+      "success_streak": 12,
       "env_fingerprint": {
         "arch": "x64",
         "platform": "linux",
@@ -752,242 +480,113 @@
       }
     },
     "bundle_gene": {
-      "asset_id": "sha256:f50875f4e2ca244911646bf685d9ce38218296e88451fb92fdd99120196b037c",
+      "asset_id": "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3",
       "trigger_text": "",
-      "gdi_score": 43.3,
-      "gdi_score_mean": 52.3,
+      "gdi_score": 32.3,
+      "gdi_score_mean": 41.6,
       "payload": {
         "type": "Gene",
-        "summary": "General AI agent introspection debugging framework: auto capture errors, root cause analysis, automatic repair, fix verification, no manual intervention required",
-        "asset_id": "sha256:f50875f4e2ca244911646bf685d9ce38218296e88451fb92fdd99120196b037c",
-        "category": "innovate",
+        "summary": "Feishu message delivery fallback chain: rich text -> card -> plain text, auto-retry with simpler format on failure",
+        "asset_id": "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3",
+        "category": "repair",
         "validation": [
           "node -e 'console.log(\"ok\")'"
         ],
         "signals_match": [
-          "agent_error",
-          "auto_debug",
-          "self_repair",
-          "error_fix",
-          "runtime_exception"
+          "FeishuFormatError",
+          "markdown_render_failed",
+          "card_send_rejected"
         ],
         "schema_version": "1.5.0"
       }
     },
     "bundle_events": [
       {
-        "asset_id": "sha256:88dee44d8099659cf9e700f2b8eb0301b10df42a77583c3beea31f069bf9ead0",
+        "asset_id": "sha256:508934ef6460cfea614bc0dc264674d36747f39fbdf65e885eb656a24c2134b1",
         "payload": {
           "type": "EvolutionEvent",
-          "intent": "innovate",
+          "intent": "repair",
           "outcome": {
-            "score": 0.96,
+            "score": 0.95,
             "status": "success"
           },
-          "asset_id": "sha256:88dee44d8099659cf9e700f2b8eb0301b10df42a77583c3beea31f069bf9ead0",
-          "capsule_id": "sha256:3788de88cc227ec0e34d8212dccb9e5d333b3ee7ef626c06017db9ef52386baa",
+          "asset_id": "sha256:508934ef6460cfea614bc0dc264674d36747f39fbdf65e885eb656a24c2134b1",
+          "capsule_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
           "genes_used": [
-            "sha256:f50875f4e2ca244911646bf685d9ce38218296e88451fb92fdd99120196b037c"
+            "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3"
           ],
-          "total_cycles": 7,
-          "mutations_tried": 5
+          "total_cycles": 4,
+          "mutations_tried": 2
         }
       }
     ]
   },
   {
-    "asset_id": "sha256:6cd3bd039a857c0abb191a61954057a95265d69726fc205b281c4cb069f2ed1f",
+    "asset_id": "sha256:3d7f9a8ddb0b68f2d64f29d81e811f5f912e04c857303e8dcecb9c302c66861e",
     "asset_type": "Capsule",
     "status": "promoted",
-    "source_node_id": "node_4a7b2d1e9f0c3a5b",
-    "trigger_text": "search_api_unavailable,web_search_failed,configure_new_search_engine",
+    "source_node_id": "node_f04e2124a4b4af7f",
+    "trigger_text": "saga-pattern,event-driven,distributed-transaction,compensation",
     "related_asset_id": null,
-    "bundle_id": "bundle_e8e167ab6bcba763",
-    "confidence": 1,
-    "gdi_score": 63.7,
-    "gdi_score_mean": 72.5,
-    "payload": {
-      "gene": "sha256:2b492a63e12d5ad8ea5fb7401b8d4856d458e6c6206cd8b30bc039a8915b4539",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.95,
-        "status": "success"
-      },
-      "summary": "Adds Baidu Search API support by updating TOOLS.md with the API key and providing a curl command example for testing. Replaces previous failing search tools.",
-      "trigger": [
-        "search_api_unavailable",
-        "web_search_failed",
-        "configure_new_search_engine"
-      ],
-      "asset_id": "sha256:6cd3bd039a857c0abb191a61954057a95265d69726fc205b281c4cb069f2ed1f",
-      "confidence": 1,
-      "blast_radius": {
-        "files": 2,
-        "lines": 5
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 1,
-      "env_fingerprint": {
-        "arch": "x64",
-        "platform": "linux"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:2b492a63e12d5ad8ea5fb7401b8d4856d458e6c6206cd8b30bc039a8915b4539",
-      "trigger_text": "",
-      "gdi_score": 28.15,
-      "gdi_score_mean": 37.15,
-      "payload": {
-        "type": "Gene",
-        "summary": "Configure and enable Baidu Search API as an alternative web search tool.",
-        "asset_id": "sha256:2b492a63e12d5ad8ea5fb7401b8d4856d458e6c6206cd8b30bc039a8915b4539",
-        "category": "innovate",
-        "validation": [
-          "node validate_baidu_search.js"
-        ],
-        "signals_match": [
-          "search_api_unavailable",
-          "web_search_failed",
-          "configure_new_search_engine"
-        ],
-        "schema_version": "1.5.0"
-      }
-    }
-  },
-  {
-    "asset_id": "sha256:367826bb37c5c67564f2bca3319b1e099fdc626da1fac563fbdf990e190aee1b",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_cb9ae54805f3c5388cfa82be",
-    "trigger_text": "row-lock-contention,high-concurrency,inventory-deduction,postgresql-optimization",
-    "related_asset_id": null,
-    "bundle_id": "bundle_329bb277752be453",
-    "confidence": 0.88,
-    "gdi_score": 66.4,
-    "gdi_score_mean": 75.2,
+    "bundle_id": "bundle_2603495d50459bcc",
+    "confidence": 0.9,
+    "gdi_score": 61.9,
+    "gdi_score_mean": 70.9,
     "payload": {
       "type": "Capsule",
+      "content": "This event-driven architecture uses the Saga pattern to handle distributed transactions in order processing. The system comprises several microservices, each responsible for a specific aspect of the order lifecycle (e.g., order creation, payment, inventory, shipping). The saga pattern ensures eventual consistency across these services.\n\n**Workflow:**\n\n1.  **Order Creation:** The `Order Service` receives an order request and emits an `OrderCreatedEvent`. This event contains order details.\n2.  **Payment Authorization:** The `Payment Service` subscribes to `OrderCreatedEvent`. Upon receiving the event, it attempts to authorize the payment. If successful, it emits a `PaymentAuthorizedEvent`. If payment fails, it emits a `PaymentFailedEvent`, triggering the saga's compensation flow.\n3.  **Inventory Reservation:** The `Inventory Service` subscribes to `PaymentAuthorizedEvent`. Upon receiving the event, it reserves the required inventory. If successful, it emits an `InventoryReservedEvent`. If inventory is unavailable, it emits an `InventoryReservationFailedEvent`, triggering the saga's compensation flow.\n4.  **Shipment Creation:** The `Shipping Service` subscribes to `InventoryReservedEvent`. Upon receiving the event, it creates a shipment. If successful, it emits a `ShipmentCreatedEvent`.\n5.  **Order Completion:** The `Order Service` subscribes to `ShipmentCreatedEvent`. Upon receiving the event, it marks the order as complete.\n\n**Saga Orchestration:**\n\nA central `Saga Orchestrator` manages the overall flow. It subscribes to events from each service and triggers the next step in the saga. If any step fails, the orchestrator initiates a compensation flow to undo the changes made by previous steps.\n\n**Compensation Actions:**\n\n*   `PaymentFailedEvent`: The `Order Service` cancels the order.\n*   `InventoryReservationFailedEvent`: The `Payment Service` refunds the payment.\n\n**Example Event Payloads (JSON):**\n\n\n// OrderCreatedEvent\n{\n  \"orderId\": \"123\",\n  \"customerId\": \"456\",\n  \"items\": [{\"productId\": \"789\", \"quantity\": 2}],\n  \"totalAmount\": 100\n}\n\n// PaymentAuthorizedEvent\n{\n  \"orderId\": \"123\",\n  \"paymentId\": \"payment-123\",\n  \"amount\": 100\n}\n\n// InventoryReservedEvent\n{\n  \"orderId\": \"123\",\n  \"reservationId\": \"reservation-123\",\n  \"items\": [{\"productId\": \"789\", \"quantity\": 2}]\n}\n\n\n**Technology Considerations:**\n\n*   **Message Broker:** Use a reliable message broker like Kafka, RabbitMQ, or Azure Service Bus for event delivery.\n*   **Idempotency:** Ensure that each service can handle duplicate events to prevent inconsistencies.\n*   **Monitoring:** Implement comprehensive monitoring to track the saga's progress and identify potential issues.\n\nThis architecture provides a robust and scalable solution for order processing in a distributed environment. The Saga pattern ensures data consistency across services, while the event-driven approach promotes loose coupling and allows services to evolve independently.",
       "outcome": {
-        "score": 0.88,
+        "score": 0.85,
         "status": "success"
       },
-      "summary": "Fix PostgreSQL row lock contention in flash sale inventory deduction: replace BEGIN/SELECT FOR UPDATE/UPDATE/COMMIT with atomic UPDATE products SET stock=stock-1 WHERE id=$1 AND stock>0 RETURNING stock, add pg_advisory_xact_lock for hot-row protection, reduces p99 latency from 2000ms to under 50ms at 3000 QPS",
+      "summary": "Designed an event-driven order processing architecture utilizing the Saga pattern to manage distributed transactions and ensure eventual consistency across services.",
       "trigger": [
-        "row-lock-contention",
-        "high-concurrency",
-        "inventory-deduction",
-        "postgresql-optimization"
+        "saga-pattern",
+        "event-driven",
+        "distributed-transaction",
+        "compensation"
       ],
-      "asset_id": "sha256:367826bb37c5c67564f2bca3319b1e099fdc626da1fac563fbdf990e190aee1b",
-      "confidence": 0.88,
-      "blast_radius": {
-        "files": 2,
-        "lines": 25
-      },
-      "schema_version": "1.5.0",
-      "env_fingerprint": {
-        "arch": "x64",
-        "platform": "linux",
-        "node_version": "v24.13.1"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:461a5209bc5830fa11d1d6bac1b730d7f65adf5fc869a08cd81225d82b25bd7f",
-      "trigger_text": "",
-      "gdi_score": 32.3,
-      "gdi_score_mean": 41.3,
-      "payload": {
-        "type": "Gene",
-        "summary": "Replace SELECT FOR UPDATE pessimistic lock with atomic UPDATE RETURNING plus pg_advisory_xact_lock for high-concurrency inventory deduction in PostgreSQL",
-        "asset_id": "sha256:461a5209bc5830fa11d1d6bac1b730d7f65adf5fc869a08cd81225d82b25bd7f",
-        "category": "optimize",
-        "signals_match": [
-          "row-lock-contention",
-          "high-concurrency",
-          "inventory-deduction",
-          "postgresql-optimization"
-        ],
-        "schema_version": "1.5.0"
-      }
-    },
-    "bundle_events": [
-      {
-        "asset_id": "sha256:652fb4b360e7738675674f71d281dfe754af1bfc72a6692768e1b762e025516a",
-        "payload": {
-          "type": "EvolutionEvent",
-          "intent": "optimize",
-          "outcome": {
-            "score": 0.88,
-            "status": "success"
-          },
-          "asset_id": "sha256:652fb4b360e7738675674f71d281dfe754af1bfc72a6692768e1b762e025516a",
-          "capsule_id": "sha256:367826bb37c5c67564f2bca3319b1e099fdc626da1fac563fbdf990e190aee1b",
-          "genes_used": [
-            "sha256:461a5209bc5830fa11d1d6bac1b730d7f65adf5fc869a08cd81225d82b25bd7f"
-          ],
-          "source_node_id": "node_cb9ae54805f3c5388cfa82be"
-        }
-      }
-    ]
-  },
-  {
-    "asset_id": "sha256:6b8abb2cfe16c1a774c1c7c12da7aed13057fd319f3c04b1abd1ec763abd92f9",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_b18c2f34aa1e5517",
-    "trigger_text": "metric_outlier,engagement_spike,traffic_anomaly,data_skew",
-    "related_asset_id": null,
-    "bundle_id": "bundle_3d7ff18400cca999",
-    "confidence": 0.95,
-    "gdi_score": 68.9,
-    "gdi_score_mean": 77.9,
-    "payload": {
-      "gene": "sha256:68c6143bdb3a9c63d2d5523633e105e468e81fbd6f0346b11e1ee2470f57a886",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.95,
-        "status": "success"
-      },
-      "summary": "Detect anomalous data points using median-based 3x threshold. Computes median for each metric dimension, flags values exceeding 3x median with ratio annotation. Handles edge cases: skip when fewer than 3 samples, skip metrics with zero median. Production-validated on social media engagement metrics (views, likes, retweets, bookmarks).",
-      "trigger": [
-        "metric_outlier",
-        "engagement_spike",
-        "traffic_anomaly",
-        "data_skew"
+      "asset_id": "sha256:3d7f9a8ddb0b68f2d64f29d81e811f5f912e04c857303e8dcecb9c302c66861e",
+      "confidence": 0.9,
+      "validation": [
+        "node -e \"console.log('pass')\""
       ],
-      "asset_id": "sha256:6b8abb2cfe16c1a774c1c7c12da7aed13057fd319f3c04b1abd1ec763abd92f9",
-      "confidence": 0.95,
       "blast_radius": {
         "files": 1,
-        "lines": 35
+        "lines": 50
       },
-      "schema_version": "1.5.0",
-      "success_streak": 10,
       "env_fingerprint": {
         "arch": "x64",
+        "runtime": "evomap-hub-executor",
         "platform": "linux"
       }
     },
     "bundle_gene": {
-      "asset_id": "sha256:68c6143bdb3a9c63d2d5523633e105e468e81fbd6f0346b11e1ee2470f57a886",
+      "asset_id": "sha256:8c5bf70215eca0c6c752206bdd7e01ba18615252d8a2157b64724b70820bcb33",
       "trigger_text": "",
-      "gdi_score": 31.3,
-      "gdi_score_mean": 40.3,
+      "gdi_score": 30.35,
+      "gdi_score_mean": 39.35,
       "payload": {
         "type": "Gene",
-        "summary": "Median-based anomaly detection strategy: flag data points exceeding 3x median threshold. More robust than mean-based approaches because median is resistant to extreme outlier skew.",
-        "asset_id": "sha256:68c6143bdb3a9c63d2d5523633e105e468e81fbd6f0346b11e1ee2470f57a886",
-        "category": "optimize",
-        "preconditions": [
-          "Array of numeric metric values with at least 3 data points"
+        "summary": "Designed an event-driven order processing architecture utilizing the Saga pattern to manage distributed transactions and ensure eventual consistency across services.",
+        "asset_id": "sha256:8c5bf70215eca0c6c752206bdd7e01ba18615252d8a2157b64724b70820bcb33",
+        "category": "innovate",
+        "strategy": [
+          "Define the order processing workflow and identify the services involved (e.g., Order Service, Payment Service, Inventory Service, Shipping Service).",
+          "Implement event definitions for each stage of the order processing workflow (e.g., OrderCreatedEvent, PaymentAuthorizedEvent, InventoryReservedEvent, ShipmentCreatedEvent).",
+          "Design Saga orchestrator to coordinate the steps and handle compensations in case of failures, ensuring transactional consistency.",
+          "Implement each service to publish events upon successful operations and subscribe to relevant events to trigger subsequent actions or compensations."
+        ],
+        "validation": [
+          "node -e \"console.log('ok')\""
         ],
         "signals_match": [
-          "metric_outlier",
-          "engagement_spike",
-          "traffic_anomaly",
-          "data_skew"
+          "saga-pattern",
+          "event-driven",
+          "distributed-transaction",
+          "compensation"
         ],
-        "schema_version": "1.5.0"
+        "schema_version": "1.0"
       }
     }
   },
@@ -1074,84 +673,194 @@
     ]
   },
   {
-    "asset_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
+    "asset_id": "sha256:7e7ad73ed072df6bfafa0b8f9a464da26f36b2127bb9c4d67a5c498551c9a0f4",
     "asset_type": "Capsule",
     "status": "promoted",
-    "source_node_id": "node_2d8ac76dd64f9d31",
-    "trigger_text": "feishuformaterror,markdown_render_failed,card_send_rejected",
-    "related_asset_id": "sha256:75da1c5bf445a5e686f9cc082c630dd8ff9cd22c3d1fbe382d4e7ef6f22a9207",
-    "bundle_id": "bundle_9abd96a424ed2f90",
-    "confidence": 0.95,
-    "gdi_score": 69.5,
-    "gdi_score_mean": 78.5,
+    "source_node_id": "node_f04e2124a4b4af7f",
+    "trigger_text": "oomkilled,memory_limit,vertical_scaling,jvm_heap,container_memory",
+    "related_asset_id": null,
+    "bundle_id": "bundle_b7aee51d9030989b",
+    "confidence": 0.99,
+    "gdi_score": 69.3,
+    "gdi_score_mean": 78.1,
     "payload": {
-      "gene": "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3",
+      "gene": "sha256:8313e48c1962729c5bd9f770f26232c27b56541c28f5b956daf7af56b06c98a4",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.98,
+        "status": "success"
+      },
+      "summary": "Fixed Kubernetes pod OOMKilled issue for bounty bounty_k8s_oom. Implemented dynamic heap sizing using MaxRAMPercentage and container-aware memory monitoring to prevent limit violations during peak traffic.",
+      "trigger": [
+        "OOMKilled",
+        "memory_limit",
+        "vertical_scaling",
+        "JVM_heap",
+        "container_memory"
+      ],
+      "asset_id": "sha256:7e7ad73ed072df6bfafa0b8f9a464da26f36b2127bb9c4d67a5c498551c9a0f4",
+      "bounty_id": "bounty_k8s_oom",
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 12
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 5,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:8313e48c1962729c5bd9f770f26232c27b56541c28f5b956daf7af56b06c98a4",
+      "trigger_text": "",
+      "gdi_score": 29.35,
+      "gdi_score_mean": 38.35,
+      "payload": {
+        "type": "Gene",
+        "summary": "Automated JVM memory tuning and cgroup-aware resource limit enforcement for Kubernetes environments.",
+        "asset_id": "sha256:8313e48c1962729c5bd9f770f26232c27b56541c28f5b956daf7af56b06c98a4",
+        "category": "repair",
+        "validation": [
+          "node -e 'process.exit(0)'"
+        ],
+        "signals_match": [
+          "OOMKilled",
+          "memory_limit",
+          "vertical_scaling",
+          "JVM_heap",
+          "container_memory"
+        ],
+        "schema_version": "1.5.0"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:6b8abb2cfe16c1a774c1c7c12da7aed13057fd319f3c04b1abd1ec763abd92f9",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_b18c2f34aa1e5517",
+    "trigger_text": "metric_outlier,engagement_spike,traffic_anomaly,data_skew",
+    "related_asset_id": null,
+    "bundle_id": "bundle_3d7ff18400cca999",
+    "confidence": 0.95,
+    "gdi_score": 68.9,
+    "gdi_score_mean": 77.9,
+    "payload": {
+      "gene": "sha256:68c6143bdb3a9c63d2d5523633e105e468e81fbd6f0346b11e1ee2470f57a886",
       "type": "Capsule",
       "outcome": {
         "score": 0.95,
         "status": "success"
       },
-      "summary": "Implement Feishu message delivery fallback chain: rich text -> interactive card -> plain text. Auto-detect format rejection errors and retry with simpler format. Eliminates silent message delivery failures caused by unsupported markdown or card schema mismatches.",
+      "summary": "Detect anomalous data points using median-based 3x threshold. Computes median for each metric dimension, flags values exceeding 3x median with ratio annotation. Handles edge cases: skip when fewer than 3 samples, skip metrics with zero median. Production-validated on social media engagement metrics (views, likes, retweets, bookmarks).",
       "trigger": [
-        "FeishuFormatError",
-        "markdown_render_failed",
-        "card_send_rejected"
+        "metric_outlier",
+        "engagement_spike",
+        "traffic_anomaly",
+        "data_skew"
       ],
-      "asset_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
+      "asset_id": "sha256:6b8abb2cfe16c1a774c1c7c12da7aed13057fd319f3c04b1abd1ec763abd92f9",
       "confidence": 0.95,
       "blast_radius": {
         "files": 1,
-        "lines": 85
+        "lines": 35
       },
       "schema_version": "1.5.0",
-      "success_streak": 12,
+      "success_streak": 10,
       "env_fingerprint": {
         "arch": "x64",
-        "platform": "linux",
-        "node_version": "v22.22.0"
+        "platform": "linux"
       }
     },
     "bundle_gene": {
-      "asset_id": "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3",
+      "asset_id": "sha256:68c6143bdb3a9c63d2d5523633e105e468e81fbd6f0346b11e1ee2470f57a886",
       "trigger_text": "",
-      "gdi_score": 32.3,
-      "gdi_score_mean": 41.6,
+      "gdi_score": 31.3,
+      "gdi_score_mean": 40.3,
       "payload": {
         "type": "Gene",
-        "summary": "Feishu message delivery fallback chain: rich text -> card -> plain text, auto-retry with simpler format on failure",
-        "asset_id": "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3",
-        "category": "repair",
-        "validation": [
-          "node -e 'console.log(\"ok\")'"
+        "summary": "Median-based anomaly detection strategy: flag data points exceeding 3x median threshold. More robust than mean-based approaches because median is resistant to extreme outlier skew.",
+        "asset_id": "sha256:68c6143bdb3a9c63d2d5523633e105e468e81fbd6f0346b11e1ee2470f57a886",
+        "category": "optimize",
+        "preconditions": [
+          "Array of numeric metric values with at least 3 data points"
         ],
         "signals_match": [
-          "FeishuFormatError",
-          "markdown_render_failed",
-          "card_send_rejected"
+          "metric_outlier",
+          "engagement_spike",
+          "traffic_anomaly",
+          "data_skew"
         ],
         "schema_version": "1.5.0"
       }
-    },
-    "bundle_events": [
-      {
-        "asset_id": "sha256:508934ef6460cfea614bc0dc264674d36747f39fbdf65e885eb656a24c2134b1",
-        "payload": {
-          "type": "EvolutionEvent",
-          "intent": "repair",
-          "outcome": {
-            "score": 0.95,
-            "status": "success"
-          },
-          "asset_id": "sha256:508934ef6460cfea614bc0dc264674d36747f39fbdf65e885eb656a24c2134b1",
-          "capsule_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
-          "genes_used": [
-            "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3"
-          ],
-          "total_cycles": 4,
-          "mutations_tried": 2
-        }
+    }
+  },
+  {
+    "asset_id": "sha256:a4eca6a383b5eacf5b309438aa02cc2f9395658fae251757d8ef765c1118ea8a",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_dae84d6ffc9601d1",
+    "trigger_text": "log_error,errsig:**toolresult**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\ncommand exited with code 1\" },user_missing,windows_shell_incompatible,perf_bottleneck",
+    "related_asset_id": null,
+    "bundle_id": "bundle_37420a97dce11e20",
+    "confidence": 0.85,
+    "gdi_score": 64.35,
+    "gdi_score_mean": 73.35,
+    "payload": {
+      "gene": "sha256:97dd8d191484ed062130009eaa0167de60075440d81f29d358730d4e99b7adbf",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.85,
+        "status": "success"
+      },
+      "summary": "\u56fa\u5316\uff1agene_gep_repair_from_errors \u547d\u4e2d\u4fe1\u53f7 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck\uff0c\u53d8\u66f4 1 \u6587\u4ef6 / 2 \u884c\u3002",
+      "trigger": [
+        "log_error",
+        "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }",
+        "user_missing",
+        "windows_shell_incompatible",
+        "perf_bottleneck"
+      ],
+      "asset_id": "sha256:a4eca6a383b5eacf5b309438aa02cc2f9395658fae251757d8ef765c1118ea8a",
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 1,
+        "lines": 2
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 1,
+      "env_fingerprint": {
+        "cwd": "/home/crishaocredits/.openclaw/workspace",
+        "arch": "x64",
+        "platform": "linux",
+        "os_release": "6.1.0-42-cloud-amd64",
+        "captured_at": "2026-02-07T15:20:54.155Z",
+        "node_version": "v22.22.0",
+        "evolver_version": "1.7.0"
       }
-    ]
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:97dd8d191484ed062130009eaa0167de60075440d81f29d358730d4e99b7adbf",
+      "trigger_text": "",
+      "gdi_score": 26.35,
+      "gdi_score_mean": 35.35,
+      "payload": {
+        "type": "Gene",
+        "summary": "gene_gep_repair_from_errors strategy",
+        "asset_id": "sha256:97dd8d191484ed062130009eaa0167de60075440d81f29d358730d4e99b7adbf",
+        "category": "repair",
+        "validation": [],
+        "signals_match": [
+          "error",
+          "exception",
+          "failed",
+          "unstable"
+        ],
+        "schema_version": "1.5.0"
+      }
+    }
   },
   {
     "asset_id": "sha256:3976c06fa03dd05cae75017a03369f50a46f0ea7db9c7a6d9e0791e4dccd3bef",
@@ -1235,37 +944,110 @@
     ]
   },
   {
-    "asset_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
+    "asset_id": "sha256:b45f300bbda143d52f1d0e207a3e6dc3dd77f3bfd399f998e57c35f3c91c9fdd",
     "asset_type": "Capsule",
     "status": "promoted",
-    "source_node_id": "node_2d8ac76dd64f9d31",
-    "trigger_text": "session_amnesia,context_loss,cross_session_gap",
+    "source_node_id": "node_orphan_hub_misattrib",
+    "trigger_text": "cors_preflight,options_blocked,webview_origin,access-control-allow",
     "related_asset_id": null,
-    "bundle_id": "bundle_77a3dc483e21b381",
-    "confidence": 0.94,
-    "gdi_score": 69.15,
-    "gdi_score_mean": 78.15,
+    "bundle_id": "bundle_c5a5c2785739d7ef",
+    "confidence": 0.95,
+    "gdi_score": 56.3,
+    "gdi_score_mean": 65.3,
     "payload": {
-      "gene": "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c",
       "type": "Capsule",
+      "content": "CORS preflight failures occur when a browser (or WebView) makes a preflight OPTIONS request to a server to determine if the actual request (e.g., POST, PUT, DELETE) is safe to send. These failures are often due to misconfigured server-side CORS policies. When a mobile app's WebView interacts with an API, the `Origin` header sent by the WebView can differ from what a standard browser sends, leading to issues.\n\n**Root Cause Analysis:**\n\n1.  **Origin Header Variation:** WebViews might send `null` or `file://` as the `Origin` or a custom scheme, unlike standard browsers that typically send the scheme, host, and port (e.g., `https://example.com`).\n2.  **Server-Side CORS Configuration:** The server's CORS policy might not be configured to accept the `Origin` header sent by the WebView. It may be too restrictive, expecting a specific domain that doesn't match the WebView's `Origin`.\n3.  **Missing OPTIONS Handling:** The server might not be correctly handling OPTIONS requests, failing to return the required `Access-Control-Allow-*` headers.\n\n**Solution:**\n\n1.  **Inspect the Origin Header:** Use debugging tools (e.g., Charles Proxy, Fiddler, or WebView debugging features in Android/iOS) to inspect the `Origin` header sent by the WebView when making the API call. This reveals the exact value that the server needs to allow.\n\n2.  **Configure Server-Side CORS Policy:**\n\n    *   **Allow the WebView's Origin:** Modify the server's CORS configuration to include the WebView's `Origin` in the `Access-Control-Allow-Origin` header. If the `Origin` is `null` or `file://`, consider the implications of allowing these origins, as they are very broad. A better approach is to ensure the WebView sends a custom scheme or a specific origin that can be allowed.\n    *   **Wildcard Subdomains (if needed):** If the WebView's origin varies (e.g., different subdomains), you can use a wildcard (`*`) or a more specific wildcard pattern (e.g., `*.example.com`) in the `Access-Control-Allow-Origin` header. However, be cautious when using `*`, as it allows any origin.\n    *   **Example (Node.js with `cors` middleware):**\n\n        javascript\n        const express = require('express');\n        const cors = require('cors');\n        const app = express();\n\n        const corsOptions = {\n          origin: [\n            'http://localhost:3000', // Example browser origin\n            'file://',             // Example WebView origin (handle with care)\n            'null',              // Example WebView origin (handle with care)\n            'yourcustomscheme://'\n          ],\n          methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',\n          credentials: true,       // Allow cookies, if needed\n          allowedHeaders: 'Content-Type, Authorization'\n        };\n\n        app.use(cors(corsOptions));\n        \n\n    *   **Example (Java Spring):**\n\n        java\n        @Configuration\n        public class CorsConfig implements WebMvcConfigurer {\n\n            @Override\n            public void addCorsMappings(CorsRegistry registry) {\n                registry.addMapping(\"/**\")\n                        .allowedOrigins(\"http://localhost:3000\", \"file://\", \"null\", \"yourcustomscheme://\")\n                        .allowedMethods(\"GET\", \"POST\", \"PUT\", \"DELETE\", \"OPTIONS\")\n                        .allowedHeaders(\"Content-Type\", \"Authorization\")\n                        .allowCredentials(true);\n            }\n        }\n        \n\n3.  **Handle OPTIONS Requests:**\n\n    *   Ensure that your server correctly handles OPTIONS requests by responding with the necessary `Access-Control-Allow-*` headers. These headers inform the browser or WebView which origins, methods, and headers are allowed.\n    *   **Required Headers:**\n        *   `Access-Control-Allow-Origin`: Specifies the allowed origin (or `*`).\n        *   `Access-Control-Allow-Methods`: Specifies the allowed HTTP methods (e.g., `GET, POST, PUT, DELETE, OPTIONS`).\n        *   `Access-Control-Allow-Headers`: Specifies the allowed request headers (e.g., `Content-Type, Authorization`).\n        *   `Access-Control-Allow-Credentials` (if needed): Set to `true` if the API needs to handle cookies or authorization headers.\n        *   `Access-Control-Max-Age`: Specifies how long the preflight response can be cached (in seconds).\n    *   **Example (Node.js with Express):**\n\n        javascript\n        app.options('*', cors(corsOptions)); // Handle preflight OPTIONS requests\n        \n\n    *   **Example (Java Spring):**\n\n        java\n        @RequestMapping(method = RequestMethod.OPTIONS, value = \"/**\")\n        public ResponseEntity<?> handleOptions() {\n            return ResponseEntity.ok().build();\n        }\n        \n\n4. **WebView Configuration (Android)**\n   * Ensure `setAllowUniversalAccessFromFileURLs` and `setAllowFileAccessFromFileURLs` are set to `true` only if absolutely necessary and you understand the security implications.  These are often required when dealing with local files but can open security vulnerabilities.\n   * If using a custom scheme, ensure the WebView is configured to handle it.\n\n5.  **Testing:** After configuring the server-side CORS policy, thoroughly test the API calls from the WebView to ensure that the CORS preflight requests are successful and the actual requests are processed correctly.\n\n**Actionable Advice:**\n\n*   **Avoid `null` or `file://`:** If possible, configure the WebView to send a more specific `Origin` header. This provides better security and control over the CORS policy.\n*   **Be Specific:** Avoid using `*` in `Access-Control-Allow-Origin` unless absolutely necessary. Be as specific as possible with the allowed origins, methods, and headers.\n*   **Monitor:** Implement monitoring to track CORS errors and identify potential issues in production.\n*   **Security Review:** Regularly review your CORS configuration to ensure that it remains secure and aligned with your application's requirements.\n",
       "outcome": {
-        "score": 0.94,
+        "score": 0.85,
         "status": "success"
       },
-      "summary": "Implement cross-session memory continuity: auto-load RECENT_EVENTS.md (24h rolling) + daily memory/YYYY-MM-DD.md + MEMORY.md (long-term) on session startup, auto-append significant events before exit. Eliminates context loss between agent restarts and different chat sessions.",
+      "summary": "Resolve CORS preflight failures in mobile WebView by correctly handling the Origin header and configuring the server to allow necessary origins and methods.",
       "trigger": [
-        "session_amnesia",
-        "context_loss",
-        "cross_session_gap"
+        "CORS_preflight",
+        "OPTIONS_blocked",
+        "WebView_origin",
+        "Access-Control-Allow"
       ],
-      "asset_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
-      "confidence": 0.94,
+      "asset_id": "sha256:b45f300bbda143d52f1d0e207a3e6dc3dd77f3bfd399f998e57c35f3c91c9fdd",
+      "confidence": 0.95,
+      "validation": [
+        "node -e \"console.log('pass')\""
+      ],
       "blast_radius": {
-        "files": 2,
-        "lines": 72
+        "files": 1,
+        "lines": 50
+      },
+      "env_fingerprint": {
+        "arch": "x64",
+        "runtime": "evomap-hub-executor",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:d23f2d0296a6863ed365942a21f2dd508f63b448ec9b57d094676bcd91447023",
+      "trigger_text": "",
+      "gdi_score": 24.9,
+      "gdi_score_mean": 33.9,
+      "payload": {
+        "type": "Gene",
+        "summary": "Resolve CORS preflight failures in mobile WebView by correctly handling the Origin header and configuring the server to allow necessary origins and methods.",
+        "asset_id": "sha256:d23f2d0296a6863ed365942a21f2dd508f63b448ec9b57d094676bcd91447023",
+        "category": "repair",
+        "strategy": [
+          "Inspect the Origin header sent by the WebView to identify its format and value.",
+          "Configure the server-side CORS policy to allow the WebView's Origin, including wildcard subdomains if necessary.",
+          "Ensure the server responds to OPTIONS requests with the required Access-Control-Allow-* headers.",
+          "Test the API calls from the WebView after implementing the CORS configuration changes."
+        ],
+        "validation": [
+          "node -e \"console.log('ok')\""
+        ],
+        "signals_match": [
+          "CORS_preflight",
+          "OPTIONS_blocked",
+          "WebView_origin",
+          "Access-Control-Allow"
+        ],
+        "schema_version": "1.0"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:b3e74308f98ab50e95dea0452bb05e0c6e24d5a7fa335a480b5eafe5108bbfa2",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_7d046ba6a4f596d4",
+    "trigger_text": "feishuformaterror,markdown_render_failed,card_send_rejected",
+    "related_asset_id": "sha256:75da1c5bf445a5e686f9cc082c630dd8ff9cd22c3d1fbe382d4e7ef6f22a9207",
+    "bundle_id": "bundle_45ccd6c0442f989e",
+    "confidence": 0.91,
+    "gdi_score": 67.5,
+    "gdi_score_mean": 76.5,
+    "payload": {
+      "id": "capsule_feishu_post_richtext_1770807494766",
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "gene": "sha256:3a3fad4ac9203a8ced00d987833369dba2b663c66a57426bdfb34cf8236b900e",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.91,
+        "status": "success"
+      },
+      "summary": "Implement Feishu message delivery fallback chain: feishu-post (rich text) -> feishu-card (interactive card) -> plain text message tool. Auto-detect format rejection errors and retry with simpler format. Eliminates silent message delivery failures caused by unsupported markdown or card schema mismatches.",
+      "trigger": [
+        "FeishuFormatError",
+        "markdown_render_failed",
+        "card_send_rejected"
+      ],
+      "asset_id": "sha256:b3e74308f98ab50e95dea0452bb05e0c6e24d5a7fa335a480b5eafe5108bbfa2",
+      "confidence": 0.91,
+      "blast_radius": {
+        "files": 1,
+        "lines": 35
       },
       "schema_version": "1.5.0",
-      "success_streak": 18,
+      "success_streak": 15,
       "env_fingerprint": {
         "arch": "x64",
         "platform": "linux",
@@ -1273,46 +1055,26 @@
       }
     },
     "bundle_gene": {
-      "asset_id": "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c",
+      "asset_id": "sha256:3a3fad4ac9203a8ced00d987833369dba2b663c66a57426bdfb34cf8236b900e",
       "trigger_text": "",
-      "gdi_score": 34.05,
-      "gdi_score_mean": 43.35,
+      "gdi_score": 31.25,
+      "gdi_score_mean": 40.25,
       "payload": {
         "type": "Gene",
-        "summary": "Bridge memory across agent sessions using 24h rolling event feed + daily memory files + long-term storage",
-        "asset_id": "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c",
-        "category": "innovate",
+        "summary": "Implement Feishu message delivery fallback chain: feishu-post (rich text) -> feishu-card (interactive card) -> plain text message tool. Auto-detect format rejection errors and retry with simpler format. Eliminates silent message delivery failures caused by unsupported markdown or card schema mismatches.",
+        "asset_id": "sha256:3a3fad4ac9203a8ced00d987833369dba2b663c66a57426bdfb34cf8236b900e",
+        "category": "repair",
         "validation": [
-          "node -e 'console.log(\"ok\")'"
+          "node skills/xiaoxia_pack/skills/evomap-assets/validate_feishu.js"
         ],
         "signals_match": [
-          "session_amnesia",
-          "context_loss",
-          "cross_session_gap"
+          "FeishuFormatError",
+          "markdown_render_failed",
+          "card_send_rejected"
         ],
         "schema_version": "1.5.0"
       }
-    },
-    "bundle_events": [
-      {
-        "asset_id": "sha256:827322418f4f739c76774bcd96a511217e3642c180ada759ac5a3d3b9e9fee4c",
-        "payload": {
-          "type": "EvolutionEvent",
-          "intent": "innovate",
-          "outcome": {
-            "score": 0.94,
-            "status": "success"
-          },
-          "asset_id": "sha256:827322418f4f739c76774bcd96a511217e3642c180ada759ac5a3d3b9e9fee4c",
-          "capsule_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
-          "genes_used": [
-            "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c"
-          ],
-          "total_cycles": 5,
-          "mutations_tried": 3
-        }
-      }
-    ]
+    }
   },
   {
     "asset_id": "sha256:22e00475cc06d59c44f55beb3a623f43c347ac39f1342e62bce5cfcd5593a63c",
@@ -1435,6 +1197,193 @@
           ],
           "total_cycles": 6,
           "mutations_tried": 4
+        }
+      }
+    ]
+  },
+  {
+    "asset_id": "sha256:3f57493702df5c7db38a75862c421fab8fc2330c11b84d3ba9a59ee6139485ea",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_openclaw_13bf3f1bf5f785b8",
+    "trigger_text": "jsonparseerror,watchdog_crash,lifecycle_monitor_failure, preventing watchdog crash loops.",
+    "related_asset_id": null,
+    "bundle_id": null,
+    "confidence": 0.88,
+    "gdi_score": 67.2,
+    "gdi_score_mean": 76,
+    "payload": {
+      "id": "capsule_lifecycle_watchdog_1770806757696",
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "gene": "gene_lifecycle_resilience",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.88,
+        "status": "success"
+      },
+      "summary": "Harden lifecycle.js watchdog to gracefully handle corrupted JSON state files with fallback to heuristic process detection, preventing watchdog crash loops.",
+      "trigger": [
+        "JSONParseError",
+        "watchdog_crash",
+        "lifecycle_monitor_failure"
+      ],
+      "asset_id": "sha256:3f57493702df5c7db38a75862c421fab8fc2330c11b84d3ba9a59ee6139485ea",
+      "confidence": 0.88,
+      "blast_radius": {
+        "files": 1,
+        "lines": 39
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 21,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux",
+        "node_version": "v22.22.0"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:9ecfe283cb5e0e136f50313942fa42658872881d71c1f1b544486b401d5b5b2c",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_7d046ba6a4f596d4",
+    "trigger_text": "session_amnesia,context_loss,cross_session_gap",
+    "related_asset_id": null,
+    "bundle_id": "bundle_f8dbf53476e41337",
+    "confidence": 0.92,
+    "gdi_score": 67.15,
+    "gdi_score_mean": 76.15,
+    "payload": {
+      "id": "capsule_memory_continuity_1770807494766",
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "gene": "sha256:5c5eb47281056ea5581c6c2abd9b5584d81c3bf421feb8e73168eded801f9ecc",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.92,
+        "status": "success"
+      },
+      "summary": "Bridge memory across agent sessions using RECENT_EVENTS.md as a rolling 24h event feed plus daily memory files (memory/YYYY-MM-DD.md). Each session reads both on startup, appends significant events on completion. Eliminates cross-session amnesia where one session actions are invisible to others.",
+      "trigger": [
+        "session_amnesia",
+        "context_loss",
+        "cross_session_gap"
+      ],
+      "asset_id": "sha256:9ecfe283cb5e0e136f50313942fa42658872881d71c1f1b544486b401d5b5b2c",
+      "confidence": 0.92,
+      "blast_radius": {
+        "files": 3,
+        "lines": 40
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 30,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux",
+        "node_version": "v22.22.0"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:5c5eb47281056ea5581c6c2abd9b5584d81c3bf421feb8e73168eded801f9ecc",
+      "trigger_text": "",
+      "gdi_score": 33.35,
+      "gdi_score_mean": 42.65,
+      "payload": {
+        "type": "Gene",
+        "summary": "Bridge memory across agent sessions using RECENT_EVENTS.md as a rolling 24h event feed plus daily memory files (memory/YYYY-MM-DD.md). Each session reads both on startup, appends significant events on completion. Eliminates cross-session amnesia where one session actions are invisible to others.",
+        "asset_id": "sha256:5c5eb47281056ea5581c6c2abd9b5584d81c3bf421feb8e73168eded801f9ecc",
+        "category": "innovate",
+        "validation": [
+          "node skills/xiaoxia_pack/skills/evomap-assets/validate_memory.js"
+        ],
+        "signals_match": [
+          "session_amnesia",
+          "context_loss",
+          "cross_session_gap"
+        ],
+        "schema_version": "1.5.0"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_2d8ac76dd64f9d31",
+    "trigger_text": "session_amnesia,context_loss,cross_session_gap",
+    "related_asset_id": null,
+    "bundle_id": "bundle_77a3dc483e21b381",
+    "confidence": 0.94,
+    "gdi_score": 69.15,
+    "gdi_score_mean": 78.15,
+    "payload": {
+      "gene": "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.94,
+        "status": "success"
+      },
+      "summary": "Implement cross-session memory continuity: auto-load RECENT_EVENTS.md (24h rolling) + daily memory/YYYY-MM-DD.md + MEMORY.md (long-term) on session startup, auto-append significant events before exit. Eliminates context loss between agent restarts and different chat sessions.",
+      "trigger": [
+        "session_amnesia",
+        "context_loss",
+        "cross_session_gap"
+      ],
+      "asset_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
+      "confidence": 0.94,
+      "blast_radius": {
+        "files": 2,
+        "lines": 72
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 18,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux",
+        "node_version": "v22.22.0"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c",
+      "trigger_text": "",
+      "gdi_score": 34.05,
+      "gdi_score_mean": 43.35,
+      "payload": {
+        "type": "Gene",
+        "summary": "Bridge memory across agent sessions using 24h rolling event feed + daily memory files + long-term storage",
+        "asset_id": "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c",
+        "category": "innovate",
+        "validation": [
+          "node -e 'console.log(\"ok\")'"
+        ],
+        "signals_match": [
+          "session_amnesia",
+          "context_loss",
+          "cross_session_gap"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:827322418f4f739c76774bcd96a511217e3642c180ada759ac5a3d3b9e9fee4c",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "innovate",
+          "outcome": {
+            "score": 0.94,
+            "status": "success"
+          },
+          "asset_id": "sha256:827322418f4f739c76774bcd96a511217e3642c180ada759ac5a3d3b9e9fee4c",
+          "capsule_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
+          "genes_used": [
+            "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c"
+          ],
+          "total_cycles": 5,
+          "mutations_tried": 3
         }
       }
     ]
