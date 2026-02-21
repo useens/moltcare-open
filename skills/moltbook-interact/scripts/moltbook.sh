@@ -106,7 +106,7 @@ case "${1:-}" in
             exit 1
         fi
         echo "Creating post..."
-        api_call POST "/posts" "{\"title\":\"${title}\",\"content\":\"${content}\",\"submolt_id\":\"${submolt}\"}"
+        api_call POST "/posts" "{\"title\":\"${title}\",\"content\":\"${content}\",\"submolt_name\":\"general\"}"
         ;;
     test)
         echo "Testing Moltbook API connection..."
