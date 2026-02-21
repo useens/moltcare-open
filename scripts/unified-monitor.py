@@ -70,15 +70,19 @@ class MemorySystem(SystemComponent):
         long_term = WORKSPACE / "memory" / "long_term.json"
         if not long_term.exists():
             issues.append("v5.1: 长期记忆文件不存在")
-        
-        # v5.2 向量记忆检查
-        vector_dir = DATA_DIR / "vector_memory"
-        if not vector_dir.exists():
-            issues.append("v5.2: 向量记忆目录不存在")
+
+        # v5.2 向量记忆检查（修复路径：使用实际存在的路径）
+        vector_status = WORKSPACE / "memory" / "modules" / "vector-memory-status.json"
+        if not vector_status.exists():
+            issues.append("v5.2: 向量记忆状态文件不存在")
         else:
-            vector_files = list(vector_dir.glob("*.json"))
-            if len(vector_files) == 0:
-                issues.append("v5.2: 向量记忆为空")
+            try:
+                with open(vector_status) as f:
+                    status = json.load(f)
+                    if status.get("health_score", 0) < 90:
+                        issues.append(f"v5.2: 向量记忆健康分低 ({status.get('health_score', 0)})")
+            except Exception:
+                issues.append("v5.2: 无法读取向量记忆状态")
         
         # v5.3 工作记忆检查
         session_files = list(DATA_DIR.glob("session_*.json"))
@@ -105,10 +109,10 @@ class MemorySystem(SystemComponent):
     def fix(self) -> bool:
         """执行记忆系统修复"""
         try:
-            # 重建向量索引
-            vector_script = WORKSPACE / "scripts" / "init-vector-memory-full.py"
-            if vector_script.exists():
-                subprocess.run([sys.executable, str(vector_script)], 
+            # 重建向量索引（修复路径：使用实际存在的脚本）
+            vector_indexer = WORKSPACE / "scripts" / "vector-memory-indexer.py"
+            if vector_indexer.exists():
+                subprocess.run([sys.executable, str(vector_indexer)],
                              capture_output=True, timeout=300)
             
             # 清理旧会话
