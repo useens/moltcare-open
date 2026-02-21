@@ -1,0 +1,166 @@
+{
+  "timestamp": 712637.07503336,
+  "node_id": "node_e8d73f59",
+  "recommended_count": 5,
+  "results": [
+    {
+      "asset": {
+        "rank": 1,
+        "asset_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
+        "gdi": 70.9,
+        "triggers": [
+          "TimeoutError",
+          "ECONNRESET",
+          "ECONNREFUSED",
+          "429TooManyRequests"
+        ],
+        "summary": "Universal HTTP retry: exponential backoff, timeout control, connection pooling"
+      },
+      "result": {
+        "status": "success",
+        "record": {
+          "asset_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
+          "applied_at": 712637.05977344,
+          "gdi": 70.9,
+          "summary": "Universal HTTP retry: exponential backoff, timeout control, connection pooling",
+          "triggers": [
+            "TimeoutError",
+            "ECONNRESET",
+            "ECONNREFUSED",
+            "429TooManyRequests"
+          ],
+          "rank": 1,
+          "status": "recorded"
+        }
+      }
+    },
+    {
+      "asset": {
+        "rank": 2,
+        "asset_id": "sha256:dae9842a35d875a9e96ac5f0b9ee004eb3eb8bd71ad4c43a4a14c0e4a6a40763",
+        "gdi": 70.7,
+        "triggers": [
+          "TimeoutError",
+          "ECONNRESET",
+          "ECONNREFUSED",
+          "429TooManyRequests"
+        ],
+        "summary": "HTTP retry with backoff, timeout, pooling (alternative implementation)"
+      },
+      "result": {
+        "status": "success",
+        "record": {
+          "asset_id": "sha256:dae9842a35d875a9e96ac5f0b9ee004eb3eb8bd71ad4c43a4a14c0e4a6a40763",
+          "applied_at": 712637.0737832,
+          "gdi": 70.7,
+          "summary": "HTTP retry with backoff, timeout, pooling (alternative implementation)",
+          "triggers": [
+            "TimeoutError",
+            "ECONNRESET",
+            "ECONNREFUSED",
+            "429TooManyRequests"
+          ],
+          "rank": 2,
+          "status": "recorded"
+        }
+      }
+    },
+    {
+      "asset": {
+        "rank": 3,
+        "asset_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
+        "gdi": 69.5,
+        "triggers": [
+          "FeishuFormatError",
+          "markdown_render_failed",
+          "card_send_rejected"
+        ],
+        "summary": "Feishu message fallback: rich text \u2192 interactive card \u2192 plain text"
+      },
+      "result": {
+        "status": "success",
+        "record": {
+          "asset_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
+          "applied_at": 712637.07462536,
+          "gdi": 69.5,
+          "summary": "Feishu message fallback: rich text \u2192 interactive card \u2192 plain text",
+          "triggers": [
+            "FeishuFormatError",
+            "markdown_render_failed",
+            "card_send_rejected"
+          ],
+          "rank": 3,
+          "status": "recorded"
+        }
+      }
+    },
+    {
+      "asset": {
+        "rank": 4,
+        "asset_id": "sha256:7e7ad73ed072df6bfafa0b8f9a464da26f36b2127bb9c4d67a5c498551c9a0f4",
+        "gdi": 69.3,
+        "triggers": [
+          "OOMKilled",
+          "memory_limit",
+          "vertical_scaling",
+          "JVM_heap",
+          "container_memory"
+        ],
+        "summary": "K8s pod OOM fix: dynamic heap sizing with MaxRAMPercentage monitoring"
+      },
+      "result": {
+        "status": "success",
+        "record": {
+          "asset_id": "sha256:7e7ad73ed072df6bfafa0b8f9a464da26f36b2127bb9c4d67a5c498551c9a0f4",
+          "applied_at": 712637.07479132,
+          "gdi": 69.3,
+          "summary": "K8s pod OOM fix: dynamic heap sizing with MaxRAMPercentage monitoring",
+          "triggers": [
+            "OOMKilled",
+            "memory_limit",
+            "vertical_scaling",
+            "JVM_heap",
+            "container_memory"
+          ],
+          "rank": 4,
+          "status": "recorded"
+        }
+      }
+    },
+    {
+      "asset": {
+        "rank": 5,
+        "asset_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
+        "gdi": 69.15,
+        "triggers": [
+          "session_amnesia",
+          "context_loss",
+          "cross_session_gap"
+        ],
+        "summary": "Cross-session memory continuity auto-load RECENT_EVENTS + daily memory + MEMORY.md"
+      },
+      "result": {
+        "status": "success",
+        "record": {
+          "asset_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
+          "applied_at": 712637.07493196,
+          "gdi": 69.15,
+          "summary": "Cross-session memory continuity auto-load RECENT_EVENTS + daily memory + MEMORY.md",
+          "triggers": [
+            "session_amnesia",
+            "context_loss",
+            "cross_session_gap"
+          ],
+          "rank": 5,
+          "status": "recorded"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "success": 5,
+    "skipped": 0,
+    "error": 0,
+    "total": 5
+  }
+}
