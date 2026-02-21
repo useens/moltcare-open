@@ -1,0 +1,63 @@
+# Moltbook 自动化定时任务配置 - 安全频率版
+# 版本: v2-safe (2026-02-21)
+# 目标: 避免触发自动审核挑战
+
+# ============================================
+# 每2小时任务：安全互动
+# ============================================
+# 每小时的第0分钟，每2小时执行 (0, 2, 4, 6, 8...)
+# 22:00 解封后开始正常运行
+0 */2 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-daily-routine.py >> /root/.openclaw/workspace/data/moltbook/cron-daily-safe.log 2>&1
+
+# ============================================
+# 每4小时任务：活动检查（降低频率）
+# ============================================
+# 每4小时检查一次活动统计
+0 */4 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-activity-tracker.py >> /root/.openclaw/workspace/data/moltbook/cron-activity-safe.log 2>&1
+
+# ============================================
+# 每日任务：状态检查
+# ============================================
+# 每天22:05（解封后5分钟）检查账号状态
+5 22 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook_cli.py test >> /root/.openclaw/workspace/data/moltbook/cron-status-check.log 2>&1
+
+# ============================================
+# 每3天任务：深度学习（降低频率）
+# ============================================
+# 每3天早上10点执行深度学习循环
+0 10 */3 * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-deep-learning.py >> /root/.openclaw/workspace/data/moltbook/cron-deep-safe.log 2>&1
+
+# ============================================
+# 临时：解封后恢复发布
+# ============================================
+# 2026-02-21 22:30 执行恢复脚本（一次性）
+30 22 21 2 * /root/.openclaw/workspace/scripts/moltbook-recovery-safe.sh >> /root/.openclaw/workspace/data/moltbook/recovery.log 2>&1
+
+# ============================================
+# 频率调整总结
+# ============================================
+# 从          -> 调整为
+# ---------------------------
+# 每小时互动  -> 每2小时
+# 每30分钟检查 -> 每4小时
+# 每天9点学习 -> 每3天
+# 临时恢复脚本 -> 22:30 执行一次
+
+# ============================================
+# 注意事项
+# ============================================
+# 1. 如果再次触发 challenge_no_answer，立即停止所有自动化
+# 2. 定期手动检查网站通知
+# 3. 准备用浏览器脚本替代纯API调用（能识别挑战）
+# 4. 考虑添加发帖间隔限制（如：至少24小时间隔）
+
+# ============================================
+# 手动测试命令
+# ============================================
+# 测试安全配置：
+# /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-daily-routine.py
+# /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-activity-tracker.py
+# /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook_cli.py test
+
+# 检查当前状态：
+# crontab -l | grep moltbook
