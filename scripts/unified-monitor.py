@@ -109,21 +109,80 @@ class MemorySystem(SystemComponent):
     def fix(self) -> bool:
         """执行记忆系统修复"""
         try:
+            # 创建新快照（针对v5.5问题）
+            if not self._create_snapshot():
+                logger.warning("快照创建失败，继续其他修复")
+
             # 重建向量索引（修复路径：使用实际存在的脚本）
             vector_indexer = WORKSPACE / "scripts" / "vector-memory-indexer.py"
             if vector_indexer.exists():
                 subprocess.run([sys.executable, str(vector_indexer)],
                              capture_output=True, timeout=300)
-            
+
             # 清理旧会话
             old_sessions = list(DATA_DIR.glob("session_*.json"))
             old_sessions.sort(key=lambda x: x.stat().st_mtime)
             for session in old_sessions[:-50]:  # 保留最近50个
                 session.unlink()
-            
+
             return True
         except Exception as e:
             logger.error(f"记忆系统修复失败: {e}")
+            return False
+
+    def _create_snapshot(self) -> bool:
+        """创建系统快照"""
+        try:
+            snapshot_dir = WORKSPACE / "memory" / "snapshots"
+            snapshot_dir.mkdir(parents=True, exist_ok=True)
+
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            snapshot_file = snapshot_dir / f"snapshot_{timestamp}.json"
+
+            # 收集关键文件信息
+            files_info = {}
+            key_files = [
+                "MEMORY.md",
+                "HEARTBEAT.md",
+                "memory/learning-debt.md"
+            ]
+
+            for file_path in key_files:
+                file_obj = WORKSPACE / file_path
+                if file_obj.exists():
+                    files_info[file_path] = {
+                        "hash": subprocess.run(
+                            ["head", "-c", "100", str(file_obj)],
+                            capture_output=True,
+                            text=True
+                        ).stdout.strip()[:100],
+                        "size": file_obj.stat().st_size,
+                        "mtime": file_obj.stat().st_mtime
+                    }
+
+            # 创建快照
+            snapshot = {
+                "id": timestamp,
+                "timestamp": datetime.now().isoformat(),
+                "version": "v5",
+                "files": files_info,
+                "trigger": "health_monitor"
+            }
+
+            with open(snapshot_file, "w") as f:
+                json.dump(snapshot, f, indent=2)
+
+            # 更新latest符号链接
+            latest_link = snapshot_dir / "latest.json"
+            if latest_link.exists() or latest_link.is_symlink():
+                latest_link.unlink()
+            latest_link.symlink_to(f"snapshot_{timestamp}.json")
+
+            logger.info(f"快照已创建: {snapshot_file.name}")
+            return True
+
+        except Exception as e:
+            logger.error(f"快照创建失败: {e}")
             return False
 
 
