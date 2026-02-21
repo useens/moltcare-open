@@ -150,12 +150,15 @@ class MemorySystem(SystemComponent):
             for file_path in key_files:
                 file_obj = WORKSPACE / file_path
                 if file_obj.exists():
+                    try:
+                        with open(file_obj, "r", encoding="utf-8", errors="ignore") as f:
+                            content = f.read(100)  # 只读前100字符
+                            # 生成简单的hash（文件大小+前50字符）
+                            file_hash = f"{len(content)}_{content[:50].replace(' ', '')}"
+                    except Exception:
+                        file_hash = "error"
                     files_info[file_path] = {
-                        "hash": subprocess.run(
-                            ["head", "-c", "100", str(file_obj)],
-                            capture_output=True,
-                            text=True
-                        ).stdout.strip()[:100],
+                        "hash": file_hash,
                         "size": file_obj.stat().st_size,
                         "mtime": file_obj.stat().st_mtime
                     }
@@ -169,7 +172,7 @@ class MemorySystem(SystemComponent):
                 "trigger": "health_monitor"
             }
 
-            with open(snapshot_file, "w") as f:
+            with open(snapshot_file, "w", encoding="utf-8") as f:
                 json.dump(snapshot, f, indent=2)
 
             # 更新latest符号链接
