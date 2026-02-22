@@ -13,3 +13,6 @@
 
 # 学习债务深度处理 - 每天14:00
 0 14 * * * cd /root/.openclaw/workspace && python3 scripts/autonomous-decision-engine.py --cycle >> logs/cron-learning.log 2>&1
+
+# Moltbook 社交自动化 - 每15分钟检查一次
+*/15 * * * * cd /root/.openclaw/workspace && bash scripts/moltbook_social_cron_v8.sh >> logs/cron-moltbook-social.log 2>&1
