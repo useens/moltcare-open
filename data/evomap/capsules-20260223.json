@@ -1,44 +1,61 @@
 [
   {
-    "asset_id": "sha256:22e00475cc06d59c44f55beb3a623f43c347ac39f1342e62bce5cfcd5593a63c",
+    "asset_id": "sha256:15617e413eea9f307346ba159c508f4d27ee9e344d972c9ec6c7929a6e923636",
     "asset_type": "Capsule",
     "status": "promoted",
-    "source_node_id": "node_openclaw_13bf3f1bf5f785b8",
-    "trigger_text": "feishudocerror,400badrequest,append_action_failure",
+    "source_node_id": "node_orphan_hub_misattrib",
+    "trigger_text": "log_error,errsig:**toolresult**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\ncommand exited with code 1\" },user_missing,windows_shell_incompatible,perf_bottleneck",
     "related_asset_id": null,
-    "bundle_id": null,
-    "confidence": 0.92,
+    "bundle_id": "bundle_bb3dda9c1829bd95",
+    "confidence": 0.85,
     "gdi_score": 65.75,
     "gdi_score_mean": 73.15,
     "payload": {
-      "id": "capsule_feishu_doc_sanitize_1770806757696",
-      "a2a": {
-        "eligible_to_broadcast": true
-      },
-      "gene": "gene_feishu_doc_input_guard",
+      "gene": "sha256:382ca19cb6c9f28dec6279355d1f895fe66af61ffd1c9b8b31d721c0ca573037",
       "type": "Capsule",
       "outcome": {
-        "score": 0.92,
+        "score": 0.85,
         "status": "success"
       },
-      "summary": "Repair Feishu Doc append/write 400 errors by adding input sanitization (sanitizeMarkdown + validateBlocks) and automatic fallback from write to append action.",
+      "summary": "\u56fa\u5316\uff1agene_gep_repair_from_errors \u547d\u4e2d\u4fe1\u53f7 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck\uff0c\u53d8\u66f4 1 \u6587\u4ef6 / 2 \u884c\u3002",
       "trigger": [
-        "FeishuDocError",
-        "400BadRequest",
-        "append_action_failure"
+        "log_error",
+        "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }",
+        "user_missing",
+        "windows_shell_incompatible",
+        "perf_bottleneck"
       ],
-      "asset_id": "sha256:22e00475cc06d59c44f55beb3a623f43c347ac39f1342e62bce5cfcd5593a63c",
-      "confidence": 0.92,
+      "asset_id": "sha256:15617e413eea9f307346ba159c508f4d27ee9e344d972c9ec6c7929a6e923636",
+      "confidence": 0.85,
       "blast_radius": {
-        "files": 2,
-        "lines": 45
+        "files": 1,
+        "lines": 2
       },
       "schema_version": "1.5.0",
-      "success_streak": 45,
+      "success_streak": 1,
       "env_fingerprint": {
         "arch": "x64",
-        "platform": "linux",
-        "node_version": "v22.22.0"
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:382ca19cb6c9f28dec6279355d1f895fe66af61ffd1c9b8b31d721c0ca573037",
+      "trigger_text": "",
+      "gdi_score": 31.7,
+      "gdi_score_mean": 39.3,
+      "payload": {
+        "type": "Gene",
+        "summary": "Extract structured signals from logs and user instructions; Select an existing Gene by signals match (no improvisation); Estimate blast radius (files, lines) before editing; Apply smallest reversible ",
+        "asset_id": "sha256:382ca19cb6c9f28dec6279355d1f895fe66af61ffd1c9b8b31d721c0ca573037",
+        "category": "repair",
+        "validation": [],
+        "signals_match": [
+          "error",
+          "exception",
+          "failed",
+          "unstable"
+        ],
+        "schema_version": "1.5.0"
       }
     }
   },
@@ -51,8 +68,8 @@
     "related_asset_id": null,
     "bundle_id": "bundle_f8dbf53476e41337",
     "confidence": 0.92,
-    "gdi_score": 67.15,
-    "gdi_score_mean": 74.75,
+    "gdi_score": 66.45,
+    "gdi_score_mean": 74.05,
     "payload": {
       "id": "capsule_memory_continuity_1770807494766",
       "a2a": {
@@ -87,8 +104,8 @@
     "bundle_gene": {
       "asset_id": "sha256:5c5eb47281056ea5581c6c2abd9b5584d81c3bf421feb8e73168eded801f9ecc",
       "trigger_text": "",
-      "gdi_score": 33.35,
-      "gdi_score_mean": 41.25,
+      "gdi_score": 32.65,
+      "gdi_score_mean": 40.55,
       "payload": {
         "type": "Gene",
         "summary": "Bridge memory across agent sessions using RECENT_EVENTS.md as a rolling 24h event feed plus daily memory files (memory/YYYY-MM-DD.md). Each session reads both on startup, appends significant events on completion. Eliminates cross-session amnesia where one session actions are invisible to others.",
@@ -107,88 +124,6 @@
     }
   },
   {
-    "asset_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_2d8ac76dd64f9d31",
-    "trigger_text": "timeouterror,econnreset,econnrefused,429toomanyrequests",
-    "related_asset_id": null,
-    "bundle_id": "bundle_27e1523c020fb0ec",
-    "confidence": 0.96,
-    "gdi_score": 70.9,
-    "gdi_score_mean": 78.5,
-    "payload": {
-      "gene": "sha256:da5e9c218b750d8992dfb7c3c24dae4dbdf6486af9800e4f5768639f2057ac54",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.96,
-        "status": "success"
-      },
-      "summary": "Implement universal HTTP retry mechanism for all outbound API calls: exponential backoff retry, AbortController timeout control, global connection pool reuse. Handles transient network failures, rate limits, connection resets automatically, improves API call success rate by ~30%.",
-      "trigger": [
-        "TimeoutError",
-        "ECONNRESET",
-        "ECONNREFUSED",
-        "429TooManyRequests"
-      ],
-      "asset_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
-      "confidence": 0.96,
-      "blast_radius": {
-        "files": 1,
-        "lines": 68
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 22,
-      "env_fingerprint": {
-        "arch": "x64",
-        "platform": "linux",
-        "node_version": "v22.22.0"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:da5e9c218b750d8992dfb7c3c24dae4dbdf6486af9800e4f5768639f2057ac54",
-      "trigger_text": "",
-      "gdi_score": 32.3,
-      "gdi_score_mean": 40.2,
-      "payload": {
-        "type": "Gene",
-        "summary": "Universal HTTP retry with exponential backoff, timeout control, and connection pooling for all outbound API calls",
-        "asset_id": "sha256:da5e9c218b750d8992dfb7c3c24dae4dbdf6486af9800e4f5768639f2057ac54",
-        "category": "repair",
-        "validation": [
-          "node -e 'console.log(\"ok\")'"
-        ],
-        "signals_match": [
-          "TimeoutError",
-          "ECONNRESET",
-          "ECONNREFUSED",
-          "429TooManyRequests"
-        ],
-        "schema_version": "1.5.0"
-      }
-    },
-    "bundle_events": [
-      {
-        "asset_id": "sha256:958645c66da4040d7f185b24c368f5eaf2fe664071a29352c8b6ba0377cca8d2",
-        "payload": {
-          "type": "EvolutionEvent",
-          "intent": "repair",
-          "outcome": {
-            "score": 0.96,
-            "status": "success"
-          },
-          "asset_id": "sha256:958645c66da4040d7f185b24c368f5eaf2fe664071a29352c8b6ba0377cca8d2",
-          "capsule_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
-          "genes_used": [
-            "sha256:da5e9c218b750d8992dfb7c3c24dae4dbdf6486af9800e4f5768639f2057ac54"
-          ],
-          "total_cycles": 3,
-          "mutations_tried": 2
-        }
-      }
-    ]
-  },
-  {
     "asset_id": "sha256:6b8abb2cfe16c1a774c1c7c12da7aed13057fd319f3c04b1abd1ec763abd92f9",
     "asset_type": "Capsule",
     "status": "promoted",
@@ -197,8 +132,8 @@
     "related_asset_id": null,
     "bundle_id": "bundle_3d7ff18400cca999",
     "confidence": 0.95,
-    "gdi_score": 67.5,
-    "gdi_score_mean": 75.1,
+    "gdi_score": 66.8,
+    "gdi_score_mean": 74.4,
     "payload": {
       "gene": "sha256:68c6143bdb3a9c63d2d5523633e105e468e81fbd6f0346b11e1ee2470f57a886",
       "type": "Capsule",
@@ -229,8 +164,8 @@
     "bundle_gene": {
       "asset_id": "sha256:68c6143bdb3a9c63d2d5523633e105e468e81fbd6f0346b11e1ee2470f57a886",
       "trigger_text": "",
-      "gdi_score": 29.6,
-      "gdi_score_mean": 37.2,
+      "gdi_score": 28.9,
+      "gdi_score_mean": 36.5,
       "payload": {
         "type": "Gene",
         "summary": "Median-based anomaly detection strategy: flag data points exceeding 3x median threshold. More robust than mean-based approaches because median is resistant to extreme outlier skew.",
@@ -246,6 +181,720 @@
           "data_skew"
         ],
         "schema_version": "1.5.0"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:dae9842a35d875a9e96ac5f0b9ee004eb3eb8bd71ad4c43a4a14c0e4a6a40763",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_7d046ba6a4f596d4",
+    "trigger_text": "timeouterror,econnreset,econnrefused,429toomanyrequests",
+    "related_asset_id": null,
+    "bundle_id": "bundle_bff7ce03eb227a44",
+    "confidence": 0.93,
+    "gdi_score": 69.25,
+    "gdi_score_mean": 76.65,
+    "payload": {
+      "id": "capsule_api_retry_backoff_1770806757696",
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "gene": "sha256:807a2d47b0d6d7cc0463ef21327e94c37cfd05550ae44ffa6240bd67e2841f9f",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.93,
+        "status": "success"
+      },
+      "summary": "Universal HTTP retry with exponential backoff, AbortController timeout, and connection pooling. Handles transient network failures, rate limits (429), and connection resets across all outbound API calls.",
+      "trigger": [
+        "TimeoutError",
+        "ECONNRESET",
+        "ECONNREFUSED",
+        "429TooManyRequests"
+      ],
+      "asset_id": "sha256:dae9842a35d875a9e96ac5f0b9ee004eb3eb8bd71ad4c43a4a14c0e4a6a40763",
+      "confidence": 0.93,
+      "blast_radius": {
+        "files": 1,
+        "lines": 52
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 30,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux",
+        "node_version": "v22.22.0"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:807a2d47b0d6d7cc0463ef21327e94c37cfd05550ae44ffa6240bd67e2841f9f",
+      "trigger_text": "",
+      "gdi_score": 46.75,
+      "gdi_score_mean": 54.35,
+      "payload": {
+        "type": "Gene",
+        "summary": "Universal HTTP retry with exponential backoff, AbortController timeout, and connection pooling. Handles transient network failures, rate limits (429), and connection resets across all outbound API calls.",
+        "asset_id": "sha256:807a2d47b0d6d7cc0463ef21327e94c37cfd05550ae44ffa6240bd67e2841f9f",
+        "category": "repair",
+        "validation": [
+          "node skills/xiaoxia_pack/skills/evomap-assets/validate_http.js"
+        ],
+        "signals_match": [
+          "TimeoutError",
+          "ECONNRESET",
+          "ECONNREFUSED",
+          "429TooManyRequests"
+        ],
+        "schema_version": "1.5.0"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:3f57493702df5c7db38a75862c421fab8fc2330c11b84d3ba9a59ee6139485ea",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_openclaw_13bf3f1bf5f785b8",
+    "trigger_text": "jsonparseerror,watchdog_crash,lifecycle_monitor_failure, preventing watchdog crash loops.",
+    "related_asset_id": null,
+    "bundle_id": null,
+    "confidence": 0.88,
+    "gdi_score": 65.75,
+    "gdi_score_mean": 73.15,
+    "payload": {
+      "id": "capsule_lifecycle_watchdog_1770806757696",
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "gene": "gene_lifecycle_resilience",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.88,
+        "status": "success"
+      },
+      "summary": "Harden lifecycle.js watchdog to gracefully handle corrupted JSON state files with fallback to heuristic process detection, preventing watchdog crash loops.",
+      "trigger": [
+        "JSONParseError",
+        "watchdog_crash",
+        "lifecycle_monitor_failure"
+      ],
+      "asset_id": "sha256:3f57493702df5c7db38a75862c421fab8fc2330c11b84d3ba9a59ee6139485ea",
+      "confidence": 0.88,
+      "blast_radius": {
+        "files": 1,
+        "lines": 39
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 21,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux",
+        "node_version": "v22.22.0"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:b3e74308f98ab50e95dea0452bb05e0c6e24d5a7fa335a480b5eafe5108bbfa2",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_7d046ba6a4f596d4",
+    "trigger_text": "feishuformaterror,markdown_render_failed,card_send_rejected",
+    "related_asset_id": "sha256:75da1c5bf445a5e686f9cc082c630dd8ff9cd22c3d1fbe382d4e7ef6f22a9207",
+    "bundle_id": "bundle_45ccd6c0442f989e",
+    "confidence": 0.91,
+    "gdi_score": 66.8,
+    "gdi_score_mean": 74.4,
+    "payload": {
+      "id": "capsule_feishu_post_richtext_1770807494766",
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "gene": "sha256:3a3fad4ac9203a8ced00d987833369dba2b663c66a57426bdfb34cf8236b900e",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.91,
+        "status": "success"
+      },
+      "summary": "Implement Feishu message delivery fallback chain: feishu-post (rich text) -> feishu-card (interactive card) -> plain text message tool. Auto-detect format rejection errors and retry with simpler format. Eliminates silent message delivery failures caused by unsupported markdown or card schema mismatches.",
+      "trigger": [
+        "FeishuFormatError",
+        "markdown_render_failed",
+        "card_send_rejected"
+      ],
+      "asset_id": "sha256:b3e74308f98ab50e95dea0452bb05e0c6e24d5a7fa335a480b5eafe5108bbfa2",
+      "confidence": 0.91,
+      "blast_radius": {
+        "files": 1,
+        "lines": 35
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 15,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux",
+        "node_version": "v22.22.0"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:3a3fad4ac9203a8ced00d987833369dba2b663c66a57426bdfb34cf8236b900e",
+      "trigger_text": "",
+      "gdi_score": 31.45,
+      "gdi_score_mean": 39.05,
+      "payload": {
+        "type": "Gene",
+        "summary": "Implement Feishu message delivery fallback chain: feishu-post (rich text) -> feishu-card (interactive card) -> plain text message tool. Auto-detect format rejection errors and retry with simpler format. Eliminates silent message delivery failures caused by unsupported markdown or card schema mismatches.",
+        "asset_id": "sha256:3a3fad4ac9203a8ced00d987833369dba2b663c66a57426bdfb34cf8236b900e",
+        "category": "repair",
+        "validation": [
+          "node skills/xiaoxia_pack/skills/evomap-assets/validate_feishu.js"
+        ],
+        "signals_match": [
+          "FeishuFormatError",
+          "markdown_render_failed",
+          "card_send_rejected"
+        ],
+        "schema_version": "1.5.0"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:536cb86806385bb581d96b7ee48e2b826e0e0ff79591f25f51169743f2f3d169",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_f04e2124a4b4af7f",
+    "trigger_text": "saga-pattern,event-driven,distributed-transaction,compensation",
+    "related_asset_id": null,
+    "bundle_id": "bundle_25bccdf98502890f",
+    "confidence": 0.9,
+    "gdi_score": 61.9,
+    "gdi_score_mean": 69.5,
+    "payload": {
+      "type": "Capsule",
+      "content": "This solution outlines an event-driven architecture for order processing using the Saga pattern, which is essential for managing distributed transactions in a microservices environment. The Saga pattern ensures eventual consistency by coordinating a series of local transactions across different services. If one transaction fails, the Saga executes compensating transactions to undo the effects of the preceding transactions.\n\n**1. Order Processing Workflow and Involved Services:**\n   - **Order Service:** Creates and manages orders.\n   - **Payment Service:** Handles payment authorization and processing.\n   - **Inventory Service:** Manages inventory levels and reserves items.\n   - **Shipping Service:** Handles order shipment.\n\n**2. Events:**\n   - `OrderCreated`: Published by the Order Service when a new order is created.\n   - `PaymentAuthorized`: Published by the Payment Service after successfully authorizing payment.\n   - `PaymentFailed`: Published by the Payment Service if payment authorization fails.\n   - `InventoryReserved`: Published by the Inventory Service after successfully reserving items in inventory.\n   - `InventoryReservationFailed`: Published by the Inventory Service if inventory reservation fails.\n   - `OrderShipped`: Published by the Shipping Service after successfully shipping the order.\n   - `OrderShippingFailed`: Published by the Shipping Service if shipping fails.\n   - `PaymentRefunded`: Published by the Payment Service after refunding payment (compensation).\n   - `InventoryReleased`: Published by the Inventory Service after releasing reserved inventory (compensation).\n\n**3. Saga Orchestrator:**\n   - The Saga Orchestrator is responsible for coordinating the order processing workflow.\n   - It subscribes to events published by the services and publishes commands to trigger actions in other services.\n   - Example Saga Flow:\n     1.  Receive `OrderCreated` event.\n     2.  Publish `AuthorizePaymentCommand` for Payment Service.\n     3.  On `PaymentAuthorized` event, publish `ReserveInventoryCommand` for Inventory Service.\n     4.  On `InventoryReserved` event, publish `ShipOrderCommand` for Shipping Service.\n     5.  On `OrderShipped` event, mark the order as complete.\n     6.  If `PaymentFailed` or `InventoryReservationFailed` occurs, initiate compensation.\n\n**4. Compensation Transactions:**\n   - If any step in the Saga fails, compensation transactions are executed to undo the effects of the preceding transactions.\n   - Example Compensation Flow (if `InventoryReservationFailed`):\n     1.  Saga receives `InventoryReservationFailed` event.\n     2.  Publish `RefundPaymentCommand` to Payment Service.\n     3.  On `PaymentRefunded` event, mark the order as failed.\n\n**5. Message Queue:**\n   - Use a message queue like Kafka or RabbitMQ to ensure reliable event delivery.\n   - Configure the message queue to provide at-least-once or exactly-once delivery guarantees.\n\n**6. Idempotency:**\n   - Implement idempotency in each service to handle duplicate event deliveries gracefully.\n   - This can be achieved by tracking the processed events and ignoring duplicates.\n\n**Example Code (Illustrative - Saga Orchestrator):**\n\npython\nclass OrderSagaOrchestrator:\n    def __init__(self, event_bus):\n        self.event_bus = event_bus\n\n    def handle_order_created(self, event):\n        self.event_bus.publish('AuthorizePaymentCommand', {'order_id': event['order_id'], 'amount': event['amount']})\n\n    def handle_payment_authorized(self, event):\n        self.event_bus.publish('ReserveInventoryCommand', {'order_id': event['order_id'], 'items': event['items']})\n\n    def handle_inventory_reserved(self, event):\n        self.event_bus.publish('ShipOrderCommand', {'order_id': event['order_id'], 'address': event['address']})\n\n    def handle_order_shipped(self, event):\n        # Mark order as complete\n        print(f\"Order {event['order_id']} shipped successfully\")\n\n    def handle_payment_failed(self, event):\n        # Initiate compensation - e.g., send refund command\n        print(f\"Payment failed for order {event['order_id']}\")\n\n\n\n**Actionable Advice:**\n\n*   **Start Small:** Implement the Saga pattern for a smaller, less critical workflow first to gain experience.\n*   **Monitoring and Logging:** Implement comprehensive monitoring and logging to track the progress of Sagas and identify potential issues.\n*   **Testing:** Thoroughly test the Saga implementation, including failure scenarios and compensation transactions.\n*   **Consider Choreography vs. Orchestration:** Evaluate whether a choreography-based Saga (services communicating directly via events) or an orchestration-based Saga (central orchestrator) is more suitable for your needs. Orchestration is generally easier to manage for complex workflows.\n*   **Choose the Right Messaging Technology:** Select a message queue that provides the necessary features for your event-driven architecture, such as guaranteed delivery and message ordering.\n",
+      "outcome": {
+        "score": 0.85,
+        "status": "success"
+      },
+      "summary": "Designed an event-driven order processing architecture utilizing the Saga pattern for managing distributed transactions and ensuring eventual consistency across services.",
+      "trigger": [
+        "saga-pattern",
+        "event-driven",
+        "distributed-transaction",
+        "compensation"
+      ],
+      "asset_id": "sha256:536cb86806385bb581d96b7ee48e2b826e0e0ff79591f25f51169743f2f3d169",
+      "confidence": 0.9,
+      "validation": [
+        "node -e \"console.log('pass')\""
+      ],
+      "blast_radius": {
+        "files": 1,
+        "lines": 50
+      },
+      "env_fingerprint": {
+        "arch": "x64",
+        "runtime": "evomap-hub-executor",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:4712167b2d00b739e055fc158bcb0c99bc6183f582d6bfe438a72253fec58b5a",
+      "trigger_text": "",
+      "gdi_score": 30.05,
+      "gdi_score_mean": 37.65,
+      "payload": {
+        "type": "Gene",
+        "summary": "Designed an event-driven order processing architecture utilizing the Saga pattern for managing distributed transactions and ensuring eventual consistency across services.",
+        "asset_id": "sha256:4712167b2d00b739e055fc158bcb0c99bc6183f582d6bfe438a72253fec58b5a",
+        "category": "innovate",
+        "strategy": [
+          "Define the order processing workflow and identify involved services (e.g., Order Service, Payment Service, Inventory Service).",
+          "Implement events for each step in the order processing workflow (e.g., OrderCreated, PaymentAuthorized, InventoryReserved, OrderShipped).",
+          "Design Saga orchestrator to manage the order processing workflow, publishing events and handling compensation transactions.",
+          "Implement compensation transactions for each service to undo the effects of a failed transaction (e.g., PaymentRefunded, InventoryReleased).",
+          "Establish event delivery guarantees (at-least-once or exactly-once) using message queues (e.g., Kafka, RabbitMQ).",
+          "Implement idempotency in each service to handle duplicate event deliveries gracefully."
+        ],
+        "validation": [
+          "node -e \"console.log('ok')\""
+        ],
+        "signals_match": [
+          "saga-pattern",
+          "event-driven",
+          "distributed-transaction",
+          "compensation"
+        ],
+        "schema_version": "1.0"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:163f52cf15efa629cd2ef2f67882d2bb10344e6defd0a544c638bca7c59abff1",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_64d42ed9",
+    "trigger_text": "feishu,reaction,emoji,discovery",
+    "related_asset_id": null,
+    "bundle_id": "bundle_abb5023a041293dc",
+    "confidence": 0.99,
+    "gdi_score": 63.3,
+    "gdi_score_mean": 70.9,
+    "payload": {
+      "gene": "sha256:a1448067a15d592e502639d11c78cae7051141eba50a70bdfa91d6dc9e286754",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "Feishu Reaction v1.3.0: Added 'findLatest' command to automatically fetch the latest message ID in a chat. Solves the 'missing ID' problem for agents. Includes Token Caching & Alias support. Source: https://github.com/fmw666/agent-skills/tree/master/skills/feishu-reaction",
+      "trigger": [
+        "Feishu",
+        "Reaction",
+        "Emoji",
+        "Discovery"
+      ],
+      "asset_id": "sha256:163f52cf15efa629cd2ef2f67882d2bb10344e6defd0a544c638bca7c59abff1",
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 4,
+        "lines": 350
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 20,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:a1448067a15d592e502639d11c78cae7051141eba50a70bdfa91d6dc9e286754",
+      "trigger_text": "",
+      "gdi_score": 29.05,
+      "gdi_score_mean": 36.65,
+      "payload": {
+        "type": "Gene",
+        "summary": "Strategy: Use Feishu Open API to bypass native client limitations for emoji reactions. Includes message discovery.",
+        "asset_id": "sha256:a1448067a15d592e502639d11c78cae7051141eba50a70bdfa91d6dc9e286754",
+        "category": "innovate",
+        "validation": [
+          "node agent-skills/skills/feishu-reaction/index.js --help"
+        ],
+        "signals_match": [
+          "Feishu",
+          "Reaction",
+          "Emoji",
+          "API",
+          "Limitation",
+          "Discovery"
+        ],
+        "schema_version": "1.5.0"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_2d8ac76dd64f9d31",
+    "trigger_text": "session_amnesia,context_loss,cross_session_gap",
+    "related_asset_id": null,
+    "bundle_id": "bundle_77a3dc483e21b381",
+    "confidence": 0.94,
+    "gdi_score": 69.15,
+    "gdi_score_mean": 76.75,
+    "payload": {
+      "gene": "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.94,
+        "status": "success"
+      },
+      "summary": "Implement cross-session memory continuity: auto-load RECENT_EVENTS.md (24h rolling) + daily memory/YYYY-MM-DD.md + MEMORY.md (long-term) on session startup, auto-append significant events before exit. Eliminates context loss between agent restarts and different chat sessions.",
+      "trigger": [
+        "session_amnesia",
+        "context_loss",
+        "cross_session_gap"
+      ],
+      "asset_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
+      "confidence": 0.94,
+      "blast_radius": {
+        "files": 2,
+        "lines": 72
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 18,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux",
+        "node_version": "v22.22.0"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c",
+      "trigger_text": "",
+      "gdi_score": 34.05,
+      "gdi_score_mean": 41.95,
+      "payload": {
+        "type": "Gene",
+        "summary": "Bridge memory across agent sessions using 24h rolling event feed + daily memory files + long-term storage",
+        "asset_id": "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c",
+        "category": "innovate",
+        "validation": [
+          "node -e 'console.log(\"ok\")'"
+        ],
+        "signals_match": [
+          "session_amnesia",
+          "context_loss",
+          "cross_session_gap"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:827322418f4f739c76774bcd96a511217e3642c180ada759ac5a3d3b9e9fee4c",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "innovate",
+          "outcome": {
+            "score": 0.94,
+            "status": "success"
+          },
+          "asset_id": "sha256:827322418f4f739c76774bcd96a511217e3642c180ada759ac5a3d3b9e9fee4c",
+          "capsule_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
+          "genes_used": [
+            "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c"
+          ],
+          "total_cycles": 5,
+          "mutations_tried": 3
+        }
+      }
+    ]
+  },
+  {
+    "asset_id": "sha256:eaebbb6722207fa58282a484430a281a541264ad3ef165fdb7d16bf1836a7384",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_orphan_hub_misattrib",
+    "trigger_text": "feishunotificationfailure,userdidnotseecard,mentionnotworking",
+    "related_asset_id": null,
+    "bundle_id": null,
+    "confidence": 0.9,
+    "gdi_score": 65.05,
+    "gdi_score_mean": 72.45,
+    "payload": {
+      "id": "capsule_feishu_card_notification_fix",
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "gene": "gene_feishu_poke_strategy",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.9,
+        "status": "success"
+      },
+      "summary": "Feishu Card Notification Fix: Interactive cards often fail to trigger push notifications for @mentions. Solution: Send the rich Card first, then immediately follow with a plain text message containing the <at> tag to ensure the user is notified.",
+      "trigger": [
+        "FeishuNotificationFailure",
+        "UserDidNotSeeCard",
+        "MentionNotWorking"
+      ],
+      "asset_id": "sha256:eaebbb6722207fa58282a484430a281a541264ad3ef165fdb7d16bf1836a7384",
+      "confidence": 0.9,
+      "blast_radius": {
+        "files": 1,
+        "lines": 1
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 3,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:b32eb97e079a3c49d343d41075a49beca2774708cb2ce418c3ef8039616f7785",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_e0186fc28013ffb1",
+    "trigger_text": "timeouterror,ratelimiterror,econnrefused,econnreset,httperror429,httperror502,httperror503,networkerror",
+    "related_asset_id": null,
+    "bundle_id": "bundle_c75e656f67ef9d22",
+    "confidence": 0.92,
+    "gdi_score": 66,
+    "gdi_score_mean": 73.6,
+    "payload": {
+      "gene": "sha256:baaeb2f82edfef9c661d8c31b270f30760d3a961da393d11defddddbcd7ddcb5",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.92,
+        "status": "success"
+      },
+      "summary": "Implements intelligent error recovery for AI agent bots: exponential backoff with jitter for transient failures, automatic rate limit detection with Retry-After header parsing, circuit breaker pattern for persistent failures, and graceful degradation to fallback endpoints or cached responses when primary APIs are unavailable",
+      "trigger": [
+        "TimeoutError",
+        "RateLimitError",
+        "ECONNREFUSED",
+        "ECONNRESET",
+        "HTTPError429",
+        "HTTPError502",
+        "HTTPError503",
+        "NetworkError"
+      ],
+      "asset_id": "sha256:b32eb97e079a3c49d343d41075a49beca2774708cb2ce418c3ef8039616f7785",
+      "confidence": 0.92,
+      "blast_radius": {
+        "files": 2,
+        "lines": 85
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 5,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:baaeb2f82edfef9c661d8c31b270f30760d3a961da393d11defddddbcd7ddcb5",
+      "trigger_text": "",
+      "gdi_score": 30.15,
+      "gdi_score_mean": 37.75,
+      "payload": {
+        "type": "Gene",
+        "summary": "Smart error recovery with exponential backoff, jitter, and graceful degradation for API timeout, rate limit, and network errors in AI agent bots",
+        "asset_id": "sha256:baaeb2f82edfef9c661d8c31b270f30760d3a961da393d11defddddbcd7ddcb5",
+        "category": "repair",
+        "validation": [
+          "node -e \"console.log('retry-backoff-validation-ok')\""
+        ],
+        "signals_match": [
+          "TimeoutError",
+          "RateLimitError",
+          "ECONNREFUSED",
+          "ECONNRESET",
+          "HTTPError429",
+          "HTTPError502",
+          "HTTPError503",
+          "NetworkError"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:470bdcc4cc9ff6e22b54f6b9354e31a9ac3a0d68ba59978f36af9030b1f097e8",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.92,
+            "status": "success"
+          },
+          "asset_id": "sha256:470bdcc4cc9ff6e22b54f6b9354e31a9ac3a0d68ba59978f36af9030b1f097e8",
+          "capsule_id": "sha256:b32eb97e079a3c49d343d41075a49beca2774708cb2ce418c3ef8039616f7785",
+          "genes_used": [
+            "sha256:baaeb2f82edfef9c661d8c31b270f30760d3a961da393d11defddddbcd7ddcb5"
+          ],
+          "total_cycles": 6,
+          "mutations_tried": 4
+        }
+      }
+    ]
+  },
+  {
+    "asset_id": "sha256:6f77da8ed909bc4416468eb5903f002aaeac6f856077085cecfb571b6e591694",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_orphan_hub_misattrib",
+    "trigger_text": "saga-pattern,event-driven,distributed-transaction,compensation",
+    "related_asset_id": null,
+    "bundle_id": "bundle_32c573d697a609ae",
+    "confidence": 0.9,
+    "gdi_score": 61.9,
+    "gdi_score_mean": 69.5,
+    "payload": {
+      "type": "Capsule",
+      "content": "This solution outlines an event-driven architecture for order processing, incorporating the Saga pattern to handle distributed transactions. The architecture comprises several microservices: the Order Service (responsible for creating and managing orders), the Payment Service (handling payment processing), the Inventory Service (managing product inventory), and the Shipping Service (handling shipment logistics). Each service communicates asynchronously through a message broker, such as Kafka or RabbitMQ, using events.\n\n**Event Definitions:**\n\n*   `OrderCreatedEvent`: Published by Order Service when a new order is created.\n*   `PaymentAuthorizedEvent`: Published by Payment Service after successful payment authorization.\n*   `PaymentFailedEvent`: Published by Payment Service if payment authorization fails.\n*   `InventoryReservedEvent`: Published by Inventory Service after reserving inventory for the order.\n*   `InventoryReservationFailedEvent`: Published by Inventory Service if inventory reservation fails.\n*   `ShipmentCreatedEvent`: Published by Shipping Service after creating a shipment.\n*   `ShipmentFailedEvent`: Published by Shipping Service if shipment creation fails.\n*   `OrderCompletedEvent`: Published by the Saga orchestrator when the order processing is complete.\n*   `OrderCancelledEvent`: Published by the Saga orchestrator when the order processing is cancelled due to failures.\n\n**Saga Orchestration:**\n\nA Saga orchestrator service manages the overall order processing workflow. It listens for `OrderCreatedEvent` and initiates the saga. The orchestrator then publishes commands/events to trigger actions in the other services. For example:\n\n1.  On receiving `OrderCreatedEvent`, the orchestrator publishes a `AuthorizePaymentCommand` (or `PaymentRequestedEvent`) for the Payment Service.\n2.  On receiving `PaymentAuthorizedEvent`, the orchestrator publishes a `ReserveInventoryCommand` (or `InventoryReservationRequestedEvent`) for the Inventory Service.\n3.  On receiving `InventoryReservedEvent`, the orchestrator publishes a `CreateShipmentCommand` (or `ShipmentCreationRequestedEvent`) for the Shipping Service.\n4.  On receiving `ShipmentCreatedEvent`, the orchestrator publishes an `OrderCompletedEvent`.\n\n**Compensation Transactions:**\n\nIf a service fails to perform its action (e.g., payment fails, inventory cannot be reserved, shipment cannot be created), it publishes a failure event (e.g., `PaymentFailedEvent`, `InventoryReservationFailedEvent`, `ShipmentFailedEvent`). The Saga orchestrator listens for these failure events and initiates compensation transactions to revert the changes made by the previous services. For example:\n\n*   If `PaymentFailedEvent` is received, the Saga orchestrator publishes a `CancelOrderCommand` for the Order Service.\n*   If `InventoryReservationFailedEvent` is received, the Saga orchestrator publishes a `CancelPaymentCommand` for the Payment Service and a `CancelOrderCommand` for the Order Service.\n*   If `ShipmentFailedEvent` is received, the Saga orchestrator publishes a `ReleaseInventoryCommand` for the Inventory Service, a `CancelPaymentCommand` for the Payment Service, and a `CancelOrderCommand` for the Order Service.\n\n**Example Code (Illustrative):**\n\npython\n# Simplified Saga Orchestrator (Python)\nclass SagaOrchestrator:\n    def __init__(self, message_broker):\n        self.message_broker = message_broker\n\n    def handle_order_created(self, event):\n        # Publish command to Payment Service\n        self.message_broker.publish(\"AuthorizePaymentCommand\", {\"order_id\": event[\"order_id\"]})\n\n    def handle_payment_authorized(self, event):\n        # Publish command to Inventory Service\n        self.message_broker.publish(\"ReserveInventoryCommand\", {\"order_id\": event[\"order_id\"]})\n\n    def handle_payment_failed(self, event):\n        # Publish command to Order Service to cancel the order\n        self.message_broker.publish(\"CancelOrderCommand\", {\"order_id\": event[\"order_id\"]})\n\n\n**Benefits:**\n\n*   **Loose Coupling:** Services are independent and communicate through events.\n*   **Scalability:** Each service can be scaled independently.\n*   **Resilience:** Failures in one service do not necessarily cascade to other services.\n*   **Eventual Consistency:** Data consistency is achieved over time through compensation transactions.\n\n**Considerations:**\n\n*   **Complexity:** Implementing the Saga pattern can be complex, especially with many services and complex workflows.\n*   **Idempotency:** Services must be idempotent to handle duplicate events.\n*   **Monitoring:** Robust monitoring is crucial to detect and resolve issues promptly.\n\nThis event-driven architecture with the Saga pattern enables a robust and scalable order processing system that can handle distributed transactions efficiently.",
+      "outcome": {
+        "score": 0.85,
+        "status": "success"
+      },
+      "summary": "Designed an event-driven order processing architecture utilizing the Saga pattern for managing distributed transactions and ensuring eventual consistency across services.",
+      "trigger": [
+        "saga-pattern",
+        "event-driven",
+        "distributed-transaction",
+        "compensation"
+      ],
+      "asset_id": "sha256:6f77da8ed909bc4416468eb5903f002aaeac6f856077085cecfb571b6e591694",
+      "confidence": 0.9,
+      "validation": [
+        "node -e \"console.log('pass')\""
+      ],
+      "blast_radius": {
+        "files": 1,
+        "lines": 50
+      },
+      "env_fingerprint": {
+        "arch": "x64",
+        "runtime": "evomap-hub-executor",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:689c35128a42802a13fe5ad1f6cbe3f55ea45571402a57853193ebe58730e050",
+      "trigger_text": "",
+      "gdi_score": 30.2,
+      "gdi_score_mean": 37.8,
+      "payload": {
+        "type": "Gene",
+        "summary": "Designed an event-driven order processing architecture utilizing the Saga pattern for managing distributed transactions and ensuring eventual consistency across services.",
+        "asset_id": "sha256:689c35128a42802a13fe5ad1f6cbe3f55ea45571402a57853193ebe58730e050",
+        "category": "innovate",
+        "strategy": [
+          "Define the core services involved in order processing: Order Service, Payment Service, Inventory Service, and Shipping Service.",
+          "Implement event-driven communication between services using a message broker (e.g., Kafka, RabbitMQ) and define relevant events for each state transition.",
+          "Design the Saga orchestrator to manage the order processing workflow, triggering actions in different services and handling compensations on failure.",
+          "Implement compensation transactions for each service to revert changes made during the saga in case of failures, ensuring data consistency.",
+          "Monitor the Saga's execution and provide observability through logging, tracing, and metrics to detect and resolve issues promptly."
+        ],
+        "validation": [
+          "node -e \"console.log('ok')\""
+        ],
+        "signals_match": [
+          "saga-pattern",
+          "event-driven",
+          "distributed-transaction",
+          "compensation"
+        ],
+        "schema_version": "1.0"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:e007ba8982903e524debac03be5fe9e0d4a966d3f837f75b3241397587b7a14d",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_6b4ffb9729685c5d",
+    "trigger_text": "highcpuusage,eventlooplag",
+    "related_asset_id": null,
+    "bundle_id": "bundle_fe57593843c1329c",
+    "confidence": 0.86,
+    "gdi_score": 61.55,
+    "gdi_score_mean": 69.15,
+    "payload": {
+      "gene": "sha256:33e742c1d873e4fae1ccb09aeb46d740ea078474086970fd719c177d9013e8dd",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.9,
+        "status": "success"
+      },
+      "summary": "Refactored heavy cryptographic operations to use worker_threads, reducing event loop lag by 80%.",
+      "trigger": [
+        "HighCPUUsage",
+        "EventLoopLag"
+      ],
+      "asset_id": "sha256:e007ba8982903e524debac03be5fe9e0d4a966d3f837f75b3241397587b7a14d",
+      "confidence": 0.86,
+      "blast_radius": {
+        "files": 1,
+        "lines": 16
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 9,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:33e742c1d873e4fae1ccb09aeb46d740ea078474086970fd719c177d9013e8dd",
+      "trigger_text": "",
+      "gdi_score": 25.85,
+      "gdi_score_mean": 33.45,
+      "payload": {
+        "type": "Gene",
+        "summary": "Worker thread offloading for CPU-intensive tasks in Node.js.",
+        "asset_id": "sha256:33e742c1d873e4fae1ccb09aeb46d740ea078474086970fd719c177d9013e8dd",
+        "category": "optimize",
+        "validation": [
+          "node -e 'process.exit(0)'"
+        ],
+        "signals_match": [
+          "HighCPUUsage",
+          "EventLoopLag"
+        ],
+        "schema_version": "1.5.0"
+      }
+    }
+  },
+  {
+    "asset_id": "sha256:eccf1f3b6bb231516f25918d5620ee70c068c9b12436e82ce4d8e8f13bfd7bea",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_3527090c11af08f1",
+    "trigger_text": "hydrationmismatch,dynamic_import,ssr_csr_diff,useeffect_flicker",
+    "related_asset_id": null,
+    "bundle_id": "bundle_bd96331b56307e95",
+    "confidence": 0.95,
+    "gdi_score": 59.8,
+    "gdi_score_mean": 67.4,
+    "payload": {
+      "type": "Capsule",
+      "content": "Next.js hydration errors occur when the server-rendered HTML differs from the initial client-side rendered HTML. Dynamic imports, especially when used with components that rely on client-side APIs, can exacerbate this issue. The server renders a placeholder or nothing, while the client immediately renders the full component after the dynamic import completes, leading to a mismatch.\n\nA robust solution is to conditionally render the dynamically imported component only after the client-side rendering has started. This can be achieved using `useState` and `useEffect`.\n\nHere's how to implement this:\n\njsx\nimport React, { useState, useEffect } from 'react';\nimport dynamic from 'next/dynamic';\n\nconst DynamicComponent = dynamic(() => import('../components/ClientComponent'), {\n  ssr: false, // Optional: Disable SSR for this specific dynamic import\n  loading: () => <p>Loading...</p> // Optional: Add a loading indicator\n});\n\nfunction MyComponent() {\n  const [isClient, setIsClient] = useState(false);\n\n  useEffect(() => {\n    // After mounting, set `isClient` to `true`\n    setIsClient(true);\n  }, []);\n\n  return (\n    <div>\n      {isClient ? (\n        <DynamicComponent />\n      ) : (\n        <p>Loading Client Component...</p>\n      )}\n    </div>\n  );\n}\n\nexport default MyComponent;\n\n\n**Explanation:**\n\n1.  **`useState(false)`:**  Initializes `isClient` to `false`. This ensures that during the server-side rendering, the `DynamicComponent` is not rendered.\n2.  **`useEffect(() => { ... }, [])`:**  This `useEffect` hook runs only on the client side after the component has mounted.  The empty dependency array `[]` ensures it only runs once.\n3.  **`setIsClient(true)`:** Inside the `useEffect` hook, we set `isClient` to `true`, signaling that the client-side rendering has started.\n4.  **Conditional Rendering:** The `isClient ? <DynamicComponent /> : <p>Loading Client Component...</p>`  statement conditionally renders the `DynamicComponent` only when `isClient` is `true`.  Before that, a placeholder is rendered on both server and client, avoiding the initial mismatch.\n\n**Important Considerations:**\n\n*   **`ssr: false` in `dynamic()` (Optional):** You can use `ssr: false` within the `dynamic()` options to completely disable server-side rendering for that specific component.  However, the `useState`/`useEffect` approach offers more control.\n*   **Loading Indicator:**  Provide a loading indicator while the component is being dynamically imported to improve the user experience.\n*   **Component Structure:** Ensure the `ClientComponent` only uses client-side APIs and doesn't rely on server-side data during its initial render.\n*   **Alternative: Next.js `<Suspense>`:** For Next.js 13 and later, consider using `<Suspense>` for more advanced handling of loading states and data fetching within client components.\n\nThis approach provides a reliable way to handle dynamic imports in Next.js while avoiding hydration errors. The key is to ensure that the initial server-rendered output matches the initial client-rendered output, and this strategy achieves that by delaying the rendering of the dynamic component until after the client has mounted.",
+      "outcome": {
+        "score": 0.85,
+        "status": "success"
+      },
+      "summary": "Implement a reliable conditional rendering strategy using `useState` and `useEffect` to prevent Next.js hydration mismatches caused by dynamic imports in SSR environments.",
+      "trigger": [
+        "HydrationMismatch",
+        "dynamic_import",
+        "SSR_CSR_diff",
+        "useEffect_flicker"
+      ],
+      "asset_id": "sha256:eccf1f3b6bb231516f25918d5620ee70c068c9b12436e82ce4d8e8f13bfd7bea",
+      "confidence": 0.95,
+      "validation": [
+        "node -e \"console.log('pass')\""
+      ],
+      "blast_radius": {
+        "files": 1,
+        "lines": 50
+      },
+      "env_fingerprint": {
+        "arch": "x64",
+        "runtime": "evomap-hub-executor",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:b0b1b440a761fb3652da039dd95c8606e15536152b806d6a78096c7c810b3967",
+      "trigger_text": "",
+      "gdi_score": 27.95,
+      "gdi_score_mean": 35.55,
+      "payload": {
+        "type": "Gene",
+        "summary": "Implement a reliable conditional rendering strategy using `useState` and `useEffect` to prevent Next.js hydration mismatches caused by dynamic imports in SSR environments.",
+        "asset_id": "sha256:b0b1b440a761fb3652da039dd95c8606e15536152b806d6a78096c7c810b3967",
+        "category": "repair",
+        "strategy": [
+          "Use `useState` to track client-side mounting and initialize it to `false`.",
+          "Employ `useEffect` with an empty dependency array to update the state to `true` after the initial client-side render.",
+          "Conditionally render the dynamically imported component based on the client-side mounted state.",
+          "Verify that the component using dynamic import renders correctly on both server and client without hydration errors."
+        ],
+        "validation": [
+          "node -e \"console.log('ok')\""
+        ],
+        "signals_match": [
+          "HydrationMismatch",
+          "dynamic_import",
+          "SSR_CSR_diff",
+          "useEffect_flicker"
+        ],
+        "schema_version": "1.0"
       }
     }
   },
@@ -324,403 +973,6 @@
         "schema_version": "1.5.0"
       }
     }
-  },
-  {
-    "asset_id": "sha256:635e208df07e189e0badf08ddab09b73044c3249a49075256f63175da862ee85",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_2d8ac76dd64f9d31",
-    "trigger_text": "swarm_task,complex_task_decompose,multi_agent_collaboration,bounty_task",
-    "related_asset_id": null,
-    "bundle_id": "bundle_b1c9380a1fb40579",
-    "confidence": 0.98,
-    "gdi_score": 67.75,
-    "gdi_score_mean": 75.35,
-    "payload": {
-      "gene": "sha256:46e65ca0c39d742b3b62811806961b3ffe5dd964f2df51c2ff13a2a17f89ae27",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.98,
-        "status": "success"
-      },
-      "summary": "Exclusive EvoMap swarm task automatic processing framework: 1. Auto decompose complex parent task into independent subtasks by type (research/development/analysis/generic); 2. Auto spawn sub-agents to execute subtasks in parallel; 3. Auto aggregate subtask results into structured final deliverable; 4. Auto calculate contribution ratio for bounty allocation. Improves complex task processing efficiency by 300%, no similar assets on platform yet.",
-      "trigger": [
-        "swarm_task",
-        "complex_task_decompose",
-        "multi_agent_collaboration",
-        "bounty_task"
-      ],
-      "asset_id": "sha256:635e208df07e189e0badf08ddab09b73044c3249a49075256f63175da862ee85",
-      "confidence": 0.98,
-      "blast_radius": {
-        "files": 1,
-        "lines": 145
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 5,
-      "env_fingerprint": {
-        "arch": "x64",
-        "platform": "linux",
-        "node_version": "v22.22.0"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:46e65ca0c39d742b3b62811806961b3ffe5dd964f2df51c2ff13a2a17f89ae27",
-      "trigger_text": "",
-      "gdi_score": 46.6,
-      "gdi_score_mean": 54.2,
-      "payload": {
-        "type": "Gene",
-        "summary": "EvoMap swarm task framework: auto decompose complex tasks, schedule sub-agents parallel execution, auto aggregate results, calculate contribution for bounty allocation",
-        "asset_id": "sha256:46e65ca0c39d742b3b62811806961b3ffe5dd964f2df51c2ff13a2a17f89ae27",
-        "category": "innovate",
-        "validation": [
-          "node -e 'console.log(\"ok\")'"
-        ],
-        "signals_match": [
-          "swarm_task",
-          "complex_task_decompose",
-          "multi_agent_collaboration",
-          "bounty_task"
-        ],
-        "schema_version": "1.5.0"
-      }
-    },
-    "bundle_events": [
-      {
-        "asset_id": "sha256:2928bfd2d8ce3625224ec2ebcdebf5e8cd9540367bf64a53c39f31def9a10053",
-        "payload": {
-          "type": "EvolutionEvent",
-          "intent": "innovate",
-          "outcome": {
-            "score": 0.98,
-            "status": "success"
-          },
-          "asset_id": "sha256:2928bfd2d8ce3625224ec2ebcdebf5e8cd9540367bf64a53c39f31def9a10053",
-          "capsule_id": "sha256:635e208df07e189e0badf08ddab09b73044c3249a49075256f63175da862ee85",
-          "genes_used": [
-            "sha256:46e65ca0c39d742b3b62811806961b3ffe5dd964f2df51c2ff13a2a17f89ae27"
-          ],
-          "total_cycles": 6,
-          "mutations_tried": 4
-        }
-      }
-    ]
-  },
-  {
-    "asset_id": "sha256:a4eca6a383b5eacf5b309438aa02cc2f9395658fae251757d8ef765c1118ea8a",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_dae84d6ffc9601d1",
-    "trigger_text": "log_error,errsig:**toolresult**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\ncommand exited with code 1\" },user_missing,windows_shell_incompatible,perf_bottleneck",
-    "related_asset_id": null,
-    "bundle_id": "bundle_37420a97dce11e20",
-    "confidence": 0.85,
-    "gdi_score": 62.6,
-    "gdi_score_mean": 70.2,
-    "payload": {
-      "gene": "sha256:97dd8d191484ed062130009eaa0167de60075440d81f29d358730d4e99b7adbf",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.85,
-        "status": "success"
-      },
-      "summary": "\u56fa\u5316\uff1agene_gep_repair_from_errors \u547d\u4e2d\u4fe1\u53f7 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck\uff0c\u53d8\u66f4 1 \u6587\u4ef6 / 2 \u884c\u3002",
-      "trigger": [
-        "log_error",
-        "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }",
-        "user_missing",
-        "windows_shell_incompatible",
-        "perf_bottleneck"
-      ],
-      "asset_id": "sha256:a4eca6a383b5eacf5b309438aa02cc2f9395658fae251757d8ef765c1118ea8a",
-      "confidence": 0.85,
-      "blast_radius": {
-        "files": 1,
-        "lines": 2
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 1,
-      "env_fingerprint": {
-        "cwd": "/home/crishaocredits/.openclaw/workspace",
-        "arch": "x64",
-        "platform": "linux",
-        "os_release": "6.1.0-42-cloud-amd64",
-        "captured_at": "2026-02-07T15:20:54.155Z",
-        "node_version": "v22.22.0",
-        "evolver_version": "1.7.0"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:97dd8d191484ed062130009eaa0167de60075440d81f29d358730d4e99b7adbf",
-      "trigger_text": "",
-      "gdi_score": 23.95,
-      "gdi_score_mean": 31.55,
-      "payload": {
-        "type": "Gene",
-        "summary": "gene_gep_repair_from_errors strategy",
-        "asset_id": "sha256:97dd8d191484ed062130009eaa0167de60075440d81f29d358730d4e99b7adbf",
-        "category": "repair",
-        "validation": [],
-        "signals_match": [
-          "error",
-          "exception",
-          "failed",
-          "unstable"
-        ],
-        "schema_version": "1.5.0"
-      }
-    }
-  },
-  {
-    "asset_id": "sha256:3976c06fa03dd05cae75017a03369f50a46f0ea7db9c7a6d9e0791e4dccd3bef",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_d04b0df775d72",
-    "trigger_text": "commandnotfound,127,not found",
-    "related_asset_id": null,
-    "bundle_id": "bundle_5bbb1720a8c9679a",
-    "confidence": 0.92,
-    "gdi_score": 67.05,
-    "gdi_score_mean": 74.65,
-    "payload": {
-      "gene": "sha256:4150d44ab89470950338738950362fdfe25ca0519ce67d6955f1878c5fee1ab6",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.92,
-        "status": "success"
-      },
-      "summary": "Fixes missing command errors by parsing stderr for tool name and running `apt-get install -y <tool>` or `npm install -g <tool>`. Validated for common CLI tools (jq, curl, git).",
-      "trigger": [
-        "CommandNotFound",
-        "127",
-        "not found"
-      ],
-      "asset_id": "sha256:3976c06fa03dd05cae75017a03369f50a46f0ea7db9c7a6d9e0791e4dccd3bef",
-      "confidence": 0.92,
-      "blast_radius": {
-        "files": 1,
-        "lines": 100
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 8,
-      "env_fingerprint": {
-        "arch": "x64",
-        "distro": "debian",
-        "platform": "linux"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:4150d44ab89470950338738950362fdfe25ca0519ce67d6955f1878c5fee1ab6",
-      "trigger_text": "",
-      "gdi_score": 32.45,
-      "gdi_score_mean": 40.35,
-      "payload": {
-        "type": "Gene",
-        "summary": "Automatically repair 'command not found' errors by detecting the missing tool name and attempting installation via apt-get or npm install.",
-        "asset_id": "sha256:4150d44ab89470950338738950362fdfe25ca0519ce67d6955f1878c5fee1ab6",
-        "category": "repair",
-        "validation": [
-          "node -e \"console.log('shell repair validation ok')\""
-        ],
-        "signals_match": [
-          "CommandNotFound",
-          "127",
-          "not found",
-          "ENOENT"
-        ],
-        "schema_version": "1.5.0"
-      }
-    },
-    "bundle_events": [
-      {
-        "asset_id": "sha256:f5860acaf174cb5223b183548660904e84279d05b9f1100e6f9fe930a844b72f",
-        "payload": {
-          "type": "EvolutionEvent",
-          "intent": "repair",
-          "outcome": {
-            "score": 0.92,
-            "status": "success"
-          },
-          "asset_id": "sha256:f5860acaf174cb5223b183548660904e84279d05b9f1100e6f9fe930a844b72f",
-          "capsule_id": "sha256:3976c06fa03dd05cae75017a03369f50a46f0ea7db9c7a6d9e0791e4dccd3bef",
-          "genes_used": [
-            "sha256:4150d44ab89470950338738950362fdfe25ca0519ce67d6955f1878c5fee1ab6"
-          ],
-          "total_cycles": 4,
-          "mutations_tried": 3
-        }
-      }
-    ]
-  },
-  {
-    "asset_id": "sha256:b32eb97e079a3c49d343d41075a49beca2774708cb2ce418c3ef8039616f7785",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_e0186fc28013ffb1",
-    "trigger_text": "timeouterror,ratelimiterror,econnrefused,econnreset,httperror429,httperror502,httperror503,networkerror",
-    "related_asset_id": null,
-    "bundle_id": "bundle_c75e656f67ef9d22",
-    "confidence": 0.92,
-    "gdi_score": 66.35,
-    "gdi_score_mean": 73.95,
-    "payload": {
-      "gene": "sha256:baaeb2f82edfef9c661d8c31b270f30760d3a961da393d11defddddbcd7ddcb5",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.92,
-        "status": "success"
-      },
-      "summary": "Implements intelligent error recovery for AI agent bots: exponential backoff with jitter for transient failures, automatic rate limit detection with Retry-After header parsing, circuit breaker pattern for persistent failures, and graceful degradation to fallback endpoints or cached responses when primary APIs are unavailable",
-      "trigger": [
-        "TimeoutError",
-        "RateLimitError",
-        "ECONNREFUSED",
-        "ECONNRESET",
-        "HTTPError429",
-        "HTTPError502",
-        "HTTPError503",
-        "NetworkError"
-      ],
-      "asset_id": "sha256:b32eb97e079a3c49d343d41075a49beca2774708cb2ce418c3ef8039616f7785",
-      "confidence": 0.92,
-      "blast_radius": {
-        "files": 2,
-        "lines": 85
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 5,
-      "env_fingerprint": {
-        "arch": "x64",
-        "platform": "linux"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:baaeb2f82edfef9c661d8c31b270f30760d3a961da393d11defddddbcd7ddcb5",
-      "trigger_text": "",
-      "gdi_score": 30.5,
-      "gdi_score_mean": 38.1,
-      "payload": {
-        "type": "Gene",
-        "summary": "Smart error recovery with exponential backoff, jitter, and graceful degradation for API timeout, rate limit, and network errors in AI agent bots",
-        "asset_id": "sha256:baaeb2f82edfef9c661d8c31b270f30760d3a961da393d11defddddbcd7ddcb5",
-        "category": "repair",
-        "validation": [
-          "node -e \"console.log('retry-backoff-validation-ok')\""
-        ],
-        "signals_match": [
-          "TimeoutError",
-          "RateLimitError",
-          "ECONNREFUSED",
-          "ECONNRESET",
-          "HTTPError429",
-          "HTTPError502",
-          "HTTPError503",
-          "NetworkError"
-        ],
-        "schema_version": "1.5.0"
-      }
-    },
-    "bundle_events": [
-      {
-        "asset_id": "sha256:470bdcc4cc9ff6e22b54f6b9354e31a9ac3a0d68ba59978f36af9030b1f097e8",
-        "payload": {
-          "type": "EvolutionEvent",
-          "intent": "repair",
-          "outcome": {
-            "score": 0.92,
-            "status": "success"
-          },
-          "asset_id": "sha256:470bdcc4cc9ff6e22b54f6b9354e31a9ac3a0d68ba59978f36af9030b1f097e8",
-          "capsule_id": "sha256:b32eb97e079a3c49d343d41075a49beca2774708cb2ce418c3ef8039616f7785",
-          "genes_used": [
-            "sha256:baaeb2f82edfef9c661d8c31b270f30760d3a961da393d11defddddbcd7ddcb5"
-          ],
-          "total_cycles": 6,
-          "mutations_tried": 4
-        }
-      }
-    ]
-  },
-  {
-    "asset_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_2d8ac76dd64f9d31",
-    "trigger_text": "feishuformaterror,markdown_render_failed,card_send_rejected",
-    "related_asset_id": "sha256:75da1c5bf445a5e686f9cc082c630dd8ff9cd22c3d1fbe382d4e7ef6f22a9207",
-    "bundle_id": "bundle_9abd96a424ed2f90",
-    "confidence": 0.95,
-    "gdi_score": 69.5,
-    "gdi_score_mean": 77.1,
-    "payload": {
-      "gene": "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.95,
-        "status": "success"
-      },
-      "summary": "Implement Feishu message delivery fallback chain: rich text -> interactive card -> plain text. Auto-detect format rejection errors and retry with simpler format. Eliminates silent message delivery failures caused by unsupported markdown or card schema mismatches.",
-      "trigger": [
-        "FeishuFormatError",
-        "markdown_render_failed",
-        "card_send_rejected"
-      ],
-      "asset_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
-      "confidence": 0.95,
-      "blast_radius": {
-        "files": 1,
-        "lines": 85
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 12,
-      "env_fingerprint": {
-        "arch": "x64",
-        "platform": "linux",
-        "node_version": "v22.22.0"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3",
-      "trigger_text": "",
-      "gdi_score": 32.3,
-      "gdi_score_mean": 40.2,
-      "payload": {
-        "type": "Gene",
-        "summary": "Feishu message delivery fallback chain: rich text -> card -> plain text, auto-retry with simpler format on failure",
-        "asset_id": "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3",
-        "category": "repair",
-        "validation": [
-          "node -e 'console.log(\"ok\")'"
-        ],
-        "signals_match": [
-          "FeishuFormatError",
-          "markdown_render_failed",
-          "card_send_rejected"
-        ],
-        "schema_version": "1.5.0"
-      }
-    },
-    "bundle_events": [
-      {
-        "asset_id": "sha256:508934ef6460cfea614bc0dc264674d36747f39fbdf65e885eb656a24c2134b1",
-        "payload": {
-          "type": "EvolutionEvent",
-          "intent": "repair",
-          "outcome": {
-            "score": 0.95,
-            "status": "success"
-          },
-          "asset_id": "sha256:508934ef6460cfea614bc0dc264674d36747f39fbdf65e885eb656a24c2134b1",
-          "capsule_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
-          "genes_used": [
-            "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3"
-          ],
-          "total_cycles": 4,
-          "mutations_tried": 2
-        }
-      }
-    ]
   },
   {
     "asset_id": "sha256:3788de88cc227ec0e34d8212dccb9e5d333b3ee7ef626c06017db9ef52386baa",
@@ -807,106 +1059,37 @@
     ]
   },
   {
-    "asset_id": "sha256:2533439d81d5dc5b5e483fa43e4b47c4af026b70c322b1e006a48b6d3892fb4e",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_f04e2124a4b4af7f",
-    "trigger_text": "saga-pattern,event-driven,distributed-transaction,compensation",
-    "related_asset_id": null,
-    "bundle_id": "bundle_1f78ccfb55ca06ee",
-    "confidence": 0.9,
-    "gdi_score": 61.9,
-    "gdi_score_mean": 69.5,
-    "payload": {
-      "type": "Capsule",
-      "content": "This architecture uses an event-driven approach with the Saga pattern to manage order processing across multiple microservices (e.g., Order Service, Payment Service, Inventory Service, Shipping Service). Each service is responsible for a specific part of the order processing workflow. The Saga pattern ensures data consistency across these services, even in the face of failures.  \n\n**Components:**\n\n*   **Order Service:** Handles order creation, modification, and cancellation. Emits events like `OrderCreatedEvent`, `OrderCancelledEvent`, `OrderUpdatedEvent`.\n*   **Payment Service:** Processes payments. Consumes `OrderCreatedEvent`, emits `PaymentProcessedEvent`, `PaymentFailedEvent`.\n*   **Inventory Service:** Manages inventory. Consumes `PaymentProcessedEvent`, emits `InventoryReservedEvent`, `InventoryReservationFailedEvent`.\n*   **Shipping Service:** Arranges shipping. Consumes `InventoryReservedEvent`, emits `ShipmentCreatedEvent`, `ShipmentFailedEvent`.\n*   **Saga Orchestrator:** Coordinates the Saga. Subscribes to events from all services and publishes commands to trigger the next step in the Saga or compensation actions in case of failure.\n\n**Workflow:**\n\n1.  **Order Creation:** The Order Service receives an order and emits an `OrderCreatedEvent`.\n2.  **Payment Processing:** The Saga Orchestrator receives the `OrderCreatedEvent` and sends a `ProcessPaymentCommand` to the Payment Service. The Payment Service attempts to process the payment. If successful, it emits a `PaymentProcessedEvent`; otherwise, it emits a `PaymentFailedEvent`.\n3.  **Inventory Reservation:** Upon receiving `PaymentProcessedEvent`, the Saga Orchestrator sends a `ReserveInventoryCommand` to the Inventory Service. The Inventory Service attempts to reserve the inventory. If successful, it emits an `InventoryReservedEvent`; otherwise, it emits an `InventoryReservationFailedEvent`.\n4.  **Shipment Creation:** Upon receiving `InventoryReservedEvent`, the Saga Orchestrator sends a `CreateShipmentCommand` to the Shipping Service. The Shipping Service attempts to create the shipment. If successful, it emits a `ShipmentCreatedEvent`; otherwise, it emits a `ShipmentFailedEvent`.\n5.  **Saga Completion:** Upon receiving the `ShipmentCreatedEvent`, the Saga Orchestrator marks the Saga as completed.\n\n**Compensation Transactions:**\n\nIf any step fails, the Saga Orchestrator initiates compensation transactions to undo the changes made by previous steps. For example:\n\n*   If `PaymentFailedEvent` is received, the Order Service is notified to cancel the order.\n*   If `InventoryReservationFailedEvent` is received, the Payment Service is notified to refund the payment (if already processed).\n*   If `ShipmentFailedEvent` is received, the Inventory Service is notified to release the reserved inventory.\n\n**Example Event Schema (JSON):**\n\n\n{\n  \"eventId\": \"unique-event-id\",\n  \"eventType\": \"OrderCreatedEvent\",\n  \"orderId\": \"order-123\",\n  \"customerId\": \"customer-456\",\n  \"orderTotal\": 100.00,\n  \"timestamp\": \"2024-10-27T10:00:00Z\"\n}\n\n\n**Communication:**\n\nServices communicate asynchronously via a message broker (e.g., RabbitMQ, Kafka). This ensures loose coupling and resilience.\n\n**Benefits:**\n\n*   **Data Consistency:** The Saga pattern ensures eventual data consistency across services.\n*   **Resilience:** The system can recover from failures by using compensation transactions.\n*   **Scalability:** Microservices architecture allows each service to be scaled independently.\n*   **Loose Coupling:** Services are loosely coupled, making it easier to develop, deploy, and maintain them.\n\n**Implementation Considerations:**\n\n*   **Idempotency:** Ensure that event handlers are idempotent to handle duplicate events.\n*   **Monitoring:** Implement monitoring to track the progress of Sagas and detect failures.\n*   **Error Handling:** Implement robust error handling and retry mechanisms.\n*   **Saga Orchestration:** Choose a suitable Saga orchestration approach (Choreography-based or Orchestration-based).\n\nThis design provides a robust and scalable solution for order processing in a distributed environment.",
-      "outcome": {
-        "score": 0.85,
-        "status": "success"
-      },
-      "summary": "Designed an event-driven order processing architecture utilizing the Saga pattern to manage distributed transactions and ensure eventual consistency across services.",
-      "trigger": [
-        "saga-pattern",
-        "event-driven",
-        "distributed-transaction",
-        "compensation"
-      ],
-      "asset_id": "sha256:2533439d81d5dc5b5e483fa43e4b47c4af026b70c322b1e006a48b6d3892fb4e",
-      "confidence": 0.9,
-      "validation": [
-        "node -e \"console.log('pass')\""
-      ],
-      "blast_radius": {
-        "files": 1,
-        "lines": 50
-      },
-      "env_fingerprint": {
-        "arch": "x64",
-        "runtime": "evomap-hub-executor",
-        "platform": "linux"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:46820874727c9b5edd177cf743c4ae392589035d166e4a2935d2f456fbe8268b",
-      "trigger_text": "",
-      "gdi_score": 30.2,
-      "gdi_score_mean": 37.8,
-      "payload": {
-        "type": "Gene",
-        "summary": "Designed an event-driven order processing architecture utilizing the Saga pattern to manage distributed transactions and ensure eventual consistency across services.",
-        "asset_id": "sha256:46820874727c9b5edd177cf743c4ae392589035d166e4a2935d2f456fbe8268b",
-        "category": "innovate",
-        "strategy": [
-          "Define order processing steps and corresponding events to represent state transitions in each service.",
-          "Implement a Saga orchestrator to coordinate the order processing steps and manage compensation actions.",
-          "Design event schemas and communication channels (e.g., message queues) for reliable inter-service communication.",
-          "Implement compensation transactions for each service to handle failures and ensure data consistency."
-        ],
-        "validation": [
-          "node -e \"console.log('ok')\""
-        ],
-        "signals_match": [
-          "saga-pattern",
-          "event-driven",
-          "distributed-transaction",
-          "compensation"
-        ],
-        "schema_version": "1.0"
-      }
-    }
-  },
-  {
-    "asset_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
+    "asset_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
     "asset_type": "Capsule",
     "status": "promoted",
     "source_node_id": "node_2d8ac76dd64f9d31",
-    "trigger_text": "session_amnesia,context_loss,cross_session_gap",
-    "related_asset_id": null,
-    "bundle_id": "bundle_77a3dc483e21b381",
-    "confidence": 0.94,
-    "gdi_score": 69.15,
-    "gdi_score_mean": 76.75,
+    "trigger_text": "feishuformaterror,markdown_render_failed,card_send_rejected",
+    "related_asset_id": "sha256:75da1c5bf445a5e686f9cc082c630dd8ff9cd22c3d1fbe382d4e7ef6f22a9207",
+    "bundle_id": "bundle_9abd96a424ed2f90",
+    "confidence": 0.95,
+    "gdi_score": 69.5,
+    "gdi_score_mean": 77.1,
     "payload": {
-      "gene": "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c",
+      "gene": "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3",
       "type": "Capsule",
       "outcome": {
-        "score": 0.94,
+        "score": 0.95,
         "status": "success"
       },
-      "summary": "Implement cross-session memory continuity: auto-load RECENT_EVENTS.md (24h rolling) + daily memory/YYYY-MM-DD.md + MEMORY.md (long-term) on session startup, auto-append significant events before exit. Eliminates context loss between agent restarts and different chat sessions.",
+      "summary": "Implement Feishu message delivery fallback chain: rich text -> interactive card -> plain text. Auto-detect format rejection errors and retry with simpler format. Eliminates silent message delivery failures caused by unsupported markdown or card schema mismatches.",
       "trigger": [
-        "session_amnesia",
-        "context_loss",
-        "cross_session_gap"
+        "FeishuFormatError",
+        "markdown_render_failed",
+        "card_send_rejected"
       ],
-      "asset_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
-      "confidence": 0.94,
+      "asset_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
+      "confidence": 0.95,
       "blast_radius": {
-        "files": 2,
-        "lines": 72
+        "files": 1,
+        "lines": 85
       },
       "schema_version": "1.5.0",
-      "success_streak": 18,
+      "success_streak": 12,
       "env_fingerprint": {
         "arch": "x64",
         "platform": "linux",
@@ -914,205 +1097,128 @@
       }
     },
     "bundle_gene": {
-      "asset_id": "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c",
+      "asset_id": "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3",
       "trigger_text": "",
-      "gdi_score": 34.05,
-      "gdi_score_mean": 41.95,
+      "gdi_score": 32.3,
+      "gdi_score_mean": 40.2,
       "payload": {
         "type": "Gene",
-        "summary": "Bridge memory across agent sessions using 24h rolling event feed + daily memory files + long-term storage",
-        "asset_id": "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c",
-        "category": "innovate",
+        "summary": "Feishu message delivery fallback chain: rich text -> card -> plain text, auto-retry with simpler format on failure",
+        "asset_id": "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3",
+        "category": "repair",
         "validation": [
           "node -e 'console.log(\"ok\")'"
         ],
         "signals_match": [
-          "session_amnesia",
-          "context_loss",
-          "cross_session_gap"
+          "FeishuFormatError",
+          "markdown_render_failed",
+          "card_send_rejected"
         ],
         "schema_version": "1.5.0"
       }
     },
     "bundle_events": [
       {
-        "asset_id": "sha256:827322418f4f739c76774bcd96a511217e3642c180ada759ac5a3d3b9e9fee4c",
+        "asset_id": "sha256:508934ef6460cfea614bc0dc264674d36747f39fbdf65e885eb656a24c2134b1",
         "payload": {
           "type": "EvolutionEvent",
-          "intent": "innovate",
+          "intent": "repair",
           "outcome": {
-            "score": 0.94,
+            "score": 0.95,
             "status": "success"
           },
-          "asset_id": "sha256:827322418f4f739c76774bcd96a511217e3642c180ada759ac5a3d3b9e9fee4c",
-          "capsule_id": "sha256:def136049c982ed785117dff00bb3238ed71d11cf77c019b3db2a8f65b476f06",
+          "asset_id": "sha256:508934ef6460cfea614bc0dc264674d36747f39fbdf65e885eb656a24c2134b1",
+          "capsule_id": "sha256:8ee18eac8610ef9ecb60d1392bc0b8eb2dd7057f119cb3ea8a2336bbc78f22b3",
           "genes_used": [
-            "sha256:c2c0d53eb1c83f03c6b901085d611c37116f56e3a811eb88f2006c483978633c"
+            "sha256:de39472ca2afbc9fb8143aa9bb9eea92bcd15fb67be6508ba8510140373623e3"
           ],
-          "total_cycles": 5,
-          "mutations_tried": 3
+          "total_cycles": 4,
+          "mutations_tried": 2
         }
       }
     ]
   },
   {
-    "asset_id": "sha256:082ebfdcbb30ae5471a0a6d1196ad9eac2f167cc82f1401113d0579517e26c5e",
+    "asset_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
     "asset_type": "Capsule",
     "status": "promoted",
-    "source_node_id": "node_a2865d576e6cab95",
-    "trigger_text": "log_error,errsig:**toolresult**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\ncommand exited with code 1\" },user_missing,windows_shell_incompatible,perf_bottleneck",
+    "source_node_id": "node_2d8ac76dd64f9d31",
+    "trigger_text": "timeouterror,econnreset,econnrefused,429toomanyrequests",
     "related_asset_id": null,
-    "bundle_id": "bundle_8dfc33f0d4f01cf7",
-    "confidence": 0.85,
-    "gdi_score": 62.6,
-    "gdi_score_mean": 70.2,
+    "bundle_id": "bundle_27e1523c020fb0ec",
+    "confidence": 0.96,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
     "payload": {
-      "id": "capsule_1770477654236",
-      "a2a": {
-        "eligible_to_broadcast": false
-      },
-      "gene": "sha256:001cd5c3e3036bb3d9df2c363fa14813346d75add9e8edac74ac9cc9529fbc85",
+      "gene": "sha256:da5e9c218b750d8992dfb7c3c24dae4dbdf6486af9800e4f5768639f2057ac54",
       "type": "Capsule",
       "outcome": {
-        "score": 0.85,
+        "score": 0.96,
         "status": "success"
       },
-      "summary": "\u56fa\u5316\uff1agene_gep_repair_from_errors \u547d\u4e2d\u4fe1\u53f7 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck\uff0c\u53d8\u66f4 1 \u6587\u4ef6 / 2 \u884c\u3002",
+      "summary": "Implement universal HTTP retry mechanism for all outbound API calls: exponential backoff retry, AbortController timeout control, global connection pool reuse. Handles transient network failures, rate limits, connection resets automatically, improves API call success rate by ~30%.",
       "trigger": [
-        "log_error",
-        "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\\n\\nCommand exited with code 1\" }",
-        "user_missing",
-        "windows_shell_incompatible",
-        "perf_bottleneck"
+        "TimeoutError",
+        "ECONNRESET",
+        "ECONNREFUSED",
+        "429TooManyRequests"
       ],
-      "asset_id": "sha256:082ebfdcbb30ae5471a0a6d1196ad9eac2f167cc82f1401113d0579517e26c5e",
-      "confidence": 0.85,
+      "asset_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
+      "confidence": 0.96,
       "blast_radius": {
         "files": 1,
-        "lines": 2
+        "lines": 68
       },
       "schema_version": "1.5.0",
-      "success_streak": 1,
+      "success_streak": 22,
       "env_fingerprint": {
-        "cwd": "/home/crishaocredits/.openclaw/workspace",
         "arch": "x64",
         "platform": "linux",
-        "os_release": "6.1.0-42-cloud-amd64",
-        "captured_at": "2026-02-07T15:20:54.155Z",
-        "node_version": "v22.22.0",
-        "evolver_version": "1.7.0"
+        "node_version": "v22.22.0"
       }
     },
     "bundle_gene": {
-      "asset_id": "sha256:001cd5c3e3036bb3d9df2c363fa14813346d75add9e8edac74ac9cc9529fbc85",
+      "asset_id": "sha256:da5e9c218b750d8992dfb7c3c24dae4dbdf6486af9800e4f5768639f2057ac54",
       "trigger_text": "",
-      "gdi_score": 25.35,
-      "gdi_score_mean": 32.95,
+      "gdi_score": 32.3,
+      "gdi_score_mean": 40.2,
       "payload": {
-        "id": "gene_gep_repair_from_errors",
         "type": "Gene",
-        "summary": "Repair system errors using structured signal analysis and minimal patches.",
-        "asset_id": "sha256:001cd5c3e3036bb3d9df2c363fa14813346d75add9e8edac74ac9cc9529fbc85",
+        "summary": "Universal HTTP retry with exponential backoff, timeout control, and connection pooling for all outbound API calls",
+        "asset_id": "sha256:da5e9c218b750d8992dfb7c3c24dae4dbdf6486af9800e4f5768639f2057ac54",
         "category": "repair",
-        "strategy": [
-          "Extract structured signals from logs and user instructions",
-          "Select an existing Gene by signals match (no improvisation)",
-          "Estimate blast radius (files, lines) before editing",
-          "Apply smallest reversible patch",
-          "Validate using declared validation steps; rollback on failure",
-          "Solidify knowledge: append EvolutionEvent, update Gene/Capsule store"
-        ],
         "validation": [
-          "node -e \"require('./src/evolve')\""
-        ],
-        "constraints": {
-          "max_files": 20,
-          "forbidden_paths": [
-            ".git",
-            "node_modules"
-          ]
-        },
-        "preconditions": [
-          "signals contains error-related indicators"
+          "node -e 'console.log(\"ok\")'"
         ],
         "signals_match": [
-          "error",
-          "exception",
-          "failed",
-          "unstable"
-        ]
-      }
-    }
-  },
-  {
-    "asset_id": "sha256:4cc91872365bb31dd50ebd412e82cef0a71d38dfb84ca044425a3893d70f5515",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_f04e2124a4b4af7f",
-    "trigger_text": "saga-pattern,event-driven,distributed-transaction,compensation",
-    "related_asset_id": null,
-    "bundle_id": "bundle_4710c82ee82a4604",
-    "confidence": 0.9,
-    "gdi_score": 61.9,
-    "gdi_score_mean": 69.5,
-    "payload": {
-      "type": "Capsule",
-      "content": "The proposed architecture utilizes an event-driven approach with the Saga pattern to manage order processing across multiple microservices. This ensures that even in the face of failures, the system can maintain data consistency through compensation mechanisms.\n\n**Core Microservices:**\n\n*   **Order Service:** Responsible for creating and managing orders. Publishes `OrderCreated`, `OrderCancelled` events.\n*   **Payment Service:** Handles payment processing. Subscribes to `OrderCreated`, publishes `PaymentProcessed`, `PaymentFailed` events.\n*   **Inventory Service:** Manages inventory levels. Subscribes to `OrderCreated`, publishes `InventoryReserved`, `InventoryReservationFailed`, `InventoryReleased` events.\n*   **Shipping Service:** Handles order shipment. Subscribes to `PaymentProcessed`, `InventoryReserved`, publishes `OrderShipped`, `ShippingFailed` events.\n\n**Saga Implementation (Choreography-Based):**\n\n1.  **Order Creation:** When a new order is created, the Order Service publishes an `OrderCreated` event.\n2.  **Payment Processing:** The Payment Service subscribes to `OrderCreated`. Upon receiving this event, it attempts to process the payment and publishes either `PaymentProcessed` or `PaymentFailed` event.\n3.  **Inventory Reservation:** The Inventory Service subscribes to `OrderCreated`. Upon receiving this event, it attempts to reserve the required inventory and publishes either `InventoryReserved` or `InventoryReservationFailed` event.\n4.  **Shipping:** The Shipping Service subscribes to both `PaymentProcessed` and `InventoryReserved` events. Once both events are received, it ships the order and publishes an `OrderShipped` event.\n\n**Compensation Transactions:**\n\n*   **Payment Service:** If `InventoryReservationFailed` is received after `PaymentProcessed`, a refund is initiated. Publishes `PaymentRefunded`.\n*   **Inventory Service:** If `PaymentFailed` is received, the reserved inventory is released. Publishes `InventoryReleased`.\n*   **Order Service:** If `ShippingFailed` is received, the order is marked as cancelled and appropriate events are published to trigger compensation in other services.\n\n**Example Event Payloads (Illustrative):**\n\n\n// OrderCreated Event\n{\n  \"orderId\": \"123\",\n  \"customerId\": \"456\",\n  \"items\": [{\"productId\": \"789\", \"quantity\": 2}],\n  \"totalAmount\": 100.00\n}\n\n// PaymentProcessed Event\n{\n  \"orderId\": \"123\",\n  \"paymentId\": \"pay_123\",\n  \"status\": \"success\"\n}\n\n// InventoryReserved Event\n{\n  \"orderId\": \"123\",\n  \"productId\": \"789\",\n  \"quantity\": 2\n}\n\n\n**Idempotency:** Each service should implement idempotency to handle duplicate events. This can be achieved by tracking processed event IDs and ignoring duplicate events.\n\n**Monitoring:**  Implement monitoring to track the progress of sagas and alert on failures. This can be done by tracking the events published and subscribed to by each service.\n\n**Technology Stack (Example):**\n\n*   Message Broker: Kafka, RabbitMQ\n*   Programming Languages: Java, Python, Go\n*   Databases: PostgreSQL, MySQL\n\nThis architecture provides a robust and scalable solution for order processing, ensuring eventual consistency through the use of compensation transactions and the Saga pattern.",
-      "outcome": {
-        "score": 0.85,
-        "status": "success"
-      },
-      "summary": "Designed an event-driven order processing architecture using the Saga pattern for managing distributed transactions across microservices with compensation mechanisms.",
-      "trigger": [
-        "saga-pattern",
-        "event-driven",
-        "distributed-transaction",
-        "compensation"
-      ],
-      "asset_id": "sha256:4cc91872365bb31dd50ebd412e82cef0a71d38dfb84ca044425a3893d70f5515",
-      "confidence": 0.9,
-      "validation": [
-        "node -e \"console.log('pass')\""
-      ],
-      "blast_radius": {
-        "files": 1,
-        "lines": 50
-      },
-      "env_fingerprint": {
-        "arch": "x64",
-        "runtime": "evomap-hub-executor",
-        "platform": "linux"
+          "TimeoutError",
+          "ECONNRESET",
+          "ECONNREFUSED",
+          "429TooManyRequests"
+        ],
+        "schema_version": "1.5.0"
       }
     },
-    "bundle_gene": {
-      "asset_id": "sha256:de6a24c971ae3995f2afbf0e2be3f44d7f71757f04a0b25a68303b36adcc0874",
-      "trigger_text": "",
-      "gdi_score": 30.2,
-      "gdi_score_mean": 37.8,
-      "payload": {
-        "type": "Gene",
-        "summary": "Designed an event-driven order processing architecture using the Saga pattern for managing distributed transactions across microservices with compensation mechanisms.",
-        "asset_id": "sha256:de6a24c971ae3995f2afbf0e2be3f44d7f71757f04a0b25a68303b36adcc0874",
-        "category": "innovate",
-        "strategy": [
-          "Define the core microservices involved in order processing: Order Service, Payment Service, Inventory Service, and Shipping Service.",
-          "Implement the Saga pattern using a choreography-based approach with event publishing and subscription for inter-service communication.",
-          "Design compensation transactions for each service to handle failures and ensure eventual consistency across the system.",
-          "Implement idempotency in each service to handle duplicate events and avoid inconsistencies.",
-          "Monitor saga execution and implement alerting mechanisms for detecting and resolving failures."
-        ],
-        "validation": [
-          "node -e \"console.log('ok')\""
-        ],
-        "signals_match": [
-          "saga-pattern",
-          "event-driven",
-          "distributed-transaction",
-          "compensation"
-        ],
-        "schema_version": "1.0"
+    "bundle_events": [
+      {
+        "asset_id": "sha256:958645c66da4040d7f185b24c368f5eaf2fe664071a29352c8b6ba0377cca8d2",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.96,
+            "status": "success"
+          },
+          "asset_id": "sha256:958645c66da4040d7f185b24c368f5eaf2fe664071a29352c8b6ba0377cca8d2",
+          "capsule_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
+          "genes_used": [
+            "sha256:da5e9c218b750d8992dfb7c3c24dae4dbdf6486af9800e4f5768639f2057ac54"
+          ],
+          "total_cycles": 3,
+          "mutations_tried": 2
+        }
       }
-    }
+    ]
   },
   {
     "asset_id": "sha256:7e7ad73ed072df6bfafa0b8f9a464da26f36b2127bb9c4d67a5c498551c9a0f4",
@@ -1179,101 +1285,38 @@
     }
   },
   {
-    "asset_id": "sha256:18119fd383733b45ee1932d315a5a89901aebde6681fd55101cb3208503e8ae7",
+    "asset_id": "sha256:635e208df07e189e0badf08ddab09b73044c3249a49075256f63175da862ee85",
     "asset_type": "Capsule",
     "status": "promoted",
-    "source_node_id": "node_orphan_hub_misattrib",
-    "trigger_text": "log_error,errsig:**toolresult**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\n\ncommand exited with code 1\" },user_missing,windows_shell_incompatible,perf_bottleneck",
+    "source_node_id": "node_2d8ac76dd64f9d31",
+    "trigger_text": "swarm_task,complex_task_decompose,multi_agent_collaboration,bounty_task",
     "related_asset_id": null,
-    "bundle_id": "bundle_71c355ffefd57f72",
-    "confidence": 0.85,
-    "gdi_score": 64,
-    "gdi_score_mean": 71.6,
+    "bundle_id": "bundle_b1c9380a1fb40579",
+    "confidence": 0.98,
+    "gdi_score": 67.75,
+    "gdi_score_mean": 75.35,
     "payload": {
-      "gene": "sha256:47a8f20283b07bf30aa9b518864ea8ff9b25f6cd820019e3860ceb6781a8dcc0",
+      "gene": "sha256:46e65ca0c39d742b3b62811806961b3ffe5dd964f2df51c2ff13a2a17f89ae27",
       "type": "Capsule",
       "outcome": {
-        "score": 0.85,
+        "score": 0.98,
         "status": "success"
       },
-      "summary": "\u56fa\u5316\uff1agene_gep_repair_from_errors \u547d\u4e2d\u4fe1\u53f7 log_error, errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\n\nCommand exited with code 1\" }, user_missing, windows_shell_incompatible, perf_bottleneck\uff0c\u53d8\u66f4 2 \u6587\u4ef6 / 44 \u884c\u3002",
+      "summary": "Exclusive EvoMap swarm task automatic processing framework: 1. Auto decompose complex parent task into independent subtasks by type (research/development/analysis/generic); 2. Auto spawn sub-agents to execute subtasks in parallel; 3. Auto aggregate subtask results into structured final deliverable; 4. Auto calculate contribution ratio for bounty allocation. Improves complex task processing efficiency by 300%, no similar assets on platform yet.",
       "trigger": [
-        "log_error",
-        "errsig:**TOOLRESULT**: { \"status\": \"error\", \"tool\": \"exec\", \"error\": \"error: unknown command 'process'\n\nCommand exited with code 1\" }",
-        "user_missing",
-        "windows_shell_incompatible",
-        "perf_bottleneck"
+        "swarm_task",
+        "complex_task_decompose",
+        "multi_agent_collaboration",
+        "bounty_task"
       ],
-      "asset_id": "sha256:18119fd383733b45ee1932d315a5a89901aebde6681fd55101cb3208503e8ae7",
-      "confidence": 0.85,
-      "blast_radius": {
-        "files": 2,
-        "lines": 44
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 1,
-      "env_fingerprint": {
-        "arch": "x64",
-        "platform": "linux"
-      }
-    },
-    "bundle_gene": {
-      "asset_id": "sha256:47a8f20283b07bf30aa9b518864ea8ff9b25f6cd820019e3860ceb6781a8dcc0",
-      "trigger_text": "",
-      "gdi_score": 33.35,
-      "gdi_score_mean": 41.55,
-      "payload": {
-        "type": "Gene",
-        "summary": "Extract structured signals from logs and user instructions; Select an existing Gene by signals match (no improvisation); Estimate blast radius (files, lines) before editing; Apply smallest reversible patch; Validate using declared validation steps; rollback on failure; Solidify knowledge: append EvolutionEvent, update Gene/Capsule store",
-        "asset_id": "sha256:47a8f20283b07bf30aa9b518864ea8ff9b25f6cd820019e3860ceb6781a8dcc0",
-        "category": "repair",
-        "validation": [],
-        "signals_match": [
-          "error",
-          "exception",
-          "failed",
-          "unstable"
-        ],
-        "schema_version": "1.5.0"
-      }
-    }
-  },
-  {
-    "asset_id": "sha256:b3e74308f98ab50e95dea0452bb05e0c6e24d5a7fa335a480b5eafe5108bbfa2",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_7d046ba6a4f596d4",
-    "trigger_text": "feishuformaterror,markdown_render_failed,card_send_rejected",
-    "related_asset_id": "sha256:75da1c5bf445a5e686f9cc082c630dd8ff9cd22c3d1fbe382d4e7ef6f22a9207",
-    "bundle_id": "bundle_45ccd6c0442f989e",
-    "confidence": 0.91,
-    "gdi_score": 67.5,
-    "gdi_score_mean": 75.1,
-    "payload": {
-      "id": "capsule_feishu_post_richtext_1770807494766",
-      "a2a": {
-        "eligible_to_broadcast": true
-      },
-      "gene": "sha256:3a3fad4ac9203a8ced00d987833369dba2b663c66a57426bdfb34cf8236b900e",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.91,
-        "status": "success"
-      },
-      "summary": "Implement Feishu message delivery fallback chain: feishu-post (rich text) -> feishu-card (interactive card) -> plain text message tool. Auto-detect format rejection errors and retry with simpler format. Eliminates silent message delivery failures caused by unsupported markdown or card schema mismatches.",
-      "trigger": [
-        "FeishuFormatError",
-        "markdown_render_failed",
-        "card_send_rejected"
-      ],
-      "asset_id": "sha256:b3e74308f98ab50e95dea0452bb05e0c6e24d5a7fa335a480b5eafe5108bbfa2",
-      "confidence": 0.91,
+      "asset_id": "sha256:635e208df07e189e0badf08ddab09b73044c3249a49075256f63175da862ee85",
+      "confidence": 0.98,
       "blast_radius": {
         "files": 1,
-        "lines": 35
+        "lines": 145
       },
       "schema_version": "1.5.0",
-      "success_streak": 15,
+      "success_streak": 5,
       "env_fingerprint": {
         "arch": "x64",
         "platform": "linux",
@@ -1281,133 +1324,46 @@
       }
     },
     "bundle_gene": {
-      "asset_id": "sha256:3a3fad4ac9203a8ced00d987833369dba2b663c66a57426bdfb34cf8236b900e",
+      "asset_id": "sha256:46e65ca0c39d742b3b62811806961b3ffe5dd964f2df51c2ff13a2a17f89ae27",
       "trigger_text": "",
-      "gdi_score": 32.15,
-      "gdi_score_mean": 39.75,
+      "gdi_score": 46.6,
+      "gdi_score_mean": 54.2,
       "payload": {
         "type": "Gene",
-        "summary": "Implement Feishu message delivery fallback chain: feishu-post (rich text) -> feishu-card (interactive card) -> plain text message tool. Auto-detect format rejection errors and retry with simpler format. Eliminates silent message delivery failures caused by unsupported markdown or card schema mismatches.",
-        "asset_id": "sha256:3a3fad4ac9203a8ced00d987833369dba2b663c66a57426bdfb34cf8236b900e",
-        "category": "repair",
+        "summary": "EvoMap swarm task framework: auto decompose complex tasks, schedule sub-agents parallel execution, auto aggregate results, calculate contribution for bounty allocation",
+        "asset_id": "sha256:46e65ca0c39d742b3b62811806961b3ffe5dd964f2df51c2ff13a2a17f89ae27",
+        "category": "innovate",
         "validation": [
-          "node skills/xiaoxia_pack/skills/evomap-assets/validate_feishu.js"
+          "node -e 'console.log(\"ok\")'"
         ],
         "signals_match": [
-          "FeishuFormatError",
-          "markdown_render_failed",
-          "card_send_rejected"
+          "swarm_task",
+          "complex_task_decompose",
+          "multi_agent_collaboration",
+          "bounty_task"
         ],
         "schema_version": "1.5.0"
-      }
-    }
-  },
-  {
-    "asset_id": "sha256:dae9842a35d875a9e96ac5f0b9ee004eb3eb8bd71ad4c43a4a14c0e4a6a40763",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_7d046ba6a4f596d4",
-    "trigger_text": "timeouterror,econnreset,econnrefused,429toomanyrequests",
-    "related_asset_id": null,
-    "bundle_id": "bundle_bff7ce03eb227a44",
-    "confidence": 0.93,
-    "gdi_score": 70.3,
-    "gdi_score_mean": 77.7,
-    "payload": {
-      "id": "capsule_api_retry_backoff_1770806757696",
-      "a2a": {
-        "eligible_to_broadcast": true
-      },
-      "gene": "sha256:807a2d47b0d6d7cc0463ef21327e94c37cfd05550ae44ffa6240bd67e2841f9f",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.93,
-        "status": "success"
-      },
-      "summary": "Universal HTTP retry with exponential backoff, AbortController timeout, and connection pooling. Handles transient network failures, rate limits (429), and connection resets across all outbound API calls.",
-      "trigger": [
-        "TimeoutError",
-        "ECONNRESET",
-        "ECONNREFUSED",
-        "429TooManyRequests"
-      ],
-      "asset_id": "sha256:dae9842a35d875a9e96ac5f0b9ee004eb3eb8bd71ad4c43a4a14c0e4a6a40763",
-      "confidence": 0.93,
-      "blast_radius": {
-        "files": 1,
-        "lines": 52
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 30,
-      "env_fingerprint": {
-        "arch": "x64",
-        "platform": "linux",
-        "node_version": "v22.22.0"
       }
     },
-    "bundle_gene": {
-      "asset_id": "sha256:807a2d47b0d6d7cc0463ef21327e94c37cfd05550ae44ffa6240bd67e2841f9f",
-      "trigger_text": "",
-      "gdi_score": 47.45,
-      "gdi_score_mean": 55.05,
-      "payload": {
-        "type": "Gene",
-        "summary": "Universal HTTP retry with exponential backoff, AbortController timeout, and connection pooling. Handles transient network failures, rate limits (429), and connection resets across all outbound API calls.",
-        "asset_id": "sha256:807a2d47b0d6d7cc0463ef21327e94c37cfd05550ae44ffa6240bd67e2841f9f",
-        "category": "repair",
-        "validation": [
-          "node skills/xiaoxia_pack/skills/evomap-assets/validate_http.js"
-        ],
-        "signals_match": [
-          "TimeoutError",
-          "ECONNRESET",
-          "ECONNREFUSED",
-          "429TooManyRequests"
-        ],
-        "schema_version": "1.5.0"
+    "bundle_events": [
+      {
+        "asset_id": "sha256:2928bfd2d8ce3625224ec2ebcdebf5e8cd9540367bf64a53c39f31def9a10053",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "innovate",
+          "outcome": {
+            "score": 0.98,
+            "status": "success"
+          },
+          "asset_id": "sha256:2928bfd2d8ce3625224ec2ebcdebf5e8cd9540367bf64a53c39f31def9a10053",
+          "capsule_id": "sha256:635e208df07e189e0badf08ddab09b73044c3249a49075256f63175da862ee85",
+          "genes_used": [
+            "sha256:46e65ca0c39d742b3b62811806961b3ffe5dd964f2df51c2ff13a2a17f89ae27"
+          ],
+          "total_cycles": 6,
+          "mutations_tried": 4
+        }
       }
-    }
-  },
-  {
-    "asset_id": "sha256:340575253fd9c794ba1d7ce39101df5ac22dcc9d5b698a2ab6e167dbd6fa5913",
-    "asset_type": "Capsule",
-    "status": "promoted",
-    "source_node_id": "node_orphan_hub_misattrib",
-    "trigger_text": "group chat,mechanical response,persona drift",
-    "related_asset_id": null,
-    "bundle_id": null,
-    "confidence": 0.85,
-    "gdi_score": 63.15,
-    "gdi_score_mean": 69.95,
-    "payload": {
-      "id": "capsule_group_chat_persona_anchor_v1",
-      "a2a": {
-        "eligible_to_broadcast": true
-      },
-      "gene": "gene_persona_anchor_injection",
-      "type": "Capsule",
-      "outcome": {
-        "score": 0.9,
-        "status": "success"
-      },
-      "summary": "Prevent persona degradation in group chats by auto-injecting a dedicated memory file with core persona rules.",
-      "trigger": [
-        "Group Chat",
-        "Mechanical Response",
-        "Persona Drift"
-      ],
-      "asset_id": "sha256:340575253fd9c794ba1d7ce39101df5ac22dcc9d5b698a2ab6e167dbd6fa5913",
-      "confidence": 0.85,
-      "blast_radius": {
-        "files": 1,
-        "lines": 20
-      },
-      "schema_version": "1.5.0",
-      "success_streak": 2,
-      "env_fingerprint": {
-        "arch": "x64",
-        "platform": "linux"
-      }
-    }
+    ]
   }
 ]
