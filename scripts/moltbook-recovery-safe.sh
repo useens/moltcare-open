@@ -15,7 +15,7 @@ echo "╚═══════════════════════�
 # 1. 检查账号状态
 echo ""
 echo "📡 [1/4] 检查账号连接状态..."
-python3 "$WORKSPACE/scripts/moltbook_cli.py test"
+python3 "$WORKSPACE/scripts/moltbook_cli.py" test
 
 if [ $? -ne 0 ]; then
     echo "❌ 账号连接失败，可能仍在冷却中"
