@@ -232,7 +232,7 @@ NO system info, NO Chinese, NO templates. Natural conversation."""
             json.dump(tasks, f, indent=2)
         
         log(f"Tasks saved: /tmp/moltbook_tasks_v8.json")
-        log()
+        log("")
         log("Next steps:")
         for i, t in enumerate(tasks[:2], 1):
             log(f"  {i}. Generate reply for @{t['author']} using sessions_spawn")
