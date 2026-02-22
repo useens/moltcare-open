@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-02-22T04:01:00.250209",
+  "timestamp": "2026-02-23T02:00:13.240943",
   "opportunities": [
     {
       "id": "temp-cleanup",
@@ -102,12 +102,24 @@
           "size": 16616
         },
         {
+          "path": "scripts/__pycache__/moltbook_social_v41.cpython-311.pyc",
+          "size": 15499
+        },
+        {
           "path": "scripts/__pycache__/moltbook-intel-collector.cpython-311.pyc",
           "size": 6851
         },
         {
+          "path": "scripts/__pycache__/moltbook_social_v7.cpython-311.pyc",
+          "size": 20289
+        },
+        {
           "path": "scripts/__pycache__/secure-chat-server.cpython-311.pyc",
           "size": 8408
+        },
+        {
+          "path": "scripts/__pycache__/moltbook_social_agent_v2.cpython-311.pyc",
+          "size": 19057
         },
         {
           "path": "scripts/__pycache__/meta-learning-engine.cpython-311.pyc",
@@ -186,32 +198,20 @@
           "size": 6716
         },
         {
+          "path": "scripts/__pycache__/moltbook_social_v60.cpython-311.pyc",
+          "size": 16063
+        },
+        {
           "path": "scripts/__pycache__/deep-learning-loop-v20.cpython-311.pyc",
           "size": 19029
         },
         {
           "path": "scripts/__pycache__/moltbook-challenge-detector.cpython-311.pyc",
           "size": 10462
-        },
-        {
-          "path": "scripts/__pycache__/redis_multi_agent_engine.cpython-311.pyc",
-          "size": 9470
-        },
-        {
-          "path": "scripts/__pycache__/moltbook-extract-special.cpython-311.pyc",
-          "size": 9558
-        },
-        {
-          "path": "scripts/__pycache__/intelligence-assessment.cpython-311.pyc",
-          "size": 2430
-        },
-        {
-          "path": "scripts/__pycache__/health-monitor-v5.cpython-311.pyc",
-          "size": 13665
         }
       ],
-      "estimated_saving_mb": 0.7330160140991211,
-      "description": "\u6e05\u7406 82 \u4e2a\u4e34\u65f6\u6587\u4ef6",
+      "estimated_saving_mb": 0.8473691940307617,
+      "description": "\u6e05\u7406 91 \u4e2a\u4e34\u65f6\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -238,7 +238,7 @@
         }
       ],
       "estimated_saving_mb": 0,
-      "description": "\u5408\u5e76 75 \u4e2a\u5206\u6563\u7684cron\u914d\u7f6e",
+      "description": "\u5408\u5e76 80 \u4e2a\u5206\u6563\u7684cron\u914d\u7f6e",
       "risk_level": "medium"
     }
   ],
@@ -247,7 +247,7 @@
     "p0_count": 1,
     "p1_count": 0,
     "p2_count": 1,
-    "estimated_saving_mb": 0.73,
+    "estimated_saving_mb": 0.85,
     "estimated_saving_percent": 0
   }
 }
