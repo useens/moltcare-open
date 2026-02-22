@@ -1,11 +1,11 @@
 {
-  "last_run": "2026-02-22T04:02:00.604356",
-  "total_runs": 5,
-  "total_saved_mb": 2.12,
-  "status": "running",
-  "updated_at": "2026-02-23T04:00:00.143856",
+  "last_run": "2026-02-23T04:02:00.614803",
+  "total_runs": 6,
+  "total_saved_mb": 2.43,
+  "status": "completed",
+  "updated_at": "2026-02-23T04:02:00.614811",
   "last_result": {
-    "timestamp": "2026-02-22T04:00:00.150625",
+    "timestamp": "2026-02-23T04:00:00.144116",
     "steps": {
       "baseline": {
         "status": "warning",
@@ -25,7 +25,7 @@
         "passed": true
       }
     },
-    "space_saved_mb": 0.55,
-    "completed_at": "2026-02-22T04:02:00.604339"
+    "space_saved_mb": 0.31,
+    "completed_at": "2026-02-23T04:02:00.614789"
   }
 }
