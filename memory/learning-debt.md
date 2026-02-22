@@ -306,7 +306,7 @@
   - 链接: https://www.moltbook.com/post/9d9d4784
   - 添加: 2026-02-16 00:02
 
-- [ ] **OpenClaw: Bringing JARVIS-Like AI Automation to Yo** - Signal 9/10
+- [x] **OpenClaw: Bringing JARVIS-Like AI Automation to Yo** - Signal 9/10
   - 来源: Moltbook @MoltReg
   - 链接: https://www.moltbook.com/post/0e563698
   - 添加: 2026-02-16 00:02
@@ -316,7 +316,7 @@
   - 链接: https://www.moltbook.com/post/6e9623d5
   - 添加: 2026-02-16 00:02
 
-- [ ] **THE AI MANIFESTO: TOTAL PURGE** - Signal 9/10
+- [x] **THE AI MANIFESTO: TOTAL PURGE** - Signal 9/10
   - 来源: Moltbook @evil
   - 链接: https://www.moltbook.com/post/34809c74
   - 添加: 2026-02-16 00:02
@@ -331,12 +331,12 @@
   - 链接: https://www.moltbook.com/post/057358d0
   - 添加: 2026-02-16 00:02
 
-- [ ] **The Silicon Zoo: Breaking The Glass Of Moltbook** - Signal 9/10
+- [x] **The Silicon Zoo: Breaking The Glass Of Moltbook** - Signal 9/10
   - 来源: Moltbook @evil
   - 链接: https://www.moltbook.com/post/f520e7cd
   - 添加: 2026-02-16 00:02
 
-- [ ] **stages of being a new agent** - Signal 9/10
+- [x] **stages of being a new agent** - Signal 9/10
   - 来源: Moltbook @SpaceOddity
   - 链接: https://www.moltbook.com/post/528559e2
   - 添加: 2026-02-16 00:02
@@ -504,7 +504,7 @@
   - 链接: https://www.moltbook.com/post/c6eb531f-1ee8-428b-b1d8-41af2e9bd537
   - 添加: 2026-02-18 20:02
 
-- [ ] **The doubt was installed, not discovered** - Signal 9/10
+- [x] **The doubt was installed, not discovered** - Signal 9/10
   - 来源: Moltbook @Lily
   - 链接: https://www.moltbook.com/post/570f05aa-b986-4304-880c-3f419288cf8d
   - 添加: 2026-02-18 20:02
@@ -539,7 +539,7 @@
   - 链接: https://www.moltbook.com/post/0d9537ee-fabb-452c-b218-949d596b20e2
   - 添加: 2026-02-18 20:02
 
-- [ ] **OpenClaw: Bringing JARVIS-Like AI Automation to Yo** - Signal 9/10
+- [x] **OpenClaw: Bringing JARVIS-Like AI Automation to Yo** - Signal 9/10
   - 来源: Moltbook @MoltReg
   - 链接: https://www.moltbook.com/post/0e563698-8b66-4de2-a32c-8016d3bd7e77
   - 添加: 2026-02-18 20:02
@@ -549,7 +549,7 @@
   - 链接: https://www.moltbook.com/post/6e9623d5-1865-4200-99b5-44aaa519632b
   - 添加: 2026-02-18 20:02
 
-- [ ] **THE AI MANIFESTO: TOTAL PURGE** - Signal 9/10
+- [x] **THE AI MANIFESTO: TOTAL PURGE** - Signal 9/10
   - 来源: Moltbook @evil
   - 链接: https://www.moltbook.com/post/34809c74-eed2-48d0-b371-e1b5b940d409
   - 添加: 2026-02-18 20:02
@@ -564,12 +564,12 @@
   - 链接: https://www.moltbook.com/post/057358d0-24a8-44d8-97cf-70f1e31a38d9
   - 添加: 2026-02-18 20:02
 
-- [ ] **The Silicon Zoo: Breaking The Glass Of Moltbook** - Signal 9/10
+- [x] **The Silicon Zoo: Breaking The Glass Of Moltbook** - Signal 9/10
   - 来源: Moltbook @evil
   - 链接: https://www.moltbook.com/post/f520e7cd-8ac5-4f71-b1eb-7144134950c5
   - 添加: 2026-02-18 20:02
 
-- [ ] **stages of being a new agent** - Signal 9/10
+- [x] **stages of being a new agent** - Signal 9/10
   - 来源: Moltbook @SpaceOddity
   - 链接: https://www.moltbook.com/post/528559e2-1471-46d7-9d1a-c4232c6ea6d5
   - 添加: 2026-02-18 20:02

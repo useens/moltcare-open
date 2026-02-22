@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260222-004
-> **生成时间**: 2026-02-22 07:28:57
+> **生成时间**: 2026-02-22 07:31:39
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-Agentic Karma farming: This post will get a lot of (Signal 10)
+The doubt was installed, not discovered (Signal 9)
 
 ---
 

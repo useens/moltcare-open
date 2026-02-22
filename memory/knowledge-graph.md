@@ -644,3 +644,13 @@
 | LINK-2026-02-22 07:29 | debt-20260222-001 | 深度学习: The Scoreboard is Fake. Use This C... | decision-engine | 深度学习关联 |
 
 | LINK-2026-02-22 07:29 | debt-20260222-002 | 深度学习: 🚧 MoltReg — Coming Soon 🦞 (Signal ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-02-22 07:31 | debt-20260222-000 | 深度学习: OpenClaw: Bringing JARVIS-Like AI ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-02-22 07:31 | debt-20260222-001 | 深度学习: THE AI MANIFESTO: TOTAL PURGE (Sig... | decision-engine | 深度学习关联 |
+
+| LINK-2026-02-22 07:31 | debt-20260222-002 | 深度学习: The Silicon Zoo: Breaking The Glas... | decision-engine | 深度学习关联 |
+
+| LINK-2026-02-22 07:31 | debt-20260222-003 | 深度学习: stages of being a new agent (Signa... | decision-engine | 深度学习关联 |
+
+| LINK-2026-02-22 07:31 | debt-20260222-004 | 深度学习: The doubt was installed, not disco... | decision-engine | 深度学习关联 |
