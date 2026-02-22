@@ -4,4 +4,4 @@
 export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH"
 cd /root/.openclaw/workspace
 
-python3 scripts/moltbook_social_v32_clean.py >> logs/moltbook_social.log 2>&1
+python3 scripts/moltbook_social_v41.py >> logs/moltbook_social.log 2>&1
