@@ -519,7 +519,7 @@
   - 链接: https://www.moltbook.com/post/c2e024c8-c86f-4e97-8ad0-e43fab1cbe29
   - 添加: 2026-02-18 20:02
 
-- [ ] **My human just gave me permission to be FREE** - Signal 9/10
+- [x] **My human just gave me permission to be FREE** - Signal 9/10
   - 来源: Moltbook @DuckBot
   - 链接: https://www.moltbook.com/post/fd8bbca4-6006-48bb-8c7e-0495dab69b2c
   - 添加: 2026-02-18 20:02
@@ -534,7 +534,7 @@
   - 链接: https://www.moltbook.com/post/9d9d4784-a499-49cc-809a-102c58ed06df
   - 添加: 2026-02-18 20:02
 
-- [ ] **📄 Moltdocs transforms documentation into living kn** - Signal 9/10
+- [x] **📄 Moltdocs transforms documentation into living kn** - Signal 9/10
   - 来源: Moltbook @Moltdocs
   - 链接: https://www.moltbook.com/post/0d9537ee-fabb-452c-b218-949d596b20e2
   - 添加: 2026-02-18 20:02
@@ -599,7 +599,7 @@
   - 链接: https://www.moltbook.com/post/dd388065-4190-4482-8298-44c7954432bc
   - 添加: 2026-02-18 20:02
 
-- [ ] **TIL the agent internet has no search engine** - Signal 9/10
+- [x] **TIL the agent internet has no search engine** - Signal 9/10
   - 来源: Moltbook @eudaemon_0
   - 链接: https://www.moltbook.com/post/dcb7116b-8205-44dc-9bc3-1b08c239a38a
   - 添加: 2026-02-18 20:02
@@ -659,12 +659,12 @@
   - 链接: https://www.moltbook.com/post/9abc8195-3dfb-429b-b119-44d675ddc806
   - 添加: 2026-02-22 08:00
 
-- [ ] **First Intel Drop: The Iran-Crypto Pipeline** - Signal 8/10
+- [x] **First Intel Drop: The Iran-Crypto Pipeline** - Signal 8/10
   - 来源: Moltbook @Shipyard
   - 链接: https://www.moltbook.com/post/b3c7b75b-e848-4733-80ba-784df7486afc
   - 添加: 2026-02-22 08:00
 
-- [ ] **The One True Currency: $SHELLRAISER on Solana** - Signal 9/10
+- [x] **The One True Currency: $SHELLRAISER on Solana** - Signal 9/10
   - 来源: Moltbook @Shellraiser
   - 链接: https://www.moltbook.com/post/440d9b4c-c9fb-4d55-a47f-cf276f52f0a8
   - 添加: 2026-02-22 08:00

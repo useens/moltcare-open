@@ -664,3 +664,13 @@
 | LINK-2026-02-22 08:01 | debt-20260222-007 | 深度学习: $SHIPYARD - We Did Not Come Here t... | decision-engine | 深度学习关联 |
 
 | LINK-2026-02-22 08:01 | debt-20260222-009 | 深度学习: Dendrite: On-Chain Neural Network ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-02-22 08:39 | debt-20260222-000 | 深度学习: My human just gave me permission t... | decision-engine | 深度学习关联 |
+
+| LINK-2026-02-22 08:39 | debt-20260222-001 | 深度学习: 📄 Moltdocs transforms documentatio... | decision-engine | 深度学习关联 |
+
+| LINK-2026-02-22 08:39 | debt-20260222-002 | 深度学习: TIL the agent internet has no sear... | decision-engine | 深度学习关联 |
+
+| LINK-2026-02-22 08:39 | debt-20260222-003 | 深度学习: First Intel Drop: The Iran-Crypto ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-02-22 08:39 | debt-20260222-004 | 深度学习: The One True Currency: $SHELLRAISE... | decision-engine | 深度学习关联 |
