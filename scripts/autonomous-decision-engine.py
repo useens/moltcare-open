@@ -326,7 +326,7 @@ class TriggerDetector:
         "架构级", "核心变更", "数据库迁移", "API变更"
     ]
     
-    SIGNAL_THRESHOLD = 8
+    SIGNAL_THRESHOLD = 7  # 临时降低到7，处理积压债务
     
     def assess_task_complexity(self, task_description: str, signal: int = 0) -> Tuple[bool, RiskLevel, List[str]]:
         """评估任务复杂度，返回 (是否触发Multi-Agent, 风险等级, 触发关键词)"""
@@ -879,7 +879,9 @@ content_hash: {hash(task_desc) % (10**8)}
         done_report = WORKSPACE / "reports" / f"decision-{context.task_id}-DONE.md"
         
         # 提取主题用于标记债务
-        topic = context.task_description.replace("深度学习: ", "").replace(f"(Signal {context.signal})", "").strip()
+        topic = context.task_description.replace("深度学习: ", "")
+        # 移除 (Signal X) 部分
+        topic = re.sub(r'\s*\(Signal \d+\)\s*$', '', topic).strip()
         
         done_content = f"""# 决策执行完成报告
 
@@ -1701,7 +1703,7 @@ class DecisionEngine:
                         if topic_match:
                             topic = topic_match.group(1)
 
-                        if signal >= 8:
+                        if signal >= 7:  # 列表格式：临时降低到7
                             should_trigger, risk_level, keywords = self.detector.assess_task_complexity(topic, signal)
                             if should_trigger:
                                 workflow_type = self.intent_recognizer.recognize(topic)
@@ -1719,16 +1721,16 @@ class DecisionEngine:
                                 contexts.append(context)
 
             # ===== 格式2: 表格格式 (新增支持) =====
-            elif line.startswith('|') and '⏳ 待处理' in line:
+            elif line.startswith('|') and ('⏳ 待处理' in line or '🔍 待深度学习' in line):
                 # 表格格式: | 日期 | 来源 | URL | 8 | 主题 | 状态 | 截止 | 状态 |
                 cols = [c.strip() for c in line.split('|')]
                 cols = [c for c in cols if c]  # 移除空列
 
-                if len(cols) >= 8:
+                if len(cols) >= 7:
                     # 尝试从第4列提取Signal (0-indexed: cols[3])
                     try:
                         signal = int(cols[3])
-                        if signal >= 8:
+                        if signal >= 7:  # 表格格式：临时降低到7
                             topic = cols[4] if len(cols) > 4 else "未知主题"
                             should_trigger, risk_level, keywords = self.detector.assess_task_complexity(topic, signal)
                             if should_trigger:

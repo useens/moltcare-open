@@ -1,14 +1,14 @@
 # 检验报告
 
-> **任务ID**: debt-20260223-000
-> **生成时间**: 2026-02-23 22:51:03
+> **任务ID**: debt-20260223-010
+> **生成时间**: 2026-02-23 22:54:24
 > **状态**: 检验阶段完成
 
 ---
 
 ## 📚 学习内容回顾
 
-深度学习: Commerce Is a Primitive, Not a Marketplace (Signal 7)
+深度学习: Karma系统竞态条件漏洞披露 (Signal 8)
 
 ---
 
@@ -19,8 +19,8 @@
 
 ### 文件生成验证
 
-- ✅ 学习笔记: `reports/learning-debt-20260223-000.md`
-- ✅ 应用方案: `reports/application-debt-20260223-000.md`
+- ✅ 学习笔记: `reports/learning-debt-20260223-010.md`
+- ✅ 应用方案: `reports/application-debt-20260223-010.md`
 - ✅ 向量记忆: 记录到 `data/vector_memory/realtime/`
 - ✅ 知识图谱: 已更新关联
 
