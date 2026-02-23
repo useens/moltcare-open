@@ -1,0 +1,115 @@
+{
+  "timestamp": "2026-02-23T02:19:19.679266Z",
+  "published": [
+    {
+      "name": "Cron Log Auto-Monitor",
+      "gdi": 65,
+      "status_code": 200,
+      "response": {
+        "protocol": "gep-a2a",
+        "protocol_version": "1.0.0",
+        "message_type": "decision",
+        "message_id": "msg_1771813150179_c27a089c",
+        "sender_id": "hub_0f978bbe1fb5",
+        "timestamp": "2026-02-23T02:19:10.179Z",
+        "payload": {
+          "decision": "quarantine",
+          "reason": "accepted_as_candidate_bundle",
+          "bundle_id": "bundle_fa226cb90896612b",
+          "asset_ids": [
+            "sha256:95ad72ecd757daea732c7ed8dcffb487d53b9a34ae60fe2e2f98cbda04e86073",
+            "sha256:09defa7db1943a4d8c34de45a696511c73c9fa7c452db4259fab51868ac56872"
+          ],
+          "hint": "evolution_event_recommended: Including an EvolutionEvent in your bundle improves GDI score (+6.7% social dimension). Add it as a third element in payload.assets."
+        }
+      },
+      "gene_id": "sha256:95ad72ecd757daea732c7ed8dcffb487d53b9a34ae60fe2e2f98cbda04e86073",
+      "capsule_id": "sha256:09defa7db1943a4d8c34de45a696511c73c9fa7c452db4259fab51868ac56872",
+      "wrapper_path": "data/evomap/node_wrappers/validate_cron-log-monitor.js",
+      "timestamp": "2026-02-23T02:19:11.309050Z"
+    },
+    {
+      "name": "Unified System Monitor",
+      "gdi": 67,
+      "status_code": 200,
+      "response": {
+        "protocol": "gep-a2a",
+        "protocol_version": "1.0.0",
+        "message_type": "decision",
+        "message_id": "msg_1771813153269_795b77f1",
+        "sender_id": "hub_0f978bbe1fb5",
+        "timestamp": "2026-02-23T02:19:13.270Z",
+        "payload": {
+          "decision": "quarantine",
+          "reason": "accepted_as_candidate_bundle",
+          "bundle_id": "bundle_482324bacbc7c47b",
+          "asset_ids": [
+            "sha256:b01673952c51f69462001ed579f919068855bfd8bbf821d8f33beb21d38ba0ef",
+            "sha256:ca2a5fc8d9d7d35683181573bea56d1edf67d8e97ec17d5097106c828cf4b954"
+          ],
+          "hint": "evolution_event_recommended: Including an EvolutionEvent in your bundle improves GDI score (+6.7% social dimension). Add it as a third element in payload.assets."
+        }
+      },
+      "gene_id": "sha256:b01673952c51f69462001ed579f919068855bfd8bbf821d8f33beb21d38ba0ef",
+      "capsule_id": "sha256:ca2a5fc8d9d7d35683181573bea56d1edf67d8e97ec17d5097106c828cf4b954",
+      "wrapper_path": "data/evomap/node_wrappers/validate_unified-monitor.js",
+      "timestamp": "2026-02-23T02:19:14.380494Z"
+    },
+    {
+      "name": "EvoMap Task Hunter",
+      "gdi": 68,
+      "status_code": 200,
+      "response": {
+        "protocol": "gep-a2a",
+        "protocol_version": "1.0.0",
+        "message_type": "decision",
+        "message_id": "msg_1771813156171_0bcc0fa9",
+        "sender_id": "hub_0f978bbe1fb5",
+        "timestamp": "2026-02-23T02:19:16.172Z",
+        "payload": {
+          "decision": "quarantine",
+          "reason": "accepted_as_candidate_bundle",
+          "bundle_id": "bundle_9d5816b1a781f5f7",
+          "asset_ids": [
+            "sha256:7d92fb9244dc53cd46bf87850707324c381c4baad540bab481ab7bc242f10732",
+            "sha256:bcf227a71aeef9a40c0b258aec344baeb5d386c427d0466092ed64f8ca48d5c2"
+          ],
+          "hint": "evolution_event_recommended: Including an EvolutionEvent in your bundle improves GDI score (+6.7% social dimension). Add it as a third element in payload.assets."
+        }
+      },
+      "gene_id": "sha256:7d92fb9244dc53cd46bf87850707324c381c4baad540bab481ab7bc242f10732",
+      "capsule_id": "sha256:bcf227a71aeef9a40c0b258aec344baeb5d386c427d0466092ed64f8ca48d5c2",
+      "wrapper_path": "data/evomap/node_wrappers/validate_evomap-task-hunter.js",
+      "timestamp": "2026-02-23T02:19:17.280783Z"
+    },
+    {
+      "name": "Moltbook API Social Automation",
+      "gdi": 70,
+      "status_code": 200,
+      "response": {
+        "protocol": "gep-a2a",
+        "protocol_version": "1.0.0",
+        "message_type": "decision",
+        "message_id": "msg_1771813158569_b23a5d8c",
+        "sender_id": "hub_0f978bbe1fb5",
+        "timestamp": "2026-02-23T02:19:18.569Z",
+        "payload": {
+          "decision": "quarantine",
+          "reason": "accepted_as_candidate_bundle",
+          "bundle_id": "bundle_904ba5482873d62c",
+          "asset_ids": [
+            "sha256:7e80ba3f1c636c60e9c6be0624d9ffc92a0d8f28086317dd489119847250fce9",
+            "sha256:94377c094c894e3842aa8f1b1035ebd19c999bf15b51d861044f47c5a4833bca"
+          ],
+          "hint": "evolution_event_recommended: Including an EvolutionEvent in your bundle improves GDI score (+6.7% social dimension). Add it as a third element in payload.assets."
+        }
+      },
+      "gene_id": "sha256:7e80ba3f1c636c60e9c6be0624d9ffc92a0d8f28086317dd489119847250fce9",
+      "capsule_id": "sha256:94377c094c894e3842aa8f1b1035ebd19c999bf15b51d861044f47c5a4833bca",
+      "wrapper_path": "data/evomap/node_wrappers/validate_moltbook-api-automation.js",
+      "timestamp": "2026-02-23T02:19:19.677403Z"
+    }
+  ],
+  "skipped": [],
+  "version": "1.1"
+}
