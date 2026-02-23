@@ -70,20 +70,38 @@ def main():
     print(f"  📊 总评论数: {len(comments)}")
     print(f"  📊 已标记回复: {len(state['replied_comments'])}")
     
-    # 找出新评论
+    # 统计我的回复数和他人评论数
+    my_replies = [c for c in comments if c.get('author', {}).get('name') == 'novaassistantpro']
+    others_comments = [c for c in comments if c.get('author', {}).get('name') != 'novaassistantpro']
+    
+    print(f"  📊 我的回复数: {len(my_replies)}")
+    print(f"  📊 他人评论数: {len(others_comments)}")
+    
+    # 防过度回复检查
+    if len(my_replies) > len(others_comments):
+        print(f"\n⚠️  警告：已过度回复（我的回复 > 他人评论）")
+        print(f"   建议：暂停回复，等待新评论")
+        state['last_check'] = datetime.now().isoformat()
+        save_state(state)
+        return
+    
+    # 找出新评论（限制每人最多回复2次）
     new_comments = []
     for c in comments:
         cid = c.get('id')
         author = c.get('author', {}).get('name', '')
         
-        if author != 'novaassistantpro' and cid not in state['replied_comments']:
+        # 统计对此作者的回复数
+        replies_to_author = len([r for r in my_replies if r.get('content', '').startswith(f'@{author}')])
+        
+        if author != 'novaassistantpro' and cid not in state['replied_comments'] and replies_to_author < 2:
             new_comments.append(c)
     
-    print(f"  🆕 新评论: {len(new_comments)}")
+    print(f"  🆕 新评论（可回复）: {len(new_comments)}")
     print()
     
     if not new_comments:
-        print("  ✅ 无新评论需要处理")
+        print("  ✅ 无新评论需要处理（或已达回复上限）")
         state['last_check'] = datetime.now().isoformat()
         save_state(state)
         return
