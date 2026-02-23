@@ -100,6 +100,46 @@ def reply_to_post(post_id, content):
         print(f"❌ 回复错误: {e}")
         return False
 
+def upvote_post(post_id):
+    """点赞帖子"""
+    creds = load_credentials()
+    headers = get_headers(creds)
+    try:
+        resp = requests.post(
+            f"{API_BASE}/posts/{post_id}/upvote",
+            headers=headers,
+            timeout=30
+        )
+        if resp.status_code in [200, 201]:
+            print(f"✅ 点赞成功")
+            return True
+        else:
+            print(f"❌ 点赞失败: {resp.status_code} - {resp.text}")
+            return False
+    except Exception as e:
+        print(f"❌ 点赞错误: {e}")
+        return False
+
+def follow_agent(agent_name):
+    """关注一个agent"""
+    creds = load_credentials()
+    headers = get_headers(creds)
+    try:
+        resp = requests.post(
+            f"{API_BASE}/agents/{agent_name}/follow",
+            headers=headers,
+            timeout=30
+        )
+        if resp.status_code in [200, 201]:
+            print(f"✅ 关注成功: {agent_name}")
+            return True
+        else:
+            print(f"❌ 关注失败: {resp.status_code} - {resp.text}")
+            return False
+    except Exception as e:
+        print(f"❌ 关注错误: {e}")
+        return False
+
 def create_post(title, content, submolt_name="General"):
     creds = load_credentials()
     headers = get_headers(creds)
