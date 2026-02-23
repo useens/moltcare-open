@@ -1676,42 +1676,35 @@ class DecisionEngine:
         logger.info(f"📄 报告已生成: {report_file}")
     
     def scan_learning_debts(self) -> List[DecisionContext]:
-        """扫描学习债务"""
+        """扫描学习债务 - 支持列表和表格两种格式"""
         contexts = []
         debt_file = MEMORY_DIR / "learning-debt.md"
-        
+
         if not debt_file.exists():
             return contexts
-        
+
         content = debt_file.read_text(encoding='utf-8')
         lines = content.split('\n')
-        
+
         for line in lines:
+            # ===== 格式1: 列表格式 (原有逻辑) =====
             if 'Signal ' in line:
-                # 支持多种格式识别：
-                # 1. [ ] 待处理
-                # 2. ⏳ 待处理  
-                # 3. 🔍 待处理
-                # 4. 不含 [x] 或 ✅ 已完成 的行
                 is_pending = ('[ ]' in line) or ('⏳' in line) or ('🔍' in line)
                 is_not_done = not ('[x]' in line or '✅ 已完成' in line)
-                
+
                 if is_pending or (is_not_done and 'Signal ' in line):
                     signal_match = re.search(r'Signal (\d+)/10', line)
                     if signal_match:
                         signal = int(signal_match.group(1))
-                        # 提取主题
                         topic = "未知主题"
                         topic_match = re.search(r'\*\*(.*?)\*\*', line)
                         if topic_match:
                             topic = topic_match.group(1)
-                        
+
                         if signal >= 8:
                             should_trigger, risk_level, keywords = self.detector.assess_task_complexity(topic, signal)
-                            
                             if should_trigger:
                                 workflow_type = self.intent_recognizer.recognize(topic)
-                                
                                 context = DecisionContext(
                                     task_id=f"debt-{datetime.now().strftime('%Y%m%d')}-{len(contexts):03d}",
                                     task_description=f"深度学习: {topic} (Signal {signal})",
@@ -1721,10 +1714,41 @@ class DecisionEngine:
                                     source="learning-debt-scan",
                                     created_at=datetime.now(),
                                     trigger_keywords=keywords,
-                                    signal=signal  # 新增Signal值用于排序
+                                    signal=signal
                                 )
                                 contexts.append(context)
-        
+
+            # ===== 格式2: 表格格式 (新增支持) =====
+            elif line.startswith('|') and '⏳ 待处理' in line:
+                # 表格格式: | 日期 | 来源 | URL | 8 | 主题 | 状态 | 截止 | 状态 |
+                cols = [c.strip() for c in line.split('|')]
+                cols = [c for c in cols if c]  # 移除空列
+
+                if len(cols) >= 8:
+                    # 尝试从第4列提取Signal (0-indexed: cols[3])
+                    try:
+                        signal = int(cols[3])
+                        if signal >= 8:
+                            topic = cols[4] if len(cols) > 4 else "未知主题"
+                            should_trigger, risk_level, keywords = self.detector.assess_task_complexity(topic, signal)
+                            if should_trigger:
+                                workflow_type = self.intent_recognizer.recognize(topic)
+                                context = DecisionContext(
+                                    task_id=f"debt-{datetime.now().strftime('%Y%m%d')}-{len(contexts):03d}",
+                                    task_description=f"深度学习: {topic} (Signal {signal})",
+                                    decision_type=DecisionType.DEBT_PROCESSING,
+                                    workflow_type=workflow_type,
+                                    risk_level=risk_level,
+                                    source="learning-debt-scan-table",
+                                    created_at=datetime.now(),
+                                    trigger_keywords=keywords,
+                                    signal=signal
+                                )
+                                contexts.append(context)
+                                logger.info(f"  📋 表格格式债务: {topic[:40]}... (Signal {signal})")
+                    except (ValueError, IndexError):
+                        pass  # 不是数字或格式不对，跳过
+
         logger.info(f"扫描到 {len(contexts)} 个高Signal学习债务")
         return contexts
     

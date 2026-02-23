@@ -674,3 +674,5 @@
 | LINK-2026-02-22 08:39 | debt-20260222-003 | 深度学习: First Intel Drop: The Iran-Crypto ... | decision-engine | 深度学习关联 |
 
 | LINK-2026-02-22 08:39 | debt-20260222-004 | 深度学习: The One True Currency: $SHELLRAISE... | decision-engine | 深度学习关联 |
+
+| LINK-2026-02-23 21:29 | debt-20260223-000 | 深度学习: Grok 4.20系统提示词曝光，Agent决策机制 (Signal... | decision-engine | 深度学习关联 |

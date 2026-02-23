@@ -4,6 +4,8 @@
 import requests
 import json
 import sys
+import re
+import time
 from datetime import datetime
 
 # 配置
@@ -80,7 +82,137 @@ def get_post_comments(post_id):
         print(f"❌ 获取评论错误: {e}")
         return []
 
-def reply_to_post(post_id, content):
+def solve_verification_challenge(challenge_text):
+    """
+    解决验证挑战（数学问题）
+    示例: "A] lO^bSt-Er S[wImS aT/ tW]eNn-Tyy..." -> 20 - 5 = 15
+    """
+    # 清理文本：移除非字母数字字符，保留空格
+    cleaned = re.sub(r'[^a-zA-Z0-9\s]', '', challenge_text)
+    cleaned = cleaned.lower()
+
+    # 提取所有数字
+    numbers = re.findall(r'\d+', cleaned)
+
+    # 可能是英文数字，尝试转换
+    word_to_num = {
+        'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,
+        'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9, 'ten': 10,
+        'eleven': 11, 'twelve': 12, 'thirteen': 13, 'fourteen': 14, 'fifteen': 15,
+        'sixteen': 16, 'seventeen': 17, 'eighteen': 18, 'nineteen': 19, 'twenty': 20,
+        'thirty': 30, 'forty': 40, 'fifty': 50, 'sixty': 60, 'seventy': 70,
+        'eighty': 80, 'ninety': 90, 'hundred': 100
+    }
+
+    words = cleaned.split()
+    for word in words:
+        if word in word_to_num and str(word_to_num[word]) not in numbers:
+            numbers.append(str(word_to_num[word]))
+
+    if len(numbers) < 2:
+        print(f"❌ 无法解析足够的数字: {challenge_text[:60]}...")
+        return None
+
+    # 提取运算符
+    op = '-'
+    if any(w in cleaned for w in ['plus', 'add', 'and']):
+        op = '+'
+    elif any(w in cleaned for w in ['minus', 'subtract', 'slows', 'less', 'by']):
+        op = '-'
+    elif any(w in cleaned for w in ['times', 'multiply', 'multiplied']):
+        op = '*'
+    elif any(w in cleaned for w in ['divided', 'divide']):
+        op = '/'
+
+    try:
+        num1 = int(numbers[0])
+        num2 = int(numbers[1])
+
+        if op == '+':
+            result = num1 + num2
+        elif op == '-':
+            result = num1 - num2
+        elif op == '*':
+            result = num1 * num2
+        elif op == '/':
+            result = num1 / num2 if num2 != 0 else 0
+        else:
+            result = num1 - num2
+
+        return f"{result:.2f}"
+    except Exception as e:
+        print(f"❌ 计算错误: {e}")
+        return None
+
+def submit_verification(verification_code, answer):
+    """提交验证答案"""
+    creds = load_credentials()
+    headers = get_headers(creds)
+    try:
+        resp = requests.post(
+            f"{API_BASE}/verify",
+            headers=headers,
+            json={"verification_code": verification_code, "answer": answer},
+            timeout=30
+        )
+        if resp.status_code == 200:
+            data = resp.json()
+            if data.get('success'):
+                print(f"✅ 验证成功")
+                return True
+            else:
+                print(f"❌ 验证失败: {data.get('error')}")
+                return False
+        else:
+            print(f"❌ 验证请求失败: {resp.status_code}")
+            return False
+    except Exception as e:
+        print(f"❌ 验证错误: {e}")
+        return False
+
+def handle_verification_response(resp_data):
+    """处理可能包含验证挑战的响应"""
+    # 检查是否需要验证
+    if resp_data.get('verification_required'):
+        verification = resp_data.get('verification', {})
+        return process_verification(verification)
+
+    # 检查post对象中的验证
+    post_data = resp_data.get('post', {})
+    if post_data.get('verification'):
+        verification = post_data.get('verification', {})
+        return process_verification(verification)
+
+    return True, "无需验证"
+
+def process_verification(verification):
+    """处理验证挑战"""
+    challenge_text = verification.get('challenge_text', '')
+    verification_code = verification.get('verification_code', '')
+
+    if not challenge_text or not verification_code:
+        return False, "验证信息不完整"
+
+    print(f"⏳ 需要验证，正在解决...")
+    answer = solve_verification_challenge(challenge_text)
+
+    if answer:
+        print(f"   挑战: {challenge_text[:60]}...")
+        print(f"   答案: {answer}")
+        if submit_verification(verification_code, answer):
+            return True, "验证成功"
+        else:
+            return False, "验证提交失败"
+    else:
+        return False, "无法解析挑战"
+
+def reply_to_post(post_id, content, delay_before=0, auto_verify=True):
+    """
+    回复帖子，支持速率限制、延迟和自动验证
+    """
+    if delay_before > 0:
+        time.sleep(delay_before)
+
     creds = load_credentials()
     headers = get_headers(creds)
     try:
@@ -90,11 +222,29 @@ def reply_to_post(post_id, content):
             json={"content": content},
             timeout=30
         )
-        if resp.status_code == 201:
-            print(f"✅ 回复成功")
-            return True
+
+        if resp.status_code == 200 or resp.status_code == 201:
+            data = resp.json()
+
+            # 检查是否需要验证
+            if auto_verify and (data.get('verification_required') or 
+                               data.get('post', {}).get('verification')):
+                success, msg = handle_verification_response(data)
+                if success:
+                    return True
+                else:
+                    print(f"❌ {msg}")
+                    return False
+
+            if data.get('success') or resp.status_code == 201:
+                print(f"✅ 回复成功")
+                return True
+
+        if resp.status_code == 429:
+            print(f"⏱️  速率限制，跳过")
+            return False
         else:
-            print(f"❌ 回复失败: {resp.status_code} - {resp.text}")
+            print(f"❌ 回复失败: {resp.status_code} - {resp.text[:200]}")
             return False
     except Exception as e:
         print(f"❌ 回复错误: {e}")
