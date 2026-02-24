@@ -1,0 +1,161 @@
+# 知乎自动化配置文件
+
+# ==================== Playwright配置 ====================
+playwright:
+  headless: true
+  timeout: 30000
+  slow_mo: 0
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+
+# ==================== 数据库配置 ====================
+database:
+  path: "data/zhihu_automation.db"
+  
+# ==================== 热榜监控配置 ====================
+hotlist:
+  # 抓取间隔（分钟）
+  interval: 60
+  # 最大热榜数量
+  max_items: 50
+  # 关键词筛选
+  keywords:
+    - AI
+    - 人工智能
+    - 安全
+    - 网络安全
+    - 机器学习
+    - 深度学习
+    - LLM
+    - ChatGPT
+    - 代码
+    - 编程
+    - 数据结构
+    - 算法
+  # 通知方式：console, webhook, telegram
+  notification:
+    enabled: true
+    type: "console"
+    webhook_url: ""
+    telegram_token: ""
+    telegram_chat_id: ""
+
+# ==================== 回答分析配置 ====================
+answer:
+  # 每日分析间隔（分钟）
+  interval: 120
+  # 要监控的回答ID列表
+  monitor_answers:
+    - "https://www.zhihu.com/question/xxxxx/answer/xxxxx"
+  # 性能指标阈值
+  thresholds:
+    good_upvotes: 100      # 优秀回答阈值
+    good_comments: 20      # 高互动评论数
+    good_collections: 10   # 高收藏数
+  # 周报生成时间（每周几，0=周一，6=周日）
+  report_day: 0
+  report_time: "20:00"
+
+# ==================== 内容自动化配置 ====================
+content:
+  # 定时发布 Schedule (cron格式: 分 时 日 月 周)
+  publish_schedule: "0 9 * * *"  # 每天9点
+  
+  # 回复评论延迟（秒）
+  comment_reply_delay: 30
+  
+  # 自动回复关键词及其回复内容
+  auto_reply_keywords:
+    - keyword: "感谢"
+      reply: "感谢支持！如有其他问题欢迎继续交流~"
+    - keyword: "详细"
+      reply: "您想了解哪个方面的细节呢？我可以进一步展开说明。"
+    - keyword: "教程"
+      reply: "这个问题我可以写篇详细的教程，请关注我的专栏更新~"
+    - keyword: "代码"
+      reply: "相关代码示例我会在后续补充，敬请期待！"
+  
+  # 关键词监控（实时提醒）
+  monitor_keywords:
+    - "知乎热榜"
+    - "算法"
+    - "系统设计"
+    - "面试"
+    - "职场"
+
+# ==================== 敏感词过滤配置 ====================
+sensitive:
+  # 启用敏感词检测
+  enabled: true
+  
+  # 知乎平台敏感词列表（持续更新）
+  keywords:
+    # 政治敏感
+    - "政治"
+    - "敏感"
+    - "维权"
+    - "游行"
+    - "示威"
+    - "反政府"
+    - "暴动"
+    # 广告推广
+    - "加微信"
+    - "私聊"
+    - "扫码"
+    - "点击链接"
+    - "代写"
+    - "刷单"
+    - "引流"
+    - "兼职群"
+    - "赚钱"
+    - "暴利"
+    - "高收益"
+    # 色情内容
+    - "出轨"
+    - "一夜情"
+    - "约炮"
+    - "色情"
+    # 暴力内容
+    - "杀人"
+    - "暴力"
+    - "恐怖"
+    - "血腥"
+    # 违法内容
+    - "赌博"
+    - "博彩"
+    - "毒品"
+    - "走私"
+    - "造假"
+    # 知乎特定敏感
+    - "营销号"
+    - "广告"
+    - "引流"
+  
+  # 敏感词替换符
+  replacement: "***"
+  
+  # 严格模式：严格检测会降低误报但可能漏报
+  strict_mode: false
+  
+  # 使用分词检测（更灵活但可能误报）
+  use_tokenizer: true
+
+# ==================== 日志配置 ====================
+logging:
+  level: "INFO"
+  file: "logs/zhihu_automation.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
+
+# ==================== 代理配置（可选）====================
+proxy:
+  enabled: false
+  server: ""
+  username: ""
+  password: ""
+
+# ==================== 账号配置（可选）====================
+account:
+  email: ""
+  password: ""
+  # 是否自动登录
+  auto_login: false
