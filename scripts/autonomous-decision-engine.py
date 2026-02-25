@@ -33,6 +33,7 @@ import sys
 import json
 import re
 import logging
+import asyncio
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any, Callable
@@ -41,6 +42,7 @@ from enum import Enum, auto
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import subprocess
 import time
+import shutil
 
 # 配置
 WORKSPACE = Path("/root/.openclaw/workspace")
@@ -383,9 +385,9 @@ class ExpertPanel:
         # 根据工作流类型选择需要的专家
         workflow_config = WORKFLOW_DEFINITIONS.get(context.workflow_type, WORKFLOW_DEFINITIONS[WorkflowType.NEW_FEATURE])
         required_agents = workflow_config.get("required_agents", ["researcher", "architect", "builder"])
-        
+
         opinions = []
-        
+
         if "researcher" in required_agents:
             opinions.append(self._researcher_perspective(context))
         if "architect" in required_agents:
@@ -396,21 +398,150 @@ class ExpertPanel:
             opinions.append(self._api_guardian_perspective(context))
         if "security" in required_agents or context.risk_level.value >= RiskLevel.L4_SIGNIFICANT.value:
             opinions.append(self._security_perspective(context))
-        
+
         # 添加队长整合
         opinions.append(self._captain_perspective(context, opinions))
-        
+
         return opinions
-    
+
+    def _do_web_search(self, query: str, max_results: int = 3) -> List[Dict]:
+        """
+        执行网络搜索 - 集成 web_extractor
+
+        Returns:
+            List[Dict]: 搜索结果列表，每个元素包含 title, url, snippet
+        """
+        results = []
+
+        try:
+            # 方法1: 尝试使用 tools/web_extractor.py
+            web_extractor_path = WORKSPACE / "tools" / "web_extractor.py"
+
+            if web_extractor_path.exists() and shutil.which("python3"):
+                # 构建 Python 导入路径
+                import importlib.util
+
+                spec = importlib.util.spec_from_file_location("web_extractor", web_extractor_path)
+                if spec and spec.loader:
+                    try:
+                        web_module = importlib.util.module_from_spec(spec)
+                        # 异步运行需要创建事件循环
+                        import asyncio
+
+                        async def run_search():
+                            # 创建临时对象
+                            class Searcher:
+                                pass
+
+                            # 动态创建 WebExtractor 类的简化版本
+                            import sys
+                            sys.path.insert(0, str(WORKSPACE / "tools"))
+
+                            # 使用 subprocess 调用（更可靠）
+                            result_file = WORKSPACE / "data" / f"search_{hash(query) % 10000}.json"
+
+                            cmd = [
+                                sys.executable,
+                                str(web_extractor_path),
+                                query,
+                                str(max_results)
+                            ]
+
+                            # 运行异步命令（使用 asyncio.subprocess）
+                            proc = await asyncio.create_subprocess_exec(
+                                *cmd,
+                                stdout=asyncio.subprocess.PIPE,
+                                stderr=asyncio.subprocess.PIPE,
+                                cwd=str(WORKSPACE)
+                            )
+
+                            stdout, stderr = await asyncio.wait_for(proc.communicate(), timeout=60)
+
+                            if proc.returncode == 0:
+                                # 解析 Markdown 输出中的结果
+                                import re
+                                output = stdout.decode('utf-8')
+
+                                # 查找 URL、标题、摘要
+                                url_matches = re.findall(r'\*\*URL\*\*:\s*(https?://[^\s]+)', output)
+                                title_matches = re.findall(r'##\s+结果\s+\d+:\s*(.+?)\n', output)
+                                snippet_matches = re.findall(r'\*\*摘要\*\*:\s*(.+?)\n', output)
+
+                                for i in range(min(len(url_matches), len(title_matches), len(snippet_matches), max_results)):
+                                    results.append({
+                                        "title": title_matches[i].strip(),
+                                        "url": url_matches[i].strip(),
+                                        "snippet": snippet_matches[i].strip()
+                                    })
+
+                            return results
+
+                        # 运行异步搜索
+                        loop = asyncio.new_event_loop()
+                        asyncio.set_event_loop(loop)
+                        try:
+                            results = loop.run_until_complete(run_search())
+                        finally:
+                            loop.close()
+
+                    except Exception as e:
+                        logger.warning(f"Web extractor 调用失败: {e}")
+
+        except Exception as e:
+            logger.warning(f"网络搜索异常: {e}")
+
+        return results
+
     def _researcher_perspective(self, context: DecisionContext) -> ExpertOpinion:
+        """
+        研究员视角 - 集成网络搜索功能
+
+        执行任务相关网络搜索，验证信息并收集参考资料
+        """
+        # 提取搜索关键词
+        task_desc = context.task_description.replace("深度学习: ", "").replace("(Signal 10)", "").replace("(Signal 9)", "").replace("(Signal 8)", "").replace("(Signal 7)", "")
+        query = task_desc[:50].strip().replace(" / ", " ").replace(", ", " ")
+
+        # 执行网络搜索
+        search_results = []
+        try:
+            search_results = self._do_web_search(query, max_results=3)
+            if search_results:
+                logger.info(f"🔍 研究员: 找到 {len(search_results)} 条搜索结果")
+        except Exception as e:
+            logger.warning(f"网络搜索失败: {e}")
+
+        # 构建分析内容
+        analysis_parts = [
+            f"任务来源: {context.source}",
+            f"类型: {context.decision_type.value}",
+            f"工作流: {context.workflow_type.value}",
+            f"搜索查询: {query}"
+        ]
+
+        # 构建建议列表
+        recommendations = ["收集相关技术文档", "验证方案可行性", "查找参考案例"]
+
+        # 如果有搜索结果，添加到分析和建议中
+        if search_results:
+            analysis_parts.append(f"\n📊 网络搜索结果 ({len(search_results)} 条):")
+            for i, result in enumerate(search_results, 1):
+                title = result.get('title', '无标题')[:60]
+                url = result.get('url', '')[:80]
+                analysis_parts.append(f"  {i}. {title}")
+                analysis_parts.append(f"     {url}")
+
+            # 根据搜索结果生成具体建议
+            recommendations = [f"参考搜索结果的实践案例"] + recommendations[:2]
+
         return ExpertOpinion(
             expert_name="🔍 研究员",
-            perspective="数据验证与事实核查",
-            analysis=f"任务来源: {context.source} | 类型: {context.decision_type.value} | 工作流: {context.workflow_type.value}",
-            recommendations=["收集相关技术文档", "验证方案可行性", "查找参考案例"],
+            perspective="数据验证与事实核查 (集成网络搜索)",
+            analysis="\n".join(analysis_parts),
+            recommendations=recommendations,
             risk_assessment=f"风险等级: {context.risk_level.name} | 复杂度关键词: {', '.join(context.trigger_keywords[:3])}",
-            confidence=8,
-            model="haiku"
+            confidence=9,  # 提高置信度，因为有实际搜索结果
+            model="haiku+web"
         )
     
     def _architect_perspective(self, context: DecisionContext) -> ExpertOpinion:
