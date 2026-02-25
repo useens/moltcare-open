@@ -49,34 +49,40 @@ class WebExtractor:
         """网络搜索 - 尝试多个搜索引擎"""
         results = []
 
-        # 临时方案：返回模拟搜索结果（由于搜索引擎反爬限制）
-        # 在实际部署中，可以使用 Brave Search API 或付费搜索服务
+        # 使用真实可访问的示例网站（用于演示深度提取功能）
+        # 在实际部署中，应该使用 Brave Search API 或付费搜索服务
 
-        mock_data = {
-            "default": [
-                {
-                    "title": f"关于 '{query}' 的相关技术文档",
-                    "url": f"https://docs.example.com/search?q={query.replace(' ', '_')}",
-                    "snippet": f"这是关于 {query} 的技术分析文档，包含最佳实践和实施指南。"
-                },
-                {
-                    "title": f"{query} - 开发者实践经验",
-                    "url": f"https://dev.example.com/blog/{query.replace(' ', '-')}",
-                    "snippet": f"分享 {query} 的实际开发经验，包括常见问题和解决方案。"
-                }
-            ]
+        real_sites = {
+            "Python 文档": {
+                "title": f"{query} - Python 官方文档",
+                "url": "https://docs.python.org/3/",
+                "snippet": "Python 编程语言的官方文档。包含语法、库、教程等完整内容。"
+            },
+            "MDN Web Docs": {
+                "title": f"{query} - MDN Web 开发文档",
+                "url": "https://developer.mozilla.org/en-US/",
+                "snippet": "MDN 提供了 Web 开发的权威文档，包括 HTML、CSS、JavaScript 等。"
+            },
+            "HTTPBin": {
+                "title": f"{query} - HTTP 测试工具",
+                "url": "https://httpbin.org/",
+                "snippet": "HTTPBin 是一个用于 HTTP 测试的服务，提供各种端点用于调试请求。"
+            }
         }
 
-        for item in mock_data["default"][:num_results]:
+        # 使用真实网站作为搜索结果
+        site_list = list(real_sites.values())[:num_results]
+
+        for item in site_list:
             results.append(SearchResult(
                 title=item["title"],
                 url=item["url"],
                 snippet=item["snippet"],
-                source="mock_api"
+                source="demo"  # 标记为演示数据
             ))
-            print(f"  📄 (模拟) 结果: {item['title'][:50]}")
+            print(f"  📄 结果: {item['title'][:50]}")
 
-        print(f"✅ 搜索完成: {len(results)} 条结果 (模拟数据模式)")
+        print(f"✅ 搜索完成: {len(results)} 条结果 (深度提取演示模式)")
         return results
     
     async def extract_page(self, url: str, max_length: int = 5000) -> PageContent:
