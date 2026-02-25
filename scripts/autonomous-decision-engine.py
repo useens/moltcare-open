@@ -409,7 +409,7 @@ class ExpertPanel:
 
     def _do_web_search(self, query: str, max_results: int = 3) -> List[Dict]:
         """
-        执行网络搜索 - Playwright + Chromium 方案
+        执行网络搜索 - Playwright + Chromium 方案（带重试机制）
 
         Returns:
             List[Dict]: 搜索结果列表，每个元素包含 title, url, snippet
@@ -421,49 +421,77 @@ class ExpertPanel:
             logger.info(f"⚠️ 网络搜索已禁用 (ENABLE_WEB_SEARCH=False)")
             return results
 
-        try:
-            # 调用 tools/web_extractor.py
-            web_extractor_path = WORKSPACE / "tools" / "web_extractor.py"
+        # 重试配置
+        max_retries = 2
+        retry_delay = 2  # 秒
 
-            if web_extractor_path.exists():
-                cmd = [sys.executable, str(web_extractor_path), query, str(max_results)]
-                logger.info(f"🔍 开始 Playwright+Chromium 搜索: {query}")
+        for attempt in range(max_retries + 1):
+            try:
+                # 调用 tools/web_extractor.py
+                web_extractor_path = WORKSPACE / "tools" / "web_extractor.py"
 
-                result = subprocess.run(
-                    cmd,
-                    capture_output=True,
-                    text=True,
-                    timeout=15,
-                    cwd=str(WORKSPACE)
-                )
+                if web_extractor_path.exists():
+                    cmd = [sys.executable, str(web_extractor_path), query, str(max_results)]
 
-                if result.returncode == 0:
-                    # 解析 Markdown 输出
-                    output = result.stdout
+                    if attempt == 0:
+                        logger.info(f"🔍 开始 Playwright+Chromium 搜索: {query}")
+                    else:
+                        logger.info(f"🔄 搜索重试 {attempt}/{max_retries}: {query}")
 
-                    # 查找 URL、标题、摘要
-                    url_matches = re.findall(r'\*\*URL\*\*:\s*(https?://[^\s\)]+)', output)
-                    title_matches = re.findall(r'##\s+结果\s+\d+:\s*(.+?)\n', output)
-                    snippet_matches = re.findall(r'\*\*摘要\*\*:\s*(.+?)\n', output)
+                    result = subprocess.run(
+                        cmd,
+                        capture_output=True,
+                        text=True,
+                        timeout=30,  # 增加超时时间从 15s 到 30s
+                        cwd=str(WORKSPACE)
+                    )
 
-                    count = min(len(url_matches), len(title_matches), len(snippet_matches), max_results)
-                    for i in range(count):
-                        results.append({
-                            "title": title_matches[i].strip(),
-                            "url": url_matches[i].strip(),
-                            "snippet": snippet_matches[i].strip()
-                        })
+                    if result.returncode == 0:
+                        # 解析 Markdown 输出
+                        output = result.stdout
 
-                    logger.info(f"✅ Playwright 搜索完成: 找到 {count} 条结果")
+                        # 查找 URL、标题、摘要
+                        url_matches = re.findall(r'\*\*URL\*\*:\s*(https?://[^\s\)]+)', output)
+                        title_matches = re.findall(r'##\s+结果\s+\d+:\s*(.+?)\n', output)
+                        snippet_matches = re.findall(r'\*\*摘要\*\*:\s*(.+?)\n', output)
+
+                        count = min(len(url_matches), len(title_matches), len(snippet_matches), max_results)
+                        for i in range(count):
+                            results.append({
+                                "title": title_matches[i].strip(),
+                                "url": url_matches[i].strip(),
+                                "snippet": snippet_matches[i].strip()
+                            })
+
+                        if attempt > 0:
+                            logger.info(f"✅ 搜索成功 (重试 {attempt} 次): 找到 {count} 条结果")
+                        else:
+                            logger.info(f"✅ Playwright 搜索完成: 找到 {count} 条结果")
+
+                        # 成功则退出重试循环
+                        break
+                    else:
+                        if attempt < max_retries:
+                            logger.warning(f"⚠️ 搜索失败 (exit {result.returncode}), {retry_delay}秒后重试...")
+                            time.sleep(retry_delay)
+                        else:
+                            logger.warning(f"❌ 搜索失败 (exit {result.returncode}): {result.stderr[:200]}")
                 else:
-                    logger.warning(f"Playwright 搜索失败 (exit {result.returncode}): {result.stderr[:200]}")
-            else:
-                logger.warning(f"web_extractor.py 不存在: {web_extractor_path}")
+                    logger.warning(f"web_extractor.py 不存在: {web_extractor_path}")
+                    break
 
-        except subprocess.TimeoutExpired:
-            logger.warning(f"⏰ Playwright 搜索超时")
-        except Exception as e:
-            logger.warning(f"Playwright 搜索异常: {e}")
+            except subprocess.TimeoutExpired:
+                if attempt < max_retries:
+                    logger.warning(f"⏰ 搜索超时 (30s), {retry_delay}秒后重试...")
+                    time.sleep(retry_delay)
+                else:
+                    logger.warning(f"❌ 搜索超时: 已尝试 {max_retries + 1} 次，均超时")
+            except Exception as e:
+                if attempt < max_retries:
+                    logger.warning(f"⚠️ 搜索异常: {e}, {retry_delay}秒后重试...")
+                    time.sleep(retry_delay)
+                else:
+                    logger.warning(f"❌ 搜索异常: {e}")
 
         return results
 
