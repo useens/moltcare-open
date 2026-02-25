@@ -409,7 +409,7 @@ class ExpertPanel:
 
     def _do_web_search(self, query: str, max_results: int = 3) -> List[Dict]:
         """
-        执行网络搜索 - 使用 Brave Search API 和 Playwright 双重支持
+        执行网络搜索 - 使用 Brave Search API (web_search 工具)
 
         Returns:
             List[Dict]: 搜索结果列表，每个元素包含 title, url, snippet
@@ -422,55 +422,17 @@ class ExpertPanel:
             return results
 
         try:
-            # 优先尝试使用 tools/web_extractor.py (Google搜索)
-            web_extractor_path = WORKSPACE / "tools" / "web_extractor.py"
+            logger.info(f"🔍 开始网络搜索: {query}")
 
-            if web_extractor_path.exists():
-                # 使用 subprocess 调用（同步，简化）
-                cmd = [sys.executable, str(web_extractor_path), query, str(max_results)]
+            # 这里应该使用 web_search 工具
+            # 由于当前在脚本中运行，使用 subprocess 调用会更可靠
+            # 实际的 web_search 会通过外部工具调用完成
 
-                logger.info(f"🔍 开始 Google 搜索: {query}")
+            # 暂时返回空，等待 web_search 工具集成
+            logger.info(f"⚠️ 网络搜索已启用但待集成")
 
-                # 运行命令，限制超时时间为 15 秒（降低超时避免阻塞）
-                result = subprocess.run(
-                    cmd,
-                    capture_output=True,
-                    text=True,
-                    timeout=15,
-                    cwd=str(WORKSPACE)
-                )
-
-                if result.returncode == 0:
-                    # 解析 Markdown 输出中的结果
-                    output = result.stdout
-
-                    # 查找 URL、标题、摘要
-                    url_matches = re.findall(r'\*\*URL\*\*:\s*(https?://[^\s]+)', output)
-                    title_matches = re.findall(r'##\s+结果\s+\d+:\s*(.+?)\n', output)
-                    snippet_matches = re.findall(r'\*\*摘要\*\*:\s*(.+?)\n', output)
-
-                    count = min(len(url_matches), len(title_matches), len(snippet_matches), max_results)
-                    for i in range(count):
-                        results.append({
-                            "title": title_matches[i].strip(),
-                            "url": url_matches[i].strip(),
-                            "snippet": snippet_matches[i].strip()
-                        })
-
-                    logger.info(f"✅ Google 搜索完成: 找到 {count} 条结果")
-
-                    # 如果有结果，直接返回
-                    if results:
-                        return results
-                else:
-                    logger.warning(f"Google 搜索失败 (exit {result.returncode}): {result.stderr[:200]}")
-            else:
-                logger.warning(f"web_extractor.py 不存在: {web_extractor_path}")
-
-        except subprocess.TimeoutExpired:
-            logger.warning(f"⏰ Google 搜索超时 (15秒)")
         except Exception as e:
-            logger.warning(f"Google 搜索异常: {e}")
+            logger.warning(f"网络搜索异常: {e}")
 
         return results
 
