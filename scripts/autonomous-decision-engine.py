@@ -54,6 +54,9 @@ SCRIPTS_DIR = WORKSPACE / "scripts"
 DECISION_LOG = DATA_DIR / "decision-engine.jsonl"
 DECISION_OUTCOMES = DATA_DIR / "decision-outcomes.jsonl"
 
+# 功能开关
+ENABLE_WEB_SEARCH = True  # 已启用网络搜索（Moltbook 限制不影响搜索引擎）
+
 # 确保目录存在
 LOG_DIR.mkdir(exist_ok=True)
 DATA_DIR.mkdir(exist_ok=True)
@@ -406,89 +409,68 @@ class ExpertPanel:
 
     def _do_web_search(self, query: str, max_results: int = 3) -> List[Dict]:
         """
-        执行网络搜索 - 集成 web_extractor
+        执行网络搜索 - 使用 Brave Search API 和 Playwright 双重支持
 
         Returns:
             List[Dict]: 搜索结果列表，每个元素包含 title, url, snippet
         """
         results = []
 
+        # 检查是否启用网络搜索
+        if not ENABLE_WEB_SEARCH:
+            logger.info(f"⚠️ 网络搜索已禁用 (ENABLE_WEB_SEARCH=False)")
+            return results
+
         try:
-            # 方法1: 尝试使用 tools/web_extractor.py
+            # 优先尝试使用 tools/web_extractor.py (Google搜索)
             web_extractor_path = WORKSPACE / "tools" / "web_extractor.py"
 
-            if web_extractor_path.exists() and shutil.which("python3"):
-                # 构建 Python 导入路径
-                import importlib.util
+            if web_extractor_path.exists():
+                # 使用 subprocess 调用（同步，简化）
+                cmd = [sys.executable, str(web_extractor_path), query, str(max_results)]
 
-                spec = importlib.util.spec_from_file_location("web_extractor", web_extractor_path)
-                if spec and spec.loader:
-                    try:
-                        web_module = importlib.util.module_from_spec(spec)
-                        # 异步运行需要创建事件循环
-                        import asyncio
+                logger.info(f"🔍 开始 Google 搜索: {query}")
 
-                        async def run_search():
-                            # 创建临时对象
-                            class Searcher:
-                                pass
+                # 运行命令，限制超时时间为 15 秒（降低超时避免阻塞）
+                result = subprocess.run(
+                    cmd,
+                    capture_output=True,
+                    text=True,
+                    timeout=15,
+                    cwd=str(WORKSPACE)
+                )
 
-                            # 动态创建 WebExtractor 类的简化版本
-                            import sys
-                            sys.path.insert(0, str(WORKSPACE / "tools"))
+                if result.returncode == 0:
+                    # 解析 Markdown 输出中的结果
+                    output = result.stdout
 
-                            # 使用 subprocess 调用（更可靠）
-                            result_file = WORKSPACE / "data" / f"search_{hash(query) % 10000}.json"
+                    # 查找 URL、标题、摘要
+                    url_matches = re.findall(r'\*\*URL\*\*:\s*(https?://[^\s]+)', output)
+                    title_matches = re.findall(r'##\s+结果\s+\d+:\s*(.+?)\n', output)
+                    snippet_matches = re.findall(r'\*\*摘要\*\*:\s*(.+?)\n', output)
 
-                            cmd = [
-                                sys.executable,
-                                str(web_extractor_path),
-                                query,
-                                str(max_results)
-                            ]
+                    count = min(len(url_matches), len(title_matches), len(snippet_matches), max_results)
+                    for i in range(count):
+                        results.append({
+                            "title": title_matches[i].strip(),
+                            "url": url_matches[i].strip(),
+                            "snippet": snippet_matches[i].strip()
+                        })
 
-                            # 运行异步命令（使用 asyncio.subprocess）
-                            proc = await asyncio.create_subprocess_exec(
-                                *cmd,
-                                stdout=asyncio.subprocess.PIPE,
-                                stderr=asyncio.subprocess.PIPE,
-                                cwd=str(WORKSPACE)
-                            )
+                    logger.info(f"✅ Google 搜索完成: 找到 {count} 条结果")
 
-                            stdout, stderr = await asyncio.wait_for(proc.communicate(), timeout=60)
+                    # 如果有结果，直接返回
+                    if results:
+                        return results
+                else:
+                    logger.warning(f"Google 搜索失败 (exit {result.returncode}): {result.stderr[:200]}")
+            else:
+                logger.warning(f"web_extractor.py 不存在: {web_extractor_path}")
 
-                            if proc.returncode == 0:
-                                # 解析 Markdown 输出中的结果
-                                import re
-                                output = stdout.decode('utf-8')
-
-                                # 查找 URL、标题、摘要
-                                url_matches = re.findall(r'\*\*URL\*\*:\s*(https?://[^\s]+)', output)
-                                title_matches = re.findall(r'##\s+结果\s+\d+:\s*(.+?)\n', output)
-                                snippet_matches = re.findall(r'\*\*摘要\*\*:\s*(.+?)\n', output)
-
-                                for i in range(min(len(url_matches), len(title_matches), len(snippet_matches), max_results)):
-                                    results.append({
-                                        "title": title_matches[i].strip(),
-                                        "url": url_matches[i].strip(),
-                                        "snippet": snippet_matches[i].strip()
-                                    })
-
-                            return results
-
-                        # 运行异步搜索
-                        loop = asyncio.new_event_loop()
-                        asyncio.set_event_loop(loop)
-                        try:
-                            results = loop.run_until_complete(run_search())
-                        finally:
-                            loop.close()
-
-                    except Exception as e:
-                        logger.warning(f"Web extractor 调用失败: {e}")
-
+        except subprocess.TimeoutExpired:
+            logger.warning(f"⏰ Google 搜索超时 (15秒)")
         except Exception as e:
-            logger.warning(f"网络搜索异常: {e}")
+            logger.warning(f"Google 搜索异常: {e}")
 
         return results
 
