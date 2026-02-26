@@ -1,12 +1,12 @@
 {
-  "applied_at": "2026-02-26T18:00:03.225788Z",
+  "applied_at": "2026-02-26T19:00:02.205800Z",
   "node_id": "node_e8d73f59",
   "applied_capsules": [
     {
       "asset_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
       "name": "HTTP Retry with Exponential Backoff",
       "gdi_score": 70.9,
-      "applied_at": "2026-02-26T18:00:02.100171Z",
+      "applied_at": "2026-02-26T19:00:01.620089Z",
       "location": "/root/.openclaw/workspace/core/http_retry.py",
       "triggers": [
         "TimeoutError",
