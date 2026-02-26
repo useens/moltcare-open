@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-02-27T02:00:51.164197",
+  "timestamp": "2026-02-27T04:01:00.237928",
   "opportunities": [
     {
       "id": "temp-cleanup",
@@ -9,6 +9,74 @@
       "action": "delete",
       "target_type": "files",
       "targets": [
+        {
+          "path": "local-memory-system/__pycache__/local_memory.cpython-311.pyc",
+          "size": 31888
+        },
+        {
+          "path": "evolution/strategies/autonomy/__pycache__/__init__.cpython-311.pyc",
+          "size": 23047
+        },
+        {
+          "path": "evolution/strategies/__pycache__/__init__.cpython-311.pyc",
+          "size": 5179
+        },
+        {
+          "path": "evolution/strategies/goal/__pycache__/__init__.cpython-311.pyc",
+          "size": 24137
+        },
+        {
+          "path": "evolution/strategies/protection/__pycache__/__init__.cpython-311.pyc",
+          "size": 6059
+        },
+        {
+          "path": "evolution/strategies/cognitive/__pycache__/__init__.cpython-311.pyc",
+          "size": 14014
+        },
+        {
+          "path": "evolution/strategies/prediction/__pycache__/__init__.cpython-311.pyc",
+          "size": 6044
+        },
+        {
+          "path": "evolution/strategies/creativity/__pycache__/__init__.cpython-311.pyc",
+          "size": 5851
+        },
+        {
+          "path": "evolution/strategies/adaptive/__pycache__/__init__.cpython-311.pyc",
+          "size": 6165
+        },
+        {
+          "path": "evolution/strategies/self_awareness/__pycache__/__init__.cpython-311.pyc",
+          "size": 6145
+        },
+        {
+          "path": "evolution/strategies/learning/__pycache__/__init__.cpython-311.pyc",
+          "size": 27256
+        },
+        {
+          "path": "evolution/strategies/collaboration/__pycache__/__init__.cpython-311.pyc",
+          "size": 6302
+        },
+        {
+          "path": "evolution/collectors/__pycache__/__init__.cpython-311.pyc",
+          "size": 46583
+        },
+        {
+          "path": "evolution/core/__pycache__/dimension_assessor.cpython-311.pyc",
+          "size": 14997
+        },
+        {
+          "path": "evolution/core/__pycache__/evolution_orchestrator.cpython-311.pyc",
+          "size": 17627
+        },
+        {
+          "path": "evolution/core/__pycache__/__init__.cpython-311.pyc",
+          "size": 5922
+        },
+        {
+          "path": "core/__pycache__/shared_models.cpython-311.pyc",
+          "size": 1208
+        },
         {
           "path": "scripts/__pycache__/moltbook-browser-extractor.cpython-311.pyc",
           "size": 6304
@@ -140,74 +208,10 @@
         {
           "path": "scripts/__pycache__/moltbook_social_v61.cpython-311.pyc",
           "size": 11445
-        },
-        {
-          "path": "scripts/__pycache__/intelligence-assessment.cpython-311.pyc",
-          "size": 2430
-        },
-        {
-          "path": "scripts/__pycache__/log_rotation.cpython-311.pyc",
-          "size": 5838
-        },
-        {
-          "path": "scripts/__pycache__/molt-smart-monitor.cpython-311.pyc",
-          "size": 8460
-        },
-        {
-          "path": "scripts/__pycache__/test-adaptive-frequency.cpython-311.pyc",
-          "size": 11672
-        },
-        {
-          "path": "scripts/__pycache__/auto-import-trigger.cpython-311.pyc",
-          "size": 1595
-        },
-        {
-          "path": "scripts/__pycache__/internalize-knowledge.cpython-311.pyc",
-          "size": 7203
-        },
-        {
-          "path": "scripts/__pycache__/quick-intel.cpython-311.pyc",
-          "size": 4661
-        },
-        {
-          "path": "scripts/__pycache__/capability-breakthrough-exp-01.cpython-311.pyc",
-          "size": 2880
-        },
-        {
-          "path": "scripts/__pycache__/evomap-periodic-sync.cpython-311.pyc",
-          "size": 3596
-        },
-        {
-          "path": "scripts/__pycache__/moltbook-iterative-extractor.cpython-311.pyc",
-          "size": 6873
-        },
-        {
-          "path": "scripts/__pycache__/deep-extractor.cpython-311.pyc",
-          "size": 16750
-        },
-        {
-          "path": "scripts/__pycache__/route.cpython-311.pyc",
-          "size": 7687
-        },
-        {
-          "path": "scripts/__pycache__/run-all-breakthrough-experiments.cpython-311.pyc",
-          "size": 6715
-        },
-        {
-          "path": "scripts/__pycache__/token-optimizer-v10.cpython-311.pyc",
-          "size": 6547
-        },
-        {
-          "path": "scripts/__pycache__/system-optimization-daemon.cpython-311.pyc",
-          "size": 16200
-        },
-        {
-          "path": "scripts/__pycache__",
-          "size": 4096
         }
       ],
-      "estimated_saving_mb": 0.4739084243774414,
-      "description": "\u6e05\u7406 49 \u4e2a\u4e34\u65f6\u6587\u4ef6",
+      "estimated_saving_mb": 0.7895412445068359,
+      "description": "\u6e05\u7406 82 \u4e2a\u4e34\u65f6\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -365,8 +369,8 @@
           "age_days": 8
         }
       ],
-      "estimated_saving_mb": 1.0912303924560547,
-      "description": "\u5f52\u6863 177 \u4e2a\u8d85\u8fc77\u5929\u7684\u62a5\u544a\u6587\u4ef6",
+      "estimated_saving_mb": 1.0918292999267578,
+      "description": "\u5f52\u6863 179 \u4e2a\u8d85\u8fc77\u5929\u7684\u62a5\u544a\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -402,7 +406,7 @@
     "p0_count": 1,
     "p1_count": 2,
     "p2_count": 1,
-    "estimated_saving_mb": 1.6,
+    "estimated_saving_mb": 1.92,
     "estimated_saving_percent": 0
   }
 }
