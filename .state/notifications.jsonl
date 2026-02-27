@@ -1,0 +1,12 @@
+{"time": "2026-02-27T20:03:40+08:00", "type": "HEALTH_CHECK_FAILED", "message": "健康评分过低: [2026-02-27 20:03:37] 🔍 深度健康检测开始...
+[2026-02-27 20:03:40] 📊 健康评分: 100/100 (5/6 checks passed)
+[DETAIL] 
+[DETAIL]   ✅ 网关响应正常 (+0, 基线)
+[DETAIL]   ✅ 进程运行正常 (16 processes)
+[DETAIL]   ✅ 核心文件完整
+[DETAIL]   ✅ 近期有活动记录
+[DETAIL]   ✅ 磁盘空间充足 (36%)
+100，准备回滚", "priority": "high"}
+{"time": "2026-02-27T20:03:40+08:00", "type": "ROLLBACK_STARTED", "message": "开始回滚到 snapshot_20260227_195931", "priority": "high"}
+{"time": "2026-02-27T20:03:58+08:00", "type": "ROLLBACK_SUCCESS", "message": "回滚成功，系统已恢复正常", "priority": "high"}
+{"time": "2026-02-27T20:05:54+08:00", "type": "HEALTH_CHECK_PASSED", "message": "健康评分: 100/100", "priority": "normal"}
