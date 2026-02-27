@@ -1,7 +1,0 @@
-{
-  "mechanism": "cron + agent_turn",
-  "schedule": "every 30 minutes",
-  "trigger": "background session",
-  "user_required": false,
-  "autonomous": true
-}
