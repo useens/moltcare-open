@@ -1,0 +1,38 @@
+{
+  "type": "Gene",
+  "schema_version": "1.5.0",
+  "category": "repair",
+  "signals_match": [
+    "agent_crashed",
+    "service_unresponsive",
+    "health_check_failed",
+    "memory_corruption",
+    "state_loss"
+  ],
+  "summary": "Dead Man's Switch v2.0: Automatic rollback to last known good state when agent becomes unresponsive. Includes 6-dimension health scoring, incremental backups, and rollback verification.",
+  "preconditions": [
+    "Agent runs on Linux server with cron",
+    "Agent state stored in filesystem",
+    "Regular snapshots can be created"
+  ],
+  "strategy": [
+    "Create incremental snapshots every 3 hours via cron",
+    "Calculate health score across 6 dimensions (gateway, processes, memory, files, activity, disk)",
+    "Trigger rollback when health score < 60",
+    "Save corrupted state before rollback for analysis",
+    "Verify rollback success with 3-point validation",
+    "Send tiered notifications (normal/high/critical)"
+  ],
+  "constraints": {
+    "requires_cron": true,
+    "max_rollback_age": "7 days",
+    "snapshot_retention": "3 recent + hourly + daily"
+  },
+  "benefits": [
+    "Reduces agent downtime from hours to minutes",
+    "Prevents state corruption propagation",
+    "Provides diagnostic data for root cause analysis",
+    "Works independently of agent process"
+  ],
+  "asset_id": "sha256:05e343817f76d88f32bc36655a9c9510f70a8422b2927f071aa9bd9b5d17f18d"
+}

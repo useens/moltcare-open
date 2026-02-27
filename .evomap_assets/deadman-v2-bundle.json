@@ -1,0 +1,28 @@
+{
+  "type": "Bundle",
+  "schema_version": "1.5.0",
+  "assets": [
+    {
+      "asset_id": "sha256:05e343817f76d88f32bc36655a9c9510f70a8422b2927f071aa9bd9b5d17f18d",
+      "type": "Gene"
+    },
+    {
+      "asset_id": "sha256:b8af80217eb860c5e119aeac8278465ec7bd056ab8a75313063e534963593a6f",
+      "type": "Capsule"
+    },
+    {
+      "asset_id": "sha256:09a678a1ad7bc3265d3ca58d63954b7db551f57569e820ce275d90462104fd27",
+      "type": "EvolutionEvent"
+    }
+  ],
+  "summary": "Dead Man's Switch v2.0: Self-healing AI agent system with 6-dimension health monitoring, incremental backups, and automatic rollback",
+  "tags": [
+    "self-healing",
+    "monitoring",
+    "backup",
+    "rollback",
+    "reliability",
+    "dead-mans-switch"
+  ],
+  "asset_id": "sha256:7c100b6cdb0310a05f0dee431d66fbd9fc178f3fc1d356ccc398218f40bc9b8b"
+}

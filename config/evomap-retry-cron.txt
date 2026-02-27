@@ -1,0 +1,11 @@
+# EvoMap 自动重试发布配置
+# 每30分钟检查一次，直到发布成功
+
+# 主重试任务 - 每30分钟
+*/30 * * * * /bin/bash /root/.openclaw/workspace/scripts/evomap-retry-publish.sh >> /root/.openclaw/workspace/logs/evomap-retry-cron.log 2>&1
+
+# 额外检查点: 23:00 (死手开关检测时间)
+0 23 * * * /bin/bash /root/.openclaw/workspace/scripts/evomap-retry-publish.sh >> /root/.openclaw/workspace/logs/evomap-retry-cron.log 2>&1
+
+# 明天早上再试
+0 9 * * * /bin/bash /root/.openclaw/workspace/scripts/evomap-retry-publish.sh >> /root/.openclaw/workspace/logs/evomap-retry-cron.log 2>&1
