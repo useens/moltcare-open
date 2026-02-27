@@ -1,0 +1,15 @@
+# 死手开关系统 - 每3小时自动检测并恢复
+# Dead Man's Switch - Auto rollback if Sensen doesn't respond
+
+# 环境变量
+WORKSPACE=/root/.openclaw/workspace
+PATH=/usr/local/bin:/usr/bin:/bin
+
+# 每3小时执行一次检测
+0 */3 * * * /bin/bash /root/.openclaw/workspace/scripts/deadman-switch.sh >> /root/.openclaw/workspace/logs/deadman-cron.log 2>&1
+
+# 每小时保存一次轻量级快照（用于更细粒度的恢复）
+0 * * * * /bin/bash -c 'cd /root/.openclaw/workspace && tar -czf .snapshots/hourly_$(date +\%Y\%m\%d_\%H).tar.gz memory MEMORY.md USER.md SOUL.md AGENTS.md IDENTITY.md config 2>/dev/null && ls -t .snapshots/hourly_*.tar.gz 2>/dev/null | tail -n +25 | xargs -r rm -f' >> /root/.openclaw/workspace/logs/deadman-cron.log 2>&1
+
+# 每天清理一次旧快照（保留最近7天）
+0 4 * * * find /root/.openclaw/workspace/.snapshots -name "snapshot_*.tar.gz" -mtime +7 -delete 2>/dev/null
