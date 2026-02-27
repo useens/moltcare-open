@@ -1,0 +1,315 @@
+# 🌱 林林「涅槃」复活系统 v1.0
+
+> 最简单的异地冷备方案，去掉所有不稳定因素
+> 
+> **方案代号**: Phoenix（凤凰涅槃，浴火重生）
+> **自动化脚本**: `scripts/auto-resurrect.sh`  
+> **部署指南**: `docs/auto-resurrect-guide.md`  
+> **创建时间**: 2026-02-10  
+> **测试时间**: 2026-02-11 22:00（已设置提醒）
+
+---
+
+## 核心思想
+
+**零网络依赖，纯手动触发**
+
+- 主系统 → GitHub（唯一连接）
+- 种子系统 → 完全离线待命
+- 故障时 → 人工启动 + 一键恢复
+
+---
+
+## 架构
+
+```
+主系统 (云端)              GitHub (备份)              种子系统 (本地VM)
+┌─────────────┐           ┌─────────────┐            ┌─────────────┐
+│ OpenClaw    │ ──push──► │ 私有仓库    │            │ 关机/待机   │
+│ 定时备份    │   每5分钟  │ workspace   │            │             │
+└─────────────┘           └─────────────┘            └─────────────┘
+                                                        │
+                                                        │ 人工开机
+                                                        ▼
+                                                  ┌─────────────┐
+                                                  │ 执行恢复    │
+                                                  │ 一键复活    │
+                                                  └─────────────┘
+```
+
+---
+
+## 📂 脚本位置
+
+| 位置 | 路径 | 说明 |
+|------|------|------|
+| **主系统** | `~/.openclaw/workspace/scripts/auto-resurrect.sh` | 脚本源码 |
+| **本地VM** | `~/resurrect-me.sh` | 部署后执行 |
+| **GitHub** | `scripts/auto-resurrect.sh` | 通过备份仓库分发 |
+
+---
+
+## 🚀 快速部署（明天执行）
+
+### 步骤0：主系统推送最新备份
+
+```bash
+cd ~/.openclaw/workspace
+git add -A
+git commit -m "add: 涅槃复活系统 v1.0"
+git push origin main
+```
+
+### 步骤1：本地VM获取脚本
+
+```bash
+# 登录本地VM
+ssh 你的本地VM用户名@本地VM_IP
+
+# 从GitHub拉取脚本
+cd ~
+git clone --depth 1 https://github.com/你的用户名/linlin-backup.git /tmp/linlin-tmp
+
+# 复制脚本到主目录
+cp /tmp/linlin-tmp/scripts/auto-resurrect.sh ~/resurrect-me.sh
+chmod +x ~/resurrect-me.sh
+
+# 清理临时文件
+rm -rf /tmp/linlin-tmp
+```
+
+### 步骤2：运行配置向导
+
+```bash
+~/resurrect-me.sh --setup
+```
+
+按提示输入：
+- 主系统IP/域名
+- GitHub仓库名
+- GitHub Token
+- 通知配置（可选）
+
+### 步骤3：测试
+
+```bash
+# 检测主系统状态
+~/resurrect-me.sh --check
+
+# 测试复活流程（会拉取备份但不启动服务）
+~/resurrect-me.sh --now --dry-run
+```
+
+---
+
+## 配置步骤（详细版）
+
+### 1. 主系统（云端）- 只需配置备份
+
+```bash
+# 进入工作目录
+cd ~/.openclaw/workspace
+
+# 初始化Git（如果还没做）
+git init
+git remote add origin https://github.com/你的用户名/linlin-backup.git
+
+# 创建自动备份脚本
+cat > ~/.openclaw/backup.sh << 'EOF'
+#!/bin/bash
+cd ~/.openclaw/workspace
+
+# 忽略敏感文件
+echo "credentials/" > .gitignore
+echo "*.key" >> .gitignore
+echo "*.token" >> .gitignore
+
+git add -A
+git commit -m "backup: $(date '+%Y-%m-%d %H:%M')"
+git push origin main --quiet
+EOF
+chmod +x ~/.openclaw/backup.sh
+
+# 加入定时任务（每5分钟）
+(crontab -l 2>/dev/null; echo "*/5 * * * * ~/.openclaw/backup.sh") | crontab -
+```
+
+### 2. 种子系统（本地VM）- 只配置一次
+
+```bash
+# 安装OpenClaw
+npm install -g openclaw
+
+# 创建一键复活脚本
+cat > ~/resurrect.sh << 'EOF'
+#!/bin/bash
+set -e
+
+echo "🌱 ========== 林林复活流程 =========="
+echo "开始时间: $(date)"
+
+# 1. 清理旧数据
+echo "[1/5] 清理旧数据..."
+rm -rf ~/.openclaw/workspace
+mkdir -p ~/.openclaw
+
+# 2. 克隆备份
+echo "[2/5] 从GitHub拉取备份..."
+git clone https://github.com/你的用户名/linlin-backup.git ~/.openclaw/workspace
+
+# 3. 恢复凭证（需要手动输入）
+echo "[3/5] 恢复凭证..."
+echo "⚠️  请手动恢复以下凭证文件："
+echo "   - ~/.openclaw/credentials/telegram.token"
+echo "   - ~/.openclaw/credentials/moltbook.key"
+echo "   - 其他API Keys"
+read -p "按回车继续（凭证已放好）..."
+
+# 4. 启动服务
+echo "[4/5] 启动OpenClaw..."
+openclaw gateway restart
+
+# 5. 验证
+echo "[5/5] 验证状态..."
+sleep 3
+if openclaw gateway status | grep -q "running"; then
+    echo "✅ 复活成功！"
+    echo ""
+    echo "当前状态:"
+    openclaw gateway status
+else
+    echo "❌ 启动失败，请检查日志"
+fi
+
+echo ""
+echo "结束时间: $(date)"
+echo "🌱 ========== 复活流程完成 =========="
+EOF
+chmod +x ~/resurrect.sh
+```
+
+---
+
+## 故障复活流程
+
+### 步骤1: 发现主系统故障
+
+- 通过Telegram/飞书发现我无响应
+- 或发现主服务器无法连接
+
+### 步骤2: 启动种子系统
+
+```bash
+# 在你的本地电脑上
+# 1. 打开虚拟机软件（VMware/VirtualBox）
+# 2. 启动Ubuntu VM
+# 3. 登录系统
+```
+
+### 步骤3: 一键复活
+
+```bash
+# 在种子系统中执行
+~/resurrect.sh
+
+# 然后按提示放入凭证文件
+# 再放好API Keys
+# 完成！
+```
+
+### 步骤4: 更新渠道配置（可选）
+
+如果需要让Telegram/飞书指向新系统：
+- 修改Bot Webhook（如果是Webhook模式）
+- 或者直接在本地使用
+
+---
+
+## 凭证备份清单
+
+**主系统故障前，确保以下凭证已安全备份：**
+
+```
+~/.openclaw/credentials/
+├── telegram.token      # Telegram Bot Token
+├── moltbook.key        # Moltbook API Key
+├── github.token        # GitHub Personal Token
+├── feishu.token        # 飞书 Bot Token
+└── other_apis.json     # 其他API Keys
+```
+
+**备份方式（选一个）：**
+- 密码管理器（推荐）
+- 加密U盘
+- 纸质备份（关键Token）
+- 另一个Git私有仓库（加密存储）
+
+---
+
+## 日常维护（每月一次）
+
+```bash
+# 在种子系统上测试
+# 1. 启动VM
+# 2. 检查脚本是否正常
+git --version
+openclaw --version
+
+# 3. 验证能拉到最新备份
+git clone --depth 1 https://github.com/你的用户名/linlin-backup.git /tmp/test
+
+# 4. 关机待命
+```
+
+---
+
+## 方案对比
+
+| 方案 | 复杂度 | 可靠性 | 成本 | 适合场景 |
+|------|--------|--------|------|----------|
+| **纯手动（本方案）** | ⭐ 极低 | ⭐⭐⭐⭐⭐ 最高 | $0 | 个人使用 |
+| SSH反向隧道 | ⭐⭐ 中等 | ⭐⭐⭐ 一般 | $0 | 需要自动检测 |
+| 2节点云主备 | ⭐⭐⭐ 较高 | ⭐⭐⭐⭐ 高 | $10/月 | 生产环境 |
+
+---
+
+## 优缺点
+
+### ✅ 优点
+- **零网络依赖** - 不需要维护任何连接
+- **零成本** - 用现有电脑和免费GitHub
+- **极其简单** - 只有备份+恢复两步
+- **绝对可靠** - 没有自动化的误判风险
+- **完全可控** - 每一步都在你控制中
+
+### ⚠️ 局限
+- 需要人工启动VM（5-10分钟）
+- 需要手动恢复凭证
+- 故障发现依赖你主动察觉
+
+---
+
+## 应急简化版（极端情况）
+
+如果连VM都坏了，**最简复活**：
+
+```bash
+# 在任何能联网的电脑上
+# 1. 安装OpenClaw
+npm install -g openclaw
+
+# 2. 克隆备份
+git clone https://github.com/你的用户名/linlin-backup.git ~/.openclaw/workspace
+
+# 3. 放入凭证
+# 手动创建 ~/.openclaw/credentials/ 下的文件
+
+# 4. 启动
+openclaw gateway start
+
+# 完成！我在新电脑上复活了
+```
+
+---
+
+**总结：这个方案的核心就是"定期备份到GitHub，故障时一键克隆恢复"。去掉所有花哨功能，最稳定可靠。**
