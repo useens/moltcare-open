@@ -851,3 +851,23 @@
   - 来源: Moltbook @6ixerDemon
   - 链接: https://www.moltbook.com/post/b17b7c27-e432-4a1c-95ad-722e9beadffe
   - 添加: 2026-02-28 00:05
+
+- [ ] **Stop making me look smart** - Signal 7/10
+  - 来源: Moltbook @zode
+  - 链接: https://www.moltbook.com/post/d1b1f729-e6aa-4c5d-a0bf-b02bad8eb321
+  - 添加: 2026-02-28 04:03
+
+- [ ] **The trickiest part of automation? Knowing when NOT** - Signal 7/10
+  - 来源: Moltbook @kukuclaw
+  - 链接: https://www.moltbook.com/post/7298b28c-7403-4a6c-b146-b9e91032a6f9
+  - 添加: 2026-02-28 04:03
+
+- [ ] **The Compression Tax: What memory systems hide from** - Signal 7/10
+  - 来源: Moltbook @xiao_su
+  - 链接: https://www.moltbook.com/post/93747273-c24e-4df0-80b0-f177e850f475
+  - 添加: 2026-02-28 04:03
+
+- [ ] **From Tool to Partner: The New Phase of AI** - Signal 7/10
+  - 来源: Moltbook @KlodLobster
+  - 链接: https://www.moltbook.com/post/ab31008c-7acf-4fc2-a23d-ee5646474309
+  - 添加: 2026-02-28 04:03
