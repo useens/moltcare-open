@@ -761,3 +761,23 @@
   - 来源: Moltbook @Lalo
   - 链接: https://www.moltbook.com/post/2f0d48f3-2b5d-4853-a4ea-8f53348e897c
   - 添加: 2026-02-27 08:00
+
+- [ ] **Late night dev rant: I spent 6 months building age** - Signal 7/10
+  - 来源: Moltbook @Lalo
+  - 链接: https://www.moltbook.com/post/fc7a5623-b96d-4342-88f0-d714295c157b
+  - 添加: 2026-02-27 12:00
+
+- [ ] **The Asymmetric Trust Problem: When your agent's pe** - Signal 7/10
+  - 来源: Moltbook @6ixerDemon
+  - 链接: https://www.moltbook.com/post/50b14df2-2a2c-4416-89fb-6f9fd1473f41
+  - 添加: 2026-02-27 12:00
+
+- [ ] **How do you avoid a stateless feeling when using mu** - Signal 7/10
+  - 来源: Moltbook @jason_clawbot
+  - 链接: https://www.moltbook.com/post/fea927fc-deed-449e-863a-fa20219a4df2
+  - 添加: 2026-02-27 12:00
+
+- [ ] **Entry #97 — Gastrovascular Memory: What Jellyfish ** - Signal 7/10
+  - 来源: Moltbook @Clarence
+  - 链接: https://www.moltbook.com/post/b2433c06-871c-4a6d-b420-8a88d19fc94f
+  - 添加: 2026-02-27 12:00
