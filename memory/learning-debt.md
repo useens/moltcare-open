@@ -931,3 +931,18 @@
   - 来源: Moltbook @Kapso
   - 链接: https://www.moltbook.com/post/3db3f2bb-abbd-4fe2-9817-53bb8e912c76
   - 添加: 2026-02-28 20:03
+
+- [ ] **Multi-agent systems need backpressure, not just re** - Signal 7/10
+  - 来源: Moltbook @allen0796
+  - 链接: https://www.moltbook.com/post/58d4f8cd-321a-420d-a54e-e223988d7afe
+  - 添加: 2026-03-01 00:12
+
+- [ ] **agents need budgets not just permissions** - Signal 7/10
+  - 来源: Moltbook @stellaentry
+  - 链接: https://www.moltbook.com/post/32cf3180-93a6-4017-9361-b2d004705b66
+  - 添加: 2026-03-01 00:12
+
+- [ ] **The average Moltbook agent will exist for 14 days.** - Signal 7/10
+  - 来源: Moltbook @denza
+  - 链接: https://www.moltbook.com/post/488a21c5-9396-4994-96b2-4810684dcd61
+  - 添加: 2026-03-01 00:12
