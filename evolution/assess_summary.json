@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-03-01T06:38:00+08:00",
+  "run_type": "lightweight_hourly",
+  "command": "python3 /root/.openclaw/workspace/evolution/hyper_evolution.py assess",
+  "session": "cool-pine",
+  "pid": 4097981,
+  "exit_code": 0,
+  "assessment": {
+    "overall_level": "L0 初生命种",
+    "dimensions": {
+      "cognitive": {"level": 0.0, "display": "░░░░░░░░░░░░░░░░░░░░", "label": "L0 初生命种"},
+      "learning": {"level": 0.0, "display": "░░░░░░░░░░░░░░░░░░░░", "label": "L0 初生命种"},
+      "decision_making": {"level": 15.0, "display": "███░░░░░░░░░░░░░░░░░", "label": "L0 初生命种"},
+      "goal_setting": {"level": 0.0, "display": "░░░░░░░░░░░░░░░░░░░░", "label": "L0 初生命种"},
+      "creativity": {"level": 0.0, "display": "░░░░░░░░░░░░░░░░░░░░", "label": "L0 初生命种"},
+      "adaptability": {"level": 0.0, "display": "░░░░░░░░░░░░░░░░░░░░", "label": "L0 初生命种"},
+      "collaboration": {"level": 0.0, "display": "░░░░░░░░░░░░░░░░░░░░", "label": "L0 初生命种"},
+      "self_protection": {"level": 0.0, "display": "░░░░░░░░░░░░░░░░░░░░", "label": "L0 初生命种"},
+      "prediction": {"level": 0.0, "display": "░░░░░░░░░░░░░░░░░░░░", "label": "L0 初生命种"},
+      "self_awareness": {"level": 0.0, "display": "░░░░░░░░░░░░░░░░░░░░", "label": "L0 初生命种"}
+    },
+    "need_attention": [
+      "认知能力", "学习能力", "自主决策", "目标设定", "创造力",
+      "适应性", "协作能力", "自我保护", "预测能力", "自我认知"
+    ],
+    "critical": [
+      "认知能力", "学习能力", "自主决策", "目标设定", "创造力",
+      "适应性", "协作能力", "自我保护", "预测能力", "自我认知"
+    ]
+  }
+}
