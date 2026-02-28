@@ -62,7 +62,7 @@ class CompressionRecord:
     record_id: str
     timestamp: str
     
-    来源信息
+    # 来源信息
     source_type: str  # memory, log, knowledge, etc.
     source_path: str  # 源文件路径
     

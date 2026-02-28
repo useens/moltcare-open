@@ -239,9 +239,8 @@ class StructuredLogger:
         # 先写入 WAL（Write-Ahead Log）
         with open(self.wal_file, 'a', encoding='utf-8') as f:
             f.write(entry.to_json_line() + '\n')
-        
-        # 同步 WAL
-        os.fsync(self.wal_file.fileno())
+            f.flush()
+            os.fsync(f.fileno())
         
         # 然后写入主日志
         with open(self.transaction_log, 'a', encoding='utf-8') as f:

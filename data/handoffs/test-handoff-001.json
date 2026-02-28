@@ -1,0 +1,47 @@
+{
+  "handoff_id": "test-handoff-001",
+  "timestamp": "2026-02-28T17:11:37.324458",
+  "source_agent": "决策引擎",
+  "target_agent": "主会话",
+  "original_task": "处理Signal 10学习债务",
+  "task_status": "completed",
+  "execution_summary": "已完成5个高Signal学习债务的深度学习",
+  "key_results": [
+    "生成了5份学习笔记",
+    "更新了知识图谱",
+    "生成了3份应用方案"
+  ],
+  "decisions_made": [
+    {
+      "decision_id": "dec-001",
+      "description": "选择Python而非C++",
+      "rationale": "基于快速原型需求",
+      "confidence": "high",
+      "alternatives_considered": [
+        "C++",
+        "Rust"
+      ],
+      "risks": [
+        "性能可能不如C++"
+      ]
+    }
+  ],
+  "follow_up_items": [
+    {
+      "item_id": "FU-001",
+      "description": "验证应用方案效果",
+      "priority": "medium",
+      "deadline": "2026-03-01",
+      "assigned_to": null,
+      "status": "pending"
+    }
+  ],
+  "overall_confidence": "high",
+  "quality_notes": null,
+  "issues_encountered": [],
+  "warnings": [],
+  "resources_used": {},
+  "start_time": null,
+  "end_time": null,
+  "duration_minutes": null
+}
