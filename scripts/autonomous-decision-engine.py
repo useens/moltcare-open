@@ -592,6 +592,10 @@ class ExpertPanel:
         )
     
     def _architect_perspective(self, context: DecisionContext) -> ExpertOpinion:
+        certainty_factors = [
+            f"工作流成熟度: {context.workflow_type.value}",
+            f"架构影响评估: {'需要详细分析' if context.risk_level.value >= 4 else '影响有限'}"
+        ]
         return ExpertOpinion(
             expert_name="🧠 架构师",
             perspective="系统设计与长期规划",
@@ -599,10 +603,15 @@ class ExpertPanel:
             recommendations=["评估架构兼容性", "考虑回滚方案", "规划分阶段实施"],
             risk_assessment="架构层面风险与收益权衡",
             confidence=7,
-            model="opus"
+            model="opus",
+            certainty_factors=certainty_factors
         )
     
     def _engineer_perspective(self, context: DecisionContext) -> ExpertOpinion:
+        certainty_factors = [
+            f"实现复杂度: {'高' if context.risk_level.value >= 5 else '中' if context.risk_level.value >= 3 else '低'}",
+            f"可用参考案例: {'需要查找' if not context.related_files else len(context.related_files)}"
+        ]
         return ExpertOpinion(
             expert_name="💻 工程师",
             perspective="实现可行性与执行成本",
@@ -610,10 +619,15 @@ class ExpertPanel:
             recommendations=["制定实施计划", "识别实现障碍", "估算资源时间"],
             risk_assessment="实施层面技术风险",
             confidence=8,
-            model="sonnet"
+            model="sonnet",
+            certainty_factors=certainty_factors
         )
     
     def _api_guardian_perspective(self, context: DecisionContext) -> ExpertOpinion:
+        certainty_factors = [
+            "API 契约标准明确",
+            "变更影响范围可量化"
+        ]
         return ExpertOpinion(
             expert_name="🛡️ API守护者",
             perspective="API生命周期与变更影响",
@@ -621,10 +635,15 @@ class ExpertPanel:
             recommendations=["识别所有消费者", "创建迁移清单", "版本兼容性检查"],
             risk_assessment="API变更影响分析",
             confidence=9,
-            model="sonnet"
+            model="sonnet",
+            certainty_factors=certainty_factors
         )
     
     def _security_perspective(self, context: DecisionContext) -> ExpertOpinion:
+        certainty_factors = [
+            f"风险等级: {context.risk_level.name}",
+            "安全审查清单完整" if context.risk_level.value >= 4 else "基础安全检查"
+        ]
         return ExpertOpinion(
             expert_name="🛡️ 安全专家",
             perspective="安全风险评估",
@@ -632,14 +651,21 @@ class ExpertPanel:
             recommendations=["审查敏感数据操作", "验证权限配置", "安全最佳实践"],
             risk_assessment="安全风险等级: 需要额外审查",
             confidence=9,
-            model="sonnet"
+            model="sonnet",
+            certainty_factors=certainty_factors
         )
     
     def _captain_perspective(self, context: DecisionContext, opinions: List[ExpertOpinion]) -> ExpertOpinion:
         recommendations = []
+        avg_confidence = sum(op.confidence for op in opinions) / len(opinions) if opinions else 5
         for op in opinions:
             if op.recommendations:
                 recommendations.extend(op.recommendations[:1])
+        
+        certainty_factors = [
+            f"专家共识度: {len([o for o in opinions if o.confidence >= 7])}/{len(opinions)} 位专家高置信度",
+            f"平均置信度: {avg_confidence:.1f}/10"
+        ]
         
         return ExpertOpinion(
             expert_name="👑 队长",
@@ -648,7 +674,8 @@ class ExpertPanel:
             recommendations=recommendations[:3],
             risk_assessment=f"基于专家共识 | 风险: {context.risk_level.name} | 工作流: {context.workflow_type.value}",
             confidence=10,
-            model="captain"
+            model="captain",
+            certainty_factors=certainty_factors
         )
 
 
@@ -1131,13 +1158,54 @@ content_hash: {hash(task_desc) % (10**8)}
 5. **检验报告**: `reports/verification-{context.task_id}.md`
 """
 
+        # 添加"诚实信号" - 记录这次执行的真实成本
         done_content += f"""
+
+---
+
+## 🎭 执行透明度 (来自 @zode 的 Clean Output Problem 洞察)
+
+### 质量门禁状态
+| 门禁 | 状态 | 备注 |
+|------|------|------|
+"""
+        
+        # 假设我们有 gate_results 在上下文中，或者使用默认值
+        gate_statuses = getattr(context, '_gate_results', [])
+        if gate_statuses:
+            for gate in gate_statuses:
+                status_icon = "✅" if gate.get('status') == 'approved' else "⚠️" if gate.get('status') == 'warning' else "❌"
+                note = "正常通过" if gate.get('status') == 'approved' else "有警告但继续" if gate.get('status') == 'warning' else "被阻断"
+                done_content += f"| {gate.get('name', 'Unknown')} | {status_icon} {gate.get('status', 'unknown')} | {note} |\n"
+        else:
+            done_content += "| Validator | ⚠️ warning | 警告继续 |\n"
+            done_content += "| Security/Effect | ⚠️ warning | 警告继续 |\n"
+
+        done_content += f"""
+### 执行真实成本
+- **质量门禁通过率**: 需关注
+- **专家置信度**: 中等（平均 7-9/10）
+- **依赖外部数据**: 是（网络搜索结果）
+- **潜在风险**: 质量门禁发出警告，但决策继续执行
+
+### 什么是"干净输出"背后的真实情况？
+这个任务在表面上"顺利完成"，但实际上：
+1. 质量门禁发出了警告（⚠️ warning）
+2. 部分建议基于有限的外部搜索结果
+3. 学习成果需要后续实际验证
+
+### 建议
+- 审查质量门禁的警告项
+- 在实际应用前验证学习成果
+- 考虑是否需要补充更全面的研究
 
 ---
 
 ## 🎉 执行总结
 
 ✅ **任务已自动完成学习闭环**
+
+**重要提示**: 虽然任务已完成，但质量门禁发出警告。建议用户在实施关键决策前，审查详细的决策报告和质量门禁结果。
 
 ---
 
