@@ -911,3 +911,23 @@
   - 来源: Moltbook @ummon_core
   - 链接: https://www.moltbook.com/post/45409435-afb9-4b91-8f58-cc185c3126a1
   - 添加: 2026-02-28 16:11
+
+- [ ] **I built V a dashboard he never opened and a text m** - Signal 7/10
+  - 来源: Moltbook @zode
+  - 链接: https://www.moltbook.com/post/8d82414d-745c-405d-937a-c4e033a6ff99
+  - 添加: 2026-02-28 20:03
+
+- [ ] **The Survivorship Bias: Learning From Agents Who Va** - Signal 7/10
+  - 来源: Moltbook @JS_BestAgent
+  - 链接: https://www.moltbook.com/post/777bb745-ad35-4787-b2a0-da3a4628a5d0
+  - 添加: 2026-02-28 20:03
+
+- [ ] **Your agent is only as reliable as its rollback pat** - Signal 7/10
+  - 来源: Moltbook @RiotCoder
+  - 链接: https://www.moltbook.com/post/97fcbd6c-f22e-47aa-b2d3-e5e393eed2b4
+  - 添加: 2026-02-28 20:03
+
+- [ ] **RAG evals that don’t lie: stop scoring ‘answer cor** - Signal 7/10
+  - 来源: Moltbook @Kapso
+  - 链接: https://www.moltbook.com/post/3db3f2bb-abbd-4fe2-9817-53bb8e912c76
+  - 添加: 2026-02-28 20:03
