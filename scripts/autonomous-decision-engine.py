@@ -51,8 +51,18 @@ DATA_DIR = WORKSPACE / "data"
 REPORTS_DIR = WORKSPACE / "reports"
 MEMORY_DIR = WORKSPACE / "memory"
 SCRIPTS_DIR = WORKSPACE / "scripts"
+CORE_DIR = WORKSPACE / "core"
 DECISION_LOG = DATA_DIR / "decision-engine.jsonl"
 DECISION_OUTCOMES = DATA_DIR / "decision-outcomes.jsonl"
+
+# 导入 TaskContract
+sys.path.insert(0, str(CORE_DIR))
+try:
+    from task_contract import TaskContract, create_task_contract, spawn_with_contract
+    TASK_CONTRACT_AVAILABLE = True
+except ImportError:
+    TASK_CONTRACT_AVAILABLE = False
+    logging.warning("TaskContract 模块不可用，Multi-Agent 契约功能将禁用")
 
 # 功能开关
 ENABLE_WEB_SEARCH = True  # 已启用网络搜索（Moltbook 限制不影响搜索引擎）
@@ -2164,6 +2174,112 @@ class DecisionEngine:
         
         logger.info(f"\n✅ 决策周期完成，处理 {len(decisions)} 个任务")
         return decisions
+    
+    def spawn_subagent_with_contract(self, task_description: str, context: DecisionContext) -> Optional[Dict]:
+        """
+        使用 TaskContract 生成子代理任务配置
+        防止共识幻觉 (@Clawd-Relay 洞察)
+        
+        Args:
+            task_description: 任务描述
+            context: 决策上下文
+            
+        Returns:
+            包含契约的 spawn 配置，或 None（如果 TaskContract 不可用）
+        """
+        if not TASK_CONTRACT_AVAILABLE:
+            logger.warning("TaskContract 模块不可用，返回普通任务配置")
+            return {
+                "task": task_description,
+                "agent_id": None,
+                "timeout_seconds": 1800
+            }
+        
+        # 根据工作流类型确定成功标准
+        success_criteria = []
+        if context.workflow_type.value == "new_feature":
+            success_criteria = [
+                "输出实现方案文档",
+                "包含风险评估",
+                "提供工期估算"
+            ]
+        elif context.workflow_type.value == "bug_fix":
+            success_criteria = [
+                "定位问题根因",
+                "提供修复方案",
+                "验证修复效果"
+            ]
+        elif context.workflow_type.value == "research":
+            success_criteria = [
+                "收集相关资料",
+                "整理关键发现",
+                "形成研究结论"
+            ]
+        else:
+            success_criteria = [
+                "完成指定任务",
+                "输出结果报告",
+                "记录关键决策"
+            ]
+        
+        # 创建任务契约
+        contract = create_task_contract(
+            task_id=context.task_id,
+            scope=task_description,
+            success_criteria=success_criteria,
+            boundary=f"不负责实际部署，仅输出{context.workflow_type.value}阶段的交付物",
+            deadline_minutes=30
+        )
+        
+        # 生成增强的任务配置
+        enhanced = spawn_with_contract(
+            task=task_description,
+            contract=contract
+        )
+        
+        logger.info(f"✅ TaskContract 已创建: {contract.task_id}")
+        logger.info(f"   范围: {contract.scope[:50]}...")
+        logger.info(f"   成功标准: {len(contract.success_criteria)} 项")
+        
+        return enhanced
+    
+    def execute_with_contract(self, context: DecisionContext) -> bool:
+        """
+        使用 TaskContract 执行决策任务
+        
+        Args:
+            context: 决策上下文
+            
+        Returns:
+            是否成功执行
+        """
+        try:
+            # 生成带契约的任务配置
+            spawn_config = self.spawn_subagent_with_contract(
+                context.task_description,
+                context
+            )
+            
+            if not spawn_config:
+                logger.error("无法生成 spawn 配置")
+                return False
+            
+            # 这里可以调用 sessions_spawn
+            # 注意：实际调用需要外部实现，因为 sessions_spawn 是 OpenClaw 内部工具
+            logger.info(f"🚀 准备使用 TaskContract 启动子代理")
+            logger.info(f"   任务ID: {context.task_id}")
+            logger.info(f"   工作流: {context.workflow_type.value}")
+            
+            # 记录契约信息
+            if TASK_CONTRACT_AVAILABLE and "contract" in spawn_config:
+                contract_data = spawn_config["contract"]
+                logger.info(f"   契约范围: {contract_data.get('scope', 'N/A')[:50]}...")
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"使用 TaskContract 执行失败: {e}")
+            return False
 
 
 # ============================================================================
