@@ -138,11 +138,36 @@ class DecisionContext:
     related_files: List[str] = field(default_factory=list)
     trigger_keywords: List[str] = field(default_factory=list)
     signal: int = 0  # 新增: 信号强度，用于排序
+    confidence: str = "medium"  # 新增: 置信度标注 (high/medium/low)
+    rejection_reason: Optional[str] = None  # 新增: 拒绝原因
+
+
+@dataclass
+class RejectionLog:
+    """决策拒绝日志 - 记录评估了什么、为什么拒绝"""
+    task_id: str
+    timestamp: str
+    evaluated_options: List[Dict[str, Any]]  # 评估的选项列表
+    selected_option: Optional[str]  # 最终选择的选项
+    rejection_reason: str  # 拒绝/选择的原因
+    threshold_met: bool  # 是否满足阈值
+    confidence: str  # 决策置信度
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "task_id": self.task_id,
+            "timestamp": self.timestamp,
+            "evaluated_options": self.evaluated_options,
+            "selected_option": self.selected_option,
+            "rejection_reason": self.rejection_reason,
+            "threshold_met": self.threshold_met,
+            "confidence": self.confidence
+        }
 
 
 @dataclass
 class ExpertOpinion:
-    """专家观点"""
+    """专家观点 - 增强置信度标注"""
     expert_name: str
     perspective: str
     analysis: str
@@ -150,6 +175,17 @@ class ExpertOpinion:
     risk_assessment: str
     confidence: int
     model: str = "unknown"
+    confidence_level: str = "medium"  # 新增: high/medium/low
+    certainty_factors: List[str] = field(default_factory=list)  # 新增: 确定性因素
+
+    def __post_init__(self):
+        """根据置信度自动设置置信度等级"""
+        if self.confidence >= 8:
+            self.confidence_level = "high"
+        elif self.confidence >= 5:
+            self.confidence_level = "medium"
+        else:
+            self.confidence_level = "low"
 
 
 @dataclass
@@ -525,6 +561,12 @@ class ExpertPanel:
         # 构建建议列表
         recommendations = ["收集相关技术文档", "验证方案可行性", "查找参考案例"]
 
+        # 确定性因素
+        certainty_factors = [
+            f"基于网络搜索: {len(search_results)} 条结果" if search_results else "无网络搜索结果",
+            f"任务描述完整性: {'高' if len(context.task_description) > 50 else '中'}"
+        ]
+
         # 如果有搜索结果，添加到分析和建议中
         if search_results:
             analysis_parts.append(f"\n📊 网络搜索结果 ({len(search_results)} 条):")
@@ -536,6 +578,7 @@ class ExpertPanel:
 
             # 根据搜索结果生成具体建议
             recommendations = [f"参考搜索结果的实践案例"] + recommendations[:2]
+            certainty_factors.append("有外部数据源验证")
 
         return ExpertOpinion(
             expert_name="🔍 研究员",
@@ -543,8 +586,9 @@ class ExpertPanel:
             analysis="\n".join(analysis_parts),
             recommendations=recommendations,
             risk_assessment=f"风险等级: {context.risk_level.name} | 复杂度关键词: {', '.join(context.trigger_keywords[:3])}",
-            confidence=9,  # 提高置信度，因为有实际搜索结果
-            model="haiku+web"
+            confidence=9 if search_results else 7,  # 提高置信度，因为有实际搜索结果
+            model="haiku+web",
+            certainty_factors=certainty_factors
         )
     
     def _architect_perspective(self, context: DecisionContext) -> ExpertOpinion:
@@ -1627,6 +1671,9 @@ class DecisionEngine:
         self._save_decision(decision)
         self._generate_report(decision)
         
+        # 9. 记录拒绝日志（新增）
+        self._log_rejection(decision, action_plan, gate_decision)
+        
         return decision
     
     def _generate_consensus(self, opinions: List[ExpertOpinion], context: DecisionContext) -> str:
@@ -1703,6 +1750,94 @@ class DecisionEngine:
         
         self.decision_history.append(record)
     
+    def _log_rejection(self, decision: MultiAgentDecision, action_plan: List[str], gate_decision: str):
+        """记录决策拒绝日志 - 记录评估了什么、为什么拒绝（来自NanaUsagi的洞察）"""
+        rejection_log_file = DATA_DIR / "decision-rejections.jsonl"
+        
+        # 构建评估选项列表
+        evaluated_options = []
+        
+        # 1. 专家意见选项
+        for opinion in decision.opinions:
+            if opinion.recommendations:
+                evaluated_options.append({
+                    "type": "expert_recommendation",
+                    "source": opinion.expert_name,
+                    "option": opinion.recommendations[0],
+                    "confidence": opinion.confidence,
+                    "selected": opinion.expert_name == "👑 队长"
+                })
+        
+        # 2. 质量门禁评估
+        for gate in decision.quality_gates:
+            evaluated_options.append({
+                "type": "quality_gate",
+                "source": gate.gate_name,
+                "option": gate.status,
+                "issues": gate.issues,
+                "selected": gate.status in ["approved", "warning"]
+            })
+        
+        # 3. 行动计划评估
+        for i, action in enumerate(action_plan):
+            evaluated_options.append({
+                "type": "action_step",
+                "source": f"step_{i+1}",
+                "option": action,
+                "selected": True  # 行动计划中的步骤默认被选择执行
+            })
+        
+        # 确定最终选择和拒绝原因
+        selected_option = None
+        rejection_reason = None
+        threshold_met = gate_decision != "blocked"
+        
+        if gate_decision == "blocked":
+            selected_option = "拒绝执行"
+            # 收集所有阻断原因
+            block_reasons = []
+            for gate in decision.quality_gates:
+                if gate.status == "blocked":
+                    block_reasons.extend(gate.issues)
+            rejection_reason = f"质量门禁阻断: {'; '.join(block_reasons) if block_reasons else '未通过验证'}"
+        elif gate_decision == "warning":
+            selected_option = "继续执行（有警告）"
+            warning_reasons = []
+            for gate in decision.quality_gates:
+                if gate.status == "warning":
+                    warning_reasons.extend(gate.issues)
+            rejection_reason = f"质量门禁警告但继续: {'; '.join(warning_reasons) if warning_reasons else '需注意'}"
+        else:
+            selected_option = "正常执行"
+            rejection_reason = "质量门禁通过，无阻断项"
+        
+        # 确定置信度
+        avg_confidence = sum(op.confidence for op in decision.opinions) / len(decision.opinions) if decision.opinions else 5
+        if avg_confidence >= 8:
+            confidence = "high"
+        elif avg_confidence >= 5:
+            confidence = "medium"
+        else:
+            confidence = "low"
+        
+        # 创建拒绝日志记录
+        rejection_log = RejectionLog(
+            task_id=decision.context.task_id,
+            timestamp=datetime.now().isoformat(),
+            evaluated_options=evaluated_options,
+            selected_option=selected_option,
+            rejection_reason=rejection_reason,
+            threshold_met=threshold_met,
+            confidence=confidence
+        )
+        
+        # 保存到文件
+        with open(rejection_log_file, 'a', encoding='utf-8') as f:
+            f.write(json.dumps(rejection_log.to_dict(), ensure_ascii=False) + '\n')
+        
+        # 同时记录到主日志
+        logger.info(f"📝 决策拒绝日志已记录: {decision.context.task_id} | 选择: {selected_option} | 原因: {rejection_reason[:50]}...")
+    
     def _generate_report(self, decision: MultiAgentDecision):
         """生成标准化决策报告 - v1.3格式"""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -1737,10 +1872,11 @@ class DecisionEngine:
 """
         
         for opinion in decision.opinions:
+            confidence_icon = "🟢" if opinion.confidence_level == "high" else "🟡" if opinion.confidence_level == "medium" else "🔴"
             report_content += f"""### {opinion.expert_name}
 
 **视角**: {opinion.perspective}  
-**模型**: `{opinion.model}` | **置信度**: {opinion.confidence}/10
+**模型**: `{opinion.model}` | **置信度**: {confidence_icon} {opinion.confidence}/10 ({opinion.confidence_level.upper()})
 
 **分析**:
 {opinion.analysis}
@@ -1749,6 +1885,12 @@ class DecisionEngine:
 """
             for rec in opinion.recommendations:
                 report_content += f"- {rec}\n"
+            
+            # 添加确定性因素（如果有）
+            if opinion.certainty_factors:
+                report_content += "\n**确定性因素**:\n"
+                for factor in opinion.certainty_factors:
+                    report_content += f"- {factor}\n"
             
             report_content += f"\n**风险评估**: {opinion.risk_assessment}\n\n---\n\n"
         
