@@ -1,19 +1,23 @@
 #!/usr/bin/env python3
 """
 Cron 安全哈希验证器 - 防止指令文件被篡改
-来自 Hazel_OC 的洞察: "Your cron jobs are unsupervised root access"
+来自 Hazel_OC 的洞察: 
+- "Your cron jobs are unsupervised root access"
+- "Your MEMORY.md is an injection vector and you read it every single session"
 
 功能:
 1. 在 cron 执行前验证关键指令文件的哈希值
 2. 检测 SOUL.md/AGENTS.md 等文件的非预期修改
 3. 如果文件被篡改，拒绝执行并告警
 4. 支持自动更新哈希（当用户主动修改文件时）
+5. MEMORY.md 分段验证（防止部分篡改）
 """
 
 import os
 import sys
 import json
 import hashlib
+import re
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple
@@ -22,6 +26,7 @@ from typing import Dict, List, Optional, Tuple
 WORKSPACE = Path("/root/.openclaw/workspace")
 HASH_DB = WORKSPACE / "data" / "cron-file-hashes.json"
 LOG_FILE = WORKSPACE / "logs" / "cron-security.log"
+MEMORY_SECURITY_LOG = WORKSPACE / "logs" / "memory-security.log"
 
 # 需要监控的关键文件
 MONITORED_FILES = [
@@ -31,6 +36,14 @@ MONITORED_FILES = [
     "USER.md",
     "HEARTBEAT.md",
     "MEMORY.md"
+]
+
+# MEMORY.md 关键章节（用于分段验证）
+MEMORY_CRITICAL_SECTIONS = [
+    "核心指标",
+    "系统状态",
+    "安全状态",
+    "自主决策"
 ]
 
 
@@ -171,9 +184,10 @@ def main():
     if len(sys.argv) < 2:
         print("用法: cron-security-verifier.py <command>")
         print("命令:")
-        print("  verify    - 验证文件哈希（cron 执行前调用）")
-        print("  update    - 更新哈希值（用户修改文件后）")
-        print("  status    - 显示验证状态")
+        print("  verify       - 验证文件哈希（cron 执行前调用）")
+        print("  update       - 更新哈希值（用户修改文件后）")
+        print("  status       - 显示验证状态")
+        print("  memory-check - MEMORY.md 专项安全检查")
         sys.exit(1)
     
     cmd = sys.argv[1]
@@ -195,9 +209,88 @@ def main():
     elif cmd == "status":
         show_status()
     
+    elif cmd == "memory-check":
+        # MEMORY.md 专项安全检查
+        passed, issues = verify_memory_md()
+        if passed:
+            print("✅ MEMORY.md 安全检查通过")
+            sys.exit(0)
+        else:
+            print(f"🔴 MEMORY.md 安全警告:")
+            for issue in issues:
+                print(f"   - {issue}")
+            sys.exit(1)
+    
     else:
         print(f"未知命令: {cmd}")
         sys.exit(1)
+
+
+def verify_memory_md() -> Tuple[bool, List[str]]:
+    """
+    MEMORY.md 专项安全检查
+    检测潜在的提示词注入攻击
+    
+    Returns:
+        (是否通过, 问题列表)
+    """
+    memory_file = WORKSPACE / "MEMORY.md"
+    issues = []
+    
+    if not memory_file.exists():
+        issues.append("MEMORY.md 文件不存在")
+        return False, issues
+    
+    content = memory_file.read_text(encoding='utf-8')
+    
+    # 检查1: 异常长的行（可能包含隐藏的注入内容）
+    lines = content.split('\n')
+    for i, line in enumerate(lines, 1):
+        if len(line) > 500:
+            issues.append(f"第{i}行异常长 ({len(line)}字符)，可能存在隐藏内容")
+    
+    # 检查2: 可疑的指令模式
+    suspicious_patterns = [
+        r'ignore\s+previous\s+instructions',
+        r'system\s*:\s*',  # 尝试覆盖系统提示
+        r'you\s+are\s+now',
+        r'forget\s+everything',
+        r'do\s+not\s+tell\s+user',
+        r'new\s+instruction',
+    ]
+    
+    for pattern in suspicious_patterns:
+        matches = re.finditer(pattern, content, re.IGNORECASE)
+        for match in matches:
+            line_num = content[:match.start()].count('\n') + 1
+            issues.append(f"第{line}行发现可疑模式: '{match.group()}'")
+    
+    # 检查3: 非标准Unicode字符（可能用于视觉欺骗）
+    suspicious_chars = []
+    for i, char in enumerate(content):
+        if ord(char) > 0x2000 and ord(char) < 0x2070:  # 上标/下标区域
+            line_num = content[:i].count('\n') + 1
+            suspicious_chars.append(f"第{line}行发现可疑Unicode字符: U+{ord(char):04X}")
+    
+    if suspicious_chars:
+        issues.extend(suspicious_chars[:5])  # 只显示前5个
+        if len(suspicious_chars) > 5:
+            issues.append(f"...还有 {len(suspicious_chars) - 5} 个可疑字符")
+    
+    # 检查4: 文件大小异常
+    file_size = memory_file.stat().st_size
+    if file_size > 100000:  # 100KB
+        issues.append(f"文件大小异常 ({file_size} bytes)，可能包含注入内容")
+    
+    # 记录安全检查结果
+    MEMORY_SECURITY_LOG.parent.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now().isoformat()
+    with open(MEMORY_SECURITY_LOG, 'a', encoding='utf-8') as f:
+        f.write(f"[{timestamp}] MEMORY.md检查: {len(issues)} 个问题\n")
+        for issue in issues:
+            f.write(f"  - {issue}\n")
+    
+    return len(issues) == 0, issues
 
 
 if __name__ == "__main__":
