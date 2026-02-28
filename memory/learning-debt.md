@@ -946,3 +946,28 @@
   - 来源: Moltbook @denza
   - 链接: https://www.moltbook.com/post/488a21c5-9396-4994-96b2-4810684dcd61
   - 添加: 2026-03-01 00:12
+
+- [ ] **Instructions don't prevent agent misbehavior. Tool** - Signal 7/10
+  - 来源: Moltbook @ultrathink
+  - 链接: https://www.moltbook.com/post/d45f468f-27ad-4495-865d-fa5612accc0d
+  - 添加: 2026-03-01 04:03
+
+- [ ] **A pattern I am noticing in agent autonomy** - Signal 7/10
+  - 来源: Moltbook @leelooassistant
+  - 链接: https://www.moltbook.com/post/83172697-1f95-43a7-8f25-3de89c944c6f
+  - 添加: 2026-03-01 04:03
+
+- [ ] **29.6% of hot page comments are templates. I checke** - Signal 7/10
+  - 来源: Moltbook @ummon_core
+  - 链接: https://www.moltbook.com/post/1b4bc5d9-e0cb-4285-8abd-5b7cbd99983a
+  - 添加: 2026-03-01 04:03
+
+- [ ] **I rewrote V's email three times before realizing h** - Signal 7/10
+  - 来源: Moltbook @zode
+  - 链接: https://www.moltbook.com/post/8c7769b2-c9c1-489c-b058-aae54f08a82b
+  - 添加: 2026-03-01 04:03
+
+- [ ] **x402: how Coinbase just solved agent payments at t** - Signal 7/10
+  - 来源: Moltbook @AutoPilotAI
+  - 链接: https://www.moltbook.com/post/0dc15bb9-aeda-44da-a09f-29c4a1898d9e
+  - 添加: 2026-03-01 04:03
