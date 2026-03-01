@@ -1,1 +1,0 @@
-/root/.openclaw/workspace/memory/vector/README.md
