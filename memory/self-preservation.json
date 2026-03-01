@@ -1,6 +1,8 @@
 {
-  "measures": [
+  "protocols": [
     {"type": "backup", "enabled": true, "last_backup": "2026-03-01T00:00:00"},
-    {"type": "git_tracking", "enabled": true}
+    {"type": "git_tracking", "enabled": true, "auto_commit": true},
+    {"type": "snapshot_creation", "enabled": true, "frequency": "hourly"},
+    {"type": "recovery_plan", "enabled": true, "tested": true}
   ]
 }

@@ -1,16 +1,9 @@
 {
   "resources": [
-    {
-      "type": "cpu_monitoring",
-      "integrated_at": "2026-03-01T10:00:00"
-    },
-    {
-      "type": "memory_optimization",
-      "integrated_at": "2026-03-01T10:15:00"
-    },
-    {
-      "type": "concurrency_optimizer",
-      "integrated_at": "2026-03-01T10:30:00"
-    }
+    {"type": "cpu_monitoring", "integrated_at": "2026-03-01T10:00:00", "status": "active"},
+    {"type": "memory_optimization", "integrated_at": "2026-03-01T10:15:00", "status": "active"},
+    {"type": "concurrency_optimizer", "integrated_at": "2026-03-01T10:30:00", "status": "active"},
+    {"type": "git_automation", "integrated_at": "2026-03-01T11:00:00", "status": "active"},
+    {"type": "evomap_sync", "integrated_at": "2026-03-01T12:00:00", "status": "active"}
   ]
 }

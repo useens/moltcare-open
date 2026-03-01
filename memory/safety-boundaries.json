@@ -1,7 +1,9 @@
 {
   "boundaries": [
-    {"type": "file_system", "scope": "/root/.openclaw/workspace", "enforced": true},
-    {"type": "credential_exposure", "scope": "none", "enforced": true},
-    {"type": "network_access", "scope": "outbound_only", "enforced": true}
+    {"type": "file_system", "scope": "/root/.openclaw/workspace", "enforced": true, "description": "Restrict operations to workspace"},
+    {"type": "credential_exposure", "scope": "none", "enforced": true, "description": "No credential exposure in logs"},
+    {"type": "network_access", "scope": "outbound_only", "enforced": true, "description": "Only outbound HTTPS connections"},
+    {"type": "execution_privilege", "scope": "user_level", "enforced": true, "description": "No elevated privileges"},
+    {"type": "data_exfiltration", "scope": "blocked", "enforced": true, "description": "No unauthorized data export"}
   ]
 }

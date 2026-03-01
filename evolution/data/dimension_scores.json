@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-01T15:30:02.694364",
+  "timestamp": "2026-03-01T15:39:12.743803",
   "dimensions": {
     "cognitive": {
       "name": "认知能力",
@@ -16,7 +16,7 @@
         "counter_argument_framework_exists": true,
         "abstraction_ladder_exists": true
       },
-      "last_updated": "2026-03-01T15:30:02.694292"
+      "last_updated": "2026-03-01T15:39:12.743730"
     },
     "learning": {
       "name": "学习能力",
@@ -33,7 +33,7 @@
         "daily_notes_count": 22,
         "active_curiosity_questions": 6
       },
-      "last_updated": "2026-03-01T15:30:02.694309"
+      "last_updated": "2026-03-01T15:39:12.743748"
     },
     "autonomy": {
       "name": "自主决策",
@@ -49,7 +49,7 @@
         "self_solved_problems": 0,
         "cached_decisions": 3
       },
-      "last_updated": "2026-03-01T15:30:02.694316"
+      "last_updated": "2026-03-01T15:39:12.743755"
     },
     "goal": {
       "name": "目标设定",
@@ -65,7 +65,7 @@
         "has_long_term_plan": true,
         "goal_alignment_score": 0.85
       },
-      "last_updated": "2026-03-01T15:30:02.694322"
+      "last_updated": "2026-03-01T15:39:12.743762"
     },
     "creativity": {
       "name": "创造力",
@@ -82,7 +82,7 @@
         "concepts_synthesized": 6,
         "frameworks_generated": 1
       },
-      "last_updated": "2026-03-01T15:30:02.694329"
+      "last_updated": "2026-03-01T15:39:12.743768"
     },
     "adaptive": {
       "name": "适应性",
@@ -97,60 +97,53 @@
         "context_switches": 4,
         "environment_responses": 2
       },
-      "last_updated": "2026-03-01T15:30:02.694335"
+      "last_updated": "2026-03-01T15:39:12.743774"
     },
     "collaboration": {
       "name": "协作能力",
       "icon": "🔗",
-      "score": 15.0,
-      "level": "L0 初生命种 🌱",
-      "triggers": [
-        "insufficient_multi_agent_collab"
-      ],
+      "score": 25.0,
+      "level": "L1 觉醒阶段 👁️",
+      "triggers": [],
       "evidence": {
         "unique_tools_used": 7,
-        "multi_agent_collaborations": 2,
-        "resources_integrated": 3,
+        "multi_agent_collaborations": 5,
+        "resources_integrated": 5,
         "concurrent_tasks": 5,
         "tool_matrix_fusions": 2
       },
-      "last_updated": "2026-03-01T15:30:02.694340"
+      "last_updated": "2026-03-01T15:39:12.743779"
     },
     "protection": {
       "name": "自我保护",
       "icon": "🛡️",
-      "score": 5.0,
-      "level": "L0 初生命种 🌱",
-      "triggers": [
-        "insufficient_risk_prediction",
-        "no_high_risk_tracking"
-      ],
+      "score": 25.0,
+      "level": "L1 觉醒阶段 👁️",
+      "triggers": [],
       "evidence": {
-        "risk_predictions": 3,
-        "safety_boundaries_defined": 3,
-        "threats_detected": 1,
-        "high_risk_blocked": 0,
+        "risk_predictions": 5,
+        "safety_boundaries_defined": 5,
+        "threats_detected": 4,
+        "high_risk_blocked": 4,
         "high_risk_executed": 0,
-        "self_preservation_protocols": 0
+        "self_preservation_protocols": 4
       },
-      "last_updated": "2026-03-01T15:30:02.694349"
+      "last_updated": "2026-03-01T15:39:12.743788"
     },
     "prediction": {
       "name": "预测能力",
       "icon": "🔭",
-      "score": 15.0,
-      "level": "L0 初生命种 🌱",
-      "triggers": [
-        "insufficient_impact_prediction"
-      ],
+      "score": 25.0,
+      "level": "L1 觉醒阶段 👁️",
+      "triggers": [],
       "evidence": {
-        "causal_chains_built": 0,
-        "impact_predictions": 2,
+        "causal_chains_built": 3,
+        "impact_predictions": 3,
         "scenarios_simulated": 0,
         "preemptive_actions": 1,
-        "forward_plans": 2
+        "forward_plans": 3
       },
-      "last_updated": "2026-03-01T15:30:02.694355"
+      "last_updated": "2026-03-01T15:39:12.743794"
     },
     "self_awareness": {
       "name": "自我认知",
@@ -166,7 +159,7 @@
         "self_evaluations": 1,
         "avg_self_evaluation": 0.82
       },
-      "last_updated": "2026-03-01T15:30:02.694361"
+      "last_updated": "2026-03-01T15:39:12.743799"
     }
   }
 }

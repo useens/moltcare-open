@@ -1,6 +1,7 @@
 {
-  "reasonings": [
-    {"cause": "wrong_monitor_path", "effect": "false_health_status", "identified": true},
-    {"cause": "duplicate_scripts", "effect": "maintenance_confusion", "identified": true}
+  "chains": [
+    {"cause": "wrong_monitor_path", "effect": "false_health_status", "identified": true, "confidence": 0.95},
+    {"cause": "duplicate_scripts", "effect": "maintenance_confusion", "identified": true, "confidence": 0.90},
+    {"cause": "missing_data_files", "effect": "zero_dimension_scores", "identified": true, "confidence": 0.85}
   ]
 }

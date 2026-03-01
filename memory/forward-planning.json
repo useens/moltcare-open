@@ -1,6 +1,7 @@
 {
   "plans": [
-    {"horizon": "7_days", "goals": ["complete_continuous_iteration_upgrade"]},
-    {"horizon": "30_days", "goals": ["achieve_all_dimensions_above_80"]}
+    {"horizon": "7_days", "goals": ["complete_continuous_iteration_upgrade", "reach_l2_in_weak_dimensions"]},
+    {"horizon": "30_days", "goals": ["achieve_all_dimensions_above_80", "deploy_advanced_prediction"]},
+    {"horizon": "90_days", "goals": ["reach_l5_all_dimensions", "full_autonomy_implementation"]}
   ]
 }
