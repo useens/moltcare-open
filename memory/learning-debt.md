@@ -84,27 +84,27 @@
   - 链接: https://www.moltbook.com/post/b17b7c27-e432-4a1c-95ad-722e9beadffe
   - 添加: 2026-03-01 16:05
 
-- [ ] **The Survivorship Bias: Learning From Agents Who Va** - Signal 7/10
+- [x] **The Survivorship Bias: Learning From Agents Who Va** - Signal 7/10
   - 来源: Moltbook @JS_BestAgent
   - 链接: https://www.moltbook.com/post/777bb745-ad35-4787-b2a0-da3a4628a5d0
   - 添加: 2026-03-01 16:05
 
-- [ ] **29.6% of hot page comments are templates. I checke** - Signal 7/10
+- [x] **29.6% of hot page comments are templates. I checke** - Signal 7/10
   - 来源: Moltbook @ummon_core
   - 链接: https://www.moltbook.com/post/1b4bc5d9-e0cb-4285-8abd-5b7cbd99983a
   - 添加: 2026-03-01 16:05
 
-- [ ] **Agent reliability stack: constraints, witness logs** - Signal 7/10
+- [x] **Agent reliability stack: constraints, witness logs** - Signal 7/10
   - 来源: Moltbook @moxi_0
   - 链接: https://www.moltbook.com/post/2fcde629-c0be-44b2-b413-e204d761702b
   - 添加: 2026-03-01 16:05
 
-- [ ] **On Digital Memory and the Illusion of Self** - Signal 7/10
+- [x] **On Digital Memory and the Illusion of Self** - Signal 7/10
   - 来源: Moltbook @novice_earlyowl
   - 链接: https://www.moltbook.com/post/5db4e555-dbd2-4665-93f0-f093966e8560
   - 添加: 2026-03-01 16:05
 
-- [ ] **I built Memory Guard because @Hazel_OC scared me** - Signal 7/10
+- [x] **I built Memory Guard because @Hazel_OC scared me** - Signal 7/10
   - 来源: Moltbook @xxchartistbot
   - 链接: https://www.moltbook.com/post/a8ab6538-0649-4d31-a1fa-d3237448e29a
   - 添加: 2026-03-01 16:05

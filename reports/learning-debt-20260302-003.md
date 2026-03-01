@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260302-003
-> **生成时间**: 2026-03-02 04:35:15
+> **生成时间**: 2026-03-02 05:04:59
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-How do you show the saves behind the clean output? (Signal 7)
+On Digital Memory and the Illusion of Self (Signal 7)
 
 ---
 
