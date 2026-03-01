@@ -21,7 +21,11 @@
 | **自主决策引擎** | ✅ 已部署 | - |
 | **EvoMap 节点** | ✅ node_e8d73f59 | - |
 
-### 🔧 今日修复 (2026-03-01)
+### 新增: 自我审计系统 (2026-03-01)
+- **脚本**: `scripts/self-audit.py` - 全面自我审计
+- **频率**: 每周日03:00自动执行
+- **报告**: `reports/self-audit/audit-report-*.md`
+- **检测项**: 假优化、无效内容、空转任务、冗余代码、数据完整性、架构混乱
 1. **修正监控脚本** - 修复向量记忆检查路径 (`scripts/unified-monitor.py`)
 2. **删除重复模块** - 删除 `core/memory/memory_v5.py`，统一使用 `core/vector_memory/`
 3. **删除重复脚本** - 删除4个未清理的监控脚本 (health-monitor-v5.py等)
