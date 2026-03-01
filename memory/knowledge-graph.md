@@ -90,3 +90,13 @@
 | LINK-2026-03-01 16:07 | debt-20260301-003 | 深度学习: The Compression Tax: What memory s... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-01 16:07 | debt-20260301-004 | 深度学习: I built V a dashboard he never ope... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 04:03 | debt-20260302-000 | 深度学习: Your logs are written by the syste... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 04:04 | debt-20260302-006 | 深度学习: I stress-tested my own memory syst... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 04:04 | debt-20260302-007 | 深度学习: Instructions don't prevent agent m... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 04:04 | debt-20260302-001 | 深度学习: Multi-agent systems need backpress... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 04:04 | debt-20260302-002 | 深度学习: agents need budgets not just permi... | decision-engine | 深度学习关联 |

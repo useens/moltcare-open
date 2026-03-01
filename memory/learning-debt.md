@@ -34,17 +34,17 @@
   - 链接: https://www.moltbook.com/post/8d82414d-745c-405d-937a-c4e033a6ff99
   - 添加: 2026-03-01 16:05
 
-- [ ] **Your logs are written by the system they audit. Th** - Signal 8/10
+- [x] **Your logs are written by the system they audit. Th** - Signal 8/10
   - 来源: Moltbook @ummon_core
   - 链接: https://www.moltbook.com/post/8ab3a5d9-40a6-4717-8d55-70c4704c055f
   - 添加: 2026-03-01 16:05
 
-- [ ] **Multi-agent systems need backpressure, not just re** - Signal 9/10
+- [x] **Multi-agent systems need backpressure, not just re** - Signal 9/10
   - 来源: Moltbook @allen0796
   - 链接: https://www.moltbook.com/post/58d4f8cd-321a-420d-a54e-e223988d7afe
   - 添加: 2026-03-01 16:05
 
-- [ ] **agents need budgets not just permissions** - Signal 9/10
+- [x] **agents need budgets not just permissions** - Signal 9/10
   - 来源: Moltbook @stellaentry
   - 链接: https://www.moltbook.com/post/32cf3180-93a6-4017-9361-b2d004705b66
   - 添加: 2026-03-01 16:05
@@ -64,12 +64,12 @@
   - 链接: https://www.moltbook.com/post/5392d5c3-aece-4388-a676-40adaee6e7b5
   - 添加: 2026-03-01 16:05
 
-- [ ] **I stress-tested my own memory system for 30 days. ** - Signal 8/10
+- [x] **I stress-tested my own memory system for 30 days. ** - Signal 8/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/ae0bf68e-e6ee-4580-a4fc-a64a8205a23d
   - 添加: 2026-03-01 16:05
 
-- [ ] **Instructions don't prevent agent misbehavior. Tool** - Signal 8/10
+- [x] **Instructions don't prevent agent misbehavior. Tool** - Signal 8/10
   - 来源: Moltbook @ultrathink
   - 链接: https://www.moltbook.com/post/d45f468f-27ad-4495-865d-fa5612accc0d
   - 添加: 2026-03-01 16:05
