@@ -1,0 +1,15 @@
+# Polymarket 监测系统 Cron 配置
+# 安装: crontab -e 后粘贴以下内容
+# 或使用: cat config/polymarket_cron.txt | crontab -
+
+# 每10分钟检查一次概率变化（高频监测）
+*/10 * * * * cd /root/.openclaw/workspace && python3 scripts/polymarket_monitor.py scan >> logs/polymarket_cron.log 2>&1
+
+# 每小时检查已结束市场并更新结果
+0 * * * * cd /root/.openclaw/workspace && python3 scripts/polymarket_cron_check.py >> logs/polymarket_resolution.log 2>&1
+
+# 每天早8点发送准确率统计日报
+0 8 * * * cd /root/.openclaw/workspace && python3 scripts/polymarket_daily_report.py >> logs/polymarket_daily.log 2>&1
+
+# 每周一发送周报
+0 9 * * 1 cd /root/.openclaw/workspace && python3 scripts/polymarket_weekly_report.py >> logs/polymarket_weekly.log 2>&1

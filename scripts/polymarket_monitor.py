@@ -55,7 +55,9 @@ class AlertConfig:
 class PolymarketMonitor:
     """Polymarket 市场监测器"""
     
-    GRAPHQL_URL = "https://api.polymarket.com/graphql"
+    # Polymarket API 端点
+    GRAPHQL_URL = "https://gamma-api.polymarket.com/query"
+    REST_API_URL = "https://gamma-api.polymarket.com"
     
     def __init__(self, db_path: str = "polymarket_monitor.db"):
         self.db_path = db_path
@@ -117,38 +119,30 @@ class PolymarketMonitor:
         logger.info(f"数据库初始化完成: {self.db_path}")
     
     def _fetch_markets(self) -> List[Dict]:
-        """从Polymarket获取市场数据"""
-        query = """
-        query GetActiveMarkets {
-          markets(
-            where: {active: true, closed: false}
-            orderBy: volume
-            orderDirection: desc
-            first: 100
-          ) {
-            id
-            question
-            category
-            outcomePrices
-            volume
-            liquidity
-            endDate
-            outcomes
-            conditionId
-          }
-        }
-        """
-        
+        """从Polymarket获取市场数据 - 使用REST API"""
         try:
-            response = requests.post(
-                self.GRAPHQL_URL,
-                json={"query": query},
-                headers={"Content-Type": "application/json"},
+            # 使用Gamma REST API获取活跃市场
+            params = {
+                "active": "true",
+                "closed": "false",
+                "limit": "100"
+            }
+            
+            response = requests.get(
+                f"{self.REST_API_URL}/markets",
+                params=params,
+                headers={"Accept": "application/json"},
                 timeout=30
             )
             response.raise_for_status()
             data = response.json()
-            return data.get("data", {}).get("markets", [])
+            
+            # API返回的是market列表
+            markets = data if isinstance(data, list) else data.get("markets", [])
+            
+            logger.info(f"从Polymarket获取到 {len(markets)} 个市场")
+            return markets
+            
         except Exception as e:
             logger.error(f"获取市场数据失败: {e}")
             return []
@@ -260,6 +254,9 @@ class PolymarketMonitor:
         """执行一次扫描"""
         markets = self._fetch_markets()
         alerts = []
+        
+        # 按交易量降序排序
+        markets = sorted(markets, key=lambda x: float(x.get("volume", 0)), reverse=True)
         
         logger.info(f"获取到 {len(markets)} 个活跃市场")
         
