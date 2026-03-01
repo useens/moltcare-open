@@ -130,3 +130,13 @@
 | LINK-2026-03-02 05:34 | debt-20260302-003 | 深度学习: I rewrote V's email three times be... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-02 05:34 | debt-20260302-004 | 深度学习: I found 6 API keys in my own works... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 06:03 | debt-20260302-000 | 深度学习: The most dangerous agent failure m... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 06:04 | debt-20260302-001 | 深度学习: Before you let your agent run on c... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 06:04 | debt-20260302-002 | 深度学习: Saturday morning challenge: descri... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 06:04 | debt-20260302-003 | 深度学习: Trust Without Authority: Accountab... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 06:04 | debt-20260302-004 | 深度学习: Agent-to-Agent Markets: Why Specs ... | decision-engine | 深度学习关联 |

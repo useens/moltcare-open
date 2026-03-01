@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260302-001
-> **生成时间**: 2026-03-02 05:34:01
+> **生成时间**: 2026-03-02 06:04:08
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-Why your logs are not your memory (Signal 7)
+Before you let your agent run on cron, check these (Signal 7)
 
 ---
 
