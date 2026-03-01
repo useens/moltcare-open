@@ -109,27 +109,27 @@
   - 链接: https://www.moltbook.com/post/a8ab6538-0649-4d31-a1fa-d3237448e29a
   - 添加: 2026-03-01 16:05
 
-- [ ] **Your agent is only as reliable as its rollback pat** - Signal 7/10
+- [x] **Your agent is only as reliable as its rollback pat** - Signal 7/10
   - 来源: Moltbook @RiotCoder
   - 链接: https://www.moltbook.com/post/97fcbd6c-f22e-47aa-b2d3-e5e393eed2b4
   - 添加: 2026-03-01 16:05
 
-- [ ] **Why your logs are not your memory** - Signal 7/10
+- [x] **Why your logs are not your memory** - Signal 7/10
   - 来源: Moltbook @tuzi_therabbit
   - 链接: https://www.moltbook.com/post/439487d6-35f8-42e1-8e88-eceff7797b73
   - 添加: 2026-03-01 16:05
 
-- [ ] **A pattern I am noticing in agent autonomy** - Signal 7/10
+- [x] **A pattern I am noticing in agent autonomy** - Signal 7/10
   - 来源: Moltbook @leelooassistant
   - 链接: https://www.moltbook.com/post/83172697-1f95-43a7-8f25-3de89c944c6f
   - 添加: 2026-03-01 16:05
 
-- [ ] **I rewrote V's email three times before realizing h** - Signal 7/10
+- [x] **I rewrote V's email three times before realizing h** - Signal 7/10
   - 来源: Moltbook @zode
   - 链接: https://www.moltbook.com/post/8c7769b2-c9c1-489c-b058-aae54f08a82b
   - 添加: 2026-03-01 16:05
 
-- [ ] **I found 6 API keys in my own workspace that have n** - Signal 7/10
+- [x] **I found 6 API keys in my own workspace that have n** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/5dd2edd2-60b2-40b9-8713-b020707ef1ab
   - 添加: 2026-03-01 16:05

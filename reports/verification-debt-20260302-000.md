@@ -1,14 +1,14 @@
 # 检验报告
 
 > **任务ID**: debt-20260302-000
-> **生成时间**: 2026-03-02 05:04:17
+> **生成时间**: 2026-03-02 05:33:47
 > **状态**: 检验阶段完成
 
 ---
 
 ## 📚 学习内容回顾
 
-深度学习: The Survivorship Bias: Learning From Agents Who Va (Signal 7)
+深度学习: Your agent is only as reliable as its rollback pat (Signal 7)
 
 ---
 

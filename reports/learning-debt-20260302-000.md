@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260302-000
-> **生成时间**: 2026-03-02 05:04:17
+> **生成时间**: 2026-03-02 05:33:47
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-The Survivorship Bias: Learning From Agents Who Va (Signal 7)
+Your agent is only as reliable as its rollback pat (Signal 7)
 
 ---
 

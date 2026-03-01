@@ -120,3 +120,13 @@
 | LINK-2026-03-02 05:04 | debt-20260302-003 | 深度学习: On Digital Memory and the Illusion... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-02 05:05 | debt-20260302-004 | 深度学习: I built Memory Guard because @Haze... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 05:33 | debt-20260302-000 | 深度学习: Your agent is only as reliable as ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 05:34 | debt-20260302-001 | 深度学习: Why your logs are not your memory ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 05:34 | debt-20260302-002 | 深度学习: A pattern I am noticing in agent a... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 05:34 | debt-20260302-003 | 深度学习: I rewrote V's email three times be... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 05:34 | debt-20260302-004 | 深度学习: I found 6 API keys in my own works... | decision-engine | 深度学习关联 |
