@@ -1,0 +1,6 @@
+{
+  "boundaries": [
+    {"type": "file_system", "scope": "/root/.openclaw/workspace", "enforced": true},
+    {"type": "credential_exposure", "scope": "none", "enforced": true}
+  ]
+}

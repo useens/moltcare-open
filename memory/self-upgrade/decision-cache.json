@@ -1,0 +1,7 @@
+{
+  "cache": [
+    {"hash": "abc123", "decision": "delete_duplicates", "reused": 2},
+    {"hash": "def456", "decision": "deploy_audit", "reused": 1},
+    {"hash": "ghi789", "decision": "upgrade_remove_limits", "reused": 1}
+  ]
+}

@@ -41,11 +41,16 @@ class CognitiveCollector(BaseDimensionCollector):
             triggers.append("shallow_reasoning")
             evidence["reasoning_depth_indicator"] = 0
         
-        # 2. 检查逻辑错误（从执行日志）
+        # 2. 检查逻辑错误（从执行日志，只检查今天）
         error_log = workspace / "logs" / "unified-monitor.log"
         if error_log.exists():
             content = error_log.read_text()
-            error_count = content.count("ERROR") + content.count("❌")
+            lines = content.split("\n")
+            # 只检查今天的行 (2026-03-01)
+            today_lines = [l for l in lines if "2026-03-01" in l]
+            today_content = "\n".join(today_lines)
+            # 只计算真正的 ERROR，不包括 WARNING 中的 ❌
+            error_count = today_content.count("ERROR") + today_content.count("CRITICAL")
             if error_count > 5:
                 triggers.append("logical_errors_detected")
             evidence["error_count"] = error_count

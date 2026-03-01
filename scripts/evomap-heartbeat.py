@@ -36,16 +36,19 @@ def load_config():
 
 def load_state():
     """加载状态"""
-    if STATE_PATH.exists():
-        with open(STATE_PATH, "r") as f:
-            return json.load(f)
-    return {
+    defaults = {
         "total_sent": 0,
         "total_failed": 0,
         "consecutive_failures": 0,
         "last_heartbeat": None,
         "last_success": None
     }
+    if STATE_PATH.exists():
+        with open(STATE_PATH, "r") as f:
+            state = json.load(f)
+            # 合并默认值，确保所有键都存在
+            return {**defaults, **state}
+    return defaults
 
 def save_state(state):
     """保存状态"""

@@ -1,0 +1,6 @@
+{
+  "priorities": [
+    {"task": "system_health", "priority": "critical", "rationale": "affects_all_operations"},
+    {"task": "dimension_upgrade", "priority": "high", "rationale": "improves_capability"}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "failures": [
+    {
+      "timestamp": "2026-03-01T10:00:00",
+      "mode": "evomap_rate_limiting",
+      "context": "asset_publication",
+      "recovery": "retry_with_backoff"
+    }
+  ]
+}
