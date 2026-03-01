@@ -88,7 +88,7 @@ class MemoryCoreV5:
     
     def search(self, query: str, limit: int = 5) -> List[Dict]:
         """
-        简单关键词搜索（未来将升级为向量搜索）
+        语义搜索（支持Lance向量库）
         
         Args:
             query: 搜索查询
@@ -97,6 +97,27 @@ class MemoryCoreV5:
         Returns:
             匹配的记忆列表
         """
+        # 优先尝试Lance向量搜索
+        try:
+            import lancedb
+            from sentence_transformers import SentenceTransformer
+            
+            db = lancedb.connect(str(self.lance_dir.parent))
+            if "memories" in db.table_names():
+                table = db.open_table("memories")
+                
+                # 加载模型并编码查询
+                model = SentenceTransformer('all-MiniLM-L6-v2')
+                query_vector = model.encode([query])[0]
+                
+                # 执行向量搜索
+                results = table.search(query_vector).limit(limit).to_pandas()
+                
+                return results.to_dict('records')
+        except Exception as e:
+            logger.debug(f"Lance搜索失败，回退到关键词搜索: {e}")
+        
+        # 回退到关键词搜索
         query_lower = query.lower()
         results = []
         
@@ -104,13 +125,10 @@ class MemoryCoreV5:
             content = memory.get("content", "").lower()
             if query_lower in content:
                 results.append(memory)
-                # 更新访问统计
                 memory["access_count"] = memory.get("access_count", 0) + 1
                 memory["last_accessed"] = datetime.now().isoformat()
         
-        # 按相关性和时间排序
         results.sort(key=lambda x: (x.get("access_count", 0), x.get("timestamp", "")), reverse=True)
-        
         return results[:limit]
     
     def get_stats(self) -> Dict[str, Any]:
