@@ -4,5 +4,23 @@
     "cpu_percent": 25.9,
     "status": "underutilized",
     "target_range": "50-80%"
+  },
+  {
+    "timestamp": "2026-03-01T10:30:03.501784",
+    "cpu_percent": 56.7,
+    "status": "optimal",
+    "target_range": "50-80%"
+  },
+  {
+    "timestamp": "2026-03-01T10:40:03.051865",
+    "cpu_percent": 25.8,
+    "status": "underutilized",
+    "target_range": "50-80%"
+  },
+  {
+    "timestamp": "2026-03-01T10:50:03.103523",
+    "cpu_percent": 26.8,
+    "status": "underutilized",
+    "target_range": "50-80%"
   }
 ]
