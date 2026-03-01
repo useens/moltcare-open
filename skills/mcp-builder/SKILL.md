@@ -6,6 +6,20 @@ license: Complete terms in LICENSE.txt
 
 # MCP Server Development Guide
 
+# Workflow
+
+Copy this checklist and track progress:
+
+```
+Task Progress:
+- [ ] Step 1: Understand user goal
+- [ ] Step 2: Select approach
+- [ ] Step 3: Ask user preferences (format, scope)
+- [ ] Step 4: Execute the task
+- [ ] Step 5: Summarize results
+```
+
+
 ## Overview
 
 To create high-quality MCP (Model Context Protocol) servers that enable LLMs to effectively interact with external services, use this skill. An MCP server provides tools that allow LLMs to access external services and APIs. The quality of an MCP server is measured by how well it enables LLMs to accomplish real-world tasks using the tools provided.
@@ -326,3 +340,12 @@ Load these resources as needed during development:
   - XML format specifications
   - Example questions and answers
   - Running an evaluation with the provided scripts
+
+## Error Handling
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `COMMAND_NOT_FOUND` | Tool not installed | Install the required CLI tool |
+| `AUTH_ERROR` | Missing/invalid token | Check `.env` file |
+| `NOT_FOUND` | Resource doesn't exist | Verify ID/name |
+

@@ -9,6 +9,20 @@ user-invocable: true
 
 > Developer oversight and AI agent coaching for OpenClaw.
 
+# Workflow
+
+Copy this checklist and track progress:
+
+```
+Task Progress:
+- [ ] Step 1: Understand user goal
+- [ ] Step 2: Select approach
+- [ ] Step 3: Ask user preferences (format, scope)
+- [ ] Step 4: Execute the task
+- [ ] Step 5: Summarize results
+```
+
+
 ## Overview
 
 **god-mode** gives you a bird's-eye view of all your coding projects and coaches you to write better AI agent instructions.
@@ -191,3 +205,12 @@ Force refresh: `god sync --force`
 *OpenClaw Community Skill*  
 *License: MIT*  
 *Repository: https://github.com/InfantLab/god-mode-skill*
+
+## Output Formats
+
+| Format | Use Case | Command |
+|--------|----------|---------|
+| **Quick** | Preview in chat | (no flag) |
+| **JSON** | Machine processing | `--format json` |
+| **Markdown** | Human readable | `--format md` |
+

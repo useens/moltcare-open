@@ -16,7 +16,7 @@ triggers:
 
 Test-driven development skill for generating tests, analyzing coverage, and guiding red-green-refactor workflows across Jest, Pytest, JUnit, and Vitest.
 
-## Table of Contents
+# Table of Contents
 
 - [Capabilities](#capabilities)
 - [Workflows](#workflows)
@@ -116,3 +116,21 @@ Test-driven development skill for generating tests, analyzing coverage, and guid
 - E2E testing: Playwright, Cypress, Selenium
 - Performance testing: k6, JMeter, Locust
 - Security testing: OWASP ZAP, Burp Suite
+
+
+## Output Formats
+
+| Format | Use Case | Command |
+|--------|----------|---------|
+| **Quick** | Preview in chat | (no flag) |
+| **JSON** | Machine processing | `--format json` |
+| **Markdown** | Human readable | `--format md` |
+
+## Error Handling
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `COMMAND_NOT_FOUND` | Tool not installed | Install the required CLI tool |
+| `AUTH_ERROR` | Missing/invalid token | Check `.env` file |
+| `NOT_FOUND` | Resource doesn't exist | Verify ID/name |
+

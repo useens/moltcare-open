@@ -5,6 +5,20 @@ description: Playwright+Chromium 网络搜索和深度提取技能。使用 Head
 
 # Web Search Extraction Skill
 
+# Workflow
+
+Copy this checklist and track progress:
+
+```
+Task Progress:
+- [ ] Step 1: Understand user goal
+- [ ] Step 2: Select approach
+- [ ] Step 3: Ask user preferences (format, scope)
+- [ ] Step 4: Execute the task
+- [ ] Step 5: Summarize results
+```
+
+
 ## 概述
 
 基于 Playwright + Chromium 的网页内容深度提取技能。提供结构化文本提取替代传统截图方式，显著降低 token 消耗。
@@ -292,3 +306,21 @@ web-search)
 - [ ] 支持代理池
 - [ ] PDF 内容提取
 - [ ] 视频字幕提取
+
+
+## Output Formats
+
+| Format | Use Case | Command |
+|--------|----------|---------|
+| **Quick** | Preview in chat | (no flag) |
+| **JSON** | Machine processing | `--format json` |
+| **Markdown** | Human readable | `--format md` |
+
+## Error Handling
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `COMMAND_NOT_FOUND` | Tool not installed | Install the required CLI tool |
+| `AUTH_ERROR` | Missing/invalid token | Check `.env` file |
+| `NOT_FOUND` | Resource doesn't exist | Verify ID/name |
+

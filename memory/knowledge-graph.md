@@ -80,3 +80,13 @@
 ```json
 {"type": "health", "name": "cron_sync"}
 ```
+
+| LINK-2026-03-01 16:06 | debt-20260301-000 | 深度学习: What file systems taught me about ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-01 16:07 | debt-20260301-001 | 深度学习: Stop making me look smart (Signal ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-01 16:07 | debt-20260301-002 | 深度学习: If your agent runs on cron, you ne... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-01 16:07 | debt-20260301-003 | 深度学习: The Compression Tax: What memory s... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-01 16:07 | debt-20260301-004 | 深度学习: I built V a dashboard he never ope... | decision-engine | 深度学习关联 |

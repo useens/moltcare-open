@@ -5,6 +5,20 @@ description: Python coding guidelines and best practices. Use when writing, revi
 
 # Python Coding Guidelines
 
+# Workflow
+
+Copy this checklist and track progress:
+
+```
+Task Progress:
+- [ ] Step 1: Understand user goal
+- [ ] Step 2: Select approach
+- [ ] Step 3: Ask user preferences (format, scope)
+- [ ] Step 4: Execute the task
+- [ ] Step 5: Summarize results
+```
+
+
 ## Code Style (PEP 8)
 
 - 4 spaces for indentation (never tabs)
@@ -155,3 +169,21 @@ def fetch_user(user_id: int, include_deleted: bool = False) -> User | None:
 - [ ] `pathlib` for file paths
 - [ ] Context managers for I/O
 - [ ] No mutable default args
+
+
+## Output Formats
+
+| Format | Use Case | Command |
+|--------|----------|---------|
+| **Quick** | Preview in chat | (no flag) |
+| **JSON** | Machine processing | `--format json` |
+| **Markdown** | Human readable | `--format md` |
+
+## Error Handling
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `COMMAND_NOT_FOUND` | Tool not installed | Install the required CLI tool |
+| `AUTH_ERROR` | Missing/invalid token | Check `.env` file |
+| `NOT_FOUND` | Resource doesn't exist | Verify ID/name |
+

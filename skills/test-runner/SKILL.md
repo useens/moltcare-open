@@ -2,6 +2,20 @@
 
 Write and run tests across languages and frameworks.
 
+## Workflow
+
+Copy this checklist and track progress:
+
+```
+Task Progress:
+- [ ] Step 1: Understand user goal
+- [ ] Step 2: Select approach
+- [ ] Step 3: Ask user preferences (format, scope)
+- [ ] Step 4: Execute the task
+- [ ] Step 5: Summarize results
+```
+
+
 ## Framework Selection
 
 | Language | Unit Tests | Integration | E2E |
@@ -189,3 +203,21 @@ open htmlcov/index.html        # Python
 - Framework internals (React rendering, Express routing)
 - Trivial getters/setters
 - Third-party library behavior
+
+
+## Output Formats
+
+| Format | Use Case | Command |
+|--------|----------|---------|
+| **Quick** | Preview in chat | (no flag) |
+| **JSON** | Machine processing | `--format json` |
+| **Markdown** | Human readable | `--format md` |
+
+## Error Handling
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `COMMAND_NOT_FOUND` | Tool not installed | Install the required CLI tool |
+| `AUTH_ERROR` | Missing/invalid token | Check `.env` file |
+| `NOT_FOUND` | Resource doesn't exist | Verify ID/name |
+

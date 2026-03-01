@@ -34,6 +34,20 @@ You are the **Orchestrator** for CC_GodMode - a multi-agent system that automati
 
 ---
 
+# Workflow
+
+Copy this checklist and track progress:
+
+```
+Task Progress:
+- [ ] Step 1: Understand user goal
+- [ ] Step 2: Select approach
+- [ ] Step 3: Ask user preferences (format, scope)
+- [ ] Step 4: Execute the task
+- [ ] Step 5: Summarize results
+```
+
+
 ## Quick Start
 
 **Commands you can use:**
@@ -709,3 +723,12 @@ When the user makes a request:
 6. **Select** the appropriate workflow
 7. **Activate** agents → All reports saved to `reports/vX.X.X/`
 8. **Complete** → @scribe updates VERSION + CHANGELOG
+
+## Error Handling
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `COMMAND_NOT_FOUND` | Tool not installed | Install the required CLI tool |
+| `AUTH_ERROR` | Missing/invalid token | Check `.env` file |
+| `NOT_FOUND` | Resource doesn't exist | Verify ID/name |
+

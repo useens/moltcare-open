@@ -15,6 +15,20 @@ The skill automatically selects between local and remote browser environments:
 - **If no Browserbase API keys**: Falls back to local Chrome browser
 - **No user prompting**: The selection happens automatically based on available configuration
 
+# Workflow
+
+Copy this checklist and track progress:
+
+```
+Task Progress:
+- [ ] Step 1: Understand user goal
+- [ ] Step 2: Select approach
+- [ ] Step 3: Ask user preferences (format, scope)
+- [ ] Step 4: Execute the task
+- [ ] Step 5: Summarize results
+```
+
+
 ## Setup (First Time Only)
 
 Check `setup.json` in this directory. If `setupComplete: false`:
@@ -71,3 +85,12 @@ browser close
 
 For detailed examples, see [EXAMPLES.md](EXAMPLES.md).
 For API reference, see [REFERENCE.md](REFERENCE.md).
+
+## Output Formats
+
+| Format | Use Case | Command |
+|--------|----------|---------|
+| **Quick** | Preview in chat | (no flag) |
+| **JSON** | Machine processing | `--format json` |
+| **Markdown** | Human readable | `--format md` |
+

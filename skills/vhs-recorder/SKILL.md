@@ -7,9 +7,23 @@ description: Create professional terminal recordings with VHS tape files - guide
 
 Create terminal recordings with Charm's VHS. Use when creating CLI demos, README animations, documentation videos.
 
+# Workflow
+
+Copy this checklist and track progress:
+
+```
+Task Progress:
+- [ ] Step 1: Understand user goal
+- [ ] Step 2: Select approach
+- [ ] Step 3: Ask user preferences (format, scope)
+- [ ] Step 4: Execute the task
+- [ ] Step 5: Summarize results
+```
+
+
 ## Prerequisites
-- `vhs` installed (`brew install vhs` / `go install github.com/charmbracelet/vhs@latest`)
-- `ttyd` and `ffmpeg` on PATH
+- [ ] `vhs` installed (`brew install vhs` / `go install github.com/charmbracelet/vhs@latest`)
+- [ ] `ttyd` and `ffmpeg` on PATH
 
 ## Tape File Structure
 ```tape
@@ -87,3 +101,12 @@ vhs manual          # Show full command reference
 - [timing-control.md](./references/timing-control.md) - Pacing strategies
 - [settings.md](./references/settings.md) - All configuration options
 - [examples.md](./references/examples.md) - Real-world tape files
+
+## Error Handling
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `COMMAND_NOT_FOUND` | Tool not installed | Install the required CLI tool |
+| `AUTH_ERROR` | Missing/invalid token | Check `.env` file |
+| `NOT_FOUND` | Resource doesn't exist | Verify ID/name |
+

@@ -9,6 +9,20 @@ metadata: {"clawdbot":{"emoji":"🐳","requires":{"bins":["docker"]}}}
 
 Essential Docker commands for container and image management.
 
+# Workflow
+
+Copy this checklist and track progress:
+
+```
+Task Progress:
+- [ ] Step 1: Understand user goal
+- [ ] Step 2: Select approach
+- [ ] Step 3: Ask user preferences (format, scope)
+- [ ] Step 4: Execute the task
+- [ ] Step 5: Summarize results
+```
+
+
 ## Container Lifecycle
 
 ### Running containers
@@ -347,3 +361,21 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 Official docs: https://docs.docker.com/
 Dockerfile reference: https://docs.docker.com/engine/reference/builder/
 Compose file reference: https://docs.docker.com/compose/compose-file/
+
+
+## Output Formats
+
+| Format | Use Case | Command |
+|--------|----------|---------|
+| **Quick** | Preview in chat | (no flag) |
+| **JSON** | Machine processing | `--format json` |
+| **Markdown** | Human readable | `--format md` |
+
+## Error Handling
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `COMMAND_NOT_FOUND` | Tool not installed | Install the required CLI tool |
+| `AUTH_ERROR` | Missing/invalid token | Check `.env` file |
+| `NOT_FOUND` | Resource doesn't exist | Verify ID/name |
+

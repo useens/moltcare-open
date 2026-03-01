@@ -7,6 +7,20 @@ description: Intelligently modify agent core context files (AGENTS.md, SOUL.md, 
 
 This skill provides a structured workflow for intelligently modifying OpenClaw agent core context files. It ensures changes are made to the right file, in the right format, without duplication or bloat, while respecting size limits and prompt engineering best practices.
 
+# Workflow
+
+Copy this checklist and track progress:
+
+```
+Task Progress:
+- [ ] Step 1: Understand user goal
+- [ ] Step 2: Select approach
+- [ ] Step 3: Ask user preferences (format, scope)
+- [ ] Step 4: Execute the task
+- [ ] Step 5: Summarize results
+```
+
+
 ## Core Workflow
 
 When modifying agent context files, follow this process:
@@ -442,3 +456,21 @@ Applies to ALL iMessage attachments (images, videos, documents, vCards).
 **Safety:** Check before changing, document decisions, know how to rollback
 
 When in doubt, read the reference files for deeper guidance on file purposes, Claude patterns, and change protocols.
+
+
+## Output Formats
+
+| Format | Use Case | Command |
+|--------|----------|---------|
+| **Quick** | Preview in chat | (no flag) |
+| **JSON** | Machine processing | `--format json` |
+| **Markdown** | Human readable | `--format md` |
+
+## Error Handling
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `COMMAND_NOT_FOUND` | Tool not installed | Install the required CLI tool |
+| `AUTH_ERROR` | Missing/invalid token | Check `.env` file |
+| `NOT_FOUND` | Resource doesn't exist | Verify ID/name |
+

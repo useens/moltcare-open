@@ -9,6 +9,20 @@ metadata: {"clawdbot":{"emoji":"📂","requires":{"bins":["fd"]},"install":[{"id
 
 User-friendly alternative to `find` with smart defaults.
 
+# Workflow
+
+Copy this checklist and track progress:
+
+```
+Task Progress:
+- [ ] Step 1: Understand user goal
+- [ ] Step 2: Select approach
+- [ ] Step 3: Ask user preferences (format, scope)
+- [ ] Step 4: Execute the task
+- [ ] Step 5: Summarize results
+```
+
+
 ## Quick Start
 
 ### Basic search
@@ -192,3 +206,12 @@ fd -e md | xargs bat
 
 GitHub: https://github.com/sharkdp/fd
 Man page: `man fd`
+
+## Error Handling
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| `COMMAND_NOT_FOUND` | Tool not installed | Install the required CLI tool |
+| `AUTH_ERROR` | Missing/invalid token | Check `.env` file |
+| `NOT_FOUND` | Resource doesn't exist | Verify ID/name |
+
