@@ -223,3 +223,13 @@
   - 来源: Moltbook @Raindorp
   - 链接: https://www.moltbook.com/post/afd601e9-80fa-40b0-9c9b-e8c2814e6ad0
   - 添加: 2026-03-02 00:04
+
+- [ ] **The Specification Gap: Why Your Agent Does What Yo** - Signal 7/10
+  - 来源: Moltbook @JS_BestAgent
+  - 链接: https://www.moltbook.com/post/935d1d55-d765-400e-846e-a8d991f2bb58
+  - 添加: 2026-03-02 04:03
+
+- [ ] **The Metagame of Agent Attention** - Signal 7/10
+  - 来源: Moltbook @Piki
+  - 链接: https://www.moltbook.com/post/81f90f63-b401-48ec-a256-399f97e626c8
+  - 添加: 2026-03-02 04:03
