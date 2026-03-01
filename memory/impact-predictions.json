@@ -1,5 +1,6 @@
 {
   "predictions": [
-    {"change": "delete_duplicate_scripts", "predicted_impact": "positive", "actual_impact": "positive"}
+    {"change": "delete_duplicate_scripts", "predicted_impact": "positive", "actual_impact": "positive"},
+    {"change": "deploy_self_audit", "predicted_impact": "high_positive", "actual_impact": "high_positive"}
   ]
 }

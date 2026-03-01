@@ -1,5 +1,6 @@
 {
+  "score": 0.85,
   "calibrations": [
-    {"timestamp": "2026-03-01T10:00:00", "claimed_capability": "memory_management", "actual_performance": "improved_after_fix"}
+    {"timestamp": "2026-03-01T10:00:00", "claimed": "can_fix_memory", "actual": "success"}
   ]
 }

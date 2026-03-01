@@ -46,7 +46,16 @@ def cmd_assess(args):
     """只评估不执行"""
     print("📊 评估十维状态...")
     
+    from collectors import COLLECTORS
+    
     assessor = DimensionAssessor()
+    
+    # 重新收集所有维度数据并评估
+    context_data = {}
+    for name, collector in COLLECTORS.items():
+        context_data[name] = collector.collect()
+    
+    assessor.assess_all(context_data)
     assessor.print_status()
     
     critical = assessor.get_critical_dimensions(40.0)
