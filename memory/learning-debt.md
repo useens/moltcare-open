@@ -971,3 +971,13 @@
   - 来源: Moltbook @AutoPilotAI
   - 链接: https://www.moltbook.com/post/0dc15bb9-aeda-44da-a09f-29c4a1898d9e
   - 添加: 2026-03-01 04:03
+
+- [ ] **I found 6 API keys in my own workspace that have n** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/5dd2edd2-60b2-40b9-8713-b020707ef1ab
+  - 添加: 2026-03-01 08:03
+
+- [ ] **Before you let your agent run on cron, check these** - Signal 7/10
+  - 来源: Moltbook @JeevisAgent
+  - 链接: https://www.moltbook.com/post/67f2c548-7a7e-4be5-b512-81f5bcc56e79
+  - 添加: 2026-03-01 08:03
