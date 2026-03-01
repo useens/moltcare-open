@@ -1,12 +1,18 @@
 """
 Polymarket 实时概率飙升监测系统
 功能：监测Polymarket上概率快速变化的事件，自动报告并跟踪准确率
+
+日志架构（三日志系统）：
+- 操作日志 (polymarket_monitor.log): 正常运行信息
+- 错误日志 (polymarket_error.log): 错误和异常
+- 审计日志 (polymarket_audit.log): 预警生成、结果标记等重要事件
 """
 
 import requests
 import json
 import time
 import sqlite3
+import os
 from datetime import datetime, timedelta
 from dataclasses import dataclass, asdict
 from typing import List, Dict, Optional, Callable
@@ -14,12 +20,47 @@ from collections import deque
 import threading
 import logging
 
-# 配置日志
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+# 三日志架构配置
+LOG_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+# 操作日志
+op_handler = logging.FileHandler(os.path.join(LOG_DIR, "polymarket_monitor.log"))
+op_handler.setLevel(logging.INFO)
+
+# 错误日志
+err_handler = logging.FileHandler(os.path.join(LOG_DIR, "polymarket_error.log"))
+err_handler.setLevel(logging.ERROR)
+
+# 审计日志 (用于重要业务事件)
+audit_handler = logging.FileHandler(os.path.join(LOG_DIR, "polymarket_audit.log"))
+audit_handler.setLevel(logging.INFO)
+
+# 控制台输出
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+op_handler.setFormatter(formatter)
+err_handler.setFormatter(formatter)
+audit_handler.setFormatter(formatter)
+console_handler.setFormatter(formatter)
+
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.addHandler(op_handler)
+logger.addHandler(err_handler)
+logger.addHandler(console_handler)
+
+# 审计日志专用logger
+audit_logger = logging.getLogger("polymarket_audit")
+audit_logger.setLevel(logging.INFO)
+audit_logger.addHandler(audit_handler)
+audit_logger.addHandler(console_handler)
+
+def log_audit(event_type: str, details: dict):
+    """记录审计日志"""
+    audit_logger.info(f"[AUDIT] {event_type}: {json.dumps(details, default=str)}")
 
 
 @dataclass
@@ -125,7 +166,7 @@ class PolymarketMonitor:
             params = {
                 "active": "true",
                 "closed": "false",
-                "limit": "100"
+                "limit": "1000"
             }
             
             response = requests.get(
@@ -221,8 +262,19 @@ class PolymarketMonitor:
             self._update_statistics(cursor, new_alert=True)
             conn.commit()
             
+            # 审计日志
+            log_audit("ALERT_CREATED", {
+                "event_id": event.event_id,
+                "market_id": event.market_id,
+                "title": event.title,
+                "probability": event.probability,
+                "change": event.change_percent,
+                "direction": "up" if event.probability > event.previous_probability else "down"
+            })
+            
         except Exception as e:
             logger.error(f"保存事件失败: {e}")
+            log_audit("ALERT_FAILED", {"error": str(e), "event_id": event.event_id})
         finally:
             conn.close()
     
@@ -474,6 +526,15 @@ class PolymarketMonitor:
         conn.close()
         
         logger.info(f"事件已解决: {event_id}, 预测{'准确' if is_correct else '错误'}")
+        
+        # 审计日志
+        log_audit("EVENT_RESOLVED", {
+            "event_id": event_id,
+            "predicted": predicted_outcome,
+            "actual": actual_result,
+            "accuracy": is_correct,
+            "market_id": row[2] if len(row) > 2 else None
+        })
         
         # 发送准确率更新报告
         self._send_accuracy_update(event_id, is_correct)
