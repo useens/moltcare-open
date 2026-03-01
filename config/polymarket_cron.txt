@@ -11,6 +11,9 @@
 # 每小时检查已结束市场并更新结果
 0 * * * * cd /root/.openclaw/workspace && python3 scripts/polymarket_cron_check.py >> logs/polymarket_resolution.log 2>&1
 
+# 每天凌晨3点备份数据库
+0 3 * * * cd /root/.openclaw/workspace && python3 scripts/polymarket_backup.py >> logs/polymarket_backup.log 2>&1
+
 # 每天早8点发送准确率统计日报
 0 8 * * * cd /root/.openclaw/workspace && python3 scripts/polymarket_daily_report.py >> logs/polymarket_daily.log 2>&1
 
