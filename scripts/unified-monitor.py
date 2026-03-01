@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-Unified Monitoring Framework v1.0
+Unified Monitoring Framework v1.1
 统一监控框架 - 合并所有健康检查、诊断和自动修复功能
 
-替代脚本：
-- health-monitor-v5.py
-- auto-health-check.py
-- memory-guardian.py
-- auto_fix_system.py
-- self-diagnosis.py
-- advanced_diagnosis.py
-- comprehensive-check.py
-- diagnosis_service.py
-- auto-heal.py
+替代脚本 (已删除):
+- health-monitor-v5.py ✅
+- auto-health-check.py ✅
+- memory-guardian.py ✅
+- auto_fix_system.py ✅
+- self-diagnosis.py ✅
+- advanced_diagnosis.py ✅
+- comprehensive-check.py ✅
+- diagnosis_service.py ✅
+- auto-heal.py ✅
 """
 
 import os
@@ -61,65 +61,59 @@ class SystemComponent:
 
 
 class MemorySystem(SystemComponent):
-    """v5.1-v5.5 记忆系统检查"""
+    """向量记忆系统检查 - 使用 core/vector_memory/"""
     
     def check(self) -> Tuple[str, List[str]]:
         issues = []
         
-        # v5.1 长期记忆检查
+        # v1. 检查向量记忆模块存在
+        vector_module_init = WORKSPACE / "core" / "vector_memory" / "__init__.py"
+        if not vector_module_init.exists():
+            issues.append("v1: 向量记忆模块不存在")
+        
+        # v2. 检查长期记忆JSON
         long_term = WORKSPACE / "memory" / "vector" / "long_term_memories.json"
         if not long_term.exists():
-            issues.append("v5.1: 长期记忆文件不存在")
+            issues.append("v2: 长期记忆文件不存在")
         else:
             try:
                 with open(long_term, 'r', encoding='utf-8') as f:
                     data = json.load(f)
                     memory_count = len(data) if isinstance(data, dict) else len(data)
                     if memory_count == 0:
-                        issues.append("v5.1: 长期记忆为空")
+                        issues.append("v2: 长期记忆为空")
                     elif memory_count < 50:
-                        issues.append(f"v5.1: 长期记忆数量异常少 ({memory_count}条)")
+                        issues.append(f"v2: 长期记忆数量异常少 ({memory_count}条)")
             except Exception as e:
-                issues.append(f"v5.1: 无法读取长期记忆 - {e}")
-
-        # v5.2 向量记忆检查
-        vector_module = WORKSPACE / "core" / "memory" / "memory_v5.py"
-        if not vector_module.exists():
-            issues.append("v5.2: 向量记忆模块不存在")
+                issues.append(f"v2: 无法读取长期记忆 - {e}")
         
-        # 检查Lance向量库
+        # v3. 检查Lance向量库
         lance_dir = WORKSPACE / "memory" / "vector" / "production" / "memories.lance"
         if lance_dir.exists():
             try:
                 import lance
                 ds = lance.dataset(str(lance_dir))
-                if ds.count_rows() == 0:
-                    issues.append("v5.2: Lance向量库为空 (0条)")
+                lance_count = ds.count_rows()
+                if lance_count == 0:
+                    issues.append("v3: Lance向量库为空 (0条)")
             except ImportError:
-                issues.append("v5.2: Lance库未安装")
+                issues.append("v3: Lance库未安装")
             except Exception as e:
-                issues.append(f"v5.2: Lance向量库异常 - {e}")
+                issues.append(f"v3: Lance向量库异常 - {e}")
         else:
-            issues.append("v5.2: Lance向量库目录不存在")
+            issues.append("v3: Lance向量库目录不存在")
         
-        # v5.3 工作记忆检查
+        # v4. 检查工作记忆文件
         session_files = list(DATA_DIR.glob("session_*.json"))
         if len(session_files) > 100:
-            issues.append(f"v5.3: 工作记忆文件过多 ({len(session_files)})")
+            issues.append(f"v4: 工作记忆文件过多 ({len(session_files)})")
         
-        # v5.4 情景记忆检查
-        context_file = DATA_DIR / "context_memory.json"
-        if context_file.exists():
-            size = context_file.stat().st_size
-            if size > 10 * 1024 * 1024:  # 10MB
-                issues.append(f"v5.4: 情景记忆过大 ({size/1024/1024:.1f}MB)")
-        
-        # v5.5 快照检查
+        # v5. 检查快照
         snapshots = list(WORKSPACE.glob("memory/snapshots/*.json"))
         recent_snapshots = [s for s in snapshots 
                           if datetime.now() - datetime.fromtimestamp(s.stat().st_mtime) < timedelta(hours=24)]
         if len(recent_snapshots) < 1:
-            issues.append("v5.5: 24小时内无快照")
+            issues.append("v5: 24小时内无快照")
         
         status = "healthy" if not issues else "degraded"
         return status, issues
@@ -127,31 +121,9 @@ class MemorySystem(SystemComponent):
     def fix(self) -> bool:
         """执行记忆系统修复"""
         try:
-            # 创建向量记忆模块目录
-            memory_core_dir = WORKSPACE / "core" / "memory"
-            memory_core_dir.mkdir(parents=True, exist_ok=True)
-            
-            # 检查并初始化memory_v5模块
-            v5_module = memory_core_dir / "memory_v5.py"
-            if not v5_module.exists():
-                logger.warning("v5模块不存在，需要手动创建")
-            else:
-                # 尝试初始化记忆核心
-                try:
-                    import importlib.util
-                    spec = importlib.util.spec_from_file_location("memory_v5", str(v5_module))
-                    module = importlib.util.module_from_spec(spec)
-                    spec.loader.exec_module(module)
-                    core = module.MemoryCoreV5()
-                    stats = core.get_stats()
-                    logger.info(f"  记忆核心初始化成功: {stats['total_memories']}条记忆")
-                except Exception as e:
-                    logger.error(f"  记忆核心初始化失败: {e}")
-
             # 创建新快照
             if not self._create_snapshot():
-                logger.warning("快照创建失败，继续其他修复")
-
+                logger.warning("快照创建失败")
             return True
         except Exception as e:
             logger.error(f"记忆系统修复失败: {e}")
@@ -166,12 +138,12 @@ class MemorySystem(SystemComponent):
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             snapshot_file = snapshot_dir / f"snapshot_{timestamp}.json"
 
-            # 收集关键文件信息
             files_info = {}
             key_files = [
                 "MEMORY.md",
-                "HEARTBEAT.md",
-                "memory/learning-debt.md"
+                "HEARTBEAT.md", 
+                "memory/learning-debt.md",
+                "memory/vector/long_term_memories.json"
             ]
 
             for file_path in key_files:
@@ -179,8 +151,7 @@ class MemorySystem(SystemComponent):
                 if file_obj.exists():
                     try:
                         with open(file_obj, "r", encoding="utf-8", errors="ignore") as f:
-                            content = f.read(100)  # 只读前100字符
-                            # 生成简单的hash（文件大小+前50字符）
+                            content = f.read(100)
                             file_hash = f"{len(content)}_{content[:50].replace(' ', '')}"
                     except Exception:
                         file_hash = "error"
@@ -190,11 +161,10 @@ class MemorySystem(SystemComponent):
                         "mtime": file_obj.stat().st_mtime
                     }
 
-            # 创建快照
             snapshot = {
                 "id": timestamp,
                 "timestamp": datetime.now().isoformat(),
-                "version": "v5",
+                "version": "v1.1",
                 "files": files_info,
                 "trigger": "health_monitor"
             }
@@ -202,7 +172,6 @@ class MemorySystem(SystemComponent):
             with open(snapshot_file, "w", encoding="utf-8") as f:
                 json.dump(snapshot, f, indent=2)
 
-            # 更新latest符号链接
             latest_link = snapshot_dir / "latest.json"
             if latest_link.exists() or latest_link.is_symlink():
                 latest_link.unlink()
