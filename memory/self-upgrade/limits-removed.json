@@ -1,0 +1,154 @@
+{
+  "timestamp": "2026-03-01T10:17:50.451572",
+  "total_scanned": 201,
+  "limits_found": 496,
+  "critical_limits": [
+    {
+      "file": ".trash/2026-02-13/ecosystem-scan-v32.py",
+      "line": 125,
+      "type": "timeout_limit",
+      "value": "15",
+      "context": "with urllib.request.urlopen(req, timeout=15) as resp:"
+    },
+    {
+      "file": ".trash/2026-02-13/ecosystem-scan-v31.py",
+      "line": 48,
+      "type": "timeout_limit",
+      "value": "15",
+      "context": "with urllib.request.urlopen(req, timeout=15) as resp:"
+    },
+    {
+      "file": ".trash/2026-02-13/multi_agent_controller_v40.py",
+      "line": 393,
+      "type": "timeout_limit",
+      "value": "1",
+      "context": "priority, subtask = self.task_queue.get(timeout=1)"
+    },
+    {
+      "file": ".trash/2026-02-13/test-30-sources.py",
+      "line": 81,
+      "type": "timeout_limit",
+      "value": "10",
+      "context": "with urllib.request.urlopen(req, timeout=10) as response:"
+    },
+    {
+      "file": ".trash/2026-02-13/hyper-evolution-engine-v21.py",
+      "line": 288,
+      "type": "timeout_limit",
+      "value": "1",
+      "context": "def get_task(self, timeout=1):"
+    },
+    {
+      "file": ".trash/2026-02-13/hyper-evolution-engine-v35.py",
+      "line": 282,
+      "type": "timeout_limit",
+      "value": "60",
+      "context": "result = future.result(timeout=60)"
+    },
+    {
+      "file": ".trash/2026-02-13/hyper-evolution-engine-v40.py",
+      "line": 521,
+      "type": "timeout_limit",
+      "value": "30",
+      "context": "results = [f.result(timeout=30) for f in futures]"
+    },
+    {
+      "file": ".trash/2026-02-13/hyper-evolution-engine-v30.py",
+      "line": 337,
+      "type": "timeout_limit",
+      "value": "1",
+      "context": "def get_task(self, timeout=1):"
+    },
+    {
+      "file": ".trash/2026-02-13/hyper-evolution-engine-v11-fix.py",
+      "line": 63,
+      "type": "timeout_limit",
+      "value": "60",
+      "context": "timeout=60,"
+    },
+    {
+      "file": ".trash/2026-02-13/hyper-evolution-engine-v11-fix.py",
+      "line": 155,
+      "type": "timeout_limit",
+      "value": "90",
+      "context": "result = future.result(timeout=90)"
+    },
+    {
+      "file": "tmp/fetch_weixin.py",
+      "line": 21,
+      "type": "timeout_limit",
+      "value": "30",
+      "context": "response = session.get(url, timeout=30, allow_redirects=True)"
+    },
+    {
+      "file": "data/moltbook/check_post_status.py",
+      "line": 19,
+      "type": "timeout_limit",
+      "value": "30",
+      "context": "resp = requests.get(f\"{API_BASE}/posts/{post_id}\", headers=headers, timeout=30)"
+    },
+    {
+      "file": "data/moltbook/check_pending_post.py",
+      "line": 17,
+      "type": "timeout_limit",
+      "value": "30",
+      "context": "resp = requests.get(f\"{API_BASE}/posts/{post_id}\", headers=headers, timeout=30)"
+    },
+    {
+      "file": "data/moltbook/verify_proposal.py",
+      "line": 23,
+      "type": "timeout_limit",
+      "value": "30",
+      "context": "resp = requests.post(f\"{API_BASE}/verify\", headers=headers, json=verify_data, ti"
+    },
+    {
+      "file": "data/moltbook/publish_invisible_automation.py",
+      "line": 102,
+      "type": "timeout_limit",
+      "value": "30",
+      "context": "resp = requests.post(f\"{API_BASE}/posts\", headers=headers, json=post_data, timeo"
+    },
+    {
+      "file": "data/moltbook/get_blockchain_comments.py",
+      "line": 17,
+      "type": "timeout_limit",
+      "value": "30",
+      "context": "resp = requests.get(f\"{API_BASE}/posts/{POST_ID}/comments\", headers=headers, tim"
+    },
+    {
+      "file": "data/moltbook/manual_reply_pi.py",
+      "line": 21,
+      "type": "timeout_limit",
+      "value": "30",
+      "context": "timeout=30"
+    },
+    {
+      "file": "data/moltbook/check_new_comments.py",
+      "line": 21,
+      "type": "timeout_limit",
+      "value": "30",
+      "context": "resp = requests.get(f\"{API_BASE}/posts/{post_id}\", headers=headers, timeout=30)"
+    },
+    {
+      "file": "data/moltbook/publish_proposal.py",
+      "line": 28,
+      "type": "timeout_limit",
+      "value": "30",
+      "context": "resp = requests.post(f\"{API_BASE}/posts\", headers=headers, json=post_data, timeo"
+    },
+    {
+      "file": "data/moltbook/check_duplicate_replies.py",
+      "line": 17,
+      "type": "timeout_limit",
+      "value": "30",
+      "context": "resp = requests.get(f\"{API_BASE}/posts/{post_id}/comments\", headers=headers, tim"
+    }
+  ],
+  "high_limits_count": 75,
+  "normal_limits_count": 43,
+  "recommendations": [
+    "Review timeout limits - may be too restrictive",
+    "Consider making hardcoded values configurable",
+    "Add documentation for limit rationale"
+  ]
+}
