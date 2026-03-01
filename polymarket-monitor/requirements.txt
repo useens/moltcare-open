@@ -1,0 +1,26 @@
+# Polymarket Monitor Dependencies
+
+# HTTP Requests
+requests==2.31.0
+httpx==0.26.0
+
+# Data Processing
+pandas==2.2.0
+numpy==1.26.3
+
+# Database
+sqlalchemy==2.0.25
+
+# Async
+aiohttp==3.9.1
+asyncio
+
+# Logging
+python-dotenv==1.0.0
+
+# Time
+schedule==1.2.0
+pytz==2024.1
+
+# Notification (optional)
+# plyer==2.1.0  # For desktop notifications
