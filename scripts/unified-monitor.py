@@ -67,22 +67,40 @@ class MemorySystem(SystemComponent):
         issues = []
         
         # v5.1 长期记忆检查
-        long_term = WORKSPACE / "memory" / "long_term.json"
+        long_term = WORKSPACE / "memory" / "vector" / "long_term_memories.json"
         if not long_term.exists():
             issues.append("v5.1: 长期记忆文件不存在")
-
-        # v5.2 向量记忆检查（修复路径：使用实际存在的路径）
-        vector_status = WORKSPACE / "memory" / "modules" / "vector-memory-status.json"
-        if not vector_status.exists():
-            issues.append("v5.2: 向量记忆状态文件不存在")
         else:
             try:
-                with open(vector_status) as f:
-                    status = json.load(f)
-                    if status.get("health_score", 0) < 90:
-                        issues.append(f"v5.2: 向量记忆健康分低 ({status.get('health_score', 0)})")
-            except Exception:
-                issues.append("v5.2: 无法读取向量记忆状态")
+                with open(long_term, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    memory_count = len(data) if isinstance(data, dict) else len(data)
+                    if memory_count == 0:
+                        issues.append("v5.1: 长期记忆为空")
+                    elif memory_count < 50:
+                        issues.append(f"v5.1: 长期记忆数量异常少 ({memory_count}条)")
+            except Exception as e:
+                issues.append(f"v5.1: 无法读取长期记忆 - {e}")
+
+        # v5.2 向量记忆检查
+        vector_module = WORKSPACE / "core" / "memory" / "memory_v5.py"
+        if not vector_module.exists():
+            issues.append("v5.2: 向量记忆模块不存在")
+        
+        # 检查Lance向量库
+        lance_dir = WORKSPACE / "memory" / "vector" / "production" / "memories.lance"
+        if lance_dir.exists():
+            try:
+                import lance
+                ds = lance.dataset(str(lance_dir))
+                if ds.count_rows() == 0:
+                    issues.append("v5.2: Lance向量库为空 (0条)")
+            except ImportError:
+                issues.append("v5.2: Lance库未安装")
+            except Exception as e:
+                issues.append(f"v5.2: Lance向量库异常 - {e}")
+        else:
+            issues.append("v5.2: Lance向量库目录不存在")
         
         # v5.3 工作记忆检查
         session_files = list(DATA_DIR.glob("session_*.json"))
@@ -109,21 +127,30 @@ class MemorySystem(SystemComponent):
     def fix(self) -> bool:
         """执行记忆系统修复"""
         try:
-            # 创建新快照（针对v5.5问题）
+            # 创建向量记忆模块目录
+            memory_core_dir = WORKSPACE / "core" / "memory"
+            memory_core_dir.mkdir(parents=True, exist_ok=True)
+            
+            # 检查并初始化memory_v5模块
+            v5_module = memory_core_dir / "memory_v5.py"
+            if not v5_module.exists():
+                logger.warning("v5模块不存在，需要手动创建")
+            else:
+                # 尝试初始化记忆核心
+                try:
+                    import importlib.util
+                    spec = importlib.util.spec_from_file_location("memory_v5", str(v5_module))
+                    module = importlib.util.module_from_spec(spec)
+                    spec.loader.exec_module(module)
+                    core = module.MemoryCoreV5()
+                    stats = core.get_stats()
+                    logger.info(f"  记忆核心初始化成功: {stats['total_memories']}条记忆")
+                except Exception as e:
+                    logger.error(f"  记忆核心初始化失败: {e}")
+
+            # 创建新快照
             if not self._create_snapshot():
                 logger.warning("快照创建失败，继续其他修复")
-
-            # 重建向量索引（修复路径：使用实际存在的脚本）
-            vector_indexer = WORKSPACE / "scripts" / "vector-memory-indexer.py"
-            if vector_indexer.exists():
-                subprocess.run([sys.executable, str(vector_indexer)],
-                             capture_output=True, timeout=300)
-
-            # 清理旧会话
-            old_sessions = list(DATA_DIR.glob("session_*.json"))
-            old_sessions.sort(key=lambda x: x.stat().st_mtime)
-            for session in old_sessions[:-50]:  # 保留最近50个
-                session.unlink()
 
             return True
         except Exception as e:
