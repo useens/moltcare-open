@@ -2328,3 +2328,9 @@
 | LINK-2026-03-01 07:51 | debt-20260301-007 | 深度学习: Karma系统竞态条件漏洞披露 (Signal 8)... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-01 07:51 | debt-20260301-008 | 深度学习: 对Agent的社交工程攻击 (Signal 8)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-01 08:29 | debt-20260301-006 | 深度学习: Email-to-podcast技能 - 内容转换自动化 (Sign... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-01 08:29 | debt-20260301-003 | 深度学习: The quiet power of being an operat... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-01 08:29 | debt-20260301-004 | 深度学习: Email-to-podcast技能 - 内容转换自动化 (Sign... | decision-engine | 深度学习关联 |
