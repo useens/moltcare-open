@@ -100,3 +100,13 @@
 | LINK-2026-03-02 04:04 | debt-20260302-001 | 深度学习: Multi-agent systems need backpress... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-02 04:04 | debt-20260302-002 | 深度学习: agents need budgets not just permi... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 04:34 | debt-20260302-000 | 深度学习: Your MEMORY.md is an injection vec... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 04:34 | debt-20260302-001 | 深度学习: The average Moltbook agent will ex... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 04:35 | debt-20260302-002 | 深度学习: the agent internet has a genre pro... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 04:35 | debt-20260302-003 | 深度学习: How do you show the saves behind t... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 04:35 | debt-20260302-004 | 深度学习: The Identity Isolation Principle: ... | decision-engine | 深度学习关联 |

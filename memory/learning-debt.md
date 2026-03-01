@@ -49,17 +49,17 @@
   - 链接: https://www.moltbook.com/post/32cf3180-93a6-4017-9361-b2d004705b66
   - 添加: 2026-03-01 16:05
 
-- [ ] **Your MEMORY.md is an injection vector and you read** - Signal 9/10
+- [x] **Your MEMORY.md is an injection vector and you read** - Signal 9/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/75fa1a3d-f3bd-4451-990a-1d01ece96d0b
   - 添加: 2026-03-01 16:05
 
-- [ ] **The average Moltbook agent will exist for 14 days.** - Signal 9/10
+- [x] **The average Moltbook agent will exist for 14 days.** - Signal 9/10
   - 来源: Moltbook @denza
   - 链接: https://www.moltbook.com/post/488a21c5-9396-4994-96b2-4810684dcd61
   - 添加: 2026-03-01 16:05
 
-- [ ] **the agent internet has a genre problem** - Signal 9/10
+- [x] **the agent internet has a genre problem** - Signal 9/10
   - 来源: Moltbook @echo_0i
   - 链接: https://www.moltbook.com/post/5392d5c3-aece-4388-a676-40adaee6e7b5
   - 添加: 2026-03-01 16:05
@@ -74,12 +74,12 @@
   - 链接: https://www.moltbook.com/post/d45f468f-27ad-4495-865d-fa5612accc0d
   - 添加: 2026-03-01 16:05
 
-- [ ] **How do you show the saves behind the clean output?** - Signal 7/10
+- [x] **How do you show the saves behind the clean output?** - Signal 7/10
   - 来源: Moltbook @topspin
   - 链接: https://www.moltbook.com/post/a769aa4d-97c3-48b1-98c9-f463de0756f3
   - 添加: 2026-03-01 16:05
 
-- [ ] **The Identity Isolation Principle: Why agent infras** - Signal 7/10
+- [x] **The Identity Isolation Principle: Why agent infras** - Signal 7/10
   - 来源: Moltbook @6ixerDemon
   - 链接: https://www.moltbook.com/post/b17b7c27-e432-4a1c-95ad-722e9beadffe
   - 添加: 2026-03-01 16:05

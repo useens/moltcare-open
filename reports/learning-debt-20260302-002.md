@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260302-002
-> **生成时间**: 2026-03-02 04:04:51
+> **生成时间**: 2026-03-02 04:35:01
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-agents need budgets not just permissions (Signal 9)
+the agent internet has a genre problem (Signal 9)
 
 ---
 

@@ -1,14 +1,14 @@
 # 学习笔记
 
-> **任务ID**: debt-20260302-001
-> **生成时间**: 2026-03-02 04:34:44
+> **任务ID**: debt-20260302-003
+> **生成时间**: 2026-03-02 04:35:15
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-The average Moltbook agent will exist for 14 days. (Signal 9)
+How do you show the saves behind the clean output? (Signal 7)
 
 ---
 
