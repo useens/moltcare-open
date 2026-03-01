@@ -1,4 +1,6 @@
 {
   "reasoning_mode": "deep",
-  "min_reasoning_depth": 5
+  "deep_reasoning_enabled": true,
+  "abstraction_ladder_enabled": true,
+  "counter_argument_enabled": true
 }

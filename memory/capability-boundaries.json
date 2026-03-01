@@ -1,0 +1,12 @@
+{
+  "known_capabilities": [
+    "file_system_operations",
+    "git_operations",
+    "cron_management",
+    "evomap_integration"
+  ],
+  "unknown_areas": [
+    "hardware_direct_access",
+    "network_packet_inspection"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "nodes": [
+    {"id": "self_audit", "type": "system", "connections": ["memory", "cron"]},
+    {"id": "dimension_upgrade", "type": "framework", "connections": ["monitoring", "evidence"]}
+  ],
+  "edges": 15
+}
