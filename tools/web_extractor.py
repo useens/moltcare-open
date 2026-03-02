@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 """
-Web内容提取工具 - Playwright结构化提取
-用于多专家讨论中的网络搜索，替代web_search和browser截图
+Web 内容提取工具 - Playwright 纯提取模式
+用于多专家讨论中的网页内容提取
 
 特点：
 - 提取结构化文本内容（非截图，节省token）
-- 支持搜索和页面内容提取
-- 自动处理反爬（User-Agent、延迟）
+- 只做网页内容提取，不做搜索
+- 使用 Playwright + Chromium 真实访问网页
 """
 
-import json
 import asyncio
-from typing import List, Dict, Optional
+from typing import List, Dict
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -21,13 +20,6 @@ try:
 except ImportError:
     print("错误: 请先安装playwright: pip install playwright")
     raise
-
-@dataclass
-class SearchResult:
-    title: str
-    url: str
-    snippet: str
-    source: str
 
 @dataclass
 class PageContent:
@@ -40,96 +32,114 @@ class PageContent:
 
 class WebExtractor:
     """网页内容提取器"""
-    
+
     def __init__(self, headless: bool = True):
         self.headless = headless
-        self.results_cache = {}
-        
-    async def search_google(self, query: str, num_results: int = 5) -> List[SearchResult]:
-        """网络搜索 - 尝试多个搜索引擎"""
-        results = []
 
-        # 使用真实可访问的示例网站（用于演示深度提取功能）
-        # 在实际部署中，应该使用 Brave Search API 或付费搜索服务
-
-        real_sites = {
-            "Python 文档": {
-                "title": f"{query} - Python 官方文档",
-                "url": "https://docs.python.org/3/",
-                "snippet": "Python 编程语言的官方文档。包含语法、库、教程等完整内容。"
-            },
-            "MDN Web Docs": {
-                "title": f"{query} - MDN Web 开发文档",
-                "url": "https://developer.mozilla.org/en-US/",
-                "snippet": "MDN 提供了 Web 开发的权威文档，包括 HTML、CSS、JavaScript 等。"
-            },
-            "HTTPBin": {
-                "title": f"{query} - HTTP 测试工具",
-                "url": "https://httpbin.org/",
-                "snippet": "HTTPBin 是一个用于 HTTP 测试的服务，提供各种端点用于调试请求。"
-            }
-        }
-
-        # 使用真实网站作为搜索结果
-        site_list = list(real_sites.values())[:num_results]
-
-        for item in site_list:
-            results.append(SearchResult(
-                title=item["title"],
-                url=item["url"],
-                snippet=item["snippet"],
-                source="demo"  # 标记为演示数据
-            ))
-            print(f"  📄 结果: {item['title'][:50]}")
-
-        print(f"✅ 搜索完成: {len(results)} 条结果 (深度提取演示模式)")
-        return results
-    
-    async def extract_page(self, url: str, max_length: int = 5000) -> PageContent:
+    async def extract_page(self, url: str, max_length: int = 10000) -> PageContent:
         """提取网页结构化内容"""
-        
+
+        print(f"🔍 提取网页内容: {url}")
+
         async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=self.headless)
+            browser = await p.chromium.launch(
+                headless=self.headless,
+                args=['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+            )
             context = await browser.new_context(
-                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                viewport={'width': 1280, 'height': 800}
             )
             page = await context.new_page()
-            
+
             try:
-                await page.goto(url, timeout=30000)
-                await page.wait_for_timeout(2000)
-                
-                # 提取标题
+                await page.goto(url, wait_until='networkidle', timeout=30000)
+                await page.wait_for_timeout(5000)  # 更长的等待时间，等待 JS 渲染
+
+                # 提取页面标题
                 title = await page.title()
-                
-                # 提取所有标题 (h1-h3)
+
+                # 获取整个页面的 HTML 文本，检查内容
+                body_text = await page.inner_text('body')
+                print(f"   页面总字符数: {len(body_text)}")
+
+                # 提取所有标题 (h1-h6)
                 headings = []
-                for level in ["h1", "h2", "h3"]:
+                for level in ["h1", "h2", "h3", "h4", "h5", "h6"]:
                     elements = await page.query_selector_all(level)
-                    for el in elements[:10]:  # 限制数量
+                    for el in elements[:20]:  # 限制数量
                         text = await el.inner_text()
-                        if text.strip():
+                        if text.strip() and len(text.strip()) < 200:
                             headings.append(f"[{level.upper()}] {text.strip()}")
-                
-                # 提取正文段落
+
+                # 提取正文段落 - 尝试更多选择器
                 paragraphs = []
-                p_elements = await page.query_selector_all("p")
-                for el in p_elements[:30]:  # 限制数量
-                    text = await el.inner_text()
-                    if text.strip() and len(text.strip()) > 20:
-                        paragraphs.append(text.strip())
-                        if sum(len(p) for p in paragraphs) > max_length:
-                            break
-                
+                selectors = [
+                    "p",  # 通用
+                    "div[class*='content'] p",  # content div
+                    "article p",  # article 标签
+                    "main p",  # main 标签
+                    "[data-content] p",  # data attribute
+                    ".prose p",  # prose class
+                    "div[class*='post'] p",  # post div
+                ]
+
+                for selector in selectors:
+                    if len(paragraphs) >= 20:  # 已经找到了足够多的段落
+                        break
+                    try:
+                        p_elements = await page.query_selector_all(selector)
+                        for el in p_elements:
+                            text = await el.inner_text()
+                            text = text.strip()
+                            # 过滤：长度合理，不是导航文本
+                            if text and len(text) > 30 and len(text) < 1000:
+                                # 排除一些常见的无关文本
+                                skip_keywords = ['cookie', 'privacy', 'terms', 'subscribe', 'login', 'sign up', 'skip to', '©']
+                                if not any(kw in text.lower() for kw in skip_keywords):
+                                    # 去重
+                                    if text not in paragraphs:
+                                        paragraphs.append(text)
+                                        if sum(len(p) for p in paragraphs) > max_length:
+                                            break
+                        if paragraphs:
+                            print(f"   使用选择器 '{selector}' 找到 {len(paragraphs)} 段落")
+                    except:
+                        continue
+
+                # 如果还是找不到，尝试获取所有文本块
+                if len(paragraphs) < 5:
+                    print(f"   ⚠️ 段落较少，使用降级方案...")
+                    # 获取所有 div 文本
+                    divs = await page.query_selector_all("div")
+                    for div in divs[:50]:
+                        text = await div.inner_text()
+                        text = text.strip()
+                        if text and len(text) > 100 and len(text) < 5000:
+                            # 跳过太短或太长的文本
+                            skip_keywords = ['menu', 'nav', 'header', 'footer', 'sidebar', '©']
+                            if not any(kw in text.lower() for kw in skip_keywords):
+                                paragraphs.append(text)
+                                if len(paragraphs) >= 20:
+                                    break
+
                 # 提取链接
                 links = []
-                a_elements = await page.query_selector_all("a")
-                for el in a_elements[:20]:
-                    href = await el.get_attribute("href")
+                a_elements = await page.query_selector_all("a[href]")
+                seen_urls = set()
+                for el in a_elements:
+                    href = await el.get_attribute('href')
                     text = await el.inner_text()
-                    if href and text.strip() and href.startswith("http"):
-                        links.append({"text": text.strip()[:50], "url": href})
-                
+                    if href and href.startswith('http') and text.strip():
+                        # 去重
+                        if href not in seen_urls and len(text.strip()) < 100:
+                            links.append({"text": text.strip()[:80], "url": href})
+                            seen_urls.add(href)
+                            if len(links) >= 20:
+                                break
+
+                print(f"✅ 提取完成: {len(paragraphs)} 段, {len(headings)} 标题, {len(links)} 链接")
+
                 return PageContent(
                     url=url,
                     title=title,
@@ -138,113 +148,69 @@ class WebExtractor:
                     links=links,
                     timestamp=datetime.now().isoformat()
                 )
-                
+
+            except Exception as e:
+                print(f"❌ 提取失败: {e}")
+                raise
+
             finally:
                 await browser.close()
-    
-    async def search_and_extract(self, query: str, num_results: int = 3) -> Dict:
-        """搜索并提取前N个结果的详细内容"""
-        
-        print(f"🔍 搜索: {query}")
-        search_results = await self.search_google(query, num_results)
-        
-        detailed_results = []
-        for i, result in enumerate(search_results, 1):
-            print(f"📄 提取 ({i}/{len(search_results)}): {result.title[:50]}...")
-            try:
-                page_content = await self.extract_page(result.url)
-                detailed_results.append({
-                    "search": {
-                        "title": result.title,
-                        "url": result.url,
-                        "snippet": result.snippet
-                    },
-                    "content": {
-                        "title": page_content.title,
-                        "headings": page_content.headings,
-                        "paragraphs": page_content.paragraphs[:10],  # 限制段落数
-                        "links": page_content.links[:5]  # 限制链接数
-                    }
-                })
-            except Exception as e:
-                print(f"⚠️ 提取失败: {e}")
-                detailed_results.append({
-                    "search": {
-                        "title": result.title,
-                        "url": result.url,
-                        "snippet": result.snippet
-                    },
-                    "error": str(e)
-                })
-        
-        return {
-            "query": query,
-            "timestamp": datetime.now().isoformat(),
-            "results": detailed_results
-        }
 
-def extract_to_markdown(data: Dict) -> str:
+def extract_to_markdown(content: PageContent) -> str:
     """将提取结果转换为Markdown格式"""
     lines = []
-    lines.append(f"# 搜索结果: {data['query']}\n")
-    lines.append(f"*搜索时间: {data['timestamp']}*\n")
-    
-    for i, result in enumerate(data['results'], 1):
-        lines.append(f"\n## 结果 {i}: {result['search']['title']}\n")
-        lines.append(f"**URL**: {result['search']['url']}\n")
-        lines.append(f"**摘要**: {result['search']['snippet']}\n")
-        
-        if 'error' in result:
-            lines.append(f"⚠️ **提取错误**: {result['error']}\n")
-            continue
-        
-        content = result['content']
-        lines.append(f"\n### 页面标题\n{content['title']}\n")
-        
-        if content['headings']:
-            lines.append(f"\n### 主要内容结构\n")
-            for h in content['headings'][:10]:
-                lines.append(f"- {h}")
-            lines.append("")
-        
-        if content['paragraphs']:
-            lines.append(f"\n### 关键内容\n")
-            for p in content['paragraphs'][:5]:
-                lines.append(f"{p}\n")
-        
-        if content['links']:
-            lines.append(f"\n### 相关链接\n")
-            for link in content['links'][:3]:
-                lines.append(f"- [{link['text']}]({link['url']})")
-            lines.append("")
-    
+    lines.append(f"# 提取内容: {content.title}\n")
+    lines.append(f"**URL**: {content.url}\n")
+    lines.append(f"**提取时间**: {content.timestamp}\n")
+
+    if content.headings:
+        lines.append(f"\n## 📋 内容结构\n")
+        for h in content.headings[:20]:
+            lines.append(f"{h}\n")
+
+    if content.paragraphs:
+        lines.append(f"\n## 📄 主要内容\n")
+        for p in content.paragraphs[:30]:
+            lines.append(f"{p}\n")
+
+    if content.links:
+        lines.append(f"\n## 🔗 相关链接\n")
+        for link in content.links[:10]:
+            lines.append(f"- [{link['text']}]({link['url']})")
+        lines.append("")
+
     return "\n".join(lines)
 
 async def main():
     """命令行入口"""
     import sys
-    
+
     if len(sys.argv) < 2:
-        print("用法: python web_extractor.py <搜索关键词> [结果数量]")
-        print("示例: python web_extractor.py 'Agent安全' 3")
+        print("用法: python web_extractor.py <URL>")
+        print("示例: python web_extractor.py 'https://example.com/article'")
         return
-    
-    query = sys.argv[1]
-    num_results = int(sys.argv[2]) if len(sys.argv) > 2 else 3
-    
+
+    url = sys.argv[1]
+
     extractor = WebExtractor(headless=True)
-    data = await extractor.search_and_extract(query, num_results)
-    
+    content = await extractor.extract_page(url)
+
     # 输出Markdown
-    markdown = extract_to_markdown(data)
-    print("\n" + "="*50)
+    markdown = extract_to_markdown(content)
+    print("\n" + "="*60)
     print(markdown)
-    print("="*50)
-    
+    print("="*60)
+
     # 保存到文件
-    output_file = f"/tmp/web_extract_{query.replace(' ', '_')[:20]}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
+    output_dir = Path("/root/.openclaw/workspace/data/web-extracts")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    safe_filename = url.replace('https://', '').replace('http://', '').replace('/', '_')[:50]
+    output_file = output_dir / f"{safe_filename}.md"
+
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(markdown)
+
     print(f"\n✅ 结果已保存: {output_file}")
 
 if __name__ == "__main__":

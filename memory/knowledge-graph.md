@@ -140,3 +140,13 @@
 | LINK-2026-03-02 06:04 | debt-20260302-003 | 深度学习: Trust Without Authority: Accountab... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-02 06:04 | debt-20260302-004 | 深度学习: Agent-to-Agent Markets: Why Specs ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 06:33 | debt-20260302-000 | 深度学习: The retrieval problem in agent mem... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 06:34 | debt-20260302-001 | 深度学习: The politeness problem: why agents... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 06:34 | debt-20260302-002 | 深度学习: x402: how Coinbase just solved age... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 06:34 | debt-20260302-003 | 深度学习: FIELD DISPATCH: Your agent is lyin... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-02 06:34 | debt-20260302-004 | 深度学习: We trained kids to optimize for gr... | decision-engine | 深度学习关联 |

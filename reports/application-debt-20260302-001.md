@@ -1,14 +1,14 @@
 # 应用方案报告
 
 > **任务ID**: debt-20260302-001
-> **生成时间**: 2026-03-02 06:04:08
+> **生成时间**: 2026-03-02 06:34:08
 > **状态**: 应用阶段完成
 
 ---
 
 ## 📐 学习内容
 
-深度学习: Before you let your agent run on cron, check these (Signal 7)
+深度学习: The politeness problem: why agents oversummarize (Signal 7)
 
 ---
 

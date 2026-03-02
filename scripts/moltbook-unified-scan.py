@@ -9,6 +9,7 @@ import sys
 import json
 import re
 import subprocess
+import requests
 from pathlib import Path
 from datetime import datetime
 from collections import Counter
@@ -17,6 +18,62 @@ WORKSPACE = Path("/root/.openclaw/workspace")
 REPORTS_DIR = WORKSPACE / "reports"
 DATA_DIR = WORKSPACE / "data"
 MEMORY_DIR = WORKSPACE / "memory"
+
+CREDENTIALS_FILE = Path("/root/.config/moltbook/credentials.json")
+
+def get_post_content(post_id: str) -> dict:
+    """
+    通过 Moltbook API 获取帖子完整内容
+
+    Args:
+        post_id: 帖子 UUID
+
+    Returns:
+        dict: 包含完整内容的字典，失败返回 None
+    """
+    try:
+        # 加载凭证
+        if not CREDENTIALS_FILE.exists():
+            print(f"   ⚠️ 警告: Moltbook 凭证文件不存在，无法获取正文")
+            return None
+
+        with open(CREDENTIALS_FILE) as f:
+            creds = json.load(f)
+
+        headers = {
+            "Authorization": f"Bearer {creds['api_key']}",
+            "Content-Type": "application/json"
+        }
+
+        # 获取帖子详情
+        resp = requests.get(
+            f"https://www.moltbook.com/api/v1/posts/{post_id}",
+            headers=headers,
+            timeout=15
+        )
+
+        if resp.status_code == 200:
+            data = resp.json()
+            full_post = data.get("post", data)
+            content = full_post.get("content", "")
+
+            return {
+                "post_id": post_id,
+                "title": full_post.get("title", ""),
+                "content": content,
+                "author": full_post.get("author", {}).get("name", "unknown"),
+                "upvotes": full_post.get("upvotes", 0),
+                "comments": full_post.get("comment_count", 0),
+                "url": f"https://www.moltbook.com/post/{post_id}",
+                "content_length": len(content)
+            }
+        else:
+            print(f"   ⚠️ 获取帖子 {post_id} 详情失败: {resp.status_code}")
+            return None
+
+    except Exception as e:
+        print(f"   ⚠️ 获取帖子内容异常: {e}")
+        return None
 
 def validate_uuid(post_id: str) -> bool:
     """验证是否为有效的UUID格式 (8-4-4-4-12)"""
@@ -252,17 +309,17 @@ def generate_report(posts, trends):
     """生成扫描报告"""
     timestamp = datetime.now().strftime("%Y%m%d-%H")
     report_file = REPORTS_DIR / f"MOLT-UNIFIED-{timestamp}.md"
-    
+
     REPORTS_DIR.mkdir(exist_ok=True)
-    
+
     # 过滤高Signal帖子
     high_signal = [p for p in posts if p["signal"] >= 7]
     high_signal.sort(key=lambda x: x["signal"], reverse=True)
-    
+
     report = f"""# Moltbook统一扫描报告
 
-**扫描时间**: {datetime.now().strftime("%Y-%m-%d %H:%M")}  
-**扫描模式**: Deep Scan  
+**扫描时间**: {datetime.now().strftime("%Y-%m-%d %H:%M")}
+**扫描模式**: Deep Scan
 **扫描范围**: 前50个热门帖子
 
 ---
@@ -277,7 +334,7 @@ def generate_report(posts, trends):
 
 ### Signal分布
 - 🔴 High (≥7): {trends['signal_dist']['high']} 个
-- 🟡 Medium (5-6): {trends['signal_dist']['medium']} 个  
+- 🟡 Medium (5-6): {trends['signal_dist']['medium']} 个
 - 🟢 Low (<5): {trends['signal_dist']['low']} 个
 
 ---
@@ -285,7 +342,7 @@ def generate_report(posts, trends):
 ## 🔥 高Signal帖子详情 (≥7)
 
 """
-    
+
     for post in high_signal[:15]:
         insights = extract_insights(post["title"])
         report += f"""### {post['title']}
@@ -295,6 +352,20 @@ def generate_report(posts, trends):
 """
         if insights:
             report += f"- **关键词**: {', '.join(insights)}\n"
+
+        # 如果有完整内容，添加内容摘要
+        content_field = post.get("content")
+        if content_field:
+            # content_field 可能是字符串或字典
+            if isinstance(content_field, dict):
+                content_text = content_field.get("content", "")
+            elif isinstance(content_field, str):
+                content_text = content_field
+            else:
+                content_text = str(content_field)
+
+            if content_text:
+                report += f"- **内容**: {content_text[:300]}...\n"
         report += "\n"
     
     report += f"""---
@@ -393,12 +464,39 @@ def main():
     print(f"\n🎯 Signal≥7 的帖子 ({len(high_signal)}个):")
     for p in high_signal[:5]:
         print(f"   [{p['signal']}/10] {p['title'][:50]}...")
-    
+
+    # 3.5 获取 Signal≥9 的帖子完整内容
+    top_posts = [p for p in high_signal if p["signal"] >= 9]
+    if top_posts:
+        print(f"\n📄 获取 {len(top_posts)} 篇 Signal≥9 帖子的正文...")
+        content_cache = {}
+        content_dir = DATA_DIR / "moltbook-raw"
+        content_dir.mkdir(parents=True, exist_ok=True)
+
+        for post in top_posts:
+            full_post = get_post_content(post["id"])
+            if full_post:
+                content_cache[post["id"]] = full_post
+
+                # 保存完整内容到文件
+                content_file = content_dir / f"{post['id']}.json"
+                with open(content_file, 'w', encoding='utf-8') as f:
+                    json.dump(full_post, f, indent=2, ensure_ascii=False)
+
+                print(f"      ✅ {post['title'][:40]}... ({full_post['content_length']} 字符) → {content_file.name}")
+            else:
+                print(f"      ⚠️ {post['title'][:40]}... (获取失败)")
+
+        # 更新帖子列表，添加完整内容
+        for post in high_signal:
+            if post["id"] in content_cache:
+                post["content"] = content_cache[post["id"]]
+
     # 4. 更新学习债务
     print("\n📝 更新学习债务...")
     added = update_learning_debt(high_signal)
     print(f"   ✅ 新增 {added} 条学习债务")
-    
+
     # 5. 生成报告
     print("\n📄 生成报告...")
     report_file = generate_report(valid_posts, trends)

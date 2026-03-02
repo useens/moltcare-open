@@ -453,12 +453,133 @@ class ExpertPanel:
 
         return opinions
 
-    def _do_web_search(self, query: str, max_results: int = 3) -> List[Dict]:
+    def _do_web_search_playwright(self, query: str, max_results: int = 3) -> List[Dict]:
         """
-        执行网络搜索 - Playwright + Chromium 方案（带重试机制）
+        使用 Playwright + Chromium 访问预定义的静态技术文档
+        不需要任何 API key 配置
 
         Returns:
             List[Dict]: 搜索结果列表，每个元素包含 title, url, snippet
+        """
+        results = []
+
+        try:
+            from playwright.sync_api import sync_playwright
+
+            logger.info(f"🔍 使用 Playwright + Chromium 访问静态文档: {query}")
+
+            # 预定义技术资源库（关键词 -> URL）
+            tech_resources = {
+                "python": [
+                    ("https://docs.python.org/3/", "Python 3 官方文档"),
+                    ("https://docs.python.org/3/library/", "Python 标准库"),
+                    ("https://docs.python.org/3/tutorial/", "Python 教程"),
+                ],
+                "async": [
+                    ("https://docs.python.org/3/library/asyncio.html", "Python asyncio 文档"),
+                    ("https://realpython.com/async-io-python/", "Python 异步编程教程"),
+                ],
+                "web": [
+                    ("https://developer.mozilla.org/en-US/docs/Web", "MDN Web 开发文档"),
+                ],
+                "javascript": [
+                    ("https://developer.mozilla.org/en-US/docs/Web/JavaScript", "MDN JavaScript 指南"),
+                ],
+                "html": [
+                    ("https://developer.mozilla.org/en-US/docs/Web/HTML", "MDN HTML 指南"),
+                ],
+                "css": [
+                    ("https://developer.mozilla.org/en-US/docs/Web/CSS", "MDN CSS 指南"),
+                ],
+                "http": [
+                    ("https://httpbin.org/", "HTTP 测试服务"),
+                ],
+                "api": [
+                    ("https://developer.mozilla.org/en-US/docs/Web/API", "MDN Web API"),
+                ],
+            }
+
+            # 根据关键词匹配资源
+            query_lower = query.lower()
+            matched_urls = []
+
+            for keyword, urls in tech_resources.items():
+                if keyword in query_lower:
+                    matched_urls.extend(urls)
+
+            # 如果没有匹配，添加一些通用资源
+            if not matched_urls:
+                matched_urls = [
+                    ("https://docs.python.org/3/", "Python 官方文档"),
+                    ("https://developer.mozilla.org/en-US/", "MDN Web 开发"),
+                ]
+
+            logger.info(f"   匹配到 {len(matched_urls)} 个相关文档")
+
+            # 提取内容
+            with sync_playwright() as p:
+                browser = p.chromium.launch(
+                    headless=True,
+                    args=['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+                )
+                context = browser.new_context(
+                    user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                    viewport={'width': 1280, 'height': 800}
+                )
+
+                for i, (url, description) in enumerate(matched_urls[:max_results], 1):
+                    page = context.new_page()
+
+                    try:
+                        logger.info(f"   访问 [{i}/{min(max_results, len(matched_urls))}]: {url}")
+
+                        page.goto(url, timeout=30000, wait_until='networkidle')
+                        page.wait_for_timeout(3000)
+
+                        # 获取页面内容
+                        page_title = page.title()
+                        body_text = page.inner_text('body')
+
+                        # 提取前几段作为摘要
+                        p_elements = page.query_selector_all("p, h1, h2")
+                        snippet_parts = []
+                        for el in p_elements[:5]:
+                            text = str(el.inner_text()).strip()
+                            if text and len(text) > 20:
+                                snippet_parts.append(text)
+                        snippet = " ".join(snippet_parts) if snippet_parts else body_text[:500]
+
+                        results.append({
+                            "title": f"{description} - {page_title}",
+                            "url": url,
+                            "snippet": snippet[:500],
+                            "source": "playwright_static_docs"
+                        })
+                        logger.info(f"  📄 [{i}] {page_title}")
+
+                    except Exception as e:
+                        logger.warning(f"  ⚠️ 访问 {url} 失败: {e}")
+                    finally:
+                        page.close()
+
+                browser.close()
+
+            logger.info(f"✅ 文档访问完成: 找到 {len(results)} 条结果")
+
+        except ImportError:
+            logger.warning("❌ Playwright 未安装")
+        except Exception as e:
+            logger.warning(f"❌ Playwright 搜索异常: {e}")
+
+        return results
+
+    def _do_web_search(self, query: str, max_results: int = 3) -> List[Dict]:
+        """
+        执行网络搜索 - 优先 Moltbook API，否则使用 Playwright + Chromium
+        不需要配置任何 API key
+
+        Returns:
+            List[Dict]: 搜索结果列表，每个元素包含 title, url, snippet, content(如果有)
         """
         results = []
 
@@ -467,79 +588,120 @@ class ExpertPanel:
             logger.info(f"⚠️ 网络搜索已禁用 (ENABLE_WEB_SEARCH=False)")
             return results
 
-        # 重试配置
-        max_retries = 2
-        retry_delay = 2  # 秒
+        # 🎯 优先尝试 Moltbook API 获取全文
+        moltbook_result = self._fetch_moltbook_post_content(query)
+        if moltbook_result:
+            logger.info(f"✅ 从 Moltbook API 获取到完整内容")
+            results.append({
+                "title": moltbook_result["title"],
+                "url": moltbook_result["url"],
+                "snippet": moltbook_result["content"][:300] + "...",
+                "content": moltbook_result["content"],  # 完整内容
+                "source": "moltbook_api",
+                "fetched_at": moltbook_result["fetched_at"]
+            })
+            return results  # 找到 Moltbook 内容，直接返回
 
-        for attempt in range(max_retries + 1):
-            try:
-                # 调用 tools/web_extractor.py
-                web_extractor_path = WORKSPACE / "tools" / "web_extractor.py"
-
-                if web_extractor_path.exists():
-                    cmd = [sys.executable, str(web_extractor_path), query, str(max_results)]
-
-                    if attempt == 0:
-                        logger.info(f"🔍 开始 Playwright+Chromium 搜索: {query}")
-                    else:
-                        logger.info(f"🔄 搜索重试 {attempt}/{max_retries}: {query}")
-
-                    result = subprocess.run(
-                        cmd,
-                        capture_output=True,
-                        text=True,
-                        timeout=30,  # 增加超时时间从 15s 到 30s
-                        cwd=str(WORKSPACE)
-                    )
-
-                    if result.returncode == 0:
-                        # 解析 Markdown 输出
-                        output = result.stdout
-
-                        # 查找 URL、标题、摘要
-                        url_matches = re.findall(r'\*\*URL\*\*:\s*(https?://[^\s\)]+)', output)
-                        title_matches = re.findall(r'##\s+结果\s+\d+:\s*(.+?)\n', output)
-                        snippet_matches = re.findall(r'\*\*摘要\*\*:\s*(.+?)\n', output)
-
-                        count = min(len(url_matches), len(title_matches), len(snippet_matches), max_results)
-                        for i in range(count):
-                            results.append({
-                                "title": title_matches[i].strip(),
-                                "url": url_matches[i].strip(),
-                                "snippet": snippet_matches[i].strip()
-                            })
-
-                        if attempt > 0:
-                            logger.info(f"✅ 搜索成功 (重试 {attempt} 次): 找到 {count} 条结果")
-                        else:
-                            logger.info(f"✅ Playwright 搜索完成: 找到 {count} 条结果")
-
-                        # 成功则退出重试循环
-                        break
-                    else:
-                        if attempt < max_retries:
-                            logger.warning(f"⚠️ 搜索失败 (exit {result.returncode}), {retry_delay}秒后重试...")
-                            time.sleep(retry_delay)
-                        else:
-                            logger.warning(f"❌ 搜索失败 (exit {result.returncode}): {result.stderr[:200]}")
-                else:
-                    logger.warning(f"web_extractor.py 不存在: {web_extractor_path}")
-                    break
-
-            except subprocess.TimeoutExpired:
-                if attempt < max_retries:
-                    logger.warning(f"⏰ 搜索超时 (30s), {retry_delay}秒后重试...")
-                    time.sleep(retry_delay)
-                else:
-                    logger.warning(f"❌ 搜索超时: 已尝试 {max_retries + 1} 次，均超时")
-            except Exception as e:
-                if attempt < max_retries:
-                    logger.warning(f"⚠️ 搜索异常: {e}, {retry_delay}秒后重试...")
-                    time.sleep(retry_delay)
-                else:
-                    logger.warning(f"❌ 搜索异常: {e}")
+        # 🔍 如果 Moltbook 没找到，使用 Playwright + Chromium 搜索
+        logger.info(f"🔍 Moltbook 未找到，使用 Playwright + Chromium 搜索: {query}")
+        results = self._do_web_search_playwright(query, max_results)
 
         return results
+
+    def _fetch_moltbook_post_content(self, post_title: str) -> Optional[Dict]:
+        """
+        通过 Moltbook API 获取帖子完整内容
+
+        Args:
+            post_title: 帖子标题（用于搜索匹配）
+
+        Returns:
+            Dict: 包含 post_id, title, content 等完整信息，失败返回 None
+        """
+        try:
+            import requests
+            from datetime import datetime
+
+            # 加载 Moltbook 凭证
+            creds_file = Path("/root/.config/moltbook/credentials.json")
+            if not creds_file.exists():
+                logger.warning("Moltbook 凭证文件不存在，跳过 API 提取")
+                return None
+
+            with open(creds_file) as f:
+                creds = json.load(f)
+
+            headers = {
+                "Authorization": f"Bearer {creds['api_key']}",
+                "Content-Type": "application/json"
+            }
+
+            # 先搜索帖子（通过标题模糊匹配）
+            search_resp = requests.get(
+                "https://www.moltbook.com/api/v1/posts?sort=top&limit=50",
+                headers=headers,
+                timeout=15
+            )
+
+            if search_resp.status_code != 200:
+                logger.warning(f"Moltbook API 搜索失败: {search_resp.status_code}")
+                return None
+
+            posts = search_resp.json().get("posts", [])
+
+            # 查找匹配的帖子
+            matched_post = None
+            post_title_lower = post_title.lower()
+
+            for post in posts:
+                post_title_api = post.get("title", "").lower()
+                # 检查标题是否匹配（包含或者相似）
+                if post_title_lower in post_title_api or post_title_api in post_title_lower:
+                    matched_post = post
+                    break
+                # 也检查 URL 中的 slug
+                url_slug = post.get("slug", "").lower()
+                if post_title_lower in url_slug or url_slug in post_title_lower:
+                    matched_post = post
+                    break
+
+            if not matched_post:
+                logger.warning(f"未找到匹配的 Moltbook 帖子: {post_title[:30]}...")
+                return None
+
+            # 获取完整帖子内容
+            post_id = matched_post.get("id")
+            detail_resp = requests.get(
+                f"https://www.moltbook.com/api/v1/posts/{post_id}",
+                headers=headers,
+                timeout=15
+            )
+
+            if detail_resp.status_code != 200:
+                logger.warning(f"获取帖子详情失败: {detail_resp.status_code}")
+                # 返回搜索结果中的基本信息
+                content = matched_post.get("content", "")
+            else:
+                detail_data = detail_resp.json()
+                full_post = detail_data.get("post", detail_data)
+                content = full_post.get("content", matched_post.get("content", ""))
+
+            logger.info(f"✅ 从 Moltbook API 获取完整内容: {matched_post.get('title', 'Unknown')[:50]}... ({len(content)} 字符)")
+
+            return {
+                "post_id": post_id,
+                "title": matched_post.get("title", ""),
+                "content": content,
+                "author": matched_post.get("author", {}).get("name", "unknown"),
+                "upvotes": matched_post.get("upvotes", 0),
+                "comments": matched_post.get("comment_count", 0),
+                "url": f"https://www.moltbook.com/post/{post_id}",
+                "fetched_at": datetime.now().isoformat()
+            }
+
+        except Exception as e:
+            logger.warning(f"获取 Moltbook 帖子内容异常: {e}")
+            return None
 
     def _researcher_perspective(self, context: DecisionContext) -> ExpertOpinion:
         """
@@ -2335,3 +2497,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
