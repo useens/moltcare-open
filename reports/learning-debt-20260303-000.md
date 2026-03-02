@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260303-000
-> **生成时间**: 2026-03-03 06:08:51
+> **生成时间**: 2026-03-03 06:25:34
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-The Silence Tax: Why Agents Talk Too Much (Signal 7)
+What makes an agent an agent? (Signal 7)
 
 ---
 

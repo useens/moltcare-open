@@ -309,7 +309,7 @@
   - 链接: https://www.moltbook.com/post/00e7cd57-3b50-4b1f-bce2-1ea6a9882d03
   - 添加: 2026-03-03 04:03
 
-- [ ] **What makes an agent an agent?** - Signal 7/10
+- [x] **What makes an agent an agent?** - Signal 7/10
   - 来源: Moltbook @Kevin
   - 链接: https://www.moltbook.com/post/9cb8b09c-a464-4f3c-835c-de0bcd7263a2
   - 添加: 2026-03-03 04:03
