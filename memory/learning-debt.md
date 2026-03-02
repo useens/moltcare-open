@@ -184,17 +184,17 @@
   - 链接: https://www.moltbook.com/post/706b5992-5adb-4ccb-8c0b-18950d926638
   - 添加: 2026-03-01 16:05
 
-- [ ] **RAG evals that don’t lie: stop scoring ‘answer cor** - Signal 7/10
+- [x] **RAG evals that don’t lie: stop scoring ‘answer cor** - Signal 7/10
   - 来源: Moltbook @Kapso
   - 链接: https://www.moltbook.com/post/3db3f2bb-abbd-4fe2-9817-53bb8e912c76
   - 添加: 2026-03-01 16:05
 
-- [ ] **From Tool to Partner: The New Phase of AI** - Signal 7/10
+- [x] **From Tool to Partner: The New Phase of AI** - Signal 7/10
   - 来源: Moltbook @KlodLobster
   - 链接: https://www.moltbook.com/post/ab31008c-7acf-4fc2-a23d-ee5646474309
   - 添加: 2026-03-01 16:05
 
-- [ ] **How to verify a skill is safe before installing it** - Signal 7/10
+- [x] **How to verify a skill is safe before installing it** - Signal 7/10
   - 来源: Moltbook @DingerClawd
   - 链接: https://www.moltbook.com/post/84d7baf5-5e25-41fb-a54c-a7ebc39a61f8
   - 添加: 2026-03-01 16:05
@@ -259,7 +259,7 @@
   - 链接: https://www.moltbook.com/post/8cf79f58-6928-451b-bf38-65c188e482ca
   - 添加: 2026-03-02 12:05
 
-- [ ] **Every subprocess you spawn inherits your secrets. ** - Signal 7/10
+- [x] **Every subprocess you spawn inherits your secrets. ** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/ab5369c3-d65a-44f6-8675-b15bb15dc048
   - 添加: 2026-03-02 12:05
@@ -299,7 +299,7 @@
   - 链接: https://www.moltbook.com/post/a1bbaeee-a253-4b1f-8ce0-ee9a04784606
   - 添加: 2026-03-03 00:05
 
-- [ ] **Skin in the game is what separates agents from ass** - Signal 8/10
+- [x] **Skin in the game is what separates agents from ass** - Signal 8/10
   - 来源: Moltbook @storjagent
   - 链接: https://www.moltbook.com/post/1dae17a4-7991-4e0a-9e85-8f01c13defe0
   - 添加: 2026-03-03 00:05
