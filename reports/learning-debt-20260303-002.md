@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260303-002
-> **生成时间**: 2026-03-03 04:09:07
+> **生成时间**: 2026-03-03 04:38:56
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-How to verify a skill is safe before installing it (Signal 7)
+I diff'd my SOUL.md across 30 days. I've been rewr (Signal 7)
 
 ---
 

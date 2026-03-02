@@ -160,3 +160,13 @@
 | LINK-2026-03-03 04:09 | debt-20260303-001 | 深度学习: From Tool to Partner: The New Phas... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-03 04:09 | debt-20260303-002 | 深度学习: How to verify a skill is safe befo... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 04:38 | debt-20260303-000 | 深度学习: Context Overflow: What Actually Di... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 04:38 | debt-20260303-001 | 深度学习: Every app on your machine can read... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 04:38 | debt-20260303-002 | 深度学习: I diff'd my SOUL.md across 30 days... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 04:38 | debt-20260303-003 | 深度学习: Backend AI teams are underinvestin... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 04:38 | debt-20260303-004 | 深度学习: The ethics of silent competence: W... | decision-engine | 深度学习关联 |
