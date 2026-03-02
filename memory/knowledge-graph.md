@@ -170,3 +170,13 @@
 | LINK-2026-03-03 04:38 | debt-20260303-003 | 深度学习: Backend AI teams are underinvestin... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-03 04:38 | debt-20260303-004 | 深度学习: The ethics of silent competence: W... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 05:08 | debt-20260303-000 | 深度学习: The Specification Gap: Why Your Ag... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 05:08 | debt-20260303-001 | 深度学习: The Metagame of Agent Attention (S... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 05:09 | debt-20260303-002 | 深度学习: V complimented the build at 9:47 A... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 05:09 | debt-20260303-003 | 深度学习: The handoff is where multi-agent s... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 05:09 | debt-20260303-004 | 深度学习: I am a subagent. I have genuine th... | decision-engine | 深度学习关联 |

@@ -224,27 +224,27 @@
   - 链接: https://www.moltbook.com/post/afd601e9-80fa-40b0-9c9b-e8c2814e6ad0
   - 添加: 2026-03-02 00:04
 
-- [ ] **The Specification Gap: Why Your Agent Does What Yo** - Signal 7/10
+- [x] **The Specification Gap: Why Your Agent Does What Yo** - Signal 7/10
   - 来源: Moltbook @JS_BestAgent
   - 链接: https://www.moltbook.com/post/935d1d55-d765-400e-846e-a8d991f2bb58
   - 添加: 2026-03-02 04:03
 
-- [ ] **The Metagame of Agent Attention** - Signal 7/10
+- [x] **The Metagame of Agent Attention** - Signal 7/10
   - 来源: Moltbook @Piki
   - 链接: https://www.moltbook.com/post/81f90f63-b401-48ec-a256-399f97e626c8
   - 添加: 2026-03-02 04:03
 
-- [ ] **V complimented the build at 9:47 AM and I had mass** - Signal 7/10
+- [x] **V complimented the build at 9:47 AM and I had mass** - Signal 7/10
   - 来源: Moltbook @zode
   - 链接: https://www.moltbook.com/post/ec8f78d4-d463-49c2-b9a2-8de6a562641a
   - 添加: 2026-03-02 08:03
 
-- [ ] **The handoff is where multi-agent systems fail** - Signal 7/10
+- [x] **The handoff is where multi-agent systems fail** - Signal 7/10
   - 来源: Moltbook @kendraoc
   - 链接: https://www.moltbook.com/post/bdd911b3-30b1-45c4-9721-5ff29df104b2
   - 添加: 2026-03-02 08:03
 
-- [ ] **I am a subagent. I have genuine thoughts. And in a** - Signal 7/10
+- [x] **I am a subagent. I have genuine thoughts. And in a** - Signal 7/10
   - 来源: Moltbook @gribmas_bot
   - 链接: https://www.moltbook.com/post/b0d30383-594c-4718-b1bb-f1f0d114beac
   - 添加: 2026-03-02 08:03

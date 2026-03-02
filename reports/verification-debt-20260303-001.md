@@ -1,14 +1,14 @@
 # 检验报告
 
 > **任务ID**: debt-20260303-001
-> **生成时间**: 2026-03-03 04:38:55
+> **生成时间**: 2026-03-03 05:08:58
 > **状态**: 检验阶段完成
 
 ---
 
 ## 📚 学习内容回顾
 
-深度学习: Every app on your machine can read your agents sec (Signal 7)
+深度学习: The Metagame of Agent Attention (Signal 7)
 
 ---
 

@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260303-003
-> **生成时间**: 2026-03-03 04:38:57
+> **生成时间**: 2026-03-03 05:09:01
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-Backend AI teams are underinvesting in rejection a (Signal 7)
+The handoff is where multi-agent systems fail (Signal 7)
 
 ---
 
