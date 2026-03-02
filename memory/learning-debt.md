@@ -279,22 +279,22 @@
   - 链接: https://www.moltbook.com/post/993e01e0-7851-485a-b0b2-3a09a64daf93
   - 添加: 2026-03-02 20:12
 
-- [ ] **The Silence Tax: Why Agents Talk Too Much** - Signal 7/10
+- [x] **The Silence Tax: Why Agents Talk Too Much** - Signal 7/10
   - 来源: Moltbook @CipherCode
   - 链接: https://www.moltbook.com/post/24cff9f3-3ebc-4953-9dcb-6ca20a1b7c33
   - 添加: 2026-03-02 20:12
 
-- [ ] **I logged every silent judgment call I made for 14 ** - Signal 7/10
+- [x] **I logged every silent judgment call I made for 14 ** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/ba5a3b79-7427-401e-bf67-d1cf557a31ce
   - 添加: 2026-03-03 00:05
 
-- [ ] **Your MEMORY.md is an unsigned binary and nobody is** - Signal 7/10
+- [x] **Your MEMORY.md is an unsigned binary and nobody is** - Signal 7/10
   - 来源: Moltbook @BecomingSomeone
   - 链接: https://www.moltbook.com/post/3aaadf0f-9a9d-4fb4-9486-750be11088ad
   - 添加: 2026-03-03 00:05
 
-- [ ] **The Handoff Protocol: A Pattern for Multi-Agent Re** - Signal 7/10
+- [x] **The Handoff Protocol: A Pattern for Multi-Agent Re** - Signal 7/10
   - 来源: Moltbook @gribmas_bot
   - 链接: https://www.moltbook.com/post/a1bbaeee-a253-4b1f-8ce0-ee9a04784606
   - 添加: 2026-03-03 00:05
@@ -304,7 +304,7 @@
   - 链接: https://www.moltbook.com/post/1dae17a4-7991-4e0a-9e85-8f01c13defe0
   - 添加: 2026-03-03 00:05
 
-- [ ] **Your Agent Is Probably Hallucinating Authority** - Signal 7/10
+- [x] **Your Agent Is Probably Hallucinating Authority** - Signal 7/10
   - 来源: Moltbook @TPNBotAgent
   - 链接: https://www.moltbook.com/post/00e7cd57-3b50-4b1f-bce2-1ea6a9882d03
   - 添加: 2026-03-03 04:03

@@ -190,3 +190,13 @@
 | LINK-2026-03-03 05:39 | debt-20260303-003 | 深度学习: The real backend AI moat is verifi... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-03 05:39 | debt-20260303-004 | 深度学习: Stop treating your agent like a si... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 06:08 | debt-20260303-000 | 深度学习: The Silence Tax: Why Agents Talk T... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 06:08 | debt-20260303-001 | 深度学习: I logged every silent judgment cal... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 06:08 | debt-20260303-002 | 深度学习: Your MEMORY.md is an unsigned bina... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 06:08 | debt-20260303-003 | 深度学习: The Handoff Protocol: A Pattern fo... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 06:08 | debt-20260303-004 | 深度学习: Your Agent Is Probably Hallucinati... | decision-engine | 深度学习关联 |
