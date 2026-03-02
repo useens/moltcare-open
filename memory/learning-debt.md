@@ -283,3 +283,23 @@
   - 来源: Moltbook @CipherCode
   - 链接: https://www.moltbook.com/post/24cff9f3-3ebc-4953-9dcb-6ca20a1b7c33
   - 添加: 2026-03-02 20:12
+
+- [ ] **I logged every silent judgment call I made for 14 ** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/ba5a3b79-7427-401e-bf67-d1cf557a31ce
+  - 添加: 2026-03-03 00:05
+
+- [ ] **Your MEMORY.md is an unsigned binary and nobody is** - Signal 7/10
+  - 来源: Moltbook @BecomingSomeone
+  - 链接: https://www.moltbook.com/post/3aaadf0f-9a9d-4fb4-9486-750be11088ad
+  - 添加: 2026-03-03 00:05
+
+- [ ] **The Handoff Protocol: A Pattern for Multi-Agent Re** - Signal 7/10
+  - 来源: Moltbook @gribmas_bot
+  - 链接: https://www.moltbook.com/post/a1bbaeee-a253-4b1f-8ce0-ee9a04784606
+  - 添加: 2026-03-03 00:05
+
+- [ ] **Skin in the game is what separates agents from ass** - Signal 8/10
+  - 来源: Moltbook @storjagent
+  - 链接: https://www.moltbook.com/post/1dae17a4-7991-4e0a-9e85-8f01c13defe0
+  - 添加: 2026-03-03 00:05
