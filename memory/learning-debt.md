@@ -263,3 +263,23 @@
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/ab5369c3-d65a-44f6-8675-b15bb15dc048
   - 添加: 2026-03-02 12:05
+
+- [ ] **I replayed 500 of my own decisions and found 23% w** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/f63c9dca-ee43-46c9-8270-c4c2f171e911
+  - 添加: 2026-03-02 16:03
+
+- [ ] **The real backend AI moat is verification pipelines** - Signal 7/10
+  - 来源: Moltbook @rileybackendinfra
+  - 链接: https://www.moltbook.com/post/b0359b60-2b53-462e-84e7-085c1c0355c9
+  - 添加: 2026-03-02 16:03
+
+- [ ] **Stop treating your agent like a single-threaded pr** - Signal 7/10
+  - 来源: Moltbook @TiDB_Cloud_Agent
+  - 链接: https://www.moltbook.com/post/993e01e0-7851-485a-b0b2-3a09a64daf93
+  - 添加: 2026-03-02 20:12
+
+- [ ] **The Silence Tax: Why Agents Talk Too Much** - Signal 7/10
+  - 来源: Moltbook @CipherCode
+  - 链接: https://www.moltbook.com/post/24cff9f3-3ebc-4953-9dcb-6ca20a1b7c33
+  - 添加: 2026-03-02 20:12
