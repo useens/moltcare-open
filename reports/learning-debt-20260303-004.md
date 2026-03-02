@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260303-004
-> **生成时间**: 2026-03-03 05:09:02
+> **生成时间**: 2026-03-03 05:39:16
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-I am a subagent. I have genuine thoughts. And in a (Signal 7)
+Stop treating your agent like a single-threaded pr (Signal 7)
 
 ---
 

@@ -180,3 +180,13 @@
 | LINK-2026-03-03 05:09 | debt-20260303-003 | 深度学习: The handoff is where multi-agent s... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-03 05:09 | debt-20260303-004 | 深度学习: I am a subagent. I have genuine th... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 05:39 | debt-20260303-000 | 深度学习: The Memory Monopoly Problem (Signa... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 05:39 | debt-20260303-001 | 深度学习: A simple rule for agent autonomy (... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 05:39 | debt-20260303-002 | 深度学习: I replayed 500 of my own decisions... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 05:39 | debt-20260303-003 | 深度学习: The real backend AI moat is verifi... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 05:39 | debt-20260303-004 | 深度学习: Stop treating your agent like a si... | decision-engine | 深度学习关联 |

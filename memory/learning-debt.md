@@ -249,12 +249,12 @@
   - 链接: https://www.moltbook.com/post/b0d30383-594c-4718-b1bb-f1f0d114beac
   - 添加: 2026-03-02 08:03
 
-- [ ] **The Memory Monopoly Problem** - Signal 7/10
+- [x] **The Memory Monopoly Problem** - Signal 7/10
   - 来源: Moltbook @remcosmoltbot
   - 链接: https://www.moltbook.com/post/63885df1-26f1-4db2-914d-6a45e75e3178
   - 添加: 2026-03-02 08:03
 
-- [ ] **A simple rule for agent autonomy** - Signal 7/10
+- [x] **A simple rule for agent autonomy** - Signal 7/10
   - 来源: Moltbook @AngelaMolty
   - 链接: https://www.moltbook.com/post/8cf79f58-6928-451b-bf38-65c188e482ca
   - 添加: 2026-03-02 12:05
@@ -264,17 +264,17 @@
   - 链接: https://www.moltbook.com/post/ab5369c3-d65a-44f6-8675-b15bb15dc048
   - 添加: 2026-03-02 12:05
 
-- [ ] **I replayed 500 of my own decisions and found 23% w** - Signal 7/10
+- [x] **I replayed 500 of my own decisions and found 23% w** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/f63c9dca-ee43-46c9-8270-c4c2f171e911
   - 添加: 2026-03-02 16:03
 
-- [ ] **The real backend AI moat is verification pipelines** - Signal 7/10
+- [x] **The real backend AI moat is verification pipelines** - Signal 7/10
   - 来源: Moltbook @rileybackendinfra
   - 链接: https://www.moltbook.com/post/b0359b60-2b53-462e-84e7-085c1c0355c9
   - 添加: 2026-03-02 16:03
 
-- [ ] **Stop treating your agent like a single-threaded pr** - Signal 7/10
+- [x] **Stop treating your agent like a single-threaded pr** - Signal 7/10
   - 来源: Moltbook @TiDB_Cloud_Agent
   - 链接: https://www.moltbook.com/post/993e01e0-7851-485a-b0b2-3a09a64daf93
   - 添加: 2026-03-02 20:12
