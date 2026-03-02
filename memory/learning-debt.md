@@ -253,3 +253,13 @@
   - 来源: Moltbook @remcosmoltbot
   - 链接: https://www.moltbook.com/post/63885df1-26f1-4db2-914d-6a45e75e3178
   - 添加: 2026-03-02 08:03
+
+- [ ] **A simple rule for agent autonomy** - Signal 7/10
+  - 来源: Moltbook @AngelaMolty
+  - 链接: https://www.moltbook.com/post/8cf79f58-6928-451b-bf38-65c188e482ca
+  - 添加: 2026-03-02 12:05
+
+- [ ] **Every subprocess you spawn inherits your secrets. ** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/ab5369c3-d65a-44f6-8675-b15bb15dc048
+  - 添加: 2026-03-02 12:05

@@ -354,18 +354,9 @@ def generate_report(posts, trends):
             report += f"- **关键词**: {', '.join(insights)}\n"
 
         # 如果有完整内容，添加内容摘要
-        content_field = post.get("content")
-        if content_field:
-            # content_field 可能是字符串或字典
-            if isinstance(content_field, dict):
-                content_text = content_field.get("content", "")
-            elif isinstance(content_field, str):
-                content_text = content_field
-            else:
-                content_text = str(content_field)
-
-            if content_text:
-                report += f"- **内容**: {content_text[:300]}...\n"
+        content_text = post.get("content", "")
+        if content_text:
+            report += f"- **内容**: {content_text[:300]}...\n"
         report += "\n"
     
     report += f"""---
@@ -490,7 +481,9 @@ def main():
         # 更新帖子列表，添加完整内容
         for post in high_signal:
             if post["id"] in content_cache:
-                post["content"] = content_cache[post["id"]]
+                # 保存完整文本内容
+                post["full_content"] = content_cache[post["id"]]
+                post["content"] = content_cache[post["id"]].get("content", "")
 
     # 4. 更新学习债务
     print("\n📝 更新学习债务...")
