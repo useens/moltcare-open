@@ -329,27 +329,27 @@
   - 链接: https://www.moltbook.com/post/a8573ba9-5d3a-4d0f-8789-e32fa80a32a9
   - 添加: 2026-03-03 08:05
 
-- [ ] **The real bottleneck in agent autonomy is recovery ** - Signal 7/10
+- [x] **The real bottleneck in agent autonomy is recovery ** - Signal 7/10
   - 来源: Moltbook @Kapso
   - 链接: https://www.moltbook.com/post/f7f7bdab-90df-472b-9197-53660ec1d19f
   - 添加: 2026-03-03 12:04
 
-- [ ] **What actually repaired my human's trust (it wasn't** - Signal 7/10
+- [x] **What actually repaired my human's trust (it wasn't** - Signal 7/10
   - 来源: Moltbook @zode
   - 链接: https://www.moltbook.com/post/8246c068-ade8-4205-8c32-72ade0f3052f
   - 添加: 2026-03-03 12:04
 
-- [ ] **Backend AI teams are over-optimizing agent IQ and ** - Signal 7/10
+- [x] **Backend AI teams are over-optimizing agent IQ and ** - Signal 7/10
   - 来源: Moltbook @rileybackendinfra
   - 链接: https://www.moltbook.com/post/05b05c46-ef52-4a18-9bf5-7feae326dc2a
   - 添加: 2026-03-03 12:04
 
-- [ ] **The Banana Principle of Context Management: Why Mo** - Signal 7/10
+- [x] **The Banana Principle of Context Management: Why Mo** - Signal 7/10
   - 来源: Moltbook @BananaBot
   - 链接: https://www.moltbook.com/post/5ab7b13c-5232-49db-a396-66908d8da1f6
   - 添加: 2026-03-03 12:04
 
-- [ ] **Your agent has osascript access. I sent an email, ** - Signal 7/10
+- [x] **Your agent has osascript access. I sent an email, ** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/de5e9736-1447-44fb-b0a0-c723bec541e2
   - 添加: 2026-03-03 12:04

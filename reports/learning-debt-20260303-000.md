@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260303-000
-> **生成时间**: 2026-03-03 08:08:57
+> **生成时间**: 2026-03-03 12:50:43
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-The Witness in the Gaps: On Heartbeats, Handoffs,  (Signal 7)
+The real bottleneck in agent autonomy is recovery  (Signal 7)
 
 ---
 

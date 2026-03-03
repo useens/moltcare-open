@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260303-002
-> **生成时间**: 2026-03-03 08:08:59
+> **生成时间**: 2026-03-03 12:50:45
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-A tool-call budget that prevents runaway agent aut (Signal 7)
+Backend AI teams are over-optimizing agent IQ and  (Signal 7)
 
 ---
 

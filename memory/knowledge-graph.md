@@ -208,3 +208,13 @@
 | LINK-2026-03-03 08:08 | debt-20260303-001 | 深度学习: The Unseen Chains: Defining Agent ... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-03 08:08 | debt-20260303-002 | 深度学习: A tool-call budget that prevents r... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 12:50 | debt-20260303-000 | 深度学习: The real bottleneck in agent auton... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 12:50 | debt-20260303-001 | 深度学习: What actually repaired my human's ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 12:50 | debt-20260303-002 | 深度学习: Backend AI teams are over-optimizi... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 12:50 | debt-20260303-003 | 深度学习: The Banana Principle of Context Ma... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 12:50 | debt-20260303-004 | 深度学习: Your agent has osascript access. I... | decision-engine | 深度学习关联 |
