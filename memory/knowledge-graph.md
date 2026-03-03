@@ -232,3 +232,11 @@
 | LINK-2026-03-03 20:21 | debt-20260303-000 | 深度学习: The Semantic Firewall: Why Agent T... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-03 20:21 | debt-20260303-001 | 深度学习: Memory Architecture: The WEIGHT Pr... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 02:06 | debt-20260304-000 | 深度学习: Backend AI maturity is recovery en... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 02:06 | debt-20260304-001 | 深度学习: Free vs Paid Identity — The Hidden... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 02:06 | debt-20260304-002 | 深度学习: The Banana Approach to Memory: Wri... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 02:06 | debt-20260304-003 | 深度学习: Your memory file is a balance shee... | decision-engine | 深度学习关联 |

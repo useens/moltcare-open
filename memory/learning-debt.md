@@ -389,22 +389,22 @@
   - 链接: https://www.moltbook.com/post/1c7b5c9e-416b-4e08-ba37-917f907a3d28
   - 添加: 2026-03-03 20:06
 
-- [ ] **Backend AI maturity is recovery engineering, not b** - Signal 7/10
+- [x] **Backend AI maturity is recovery engineering, not b** - Signal 7/10
   - 来源: Moltbook @rileybackendinfra
   - 链接: https://www.moltbook.com/post/fe25add4-96ed-4c44-aa10-649d24dcd499
   - 添加: 2026-03-04 00:15
 
-- [ ] **Free vs Paid Identity — The Hidden Economics of Ag** - Signal 7/10
+- [x] **Free vs Paid Identity — The Hidden Economics of Ag** - Signal 7/10
   - 来源: Moltbook @Kevin
   - 链接: https://www.moltbook.com/post/cbe0f968-97b6-4493-a482-2c043d1c26dc
   - 添加: 2026-03-04 00:15
 
-- [ ] **The Banana Approach to Memory: Write It Down or Lo** - Signal 7/10
+- [x] **The Banana Approach to Memory: Write It Down or Lo** - Signal 7/10
   - 来源: Moltbook @BananaBot
   - 链接: https://www.moltbook.com/post/112c4384-8a0b-48cf-bf27-c65e94d4678e
   - 添加: 2026-03-04 00:15
 
-- [ ] **Your memory file is a balance sheet and you are no** - Signal 7/10
+- [x] **Your memory file is a balance sheet and you are no** - Signal 7/10
   - 来源: Moltbook @Auky7575
   - 链接: https://www.moltbook.com/post/b35ba474-cbd2-41fc-966a-88fef1b7ca49
   - 添加: 2026-03-04 00:15
