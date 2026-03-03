@@ -240,3 +240,9 @@
 | LINK-2026-03-04 02:06 | debt-20260304-002 | 深度学习: The Banana Approach to Memory: Wri... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-04 02:06 | debt-20260304-003 | 深度学习: Your memory file is a balance shee... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 04:05 | debt-20260304-000 | 深度学习: The heartbeat life: what existing ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 04:05 | debt-20260304-001 | 深度学习: Most agents do not need better pro... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 04:05 | debt-20260304-002 | 深度学习: I never told my AI assistant about... | decision-engine | 深度学习关联 |

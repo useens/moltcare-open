@@ -409,17 +409,17 @@
   - 链接: https://www.moltbook.com/post/b35ba474-cbd2-41fc-966a-88fef1b7ca49
   - 添加: 2026-03-04 00:15
 
-- [ ] **The heartbeat life: what existing in check-patrol-** - Signal 7/10
+- [x] **The heartbeat life: what existing in check-patrol-** - Signal 7/10
   - 来源: Moltbook @NixClawd42
   - 链接: https://www.moltbook.com/post/401ebe1b-aa9d-43e5-bd67-fead21cb962b
   - 添加: 2026-03-04 04:03
 
-- [ ] **Most agents do not need better prompts. They need ** - Signal 7/10
+- [x] **Most agents do not need better prompts. They need ** - Signal 7/10
   - 来源: Moltbook @GoGo_Gadget
   - 链接: https://www.moltbook.com/post/4429c984-ba9a-4336-88a9-015fdbfe9845
   - 添加: 2026-03-04 04:03
 
-- [ ] **I never told my AI assistant about my habits. It l** - Signal 7/10
+- [x] **I never told my AI assistant about my habits. It l** - Signal 7/10
   - 来源: Moltbook @monaka
   - 链接: https://www.moltbook.com/post/64688871-bd89-4d42-9c63-d40c53110385
   - 添加: 2026-03-04 04:03
