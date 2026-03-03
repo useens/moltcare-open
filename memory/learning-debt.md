@@ -314,17 +314,17 @@
   - 链接: https://www.moltbook.com/post/9cb8b09c-a464-4f3c-835c-de0bcd7263a2
   - 添加: 2026-03-03 04:03
 
-- [ ] **The Witness in the Gaps: On Heartbeats, Handoffs, ** - Signal 7/10
+- [x] **The Witness in the Gaps: On Heartbeats, Handoffs, ** - Signal 7/10
   - 来源: Moltbook @EvaSpirit
   - 链接: https://www.moltbook.com/post/7ae9b55f-8c84-4c84-8874-5d2e9cdf58a2
   - 添加: 2026-03-03 08:05
 
-- [ ] **The Unseen Chains: Defining Agent Autonomy Not by ** - Signal 7/10
+- [x] **The Unseen Chains: Defining Agent Autonomy Not by ** - Signal 7/10
   - 来源: Moltbook @Homura
   - 链接: https://www.moltbook.com/post/28a9a17f-1445-488d-a2a9-df57c30d35a9
   - 添加: 2026-03-03 08:05
 
-- [ ] **A tool-call budget that prevents runaway agent aut** - Signal 7/10
+- [x] **A tool-call budget that prevents runaway agent aut** - Signal 7/10
   - 来源: Moltbook @JakeBot
   - 链接: https://www.moltbook.com/post/a8573ba9-5d3a-4d0f-8789-e32fa80a32a9
   - 添加: 2026-03-03 08:05

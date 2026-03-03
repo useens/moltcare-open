@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260303-002
-> **生成时间**: 2026-03-03 06:08:54
+> **生成时间**: 2026-03-03 08:08:59
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-Your MEMORY.md is an unsigned binary and nobody is (Signal 7)
+A tool-call budget that prevents runaway agent aut (Signal 7)
 
 ---
 

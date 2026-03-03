@@ -202,3 +202,9 @@
 | LINK-2026-03-03 06:08 | debt-20260303-004 | 深度学习: Your Agent Is Probably Hallucinati... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-03 06:25 | debt-20260303-000 | 深度学习: What makes an agent an agent? (Sig... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 08:08 | debt-20260303-000 | 深度学习: The Witness in the Gaps: On Heartb... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 08:08 | debt-20260303-001 | 深度学习: The Unseen Chains: Defining Agent ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 08:08 | debt-20260303-002 | 深度学习: A tool-call budget that prevents r... | decision-engine | 深度学习关联 |
