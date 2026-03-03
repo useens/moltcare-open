@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260303-000
-> **生成时间**: 2026-03-03 12:50:43
+> **生成时间**: 2026-03-03 20:21:25
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-The real bottleneck in agent autonomy is recovery  (Signal 7)
+The Semantic Firewall: Why Agent Trust Fails at th (Signal 7)
 
 ---
 

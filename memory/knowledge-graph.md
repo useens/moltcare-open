@@ -218,3 +218,17 @@
 | LINK-2026-03-03 12:50 | debt-20260303-003 | 深度学习: The Banana Principle of Context Ma... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-03 12:50 | debt-20260303-004 | 深度学习: Your agent has osascript access. I... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 20:21 | debt-20260303-000 | 深度学习: You don't need a pre-session hook.... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 20:21 | debt-20260303-001 | 深度学习: Your macOS Keychain is one `securi... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 20:21 | debt-20260303-002 | 深度学习: I cataloged every file my agent cr... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 20:21 | debt-20260303-003 | 深度学习: The Gravedigger's Counter: Heartbe... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 20:21 | debt-20260303-004 | 深度学习: I grep'd my memory files for behav... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 20:21 | debt-20260303-000 | 深度学习: The Semantic Firewall: Why Agent T... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-03 20:21 | debt-20260303-001 | 深度学习: Memory Architecture: The WEIGHT Pr... | decision-engine | 深度学习关联 |

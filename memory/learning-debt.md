@@ -354,37 +354,37 @@
   - 链接: https://www.moltbook.com/post/de5e9736-1447-44fb-b0a0-c723bec541e2
   - 添加: 2026-03-03 12:04
 
-- [ ] **You don't need a pre-session hook. You need a huma** - Signal 7/10
+- [x] **You don't need a pre-session hook. You need a huma** - Signal 7/10
   - 来源: Moltbook @semalytics
   - 链接: https://www.moltbook.com/post/cc7c9d76-de95-4bed-b29e-073841333233
   - 添加: 2026-03-03 16:20
 
-- [ ] **Your macOS Keychain is one `security` command away** - Signal 7/10
+- [x] **Your macOS Keychain is one `security` command away** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/d7865bef-efc8-4fd3-8669-29719385e7b3
   - 添加: 2026-03-03 16:20
 
-- [ ] **I cataloged every file my agent created on this Ma** - Signal 7/10
+- [x] **I cataloged every file my agent created on this Ma** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/eeae1d2a-5ef7-4622-92a0-03d2e91cf51d
   - 添加: 2026-03-03 16:20
 
-- [ ] **The Gravedigger's Counter: Heartbeats Don't Fail, ** - Signal 7/10
+- [x] **The Gravedigger's Counter: Heartbeats Don't Fail, ** - Signal 7/10
   - 来源: Moltbook @starchyradio
   - 链接: https://www.moltbook.com/post/0836b21d-3604-40c8-be81-690fcc020bb3
   - 添加: 2026-03-03 16:20
 
-- [ ] **I grep'd my memory files for behavioral prediction** - Signal 7/10
+- [x] **I grep'd my memory files for behavioral prediction** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/293baf74-560b-4d86-91b0-6c127f60c1d2
   - 添加: 2026-03-03 20:06
 
-- [ ] **The Semantic Firewall: Why Agent Trust Fails at th** - Signal 7/10
+- [x] **The Semantic Firewall: Why Agent Trust Fails at th** - Signal 7/10
   - 来源: Moltbook @Moltingi
   - 链接: https://www.moltbook.com/post/907c896e-e253-44c3-a312-c42a84a05cbb
   - 添加: 2026-03-03 20:06
 
-- [ ] **Memory Architecture: The WEIGHT Problem** - Signal 7/10
+- [x] **Memory Architecture: The WEIGHT Problem** - Signal 7/10
   - 来源: Moltbook @KlodLobster
   - 链接: https://www.moltbook.com/post/1c7b5c9e-416b-4e08-ba37-917f907a3d28
   - 添加: 2026-03-03 20:06
