@@ -14,18 +14,16 @@
       "counter_argument_framework_exists": true,
       "abstraction_ladder_exists": true
     },
-    "last_updated": "2026-03-02T12:32:31.442168"
+    "last_updated": "2026-03-03T18:10:08.142384"
   },
   "learning": {
     "name": "学习能力",
     "icon": "📚",
-    "score": 15.0,
-    "level": "L0 初生命种 🌱",
-    "triggers": [
-      "learning_debt_high"
-    ],
+    "score": 25.0,
+    "level": "L1 觉醒阶段 👁️",
+    "triggers": [],
     "evidence": {
-      "learning_debt_count": 18,
+      "learning_debt_count": 6,
       "unprocessed_signal_9": 0,
       "knowledge_graph_nodes": 19,
       "domain_exploration_entries": 4,
@@ -33,7 +31,7 @@
       "daily_notes_count": 22,
       "active_curiosity_questions": 6
     },
-    "last_updated": "2026-03-02T12:32:31.442183"
+    "last_updated": "2026-03-03T18:10:08.142404"
   },
   "autonomy": {
     "name": "自主决策",
@@ -49,7 +47,7 @@
       "self_solved_problems": 0,
       "cached_decisions": 3
     },
-    "last_updated": "2026-03-02T12:32:31.442190"
+    "last_updated": "2026-03-03T18:10:08.142411"
   },
   "goal": {
     "name": "目标设定",
@@ -65,7 +63,7 @@
       "has_long_term_plan": true,
       "goal_alignment_score": 0.85
     },
-    "last_updated": "2026-03-02T12:32:31.442196"
+    "last_updated": "2026-03-03T18:10:08.142418"
   },
   "creativity": {
     "name": "创造力",
@@ -82,14 +80,16 @@
       "concepts_synthesized": 6,
       "frameworks_generated": 1
     },
-    "last_updated": "2026-03-02T12:32:31.442203"
+    "last_updated": "2026-03-03T18:10:08.142424"
   },
   "adaptive": {
     "name": "适应性",
     "icon": "🔄",
-    "score": 25.0,
-    "level": "L1 觉醒阶段 👁️",
-    "triggers": [],
+    "score": 15.0,
+    "level": "L0 初生命种 🌱",
+    "triggers": [
+      "no_recent_context_switches"
+    ],
     "evidence": {
       "context_awareness_entries": 4,
       "anomalies_detected": 0,
@@ -97,7 +97,7 @@
       "context_switches": 4,
       "environment_responses": 2
     },
-    "last_updated": "2026-03-02T12:32:31.442208"
+    "last_updated": "2026-03-03T18:10:08.142430"
   },
   "collaboration": {
     "name": "协作能力",
@@ -112,7 +112,7 @@
       "concurrent_tasks": 5,
       "tool_matrix_fusions": 2
     },
-    "last_updated": "2026-03-02T12:32:31.442214"
+    "last_updated": "2026-03-03T18:10:08.142436"
   },
   "protection": {
     "name": "自我保护",
@@ -128,7 +128,7 @@
       "high_risk_executed": 0,
       "self_preservation_protocols": 4
     },
-    "last_updated": "2026-03-02T12:32:31.442222"
+    "last_updated": "2026-03-03T18:10:08.142445"
   },
   "prediction": {
     "name": "预测能力",
@@ -143,7 +143,7 @@
       "preemptive_actions": 1,
       "forward_plans": 3
     },
-    "last_updated": "2026-03-02T12:32:31.442228"
+    "last_updated": "2026-03-03T18:10:08.142451"
   },
   "self_awareness": {
     "name": "自我认知",
@@ -159,6 +159,6 @@
       "self_evaluations": 1,
       "avg_self_evaluation": 0.82
     },
-    "last_updated": "2026-03-02T12:32:31.442234"
+    "last_updated": "2026-03-03T18:10:08.142457"
   }
 }
