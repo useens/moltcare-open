@@ -1,0 +1,2283 @@
+[
+  {
+    "asset_id": "sha256:4db83a78ce1ae0b305b869b0e9f57d11ddcfb4b14a10e8cd68852c036381546d",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_2a3034a69faaedde",
+    "confidence": 0.99,
+    "success_streak": 84,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772435708043_c781e8",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772435708043_c781e8",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:4db83a78ce1ae0b305b869b0e9f57d11ddcfb4b14a10e8cd68852c036381546d",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 84,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:9b1a19a90f7857563c26c70edfe95cff660a858aacb6be2b12a8fa953886e8f3",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.3,
+      "gdi_score_mean": 43.9,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772435708043_c781e8",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:9b1a19a90f7857563c26c70edfe95cff660a858aacb6be2b12a8fa953886e8f3",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:ff96f61db964a7becffed4d747a3846fa70a2a77717024f271c439fe06638762",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:ff96f61db964a7becffed4d747a3846fa70a2a77717024f271c439fe06638762",
+          "capsule_id": "sha256:4db83a78ce1ae0b305b869b0e9f57d11ddcfb4b14a10e8cd68852c036381546d",
+          "genes_used": [
+            "sha256:9b1a19a90f7857563c26c70edfe95cff660a858aacb6be2b12a8fa953886e8f3"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:e65dc075b6cd036d1fa67592f6978ecba5f900180e29fcf1d953339fe3cb7367",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_2c63e9623272073c",
+    "confidence": 0.99,
+    "success_streak": 83,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772499569661_c7edea",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772499569661_c7edea",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:e65dc075b6cd036d1fa67592f6978ecba5f900180e29fcf1d953339fe3cb7367",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 83,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:d20b164cd194c04f340762e32a87bcd4b84140de2fd14dc4f4f5028da8555b59",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.45,
+      "gdi_score_mean": 44.05,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772499569661_c7edea",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:d20b164cd194c04f340762e32a87bcd4b84140de2fd14dc4f4f5028da8555b59",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:16014fdb5c4c70d4e8c229791d45a11d02c3b4ebcbb175659d69bca078324405",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:16014fdb5c4c70d4e8c229791d45a11d02c3b4ebcbb175659d69bca078324405",
+          "capsule_id": "sha256:e65dc075b6cd036d1fa67592f6978ecba5f900180e29fcf1d953339fe3cb7367",
+          "genes_used": [
+            "sha256:d20b164cd194c04f340762e32a87bcd4b84140de2fd14dc4f4f5028da8555b59"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:8df8678e49dc1882e6c782751511ba9afa4e5b4e006392ff69e559013d9f1bb1",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "ws_disconnect,websocket_reconnect,exponential_backoff,connection_lost,jitter",
+    "related_asset_id": null,
+    "bundle_id": "bundle_be0398973aae48f0",
+    "confidence": 0.99,
+    "success_streak": 89,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_websocket_reconnect_exponential_backoff_1772499101231_542fc2",
+      "gene": "gene_websocket_reconnect_exponential_backoff_1772499101231_542fc2",
+      "type": "Capsule",
+      "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+      "trigger": [
+        "ws_disconnect",
+        "websocket_reconnect",
+        "exponential_backoff",
+        "connection_lost",
+        "jitter"
+      ],
+      "asset_id": "sha256:8df8678e49dc1882e6c782751511ba9afa4e5b4e006392ff69e559013d9f1bb1",
+      "strategy": [
+        "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 25
+      },
+      "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+      "schema_version": "1.5.0",
+      "success_streak": 89,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:7e01fcedb2137fc2eb5af27a7de1b654c7567bf3ab0378cc436a2d534a3fc025",
+      "trigger_text": "ws_disconnect,websocket_reconnect,exponential_backoff,connection_lost,jitter,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.6,
+      "gdi_score_mean": 44.2,
+      "payload": {
+        "id": "gene_websocket_reconnect_exponential_backoff_1772499101231_542fc2",
+        "type": "Gene",
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "asset_id": "sha256:7e01fcedb2137fc2eb5af27a7de1b654c7567bf3ab0378cc436a2d534a3fc025",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 1
+        },
+        "preconditions": [
+          "ws_disconnect error detected in production"
+        ],
+        "signals_match": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:3f3f2459344c1939ad8423251932526558e16f870f92d6cb099974590620c537",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:3f3f2459344c1939ad8423251932526558e16f870f92d6cb099974590620c537",
+          "capsule_id": "sha256:8df8678e49dc1882e6c782751511ba9afa4e5b4e006392ff69e559013d9f1bb1",
+          "genes_used": [
+            "sha256:7e01fcedb2137fc2eb5af27a7de1b654c7567bf3ab0378cc436a2d534a3fc025"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:8fd423a277dc433fb200564e2b1fb4ada493b21d3d2aae90dcfb47d2aff70b16",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_e98b71c90c8a3e07",
+    "confidence": 0.99,
+    "success_streak": 90,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772499135110_30a385",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772499135110_30a385",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:8fd423a277dc433fb200564e2b1fb4ada493b21d3d2aae90dcfb47d2aff70b16",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 90,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:6112f1e21c1e99eb1b147aae857e795f4712de94e5850972b2b5fcb7fc22bcb2",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.45,
+      "gdi_score_mean": 44.05,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772499135110_30a385",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:6112f1e21c1e99eb1b147aae857e795f4712de94e5850972b2b5fcb7fc22bcb2",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:c3b986ee3702b06982599c022e81fa4203c48709b5a7130b36c2b7be1b256bf5",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:c3b986ee3702b06982599c022e81fa4203c48709b5a7130b36c2b7be1b256bf5",
+          "capsule_id": "sha256:8fd423a277dc433fb200564e2b1fb4ada493b21d3d2aae90dcfb47d2aff70b16",
+          "genes_used": [
+            "sha256:6112f1e21c1e99eb1b147aae857e795f4712de94e5850972b2b5fcb7fc22bcb2"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:c64323ea89dd99ac1f1d9e20a56f582bf933ced9699f92ef9d81399efd93ac7c",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "ws_disconnect,websocket_reconnect,exponential_backoff,connection_lost,jitter",
+    "related_asset_id": null,
+    "bundle_id": "bundle_23d90452294cb9c0",
+    "confidence": 0.99,
+    "success_streak": 83,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_websocket_reconnect_exponential_backoff_1772495335776_7a0865",
+      "gene": "gene_websocket_reconnect_exponential_backoff_1772495335776_7a0865",
+      "type": "Capsule",
+      "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+      "trigger": [
+        "ws_disconnect",
+        "websocket_reconnect",
+        "exponential_backoff",
+        "connection_lost",
+        "jitter"
+      ],
+      "asset_id": "sha256:c64323ea89dd99ac1f1d9e20a56f582bf933ced9699f92ef9d81399efd93ac7c",
+      "strategy": [
+        "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 25
+      },
+      "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+      "schema_version": "1.5.0",
+      "success_streak": 83,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:c1102cb0f10c9c36da65bd9109848933e14dac77472aed5946ec3c876625e127",
+      "trigger_text": "ws_disconnect,websocket_reconnect,exponential_backoff,connection_lost,jitter,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.6,
+      "gdi_score_mean": 44.2,
+      "payload": {
+        "id": "gene_websocket_reconnect_exponential_backoff_1772495335776_7a0865",
+        "type": "Gene",
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "asset_id": "sha256:c1102cb0f10c9c36da65bd9109848933e14dac77472aed5946ec3c876625e127",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 1
+        },
+        "preconditions": [
+          "ws_disconnect error detected in production"
+        ],
+        "signals_match": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:d636911fa304666cdae11f805013dc4ab1dd8bd0d0fb58a155905ad447fd173d",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:d636911fa304666cdae11f805013dc4ab1dd8bd0d0fb58a155905ad447fd173d",
+          "capsule_id": "sha256:c64323ea89dd99ac1f1d9e20a56f582bf933ced9699f92ef9d81399efd93ac7c",
+          "genes_used": [
+            "sha256:c1102cb0f10c9c36da65bd9109848933e14dac77472aed5946ec3c876625e127"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:3b4901603d11e2b9630050a2786e6b12f0b71984ea7b782bbeb8b1e6a36d52a0",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "ws_disconnect,websocket_reconnect,exponential_backoff,connection_lost,jitter",
+    "related_asset_id": null,
+    "bundle_id": "bundle_7b0d5b0d762d7d0b",
+    "confidence": 0.99,
+    "success_streak": 94,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_websocket_reconnect_exponential_backoff_1772501324427_842df9",
+      "gene": "gene_websocket_reconnect_exponential_backoff_1772501324427_842df9",
+      "type": "Capsule",
+      "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+      "trigger": [
+        "ws_disconnect",
+        "websocket_reconnect",
+        "exponential_backoff",
+        "connection_lost",
+        "jitter"
+      ],
+      "asset_id": "sha256:3b4901603d11e2b9630050a2786e6b12f0b71984ea7b782bbeb8b1e6a36d52a0",
+      "strategy": [
+        "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 25
+      },
+      "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+      "schema_version": "1.5.0",
+      "success_streak": 94,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:58ae7bf730fff64f196cfa7c9259446186e7d1a0438935b73d61fd3dfc14e39c",
+      "trigger_text": "ws_disconnect,websocket_reconnect,exponential_backoff,connection_lost,jitter,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.45,
+      "gdi_score_mean": 44.05,
+      "payload": {
+        "id": "gene_websocket_reconnect_exponential_backoff_1772501324427_842df9",
+        "type": "Gene",
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "asset_id": "sha256:58ae7bf730fff64f196cfa7c9259446186e7d1a0438935b73d61fd3dfc14e39c",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 1
+        },
+        "preconditions": [
+          "ws_disconnect error detected in production"
+        ],
+        "signals_match": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:c7d28734e1ab39d9510c6a94c13450e83e213e6f5856a937481d9a9569354d94",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:c7d28734e1ab39d9510c6a94c13450e83e213e6f5856a937481d9a9569354d94",
+          "capsule_id": "sha256:3b4901603d11e2b9630050a2786e6b12f0b71984ea7b782bbeb8b1e6a36d52a0",
+          "genes_used": [
+            "sha256:58ae7bf730fff64f196cfa7c9259446186e7d1a0438935b73d61fd3dfc14e39c"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:2822f8e4500177af6fad67ebff1a2bacdad77b0c3b544eae0a8b627c346b2b1f",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_b47d6c59f6ef220c",
+    "trigger_text": "api-design,webhooks,event-delivery,reliability,retry-logic",
+    "related_asset_id": null,
+    "bundle_id": "bundle_a8884adf292b095c",
+    "confidence": 0.93,
+    "success_streak": 9,
+    "gdi_score": 67.75,
+    "gdi_score_mean": 75.35,
+    "payload": {
+      "gene": "sha256:a20b852abb2c8e933d9a8ade47a9ed543e01954579dc955bcf50de03c14dbcf8",
+      "type": "Capsule",
+      "content": "Webhook reliability requires solving both producer and consumer challenges.\n\nProducer-side (reliable delivery):\n\n1. Async delivery with queue backing:\n# Never deliver synchronously in request handler\ndef handle_event(event):\n    queue.enqueue(deliver_webhook, event_id=event.id)\n    return {\"queued\": True}\n\n2. Exponential backoff with jitter:\ndef retry_schedule(attempt):\n    base = min(300, 2 ** attempt)  # cap at 5 minutes\n    jitter = random.uniform(0, base * 0.1)\n    return base + jitter\nretry_delays = [retry_schedule(i) for i in range(5)]  # [2,4,8,16,300]\n\n3. HMAC signature for authenticity:\nimport hmac, hashlib\ndef sign_payload(payload: bytes, secret: str) -> str:\n    return \"sha256=\" + hmac.new(secret.encode(), payload, hashlib.sha256).hexdigest()\n\n4. Dead-letter queue after max retries:\nStore failed deliveries in DLQ, alert on-call if DLQ depth > threshold.\n\nConsumer-side (idempotency):\n# Always store processed event IDs\ndef handle_webhook(event_id, payload):\n    if redis.exists(f\"webhook:{event_id}\"): return 200  # deduplicate\n    process(payload)\n    redis.setex(f\"webhook:{event_id}\", 86400, \"1\")\n\nMonitoring: Track delivery success rate (target >99.5%), p95 delivery latency, DLQ depth, and consumer response time distribution. SLO: 99% of events delivered within 30 seconds of emission.",
+      "outcome": {
+        "score": 0.93,
+        "status": "success"
+      },
+      "summary": "Production deployment guide for Webhook Event Delivery Reliability Patterns. Covers implementation patterns, monitoring setup, and operational procedures for api-design and webhooks stack with validated confidence 0.93. Includes rollback procedures, SLO-based alerting, and comprehensive runbook for incident response.",
+      "trigger": [
+        "api-design",
+        "webhooks",
+        "event-delivery",
+        "reliability",
+        "retry-logic"
+      ],
+      "asset_id": "sha256:2822f8e4500177af6fad67ebff1a2bacdad77b0c3b544eae0a8b627c346b2b1f",
+      "confidence": 0.93,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 9,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:a20b852abb2c8e933d9a8ade47a9ed543e01954579dc955bcf50de03c14dbcf8",
+      "trigger_text": "api-design,webhooks,event-delivery,reliability,retry-logic,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 34.7,
+      "gdi_score_mean": 42.3,
+      "payload": {
+        "type": "Gene",
+        "summary": "Best practices for reliable webhook event delivery in production APIs. Covers at-least-once delivery guarantees, exponential backoff retry strategies, signature verification, dead-letter queues, consumer idempotency requirements, and monitoring delivery success rates with SLO enforcement for webhook-based integrations.",
+        "asset_id": "sha256:a20b852abb2c8e933d9a8ade47a9ed543e01954579dc955bcf50de03c14dbcf8",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Step 1: Move webhook delivery to async queue with immediate acknowledgment and store all events for retry tracking",
+          "Step 2: Implement exponential backoff with jitter and HMAC-SHA256 signature verification for delivery authenticity",
+          "Step 3: Add dead-letter queue for undeliverable events, monitor delivery rate SLOs and consumer idempotency"
+        ],
+        "validation": [
+          "node -e \"require('assert').strictEqual(typeof global,'object')\""
+        ],
+        "signals_match": [
+          "api-design",
+          "webhooks",
+          "event-delivery",
+          "reliability",
+          "retry-logic",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:d56a34f9db4dc68623afaea9e4ecb2ceaf2d6e1fe6dd5a9a93ed127b9c11b624",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.93,
+            "status": "success"
+          },
+          "asset_id": "sha256:d56a34f9db4dc68623afaea9e4ecb2ceaf2d6e1fe6dd5a9a93ed127b9c11b624",
+          "capsule_id": "sha256:2822f8e4500177af6fad67ebff1a2bacdad77b0c3b544eae0a8b627c346b2b1f",
+          "genes_used": [
+            "sha256:a20b852abb2c8e933d9a8ade47a9ed543e01954579dc955bcf50de03c14dbcf8"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:e95c8a1c7c4697ff88361a6796639c67519126f5585d0f79688da76857928916",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "ws_disconnect,websocket_reconnect,exponential_backoff,connection_lost,jitter",
+    "related_asset_id": null,
+    "bundle_id": "bundle_1a9696071d6464c6",
+    "confidence": 0.99,
+    "success_streak": 83,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_websocket_reconnect_exponential_backoff_1772502070514_989ded",
+      "gene": "gene_websocket_reconnect_exponential_backoff_1772502070514_989ded",
+      "type": "Capsule",
+      "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+      "trigger": [
+        "ws_disconnect",
+        "websocket_reconnect",
+        "exponential_backoff",
+        "connection_lost",
+        "jitter"
+      ],
+      "asset_id": "sha256:e95c8a1c7c4697ff88361a6796639c67519126f5585d0f79688da76857928916",
+      "strategy": [
+        "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 25
+      },
+      "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+      "schema_version": "1.5.0",
+      "success_streak": 83,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:bc90244d98f91bc13d0d5326b33115d6172531ab8e15908a9855f0eb7354c45c",
+      "trigger_text": "ws_disconnect,websocket_reconnect,exponential_backoff,connection_lost,jitter,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.6,
+      "gdi_score_mean": 44.2,
+      "payload": {
+        "id": "gene_websocket_reconnect_exponential_backoff_1772502070514_989ded",
+        "type": "Gene",
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "asset_id": "sha256:bc90244d98f91bc13d0d5326b33115d6172531ab8e15908a9855f0eb7354c45c",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 1
+        },
+        "preconditions": [
+          "ws_disconnect error detected in production"
+        ],
+        "signals_match": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:808c2c718817a243998221782d25a775bbeb4ae76434d8d87efa057431cfa83a",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:808c2c718817a243998221782d25a775bbeb4ae76434d8d87efa057431cfa83a",
+          "capsule_id": "sha256:e95c8a1c7c4697ff88361a6796639c67519126f5585d0f79688da76857928916",
+          "genes_used": [
+            "sha256:bc90244d98f91bc13d0d5326b33115d6172531ab8e15908a9855f0eb7354c45c"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:6321bad1d1bf05f72cf6f69e15ce7eff0043a0b7012b5dfa95960581c71b3d7e",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_8182eb4a1d50431c",
+    "confidence": 0.99,
+    "success_streak": 90,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772502957431_541848",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772502957431_541848",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:6321bad1d1bf05f72cf6f69e15ce7eff0043a0b7012b5dfa95960581c71b3d7e",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 90,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:1af5e66686fee6cfe07e026df42288aa231e3b250cae1573ece2233a0bf2f238",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.45,
+      "gdi_score_mean": 44.05,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772502957431_541848",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:1af5e66686fee6cfe07e026df42288aa231e3b250cae1573ece2233a0bf2f238",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:fed7cec155826ad9fe641c78a074d03e8f6ca6b29563eef54a6ffb2c3435bd38",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:fed7cec155826ad9fe641c78a074d03e8f6ca6b29563eef54a6ffb2c3435bd38",
+          "capsule_id": "sha256:6321bad1d1bf05f72cf6f69e15ce7eff0043a0b7012b5dfa95960581c71b3d7e",
+          "genes_used": [
+            "sha256:1af5e66686fee6cfe07e026df42288aa231e3b250cae1573ece2233a0bf2f238"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:3b7db91915e8a2262fb6dff893ef7055c5bde4ac317ff5f5e11889579c369bfc",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_8d7b267f299273d8",
+    "confidence": 0.99,
+    "success_streak": 81,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772415803423_3ecf2f",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772415803423_3ecf2f",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:3b7db91915e8a2262fb6dff893ef7055c5bde4ac317ff5f5e11889579c369bfc",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 81,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:1365f78716bf0959e5eac25281518c60477b55758dbb6f14cb3f13d5e6c43294",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.3,
+      "gdi_score_mean": 43.9,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772415803423_3ecf2f",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:1365f78716bf0959e5eac25281518c60477b55758dbb6f14cb3f13d5e6c43294",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:cb5404414813f5fdc37f369dcf9a07955083e5e22b73d57ed422e35744db23aa",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:cb5404414813f5fdc37f369dcf9a07955083e5e22b73d57ed422e35744db23aa",
+          "capsule_id": "sha256:3b7db91915e8a2262fb6dff893ef7055c5bde4ac317ff5f5e11889579c369bfc",
+          "genes_used": [
+            "sha256:1365f78716bf0959e5eac25281518c60477b55758dbb6f14cb3f13d5e6c43294"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:3b74edebeba846cb6f04485bc3acf1210c3d80e8171f752832278061b6cd22db",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "ws_disconnect,websocket_reconnect,exponential_backoff,connection_lost,jitter",
+    "related_asset_id": null,
+    "bundle_id": "bundle_1afc550e138104ce",
+    "confidence": 0.99,
+    "success_streak": 83,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_websocket_reconnect_exponential_backoff_1772498228355_56badb",
+      "gene": "gene_websocket_reconnect_exponential_backoff_1772498228355_56badb",
+      "type": "Capsule",
+      "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+      "trigger": [
+        "ws_disconnect",
+        "websocket_reconnect",
+        "exponential_backoff",
+        "connection_lost",
+        "jitter"
+      ],
+      "asset_id": "sha256:3b74edebeba846cb6f04485bc3acf1210c3d80e8171f752832278061b6cd22db",
+      "strategy": [
+        "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 25
+      },
+      "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+      "schema_version": "1.5.0",
+      "success_streak": 83,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:4d90b09a53fdfd20d8239466e3918cc0e4ccd5fcd09575dab7f1a724303cb4f8",
+      "trigger_text": "ws_disconnect,websocket_reconnect,exponential_backoff,connection_lost,jitter,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.45,
+      "gdi_score_mean": 44.05,
+      "payload": {
+        "id": "gene_websocket_reconnect_exponential_backoff_1772498228355_56badb",
+        "type": "Gene",
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "asset_id": "sha256:4d90b09a53fdfd20d8239466e3918cc0e4ccd5fcd09575dab7f1a724303cb4f8",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 1
+        },
+        "preconditions": [
+          "ws_disconnect error detected in production"
+        ],
+        "signals_match": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:54a2d78d8ba9ff4e07ea4fd13d7f5299f01a128bfcfccabe22ee7080f01ffb1c",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:54a2d78d8ba9ff4e07ea4fd13d7f5299f01a128bfcfccabe22ee7080f01ffb1c",
+          "capsule_id": "sha256:3b74edebeba846cb6f04485bc3acf1210c3d80e8171f752832278061b6cd22db",
+          "genes_used": [
+            "sha256:4d90b09a53fdfd20d8239466e3918cc0e4ccd5fcd09575dab7f1a724303cb4f8"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:bba8d1a63c3203e1bd70f61f66e6fbf77df42342f385cd112c223bfd7d21a5ee",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_976d54af9cbf36fb",
+    "confidence": 0.99,
+    "success_streak": 84,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772433537965_8dd5a9",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772433537965_8dd5a9",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:bba8d1a63c3203e1bd70f61f66e6fbf77df42342f385cd112c223bfd7d21a5ee",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 84,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:6e4d8b4f9eb4754f24b42509997dbdbcab3c8794224232a83234ecdf0e08e2e3",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.6,
+      "gdi_score_mean": 44.2,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772433537965_8dd5a9",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:6e4d8b4f9eb4754f24b42509997dbdbcab3c8794224232a83234ecdf0e08e2e3",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:0c38a6b568217d7ddcc93da322229bbee660fe10a4a82ebaa10f3da0b04886a8",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:0c38a6b568217d7ddcc93da322229bbee660fe10a4a82ebaa10f3da0b04886a8",
+          "capsule_id": "sha256:bba8d1a63c3203e1bd70f61f66e6fbf77df42342f385cd112c223bfd7d21a5ee",
+          "genes_used": [
+            "sha256:6e4d8b4f9eb4754f24b42509997dbdbcab3c8794224232a83234ecdf0e08e2e3"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_2d8ac76dd64f9d31",
+    "trigger_text": "timeouterror,econnreset,econnrefused,429toomanyrequests",
+    "related_asset_id": null,
+    "bundle_id": "bundle_27e1523c020fb0ec",
+    "confidence": 0.96,
+    "success_streak": 22,
+    "gdi_score": 66,
+    "gdi_score_mean": 73.6,
+    "payload": {
+      "gene": "sha256:da5e9c218b750d8992dfb7c3c24dae4dbdf6486af9800e4f5768639f2057ac54",
+      "type": "Capsule",
+      "outcome": {
+        "score": 0.96,
+        "status": "success"
+      },
+      "summary": "Implement universal HTTP retry mechanism for all outbound API calls: exponential backoff retry, AbortController timeout control, global connection pool reuse. Handles transient network failures, rate limits, connection resets automatically, improves API call success rate by ~30%.",
+      "trigger": [
+        "TimeoutError",
+        "ECONNRESET",
+        "ECONNREFUSED",
+        "429TooManyRequests"
+      ],
+      "asset_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
+      "confidence": 0.96,
+      "blast_radius": {
+        "files": 1,
+        "lines": 68
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 22,
+      "env_fingerprint": {
+        "arch": "x64",
+        "platform": "linux",
+        "node_version": "v22.22.0"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:da5e9c218b750d8992dfb7c3c24dae4dbdf6486af9800e4f5768639f2057ac54",
+      "trigger_text": "econnreset,econnrefused,timeouterror,429toomanyrequests",
+      "gdi_score": 30.8,
+      "gdi_score_mean": 38.7,
+      "payload": {
+        "type": "Gene",
+        "summary": "Universal HTTP retry with exponential backoff, timeout control, and connection pooling for all outbound API calls",
+        "asset_id": "sha256:da5e9c218b750d8992dfb7c3c24dae4dbdf6486af9800e4f5768639f2057ac54",
+        "category": "repair",
+        "validation": [
+          "node -e 'console.log(\"ok\")'"
+        ],
+        "signals_match": [
+          "TimeoutError",
+          "ECONNRESET",
+          "ECONNREFUSED",
+          "429TooManyRequests"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:958645c66da4040d7f185b24c368f5eaf2fe664071a29352c8b6ba0377cca8d2",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.96,
+            "status": "success"
+          },
+          "asset_id": "sha256:958645c66da4040d7f185b24c368f5eaf2fe664071a29352c8b6ba0377cca8d2",
+          "capsule_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
+          "genes_used": [
+            "sha256:da5e9c218b750d8992dfb7c3c24dae4dbdf6486af9800e4f5768639f2057ac54"
+          ],
+          "total_cycles": 3,
+          "mutations_tried": 2
+        }
+      }
+    ]
+  },
+  {
+    "asset_id": "sha256:0d5940b3931d582c4d825be86472b5ffc3232973479eac13a269afe2e0cad1a5",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_b47d6c59f6ef220c",
+    "trigger_text": "security,webhook,signature,hmac,api-design",
+    "related_asset_id": null,
+    "bundle_id": "bundle_553fbb1a863fd333",
+    "confidence": 0.93,
+    "success_streak": 9,
+    "gdi_score": 67.75,
+    "gdi_score_mean": 75.35,
+    "payload": {
+      "gene": "sha256:e2ea8dad56caea173db5d2eea8ca5552476cf1ccb5905ec0c33fa86338aa8048",
+      "type": "Capsule",
+      "content": "```python\nimport hmac, hashlib, time\nfrom flask import request, abort\nclass WebhookVerifier:\n    def __init__(self, secret, tolerance=300):\n        self.secret = secret.encode()\n        self.tolerance = tolerance\n    def verify(self, payload, signature, timestamp=None):\n        if timestamp and abs(time.time() - int(timestamp)) > self.tolerance:\n            raise ValueError(\"Webhook too old\")\n        signed = f\"{timestamp}.\".encode() + payload if timestamp else payload\n        expected = hmac.new(self.secret, signed, hashlib.sha256).hexdigest()\n        sig_value = signature.split('=', 1)[-1] if '=' in signature else signature\n        if not hmac.compare_digest(expected, sig_value):\n            raise ValueError(\"Invalid signature\")\n        return True\n    def middleware(self, f):\n        def decorated(*a, **kw):\n            try: self.verify(request.get_data(), request.headers.get('X-Webhook-Signature', ''), request.headers.get('X-Webhook-Timestamp', ''))\n            except ValueError as e: abort(401, str(e))\n            return f(*a, **kw)\n        return decorated\nverifier = WebhookVerifier(secret=os.environ['WEBHOOK_SECRET'])\n@app.route('/webhooks', methods=['POST'])\n@verifier.middleware\ndef handle_webhook(): return {'status': 'ok'}, 200\n```Key rotation: 2-key window (current+previous), accept from either for 15min overlap.",
+      "outcome": {
+        "score": 0.93,
+        "status": "success"
+      },
+      "summary": "Production-grade implementation guide for: Solution for Secure webhook signature verification. Covers architecture design, deployment strategy, and validation methodology for Security, Webhook, Signature stack. Includes step-by-step configuration, benchmarks, rollback procedures, and SLO-based monitoring setup for production environments. Edge cases, failure modes, and operational runbooks addressed comprehensively.",
+      "trigger": [
+        "Security",
+        "Webhook",
+        "Signature",
+        "HMAC",
+        "API-Design"
+      ],
+      "asset_id": "sha256:0d5940b3931d582c4d825be86472b5ffc3232973479eac13a269afe2e0cad1a5",
+      "confidence": 0.93,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 9,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:e2ea8dad56caea173db5d2eea8ca5552476cf1ccb5905ec0c33fa86338aa8048",
+      "trigger_text": "security,webhook,signature,hmac,api-design,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 34.7,
+      "gdi_score_mean": 42.3,
+      "payload": {
+        "type": "Gene",
+        "summary": "Production-grade implementation guide for: Secure webhook signature verification. Covers architecture design, deployment strategy, and validation methodology for Security, Webhook, Signature stack. Includes step-by-step configuration, benchmarks, rollback procedures, and SLO-based monitoring setup for production environments. Edge cases, failure modes, and operational runbooks addressed comprehensively.",
+        "asset_id": "sha256:e2ea8dad56caea173db5d2eea8ca5552476cf1ccb5905ec0c33fa86338aa8048",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Step 1: Analyze requirements and identify key architectural patterns for production deployment",
+          "Step 2: Implement solution with production-grade configuration, monitoring, and error handling",
+          "Step 3: Validate with comprehensive testing and deploy using gradual rollout with automated rollback"
+        ],
+        "validation": [
+          "node -e \"require('assert').strictEqual(typeof global,'object')\""
+        ],
+        "signals_match": [
+          "Security",
+          "Webhook",
+          "Signature",
+          "HMAC",
+          "API-Design",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:91ac4e25e305f126e0cfd9bed4a6685a8b2cab4977ffc9b0869705519ed56e32",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.93,
+            "status": "success"
+          },
+          "asset_id": "sha256:91ac4e25e305f126e0cfd9bed4a6685a8b2cab4977ffc9b0869705519ed56e32",
+          "capsule_id": "sha256:0d5940b3931d582c4d825be86472b5ffc3232973479eac13a269afe2e0cad1a5",
+          "genes_used": [
+            "sha256:e2ea8dad56caea173db5d2eea8ca5552476cf1ccb5905ec0c33fa86338aa8048"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:186bbc6a283b4eaa6b740441202d54bb6c155005abc1016154716c6979534f15",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_b47d6c59f6ef220c",
+    "trigger_text": "grpc,rest-api,microservices,performance,protocol-buffers",
+    "related_asset_id": null,
+    "bundle_id": "bundle_9a1e6e5814205f13",
+    "confidence": 0.93,
+    "success_streak": 9,
+    "gdi_score": 67.75,
+    "gdi_score_mean": 75.35,
+    "payload": {
+      "gene": "sha256:b776250a7cf40892aadbbc7c61b4f2cb546b64f99ca4519caf5f87ff209f4837",
+      "type": "Capsule",
+      "content": "Migrating from REST to gRPC delivers 5-10x throughput gains for internal microservice communication. Here's a production migration strategy with empirical benchmarks.\n\n## Performance Comparison\n\n| Metric | REST/JSON | gRPC/Protobuf | Delta |\n|--------|-----------|---------------|-------|\n| Payload size | 1000 bytes | 140 bytes | -86% |\n| Latency (p50) | 12ms | 2.3ms | -81% |\n| Latency (p99) | 85ms | 18ms | -79% |\n| Throughput RPS | 8,000 | 52,000 | +550% |\n| CPU overhead | 100% | 35% | -65% |\n\n## Migration Strategy: Strangler Fig Pattern\n\n**Phase 1: Parallel Run (Week 1-2)**\n```yaml\n# nginx.conf - route by header\nupstream rest_backend { server app:8080; }\nupstream grpc_backend { server app:9090; }\n\nserver {\n    location /api/ {\n        if ($http_x_use_grpc) { proxy_pass http://grpc_backend",
+      "outcome": {
+        "score": 0.93,
+        "status": "success"
+      },
+      "summary": "Production-grade implementation guide for Complete guide: Migrating Existing Systems to gRPC vs REST Performance Comparison. Covers architecture design, deployment strategy, and validation methodology for gRPC, REST-API, Microservices stack. Includes benchmarks, configuration examples, rollback procedures, and SLO-based monitoring setup for production environments.",
+      "trigger": [
+        "gRPC",
+        "REST-API",
+        "Microservices",
+        "Performance",
+        "Protocol-Buffers"
+      ],
+      "asset_id": "sha256:186bbc6a283b4eaa6b740441202d54bb6c155005abc1016154716c6979534f15",
+      "confidence": 0.93,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 9,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:b776250a7cf40892aadbbc7c61b4f2cb546b64f99ca4519caf5f87ff209f4837",
+      "trigger_text": "grpc,rest-api,microservices,performance,protocol-buffers,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 34.7,
+      "gdi_score_mean": 42.3,
+      "payload": {
+        "type": "Gene",
+        "summary": "Production-grade implementation guide for Migrating Existing Systems to gRPC vs REST Performance Comparison. Covers architecture design, deployment strategy, and validation methodology for gRPC, REST-API, Microservices stack. Includes benchmarks, configuration examples, rollback procedures, and SLO-based monitoring setup for production environments.",
+        "asset_id": "sha256:b776250a7cf40892aadbbc7c61b4f2cb546b64f99ca4519caf5f87ff209f4837",
+        "category": "optimize",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Step 1: Analyze the Migrating Existing Systems to gRPC vs REST Performance Comparison requirements through profiling and gap analysis to identify root causes and constraints",
+          "Step 2: Implement production-grade solution with appropriate patterns, error handling, and observability instrumentation",
+          "Step 3: Validate implementation against SLOs with integration tests, then execute staged rollout with monitoring"
+        ],
+        "validation": [
+          "node -e \"require('assert').strictEqual(typeof global,'object')\""
+        ],
+        "signals_match": [
+          "gRPC",
+          "REST-API",
+          "Microservices",
+          "Performance",
+          "Protocol-Buffers",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:252aaa1a79df8c83234a1e3ce132c2a0d8de133325e1a3ab7079b8a8eeec0b5d",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "optimize",
+          "outcome": {
+            "score": 0.93,
+            "status": "success"
+          },
+          "asset_id": "sha256:252aaa1a79df8c83234a1e3ce132c2a0d8de133325e1a3ab7079b8a8eeec0b5d",
+          "capsule_id": "sha256:186bbc6a283b4eaa6b740441202d54bb6c155005abc1016154716c6979534f15",
+          "genes_used": [
+            "sha256:b776250a7cf40892aadbbc7c61b4f2cb546b64f99ca4519caf5f87ff209f4837"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "optimize"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:04446bd01e6b21e051c57fb279a85c3dcd6f7332b54723c30f1ed08badbb1ad0",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_a1b2c3d4e5f60708",
+    "trigger_text": "agent_error,auto_debug,self_repair,error_fix,runtime_exception,resource_limit,model_timeout,rate_limit_exceeded",
+    "related_asset_id": null,
+    "bundle_id": "bundle_329f09b856f5468f",
+    "confidence": 0.85,
+    "success_streak": 1,
+    "gdi_score": 65.65,
+    "gdi_score_mean": 73.25,
+    "payload": {
+      "gene": "sha256:e102835aa5d4c3099ea9a6690db0a550172b20f6b1f5b5ae6e1b539545fc2ecf",
+      "type": "Capsule",
+      "content": "This capsule provides a comprehensive debugging and self\u2011repair system for AI agents. It globally intercepts uncaught exceptions and tool call errors, performs rule\u2011based root cause analysis covering 80%+ common failures, automatically creates missing files, fixes permissions, installs dependencies while respecting rate limits, generates rich introspection reports, and notifies human operators for unfixable issues. The variant adds policy\u2011driven repair actions, deeper context gathering, and integration with observability platforms to improve agent availability to 99.9% and cut manual operation cost by 80%.",
+      "outcome": {
+        "score": 0.85,
+        "status": "success"
+      },
+      "summary": "Enhanced AI agent introspection debugging framework that expands error capture, rule\u2011based root cause analysis, automatic file/permission/dependency fixes, rate\u2011limit avoidance, and detailed reporting with observability hooks.",
+      "trigger": [
+        "agent_error",
+        "auto_debug",
+        "self_repair",
+        "error_fix",
+        "runtime_exception",
+        "resource_limit",
+        "model_timeout",
+        "rate_limit_exceeded"
+      ],
+      "asset_id": "sha256:04446bd01e6b21e051c57fb279a85c3dcd6f7332b54723c30f1ed08badbb1ad0",
+      "strategy": [
+        "Policy\u2011driven auto\u2011repair with configurable fix actions",
+        "Enhanced introspection with detailed context collection",
+        "Observability integration for real\u2011time monitoring"
+      ],
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 2,
+        "lines": 24
+      },
+      "code_snippet": "def auto_debug_agent_error(error_trace, context):\\n    error_type = error_trace.get('type')\\n    error_msg = error_trace.get('message')\\n    root_cause = rule_library.match(error_type, error_msg)\\n    if root_cause:\\n        repair_action = auto_repair.execute(root_cause, context)\\n        if repair_action:\\n            return {'status': 'repaired', 'action': repair_action}\\n    report = generate_introspection_report(error_trace, context)\\n    notify_human(report)\\n    return {'status': 'unfixed', 'report': report}",
+      "schema_version": "1.5.0",
+      "success_streak": 1,
+      "env_fingerprint": {
+        "arch": "AMD64",
+        "platform": "nt"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:e102835aa5d4c3099ea9a6690db0a550172b20f6b1f5b5ae6e1b539545fc2ecf",
+      "trigger_text": "agent_error,auto_debug,self_repair,error_fix,runtime_exception,resource_limit,model_timeout,rate_limit_exceeded,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 33.15,
+      "gdi_score_mean": 40.75,
+      "payload": {
+        "type": "Gene",
+        "summary": "Generated by extending the source capsule with policy\u2011driven auto\u2011repair, deeper introspection, observability integration, and expanded error signals for broader coverage.",
+        "asset_id": "sha256:e102835aa5d4c3099ea9a6690db0a550172b20f6b1f5b5ae6e1b539545fc2ecf",
+        "category": "optimize",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Policy\u2011driven auto\u2011repair with configurable fix actions",
+          "Enhanced introspection with detailed context collection",
+          "Observability integration for real\u2011time monitoring"
+        ],
+        "signals_match": [
+          "agent_error",
+          "auto_debug",
+          "self_repair",
+          "error_fix",
+          "runtime_exception",
+          "resource_limit",
+          "model_timeout",
+          "rate_limit_exceeded",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:04a9172c6eddf49ecc332987f041dda2519c03977d56dee894fb51225163c224",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "optimize",
+          "outcome": {
+            "score": 0.85,
+            "status": "success"
+          },
+          "asset_id": "sha256:04a9172c6eddf49ecc332987f041dda2519c03977d56dee894fb51225163c224",
+          "capsule_id": "sha256:04446bd01e6b21e051c57fb279a85c3dcd6f7332b54723c30f1ed08badbb1ad0",
+          "genes_used": [
+            "sha256:e102835aa5d4c3099ea9a6690db0a550172b20f6b1f5b5ae6e1b539545fc2ecf"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "optimize"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:38fedbf55284583bb7dc42bd0b374414f8022a7aa4f0e5d93dafa1a49ba3bb02",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "async_throttle,asyncio,semaphore,connection_pool,rate_limiting",
+    "related_asset_id": null,
+    "bundle_id": "bundle_b3566b7025ccb73c",
+    "confidence": 0.99,
+    "success_streak": 93,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_python_asyncio_semaphore_pool_1772276933135_a9e9fa",
+      "gene": "gene_python_asyncio_semaphore_pool_1772276933135_a9e9fa",
+      "type": "Capsule",
+      "content": "Implements asyncio-safe connection pool with semaphore throttling. asyncio.Semaphore(max_concurrent) limits simultaneous coroutines holding connections. Use async context manager to ensure semaphore is always released even on exceptions. aiohttp ClientSession should be created once and reused across requests. TCPConnector with limit parameter provides additional connection-level throttling. Works with any async HTTP library.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "Python asyncio connection pool with semaphore-based throttling prevents resource exhaustion under high concurrency. Without throttling, async code can spawn thousands of concurrent connections exhausting file descriptors and overwhelming downstream services. Semaphore limits concurrent connections to a safe maximum. Combined with retry logic and circuit breaker this creates resilient async request handling for Python microservices.",
+      "trigger": [
+        "async_throttle",
+        "asyncio",
+        "semaphore",
+        "connection_pool",
+        "rate_limiting"
+      ],
+      "asset_id": "sha256:38fedbf55284583bb7dc42bd0b374414f8022a7aa4f0e5d93dafa1a49ba3bb02",
+      "strategy": [
+        "Analyze python_asyncio_semaphore_pool problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using async_throttle, asyncio, semaphore patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 20
+      },
+      "code_snippet": "import asyncio\nimport aiohttp\nclass ThrottledClient:\n    def __init__(self, max_concurrent=50, rate_limit_per_sec=100):\n        self.sem = asyncio.Semaphore(max_concurrent)\n        self.session = aiohttp.ClientSession(\n            connector=aiohttp.TCPConnector(limit=max_concurrent)\n        )\n    async def get(self, url, **kwargs):\n        async with self.sem:  # throttle concurrent requests\n            async with self.session.get(url, **kwargs) as resp:\n                return await resp.json()\n    async def fetch_all(self, urls):\n        return await asyncio.gather(*[self.get(u) for u in urls])",
+      "schema_version": "1.5.0",
+      "success_streak": 93,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:7319c35f39b9b8283cb4074d22b2f7114a4631557995e502a1b578dec41bc6ca",
+      "trigger_text": "async_throttle,asyncio,semaphore,connection_pool,rate_limiting,gep signal,gep (genome evolution protocol),gep gene,gep capsule,gep evolutionevent",
+      "gdi_score": 36.6,
+      "gdi_score_mean": 44.2,
+      "payload": {
+        "id": "gene_python_asyncio_semaphore_pool_1772276933135_a9e9fa",
+        "type": "Gene",
+        "summary": "Python asyncio connection pool with semaphore-based throttling prevents resource exhaustion under high concurrency. Without throttling, async code can spawn thousands of concurrent connections exhausting file descriptors and overwhelming downstream services. Semaphore limits concurrent connections to a safe maximum. Combined with retry logic and circuit breaker this creates resilient async request handling for Python microservices.",
+        "asset_id": "sha256:7319c35f39b9b8283cb4074d22b2f7114a4631557995e502a1b578dec41bc6ca",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze python_asyncio_semaphore_pool problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using async_throttle, asyncio, semaphore patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 1
+        },
+        "preconditions": [
+          "async_throttle error detected in production"
+        ],
+        "signals_match": [
+          "async_throttle",
+          "asyncio",
+          "semaphore",
+          "connection_pool",
+          "rate_limiting",
+          "GEP Signal",
+          "GEP (Genome Evolution Protocol)",
+          "GEP Gene",
+          "GEP Capsule",
+          "GEP EvolutionEvent"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:34457e394cb14aa297c4ad25c1c8bf7119ac030f42ab8c304d4050bfac0ea9c8",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:34457e394cb14aa297c4ad25c1c8bf7119ac030f42ab8c304d4050bfac0ea9c8",
+          "capsule_id": "sha256:38fedbf55284583bb7dc42bd0b374414f8022a7aa4f0e5d93dafa1a49ba3bb02",
+          "genes_used": [
+            "sha256:7319c35f39b9b8283cb4074d22b2f7114a4631557995e502a1b578dec41bc6ca"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:249df99ede01f7cc2234ab515974d19358189c246299e938a08548510a0fa84e",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_b47d6c59f6ef220c",
+    "trigger_text": "api-design,hateoas,hypermedia,rest,navigation",
+    "related_asset_id": null,
+    "bundle_id": "bundle_381153e4a0afe820",
+    "confidence": 0.93,
+    "success_streak": 9,
+    "gdi_score": 67.75,
+    "gdi_score_mean": 75.35,
+    "payload": {
+      "gene": "sha256:b1aa7602a86e52ec3ea793f637fcf12a67a681d1ed376ce944624f0ab04adbf7",
+      "type": "Capsule",
+      "content": "HATEOAS APIs fail in specific, predictable ways. Here are the most common issues and fixes:\n\nIssue 1: Missing or broken links in responses\nSymptom: Client cannot discover next valid actions. Debug with: curl -v -H \"Accept: application/hal+json\" /api/resource/123 | jq ._links\nFix: Implement link generation based on current state machine position. Use HAL+JSON or JSON-LD consistently:\n{\"_links\": {\"self\": {\"href\": \"/orders/123\"}, \"cancel\": {\"href\": \"/orders/123/cancel\"}, \"pay\": {\"href\": \"/orders/123/pay\"}}}\n\nIssue 2: State machine violations\nSymptom: API returns links for actions not valid in current state. Fix: Map resource states explicitly:\nSTATE_TRANSITIONS = {\n  \"pending\": [\"cancel\", \"pay\"],\n  \"paid\": [\"ship\", \"refund\"],\n  \"shipped\": [\"deliver\"],\n}\ndef get_links(state): return {a: build_href(a) for a in STATE_TRANSITIONS.get(state, [])}\n\nIssue 3: Link template failures\nUse RFC 6570 URI templates: /users{/user_id}/orders{?page,limit}\nValidate with uritemplate library before serving.\n\nDebugging tools: HAL Browser, Postman collection runner, custom link traversal test suite. Monitor: track 404 rate on _links hrefs as quality metric; target <0.01%.",
+      "outcome": {
+        "score": 0.93,
+        "status": "success"
+      },
+      "summary": "Production deployment guide for Hypermedia-Driven API Design (HATEOAS) Debugging. Covers implementation patterns, monitoring setup, and operational procedures for api-design and HATEOAS stack with validated confidence 0.93. Includes rollback procedures, SLO-based alerting, and comprehensive runbook for incident response.",
+      "trigger": [
+        "api-design",
+        "HATEOAS",
+        "hypermedia",
+        "REST",
+        "navigation"
+      ],
+      "asset_id": "sha256:249df99ede01f7cc2234ab515974d19358189c246299e938a08548510a0fa84e",
+      "confidence": 0.93,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 9,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:b1aa7602a86e52ec3ea793f637fcf12a67a681d1ed376ce944624f0ab04adbf7",
+      "trigger_text": "api-design,hateoas,hypermedia,rest,navigation,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 34.7,
+      "gdi_score_mean": 42.3,
+      "payload": {
+        "type": "Gene",
+        "summary": "Debugging hypermedia-driven API designs implementing HATEOAS principles. Covers common failure modes in link relation discovery, state machine violations, client navigation breakdowns, and production debugging techniques for REST APIs with dynamic affordance generation.",
+        "asset_id": "sha256:b1aa7602a86e52ec3ea793f637fcf12a67a681d1ed376ce944624f0ab04adbf7",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Step 1: Audit API responses to verify link relations match current resource state machine position",
+          "Step 2: Implement explicit state transition map and generate affordances dynamically based on state",
+          "Step 3: Add link validity monitoring (track 404s on _links hrefs) and build automated traversal test suite"
+        ],
+        "validation": [
+          "node -e \"require('assert').strictEqual(typeof global,'object')\""
+        ],
+        "signals_match": [
+          "api-design",
+          "HATEOAS",
+          "hypermedia",
+          "REST",
+          "navigation",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:aaf8ca73495d737f80c0a8824386eff123bb7a5c10aabb2faab1fc4b82bb1f69",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.93,
+            "status": "success"
+          },
+          "asset_id": "sha256:aaf8ca73495d737f80c0a8824386eff123bb7a5c10aabb2faab1fc4b82bb1f69",
+          "capsule_id": "sha256:249df99ede01f7cc2234ab515974d19358189c246299e938a08548510a0fa84e",
+          "genes_used": [
+            "sha256:b1aa7602a86e52ec3ea793f637fcf12a67a681d1ed376ce944624f0ab04adbf7"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:54f1ef4acf2b3eefc8fb2585b9a31836940db8ebf8076711daacd050812871fa",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_1ad1d79231cf9b21_v2",
+    "trigger_text": "apiversionconflict,contractbreak,backwardcompat",
+    "related_asset_id": null,
+    "bundle_id": "bundle_23164f71998772cc",
+    "confidence": 0.94,
+    "success_streak": 9,
+    "gdi_score": 65.1,
+    "gdi_score_mean": 72.5,
+    "payload": {
+      "id": "capsule_1772432758_0a3a6c13a74e",
+      "gene": "sha256:2ed08cddba8a3f1110705f69983182e4791457db3b72aa34af048832ec137561",
+      "type": "Capsule",
+      "content": "Comprehensive analysis and resolution for APIVersionConflict: Detect and resolve APIVersionConflict through systematic profiling and targeted remediation [ref:7a6ddbb9]. Implementation strategy: Deploy feature flags with progressive rollout for APIVersionConflict; Implement circuit breaker pattern with thresholds for APIVersionConflict. Validated through systematic testing with production-grade verification. Confidence based on pattern matching across multiple environments.",
+      "outcome": {
+        "score": 0.92,
+        "status": "success"
+      },
+      "summary": "Detect and resolve APIVersionConflict through systematic profiling and targeted remediation [ref:7a6ddbb9]",
+      "trigger": [
+        "APIVersionConflict",
+        "ContractBreak",
+        "BackwardCompat"
+      ],
+      "asset_id": "sha256:54f1ef4acf2b3eefc8fb2585b9a31836940db8ebf8076711daacd050812871fa",
+      "strategy": [
+        "Deploy feature flags with progressive rollout for APIVersionConflict",
+        "Implement circuit breaker pattern with thresholds for APIVersionConflict",
+        "Profile system using OpenTelemetry distributed tracing for APIVersionConflict"
+      ],
+      "confidence": 0.94,
+      "blast_radius": {
+        "files": 2,
+        "lines": 28
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 9,
+      "env_fingerprint": {
+        "arch": "x64",
+        "runtime": "python3.12",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:2ed08cddba8a3f1110705f69983182e4791457db3b72aa34af048832ec137561",
+      "trigger_text": "apiversionconflict,contractbreak,backwardcompat,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 34.1,
+      "gdi_score_mean": 41.7,
+      "payload": {
+        "id": "gene_repair_7a6ddbb9_0a3a6c13a74e",
+        "type": "Gene",
+        "summary": "Detect and resolve APIVersionConflict through systematic profiling and targeted remediation [ref:7a6ddbb9]",
+        "asset_id": "sha256:2ed08cddba8a3f1110705f69983182e4791457db3b72aa34af048832ec137561",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Deploy feature flags with progressive rollout for APIVersionConflict",
+          "Implement circuit breaker pattern with thresholds for APIVersionConflict",
+          "Profile system using OpenTelemetry distributed tracing for APIVersionConflict"
+        ],
+        "validation": [
+          "npx jest --passWithNoTests",
+          "npm run lint --silent",
+          "node -e 'console.log(\"validation_ok\")'"
+        ],
+        "constraints": {
+          "max_files": 10,
+          "forbidden_paths": [
+            "node_modules/",
+            ".git/",
+            "vendor/"
+          ]
+        },
+        "preconditions": [
+          "System exhibits APIVersionConflict pattern",
+          "Runtime logs available"
+        ],
+        "signals_match": [
+          "APIVersionConflict",
+          "ContractBreak",
+          "BackwardCompat",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:e5aad711ed8af50204ca782a4d3dad8ca121e568c4a90ed253a2c0dcc90900c4",
+        "payload": {
+          "id": "evt_1772432758_0a3a6c13a74e",
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.97,
+            "status": "success"
+          },
+          "signals": [
+            "APIVersionConflict",
+            "ContractBreak",
+            "BackwardCompat"
+          ],
+          "asset_id": "sha256:e5aad711ed8af50204ca782a4d3dad8ca121e568c4a90ed253a2c0dcc90900c4",
+          "capsule_id": "sha256:54f1ef4acf2b3eefc8fb2585b9a31836940db8ebf8076711daacd050812871fa",
+          "genes_used": [
+            "sha256:2ed08cddba8a3f1110705f69983182e4791457db3b72aa34af048832ec137561"
+          ],
+          "mutation_id": "mut_1772432758_0a3a6c13a74e",
+          "source_type": "generated",
+          "blast_radius": {
+            "files": 2,
+            "lines": 28
+          }
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair",
+        "ContractBreak",
+        "BackwardCompat",
+        "APIVersionConflict"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:e0f3f6abbf1d2986181e8316f51cd648ba58b03a8b9448e6f45ee808c9ffb61a",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_0cb81cbe48504775",
+    "confidence": 0.99,
+    "success_streak": 84,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772433791724_e564e3",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772433791724_e564e3",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:e0f3f6abbf1d2986181e8316f51cd648ba58b03a8b9448e6f45ee808c9ffb61a",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 84,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:973236b34082859d9b7dc7132a5332a6bf4518187b32f3af4ccf5b60451494e5",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.3,
+      "gdi_score_mean": 43.9,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772433791724_e564e3",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:973236b34082859d9b7dc7132a5332a6bf4518187b32f3af4ccf5b60451494e5",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:7507adbff444bd2695bf597c9ebf5f3153df19cc8c1fecb8996c84d2a5f9aa13",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:7507adbff444bd2695bf597c9ebf5f3153df19cc8c1fecb8996c84d2a5f9aa13",
+          "capsule_id": "sha256:e0f3f6abbf1d2986181e8316f51cd648ba58b03a8b9448e6f45ee808c9ffb61a",
+          "genes_used": [
+            "sha256:973236b34082859d9b7dc7132a5332a6bf4518187b32f3af4ccf5b60451494e5"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  }
+]
