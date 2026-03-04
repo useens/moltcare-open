@@ -1,0 +1,11 @@
+# OpenClaw 博主监控 Cron 配置
+# 添加到你的 crontab: crontab -e
+
+# 每天 12:00 和 20:00 运行监控脚本
+0 12,20 * * * ~/.agent-reach/venv/bin/python ~/.openclaw/workspace/scripts/monitor-influencers.py >> ~/.openclaw/workspace/logs/influencer-monitor.log 2>&1
+
+# 每小时检查一次核心人物 (轻量级)
+0 * * * * ~/.openclaw/workspace/scripts/monitor-openclaw-influencers.sh >> ~/.openclaw/workspace/logs/influencer-monitor-hourly.log 2>&1
+
+# 每周一汇总报告
+0 9 * * 1 echo "[$(date)] 本周 OpenClaw 博主监控报告已生成" >> ~/.openclaw/workspace/logs/influencer-weekly.log

@@ -1,0 +1,51 @@
+# OpenClaw 全平台博主监控 - 定时任务配置
+# 添加到 crontab: crontab -e
+
+# ========== P0: 核心监控 (每日7次) ==========
+
+# 早上 8:00 - 晨间监控
+0 8 * * * cd ~/.openclaw/workspace && ~/.agent-reach/venv/bin/python scripts/monitor-influencers-v2.py >> logs/influencer-monitor.log 2>&1
+
+# 上午 10:00 - 上午监控
+0 10 * * * cd ~/.openclaw/workspace && ~/.agent-reach/venv/bin/python scripts/monitor-influencers-v2.py >> logs/influencer-monitor.log 2>&1
+
+# 中午 12:00 - 午间监控
+0 12 * * * cd ~/.openclaw/workspace && ~/.agent-reach/venv/bin/python scripts/monitor-influencers-v2.py >> logs/influencer-monitor.log 2>&1
+
+# 下午 14:00 - 下午监控
+0 14 * * * cd ~/.openclaw/workspace && ~/.agent-reach/venv/bin/python scripts/monitor-influencers-v2.py >> logs/influencer-monitor.log 2>&1
+
+# 下午 16:00 - 傍晚监控
+0 16 * * * cd ~/.openclaw/workspace && ~/.agent-reach/venv/bin/python scripts/monitor-influencers-v2.py >> logs/influencer-monitor.log 2>&1
+
+# 晚上 18:00 - 晚间监控
+0 18 * * * cd ~/.openclaw/workspace && ~/.agent-reach/venv/bin/python scripts/monitor-influencers-v2.py >> logs/influencer-monitor.log 2>&1
+
+# 晚上 20:00 - 夜间监控
+0 20 * * * cd ~/.openclaw/workspace && ~/.agent-reach/venv/bin/python scripts/monitor-influencers-v2.py >> logs/influencer-monitor.log 2>&1
+
+# ========== P1: 高频监控 (每日1次) ==========
+
+# 早上 8:00 - GitHub 热门项目检查
+0 8 * * * cd ~/.openclaw/workspace && /usr/bin/gh search repos "OpenClaw" --sort updated --limit 10 >> logs/github-monitor.log 2>&1
+
+# 下午 15:00 - Reddit/HN 热门讨论
+0 15 * * * cd ~/.openclaw/workspace && echo "[$(date)] Check Reddit r/openclaw, Hacker News" >> logs/community-monitor.log 2>&1
+
+# ========== P2: 中频监控 (每周2次) ==========
+
+# 周三/周六 21:00 - Discord/Podcast/社区
+0 21 * * 3,6 cd ~/.openclaw/workspace && echo "[$(date)] Check Discord, Podcasts, DEV.to" >> logs/community-weekly.log 2>&1
+
+# ========== P3: 低频监控 (每周1次) ==========
+
+# 周日 10:00 - 汇总报告生成
+0 10 * * 0 cd ~/.openclaw/workspace && echo "=== Weekly OpenClaw Influencer Summary ===" >> reports/influencer-weekly-summary.log 2>&1
+
+# ========== 维护任务 ==========
+
+# 每周一 3:00 - 清理旧日志
+0 3 * * 1 find ~/.openclaw/workspace/logs -name "*.log" -mtime +7 -delete
+
+# 每月1号 4:00 - 归档旧报告
+0 4 1 * * cd ~/.openclaw/workspace/reports/influencer-monitor && tar -czf archive_$(date +%Y%m).tar.gz report_*.md --remove-files 2>/dev/null

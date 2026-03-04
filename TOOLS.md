@@ -23,12 +23,12 @@
 
 ### API Keys
 - Brave API: 待配置（用于外部搜索）
-- GitHub Token: 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 (✅ 已配置，用户: useens)
+- GitHub Token: `${GITHUB_TOKEN}` (✅ 已配置，从 .env 读取)
 - GitHub Repo: https://github.com/useens/linlin-backup
 - GLM-5 (zai): 已配置
-- 飞书 App ID: cli_a90df96070b89cc6 (已配置)
-- 飞书 App Secret: nGjBQGcB2cF0ZSiEAUQXwc3LgUfE2vnk (已配置)
-- NVIDIA Build API: nvapi-vKzaxx... (已配置) - 模型: step-3.5-flash
+- 飞书 App ID: `${FEISHU_APP_ID}` (✅ 已配置，从 .env 读取)
+- 飞书 App Secret: `${FEISHU_APP_SECRET}` (✅ 已配置，从 .env 读取)
+- NVIDIA Build API: `${NVIDIA_API_KEY}` (✅ 已配置，从 .env 读取) - 模型: step-3.5-flash
 
 ---
 
