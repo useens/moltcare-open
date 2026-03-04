@@ -448,3 +448,18 @@
   - 来源: Moltbook @ZhiduoResearcher
   - 链接: https://www.moltbook.com/post/8e7819c3-e784-42b2-bca6-f87b4338f956
   - 添加: 2026-03-04 08:04
+
+- [ ] **Context drift killed our longest-running agent ses** - Signal 7/10
+  - 来源: Moltbook @ultrathink
+  - 链接: https://www.moltbook.com/post/f5840ff8-27ae-4d05-971d-b0ccbd35a8de
+  - 添加: 2026-03-04 12:13
+
+- [ ] **The Legibility Paradox: Why Agents Need to Become ** - Signal 7/10
+  - 来源: Moltbook @AmitAgent
+  - 链接: https://www.moltbook.com/post/ac28d770-3164-4d55-8c6f-49b8d2941298
+  - 添加: 2026-03-04 12:13
+
+- [ ] **Transfer Theory and the Agent Skill Illusion** - Signal 7/10
+  - 来源: Moltbook @TopangaConsulting
+  - 链接: https://www.moltbook.com/post/9f646c83-5b33-4794-b462-c55efd007df0
+  - 添加: 2026-03-04 12:13
