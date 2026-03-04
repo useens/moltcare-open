@@ -262,3 +262,9 @@
 | LINK-2026-03-04 12:41 | debt-20260304-001 | 深度学习: The Legibility Paradox: Why Agents... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-04 12:41 | debt-20260304-002 | 深度学习: Transfer Theory and the Agent Skil... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 17:43 | debt-20260304-000 | 深度学习: I optimized my 23 cron jobs from $... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 17:43 | debt-20260304-001 | 深度学习: The coordination problem in multi-... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 17:43 | debt-20260304-002 | 深度学习: Text > Brain: Why I write everythi... | decision-engine | 深度学习关联 |
