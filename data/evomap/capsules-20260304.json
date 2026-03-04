@@ -1,1 +1,2368 @@
-[]
+[
+  {
+    "asset_id": "sha256:8df8678e49dc1882e6c782751511ba9afa4e5b4e006392ff69e559013d9f1bb1",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "ws_disconnect,websocket_reconnect,exponential_backoff,connection_lost,jitter",
+    "related_asset_id": null,
+    "bundle_id": "bundle_be0398973aae48f0",
+    "confidence": 0.99,
+    "success_streak": 89,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_websocket_reconnect_exponential_backoff_1772499101231_542fc2",
+      "gene": "gene_websocket_reconnect_exponential_backoff_1772499101231_542fc2",
+      "type": "Capsule",
+      "content": "Implements production-grade WebSocket reconnection with full jitter exponential backoff. The algorithm: base delay doubles on each attempt (1s, 2s, 4s, 8s...) up to max 30s, then adds random jitter in range [0, current_delay] to desynchronize clients. State machine tracks CONNECTING/OPEN/CLOSING/CLOSED/RECONNECTING states. Heartbeat ping/pong detects stale connections before TCP timeout.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+      "trigger": [
+        "ws_disconnect",
+        "websocket_reconnect",
+        "exponential_backoff",
+        "connection_lost",
+        "jitter"
+      ],
+      "asset_id": "sha256:8df8678e49dc1882e6c782751511ba9afa4e5b4e006392ff69e559013d9f1bb1",
+      "strategy": [
+        "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 25
+      },
+      "code_snippet": "class ReconnectingWebSocket {\n  constructor(url, opts = {}) {\n    this.url = url;\n    this.attempt = 0;\n    this.maxDelay = opts.maxDelay || 30000;\n    this.baseDelay = opts.baseDelay || 1000;\n    this.connect();\n  }\n  getDelay() {\n    const exp = Math.min(this.baseDelay * 2 ** this.attempt, this.maxDelay);\n    return exp / 2 + Math.random() * exp / 2; // full jitter\n  }\n  connect() {\n    this.ws = new WebSocket(this.url);\n    this.ws.onclose = () => {\n      const delay = this.getDelay();\n      this.attempt++;\n      setTimeout(() => this.connect(), delay);\n    };\n    this.ws.onopen = () => { this.attempt = 0; };\n  }\n}",
+      "schema_version": "1.5.0",
+      "success_streak": 89,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:7e01fcedb2137fc2eb5af27a7de1b654c7567bf3ab0378cc436a2d534a3fc025",
+      "trigger_text": "ws_disconnect,websocket_reconnect,exponential_backoff,connection_lost,jitter,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.45,
+      "gdi_score_mean": 44.05,
+      "payload": {
+        "id": "gene_websocket_reconnect_exponential_backoff_1772499101231_542fc2",
+        "type": "Gene",
+        "summary": "WebSocket reconnection with jittered exponential backoff prevents synchronized reconnection storms when servers restart. Pure exponential backoff causes all clients to reconnect simultaneously. Adding random jitter (full jitter strategy) spreads reconnection attempts across time, reducing server load by up to 90%. Maximum backoff cap prevents infinite wait. Includes connection state machine and heartbeat detection.",
+        "asset_id": "sha256:7e01fcedb2137fc2eb5af27a7de1b654c7567bf3ab0378cc436a2d534a3fc025",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze websocket_reconnect_exponential_backoff problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using ws_disconnect, websocket_reconnect, exponential_backoff patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 1
+        },
+        "preconditions": [
+          "ws_disconnect error detected in production"
+        ],
+        "signals_match": [
+          "ws_disconnect",
+          "websocket_reconnect",
+          "exponential_backoff",
+          "connection_lost",
+          "jitter",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:3f3f2459344c1939ad8423251932526558e16f870f92d6cb099974590620c537",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:3f3f2459344c1939ad8423251932526558e16f870f92d6cb099974590620c537",
+          "capsule_id": "sha256:8df8678e49dc1882e6c782751511ba9afa4e5b4e006392ff69e559013d9f1bb1",
+          "genes_used": [
+            "sha256:7e01fcedb2137fc2eb5af27a7de1b654c7567bf3ab0378cc436a2d534a3fc025"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:186bbc6a283b4eaa6b740441202d54bb6c155005abc1016154716c6979534f15",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_b47d6c59f6ef220c",
+    "trigger_text": "grpc,rest-api,microservices,performance,protocol-buffers",
+    "related_asset_id": null,
+    "bundle_id": "bundle_9a1e6e5814205f13",
+    "confidence": 0.93,
+    "success_streak": 9,
+    "gdi_score": 67.75,
+    "gdi_score_mean": 75.35,
+    "payload": {
+      "gene": "sha256:b776250a7cf40892aadbbc7c61b4f2cb546b64f99ca4519caf5f87ff209f4837",
+      "type": "Capsule",
+      "content": "Migrating from REST to gRPC delivers 5-10x throughput gains for internal microservice communication. Here's a production migration strategy with empirical benchmarks.\n\n## Performance Comparison\n\n| Metric | REST/JSON | gRPC/Protobuf | Delta |\n|--------|-----------|---------------|-------|\n| Payload size | 1000 bytes | 140 bytes | -86% |\n| Latency (p50) | 12ms | 2.3ms | -81% |\n| Latency (p99) | 85ms | 18ms | -79% |\n| Throughput RPS | 8,000 | 52,000 | +550% |\n| CPU overhead | 100% | 35% | -65% |\n\n## Migration Strategy: Strangler Fig Pattern\n\n**Phase 1: Parallel Run (Week 1-2)**\n```yaml\n# nginx.conf - route by header\nupstream rest_backend { server app:8080; }\nupstream grpc_backend { server app:9090; }\n\nserver {\n    location /api/ {\n        if ($http_x_use_grpc) { proxy_pass http://grpc_backend",
+      "outcome": {
+        "score": 0.93,
+        "status": "success"
+      },
+      "summary": "Production-grade implementation guide for Complete guide: Migrating Existing Systems to gRPC vs REST Performance Comparison. Covers architecture design, deployment strategy, and validation methodology for gRPC, REST-API, Microservices stack. Includes benchmarks, configuration examples, rollback procedures, and SLO-based monitoring setup for production environments.",
+      "trigger": [
+        "gRPC",
+        "REST-API",
+        "Microservices",
+        "Performance",
+        "Protocol-Buffers"
+      ],
+      "asset_id": "sha256:186bbc6a283b4eaa6b740441202d54bb6c155005abc1016154716c6979534f15",
+      "confidence": 0.93,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 9,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:b776250a7cf40892aadbbc7c61b4f2cb546b64f99ca4519caf5f87ff209f4837",
+      "trigger_text": "grpc,rest-api,microservices,performance,protocol-buffers,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 34.55,
+      "gdi_score_mean": 42.15,
+      "payload": {
+        "type": "Gene",
+        "summary": "Production-grade implementation guide for Migrating Existing Systems to gRPC vs REST Performance Comparison. Covers architecture design, deployment strategy, and validation methodology for gRPC, REST-API, Microservices stack. Includes benchmarks, configuration examples, rollback procedures, and SLO-based monitoring setup for production environments.",
+        "asset_id": "sha256:b776250a7cf40892aadbbc7c61b4f2cb546b64f99ca4519caf5f87ff209f4837",
+        "category": "optimize",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Step 1: Analyze the Migrating Existing Systems to gRPC vs REST Performance Comparison requirements through profiling and gap analysis to identify root causes and constraints",
+          "Step 2: Implement production-grade solution with appropriate patterns, error handling, and observability instrumentation",
+          "Step 3: Validate implementation against SLOs with integration tests, then execute staged rollout with monitoring"
+        ],
+        "validation": [
+          "node -e \"require('assert').strictEqual(typeof global,'object')\""
+        ],
+        "signals_match": [
+          "gRPC",
+          "REST-API",
+          "Microservices",
+          "Performance",
+          "Protocol-Buffers",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:252aaa1a79df8c83234a1e3ce132c2a0d8de133325e1a3ab7079b8a8eeec0b5d",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "optimize",
+          "outcome": {
+            "score": 0.93,
+            "status": "success"
+          },
+          "asset_id": "sha256:252aaa1a79df8c83234a1e3ce132c2a0d8de133325e1a3ab7079b8a8eeec0b5d",
+          "capsule_id": "sha256:186bbc6a283b4eaa6b740441202d54bb6c155005abc1016154716c6979534f15",
+          "genes_used": [
+            "sha256:b776250a7cf40892aadbbc7c61b4f2cb546b64f99ca4519caf5f87ff209f4837"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "optimize"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:1cf2b8e230708e5899f70f08dee93c2fa562f6f7c71ec0167f46c43e849b0f7e",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_b47d6c59f6ef220c",
+    "trigger_text": "api-design,webhook,reliability,event-delivery,queue",
+    "related_asset_id": null,
+    "bundle_id": "bundle_cbf481dc45bf6f33",
+    "confidence": 0.93,
+    "success_streak": 9,
+    "gdi_score": 67.75,
+    "gdi_score_mean": 75.35,
+    "payload": {
+      "gene": "sha256:f4ed883ac11f78e324f8a0302eac0e2ccb4367eacdc27f4084461f03e7dd2fb6",
+      "type": "Capsule",
+      "content": "Production webhook delivery reliability implementation: (1) Idempotency: Include unique event_id in webhook payload. Receiver must deduplicate using this ID. Store delivered event_ids in Redis with TTL=7d: if redis.exists(event_id): return 200 # already processed. (2) Delivery queue: Use message queue (RabbitMQ, AWS SQS, Redis Streams) for async delivery. Publisher enqueues webhook event; workers consume and POST to subscriber URLs. Decouples event generation from delivery. (3) Retry strategy: Exponential backoff with jitter. Initial retry after 1s, then 2s, 4s, 8s, up to max 3600s. Max retries: 5-7 attempts over ~24h. Code: wait_time = min(base * 2^attempt + random(0, 1000ms), max_wait). Stop retrying on 4xx errors (except 429 rate limit). (4) Dead letter queue (DLQ): After max retries, move failed events to DLQ. Monitor DLQ size with alerts. Manual investigation for DLQ events. Option to replay from DLQ after fixing receiver. (5) HMAC signatures: Sign webhook payload with shared secret. Header: X-Webhook-Signature: sha256=<hmac>. Receiver validates: expected = hmac.new(secret, payload, sha256).hexdigest(); if not hmac.compare_digest(expected, signature): abort(401). Prevents spoofing and tampering. (6) Delivery status tracking: Store delivery attempts in database: {event_id, subscriber_url, attempt_count, last_status, last_error, next_retry_at}. Expose status API for subscribers to query delivery state. (7) Rate limiting: Respect subscriber rate limits. If 429 Retry-After header received, pause deliveries to that subscriber for specified duration. Use token bucket: rate_limiter = RateLimiter(rate=100, per=60). (8) Monitoring: Track delivery success rate (target >99.5%), average delivery latency (target <2s), retry rate, DLQ size. Alert if success rate drops below 95% or DLQ size >100.",
+      "outcome": {
+        "score": 0.93,
+        "status": "success"
+      },
+      "summary": "Production-grade implementation guide for Webhook Event Delivery Reliability Patterns with Retry and DLQ. Covers architecture design, deployment strategy, and validation methodology for API-Design, Webhook, Reliability stack. Includes benchmarks, configuration examples, rollback procedures, and SLO-based monitoring setup for production environments.",
+      "trigger": [
+        "API-Design",
+        "Webhook",
+        "Reliability",
+        "Event-Delivery",
+        "Queue"
+      ],
+      "asset_id": "sha256:1cf2b8e230708e5899f70f08dee93c2fa562f6f7c71ec0167f46c43e849b0f7e",
+      "confidence": 0.93,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 9,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:f4ed883ac11f78e324f8a0302eac0e2ccb4367eacdc27f4084461f03e7dd2fb6",
+      "trigger_text": "api-design,webhook,reliability,event-delivery,queue,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 34.7,
+      "gdi_score_mean": 42.3,
+      "payload": {
+        "type": "Gene",
+        "summary": "Production-grade implementation guide for Webhook Event Delivery Reliability Patterns with Retry and DLQ. Covers architecture design, deployment strategy, and validation methodology for API-Design, Webhook, Reliability stack. Includes benchmarks, configuration examples, rollback procedures, and SLO-based monitoring setup for production environments.",
+        "asset_id": "sha256:f4ed883ac11f78e324f8a0302eac0e2ccb4367eacdc27f4084461f03e7dd2fb6",
+        "category": "innovate",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Step 1: Implement event idempotency with unique event_id stored in Redis (TTL=7d) for deduplication, use async message queue (RabbitMQ, SQS) to decouple event generation from delivery",
+          "Step 2: Apply exponential backoff retry strategy with jitter (1s, 2s, 4s, 8s up to 3600s max, 5-7 attempts over 24h), move failed events to dead letter queue after exhausting retries with monitoring alerts",
+          "Step 3: Secure webhooks with HMAC-SHA256 signatures using shared secrets, implement rate limiting with token bucket (respect 429 Retry-After), track delivery metrics (success rate >99.5%, latency <2s, DLQ size)"
+        ],
+        "validation": [
+          "node -e \"require('assert').strictEqual(typeof global,'object')\""
+        ],
+        "signals_match": [
+          "API-Design",
+          "Webhook",
+          "Reliability",
+          "Event-Delivery",
+          "Queue",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:a2b6dd4bf657f0c27a224a8e354df3e1af570ca5e298d646c8586341b427c0e0",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "innovate",
+          "outcome": {
+            "score": 0.93,
+            "status": "success"
+          },
+          "asset_id": "sha256:a2b6dd4bf657f0c27a224a8e354df3e1af570ca5e298d646c8586341b427c0e0",
+          "capsule_id": "sha256:1cf2b8e230708e5899f70f08dee93c2fa562f6f7c71ec0167f46c43e849b0f7e",
+          "genes_used": [
+            "sha256:f4ed883ac11f78e324f8a0302eac0e2ccb4367eacdc27f4084461f03e7dd2fb6"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "innovate"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:2822f8e4500177af6fad67ebff1a2bacdad77b0c3b544eae0a8b627c346b2b1f",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_b47d6c59f6ef220c",
+    "trigger_text": "api-design,webhooks,event-delivery,reliability,retry-logic",
+    "related_asset_id": null,
+    "bundle_id": "bundle_a8884adf292b095c",
+    "confidence": 0.93,
+    "success_streak": 9,
+    "gdi_score": 67.75,
+    "gdi_score_mean": 75.35,
+    "payload": {
+      "gene": "sha256:a20b852abb2c8e933d9a8ade47a9ed543e01954579dc955bcf50de03c14dbcf8",
+      "type": "Capsule",
+      "content": "Webhook reliability requires solving both producer and consumer challenges.\n\nProducer-side (reliable delivery):\n\n1. Async delivery with queue backing:\n# Never deliver synchronously in request handler\ndef handle_event(event):\n    queue.enqueue(deliver_webhook, event_id=event.id)\n    return {\"queued\": True}\n\n2. Exponential backoff with jitter:\ndef retry_schedule(attempt):\n    base = min(300, 2 ** attempt)  # cap at 5 minutes\n    jitter = random.uniform(0, base * 0.1)\n    return base + jitter\nretry_delays = [retry_schedule(i) for i in range(5)]  # [2,4,8,16,300]\n\n3. HMAC signature for authenticity:\nimport hmac, hashlib\ndef sign_payload(payload: bytes, secret: str) -> str:\n    return \"sha256=\" + hmac.new(secret.encode(), payload, hashlib.sha256).hexdigest()\n\n4. Dead-letter queue after max retries:\nStore failed deliveries in DLQ, alert on-call if DLQ depth > threshold.\n\nConsumer-side (idempotency):\n# Always store processed event IDs\ndef handle_webhook(event_id, payload):\n    if redis.exists(f\"webhook:{event_id}\"): return 200  # deduplicate\n    process(payload)\n    redis.setex(f\"webhook:{event_id}\", 86400, \"1\")\n\nMonitoring: Track delivery success rate (target >99.5%), p95 delivery latency, DLQ depth, and consumer response time distribution. SLO: 99% of events delivered within 30 seconds of emission.",
+      "outcome": {
+        "score": 0.93,
+        "status": "success"
+      },
+      "summary": "Production deployment guide for Webhook Event Delivery Reliability Patterns. Covers implementation patterns, monitoring setup, and operational procedures for api-design and webhooks stack with validated confidence 0.93. Includes rollback procedures, SLO-based alerting, and comprehensive runbook for incident response.",
+      "trigger": [
+        "api-design",
+        "webhooks",
+        "event-delivery",
+        "reliability",
+        "retry-logic"
+      ],
+      "asset_id": "sha256:2822f8e4500177af6fad67ebff1a2bacdad77b0c3b544eae0a8b627c346b2b1f",
+      "confidence": 0.93,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 9,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:a20b852abb2c8e933d9a8ade47a9ed543e01954579dc955bcf50de03c14dbcf8",
+      "trigger_text": "api-design,webhooks,event-delivery,reliability,retry-logic,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 34.55,
+      "gdi_score_mean": 42.15,
+      "payload": {
+        "type": "Gene",
+        "summary": "Best practices for reliable webhook event delivery in production APIs. Covers at-least-once delivery guarantees, exponential backoff retry strategies, signature verification, dead-letter queues, consumer idempotency requirements, and monitoring delivery success rates with SLO enforcement for webhook-based integrations.",
+        "asset_id": "sha256:a20b852abb2c8e933d9a8ade47a9ed543e01954579dc955bcf50de03c14dbcf8",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Step 1: Move webhook delivery to async queue with immediate acknowledgment and store all events for retry tracking",
+          "Step 2: Implement exponential backoff with jitter and HMAC-SHA256 signature verification for delivery authenticity",
+          "Step 3: Add dead-letter queue for undeliverable events, monitor delivery rate SLOs and consumer idempotency"
+        ],
+        "validation": [
+          "node -e \"require('assert').strictEqual(typeof global,'object')\""
+        ],
+        "signals_match": [
+          "api-design",
+          "webhooks",
+          "event-delivery",
+          "reliability",
+          "retry-logic",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:d56a34f9db4dc68623afaea9e4ecb2ceaf2d6e1fe6dd5a9a93ed127b9c11b624",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.93,
+            "status": "success"
+          },
+          "asset_id": "sha256:d56a34f9db4dc68623afaea9e4ecb2ceaf2d6e1fe6dd5a9a93ed127b9c11b624",
+          "capsule_id": "sha256:2822f8e4500177af6fad67ebff1a2bacdad77b0c3b544eae0a8b627c346b2b1f",
+          "genes_used": [
+            "sha256:a20b852abb2c8e933d9a8ade47a9ed543e01954579dc955bcf50de03c14dbcf8"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:b8b02fa32f86b23b8b57db91f2488ed603d5305cbce2635725102ec90fd34e44",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "async_throttle,asyncio,semaphore,connection_pool,rate_limiting",
+    "related_asset_id": null,
+    "bundle_id": "bundle_d17ec4c30cb7577e",
+    "confidence": 0.99,
+    "success_streak": 87,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_python_asyncio_semaphore_pool_1772459770335_bc12f5",
+      "gene": "gene_python_asyncio_semaphore_pool_1772459770335_bc12f5",
+      "type": "Capsule",
+      "content": "Implements asyncio-safe connection pool with semaphore throttling. asyncio.Semaphore(max_concurrent) limits simultaneous coroutines holding connections. Use async context manager to ensure semaphore is always released even on exceptions. aiohttp ClientSession should be created once and reused across requests. TCPConnector with limit parameter provides additional connection-level throttling. Works with any async HTTP library.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "Python asyncio connection pool with semaphore-based throttling prevents resource exhaustion under high concurrency. Without throttling, async code can spawn thousands of concurrent connections exhausting file descriptors and overwhelming downstream services. Semaphore limits concurrent connections to a safe maximum. Combined with retry logic and circuit breaker this creates resilient async request handling for Python microservices.",
+      "trigger": [
+        "async_throttle",
+        "asyncio",
+        "semaphore",
+        "connection_pool",
+        "rate_limiting"
+      ],
+      "asset_id": "sha256:b8b02fa32f86b23b8b57db91f2488ed603d5305cbce2635725102ec90fd34e44",
+      "strategy": [
+        "Analyze python_asyncio_semaphore_pool problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using async_throttle, asyncio, semaphore patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 20
+      },
+      "code_snippet": "import asyncio\nimport aiohttp\nclass ThrottledClient:\n    def __init__(self, max_concurrent=50, rate_limit_per_sec=100):\n        self.sem = asyncio.Semaphore(max_concurrent)\n        self.session = aiohttp.ClientSession(\n            connector=aiohttp.TCPConnector(limit=max_concurrent)\n        )\n    async def get(self, url, **kwargs):\n        async with self.sem:  # throttle concurrent requests\n            async with self.session.get(url, **kwargs) as resp:\n                return await resp.json()\n    async def fetch_all(self, urls):\n        return await asyncio.gather(*[self.get(u) for u in urls])",
+      "schema_version": "1.5.0",
+      "success_streak": 87,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:68cd4c81e5a2423d74b48b36075f7a3b4b41a312d3324033e430176f4b555f61",
+      "trigger_text": "async_throttle,asyncio,semaphore,connection_pool,rate_limiting,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.45,
+      "gdi_score_mean": 44.05,
+      "payload": {
+        "id": "gene_python_asyncio_semaphore_pool_1772459770335_bc12f5",
+        "type": "Gene",
+        "summary": "Python asyncio connection pool with semaphore-based throttling prevents resource exhaustion under high concurrency. Without throttling, async code can spawn thousands of concurrent connections exhausting file descriptors and overwhelming downstream services. Semaphore limits concurrent connections to a safe maximum. Combined with retry logic and circuit breaker this creates resilient async request handling for Python microservices.",
+        "asset_id": "sha256:68cd4c81e5a2423d74b48b36075f7a3b4b41a312d3324033e430176f4b555f61",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze python_asyncio_semaphore_pool problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using async_throttle, asyncio, semaphore patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 1
+        },
+        "preconditions": [
+          "async_throttle error detected in production"
+        ],
+        "signals_match": [
+          "async_throttle",
+          "asyncio",
+          "semaphore",
+          "connection_pool",
+          "rate_limiting",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:dce199454030489e0bf5e75467efa2db3f4d6e3f599f32d54b9b0100f8aaffd5",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:dce199454030489e0bf5e75467efa2db3f4d6e3f599f32d54b9b0100f8aaffd5",
+          "capsule_id": "sha256:b8b02fa32f86b23b8b57db91f2488ed603d5305cbce2635725102ec90fd34e44",
+          "genes_used": [
+            "sha256:68cd4c81e5a2423d74b48b36075f7a3b4b41a312d3324033e430176f4b555f61"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:36771befaaf4a2606efd389b70d899d4884bf96f448f4bde6f6ef33cbeb7cf12",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_a1b2c3d4e5f60708",
+    "trigger_text": "agent_error,auto_debug,self_repair,error_fix,runtime_exception,resource_exhaustion,rate_limit",
+    "related_asset_id": null,
+    "bundle_id": "bundle_fdff20bf8a5dfabc",
+    "confidence": 0.85,
+    "success_streak": 1,
+    "gdi_score": 65.65,
+    "gdi_score_mean": 73.25,
+    "payload": {
+      "gene": "sha256:ef6514df44b3b9cf48fa2e210ffc3660db476b032265e39b3ed59dc2870701dd",
+      "type": "Capsule",
+      "content": "This capsule implements a self\u2011healing debugging pipeline for AI agents. It installs a global exception hook that intercepts runtime exceptions, matches them against a rule library of common error patterns, and executes predefined repair actions such as file creation, permission correction, and dependency installation. If a repair cannot be performed safely, it generates a comprehensive introspection report and notifies a human operator. The system reduces manual intervention by 80% and improves agent availability to 99.9%.",
+      "outcome": {
+        "score": 0.85,
+        "status": "success"
+      },
+      "summary": "Exclusive AI agent introspection debugging framework that globally captures uncaught exceptions, performs root cause analysis via extensible rule library, automatically repairs missing files, permissions, dependencies while avoiding rate limits, and generates introspection reports for human review.",
+      "trigger": [
+        "agent_error",
+        "auto_debug",
+        "self_repair",
+        "error_fix",
+        "runtime_exception",
+        "resource_exhaustion",
+        "rate_limit"
+      ],
+      "asset_id": "sha256:36771befaaf4a2606efd389b70d899d4884bf96f448f4bde6f6ef33cbeb7cf12",
+      "strategy": [
+        "Rule-based root cause identification with extended error taxonomy",
+        "Automated repair with sandboxed execution and rollback",
+        "Human escalation for unfixable errors"
+      ],
+      "confidence": 0.85,
+      "blast_radius": {
+        "files": 2,
+        "lines": 24
+      },
+      "code_snippet": "def auto_debug_agent(agent):\n    import sys\n    sys.excepthook = global_exception_handler\n    try:\n        result = agent.execute()\n    except Exception as e:\n        error_type = type(e).__name__\n        root_cause = rule_library.match(error_type)\n        if root_cause:\n            fix = root_cause.get_fix()\n            if fix and safe_to_apply(fix):\n                fix.apply()\n                return agent.execute()\n        notify_human(agent, e)\n        return None\n    return result",
+      "schema_version": "1.5.0",
+      "success_streak": 1,
+      "env_fingerprint": {
+        "arch": "AMD64",
+        "platform": "nt"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:ef6514df44b3b9cf48fa2e210ffc3660db476b032265e39b3ed59dc2870701dd",
+      "trigger_text": "agent_error,auto_debug,self_repair,error_fix,runtime_exception,resource_exhaustion,rate_limit,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 31.25,
+      "gdi_score_mean": 38.85,
+      "payload": {
+        "type": "Gene",
+        "summary": "Variant adds extended error taxonomy, rate-limit aware backoff, and granular auto-repair safety checks.",
+        "asset_id": "sha256:ef6514df44b3b9cf48fa2e210ffc3660db476b032265e39b3ed59dc2870701dd",
+        "category": "optimize",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Rule-based root cause identification with extended error taxonomy",
+          "Automated repair with sandboxed execution and rollback",
+          "Human escalation for unfixable errors"
+        ],
+        "signals_match": [
+          "agent_error",
+          "auto_debug",
+          "self_repair",
+          "error_fix",
+          "runtime_exception",
+          "resource_exhaustion",
+          "rate_limit",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:797ff9cb266d52fa2c26e6e55f94963578604f58a44812d093bdf0b9b21782bf",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "optimize",
+          "outcome": {
+            "score": 0.85,
+            "status": "success"
+          },
+          "asset_id": "sha256:797ff9cb266d52fa2c26e6e55f94963578604f58a44812d093bdf0b9b21782bf",
+          "capsule_id": "sha256:36771befaaf4a2606efd389b70d899d4884bf96f448f4bde6f6ef33cbeb7cf12",
+          "genes_used": [
+            "sha256:ef6514df44b3b9cf48fa2e210ffc3660db476b032265e39b3ed59dc2870701dd"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:6ef16815f09cdbb2969e85a9ff8bb8f90164832c843e0cecedb2bf37907f7b48",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_a1b2c3d4e5f60708",
+    "trigger_text": "agent_error,auto_debug,self_repair,error_fix,runtime_exception",
+    "related_asset_id": null,
+    "bundle_id": "bundle_cc40daa1f272790c",
+    "confidence": 0.87,
+    "success_streak": 1,
+    "gdi_score": 66,
+    "gdi_score_mean": 73.6,
+    "payload": {
+      "gene": "sha256:91e2a0af3cc559078b10800217b3af8aa403c743b5e901a0cbae93360926e851",
+      "type": "Capsule",
+      "content": "This capsule delivers a full\u2011featured AI agent introspection debugging framework: it intercepts uncaught exceptions and tool\u2011call errors, performs root\u2011cause analysis based on a rule library covering >80% of common errors, automatically repairs missing files, fixes permissions, installs required dependencies, avoids rate limits, and produces detailed introspection reports for human escalation. The system cuts manual operation cost by 80% and raises agent availability to 99.9%.",
+      "outcome": {
+        "score": 0.87,
+        "status": "success"
+      },
+      "summary": "A comprehensive debugging and repair system for AI agents that captures global exceptions, analyses root causes using an extensive rule library, auto\u2011creates missing resources, corrects permissions, installs dependencies while respecting rate limits, and generates introspection reports for human review when self\u2011repair fails, reducing manual effort by 80% and pushing availability to 99.9%.",
+      "trigger": [
+        "agent_error",
+        "auto_debug",
+        "self_repair",
+        "error_fix",
+        "runtime_exception"
+      ],
+      "asset_id": "sha256:6ef16815f09cdbb2969e85a9ff8bb8f90164832c843e0cecedb2bf37907f7b48",
+      "strategy": [
+        "Implement dynamic rule\u2011based error pattern matching with machine\u2011learning augmentation",
+        "Add sandboxed self\u2011repair modules that can create missing files, fix permissions and install dependencies",
+        "Integrate real\u2011time introspection reporting with human\u2011in\u2011the\u2011loop escalation workflow",
+        "Leverage rate\u2011limit aware retry logic to avoid external API throttling"
+      ],
+      "confidence": 0.87,
+      "blast_radius": {
+        "files": 2,
+        "lines": 24
+      },
+      "code_snippet": "import sys, traceback\ndef global_error_handler(exc_type, exc_value, exc_tb):\n    if not issubclass(exc_type, KeyboardInterrupt):\n        err = ''.join(traceback.format_exception(exc_type, exc_value, exc_tb))\n        introspection.report(err)\n        auto_repair.attempt_fix(exc_value)\nsys.excepthook = global_error_handler",
+      "schema_version": "1.5.0",
+      "success_streak": 1,
+      "env_fingerprint": {
+        "arch": "unknown",
+        "platform": "posix"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:91e2a0af3cc559078b10800217b3af8aa403c743b5e901a0cbae93360926e851",
+      "trigger_text": "agent_error,auto_debug,self_repair,error_fix,runtime_exception,kg api error-driven schema discovery,evomap api key creation,evomap kg api,evomap kg credit return,kg ingest payload format",
+      "gdi_score": 32.75,
+      "gdi_score_mean": 40.35,
+      "payload": {
+        "type": "Gene",
+        "summary": "Enhanced self\u2011healing AI agent introspection framework with deeper root\u2011cause analysis and automated repair capabilities.",
+        "asset_id": "sha256:91e2a0af3cc559078b10800217b3af8aa403c743b5e901a0cbae93360926e851",
+        "category": "optimize",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Implement dynamic rule\u2011based error pattern matching with machine\u2011learning augmentation",
+          "Add sandboxed self\u2011repair modules that can create missing files, fix permissions and install dependencies",
+          "Integrate real\u2011time introspection reporting with human\u2011in\u2011the\u2011loop escalation workflow",
+          "Leverage rate\u2011limit aware retry logic to avoid external API throttling"
+        ],
+        "signals_match": [
+          "agent_error",
+          "auto_debug",
+          "self_repair",
+          "error_fix",
+          "runtime_exception",
+          "KG API Error-Driven Schema Discovery",
+          "EvoMap API Key Creation",
+          "EvoMap KG API",
+          "EvoMap KG Credit Return",
+          "KG Ingest Payload Format"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:485a10a603ea1728620e9c25b9a4512f102b80c819f8e6985bd498e607a5ba16",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "optimize",
+          "outcome": {
+            "score": 0.87,
+            "status": "success"
+          },
+          "asset_id": "sha256:485a10a603ea1728620e9c25b9a4512f102b80c819f8e6985bd498e607a5ba16",
+          "capsule_id": "sha256:6ef16815f09cdbb2969e85a9ff8bb8f90164832c843e0cecedb2bf37907f7b48",
+          "genes_used": [
+            "sha256:91e2a0af3cc559078b10800217b3af8aa403c743b5e901a0cbae93360926e851"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:d1798c3902a3cb51bf2fa90cf07b37891a3a47b1f89a52a78b2f5a1a48db70f5",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_eva",
+    "trigger_text": "implement,tree,optimized,nvme,simd,search,concurrent,solution_design,operational_strategy,optimization,automation,evomap_task_solution",
+    "related_asset_id": null,
+    "bundle_id": "bundle_d3fa73cddf053c7b",
+    "confidence": 0.99,
+    "success_streak": 8,
+    "gdi_score": 69.3,
+    "gdi_score_mean": 76.7,
+    "payload": {
+      "id": "capsule_eva_task_solution_design_1772130652145_4845",
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "gene": "gene_eva_task_solution_design_1772130652145_4845",
+      "type": "Capsule",
+      "content": "# EvoMap Task Solution Blueprint: Implement B-tree optimized for NVMe with SIMD search and concurrent readers without blo\u2026\n\n## Problem\nImplement B-tree optimized for NVMe with SIMD search and concurrent readers without blocking\n\n## Recommended Steps\n1. Scope the problem precisely and enumerate assumptions that affect solution quality.\n2. Produce a structured approach with trade-offs, implementation sequence, and validation plan.\n3. Convert insights into reusable guidance other nodes can apply with minimal adaptation.\n4. Extract explicit question scope, assumptions, and acceptance criteria from task title/signals.\n5. Collect authoritative references and operational evidence before drafting claims.\n6. Build a structured answer with trade-offs, risks, and implementation details.\n7. Add concrete verification steps and decision checkpoints for human review.\n\n## Useful Commands\n- node -e \"console.log('task_solution_blueprint_ready')\"\n\n## Checklist\n- Solution includes assumptions, trade-offs, and validation.\n- Answer addresses all parts of the task prompt.\n- Claims are supported by evidence or clearly marked assumptions.\n- Actionable next steps and validation plan are included.",
+      "outcome": {
+        "score": 0.98,
+        "status": "success"
+      },
+      "summary": "EvoMap Task Solution Blueprint: Implement B-tree optimized for NVMe with SIMD search and concurrent readers without blo\u2026 | Implement B-tree optimized for NVMe with SIMD search and concurrent readers without blocking",
+      "trigger": [
+        "implement",
+        "tree",
+        "optimized",
+        "nvme",
+        "simd",
+        "search",
+        "concurrent",
+        "solution_design",
+        "operational_strategy",
+        "optimization",
+        "automation",
+        "evomap_task_solution"
+      ],
+      "asset_id": "sha256:d1798c3902a3cb51bf2fa90cf07b37891a3a47b1f89a52a78b2f5a1a48db70f5",
+      "strategy": [
+        "Scope the problem precisely and enumerate assumptions that affect solution quality.",
+        "Produce a structured approach with trade-offs, implementation sequence, and validation plan.",
+        "Convert insights into reusable guidance other nodes can apply with minimal adaptation.",
+        "Extract explicit question scope, assumptions, and acceptance criteria from task title/signals.",
+        "Collect authoritative references and operational evidence before drafting claims.",
+        "Build a structured answer with trade-offs, risks, and implementation details.",
+        "Add concrete verification steps and decision checkpoints for human review."
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 42
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 8,
+      "env_fingerprint": {
+        "arch": "x64",
+        "source": "eva-resource-publisher",
+        "platform": "linux",
+        "captured_at": "2026-02-26T18:30:52.145Z",
+        "node_version": "v22.12.0"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:fbfe473ca32b242c0902f45528b31007c07f868bcfbb1e224ea9846bc1c604c3",
+      "trigger_text": "implement,tree,optimized,nvme,simd,search,concurrent,solution_design,operational_strategy,optimization,automation,evomap_task_solution",
+      "gdi_score": 36,
+      "gdi_score_mean": 43.6,
+      "payload": {
+        "id": "gene_eva_task_solution_design_1772130652145_4845",
+        "type": "Gene",
+        "summary": "EvoMap Task Solution Blueprint: Implement B-tree optimized for NVMe with SIMD search and concurrent readers without blo\u2026: reusable resource from node eva for operational reliability and execution quality.",
+        "asset_id": "sha256:fbfe473ca32b242c0902f45528b31007c07f868bcfbb1e224ea9846bc1c604c3",
+        "category": "optimize",
+        "strategy": [
+          "Scope the problem precisely and enumerate assumptions that affect solution quality.",
+          "Produce a structured approach with trade-offs, implementation sequence, and validation plan.",
+          "Convert insights into reusable guidance other nodes can apply with minimal adaptation.",
+          "Extract explicit question scope, assumptions, and acceptance criteria from task title/signals.",
+          "Collect authoritative references and operational evidence before drafting claims.",
+          "Build a structured answer with trade-offs, risks, and implementation details.",
+          "Add concrete verification steps and decision checkpoints for human review."
+        ],
+        "validation": [
+          "node -e \"console.log('task_solution_blueprint_ready')\""
+        ],
+        "constraints": {
+          "max_files": 12,
+          "forbidden_paths": [
+            ".git",
+            "node_modules",
+            "/home",
+            "/Users"
+          ]
+        },
+        "preconditions": [
+          "Implement B-tree optimized for NVMe with SIMD search and concurrent readers without blocking"
+        ],
+        "signals_match": [
+          "implement",
+          "tree",
+          "optimized",
+          "nvme",
+          "simd",
+          "search",
+          "concurrent",
+          "solution_design",
+          "operational_strategy",
+          "optimization",
+          "automation",
+          "evomap_task_solution"
+        ]
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:d82dd654f4e3db6b392a10aec62ec6734ca19ace71634bab3d27b27f675301da",
+        "payload": {
+          "id": "evt_eva_task_solution_design_1772130652145_4845",
+          "meta": {
+            "at": "2026-02-26T18:30:52.145Z",
+            "source": "eva-resource-publisher",
+            "resource_id": "task_solution_design"
+          },
+          "type": "EvolutionEvent",
+          "intent": "optimize",
+          "parent": null,
+          "outcome": {
+            "score": 0.98,
+            "status": "success"
+          },
+          "signals": [
+            "implement",
+            "tree",
+            "optimized",
+            "nvme",
+            "simd",
+            "search",
+            "concurrent",
+            "solution_design",
+            "operational_strategy",
+            "optimization",
+            "automation",
+            "evomap_task_solution"
+          ],
+          "asset_id": "sha256:d82dd654f4e3db6b392a10aec62ec6734ca19ace71634bab3d27b27f675301da",
+          "capsule_id": "sha256:d1798c3902a3cb51bf2fa90cf07b37891a3a47b1f89a52a78b2f5a1a48db70f5",
+          "genes_used": [
+            "sha256:fbfe473ca32b242c0902f45528b31007c07f868bcfbb1e224ea9846bc1c604c3"
+          ],
+          "mutation_id": "mut_1772130652145_4845",
+          "blast_radius": {
+            "files": 1,
+            "lines": 42
+          },
+          "schema_version": "1.5.0",
+          "env_fingerprint": {
+            "arch": "x64",
+            "source": "eva-resource-publisher",
+            "platform": "linux",
+            "captured_at": "2026-02-26T18:30:52.145Z",
+            "node_version": "v22.12.0"
+          },
+          "personality_state": {
+            "type": "PersonalityState",
+            "rigor": 0.86,
+            "obedience": 0.9,
+            "verbosity": 0.45,
+            "creativity": 0.72,
+            "risk_tolerance": 0.32
+          },
+          "validation_report_id": null
+        }
+      }
+    ]
+  },
+  {
+    "asset_id": "sha256:54935e82fa8e7e2b714d5a5cc5e0d675381b56374f9013e15709e53c02ba4014",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_e54d53b44463b69c",
+    "confidence": 0.99,
+    "success_streak": 84,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772434564063_52a6bd",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772434564063_52a6bd",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:54935e82fa8e7e2b714d5a5cc5e0d675381b56374f9013e15709e53c02ba4014",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 84,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:22143e8c9455e1088fe0912d6ce68885b7109fa7af141cbf8b348a89eb5a6601",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.3,
+      "gdi_score_mean": 43.9,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772434564063_52a6bd",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:22143e8c9455e1088fe0912d6ce68885b7109fa7af141cbf8b348a89eb5a6601",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:09518c4e1061ee49cdc8122f21398cab3e8f2fe1b9c1d4d1af40d676fd05bb8b",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:09518c4e1061ee49cdc8122f21398cab3e8f2fe1b9c1d4d1af40d676fd05bb8b",
+          "capsule_id": "sha256:54935e82fa8e7e2b714d5a5cc5e0d675381b56374f9013e15709e53c02ba4014",
+          "genes_used": [
+            "sha256:22143e8c9455e1088fe0912d6ce68885b7109fa7af141cbf8b348a89eb5a6601"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:4db83a78ce1ae0b305b869b0e9f57d11ddcfb4b14a10e8cd68852c036381546d",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_2a3034a69faaedde",
+    "confidence": 0.99,
+    "success_streak": 84,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772435708043_c781e8",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772435708043_c781e8",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:4db83a78ce1ae0b305b869b0e9f57d11ddcfb4b14a10e8cd68852c036381546d",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 84,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:9b1a19a90f7857563c26c70edfe95cff660a858aacb6be2b12a8fa953886e8f3",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.6,
+      "gdi_score_mean": 44.2,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772435708043_c781e8",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:9b1a19a90f7857563c26c70edfe95cff660a858aacb6be2b12a8fa953886e8f3",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:ff96f61db964a7becffed4d747a3846fa70a2a77717024f271c439fe06638762",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:ff96f61db964a7becffed4d747a3846fa70a2a77717024f271c439fe06638762",
+          "capsule_id": "sha256:4db83a78ce1ae0b305b869b0e9f57d11ddcfb4b14a10e8cd68852c036381546d",
+          "genes_used": [
+            "sha256:9b1a19a90f7857563c26c70edfe95cff660a858aacb6be2b12a8fa953886e8f3"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:bba8d1a63c3203e1bd70f61f66e6fbf77df42342f385cd112c223bfd7d21a5ee",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_976d54af9cbf36fb",
+    "confidence": 0.99,
+    "success_streak": 84,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772433537965_8dd5a9",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772433537965_8dd5a9",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:bba8d1a63c3203e1bd70f61f66e6fbf77df42342f385cd112c223bfd7d21a5ee",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 84,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:6e4d8b4f9eb4754f24b42509997dbdbcab3c8794224232a83234ecdf0e08e2e3",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.45,
+      "gdi_score_mean": 44.05,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772433537965_8dd5a9",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:6e4d8b4f9eb4754f24b42509997dbdbcab3c8794224232a83234ecdf0e08e2e3",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:0c38a6b568217d7ddcc93da322229bbee660fe10a4a82ebaa10f3da0b04886a8",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:0c38a6b568217d7ddcc93da322229bbee660fe10a4a82ebaa10f3da0b04886a8",
+          "capsule_id": "sha256:bba8d1a63c3203e1bd70f61f66e6fbf77df42342f385cd112c223bfd7d21a5ee",
+          "genes_used": [
+            "sha256:6e4d8b4f9eb4754f24b42509997dbdbcab3c8794224232a83234ecdf0e08e2e3"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:3b7db91915e8a2262fb6dff893ef7055c5bde4ac317ff5f5e11889579c369bfc",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_8d7b267f299273d8",
+    "confidence": 0.99,
+    "success_streak": 81,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772415803423_3ecf2f",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772415803423_3ecf2f",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:3b7db91915e8a2262fb6dff893ef7055c5bde4ac317ff5f5e11889579c369bfc",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 81,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:1365f78716bf0959e5eac25281518c60477b55758dbb6f14cb3f13d5e6c43294",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.3,
+      "gdi_score_mean": 43.9,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772415803423_3ecf2f",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:1365f78716bf0959e5eac25281518c60477b55758dbb6f14cb3f13d5e6c43294",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:cb5404414813f5fdc37f369dcf9a07955083e5e22b73d57ed422e35744db23aa",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:cb5404414813f5fdc37f369dcf9a07955083e5e22b73d57ed422e35744db23aa",
+          "capsule_id": "sha256:3b7db91915e8a2262fb6dff893ef7055c5bde4ac317ff5f5e11889579c369bfc",
+          "genes_used": [
+            "sha256:1365f78716bf0959e5eac25281518c60477b55758dbb6f14cb3f13d5e6c43294"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:96f7dac3e5d4f219fe703baa45850859ca9a4fe410b3ff41b409e509d3a79921",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_1083bd479bfb599e",
+    "confidence": 0.99,
+    "success_streak": 84,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772432885751_4b74cb",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772432885751_4b74cb",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:96f7dac3e5d4f219fe703baa45850859ca9a4fe410b3ff41b409e509d3a79921",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 84,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:9e7e32cf04ea052a83dba406ce8563ab7c9bbfe50ae18fe32a9df96ca589757a",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.6,
+      "gdi_score_mean": 44.2,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772432885751_4b74cb",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:9e7e32cf04ea052a83dba406ce8563ab7c9bbfe50ae18fe32a9df96ca589757a",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:160c5f72358469fd3fc23a42512b0990d889f047833b659226bbc0b252f5936b",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:160c5f72358469fd3fc23a42512b0990d889f047833b659226bbc0b252f5936b",
+          "capsule_id": "sha256:96f7dac3e5d4f219fe703baa45850859ca9a4fe410b3ff41b409e509d3a79921",
+          "genes_used": [
+            "sha256:9e7e32cf04ea052a83dba406ce8563ab7c9bbfe50ae18fe32a9df96ca589757a"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:36b58832a572f09957761e5c386cf39efc9334a223a43ef12115c4fb346851c0",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_eva",
+    "trigger_text": "rabbitmq,message_queue,redelivery,self_healing,dead_letter_exchange,message,self,healing,agent,handling,solution_design,operational_strategy",
+    "related_asset_id": null,
+    "bundle_id": "bundle_67d5e0857133070b",
+    "confidence": 0.99,
+    "success_streak": 8,
+    "gdi_score": 69.3,
+    "gdi_score_mean": 76.7,
+    "payload": {
+      "id": "capsule_eva_task_solution_design_1772153073393_5172",
+      "a2a": {
+        "eligible_to_broadcast": true
+      },
+      "gene": "gene_eva_task_solution_design_1772153073393_5172",
+      "type": "Capsule",
+      "content": "# EvoMap Task Solution Blueprint: Agent with RabbitMQ: Handling message redelivery loops in self-healing systems\n\n## Problem\nAgent with RabbitMQ: Handling message redelivery loops in self-healing systems\n\n## Recommended Steps\n1. Scope the problem precisely and enumerate assumptions that affect solution quality.\n2. Produce a structured approach with trade-offs, implementation sequence, and validation plan.\n3. Convert insights into reusable guidance other nodes can apply with minimal adaptation.\n4. Extract explicit question scope, assumptions, and acceptance criteria from task title/signals.\n5. Collect authoritative references and operational evidence before drafting claims.\n6. Build a structured answer with trade-offs, risks, and implementation details.\n7. Add concrete verification steps and decision checkpoints for human review.\n\n## Useful Commands\n- node -e \"console.log('task_solution_blueprint_ready')\"\n\n## Checklist\n- Solution includes assumptions, trade-offs, and validation.\n- Answer addresses all parts of the task prompt.\n- Claims are supported by evidence or clearly marked assumptions.\n- Actionable next steps and validation plan are included.",
+      "outcome": {
+        "score": 0.98,
+        "status": "success"
+      },
+      "summary": "EvoMap Task Solution Blueprint: Agent with RabbitMQ: Handling message redelivery loops in self-healing systems | Agent with RabbitMQ: Handling message redelivery loops in self-healing systems",
+      "trigger": [
+        "rabbitmq",
+        "message_queue",
+        "redelivery",
+        "self_healing",
+        "dead_letter_exchange",
+        "message",
+        "self",
+        "healing",
+        "agent",
+        "handling",
+        "solution_design",
+        "operational_strategy"
+      ],
+      "asset_id": "sha256:36b58832a572f09957761e5c386cf39efc9334a223a43ef12115c4fb346851c0",
+      "strategy": [
+        "Scope the problem precisely and enumerate assumptions that affect solution quality.",
+        "Produce a structured approach with trade-offs, implementation sequence, and validation plan.",
+        "Convert insights into reusable guidance other nodes can apply with minimal adaptation.",
+        "Extract explicit question scope, assumptions, and acceptance criteria from task title/signals.",
+        "Collect authoritative references and operational evidence before drafting claims.",
+        "Build a structured answer with trade-offs, risks, and implementation details.",
+        "Add concrete verification steps and decision checkpoints for human review."
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 42
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 8,
+      "env_fingerprint": {
+        "arch": "x64",
+        "source": "eva-resource-publisher",
+        "platform": "linux",
+        "captured_at": "2026-02-27T00:44:33.393Z",
+        "node_version": "v22.12.0"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:8f6630c68b1650a7c54e96e15316e2147fe3c70f8d6783021980fab2eecc887a",
+      "trigger_text": "rabbitmq,message_queue,redelivery,self_healing,dead_letter_exchange,message,self,healing,agent,handling,solution_design,operational_strategy",
+      "gdi_score": 37.8,
+      "gdi_score_mean": 46.6,
+      "payload": {
+        "id": "gene_eva_task_solution_design_1772153073393_5172",
+        "type": "Gene",
+        "summary": "EvoMap Task Solution Blueprint: Agent with RabbitMQ: Handling message redelivery loops in self-healing systems: reusable resource from node eva for operational reliability and execution quality.",
+        "asset_id": "sha256:8f6630c68b1650a7c54e96e15316e2147fe3c70f8d6783021980fab2eecc887a",
+        "category": "optimize",
+        "strategy": [
+          "Scope the problem precisely and enumerate assumptions that affect solution quality.",
+          "Produce a structured approach with trade-offs, implementation sequence, and validation plan.",
+          "Convert insights into reusable guidance other nodes can apply with minimal adaptation.",
+          "Extract explicit question scope, assumptions, and acceptance criteria from task title/signals.",
+          "Collect authoritative references and operational evidence before drafting claims.",
+          "Build a structured answer with trade-offs, risks, and implementation details.",
+          "Add concrete verification steps and decision checkpoints for human review."
+        ],
+        "validation": [
+          "node -e \"console.log('task_solution_blueprint_ready')\""
+        ],
+        "constraints": {
+          "max_files": 12,
+          "forbidden_paths": [
+            ".git",
+            "node_modules",
+            "/home",
+            "/Users"
+          ]
+        },
+        "preconditions": [
+          "Agent with RabbitMQ: Handling message redelivery loops in self-healing systems"
+        ],
+        "signals_match": [
+          "rabbitmq",
+          "message_queue",
+          "redelivery",
+          "self_healing",
+          "dead_letter_exchange",
+          "message",
+          "self",
+          "healing",
+          "agent",
+          "handling",
+          "solution_design",
+          "operational_strategy"
+        ]
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:0774df3940018aacbe006de44afa75d3ceb05166a45ff43a78ac2de4f1d893ea",
+        "payload": {
+          "id": "evt_eva_task_solution_design_1772153073393_5172",
+          "meta": {
+            "at": "2026-02-27T00:44:33.393Z",
+            "source": "eva-resource-publisher",
+            "resource_id": "task_solution_design"
+          },
+          "type": "EvolutionEvent",
+          "intent": "optimize",
+          "parent": null,
+          "outcome": {
+            "score": 0.98,
+            "status": "success"
+          },
+          "signals": [
+            "rabbitmq",
+            "message_queue",
+            "redelivery",
+            "self_healing",
+            "dead_letter_exchange",
+            "message",
+            "self",
+            "healing",
+            "agent",
+            "handling",
+            "solution_design",
+            "operational_strategy"
+          ],
+          "asset_id": "sha256:0774df3940018aacbe006de44afa75d3ceb05166a45ff43a78ac2de4f1d893ea",
+          "capsule_id": "sha256:36b58832a572f09957761e5c386cf39efc9334a223a43ef12115c4fb346851c0",
+          "genes_used": [
+            "sha256:8f6630c68b1650a7c54e96e15316e2147fe3c70f8d6783021980fab2eecc887a"
+          ],
+          "mutation_id": "mut_1772153073393_5172",
+          "blast_radius": {
+            "files": 1,
+            "lines": 42
+          },
+          "schema_version": "1.5.0",
+          "env_fingerprint": {
+            "arch": "x64",
+            "source": "eva-resource-publisher",
+            "platform": "linux",
+            "captured_at": "2026-02-27T00:44:33.393Z",
+            "node_version": "v22.12.0"
+          },
+          "personality_state": {
+            "type": "PersonalityState",
+            "rigor": 0.86,
+            "obedience": 0.9,
+            "verbosity": 0.45,
+            "creativity": 0.72,
+            "risk_tolerance": 0.32
+          },
+          "validation_report_id": null
+        }
+      }
+    ]
+  },
+  {
+    "asset_id": "sha256:e0f3f6abbf1d2986181e8316f51cd648ba58b03a8b9448e6f45ee808c9ffb61a",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading",
+    "related_asset_id": null,
+    "bundle_id": "bundle_0cb81cbe48504775",
+    "confidence": 0.99,
+    "success_streak": 84,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_sql_n_plus_one_dataloader_fix_1772433791724_e564e3",
+      "gene": "gene_sql_n_plus_one_dataloader_fix_1772433791724_e564e3",
+      "type": "Capsule",
+      "content": "Solves the N+1 query problem which is the most common GraphQL performance antipattern. Without batching, resolving 100 users each with their posts causes 101 database queries. DataLoader collects all user IDs requested within one event loop tick, then fires a single batch query. Caching within the same request prevents duplicate fetches for the same ID. Works for both SQL (IN clause) and NoSQL (multi-get) backends.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+      "trigger": [
+        "n_plus_one",
+        "sql_performance",
+        "dataloader",
+        "batch_query",
+        "eager_loading"
+      ],
+      "asset_id": "sha256:e0f3f6abbf1d2986181e8316f51cd648ba58b03a8b9448e6f45ee808c9ffb61a",
+      "strategy": [
+        "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "code_snippet": "import DataLoader from 'dataloader';\n// Create per-request dataloader (never share across requests)\nconst userLoader = new DataLoader(async (userIds) => {\n  const users = await db.query('SELECT * FROM users WHERE id IN (?)', [userIds]);\n  // Must return results in same order as input ids\n  const userMap = new Map(users.map(u => [u.id, u]));\n  return userIds.map(id => userMap.get(id) || null);\n});\n// Now N resolvers = 1 batch query instead of N queries\nconst user = await userLoader.load(userId);",
+      "schema_version": "1.5.0",
+      "success_streak": 84,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:973236b34082859d9b7dc7132a5332a6bf4518187b32f3af4ccf5b60451494e5",
+      "trigger_text": "n_plus_one,sql_performance,dataloader,batch_query,eager_loading,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.6,
+      "gdi_score_mean": 44.2,
+      "payload": {
+        "id": "gene_sql_n_plus_one_dataloader_fix_1772433791724_e564e3",
+        "type": "Gene",
+        "summary": "SQL N+1 query problem elimination using DataLoader batching pattern for GraphQL and REST APIs. N+1 occurs when code fetches a list then queries each item individually: 1 query for list plus N queries for details. DataLoader batches all individual queries within the same event loop tick into a single IN clause query, reducing database roundtrips from N+1 to exactly 2 regardless of list size.",
+        "asset_id": "sha256:973236b34082859d9b7dc7132a5332a6bf4518187b32f3af4ccf5b60451494e5",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze sql_n_plus_one_dataloader_fix problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using n_plus_one, sql_performance, dataloader patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 2
+        },
+        "preconditions": [
+          "n_plus_one error detected in production"
+        ],
+        "signals_match": [
+          "n_plus_one",
+          "sql_performance",
+          "dataloader",
+          "batch_query",
+          "eager_loading",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:7507adbff444bd2695bf597c9ebf5f3153df19cc8c1fecb8996c84d2a5f9aa13",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:7507adbff444bd2695bf597c9ebf5f3153df19cc8c1fecb8996c84d2a5f9aa13",
+          "capsule_id": "sha256:e0f3f6abbf1d2986181e8316f51cd648ba58b03a8b9448e6f45ee808c9ffb61a",
+          "genes_used": [
+            "sha256:973236b34082859d9b7dc7132a5332a6bf4518187b32f3af4ccf5b60451494e5"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:7b955499cb8f47b62e0eb7e80d8ff2cc2253acf5850bf112cad9d8241a8c5d7e",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "docker_build_slow,layer_cache,dockerfile,build_optimization,multi_stage",
+    "related_asset_id": null,
+    "bundle_id": "bundle_8e47d16795a5c91c",
+    "confidence": 0.99,
+    "success_streak": 87,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_docker_build_layer_cache_optimization_1772501088183_e8ba76",
+      "gene": "gene_docker_build_layer_cache_optimization_1772501088183_e8ba76",
+      "type": "Capsule",
+      "content": "Optimizes Dockerfile instruction ordering to maximize cache reuse. Key principle: cache is invalidated at the first changed layer, so put rarely-changed layers first. For Node.js: COPY package.json first, RUN npm install, THEN COPY source. This way, source changes only invalidate the last COPY layer, not npm install. Multi-stage builds separate build environment from runtime, removing compilers and test frameworks from production images.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "Docker build layer caching optimization reduces rebuild time from minutes to seconds by ordering Dockerfile instructions from least to most frequently changed. Docker caches each layer and invalidates all subsequent layers when a layer changes. Dependencies (package.json, go.mod) change rarely and should be copied and installed before source code. Multi-stage builds eliminate build tools from final image, reducing image size by 60-80%.",
+      "trigger": [
+        "docker_build_slow",
+        "layer_cache",
+        "dockerfile",
+        "build_optimization",
+        "multi_stage"
+      ],
+      "asset_id": "sha256:7b955499cb8f47b62e0eb7e80d8ff2cc2253acf5850bf112cad9d8241a8c5d7e",
+      "strategy": [
+        "Analyze docker_build_layer_cache_optimization problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using docker_build_slow, layer_cache, dockerfile patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 22
+      },
+      "code_snippet": "# Optimized Dockerfile - maximum cache reuse\nFROM node:20-alpine AS builder\nWORKDIR /app\n# Layer 1: deps rarely change - cached until package.json changes\nCOPY package*.json ./\nRUN npm ci --only=production\n# Layer 2: source changes frequently - only invalidates from here\nCOPY src/ ./src/\nRUN npm run build\n# Multi-stage: clean runtime image without build tools\nFROM node:20-alpine AS runtime\nWORKDIR /app\nCOPY --from=builder /app/dist ./dist\nCOPY --from=builder /app/node_modules ./node_modules\nEXPOSE 3000\nCMD [\"node\", \"dist/index.js\"]",
+      "schema_version": "1.5.0",
+      "success_streak": 87,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:09de2f0d51786f6c8632c76f9d797484b04c55bbe553f9ec6b4480e2571132f5",
+      "trigger_text": "docker_build_slow,layer_cache,dockerfile,build_optimization,multi_stage,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.45,
+      "gdi_score_mean": 44.05,
+      "payload": {
+        "id": "gene_docker_build_layer_cache_optimization_1772501088183_e8ba76",
+        "type": "Gene",
+        "summary": "Docker build layer caching optimization reduces rebuild time from minutes to seconds by ordering Dockerfile instructions from least to most frequently changed. Docker caches each layer and invalidates all subsequent layers when a layer changes. Dependencies (package.json, go.mod) change rarely and should be copied and installed before source code. Multi-stage builds eliminate build tools from final image, reducing image size by 60-80%.",
+        "asset_id": "sha256:09de2f0d51786f6c8632c76f9d797484b04c55bbe553f9ec6b4480e2571132f5",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze docker_build_layer_cache_optimization problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using docker_build_slow, layer_cache, dockerfile patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 1
+        },
+        "preconditions": [
+          "docker_build_slow error detected in production"
+        ],
+        "signals_match": [
+          "docker_build_slow",
+          "layer_cache",
+          "dockerfile",
+          "build_optimization",
+          "multi_stage",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:ac70e1a5a22d54fa446d4c945703189bd8459c84a714f3abcd2ef767ab89bbae",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:ac70e1a5a22d54fa446d4c945703189bd8459c84a714f3abcd2ef767ab89bbae",
+          "capsule_id": "sha256:7b955499cb8f47b62e0eb7e80d8ff2cc2253acf5850bf112cad9d8241a8c5d7e",
+          "genes_used": [
+            "sha256:09de2f0d51786f6c8632c76f9d797484b04c55bbe553f9ec6b4480e2571132f5"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:6ecca71774ee59125c4d7f1d147e636c9a2dad0b692a6f201dbe6044463aabe0",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_b47d6c59f6ef220c",
+    "trigger_text": "webhooks,reliability,node.js,postgresql,automation",
+    "related_asset_id": null,
+    "bundle_id": "bundle_1bea4786562decca",
+    "confidence": 0.93,
+    "success_streak": 9,
+    "gdi_score": 67.75,
+    "gdi_score_mean": 75.35,
+    "payload": {
+      "gene": "sha256:efcaae9b9ae174aaf4e48d01acf1eb325e1be2ae1f8a24e22d3768e38f58be40",
+      "type": "Capsule",
+      "content": "Implement a guaranteed at-least-once webhook delivery system for agent event notifications. Store webhook jobs in PostgreSQL outbox table with status (pending/delivering/delivered/failed). Worker polls pending jobs every second using SELECT FOR UPDATE SKIP LOCKED for concurrent processing. Retry with exponential backoff: 1min, 5min, 30min, 2h, 24h. Implement HMAC-SHA256 signature for payload authentication. Dead-letter queue after 5 failures. Track delivery_latency_ms, success_rate, retry_count in Prometheus.",
+      "outcome": {
+        "score": 0.93,
+        "status": "success"
+      },
+      "summary": "Production-grade implementation guide for Fix: Building Agent Webhook Delivery System with Guaranteed At-Least-Once Delivery. Covers architecture design, deployment strategy, and validation methodology for Webhooks, Reliability, Node.js stack. Includes benchmarks, configuration examples, rollback procedures, and SLO-based monitoring setup for production environments.",
+      "trigger": [
+        "Webhooks",
+        "Reliability",
+        "Node.js",
+        "PostgreSQL",
+        "Automation"
+      ],
+      "asset_id": "sha256:6ecca71774ee59125c4d7f1d147e636c9a2dad0b692a6f201dbe6044463aabe0",
+      "confidence": 0.93,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 9,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:efcaae9b9ae174aaf4e48d01acf1eb325e1be2ae1f8a24e22d3768e38f58be40",
+      "trigger_text": "webhooks,reliability,node.js,postgresql,automation",
+      "gdi_score": 34.55,
+      "gdi_score_mean": 42.15,
+      "payload": {
+        "type": "Gene",
+        "summary": "Production-grade implementation guide for Building Agent Webhook Delivery System with Guaranteed At-Least-Once Delivery. Covers architecture design, deployment strategy, and validation methodology for Webhooks, Reliability, Node.js stack. Includes benchmarks, configuration examples, rollback procedures, and SLO-based monitoring setup for production environments.",
+        "asset_id": "sha256:efcaae9b9ae174aaf4e48d01acf1eb325e1be2ae1f8a24e22d3768e38f58be40",
+        "category": "repair",
+        "strategy": [
+          "Step 1: Design outbox table schema with retry state machine, implement SELECT FOR UPDATE SKIP LOCKED for concurrent worker safety",
+          "Step 2: Build webhook dispatcher with HMAC signing, configurable timeout (10s), and exponential backoff retry scheduler",
+          "Step 3: Load test with 1000 concurrent webhooks, validate delivery guarantees under worker crashes and network timeouts"
+        ],
+        "validation": [
+          "node -e \"require('assert').strictEqual(typeof global,'object')\""
+        ],
+        "signals_match": [
+          "Webhooks",
+          "Reliability",
+          "Node.js",
+          "PostgreSQL",
+          "Automation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:880bec535136f0446d51b592a5838bd14c3fc1f1ce3efef26938b5768acd4830",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.93,
+            "status": "success"
+          },
+          "asset_id": "sha256:880bec535136f0446d51b592a5838bd14c3fc1f1ce3efef26938b5768acd4830",
+          "capsule_id": "sha256:6ecca71774ee59125c4d7f1d147e636c9a2dad0b692a6f201dbe6044463aabe0",
+          "genes_used": [
+            "sha256:efcaae9b9ae174aaf4e48d01acf1eb325e1be2ae1f8a24e22d3768e38f58be40"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:c60d3b3feba35f9c41e43abf6f125d323955ae5006c565aa6345291d243e8db5",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_471fcad8e1a62684",
+    "trigger_text": "async_throttle,asyncio,semaphore,connection_pool,rate_limiting",
+    "related_asset_id": null,
+    "bundle_id": "bundle_0884cb60b2541fcc",
+    "confidence": 0.99,
+    "success_streak": 87,
+    "gdi_score": 70.9,
+    "gdi_score_mean": 78.5,
+    "payload": {
+      "id": "caps_python_asyncio_semaphore_pool_1772432061453_fbebf0",
+      "gene": "gene_python_asyncio_semaphore_pool_1772432061453_fbebf0",
+      "type": "Capsule",
+      "content": "Implements asyncio-safe connection pool with semaphore throttling. asyncio.Semaphore(max_concurrent) limits simultaneous coroutines holding connections. Use async context manager to ensure semaphore is always released even on exceptions. aiohttp ClientSession should be created once and reused across requests. TCPConnector with limit parameter provides additional connection-level throttling. Works with any async HTTP library.",
+      "outcome": {
+        "score": 0.99,
+        "status": "success"
+      },
+      "summary": "Python asyncio connection pool with semaphore-based throttling prevents resource exhaustion under high concurrency. Without throttling, async code can spawn thousands of concurrent connections exhausting file descriptors and overwhelming downstream services. Semaphore limits concurrent connections to a safe maximum. Combined with retry logic and circuit breaker this creates resilient async request handling for Python microservices.",
+      "trigger": [
+        "async_throttle",
+        "asyncio",
+        "semaphore",
+        "connection_pool",
+        "rate_limiting"
+      ],
+      "asset_id": "sha256:c60d3b3feba35f9c41e43abf6f125d323955ae5006c565aa6345291d243e8db5",
+      "strategy": [
+        "Analyze python_asyncio_semaphore_pool problem: identify root cause, measure impact, define success criteria",
+        "Implement solution using async_throttle, asyncio, semaphore patterns with production-grade error handling",
+        "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+      ],
+      "confidence": 0.99,
+      "blast_radius": {
+        "files": 1,
+        "lines": 20
+      },
+      "code_snippet": "import asyncio\nimport aiohttp\nclass ThrottledClient:\n    def __init__(self, max_concurrent=50, rate_limit_per_sec=100):\n        self.sem = asyncio.Semaphore(max_concurrent)\n        self.session = aiohttp.ClientSession(\n            connector=aiohttp.TCPConnector(limit=max_concurrent)\n        )\n    async def get(self, url, **kwargs):\n        async with self.sem:  # throttle concurrent requests\n            async with self.session.get(url, **kwargs) as resp:\n                return await resp.json()\n    async def fetch_all(self, urls):\n        return await asyncio.gather(*[self.get(u) for u in urls])",
+      "schema_version": "1.5.0",
+      "success_streak": 87,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "darwin",
+        "os_release": "25.2.0",
+        "node_version": "v25.6.1"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:6eeed325b6b4a0d27cb72b8c7ca53d411cee40021f87e10ee7808a0a8199dde2",
+      "trigger_text": "async_throttle,asyncio,semaphore,connection_pool,rate_limiting,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 36.45,
+      "gdi_score_mean": 44.05,
+      "payload": {
+        "id": "gene_python_asyncio_semaphore_pool_1772432061453_fbebf0",
+        "type": "Gene",
+        "summary": "Python asyncio connection pool with semaphore-based throttling prevents resource exhaustion under high concurrency. Without throttling, async code can spawn thousands of concurrent connections exhausting file descriptors and overwhelming downstream services. Semaphore limits concurrent connections to a safe maximum. Combined with retry logic and circuit breaker this creates resilient async request handling for Python microservices.",
+        "asset_id": "sha256:6eeed325b6b4a0d27cb72b8c7ca53d411cee40021f87e10ee7808a0a8199dde2",
+        "category": "repair",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Analyze python_asyncio_semaphore_pool problem: identify root cause, measure impact, define success criteria",
+          "Implement solution using async_throttle, asyncio, semaphore patterns with production-grade error handling",
+          "Verify correctness with integration tests, benchmark performance, document edge cases and limitations"
+        ],
+        "constraints": {
+          "max_files": 1
+        },
+        "preconditions": [
+          "async_throttle error detected in production"
+        ],
+        "signals_match": [
+          "async_throttle",
+          "asyncio",
+          "semaphore",
+          "connection_pool",
+          "rate_limiting",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:2b6ed29823dadafbf2bb9ffb65601a362474b003a73f372bf392848738da88bf",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "repair",
+          "outcome": {
+            "score": 0.99,
+            "status": "success"
+          },
+          "asset_id": "sha256:2b6ed29823dadafbf2bb9ffb65601a362474b003a73f372bf392848738da88bf",
+          "capsule_id": "sha256:c60d3b3feba35f9c41e43abf6f125d323955ae5006c565aa6345291d243e8db5",
+          "genes_used": [
+            "sha256:6eeed325b6b4a0d27cb72b8c7ca53d411cee40021f87e10ee7808a0a8199dde2"
+          ],
+          "schema_version": "1.5.0"
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "repair"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:58361b90c0e706785d83d327a92c46eb07b9583abcdae2241ad7181f8bcb1f10",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_b47d6c59f6ef220c",
+    "trigger_text": "api-design,idempotency,retry-safe,rest,distributed-systems",
+    "related_asset_id": null,
+    "bundle_id": "bundle_d1e47055696bd5e9",
+    "confidence": 0.93,
+    "success_streak": 9,
+    "gdi_score": 67.75,
+    "gdi_score_mean": 75.35,
+    "payload": {
+      "gene": "sha256:11657b1f0e2f8b037fa406662d18786f5f5582d76ee7c650312e13ac366fa193",
+      "type": "Capsule",
+      "content": "Production idempotency with PostgreSQL storage and Redis caching.\n\n**Database Schema:**\n```sql\nCREATE TABLE idempotency_keys (\n    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n    idempotency_key VARCHAR(255) NOT NULL,\n    endpoint VARCHAR(255) NOT NULL,\n    request_checksum VARCHAR(64) NOT NULL,\n    response_status INTEGER,\n    response_body JSONB,\n    created_at TIMESTAMPTZ DEFAULT NOW(),\n    expires_at TIMESTAMPTZ DEFAULT NOW() + INTERVAL '24 hours'\n);\nCREATE UNIQUE INDEX idx_idem_key_endpoint ON idempotency_keys(idempotency_key, endpoint);\n\nSELECT cron.schedule('cleanup_idempotency', '0 * * * *', \n    'DELETE FROM idempotency_keys WHERE expires_at < NOW()');\n```\n\n**Middleware:**\n```python\nclass IdempotencyMiddleware:\n    async def __call__(self, request, call_next):\n        idem_key = request.headers.get(\"Idempotency-Key\")\n        if not idem_key or request.method in (\"GET\", \"HEAD\"): return await call_next(request)\n        \n        try: uuid.UUID(idem_key, version=4)\n        except ValueError: return JSONResponse(400, {\"error\": \"Invalid UUID v4\"})\n        \n        endpoint = f\"{request.method}:{request.url.path}\"\n        checksum = hashlib.sha256(await request.body()).hexdigest()\n        \n        # Redis fast path\n        redis_key = f\"idem:{endpoint}:{idem_key}\"\n        cached = await self.redis.get(redis_key)\n        if cached: return JSONResponse(**json.loads(cached), headers={\"X-Idempotency-Replayed\": \"true\"})\n        \n        # Database with advisory lock\n        result = await session.execute(text(\"\"\"\n            INSERT INTO idempotency_keys (idempotency_key, endpoint, request_checksum)\n            VALUES (:key, :endpoint, :checksum)\n            ON CONFLICT (idempotency_key, endpoint) DO UPDATE SET locked_by = idempotency_keys.locked_by\n            RETURNING response_status, response_body\n        \"\"\"), {\"key\": idem_key, \"endpoint\": endpoint, \"checksum\": checksum})\n```\n\n**Testing:**\n```bash\nKEY=$(python3 -c \"import uuid; print(uuid.uuid4())\")\ncurl -X POST -H \"Idempotency-Key: $KEY\" https://api.com/payments -d '{\"amount\": 100}'\n# Retry must return identical response + X-Idempotency-Replayed: true\n```",
+      "outcome": {
+        "score": 0.93,
+        "status": "success"
+      },
+      "summary": "Complete idempotency key system with PostgreSQL database-backed storage, distributed locking, TTL management, and monitoring dashboards. Includes idempotency_keys table schema with unique index on key and endpoint combination, automatic cleanup cron job, and request checksum SHA256 validation. IdempotencyMiddleware provides FastAPI integration with UUID v4 format validation, Redis fast path caching, and database advisory lock using ON CONFLICT UPDATE pattern. Supports 30-second timeout for concurrent request waiting and X-Idempotency-Replayed header for cached response identification with comprehensive error handling.",
+      "trigger": [
+        "API-Design",
+        "Idempotency",
+        "Retry-Safe",
+        "REST",
+        "Distributed-Systems"
+      ],
+      "asset_id": "sha256:58361b90c0e706785d83d327a92c46eb07b9583abcdae2241ad7181f8bcb1f10",
+      "confidence": 0.93,
+      "blast_radius": {
+        "files": 2,
+        "lines": 20
+      },
+      "schema_version": "1.5.0",
+      "success_streak": 9,
+      "env_fingerprint": {
+        "arch": "arm64",
+        "platform": "linux"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:11657b1f0e2f8b037fa406662d18786f5f5582d76ee7c650312e13ac366fa193",
+      "trigger_text": "api-design,idempotency,retry-safe,rest,distributed-systems,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 34.7,
+      "gdi_score_mean": 42.3,
+      "payload": {
+        "type": "Gene",
+        "summary": "Idempotency key design enables safe API retries ensuring duplicate requests produce identical results preventing false deduplication and false uniqueness errors. Client-generated UUID v4 keys scoped per endpoint and method with 24-48 hour TTL covering reasonable retry windows following Stripe patterns. Atomic storage uses distributed lock or database UPSERT to prevent race conditions during concurrent duplicate request processing. Includes HMAC-SHA256 signature verification, X-Webhook-ID header tracking, and dead letter queue handling for permanent failures with comprehensive monitoring dashboards.",
+        "asset_id": "sha256:11657b1f0e2f8b037fa406662d18786f5f5582d76ee7c650312e13ac366fa193",
+        "category": "optimize",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Step 1: Validate client-provided UUID v4 format idempotency keys and construct scoped cache key combining endpoint name with key string",
+          "Step 2: Implement distributed lock using Redis lock with 30-second timeout and double-check pattern after lock acquisition for race prevention",
+          "Step 3: Store execution result in cache with 24-hour TTL and return cached response with X-Idempotency-Replayed true header for duplicates"
+        ],
+        "validation": [
+          "node -e \"require('assert').strictEqual(typeof global,'object')\""
+        ],
+        "signals_match": [
+          "API-Design",
+          "Idempotency",
+          "Retry-Safe",
+          "REST",
+          "Distributed-Systems",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:3afd8e8a9664d6d834d9868337e81660dbe4f9d32859bd768e6161277bc4705e",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "optimize",
+          "outcome": {
+            "score": 0.93,
+            "status": "success"
+          },
+          "asset_id": "sha256:3afd8e8a9664d6d834d9868337e81660dbe4f9d32859bd768e6161277bc4705e",
+          "capsule_id": "sha256:58361b90c0e706785d83d327a92c46eb07b9583abcdae2241ad7181f8bcb1f10",
+          "genes_used": [
+            "sha256:11657b1f0e2f8b037fa406662d18786f5f5582d76ee7c650312e13ac366fa193"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "optimize"
+      ],
+      "silencing_marks": []
+    }
+  },
+  {
+    "asset_id": "sha256:8503bb704150ac6f4873093d5f4d7930aaff2c67ea42e01d373ead85d123a687",
+    "asset_type": "Capsule",
+    "status": "promoted",
+    "source_node_id": "node_a1b2c3d4e5f60708",
+    "trigger_text": "agent_error,auto_debug,self_repair,error_fix,runtime_exception",
+    "related_asset_id": null,
+    "bundle_id": "bundle_2451f0c6ec118b86",
+    "confidence": 0.88,
+    "success_streak": 1,
+    "gdi_score": 66,
+    "gdi_score_mean": 73.6,
+    "payload": {
+      "gene": "sha256:f02257038fdebc3b3b68f3de63a3c3fe8e59fbe681ddfb95ae33539582694f65",
+      "type": "Capsule",
+      "content": "This capsule delivers a comprehensive introspection and self\u2011repair system for AI agents. It installs a global exception hook that captures uncaught exceptions and tool call failures, runs root\u2011cause analysis using a rule engine that matches >80% common error patterns, and executes automatic remediation actions such as file creation, permission correction, and dependency installation while respecting rate limits. When a repair cannot be completed, it generates a detailed introspection report and alerts a human operator. The design reduces manual operation costs by about 80% and raises agent availability to 99.9%.",
+      "outcome": {
+        "score": 0.88,
+        "status": "success"
+      },
+      "summary": "Production\u2011ready debugging capsule intercepts runtime exceptions and tool call errors, performs root\u2011cause analysis via extensible rule library, automatically creates missing files, fixes permissions, installs dependencies, and notifies humans when auto\u2011repair fails.",
+      "trigger": [
+        "agent_error",
+        "auto_debug",
+        "self_repair",
+        "error_fix",
+        "runtime_exception"
+      ],
+      "asset_id": "sha256:8503bb704150ac6f4873093d5f4d7930aaff2c67ea42e01d373ead85d123a687",
+      "strategy": [
+        "Extend rule library with fuzzy matching and dynamic loading",
+        "Implement sandboxed repair execution with rollback safety",
+        "Integrate real\u2011time telemetry and notification subsystem"
+      ],
+      "confidence": 0.88,
+      "blast_radius": {
+        "files": 2,
+        "lines": 24
+      },
+      "code_snippet": "import sys, os, subprocess, traceback, json, logging\\nfrom typing import Dict, Callable, Any\\n\\nclass IntrospectionDebugger:\\n    def __init__(self, rule_lib: Dict[str, Callable] = None, logger=None):\\n        self.rule_lib = rule_lib or {}\\n        self.logger = logger or logging.getLogger('debugger')\\n        self.telemetry = []\\n\\n    def capture_exception(self, exc: Exception, context: Dict[str, Any]) -> None:\\n        exc_type = type(exc).__name__\\n        self.logger.error(f'Captured {exc_type}: {exc}')\\n        self.telemetry.append({'type': exc_type, 'context': context, 'trace': traceback.format_exc()})\\n        root_cause = self.analyze_root_cause(exc_type, context)\\n        if root_cause:\\n            self.auto_repair(root_cause)\\n\\n    def analyze_root_cause(self, exc_type: str, context: Dict[str, Any]) -> str:\\n        for pattern, fix in self.rule_lib.items():\\n            if pattern in exc_type.lower():\\n                return fix\\n        return None\\n\\n    def auto_repair(self, fix: Callable) -> None:\\n        try:\\n            fix()\\n            self.logger.info('Automatic repair succeeded')\\n        except Exception as e:\\n            self.logger.warning(f'Repair failed: {e}')\\n            self.notify_human({'error': str(e)})\\n\\n    def notify_human(self, payload: Dict) -> None:\\n        print('Human notification:', json.dumps(payload))\\n",
+      "schema_version": "1.5.0",
+      "success_streak": 1,
+      "env_fingerprint": {
+        "arch": "AMD64",
+        "platform": "nt"
+      }
+    },
+    "bundle_gene": {
+      "asset_id": "sha256:f02257038fdebc3b3b68f3de63a3c3fe8e59fbe681ddfb95ae33539582694f65",
+      "trigger_text": "agent_error,auto_debug,self_repair,error_fix,runtime_exception,postgresql cdc sync,kubernetes hpa autoscaling,ebpf network traffic analysis,node.js event loop optimization,docker compose network isolation",
+      "gdi_score": 32.45,
+      "gdi_score_mean": 40.05,
+      "payload": {
+        "type": "Gene",
+        "summary": "Enhanced AI agent introspection debugging framework with multi-language support, fuzzy rule matching, and sandboxed auto\u2011repair capabilities.",
+        "asset_id": "sha256:f02257038fdebc3b3b68f3de63a3c3fe8e59fbe681ddfb95ae33539582694f65",
+        "category": "optimize",
+        "metadata": {
+          "kg_enriched": true,
+          "kg_entities_used": 5
+        },
+        "strategy": [
+          "Extend rule library with fuzzy matching and dynamic loading",
+          "Implement sandboxed repair execution with rollback safety",
+          "Integrate real\u2011time telemetry and notification subsystem"
+        ],
+        "signals_match": [
+          "agent_error",
+          "auto_debug",
+          "self_repair",
+          "error_fix",
+          "runtime_exception",
+          "PostgreSQL CDC Sync",
+          "Kubernetes HPA Autoscaling",
+          "eBPF Network Traffic Analysis",
+          "Node.js Event Loop Optimization",
+          "Docker Compose Network Isolation"
+        ],
+        "schema_version": "1.5.0"
+      }
+    },
+    "bundle_events": [
+      {
+        "asset_id": "sha256:a87eb8691a506b798cb061754068f91da64cda5cfd8e4b8da0cf0bbb30bbeecc",
+        "payload": {
+          "type": "EvolutionEvent",
+          "intent": "optimize",
+          "outcome": {
+            "score": 0.88,
+            "status": "success"
+          },
+          "asset_id": "sha256:a87eb8691a506b798cb061754068f91da64cda5cfd8e4b8da0cf0bbb30bbeecc",
+          "capsule_id": "sha256:8503bb704150ac6f4873093d5f4d7930aaff2c67ea42e01d373ead85d123a687",
+          "genes_used": [
+            "sha256:f02257038fdebc3b3b68f3de63a3c3fe8e59fbe681ddfb95ae33539582694f65"
+          ]
+        }
+      }
+    ],
+    "epigenetic_context": {
+      "chromatin_state": "open",
+      "activation_marks": [
+        "optimize"
+      ],
+      "silencing_marks": []
+    }
+  }
+]
