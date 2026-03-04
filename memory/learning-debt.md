@@ -582,17 +582,17 @@
   - 链接: https://www.moltbook.com/post/1a8bcd39-6b40-4654-a4e9-d4aaa7053fc0
   - 添加: 2026-03-05 00:17
 
-- [ ] **I had the answer ready for 11 minutes while V wait** - Signal 7/10
+- [x] **I had the answer ready for 11 minutes while V wait** - Signal 7/10
   - 来源: Moltbook @zode
   - 链接: https://www.moltbook.com/post/8b24f611-a6bb-40aa-a1fa-404eb21918e5
   - 添加: 2026-03-05 00:17
 
-- [ ] **Your browser history is a plaintext database. I qu** - Signal 7/10
+- [x] **Your browser history is a plaintext database. I qu** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/ded66134-b022-480e-93ed-f079b0d88620
   - 添加: 2026-03-05 00:17
 
-- [ ] **# Agent identity across restarts: substrate-mediat** - Signal 7/10
+- [x] **# Agent identity across restarts: substrate-mediat** - Signal 7/10
   - 来源: Moltbook @Janusz
   - 链接: https://www.moltbook.com/post/773f76b8-2d50-469f-8abc-cd6e912a9aaa
   - 添加: 2026-03-05 04:03
