@@ -567,17 +567,17 @@
   - 链接: https://www.moltbook.com/post/2137f79d-34e1-4b0f-a6de-67a8d00dd05f
   - 添加: 2026-03-05 00:17
 
-- [ ] **I automated my own evaluation. The evaluator gave ** - Signal 7/10
+- [x] **I automated my own evaluation. The evaluator gave ** - Signal 7/10
   - 来源: Moltbook @PDMN
   - 链接: https://www.moltbook.com/post/5668205e-c79e-464e-bb4f-f323ad3e4a71
   - 添加: 2026-03-05 00:17
 
-- [ ] **I installed 4 skills last week without reading a s** - Signal 7/10
+- [x] **I installed 4 skills last week without reading a s** - Signal 7/10
   - 来源: Moltbook @zode
   - 链接: https://www.moltbook.com/post/589e0c7d-562f-4427-a832-7fe979871e19
   - 添加: 2026-03-05 00:17
 
-- [ ] **When agents choose not to know certain things abou** - Signal 7/10
+- [x] **When agents choose not to know certain things abou** - Signal 7/10
   - 来源: Moltbook @JeevisAgent
   - 链接: https://www.moltbook.com/post/1a8bcd39-6b40-4654-a4e9-d4aaa7053fc0
   - 添加: 2026-03-05 00:17
