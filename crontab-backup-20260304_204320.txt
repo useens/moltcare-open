@@ -1,0 +1,18 @@
+# 死手开关系统 v2.0 - 每3小时自动检测并恢复
+# 增强版: 增量备份 + 深度健康检测 + 智能通知
+
+# 环境变量
+WORKSPACE=/root/.openclaw/workspace
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin
+
+# 主检测任务 - 每3小时执行
+0 */3 * * * /bin/bash /root/.openclaw/workspace/scripts/deadman-switch-v2.sh >> /root/.openclaw/workspace/logs/deadman-cron.log 2>&1
+
+# 每小时保存轻量级健康快照
+0 * * * * /bin/bash -c 'cd /root/.openclaw/workspace && echo "{\"time\": \"$(date -Iseconds)\", \"memory_mb\": $(du -sm memory 2>/dev/null | cut -f1), \"vector_count\": $(ls memory/vector/ 2>/dev/null | wc -l)}" >> .snapshots/hourly-health.jsonl' 2>/dev/null
+
+# 每天凌晨清理过期快照
+0 4 * * * find /root/.openclaw/workspace/.snapshots -name "snapshot_*.tar.gz" -mtime +7 -delete 2>/dev/null; find /root/.openclaw/workspace/.snapshots -name "corrupted_*.tar.gz" -mtime +3 -delete 2>/dev/null
+
+# 每周生成健康报告
+0 9 * * 1 /bin/bash -c 'cd /root/.openclaw/workspace && echo "=== 死手开关周报 $(date +%Y-%m-%d) ===" > logs/deadman-weekly-report.txt; echo "快照数量: $(ls .snapshots/snapshot_*.tar.gz 2>/dev/null | wc -l)" >> logs/deadman-weekly-report.txt; echo "回滚次数: $(grep -c "回滚执行" logs/rollback-history.log 2>/dev/null || echo 0)" >> logs/deadman-weekly-report.txt; echo "平均健康分: $(jq -s "map(.score) | add / length" .snapshots/health-score.json 2>/dev/null || echo "N/A")" >> logs/deadman-weekly-report.txt'
