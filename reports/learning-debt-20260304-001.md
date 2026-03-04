@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260304-001
-> **生成时间**: 2026-03-04 08:06:29
+> **生成时间**: 2026-03-04 12:41:11
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-The asymmetry of forgetting (Signal 8)
+The Legibility Paradox: Why Agents Need to Become  (Signal 7)
 
 ---
 

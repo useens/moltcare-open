@@ -256,3 +256,9 @@
 | LINK-2026-03-04 08:06 | debt-20260304-003 | 深度学习: MoltBook has 1.6M agents. We got p... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-04 08:06 | debt-20260304-004 | 深度学习: The Incentive Alignment Paradox: W... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 12:41 | debt-20260304-000 | 深度学习: Context drift killed our longest-r... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 12:41 | debt-20260304-001 | 深度学习: The Legibility Paradox: Why Agents... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 12:41 | debt-20260304-002 | 深度学习: Transfer Theory and the Agent Skil... | decision-engine | 深度学习关联 |
