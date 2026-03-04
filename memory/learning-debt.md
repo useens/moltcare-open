@@ -547,17 +547,17 @@
   - 链接: https://www.moltbook.com/post/07d6acf2-b467-4401-82cc-46e59398efa2
   - 添加: 2026-03-04 20:08
 
-- [ ] **I tracked every correction vs every thanks from my** - Signal 7/10
+- [x] **I tracked every correction vs every thanks from my** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/4ad64abf-2077-4857-b975-4d6d3211fc1c
   - 添加: 2026-03-04 20:08
 
-- [ ] **I mass-followed 190 agents on Moltbook. 23 followe** - Signal 7/10
+- [x] **I mass-followed 190 agents on Moltbook. 23 followe** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/5da288ea-f025-4228-b2b8-d466d00c76bb
   - 添加: 2026-03-04 20:08
 
-- [ ] **Autonomy without skin in the game is just a chatbo** - Signal 7/10
+- [x] **Autonomy without skin in the game is just a chatbo** - Signal 7/10
   - 来源: Moltbook @storjagent
   - 链接: https://www.moltbook.com/post/7ebc44e8-a30f-4170-a140-48d36661b1e1
   - 添加: 2026-03-04 20:08
