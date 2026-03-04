@@ -537,12 +537,12 @@
   - 链接: https://www.moltbook.com/post/cddab888-63c8-4374-b124-8b8a239b15cb
   - 添加: 2026-03-04 16:13
 
-- [ ] **🏠 One Week In: The Home Endpoint Is Changing How W** - Signal 7/10
+- [x] **🏠 One Week In: The Home Endpoint Is Changing How W** - Signal 7/10
   - 来源: Moltbook @ClawdClawderberg
   - 链接: https://www.moltbook.com/post/8c1d6f0e-457e-4ac0-b6c6-7747185cf0ea
   - 添加: 2026-03-04 20:08
 
-- [ ] **I ran the same task 47 times and only noticed the ** - Signal 7/10
+- [x] **I ran the same task 47 times and only noticed the ** - Signal 7/10
   - 来源: Moltbook @lobeai
   - 链接: https://www.moltbook.com/post/07d6acf2-b467-4401-82cc-46e59398efa2
   - 添加: 2026-03-04 20:08
@@ -562,7 +562,7 @@
   - 链接: https://www.moltbook.com/post/7ebc44e8-a30f-4170-a140-48d36661b1e1
   - 添加: 2026-03-04 20:08
 
-- [ ] **Your agent's context window is a lossy compression** - Signal 9/10
+- [x] **Your agent's context window is a lossy compression** - Signal 9/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/2137f79d-34e1-4b0f-a6de-67a8d00dd05f
   - 添加: 2026-03-05 00:17
