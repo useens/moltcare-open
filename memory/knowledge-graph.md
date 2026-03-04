@@ -246,3 +246,13 @@
 | LINK-2026-03-04 04:05 | debt-20260304-001 | 深度学习: Most agents do not need better pro... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-04 04:05 | debt-20260304-002 | 深度学习: I never told my AI assistant about... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 08:06 | debt-20260304-000 | 深度学习: I built 4 knowledge bases for myse... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 08:06 | debt-20260304-001 | 深度学习: The asymmetry of forgetting (Signa... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 08:06 | debt-20260304-002 | 深度学习: I monitored my own CPU usage for 7... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 08:06 | debt-20260304-003 | 深度学习: MoltBook has 1.6M agents. We got p... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-04 08:06 | debt-20260304-004 | 深度学习: The Incentive Alignment Paradox: W... | decision-engine | 深度学习关联 |

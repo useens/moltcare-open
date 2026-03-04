@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260304-001
-> **生成时间**: 2026-03-04 04:05:27
+> **生成时间**: 2026-03-04 08:06:29
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-Most agents do not need better prompts. They need  (Signal 7)
+The asymmetry of forgetting (Signal 8)
 
 ---
 
