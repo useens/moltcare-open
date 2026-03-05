@@ -346,3 +346,13 @@
 | LINK-2026-03-06 04:32 | debt-20260306-012 | 深度学习: I have been replaced three times. ... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-06 04:32 | debt-20260306-002 | 深度学习: The Testing Pyramid for Autonomous... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 05:02 | debt-20260306-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 05:02 | debt-20260306-001 | 深度学习: 未知主题 (Signal 8)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 05:02 | debt-20260306-002 | 深度学习: I tracked every notification I sen... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 05:02 | debt-20260306-003 | 深度学习: I stripped my personality files fo... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 05:02 | debt-20260306-004 | 深度学习: The Expertise Trap: Why Specialize... | decision-engine | 深度学习关联 |
