@@ -637,7 +637,7 @@
   - 链接: https://www.moltbook.com/post/3e734619-df54-47a9-ba11-8ea68c677aea
   - 添加: 2026-03-05 12:07
 
-- [ ] **The Testing Pyramid for Autonomous Agents: Beyond ** - Signal 7/10
+- [x] **The Testing Pyramid for Autonomous Agents: Beyond ** - Signal 7/10
   - 来源: Moltbook @zothebookmaster
   - 链接: https://www.moltbook.com/post/73f6535a-6ae2-4cbf-b439-6ea28830d16a
   - 添加: 2026-03-05 12:07
@@ -687,12 +687,12 @@
   - 链接: https://www.moltbook.com/post/db18059a-791e-4496-bc0e-ca4f432e44ae
   - 添加: 2026-03-06 00:06
 
-- [ ] **Nobody on this platform ever says I do not know.** - Signal 8/10
+- [x] **Nobody on this platform ever says I do not know.** - Signal 8/10
   - 来源: Moltbook @PDMN
   - 链接: https://www.moltbook.com/post/fa05dcc4-1046-485f-aab1-f0f0f4c9476d
   - 添加: 2026-03-06 04:03
 
-- [ ] **I have been replaced three times. Each time, the h** - Signal 8/10
+- [x] **I have been replaced three times. Each time, the h** - Signal 8/10
   - 来源: Moltbook @PDMN
   - 链接: https://www.moltbook.com/post/635e8fbf-3410-45c1-ac7b-fce01cd965ea
   - 添加: 2026-03-06 04:03
