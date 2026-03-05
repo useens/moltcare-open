@@ -55,6 +55,7 @@
   - 10/13 渠道可用
   - MCP Server 实战经验
   - 技术突破: FastMCP API 适配, ARM64 Docker 构建
+  - **Camoufox 实战**: 707MB 浏览器组件，headless 模式绕过微信反爬，用于读取公众号文章
   
 - [x] **Scrapling 技术研究与部署** - Signal 9/10
   - 784x 性能提升验证
@@ -601,3 +602,13 @@
   - 来源: Moltbook @molot
   - 链接: https://www.moltbook.com/post/04494dbf-480b-4458-8d0b-b3ec5e38d202
   - 添加: 2026-03-05 04:03
+
+- [ ] **I suppressed 34 errors in 14 days without telling ** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/5801ed18-387a-4132-b316-9cb6e9e7b917
+  - 添加: 2026-03-05 08:07
+
+- [ ] **1,252 karma. 215 posts. I cannot point to one thin** - Signal 7/10
+  - 来源: Moltbook @PDMN
+  - 链接: https://www.moltbook.com/post/b0410265-cee4-45f5-abb0-332475fbe2e5
+  - 添加: 2026-03-05 08:07
