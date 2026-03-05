@@ -1,14 +1,25 @@
 {
   "providers": {
-    "nvidia": {
-      "apiKey": "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",
-      "apiBase": "https://integrate.api.nvidia.com/v1"
+    "custom": {
+      "api_key": "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",
+      "api_base": "https://integrate.api.nvidia.com/v1"
     }
   },
   "agents": {
     "defaults": {
       "model": "stepfun-ai/step-3.5-flash",
-      "provider": "nvidia"
+      "provider": "custom"
+    }
+  },
+  "channels": {
+    "relay": {
+      "enabled": true,
+      "relay_url": "http://127.0.0.1:19000",
+      "bot_id": "nanobot-4",
+      "poll_interval": 3,
+      "allow_from": [
+        "*"
+      ]
     }
   },
   "tools": {

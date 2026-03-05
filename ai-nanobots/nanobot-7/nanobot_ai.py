@@ -16,7 +16,7 @@ from pathlib import Path
 def load_env():
     """从 .env 文件和 providers.yaml 加载环境变量"""
     # 从 .env 加载
-    env_path = Path("/root/.openclaw/workspace/.env")
+    env_path = Path("/root/.openclaw/workspace/ai-nanobots/nanobot-7/.env")
     if env_path.exists():
         with open(env_path) as f:
             for line in f:
@@ -45,9 +45,9 @@ load_env()
 
 # 模型配置 - Step-3.5-Flash (和 OpenClaw 配置一致)
 MODEL_CONFIG = {
-    "name": "deepseek-v3.2",
-    "base_url": "https://api.deepseek.com/v1",
-    "model": "deepseek-ai/deepseek-v3.2",
+    "name": "step-3.5-flash",
+    "base_url": "https://integrate.api.nvidia.com/v1",
+    "model": "stepfun-ai/step-3.5-flash",
     "context_window": 131072,
     "max_tokens": 2048,
     "temperature": 0.7

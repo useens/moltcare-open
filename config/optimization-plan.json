@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-03-06T02:00:11.751819",
+  "timestamp": "2026-03-06T04:01:00.240471",
   "opportunities": [
     {
       "id": "temp-cleanup",
@@ -10,208 +10,208 @@
       "target_type": "files",
       "targets": [
         {
-          "path": "evolution/strategies/autonomy/__pycache__/__init__.cpython-311.pyc",
-          "size": 23047
+          "path": "nanobot-env/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/impl.cpython-311.pyc",
+          "size": 11510
         },
         {
-          "path": "evolution/strategies/__pycache__/__init__.cpython-311.pyc",
-          "size": 5179
+          "path": "nanobot-env/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/types.cpython-311.pyc",
+          "size": 631
         },
         {
-          "path": "evolution/strategies/goal/__pycache__/__init__.cpython-311.pyc",
-          "size": 24137
+          "path": "nanobot-env/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/utils.cpython-311.pyc",
+          "size": 4172
         },
         {
-          "path": "evolution/strategies/protection/__pycache__/__init__.cpython-311.pyc",
-          "size": 6059
+          "path": "nanobot-env/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/_staggered.cpython-311.pyc",
+          "size": 8909
         },
         {
-          "path": "evolution/strategies/cognitive/__pycache__/__init__.cpython-311.pyc",
-          "size": 14014
+          "path": "nanobot-env/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/__init__.cpython-311.pyc",
+          "size": 574
         },
         {
-          "path": "evolution/strategies/prediction/__pycache__/__init__.cpython-311.pyc",
-          "size": 6044
+          "path": "nanobot-env/lib/python3.11/site-packages/typing_inspection/__pycache__/typing_objects.cpython-311.pyc",
+          "size": 17237
         },
         {
-          "path": "evolution/strategies/creativity/__pycache__/__init__.cpython-311.pyc",
-          "size": 5851
+          "path": "nanobot-env/lib/python3.11/site-packages/typing_inspection/__pycache__/introspection.cpython-311.pyc",
+          "size": 19111
         },
         {
-          "path": "evolution/strategies/adaptive/__pycache__/__init__.cpython-311.pyc",
-          "size": 6165
+          "path": "nanobot-env/lib/python3.11/site-packages/typing_inspection/__pycache__/__init__.cpython-311.pyc",
+          "size": 205
         },
         {
-          "path": "evolution/strategies/self_awareness/__pycache__/__init__.cpython-311.pyc",
-          "size": 6145
+          "path": "nanobot-env/lib/python3.11/site-packages/tiktoken/__pycache__/core.cpython-311.pyc",
+          "size": 23386
         },
         {
-          "path": "evolution/strategies/learning/__pycache__/__init__.cpython-311.pyc",
-          "size": 27256
+          "path": "nanobot-env/lib/python3.11/site-packages/tiktoken/__pycache__/model.cpython-311.pyc",
+          "size": 3840
         },
         {
-          "path": "evolution/strategies/collaboration/__pycache__/__init__.cpython-311.pyc",
-          "size": 6302
+          "path": "nanobot-env/lib/python3.11/site-packages/tiktoken/__pycache__/__init__.cpython-311.pyc",
+          "size": 520
         },
         {
-          "path": "evolution/collectors/__pycache__/__init__.cpython-311.pyc",
-          "size": 46991
+          "path": "nanobot-env/lib/python3.11/site-packages/tiktoken/__pycache__/registry.cpython-311.pyc",
+          "size": 4630
         },
         {
-          "path": "evolution/core/__pycache__/dimension_assessor.cpython-311.pyc",
-          "size": 14997
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/__pycache__/parse_number.cpython-311.pyc",
+          "size": 2051
         },
         {
-          "path": "evolution/core/__pycache__/evolution_orchestrator.cpython-311.pyc",
-          "size": 17627
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/__pycache__/parse_array.cpython-311.pyc",
+          "size": 5107
         },
         {
-          "path": "evolution/core/__pycache__/__init__.cpython-311.pyc",
-          "size": 5922
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/__pycache__/json_parser.cpython-311.pyc",
+          "size": 11731
         },
         {
-          "path": "core/__pycache__/task_router.cpython-311.pyc",
-          "size": 13552
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/__pycache__/parse_comment.cpython-311.pyc",
+          "size": 3253
         },
         {
-          "path": "core/__pycache__/auto_delegation.cpython-311.pyc",
-          "size": 9829
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/__pycache__/json_repair.cpython-311.pyc",
+          "size": 20960
         },
         {
-          "path": "core/__pycache__/scheduler.cpython-311.pyc",
-          "size": 20609
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/__pycache__/parse_object.cpython-311.pyc",
+          "size": 16257
         },
         {
-          "path": "core/__pycache__/task_queue.cpython-311.pyc",
-          "size": 24491
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/__pycache__/parse_string.cpython-311.pyc",
+          "size": 19340
         },
         {
-          "path": "core/__pycache__/feedback_processor.cpython-311.pyc",
-          "size": 14403
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/__pycache__/schema_repair.cpython-311.pyc",
+          "size": 38924
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/impl.cpython-311.pyc",
-          "size": 11519
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/__pycache__/__init__.cpython-311.pyc",
+          "size": 452
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/types.cpython-311.pyc",
-          "size": 640
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/parse_string_helpers/__pycache__/parse_boolean_or_null.cpython-311.pyc",
+          "size": 1497
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/utils.cpython-311.pyc",
-          "size": 4181
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/parse_string_helpers/__pycache__/parse_json_llm_block.cpython-311.pyc",
+          "size": 1176
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/_staggered.cpython-311.pyc",
-          "size": 8918
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/utils/__pycache__/string_file_wrapper.cpython-311.pyc",
+          "size": 9786
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/__init__.cpython-311.pyc",
-          "size": 583
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/utils/__pycache__/json_context.cpython-311.pyc",
+          "size": 2080
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/defaults.cpython-311.pyc",
-          "size": 534
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/utils/__pycache__/constants.cpython-311.pyc",
+          "size": 1255
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/utils.cpython-311.pyc",
-          "size": 19549
+          "path": "nanobot-env/lib/python3.11/site-packages/json_repair/utils/__pycache__/object_comparer.cpython-311.pyc",
+          "size": 2949
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/helpers.cpython-311.pyc",
-          "size": 994
+          "path": "nanobot-env/lib/python3.11/site-packages/__pycache__/typing_extensions.cpython-311.pyc",
+          "size": 179470
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/exceptions.cpython-311.pyc",
-          "size": 2627
+          "path": "nanobot-env/lib/python3.11/site-packages/annotated_doc/__pycache__/main.cpython-311.pyc",
+          "size": 2024
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/conf.cpython-311.pyc",
-          "size": 2462
+          "path": "nanobot-env/lib/python3.11/site-packages/annotated_doc/__pycache__/__init__.cpython-311.pyc",
+          "size": 274
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/base.cpython-311.pyc",
-          "size": 5568
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/__pycache__/ruler.cpython-311.pyc",
+          "size": 13220
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/trie.cpython-311.pyc",
-          "size": 2560
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/__pycache__/_punycode.cpython-311.pyc",
+          "size": 2968
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/__init__.cpython-311.pyc",
-          "size": 716
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/__pycache__/token.cpython-311.pyc",
+          "size": 8966
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/registry.cpython-311.pyc",
-          "size": 618
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/__pycache__/utils.cpython-311.pyc",
+          "size": 9425
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/result.cpython-311.pyc",
-          "size": 2485
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/__pycache__/main.cpython-311.pyc",
+          "size": 18880
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/tests/__pycache__/test_commands.cpython-311.pyc",
-          "size": 2100
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/__pycache__/parser_core.cpython-311.pyc",
+          "size": 2160
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/tests/__pycache__/test_registry.cpython-311.pyc",
-          "size": 1010
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/__pycache__/renderer.cpython-311.pyc",
+          "size": 11821
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/tests/__pycache__/base.cpython-311.pyc",
-          "size": 3646
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/__pycache__/parser_inline.cpython-311.pyc",
+          "size": 5362
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/tests/__pycache__/__init__.cpython-311.pyc",
-          "size": 206
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/__pycache__/parser_block.cpython-311.pyc",
+          "size": 4353
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/tests/__pycache__/test_core.cpython-311.pyc",
-          "size": 31934
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/__pycache__/__init__.cpython-311.pyc",
+          "size": 348
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/_entry_points.cpython-311.pyc",
-          "size": 5219
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/helpers/__pycache__/parse_link_title.cpython-311.pyc",
+          "size": 2600
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/version.cpython-311.pyc",
-          "size": 457
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/helpers/__pycache__/parse_link_destination.cpython-311.pyc",
+          "size": 2442
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/_itertools.cpython-311.pyc",
-          "size": 1174
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/helpers/__pycache__/parse_link_label.cpython-311.pyc",
+          "size": 1397
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/_reqs.cpython-311.pyc",
-          "size": 1156
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/helpers/__pycache__/__init__.cpython-311.pyc",
+          "size": 513
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/unicode_utils.cpython-311.pyc",
-          "size": 1839
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/rules_core/__pycache__/inline.cpython-311.pyc",
+          "size": 790
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/logging.cpython-311.pyc",
-          "size": 2117
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/rules_core/__pycache__/block.cpython-311.pyc",
+          "size": 991
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/_path.cpython-311.pyc",
-          "size": 1495
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/rules_core/__pycache__/text_join.cpython-311.pyc",
+          "size": 1539
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/glob.cpython-311.pyc",
-          "size": 6584
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/rules_core/__pycache__/linkify.cpython-311.pyc",
+          "size": 5551
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/msvc.cpython-311.pyc",
-          "size": 64200
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/rules_core/__pycache__/normalize.cpython-311.pyc",
+          "size": 870
         },
         {
-          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/wheel.cpython-311.pyc",
-          "size": 15513
+          "path": "nanobot-env/lib/python3.11/site-packages/markdown_it/rules_core/__pycache__/state_core.cpython-311.pyc",
+          "size": 1256
         }
       ],
-      "estimated_saving_mb": 20.830422401428223,
-      "description": "\u6e05\u7406 1468 \u4e2a\u4e34\u65f6\u6587\u4ef6",
+      "estimated_saving_mb": 22.744327545166016,
+      "description": "\u6e05\u7406 2549 \u4e2a\u4e34\u65f6\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -244,7 +244,7 @@
         {
           "path": "archives/20260305/moltbook_social_20260223_034503.log",
           "size": 616,
-          "age_days": 10
+          "age_days": 11
         },
         {
           "path": "archives/20260305/cron-cooldown.log",
@@ -372,8 +372,8 @@
           "age_days": 14
         }
       ],
-      "estimated_saving_mb": 2.9422292709350586,
-      "description": "\u5f52\u6863 34 \u4e2a\u8d85\u8fc77\u5929\u7684\u65e5\u5fd7\u6587\u4ef6",
+      "estimated_saving_mb": 2.9420366287231445,
+      "description": "\u5f52\u6863 33 \u4e2a\u8d85\u8fc77\u5929\u7684\u65e5\u5fd7\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -454,6 +454,11 @@
           "age_days": 7
         },
         {
+          "path": "reports/decision-debt-20260227-008-20260227_023636.md",
+          "size": 3912,
+          "age_days": 7
+        },
+        {
           "path": "reports/decision-debt-20260226-004-20260226_140041.md",
           "size": 3969,
           "age_days": 7
@@ -477,15 +482,10 @@
           "path": "reports/decision-debt-20260226-003-20260226_210613.md",
           "size": 4009,
           "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260226-003-20260226_233319.md",
-          "size": 4009,
-          "age_days": 7
         }
       ],
-      "estimated_saving_mb": 4.5405731201171875,
-      "description": "\u5f52\u6863 1155 \u4e2a\u8d85\u8fc77\u5929\u7684\u62a5\u544a\u6587\u4ef6",
+      "estimated_saving_mb": 4.641953468322754,
+      "description": "\u5f52\u6863 1183 \u4e2a\u8d85\u8fc77\u5929\u7684\u62a5\u544a\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -508,11 +508,11 @@
           "path": "crontab-backup-20260221_080806.txt"
         },
         {
-          "path": "archives/20260305/cron-cooldown.log"
+          "path": "nanobot-env/lib/python3.11/site-packages/croniter/croniter.py"
         }
       ],
       "estimated_saving_mb": 0,
-      "description": "\u5408\u5e76 99 \u4e2a\u5206\u6563\u7684cron\u914d\u7f6e",
+      "description": "\u5408\u5e76 103 \u4e2a\u5206\u6563\u7684cron\u914d\u7f6e",
       "risk_level": "medium"
     }
   ],
@@ -521,7 +521,7 @@
     "p0_count": 1,
     "p1_count": 2,
     "p2_count": 1,
-    "estimated_saving_mb": 28.31,
+    "estimated_saving_mb": 30.33,
     "estimated_saving_percent": 0
   }
 }
