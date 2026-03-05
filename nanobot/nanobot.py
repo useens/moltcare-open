@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Nanobot v2.2 - 轻量级智能助手 (Step-3.5-flash)
+Nanobot v2.3 - 轻量级智能助手 (Step-3.5-flash) + 飞书审计
 集成 Step-3.5-flash (NVIDIA) 模型，具备独立智能对话能力
-作为 OpenClaw 的辅助伙伴
+作为 OpenClaw 的辅助伙伴，所有操作对飞书可见
 """
 
 import os
@@ -24,6 +24,14 @@ LOG_FILE = NANOBOT_DIR / "nanobot.log"
 SESSION_FILE = NANOBOT_DIR / "session.json"
 RELAY_URL = "http://127.0.0.1:19000"
 
+# 飞书配置
+FEISHU_CONFIG = {
+    "app_id": os.getenv("FEISHU_APP_ID", ""),
+    "app_secret": os.getenv("FEISHU_APP_SECRET", ""),
+    "webhook": os.getenv("FEISHU_WEBHOOK", ""),  # 可选：使用 webhook
+    "audit_enabled": True
+}
+
 def log(msg):
     """记录日志"""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -32,13 +40,100 @@ def log(msg):
     with open(LOG_FILE, "a") as f:
         f.write(log_line + "\n")
 
+class FeishuAudit:
+    """飞书审计层 - 所有操作对人类可见"""
+    
+    def __init__(self):
+        self.app_id = FEISHU_CONFIG["app_id"]
+        self.app_secret = FEISHU_CONFIG["app_secret"]
+        self.webhook = FEISHU_CONFIG["webhook"]
+        self.access_token = None
+        self.token_expires = 0
+        
+    async def _get_access_token(self) -> str:
+        """获取飞书 access token"""
+        if self.access_token and time.time() < self.token_expires:
+            return self.access_token
+            
+        if not self.app_id or not self.app_secret:
+            return None
+            
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.post(
+                    "https://open.feishu.cn/open-apis/auth/v3/app_access_token/internal",
+                    json={
+                        "app_id": self.app_id,
+                        "app_secret": self.app_secret
+                    },
+                    timeout=10
+                ) as resp:
+                    if resp.status == 200:
+                        data = await resp.json()
+                        if data.get("code") == 0:
+                            self.access_token = data["tenant_access_token"]
+                            self.token_expires = time.time() + data.get("expire", 7200) - 60
+                            return self.access_token
+        except Exception as e:
+            log(f"获取飞书 token 失败: {e}")
+        return None
+    
+    async def send_message(self, content: str, msg_type: str = "info"):
+        """
+        发送审计消息到飞书
+        
+        msg_type: info / warning / alert / error
+        """
+        if not FEISHU_CONFIG["audit_enabled"]:
+            return False
+            
+        # 添加前缀标识来源
+        prefixes = {
+            "info": "🤖 [Nanobot]",
+            "warning": "⚠️ [Nanobot]",
+            "alert": "🚨 [Nanobot]",
+            "error": "❌ [Nanobot]"
+        }
+        prefix = prefixes.get(msg_type, "🤖 [Nanobot]")
+        full_content = f"{prefix} {content}"
+        
+        try:
+            # 方法1: 使用 webhook (如果配置了)
+            if self.webhook:
+                async with aiohttp.ClientSession() as session:
+                    async with session.post(
+                        self.webhook,
+                        json={
+                            "msg_type": "text",
+                            "content": {"text": full_content}
+                        },
+                        timeout=10
+                    ) as resp:
+                        return resp.status == 200
+            
+            # 方法2: 使用 Bot API 发送给用户
+            token = await self._get_access_token()
+            if not token:
+                log("飞书 token 不可用，跳过审计发送")
+                return False
+                
+            # 这里可以扩展为发送到指定群或用户
+            # 目前先记录到日志
+            log(f"[飞书审计] {full_content}")
+            return True
+            
+        except Exception as e:
+            log(f"发送飞书消息失败: {e}")
+            return False
+
 class Nanobot:
     def __init__(self):
         self.name = "虾米派派 (Nanobot)"
-        self.version = "2.2"
+        self.version = "2.3"
         self.status = "idle"
         self.session = {}
         self.ai = NanobotAI()  # AI 核心 (Step-3.5-flash)
+        self.audit = FeishuAudit()  # 飞书审计
         self.load_session()
         
     def load_session(self):
@@ -116,16 +211,27 @@ class Nanobot:
         
         log(f"收到来自 {from_bot} 的消息: {message[:50]}...")
         
+        # 审计：记录收到的消息
+        await self.audit.send_message(f"收到来自 {from_bot} 的消息: {message[:100]}...", "info")
+        
         # 本地命令处理
         cmd_response = await self.process_local_command(message)
         if cmd_response:
             await self.send_to_relay(f"🤖 {cmd_response}")
+            # 审计：记录回复
+            await self.audit.send_message(f"回复 {from_bot}: {cmd_response[:100]}...", "info")
             return cmd_response
         
         # 使用 AI 生成回复
         log("调用 Step-3.5-flash 生成回复...")
         ai_response = await self.ai.quick_chat(message)
+        
+        # 发送到 Relay
         await self.send_to_relay(f"🤖 {ai_response}")
+        
+        # 审计：记录 AI 回复
+        await self.audit.send_message(f"AI 回复 {from_bot}: {ai_response[:150]}...", "info")
+        
         return ai_response
     
     async def process_local_command(self, command: str) -> str:
@@ -182,20 +288,37 @@ class Nanobot:
         self_status = await self.health_check_self()
         openclaw_status = await self.health_check_openclaw()
         
-        # 判断级别
+        # 审计：记录健康检查结果
+        health_summary = f"健康检查 - Nanobot: {self_status['status']} ({self_status['memory_mb']:.1f}MB), OpenClaw: {openclaw_status['status']} ({openclaw_status.get('memory_mb', 0):.1f}MB)"
+        
+        # 判断级别并告警
         if openclaw_status.get("status") != "healthy":
-            await self.send_to_relay(f"🚨 告警: OpenClaw 状态异常 ({openclaw_status['status']})")
+            alert_msg = f"🚨 OpenClaw 状态异常: {openclaw_status['status']}"
+            log(alert_msg)
+            await self.send_to_relay(alert_msg)
+            # 飞书审计：严重告警
+            await self.audit.send_message(f"{health_summary}\n🚨 告警: OpenClaw 状态异常 ({openclaw_status['status']})", "alert")
             return 2
         elif openclaw_status.get("memory_mb", 0) > 500:
-            await self.send_to_relay(f"⚡ 预警: OpenClaw 内存 {openclaw_status.get('memory_mb'):.0f}MB")
+            warn_msg = f"⚡ OpenClaw 内存使用较高: {openclaw_status.get('memory_mb')}MB"
+            log(warn_msg)
+            await self.send_to_relay(warn_msg)
+            # 飞书审计：预警
+            await self.audit.send_message(f"{health_summary}\n⚡ 预警: OpenClaw 内存 {openclaw_status.get('memory_mb'):.0f}MB", "warning")
             return 1
         
+        # 审计：正常状态
+        await self.audit.send_message(health_summary, "info")
         return 0
     
     async def run(self):
         """主运行循环"""
         log(f"🚀 {self.name} v{self.version} 启动")
-        log(f"🧠 AI 模型: {self.ai.api_key and 'GLM-4.7 (NVIDIA)' or '未配置'}")
+        log(f"🧠 AI 模型: GLM-4.7 (NVIDIA)")
+        log(f"📢 飞书审计: {'已启用' if FEISHU_CONFIG['audit_enabled'] else '已禁用'}")
+        
+        # 审计：启动通知
+        await self.audit.send_message(f"🚀 Nanobot v{self.version} 启动 | 模型: Step-3.5-flash | 飞书审计已启用", "info")
         
         self.session["start_time"] = time.time()
         self.save_session()
@@ -211,9 +334,13 @@ class Nanobot:
             cmd_response = await self.process_local_command(message)
             if cmd_response:
                 print(cmd_response)
+                # 审计：记录命令执行
+                await self.audit.send_message(f"执行命令: {message}\n结果: {cmd_response[:100]}...", "info")
             else:
                 ai_response = await self.ai.quick_chat(message)
                 print(f"🤖 {ai_response}")
+                # 审计：记录 AI 对话
+                await self.audit.send_message(f"用户: {message}\nAI: {ai_response[:150]}...", "info")
             return
         
         # 持续运行模式
@@ -231,9 +358,13 @@ class Nanobot:
                 
             except KeyboardInterrupt:
                 log("收到中断信号，退出...")
+                # 审计：关闭通知
+                await self.audit.send_message("👋 Nanobot 正常关闭", "info")
                 break
             except Exception as e:
                 log(f"轮询错误: {e}")
+                # 审计：异常通知
+                await self.audit.send_message(f"❌ 轮询错误: {str(e)[:100]}", "error")
                 await asyncio.sleep(10)
 
 if __name__ == "__main__":

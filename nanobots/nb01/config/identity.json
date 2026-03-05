@@ -1,0 +1,14 @@
+{
+  "id": "NB01",
+  "name": "Nanobot NB01",
+  "model": "step",
+  "role": "fast_executor",
+  "port": 18801,
+  "capabilities": [
+    "quick_tasks",
+    "simple_queries",
+    "status_checks"
+  ],
+  "reporting_to": "CommandCenter",
+  "status": "active"
+}

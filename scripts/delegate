@@ -1,0 +1,92 @@
+#!/usr/bin/env python3
+"""
+Command Center - Delegate Command
+快捷委托命令 - 一键交给小弟或自己处理
+
+Usage:
+  delegate "任务内容"          # 自动路由
+  delegate "任务" --to NB01    # 指定节点
+  delegate "任务" --self       # 强制自己处理
+  delegate "任务" --broadcast  # 广播到所有节点
+"""
+
+import sys
+import argparse
+from pathlib import Path
+
+# 导入核心组件
+sys.path.insert(0, str(Path(__file__).parent.parent / "core"))
+from auto_delegation import AutoDelegationExecutor
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="🤖 智能委托系统 - 自动决定交给小弟还是自己处理"
+    )
+    parser.add_argument("task", help="任务内容")
+    parser.add_argument("--to", dest="node", help="指定节点 (如 NB01)")
+    parser.add_argument("--self", action="store_true", help="强制自己处理")
+    parser.add_argument("--broadcast", action="store_true", help="广播到所有节点")
+    parser.add_argument("--priority", default="normal", 
+                       choices=["critical", "high", "normal", "low"],
+                       help="任务优先级")
+    
+    args = parser.parse_args()
+    
+    print("=" * 70)
+    print("🤖 智能委托系统")
+    print("=" * 70)
+    print(f"📋 任务: {args.task}")
+    print()
+    
+    executor = AutoDelegationExecutor()
+    
+    # 如果指定了参数，覆盖自动路由
+    if args.self:
+        # 强制自己处理
+        print("🧠 强制自己处理 (Multi-Agent模式)")
+        result = {
+            "action": "retain",
+            "handler": "self",
+            "result": "需要Multi-Agent深度思考",
+            "prompt": args.task,
+            "multi_agent_required": True
+        }
+    elif args.broadcast:
+        # 广播到所有节点
+        print("📢 广播到所有10个节点")
+        result = executor._delegate_to_minions(
+            args.task, 
+            {"handler": "all", "task_type": "batch_processing", "review_required": False}
+        )
+    elif args.node:
+        # 指定节点
+        print(f"🎯 指定节点: {args.node}")
+        result = executor._delegate_to_minions(
+            args.task,
+            {"handler": args.node, "task_type": "custom", "review_required": False}
+        )
+    else:
+        # 自动路由
+        result = executor.execute(args.task)
+    
+    # 显示结果
+    print()
+    print("-" * 70)
+    if result["action"] == "delegate":
+        print(f"✅ 已交给小弟处理")
+        print(f"   目标: {result['handler']}")
+        if result.get("task_id"):
+            print(f"   任务ID: {result['task_id']}")
+        if result.get("task_ids"):
+            print(f"   任务数: {len(result['task_ids'])}")
+    else:
+        print(f"🧠 需要你自己处理")
+        print(f"   提示: 这个问题需要Multi-Agent深度思考")
+        print()
+        print("建议处理方式:")
+        print("  1. 使用 '/reasoning' 开启深度思考模式")
+        print("  2. 或使用 '多专家讨论:' 开头强制触发Multi-Agent")
+    print("=" * 70)
+
+if __name__ == "__main__":
+    main()

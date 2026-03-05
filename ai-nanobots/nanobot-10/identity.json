@@ -1,0 +1,13 @@
+{
+  "id": "nanobot-10",
+  "name": "质量保证者",
+  "role": "quality_assurance",
+  "description": "质量保证，测试验证",
+  "model": "stepfun-ai/step-3.5-flash",
+  "provider": "nvidia-build",
+  "model_id": "deepseek-ai/deepseek-v3.2",
+  "api_key": "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",
+  "base_url": "https://integrate.api.nvidia.com/v1",
+  "api": "openai-completions",
+  "model_name": "Step 3.5 Flash"
+}

@@ -1,0 +1,237 @@
+#!/usr/bin/env python3
+"""
+Command Center - Task Commander
+任务指挥官 - 分配和执行任务
+
+Usage:
+  cc-task "任务内容"              # 自动选择小弟执行
+  cc-task "任务" --to NB01        # 指定NB01执行
+  cc-task "任务" --broadcast      # 广播到所有小弟
+  cc-task "任务" --parallel       # 并行分发给多个小弟
+"""
+
+import argparse
+import json
+import subprocess
+from pathlib import Path
+from datetime import datetime
+
+BASE_DIR = Path("/root/.openclaw/workspace/nanobots")
+NODES = ["NB01", "NB02", "NB03", "NB04", "NB05", "NB06", "NB07", "NB08", "NB09", "NB10"]
+
+class TaskCommander:
+    """任务指挥官"""
+    
+    def __init__(self):
+        pass
+    
+    def get_node_capabilities(self, node_id: str) -> list:
+        """获取节点能力"""
+        config_file = BASE_DIR / node_id.lower() / "config" / "identity.json"
+        if config_file.exists():
+            with open(config_file) as f:
+                config = json.load(f)
+            return config.get("capabilities", [])
+        return []
+    
+    def get_node_skills(self, node_id: str) -> list:
+        """获取节点已安装skill"""
+        security_file = BASE_DIR / node_id.lower() / "config" / "security.json"
+        if security_file.exists():
+            with open(security_file) as f:
+                security = json.load(f)
+            return security.get("installed_skills", [])
+        return []
+    
+    def auto_select_node(self, task: str) -> str:
+        """自动选择最适合的小弟"""
+        task_lower = task.lower()
+        
+        # 根据任务类型匹配节点角色
+        if any(kw in task_lower for kw in ["搜索", "search", "查找", "收集"]):
+            candidates = ["NB02", "NB04", "NB01"]  # data_collector, api_caller, fast_executor
+        elif any(kw in task_lower for kw in ["代码", "code", "分析", "debug", "review"]):
+            candidates = ["NB07", "NB06", "NB08"]  # code_reviewer, deep_analyzer, complex_solver
+        elif any(kw in task_lower for kw in ["生成", "generate", "写", "write", "内容"]):
+            candidates = ["NB03", "NB06", "NB09"]  # content_generator, deep_analyzer, strategy_planner
+        elif any(kw in task_lower for kw in ["监控", "monitor", "检查", "check"]):
+            candidates = ["NB05", "NB10", "NB01"]  # monitor, quality_assurance, fast_executor
+        else:
+            # 默认选择负载低的
+            candidates = NODES
+        
+        # 选择已安装最多相关skill的节点
+        best_node = None
+        best_score = -1
+        
+        for node_id in candidates:
+            skills = self.get_node_skills(node_id)
+            score = len(skills)
+            if score > best_score:
+                best_score = score
+                best_node = node_id
+        
+        return best_node or "NB01"
+    
+    def execute_task(self, node_id: str, task: str, use_skills: bool = True):
+        """命令小弟执行任务"""
+        print(f"🎯 命令 {node_id} 执行任务")
+        print(f"   任务: {task}")
+        
+        # 获取小弟的能力
+        capabilities = self.get_node_capabilities(node_id)
+        skills = self.get_node_skills(node_id)
+        
+        print(f"   角色: {capabilities}")
+        print(f"   已安装skill: {skills if skills else '(暂无)'}")
+        
+        # 创建任务执行脚本
+        task_script = f"""#!/usr/bin/env python3
+# Task execution script for {node_id}
+# Generated: {datetime.now().isoformat()}
+
+import json
+import sys
+from pathlib import Path
+
+# 添加skill路径
+sys.path.insert(0, str(Path("{BASE_DIR / node_id.lower() / 'skills'}")))
+
+# 任务信息
+task = {repr(task)}
+
+print(f"🤖 {node_id} 开始执行任务...")
+print(f"   任务: {{task}}")
+
+# 根据已安装skill决定执行方式
+skills = {skills}
+
+if "web_search" in skills and ("搜索" in task or "search" in task.lower()):
+    print("   使用 web_search skill 执行...")
+    # 这里可以调用实际的skill
+    result = "模拟搜索结果: 已找到相关资料"
+elif "github" in skills and "github" in task.lower():
+    print("   使用 github skill 执行...")
+    result = "模拟GitHub操作: 已完成"
+else:
+    print("   使用基础工具执行...")
+    result = f"{{node_id}} 已完成任务: {{task[:30]}}..."
+
+print(f"✅ 任务完成")
+print(f"   结果: {{result}}")
+
+# 记录结果
+result_file = Path("{BASE_DIR / node_id.lower() / 'workspace'}") / f"result_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+with open(result_file, "w") as f:
+    f.write(f"任务: {{task}}\\n")
+    f.write(f"结果: {{result}}\\n")
+    f.write(f"完成时间: {datetime.now().isoformat()}\\n")
+
+print(f"   结果已保存: {{result_file}}")
+"""
+        
+        # 保存任务脚本
+        task_file = BASE_DIR / node_id.lower() / "tmp" / f"task_{datetime.now().strftime('%Y%m%d_%H%M%S')}.py"
+        with open(task_file, "w") as f:
+            f.write(task_script)
+        
+        # 记录任务分配
+        log_file = BASE_DIR / node_id.lower() / "logs" / "task_execution.log"
+        with open(log_file, "a") as f:
+            f.write(f"[{datetime.now().isoformat()}] EXECUTING: {task[:50]}...\n")
+        
+        # 模拟执行 (实际应该是启动一个子进程来执行)
+        print(f"   任务脚本: {task_file}")
+        print(f"   状态: ✅ 任务已分配给 {node_id}")
+        print(f"   (实际执行需要启动 {node_id} 的执行环境)")
+        
+        return True
+    
+    def broadcast_task(self, task: str):
+        """广播任务到所有小弟"""
+        print(f"📢 广播任务到所有10个小弟")
+        print(f"   任务: {task}")
+        print()
+        
+        for node_id in NODES:
+            self.execute_task(node_id, task)
+            print()
+        
+        print(f"✅ 任务已广播到所有节点")
+        print(f"   可以使用 'cc-node list' 查看各节点执行状态")
+    
+    def parallel_task(self, task: str, count: int = 3):
+        """并行分发给多个小弟"""
+        print(f"⚡ 并行分发给 {count} 个小弟")
+        print(f"   任务: {task}")
+        print()
+        
+        # 选择最合适的count个节点
+        selected = []
+        for node_id in NODES:
+            if len(selected) >= count:
+                break
+            skills = self.get_node_skills(node_id)
+            if skills:  # 优先选择已安装skill的节点
+                selected.append(node_id)
+        
+        # 如果不够，随机选择
+        while len(selected) < count:
+            for node_id in NODES:
+                if node_id not in selected:
+                    selected.append(node_id)
+                    if len(selected) >= count:
+                        break
+        
+        for node_id in selected:
+            self.execute_task(node_id, task)
+            print()
+        
+        print(f"✅ 任务已并行分发给: {', '.join(selected)}")
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="任务指挥官 - 分配任务给小弟执行",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+示例:
+  cc-task "搜索最新的AI论文"                    # 自动选择小弟
+  cc-task "搜索最新的AI论文" --to NB02          # 指定NB02执行
+  cc-task "检查所有服务状态" --broadcast        # 广播到所有小弟
+  cc-task "分析这段代码" --parallel --count 3   # 并行分发给3个小弟
+        """
+    )
+    
+    parser.add_argument("task", help="任务内容")
+    parser.add_argument("--to", dest="node", help="指定执行节点")
+    parser.add_argument("--broadcast", action="store_true", help="广播到所有节点")
+    parser.add_argument("--parallel", action="store_true", help="并行执行")
+    parser.add_argument("--count", type=int, default=3, help="并行节点数")
+    
+    args = parser.parse_args()
+    
+    print("=" * 70)
+    print("🎯 任务指挥官")
+    print("=" * 70)
+    print()
+    
+    commander = TaskCommander()
+    
+    if args.broadcast:
+        commander.broadcast_task(args.task)
+    elif args.parallel:
+        commander.parallel_task(args.task, args.count)
+    elif args.node:
+        commander.execute_task(args.node, args.task)
+    else:
+        # 自动选择
+        selected_node = commander.auto_select_node(args.task)
+        print(f"🤖 自动选择: {selected_node}")
+        print()
+        commander.execute_task(selected_node, args.task)
+    
+    print()
+    print("=" * 70)
+
+if __name__ == "__main__":
+    main()

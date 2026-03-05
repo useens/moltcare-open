@@ -1,0 +1,13 @@
+{
+  "id": "nanobot-5",
+  "name": "监控者",
+  "role": "monitor",
+  "description": "系统监控，状态检测",
+  "model": "stepfun-ai/step-3.5-flash",
+  "provider": "nvidia-build",
+  "model_id": "stepfun-ai/step-3.5-flash",
+  "api_key": "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",
+  "base_url": "https://integrate.api.nvidia.com/v1",
+  "api": "openai-completions",
+  "model_name": "Step 3.5 Flash"
+}

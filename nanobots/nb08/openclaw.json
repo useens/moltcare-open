@@ -1,0 +1,33 @@
+{
+  "meta": {"lastTouchedVersion": "2026.2.26", "lastTouchedAt": "2026-03-05T14:59:00Z"},
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "nvidia-build": {
+        "baseUrl": "https://integrate.api.nvidia.com/v1",
+        "apiKey": "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",
+        "api": "openai-completions",
+        "models": [
+          {"id": "moonshotai/kimi-k2.5", "name": "Kimi K2.5", "reasoning": true, "input": ["text", "image"], "contextWindow": 262144, "maxTokens": 8192},
+          {"id": "z-ai/glm4.7", "name": "GLM 4.7", "reasoning": true, "input": ["text"], "contextWindow": 131072, "maxTokens": 8192},
+          {"id": "deepseek-ai/deepseek-v3.2", "name": "DeepSeek V3.2", "reasoning": true, "input": ["text"], "contextWindow": 131072, "maxTokens": 8192},
+          {"id": "stepfun-ai/step-3.5-flash", "name": "Step 3.5 Flash", "reasoning": true, "input": ["text"], "contextWindow": 131072, "maxTokens": 8192}
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {"primary": "nvidia-build/deepseek-ai/deepseek-v3.2"},,
+      "workspace": "/root/.openclaw/workspace/nanobots/nb08"
+    }
+  },
+  "gateway": {
+    "port": 18808,
+    "mode": "local",
+    "bind": "0.0.0.0",
+    "auth": {"mode": "token", "token": "nb08-token-9dbb482bf86c92fa636195fff9302f3"},
+    "nodes": {"denyCommands": []}
+  },
+  "commands": {"ownerDisplay": "NB08"}
+}

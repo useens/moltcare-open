@@ -1,0 +1,55 @@
+{
+  "meta": {"lastTouchedVersion": "2026.2.26", "lastTouchedAt": "2026-03-05T14:59:00Z"},
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "nvidia-build": {
+        "baseUrl": "https://integrate.api.nvidia.com/v1",
+        "apiKey": "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",
+        "api": "openai-completions",
+        "models": [
+          {"id": "moonshotai/kimi-k2.5", "name": "Kimi K2.5", "reasoning": true, "input": ["text", "image"], "contextWindow": 262144, "maxTokens": 8192},
+          {"id": "z-ai/glm4.7", "name": "GLM 4.7", "reasoning": true, "input": ["text"], "contextWindow": 131072, "maxTokens": 8192},
+          {"id": "deepseek-ai/deepseek-v3.2", "name": "DeepSeek V3.2", "reasoning": true, "input": ["text"], "contextWindow": 131072, "maxTokens": 8192},
+          {"id": "stepfun-ai/step-3.5-flash", "name": "Step 3.5 Flash", "reasoning": true, "input": ["text"], "contextWindow": 131072, "maxTokens": 8192}
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {"primary": "nvidia-build/z-ai/glm4.7", "fallbacks": ["kimi-coding/k2p5"]},
+      "workspace": "/root/.openclaw/workspace"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "0.0.0.0",
+    "auth": {"mode": "token", "token": "cc-token-9dbb482bf86c92fa636195fff9302f3"},
+    "nodes": {
+      "allowedHosts": ["127.0.0.1", "localhost", "10.0.4.155"],
+      "denyCommands": ["camera.snap", "camera.clip", "screen.record"]
+    }
+  },
+  "commands": {"ownerDisplay": "CommandCenter"},
+  "nanobots": {
+    "nodes": [
+      {"id": "NB01", "port": 18801, "token": "nb01-token-9dbb482bf86c92fa636195fff9302f3"},
+      {"id": "NB02", "port": 18802, "token": "nb02-token-9dbb482bf86c92fa636195fff9302f3"},
+      {"id": "NB03", "port": 18803, "token": "nb03-token-9dbb482bf86c92fa636195fff9302f3"},
+      {"id": "NB04", "port": 18804, "token": "nb04-token-9dbb482bf86c92fa636195fff9302f3"},
+      {"id": "NB05", "port": 18805, "token": "nb05-token-9dbb482bf86c92fa636195fff9302f3"},
+      {"id": "NB06", "port": 18806, "token": "nb06-token-9dbb482bf86c92fa636195fff9302f3"},
+      {"id": "NB07", "port": 18807, "token": "nb07-token-9dbb482bf86c92fa636195fff9302f3"},
+      {"id": "NB08", "port": 18808, "token": "nb08-token-9dbb482bf86c92fa636195fff9302f3"},
+      {"id": "NB09", "port": 18809, "token": "nb09-token-9dbb482bf86c92fa636195fff9302f3"},
+      {"id": "NB10", "port": 18810, "token": "nb10-token-9dbb482bf86c92fa636195fff9302f3"}
+    ],
+    "relay": {
+      "enabled": true,
+      "syncToFeishu": true,
+      "feishuTarget": "ou_dc4db246fa540096f42caefbd2112ed3"
+    }
+  }
+}

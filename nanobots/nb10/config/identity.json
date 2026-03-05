@@ -1,0 +1,14 @@
+{
+  "id": "NB10",
+  "name": "Nanobot NB10",
+  "model": "ds",
+  "role": "quality_assurance",
+  "port": 18810,
+  "capabilities": [
+    "testing",
+    "validation",
+    "quality_checks"
+  ],
+  "reporting_to": "CommandCenter",
+  "status": "active"
+}

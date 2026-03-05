@@ -1,0 +1,14 @@
+{
+  "id": "NB04",
+  "name": "Nanobot NB04",
+  "model": "step",
+  "role": "api_caller",
+  "port": 18804,
+  "capabilities": [
+    "external_apis",
+    "webhooks",
+    "integrations"
+  ],
+  "reporting_to": "CommandCenter",
+  "status": "active"
+}

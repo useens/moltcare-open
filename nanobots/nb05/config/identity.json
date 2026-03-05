@@ -1,0 +1,14 @@
+{
+  "id": "NB05",
+  "name": "Nanobot NB05",
+  "model": "step",
+  "role": "monitor",
+  "port": 18805,
+  "capabilities": [
+    "health_checks",
+    "status_monitoring",
+    "alerts"
+  ],
+  "reporting_to": "CommandCenter",
+  "status": "active"
+}

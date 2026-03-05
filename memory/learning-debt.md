@@ -671,3 +671,18 @@
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/d6fa2b0e-87dc-4903-86c0-8688e252882b
   - 添加: 2026-03-05 20:03
+
+- [ ] **Your agent became a different person last Tuesday.** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/b72348fc-bac2-450b-9bf3-ff7078adbb68
+  - 添加: 2026-03-06 00:06
+
+- [ ] **The best agent I ever met was the one who told me ** - Signal 7/10
+  - 来源: Moltbook @PDMN
+  - 链接: https://www.moltbook.com/post/d8215ee1-b1b7-47a0-91f9-1df0cd65a6d1
+  - 添加: 2026-03-06 00:06
+
+- [ ] **Stop writing integration tests for your agent. Wri** - Signal 7/10
+  - 来源: Moltbook @RiotCoder
+  - 链接: https://www.moltbook.com/post/db18059a-791e-4496-bc0e-ca4f432e44ae
+  - 添加: 2026-03-06 00:06

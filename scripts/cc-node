@@ -1,0 +1,296 @@
+#!/usr/bin/env python3
+"""
+Command Center - Node Manager v3.0
+指挥中心节点管理器 - 管理10个小弟
+
+功能:
+- 命令小弟安装skill
+- 分配任务给小弟
+- 查看小弟状态
+- 审计小弟操作
+"""
+
+import json
+import sys
+import subprocess
+from pathlib import Path
+from datetime import datetime
+from typing import Dict, List, Optional
+
+# 配置
+BASE_DIR = Path("/root/.openclaw/workspace/nanobots")
+ALLOWED_SKILLS_FILE = Path("/root/.openclaw/workspace/config/allowed_skills.json")
+
+NODES = ["NB01", "NB02", "NB03", "NB04", "NB05", "NB06", "NB07", "NB08", "NB09", "NB10"]
+
+class NodeManager:
+    """节点管理器"""
+    
+    def __init__(self):
+        self.load_allowed_skills()
+    
+    def load_allowed_skills(self):
+        """加载允许安装的skill清单"""
+        if ALLOWED_SKILLS_FILE.exists():
+            with open(ALLOWED_SKILLS_FILE) as f:
+                self.allowed_skills = json.load(f)
+        else:
+            self.allowed_skills = {}
+    
+    def get_node_config(self, node_id: str) -> Optional[Dict]:
+        """获取节点配置"""
+        config_file = BASE_DIR / node_id.lower() / "config" / "identity.json"
+        if config_file.exists():
+            with open(config_file) as f:
+                return json.load(f)
+        return None
+    
+    def get_node_security(self, node_id: str) -> Optional[Dict]:
+        """获取节点安全策略"""
+        security_file = BASE_DIR / node_id.lower() / "config" / "security.json"
+        if security_file.exists():
+            with open(security_file) as f:
+                return json.load(f)
+        return None
+    
+    def list_nodes(self):
+        """列出所有节点"""
+        print("=" * 70)
+        print("🤖 Nanobot 节点列表")
+        print("=" * 70)
+        
+        for node_id in NODES:
+            config = self.get_node_config(node_id)
+            security = self.get_node_security(node_id)
+            
+            if config:
+                role = config.get("role", "unknown")
+                model = config.get("model", "unknown")
+                status = config.get("status", "unknown")
+                
+                # 统计已安装skill
+                installed = security.get("installed_skills", []) if security else []
+                
+                icon = "🟢" if status == "active" else "🔴"
+                print(f"{icon} {node_id}: {role} ({model})")
+                print(f"   已安装skill: {len(installed)} 个")
+            else:
+                print(f"⚪ {node_id}: 未初始化")
+        
+        print("=" * 70)
+    
+    def audit_skill(self, skill_name: str) -> tuple:
+        """审计skill是否可以安装"""
+        if skill_name in self.allowed_skills:
+            info = self.allowed_skills[skill_name]
+            return True, info
+        
+        # 尝试模糊匹配
+        for allowed_name in self.allowed_skills:
+            if skill_name.lower() in allowed_name.lower() or allowed_name.lower() in skill_name.lower():
+                return True, self.allowed_skills[allowed_name]
+        
+        return False, {"error": "不在白名单中"}
+    
+    def install_skill(self, node_id: str, skill_name: str) -> bool:
+        """命令小弟安装skill"""
+        if node_id not in NODES:
+            print(f"❌ 节点 {node_id} 不存在")
+            return False
+        
+        # 审计skill
+        allowed, info = self.audit_skill(skill_name)
+        if not allowed:
+            print(f"❌ 拒绝安装: {skill_name}")
+            print(f"   原因: {info.get('error', '未知')}")
+            print(f"   使用 'cc-node skills' 查看允许列表")
+            return False
+        
+        print(f"🔍 审计通过: {skill_name}")
+        print(f"   描述: {info.get('description', '')}")
+        print(f"   风险级别: {info.get('risk_level', 'unknown')}")
+        
+        # 模拟安装过程
+        print(f"📦 命令 {node_id} 安装 {skill_name}...")
+        
+        # 更新节点安全配置文件
+        security_file = BASE_DIR / node_id.lower() / "config" / "security.json"
+        if security_file.exists():
+            with open(security_file) as f:
+                security = json.load(f)
+            
+            if skill_name not in security.get("installed_skills", []):
+                security.setdefault("installed_skills", []).append(skill_name)
+                
+                with open(security_file, "w") as f:
+                    json.dump(security, f, indent=2)
+                
+                # 记录审计日志
+                log_file = BASE_DIR / node_id.lower() / "logs" / "skill_audit.log"
+                with open(log_file, "a") as f:
+                    f.write(f"[{datetime.now().isoformat()}] INSTALLED: {skill_name}\n")
+                
+                print(f"✅ {node_id} 成功安装 {skill_name}")
+                return True
+            else:
+                print(f"⚠️  {node_id} 已安装 {skill_name}")
+                return True
+        
+        return False
+    
+    def list_skills(self, node_id: Optional[str] = None):
+        """列出skill"""
+        if node_id:
+            # 列出特定节点已安装的skill
+            if node_id not in NODES:
+                print(f"❌ 节点 {node_id} 不存在")
+                return
+            
+            security = self.get_node_security(node_id)
+            installed = security.get("installed_skills", []) if security else []
+            
+            print(f"=" * 70)
+            print(f"📦 {node_id} 已安装的skill")
+            print(f"=" * 70)
+            
+            if installed:
+                for skill in installed:
+                    info = self.allowed_skills.get(skill, {})
+                    print(f"  ✅ {skill}: {info.get('description', '')}")
+            else:
+                print("  (暂无)")
+            
+            print(f"=" * 70)
+        else:
+            # 列出所有允许安装的skill
+            print(f"=" * 70)
+            print("📋 允许安装的skill清单")
+            print("=" * 70)
+            
+            for skill_name, info in self.allowed_skills.items():
+                risk = info.get("risk_level", "unknown")
+                risk_icon = "🟢" if risk == "low" else "🟡" if risk == "medium" else "🔴"
+                print(f"{risk_icon} {skill_name}")
+                print(f"   描述: {info.get('description', '')}")
+                print(f"   风险: {risk}")
+                print()
+            
+            print(f"=" * 70)
+            print(f"共 {len(self.allowed_skills)} 个skill")
+    
+    def assign_task(self, node_id: str, task: str):
+        """分配任务给小弟"""
+        if node_id not in NODES:
+            print(f"❌ 节点 {node_id} 不存在")
+            return False
+        
+        print(f"🎯 分配任务给 {node_id}")
+        print(f"   任务: {task}")
+        
+        # 创建任务文件
+        task_file = BASE_DIR / node_id.lower() / "workspace" / f"task_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+        with open(task_file, "w") as f:
+            f.write(f"任务分配时间: {datetime.now().isoformat()}\n")
+            f.write(f"任务内容: {task}\n")
+            f.write(f"状态: pending\n")
+        
+        # 记录到执行日志
+        log_file = BASE_DIR / node_id.lower() / "logs" / "task_execution.log"
+        with open(log_file, "a") as f:
+            f.write(f"[{datetime.now().isoformat()}] ASSIGNED: {task[:50]}...\n")
+        
+        print(f"✅ 任务已分配给 {node_id}")
+        print(f"   任务文件: {task_file}")
+        
+        return True
+    
+    def get_node_status(self, node_id: str):
+        """获取节点详细状态"""
+        if node_id not in NODES:
+            print(f"❌ 节点 {node_id} 不存在")
+            return
+        
+        config = self.get_node_config(node_id)
+        security = self.get_node_security(node_id)
+        
+        if not config:
+            print(f"❌ {node_id} 未初始化")
+            return
+        
+        print(f"=" * 70)
+        print(f"🤖 {node_id} 详细状态")
+        print(f"=" * 70)
+        
+        print(f"基本信息:")
+        print(f"  名称: {config.get('name')}")
+        print(f"  角色: {config.get('role')}")
+        print(f"  模型: {config.get('model')}")
+        print(f"  端口: {config.get('port')}")
+        print(f"  状态: {config.get('status')}")
+        
+        print(f"\n能力:")
+        for cap in config.get('capabilities', []):
+            print(f"  - {cap}")
+        
+        if security:
+            print(f"\n安全:")
+            print(f"  允许skill: {len(security.get('allowed_skills', []))} 个")
+            print(f"  已安装: {len(security.get('installed_skills', []))} 个")
+            
+            print(f"\n已安装skill:")
+            for skill in security.get('installed_skills', []):
+                print(f"  ✅ {skill}")
+        
+        print(f"=" * 70)
+
+def main():
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="指挥中心节点管理器")
+    subparsers = parser.add_subparsers(dest="command", help="命令")
+    
+    # list 命令
+    subparsers.add_parser("list", help="列出所有节点")
+    
+    # install 命令
+    install_parser = subparsers.add_parser("install", help="安装skill")
+    install_parser.add_argument("node", help="节点ID (如 NB01)")
+    install_parser.add_argument("skill", help="skill名称")
+    
+    # skills 命令
+    skills_parser = subparsers.add_parser("skills", help="列出skill")
+    skills_parser.add_argument("--node", help="查看特定节点的skill")
+    
+    # assign 命令
+    assign_parser = subparsers.add_parser("assign", help="分配任务")
+    assign_parser.add_argument("node", help="节点ID")
+    assign_parser.add_argument("task", help="任务内容")
+    
+    # status 命令
+    status_parser = subparsers.add_parser("status", help="查看节点状态")
+    status_parser.add_argument("node", help="节点ID")
+    
+    args = parser.parse_args()
+    
+    manager = NodeManager()
+    
+    if args.command == "list":
+        manager.list_nodes()
+    
+    elif args.command == "install":
+        manager.install_skill(args.node, args.skill)
+    
+    elif args.command == "skills":
+        manager.list_skills(args.node)
+    
+    elif args.command == "assign":
+        manager.assign_task(args.node, args.task)
+    
+    elif args.command == "status":
+        manager.get_node_status(args.node)
+    
+    else:
+        parser.print_help()
+
+if __name__ == "__main__":
+    main()

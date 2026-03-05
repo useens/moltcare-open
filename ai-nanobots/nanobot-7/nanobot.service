@@ -1,0 +1,14 @@
+[Unit]
+Description=Nanobot - 轻量级 AI 助手
+After=network.target bot-relay.service
+Requires=bot-relay.service
+
+[Service]
+Type=simple
+WorkingDirectory=/root/.openclaw/workspace/nanobot
+ExecStart=/usr/bin/python3 /root/.openclaw/workspace/nanobot/nanobot.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,17 @@
+# Nanobot Command Center - Cron Jobs
+# 指挥中心定时任务配置
+
+# 每5分钟: 健康检查并报告到飞书
+*/5 * * * * cd /root/.openclaw/workspace && python3 scripts/dashboard.py status >> logs/health-check.log 2>&1
+
+# 每10分钟: 节点状态检查
+*/10 * * * * cd /root/.openclaw/workspace && python3 scripts/nb-relay.py status >> logs/node-status.log 2>&1
+
+# 每15分钟: 发送心跳到飞书
+*/15 * * * * cd /root/.openclaw/workspace && python3 scripts/feishu-sync.py high heartbeat "💓 Command Center 运行正常" 2>&1
+
+# 每小时: 批量发送汇总报告
+0 * * * * cd /root/.openclaw/workspace && python3 scripts/feishu-sync.py batch 2>&1
+
+# 每天凌晨3点: 清理日志
+0 3 * * * cd /root/.openclaw/workspace && find logs -name "*.log" -mtime +7 -delete

@@ -1,0 +1,112 @@
+{
+  "web_search": {
+    "description": "网络搜索",
+    "source": "builtin",
+    "risk_level": "low"
+  },
+  "web_fetch": {
+    "description": "网页内容获取",
+    "source": "builtin",
+    "risk_level": "low"
+  },
+  "github": {
+    "description": "GitHub操作",
+    "source": "builtin",
+    "risk_level": "low"
+  },
+  "obsidian": {
+    "description": "Obsidian笔记管理",
+    "source": "local",
+    "risk_level": "low"
+  },
+  "weather": {
+    "description": "天气查询",
+    "source": "builtin",
+    "risk_level": "low"
+  },
+  "video_frames": {
+    "description": "视频帧提取",
+    "source": "local",
+    "risk_level": "low"
+  },
+  "summarize": {
+    "description": "内容摘要",
+    "source": "local",
+    "risk_level": "low"
+  },
+  "web_intelligence": {
+    "description": "网页智能分析",
+    "source": "local",
+    "risk_level": "medium"
+  },
+  "agent_reach": {
+    "description": "Agent Reach网络访问",
+    "source": "local",
+    "risk_level": "medium"
+  },
+  "browser": {
+    "description": "浏览器自动化",
+    "source": "local",
+    "risk_level": "medium"
+  },
+  "docker_essentials": {
+    "description": "Docker基础操作",
+    "source": "local",
+    "risk_level": "medium"
+  },
+  "fd_find": {
+    "description": "文件查找",
+    "source": "local",
+    "risk_level": "low"
+  },
+  "bat_cat": {
+    "description": "增强版cat",
+    "source": "local",
+    "risk_level": "low"
+  },
+  "agentlens": {
+    "description": "代码库分析导航",
+    "source": "local",
+    "risk_level": "low"
+  },
+  "vestige": {
+    "description": "FSRS-6记忆系统",
+    "source": "local",
+    "risk_level": "low"
+  },
+  "tdd_guide": {
+    "description": "测试驱动开发",
+    "source": "local",
+    "risk_level": "low"
+  },
+  "skill_creator": {
+    "description": "创建和管理skill",
+    "source": "local",
+    "risk_level": "medium"
+  },
+  "local_whisper": {
+    "description": "本地语音转文字",
+    "source": "local",
+    "risk_level": "low"
+  },
+  "vhs_recorder": {
+    "description": "终端录屏",
+    "source": "local",
+    "risk_level": "low"
+  },
+  "feishu_doc": {
+    "description": "飞书文档操作",
+    "source": "local",
+    "risk_level": "low"
+  },
+  "feishu_wiki": {
+    "description": "飞书知识库",
+    "source": "local",
+    "risk_level": "low"
+  },
+  "moltbook": {
+    "description": "Moltbook社交操作",
+    "source": "local",
+    "risk_level": "medium"
+  }
+}

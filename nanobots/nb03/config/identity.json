@@ -1,0 +1,14 @@
+{
+  "id": "NB03",
+  "name": "Nanobot NB03",
+  "model": "step",
+  "role": "content_generator",
+  "port": 18803,
+  "capabilities": [
+    "text_generation",
+    "template_filling",
+    "formatting"
+  ],
+  "reporting_to": "CommandCenter",
+  "status": "active"
+}

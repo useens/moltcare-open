@@ -1,0 +1,14 @@
+{
+  "id": "NB08",
+  "name": "Nanobot NB08",
+  "model": "ds",
+  "role": "complex_solver",
+  "port": 18808,
+  "capabilities": [
+    "multi_step_tasks",
+    "algorithm_design",
+    "optimization"
+  ],
+  "reporting_to": "CommandCenter",
+  "status": "active"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "NB02",
+  "name": "Nanobot NB02",
+  "model": "step",
+  "role": "data_collector",
+  "port": 18802,
+  "capabilities": [
+    "web_scraping",
+    "api_calls",
+    "data_download"
+  ],
+  "reporting_to": "CommandCenter",
+  "status": "active"
+}

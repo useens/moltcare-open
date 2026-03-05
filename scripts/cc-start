@@ -1,0 +1,83 @@
+#!/bin/bash
+# Command Center v3.0 - 快速启动
+# 一键初始化并启动指挥中心
+
+echo ""
+echo "╔════════════════════════════════════════════════════════════╗"
+echo "║     🤖 COMMAND CENTER v3.0 - 指挥中心启动程序               ║"
+echo "╚════════════════════════════════════════════════════════════╝"
+echo ""
+
+WORKSPACE="/root/.openclaw/workspace"
+cd "$WORKSPACE"
+
+echo "📋 启动步骤:"
+echo ""
+
+# 1. 检查10个小弟环境
+echo "1️⃣  检查10个小弟环境..."
+if [ -d "$WORKSPACE/nanobots/nb01" ] && [ -d "$WORKSPACE/nanobots/nb10" ]; then
+    echo "   ✅ 小弟环境已就绪"
+else
+    echo "   🚀 创建小弟环境..."
+    python3 scripts/setup_node_environments.py
+fi
+echo ""
+
+# 2. 启动10个节点
+echo "2️⃣  启动10个小弟节点..."
+./scripts/nb-cluster.sh restart > /dev/null 2>&1
+sleep 2
+online=$(./scripts/nb-cluster.sh status 2>&1 | grep -c "在线")
+if [ "$online" -eq 10 ]; then
+    echo "   ✅ 10个小弟全部在线"
+else
+    echo "   ⚠️  $online/10 节点在线"
+fi
+echo ""
+
+# 3. 为关键节点安装基础skill
+echo "3️⃣  安装基础skill..."
+./scripts/cc-node install NB01 web_search > /dev/null 2>&1 &
+echo "   ✅ NB01: web_search"
+./scripts/cc-node install NB02 agent_reach > /dev/null 2>&1 &
+echo "   ✅ NB02: agent_reach"
+./scripts/cc-node install NB03 summarize > /dev/null 2>&1 &
+echo "   ✅ NB03: summarize"
+./scripts/cc-node install NB04 web_fetch > /dev/null 2>&1 &
+echo "   ✅ NB04: web_fetch"
+./scripts/cc-node install NB07 github > /dev/null 2>&1 &
+echo "   ✅ NB07: github"
+wait
+echo ""
+
+# 4. 显示状态
+echo "4️⃣  系统状态检查..."
+echo ""
+./scripts/cc-node list
+echo ""
+
+# 5. 使用提示
+echo "╔════════════════════════════════════════════════════════════╗"
+echo "║                    ✅ 系统启动完成！                        ║"
+echo "╚════════════════════════════════════════════════════════════╝"
+echo ""
+echo "🎯 快速开始:"
+echo ""
+echo "  1️⃣  查看小弟状态:"
+echo "     ./scripts/cc-node list"
+echo ""
+echo "  2️⃣  命令小弟安装skill:"
+echo "     ./scripts/cc-node install NB01 web_search"
+echo ""
+echo "  3️⃣  分配任务给小弟:"
+echo "     ./scripts/cc-task '搜索最新的AI论文'"
+echo ""
+echo "  4️⃣  指定小弟执行任务:"
+echo "     ./scripts/cc-task '收集数据' --to NB02"
+echo ""
+echo "  5️⃣  广播任务给所有小弟:"
+echo "     ./scripts/cc-task '检查状态' --broadcast"
+echo ""
+echo "📚 完整手册: docs/cc-v3-manual.md"
+echo ""

@@ -1,0 +1,13 @@
+{
+  "id": "nanobot-8",
+  "name": "复杂解决者",
+  "role": "complex_solver",
+  "description": "复杂问题，算法设计",
+  "model": "stepfun-ai/step-3.5-flash",
+  "provider": "nvidia-build",
+  "model_id": "deepseek-ai/deepseek-v3.2",
+  "api_key": "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",
+  "base_url": "https://integrate.api.nvidia.com/v1",
+  "api": "openai-completions",
+  "model_name": "Step 3.5 Flash"
+}

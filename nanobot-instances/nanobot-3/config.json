@@ -1,0 +1,17 @@
+{
+  "providers": {
+    "nvidia": {
+      "apiKey": "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",
+      "apiBase": "https://integrate.api.nvidia.com/v1"
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": "stepfun-ai/step-3.5-flash",
+      "provider": "nvidia"
+    }
+  },
+  "tools": {
+    "restrictToWorkspace": true
+  }
+}

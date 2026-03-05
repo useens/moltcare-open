@@ -1,87 +1,87 @@
 {
   "history": [
     {
-      "timestamp": 1772708029.736589,
-      "datetime": "2026-03-05T18:53:49.736591",
-      "high_signal": 4,
-      "total": 30,
-      "discovery_rate": 0.13333333333333333,
-      "interval_used": 600
-    },
-    {
-      "timestamp": 1772708629.8341918,
-      "datetime": "2026-03-05T19:03:49.834193",
-      "high_signal": 2,
-      "total": 30,
-      "discovery_rate": 0.06666666666666667,
-      "interval_used": 600
-    },
-    {
-      "timestamp": 1772709229.93577,
-      "datetime": "2026-03-05T19:13:49.935772",
-      "high_signal": 2,
-      "total": 30,
-      "discovery_rate": 0.06666666666666667,
-      "interval_used": 600
-    },
-    {
-      "timestamp": 1772709830.0188394,
-      "datetime": "2026-03-05T19:23:50.018840",
-      "high_signal": 2,
-      "total": 30,
-      "discovery_rate": 0.06666666666666667,
-      "interval_used": 600
-    },
-    {
-      "timestamp": 1772710430.1165762,
-      "datetime": "2026-03-05T19:33:50.116577",
-      "high_signal": 8,
-      "total": 30,
-      "discovery_rate": 0.26666666666666666,
-      "interval_used": 600
-    },
-    {
-      "timestamp": 1772711030.2169774,
-      "datetime": "2026-03-05T19:43:50.216979",
+      "timestamp": 1772729153.1846035,
+      "datetime": "2026-03-06T00:45:53.184604",
       "high_signal": 1,
       "total": 30,
       "discovery_rate": 0.03333333333333333,
       "interval_used": 600
     },
     {
-      "timestamp": 1772711630.3147995,
-      "datetime": "2026-03-05T19:53:50.314801",
-      "high_signal": 5,
+      "timestamp": 1772729753.2857897,
+      "datetime": "2026-03-06T00:55:53.285791",
+      "high_signal": 8,
       "total": 30,
-      "discovery_rate": 0.16666666666666666,
+      "discovery_rate": 0.26666666666666666,
       "interval_used": 600
     },
     {
-      "timestamp": 1772712230.4125874,
-      "datetime": "2026-03-05T20:03:50.412589",
+      "timestamp": 1772730353.3846543,
+      "datetime": "2026-03-06T01:05:53.384656",
+      "high_signal": 8,
+      "total": 30,
+      "discovery_rate": 0.26666666666666666,
+      "interval_used": 600
+    },
+    {
+      "timestamp": 1772730953.4765902,
+      "datetime": "2026-03-06T01:15:53.476592",
       "high_signal": 2,
       "total": 30,
       "discovery_rate": 0.06666666666666667,
       "interval_used": 600
     },
     {
-      "timestamp": 1772712830.4985595,
-      "datetime": "2026-03-05T20:13:50.498561",
-      "high_signal": 0,
+      "timestamp": 1772731553.5765958,
+      "datetime": "2026-03-06T01:25:53.576597",
+      "high_signal": 8,
       "total": 30,
-      "discovery_rate": 0.0,
+      "discovery_rate": 0.26666666666666666,
       "interval_used": 600
     },
     {
-      "timestamp": 1772713430.5984643,
-      "datetime": "2026-03-05T20:23:50.598465",
-      "high_signal": 2,
+      "timestamp": 1772732153.6765735,
+      "datetime": "2026-03-06T01:35:53.676575",
+      "high_signal": 7,
       "total": 30,
-      "discovery_rate": 0.06666666666666667,
+      "discovery_rate": 0.23333333333333334,
+      "interval_used": 600
+    },
+    {
+      "timestamp": 1772732873.7777052,
+      "datetime": "2026-03-06T01:47:53.777706",
+      "high_signal": 6,
+      "total": 30,
+      "discovery_rate": 0.2,
+      "interval_used": 600
+    },
+    {
+      "timestamp": 1772733593.8765984,
+      "datetime": "2026-03-06T01:59:53.876600",
+      "high_signal": 3,
+      "total": 30,
+      "discovery_rate": 0.1,
+      "interval_used": 600
+    },
+    {
+      "timestamp": 1772734193.976566,
+      "datetime": "2026-03-06T02:09:53.976567",
+      "high_signal": 1,
+      "total": 30,
+      "discovery_rate": 0.03333333333333333,
+      "interval_used": 600
+    },
+    {
+      "timestamp": 1772734794.076581,
+      "datetime": "2026-03-06T02:19:54.076582",
+      "high_signal": 4,
+      "total": 30,
+      "discovery_rate": 0.13333333333333333,
       "interval_used": 600
     }
   ],
-  "last_update": "2026-03-05T20:23:50.598614",
+  "last_update": "2026-03-06T02:19:54.076743",
   "config": {
     "base_interval": 600,
     "min_interval": 300,

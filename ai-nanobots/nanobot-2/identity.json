@@ -1,0 +1,13 @@
+{
+  "id": "nanobot-2",
+  "name": "数据收集者",
+  "role": "data_collector",
+  "description": "网络爬取，数据采集",
+  "model": "stepfun-ai/step-3.5-flash",
+  "provider": "nvidia-build",
+  "model_id": "stepfun-ai/step-3.5-flash",
+  "api_key": "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",
+  "base_url": "https://integrate.api.nvidia.com/v1",
+  "api": "openai-completions",
+  "model_name": "Step 3.5 Flash"
+}

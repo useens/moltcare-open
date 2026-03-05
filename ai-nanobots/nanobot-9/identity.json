@@ -1,0 +1,13 @@
+{
+  "id": "nanobot-9",
+  "name": "策略规划者",
+  "role": "strategy_planner",
+  "description": "策略规划，架构设计",
+  "model": "stepfun-ai/step-3.5-flash",
+  "provider": "nvidia-build",
+  "model_id": "deepseek-ai/deepseek-v3.2",
+  "api_key": "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",
+  "base_url": "https://integrate.api.nvidia.com/v1",
+  "api": "openai-completions",
+  "model_name": "Step 3.5 Flash"
+}

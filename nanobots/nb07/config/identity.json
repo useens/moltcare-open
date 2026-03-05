@@ -1,0 +1,14 @@
+{
+  "id": "NB07",
+  "name": "Nanobot NB07",
+  "model": "ds",
+  "role": "code_reviewer",
+  "port": 18807,
+  "capabilities": [
+    "code_analysis",
+    "bug_detection",
+    "refactoring"
+  ],
+  "reporting_to": "CommandCenter",
+  "status": "active"
+}

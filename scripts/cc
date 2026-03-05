@@ -1,0 +1,140 @@
+#!/usr/bin/env python3
+"""
+Command Center - Main Controller
+指挥中心主控制器
+
+整合所有组件的统一入口
+"""
+
+import sys
+import os
+from pathlib import Path
+
+# 添加脚本路径
+sys.path.insert(0, str(Path(__file__).parent))
+
+# 版本信息
+VERSION = "1.0.0"
+BUILD_TIME = "2026-03-05"
+
+def show_banner():
+    """显示横幅"""
+    print("""
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║    🤖  N A N O B O T   C O M M A N D   C E N T E R            ║
+║                                                               ║
+║              纳 米 机 器 人 指 挥 中 心                         ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+    """)
+
+def show_menu():
+    """显示菜单"""
+    print("""
+📋 可用命令:
+
+  🖥️  监控与状态
+  ─────────────────────────────────────────
+  cc status         显示系统状态 (简化版)
+  cc dashboard      启动实时监控面板
+  cc nodes          节点管理器
+  
+  🚀 任务调度
+  ─────────────────────────────────────────
+  cc submit "任务"  提交任务到集群
+  cc broadcast "任务" 广播到所有节点
+  cc task NB01 "任务" 指定节点任务
+  
+  📡 消息与同步
+  ─────────────────────────────────────────
+  cc sync           飞书同步服务
+  cc notify "消息"  发送通知到飞书
+  
+  ⚙️  集群管理
+  ─────────────────────────────────────────
+  cc start          启动所有节点
+  cc stop           停止所有节点
+  cc restart        重启所有节点
+
+📖 详细文档: docs/nanobot-cc-build-report.md
+    """)
+
+def main():
+    if len(sys.argv) < 2:
+        show_banner()
+        show_menu()
+        return
+    
+    command = sys.argv[1]
+    args = sys.argv[2:]
+    
+    # 监控与状态
+    if command == "status":
+        os.system(f"python3 {Path(__file__).parent}/dashboard.py status")
+    
+    elif command == "dashboard":
+        os.system(f"python3 {Path(__file__).parent}/dashboard.py")
+    
+    elif command == "nodes":
+        os.system(f"python3 {Path(__file__).parent}/nb-relay.py status")
+    
+    # 任务调度
+    elif command == "submit":
+        if args:
+            prompt = args[0]
+            extra_args = " ".join(args[1:]) if len(args) > 1 else ""
+            os.system(f"python3 {Path(__file__).parent}/scheduler.py submit '{prompt}' {extra_args}")
+        else:
+            print("Usage: cc submit \"任务内容\" [--type quick|deep] [--strategy step|ds]")
+    
+    elif command == "broadcast":
+        if args:
+            prompt = args[0]
+            os.system(f"python3 {Path(__file__).parent}/nb-relay.py broadcast '{prompt}'")
+        else:
+            print("Usage: cc broadcast \"任务内容\"")
+    
+    elif command == "task":
+        if len(args) >= 2:
+            node_id = args[0]
+            prompt = args[1]
+            os.system(f"python3 {Path(__file__).parent}/nb-relay.py send {node_id} '{prompt}'")
+        else:
+            print("Usage: cc task NB01 \"任务内容\"")
+    
+    # 消息与同步
+    elif command == "sync":
+        os.system(f"python3 {Path(__file__).parent}/feishu-sync.py")
+    
+    elif command == "notify":
+        if args:
+            message = args[0]
+            os.system(f"python3 {Path(__file__).parent}/feishu-sync.py high command.center '{message}'")
+        else:
+            print("Usage: cc notify \"消息内容\"")
+    
+    # 集群管理
+    elif command == "start":
+        os.system(f"{Path(__file__).parent}/nb-cluster.sh start")
+    
+    elif command == "stop":
+        os.system(f"{Path(__file__).parent}/nb-cluster.sh stop")
+    
+    elif command == "restart":
+        os.system(f"{Path(__file__).parent}/nb-cluster.sh restart")
+    
+    # 帮助
+    elif command in ["help", "-h", "--help"]:
+        show_banner()
+        show_menu()
+    
+    elif command == "version":
+        print(f"Nanobot Command Center v{VERSION} (Build: {BUILD_TIME})")
+    
+    else:
+        print(f"❌ 未知命令: {command}")
+        print("使用 'cc help' 查看所有命令")
+
+if __name__ == "__main__":
+    main()

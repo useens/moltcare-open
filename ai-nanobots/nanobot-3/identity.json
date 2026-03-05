@@ -1,0 +1,13 @@
+{
+  "id": "nanobot-3",
+  "name": "内容生成者",
+  "role": "content_generator",
+  "description": "文本生成，内容创作",
+  "model": "deepseek-ai/deepseek-v3.2",
+  "provider": "nvidia-build",
+  "model_id": "stepfun-ai/step-3.5-flash",
+  "api_key": "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",
+  "base_url": "https://integrate.api.nvidia.com/v1",
+  "api": "openai-completions",
+  "model_name": "DeepSeek V3.2"
+}

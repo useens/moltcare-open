@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-03-05T04:01:00.240845",
+  "timestamp": "2026-03-06T02:00:11.751819",
   "opportunities": [
     {
       "id": "temp-cleanup",
@@ -9,10 +9,6 @@
       "action": "delete",
       "target_type": "files",
       "targets": [
-        {
-          "path": "local-memory-system/__pycache__/local_memory.cpython-311.pyc",
-          "size": 31888
-        },
         {
           "path": "evolution/strategies/autonomy/__pycache__/__init__.cpython-311.pyc",
           "size": 23047
@@ -74,72 +70,148 @@
           "size": 5922
         },
         {
-          "path": "core/__pycache__/shared_models.cpython-311.pyc",
-          "size": 1208
+          "path": "core/__pycache__/task_router.cpython-311.pyc",
+          "size": 13552
         },
         {
-          "path": "local-memory-system/__pycache__",
-          "size": 4096
+          "path": "core/__pycache__/auto_delegation.cpython-311.pyc",
+          "size": 9829
         },
         {
-          "path": "evolution/strategies/__pycache__",
-          "size": 4096
+          "path": "core/__pycache__/scheduler.cpython-311.pyc",
+          "size": 20609
         },
         {
-          "path": "evolution/strategies/autonomy/__pycache__",
-          "size": 4096
+          "path": "core/__pycache__/task_queue.cpython-311.pyc",
+          "size": 24491
         },
         {
-          "path": "evolution/strategies/goal/__pycache__",
-          "size": 4096
+          "path": "core/__pycache__/feedback_processor.cpython-311.pyc",
+          "size": 14403
         },
         {
-          "path": "evolution/strategies/protection/__pycache__",
-          "size": 4096
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/impl.cpython-311.pyc",
+          "size": 11519
         },
         {
-          "path": "evolution/strategies/cognitive/__pycache__",
-          "size": 4096
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/types.cpython-311.pyc",
+          "size": 640
         },
         {
-          "path": "evolution/strategies/prediction/__pycache__",
-          "size": 4096
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/utils.cpython-311.pyc",
+          "size": 4181
         },
         {
-          "path": "evolution/strategies/creativity/__pycache__",
-          "size": 4096
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/_staggered.cpython-311.pyc",
+          "size": 8918
         },
         {
-          "path": "evolution/strategies/adaptive/__pycache__",
-          "size": 4096
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/aiohappyeyeballs/__pycache__/__init__.cpython-311.pyc",
+          "size": 583
         },
         {
-          "path": "evolution/strategies/self_awareness/__pycache__",
-          "size": 4096
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/defaults.cpython-311.pyc",
+          "size": 534
         },
         {
-          "path": "evolution/strategies/learning/__pycache__",
-          "size": 4096
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/utils.cpython-311.pyc",
+          "size": 19549
         },
         {
-          "path": "evolution/strategies/collaboration/__pycache__",
-          "size": 4096
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/helpers.cpython-311.pyc",
+          "size": 994
         },
         {
-          "path": "evolution/collectors/__pycache__",
-          "size": 4096
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/exceptions.cpython-311.pyc",
+          "size": 2627
         },
         {
-          "path": "evolution/core/__pycache__",
-          "size": 4096
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/conf.cpython-311.pyc",
+          "size": 2462
         },
         {
-          "path": "core/__pycache__",
-          "size": 4096
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/base.cpython-311.pyc",
+          "size": 5568
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/trie.cpython-311.pyc",
+          "size": 2560
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/__init__.cpython-311.pyc",
+          "size": 716
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/registry.cpython-311.pyc",
+          "size": 618
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/__pycache__/result.cpython-311.pyc",
+          "size": 2485
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/tests/__pycache__/test_commands.cpython-311.pyc",
+          "size": 2100
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/tests/__pycache__/test_registry.cpython-311.pyc",
+          "size": 1010
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/tests/__pycache__/base.cpython-311.pyc",
+          "size": 3646
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/tests/__pycache__/__init__.cpython-311.pyc",
+          "size": 206
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/tld/tests/__pycache__/test_core.cpython-311.pyc",
+          "size": 31934
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/_entry_points.cpython-311.pyc",
+          "size": 5219
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/version.cpython-311.pyc",
+          "size": 457
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/_itertools.cpython-311.pyc",
+          "size": 1174
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/_reqs.cpython-311.pyc",
+          "size": 1156
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/unicode_utils.cpython-311.pyc",
+          "size": 1839
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/logging.cpython-311.pyc",
+          "size": 2117
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/_path.cpython-311.pyc",
+          "size": 1495
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/glob.cpython-311.pyc",
+          "size": 6584
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/msvc.cpython-311.pyc",
+          "size": 64200
+        },
+        {
+          "path": "nanobots/shared_venv/lib/python3.11/site-packages/setuptools/__pycache__/wheel.cpython-311.pyc",
+          "size": 15513
         }
       ],
-      "estimated_saving_mb": 0.2958984375,
-      "description": "\u6e05\u7406 32 \u4e2a\u4e34\u65f6\u6587\u4ef6",
+      "estimated_saving_mb": 20.830422401428223,
+      "description": "\u6e05\u7406 1468 \u4e2a\u4e34\u65f6\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -150,158 +222,158 @@
       "target_type": "files",
       "targets": [
         {
-          "path": "archives/20260304/log_rotation.log",
+          "path": "archives/20260305/log_rotation.log",
           "size": 1009,
-          "age_days": 13
+          "age_days": 14
         },
         {
-          "path": "archives/20260304/upgrade-execution-20260219.log",
+          "path": "archives/20260305/upgrade-execution-20260219.log",
           "size": 202,
-          "age_days": 13
+          "age_days": 14
         },
         {
-          "path": "archives/20260304/moltbook_ai_reply.log",
+          "path": "archives/20260305/moltbook_ai_reply.log",
           "size": 207,
-          "age_days": 10
+          "age_days": 11
         },
         {
-          "path": "archives/20260304/moltbook_daily.log",
+          "path": "archives/20260305/moltbook_daily.log",
           "size": 2515,
-          "age_days": 10
+          "age_days": 11
         },
         {
-          "path": "archives/20260304/moltbook_social_20260223_034503.log",
+          "path": "archives/20260305/moltbook_social_20260223_034503.log",
           "size": 616,
           "age_days": 10
         },
         {
-          "path": "archives/20260304/cron-cooldown.log",
+          "path": "archives/20260305/cron-cooldown.log",
           "size": 7153,
-          "age_days": 11
-        },
-        {
-          "path": "archives/20260304/cron-activity.log",
-          "size": 9133,
           "age_days": 12
         },
         {
-          "path": "archives/20260304/recovery.log",
+          "path": "archives/20260305/cron-activity.log",
+          "size": 9133,
+          "age_days": 13
+        },
+        {
+          "path": "archives/20260305/recovery.log",
           "size": 786,
+          "age_days": 12
+        },
+        {
+          "path": "archives/20260305/evolution-plan-execution.log",
+          "size": 3255,
+          "age_days": 15
+        },
+        {
+          "path": "archives/20260305/evomap-task-hunter.log",
+          "size": 1086,
+          "age_days": 12
+        },
+        {
+          "path": "archives/20260305/auto-publish.log",
+          "size": 770,
+          "age_days": 13
+        },
+        {
+          "path": "archives/20260305/upgrade-execution-20260222.log",
+          "size": 202,
+          "age_days": 12
+        },
+        {
+          "path": "archives/20260305/recovery-20260222_081145.log",
+          "size": 143,
           "age_days": 11
         },
         {
-          "path": "archives/20260304/evolution-plan-execution.log",
-          "size": 3255,
+          "path": "archives/20260305/cron-evolution-full.log",
+          "size": 2346,
+          "age_days": 13
+        },
+        {
+          "path": "archives/20260305/model-usage.log",
+          "size": 2860,
           "age_days": 14
         },
         {
-          "path": "archives/20260304/evomap-task-hunter.log",
-          "size": 1086,
-          "age_days": 11
-        },
-        {
-          "path": "archives/20260304/auto-publish.log",
-          "size": 770,
-          "age_days": 12
-        },
-        {
-          "path": "archives/20260304/upgrade-execution-20260222.log",
+          "path": "archives/20260305/upgrade-execution-20260220.log",
           "size": 202,
-          "age_days": 11
+          "age_days": 14
         },
         {
-          "path": "archives/20260304/recovery-20260222_081145.log",
-          "size": 143,
-          "age_days": 10
-        },
-        {
-          "path": "archives/20260304/cron-evolution-full.log",
-          "size": 2346,
-          "age_days": 12
-        },
-        {
-          "path": "archives/20260304/model-usage.log",
-          "size": 2860,
-          "age_days": 13
-        },
-        {
-          "path": "archives/20260304/upgrade-execution-20260220.log",
-          "size": 202,
-          "age_days": 13
-        },
-        {
-          "path": "archives/20260304/cron-active-hours.log",
+          "path": "archives/20260305/cron-active-hours.log",
           "size": 29181,
-          "age_days": 12
+          "age_days": 13
         },
         {
-          "path": "archives/20260304/cron-evolution.log",
+          "path": "archives/20260305/cron-evolution.log",
           "size": 15080,
-          "age_days": 12
+          "age_days": 13
         },
         {
-          "path": "archives/20260304/memory-backup.log",
+          "path": "archives/20260305/memory-backup.log",
           "size": 1414,
-          "age_days": 12
+          "age_days": 13
         },
         {
-          "path": "archives/20260304/upgrade-execution-20260223.log",
+          "path": "archives/20260305/upgrade-execution-20260223.log",
           "size": 202,
-          "age_days": 10
+          "age_days": 11
         },
         {
-          "path": "archives/20260304/upgrade-execution-20260221.log",
+          "path": "archives/20260305/upgrade-execution-20260221.log",
           "size": 202,
-          "age_days": 12
+          "age_days": 13
         },
         {
-          "path": "archives/20260304/evomap-resolver.log",
+          "path": "archives/20260305/evomap-resolver.log",
           "size": 6552,
-          "age_days": 12
+          "age_days": 13
         },
         {
-          "path": "archives/20260304/publish.log",
+          "path": "archives/20260305/publish.log",
           "size": 508,
-          "age_days": 11
+          "age_days": 12
         },
         {
-          "path": "archives/20260304/router.log",
+          "path": "archives/20260305/router.log",
           "size": 32618,
+          "age_days": 14
+        },
+        {
+          "path": "archives/20260305/evolver-loop.log",
+          "size": 2939959,
           "age_days": 13
         },
         {
-          "path": "archives/20260304/evolver-loop.log",
-          "size": 2939959,
-          "age_days": 12
-        },
-        {
-          "path": "archives/20260304/cron-evolution-dry.log",
+          "path": "archives/20260305/cron-evolution-dry.log",
           "size": 4738,
-          "age_days": 12
+          "age_days": 13
         },
         {
-          "path": "archives/20260304/moltbook-publish-retry.log",
+          "path": "archives/20260305/moltbook-publish-retry.log",
           "size": 688,
-          "age_days": 10
-        },
-        {
-          "path": "archives/20260304/cron-moderate-hours.log",
-          "size": 6295,
-          "age_days": 12
-        },
-        {
-          "path": "archives/20260304/task-hunter.log",
-          "size": 543,
           "age_days": 11
         },
         {
-          "path": "archives/20260304/memory-optimization-20260219.log",
-          "size": 888,
+          "path": "archives/20260305/cron-moderate-hours.log",
+          "size": 6295,
           "age_days": 13
+        },
+        {
+          "path": "archives/20260305/task-hunter.log",
+          "size": 543,
+          "age_days": 12
+        },
+        {
+          "path": "archives/20260305/memory-optimization-20260219.log",
+          "size": 888,
+          "age_days": 14
         }
       ],
-      "estimated_saving_mb": 2.9420366287231445,
-      "description": "\u5f52\u6863 33 \u4e2a\u8d85\u8fc77\u5929\u7684\u65e5\u5fd7\u6587\u4ef6",
+      "estimated_saving_mb": 2.9422292709350586,
+      "description": "\u5f52\u6863 34 \u4e2a\u8d85\u8fc77\u5929\u7684\u65e5\u5fd7\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -312,108 +384,108 @@
       "target_type": "files",
       "targets": [
         {
-          "path": "reports/decision-debt-20260225-008-20260225_104339.md",
-          "size": 3575,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260225-008-20260225_181401.md",
+          "path": "reports/decision-debt-20260226-008-20260226_123342.md",
           "size": 3912,
           "age_days": 7
         },
         {
-          "path": "reports/decision-debt-20260225-004-20260225_123116.md",
-          "size": 3974,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260225-008-20260225_234106.md",
-          "size": 3912,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260226-007-20260226_021218.md",
+          "path": "reports/decision-debt-20260226-007-20260226_070141.md",
           "size": 3914,
           "age_days": 7
         },
         {
-          "path": "reports/decision-debt-20260225-008-20260225_105115.md",
-          "size": 3575,
+          "path": "reports/decision-debt-20260226-007-20260226_050142.md",
+          "size": 3914,
           "age_days": 7
         },
         {
-          "path": "reports/decision-debt-20260225-006-20260225_060021.md",
-          "size": 3528,
+          "path": "reports/decision-debt-20260226-006-20260226_181242.md",
+          "size": 3998,
           "age_days": 7
         },
         {
-          "path": "reports/decision-debt-20260225-004-20260225_223435.md",
+          "path": "reports/decision-debt-20260227-003-20260227_003140.md",
+          "size": 4009,
+          "age_days": 7
+        },
+        {
+          "path": "reports/decision-debt-20260227-008-20260227_013218.md",
+          "size": 3912,
+          "age_days": 7
+        },
+        {
+          "path": "reports/decision-debt-20260226-006-20260226_164758.md",
+          "size": 3998,
+          "age_days": 7
+        },
+        {
+          "path": "reports/application-debt-20260226-003.md",
+          "size": 1363,
+          "age_days": 7
+        },
+        {
+          "path": "reports/decision-debt-20260226-003-20260226_181256.md",
+          "size": 4009,
+          "age_days": 7
+        },
+        {
+          "path": "reports/decision-debt-20260226-006-20260226_101048.md",
+          "size": 3998,
+          "age_days": 7
+        },
+        {
+          "path": "reports/decision-debt-20260226-008-20260226_050155.md",
+          "size": 3912,
+          "age_days": 7
+        },
+        {
+          "path": "reports/decision-debt-20260226-004-20260226_200351.md",
           "size": 3969,
           "age_days": 7
         },
         {
-          "path": "reports/decision-debt-20260226-008-20260226_021235.md",
-          "size": 3912,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260225-007-20260225_073021.md",
-          "size": 3488,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260226-008-20260226_024246.md",
-          "size": 3912,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260225-007-20260225_140059.md",
-          "size": 3559,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260225-007-20260225_105108.md",
-          "size": 3559,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260225-008-20260225_070022.md",
-          "size": 3510,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260225-007-20260225_223449.md",
+          "path": "reports/decision-debt-20260226-007-20260226_060138.md",
           "size": 3914,
           "age_days": 7
         },
         {
-          "path": "reports/decision-debt-20260226-007-20260226_024232.md",
-          "size": 3914,
+          "path": "reports/MOLT-UNIFIED-20260226-16.md",
+          "size": 4430,
           "age_days": 7
         },
         {
-          "path": "reports/decision-debt-20260225-007-20260225_230100.md",
-          "size": 3914,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260225-004-20260225_181334.md",
+          "path": "reports/decision-debt-20260226-004-20260226_140041.md",
           "size": 3969,
           "age_days": 7
         },
         {
-          "path": "reports/decision-debt-20260225-008-20260225_090345.md",
-          "size": 3510,
+          "path": "reports/application-debt-20260226-006.md",
+          "size": 1356,
           "age_days": 7
         },
         {
-          "path": "reports/verification-debt-20260225-007.md",
-          "size": 2829,
+          "path": "reports/decision-debt-20260226-004-20260226_123315.md",
+          "size": 3969,
+          "age_days": 7
+        },
+        {
+          "path": "reports/decision-debt-20260226-003-20260226_194423.md",
+          "size": 4009,
+          "age_days": 7
+        },
+        {
+          "path": "reports/decision-debt-20260226-003-20260226_210613.md",
+          "size": 4009,
+          "age_days": 7
+        },
+        {
+          "path": "reports/decision-debt-20260226-003-20260226_233319.md",
+          "size": 4009,
           "age_days": 7
         }
       ],
-      "estimated_saving_mb": 3.8522090911865234,
-      "description": "\u5f52\u6863 965 \u4e2a\u8d85\u8fc77\u5929\u7684\u62a5\u544a\u6587\u4ef6",
+      "estimated_saving_mb": 4.5405731201171875,
+      "description": "\u5f52\u6863 1155 \u4e2a\u8d85\u8fc77\u5929\u7684\u62a5\u544a\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -436,11 +508,11 @@
           "path": "crontab-backup-20260221_080806.txt"
         },
         {
-          "path": "archives/20260304/cron-cooldown.log"
+          "path": "archives/20260305/cron-cooldown.log"
         }
       ],
       "estimated_saving_mb": 0,
-      "description": "\u5408\u5e76 97 \u4e2a\u5206\u6563\u7684cron\u914d\u7f6e",
+      "description": "\u5408\u5e76 99 \u4e2a\u5206\u6563\u7684cron\u914d\u7f6e",
       "risk_level": "medium"
     }
   ],
@@ -449,7 +521,7 @@
     "p0_count": 1,
     "p1_count": 2,
     "p2_count": 1,
-    "estimated_saving_mb": 7.09,
+    "estimated_saving_mb": 28.31,
     "estimated_saving_percent": 0
   }
 }

@@ -1,0 +1,90 @@
+{
+  "node_id": "NB01",
+  "model": "step",
+  "role": "fast_executor",
+  "created_at": "2026-03-06T00:01:24.634846",
+  "security_policy": {
+    "allowed_skills": [
+      "web_search",
+      "web_fetch",
+      "github",
+      "obsidian",
+      "weather",
+      "video_frames",
+      "summarize",
+      "web_intelligence",
+      "agent_reach",
+      "browser",
+      "docker_essentials",
+      "fd_find",
+      "bat_cat"
+    ],
+    "forbidden_commands": [
+      "rm -rf /",
+      "rm -rf ~",
+      "rm -rf /root",
+      "mkfs",
+      "dd if=/dev/zero",
+      "fdisk",
+      "format",
+      "> /dev/sda",
+      "shutdown",
+      "reboot",
+      "poweroff",
+      "kill -9 1",
+      "chmod -R 777 /",
+      "curl *| sh",
+      "wget *| sh"
+    ],
+    "read_paths": [
+      "/root/.openclaw/workspace/nanobots/nb01/**",
+      "/tmp/**"
+    ],
+    "write_paths": [
+      "/root/.openclaw/workspace/nanobots/nb01/workspace/**",
+      "/root/.openclaw/workspace/nanobots/nb01/data/**",
+      "/root/.openclaw/workspace/nanobots/nb01/tmp/**",
+      "/root/.openclaw/workspace/nanobots/nb01/logs/**"
+    ],
+    "exec_whitelist": [
+      "python3",
+      "pip",
+      "node",
+      "npm",
+      "curl",
+      "wget",
+      "git",
+      "grep",
+      "awk",
+      "sed",
+      "cat",
+      "head",
+      "tail",
+      "ls",
+      "cd",
+      "pwd",
+      "echo",
+      "mkdir",
+      "touch",
+      "tar",
+      "zip",
+      "unzip",
+      "gzip",
+      "ffmpeg",
+      "ffprobe"
+    ],
+    "network": {
+      "outbound": "allow",
+      "inbound": "localhost_only"
+    }
+  },
+  "installed_skills": [
+    "web_search",
+    "web_fetch"
+  ],
+  "task_stats": {
+    "total": 0,
+    "success": 0,
+    "failed": 0
+  }
+}

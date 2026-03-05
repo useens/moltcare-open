@@ -1,0 +1,14 @@
+{
+  "id": "NB09",
+  "name": "Nanobot NB09",
+  "model": "ds",
+  "role": "strategy_planner",
+  "port": 18809,
+  "capabilities": [
+    "planning",
+    "strategy",
+    "architecture_design"
+  ],
+  "reporting_to": "CommandCenter",
+  "status": "active"
+}
