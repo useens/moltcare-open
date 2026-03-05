@@ -1,0 +1,8 @@
+# Nanobot 健康检查定时任务
+# 每5分钟检查一次
+
+# OpenClaw 检查 Nanobot
+*/5 * * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/health-check-nanobot.py >> /root/.openclaw/workspace/nanobot/health-check.log 2>&1
+
+# Nanobot 检查 OpenClaw (通过 nanobot --health-check)
+*/5 * * * * /usr/bin/python3 /root/.openclaw/workspace/nanobot/nanobot.py --health-check >> /root/.openclaw/workspace/nanobot/nanobot-check.log 2>&1

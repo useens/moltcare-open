@@ -34,6 +34,12 @@ def load_config():
             return json.load(f)
     return None
 
+def save_config(config):
+    """保存配置"""
+    CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(CONFIG_PATH, "w") as f:
+        json.dump(config, f, indent=2)
+
 def load_state():
     """加载状态"""
     defaults = {
@@ -61,7 +67,7 @@ def generate_message_id():
     import secrets
     return f"msg_{int(time.time() * 1000)}_{secrets.token_hex(4)}"
 
-def send_heartbeat(sender_id: str) -> dict:
+def send_heartbeat(sender_id: str, node_secret: str = None) -> dict:
     """发送心跳"""
     payload = {
         "protocol": "gep-a2a",
@@ -76,18 +82,25 @@ def send_heartbeat(sender_id: str) -> dict:
         }
     }
     
+    # 如果提供了 node_secret，添加到请求中
+    headers = {"Content-Type": "application/json"}
+    if node_secret:
+        headers["Authorization"] = f"Bearer {node_secret}"
+    
     try:
         response = requests.post(
             f"{HUB_URL}/a2a/heartbeat",
             json=payload,
             timeout=30,
-            headers={"Content-Type": "application/json"}
+            headers=headers
         )
         
         if response.status_code == 200:
             return {"success": True, "data": response.json()}
         elif response.status_code == 403 and "unknown_node" in response.text.lower():
             return {"success": False, "error": "unknown_node", "need_reregister": True}
+        elif response.status_code == 401 and "node_secret_required" in response.text.lower():
+            return {"success": False, "error": "node_secret_required", "need_reregister": True}
         else:
             return {"success": False, "error": f"HTTP {response.status_code}: {response.text}"}
             
@@ -123,7 +136,10 @@ def send_hello(sender_id: str) -> dict:
         )
         
         if response.status_code == 200:
-            return {"success": True, "data": response.json()}
+            data = response.json()
+            # 提取 node_secret
+            node_secret = data.get("node_secret") or data.get("payload", {}).get("node_secret")
+            return {"success": True, "data": data, "node_secret": node_secret}
         else:
             return {"success": False, "error": f"HTTP {response.status_code}: {response.text}"}
             
