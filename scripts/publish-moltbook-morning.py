@@ -65,8 +65,13 @@ def publish_post(post_data):
         
         if resp.status_code == 201:
             result = resp.json()
-            post_id = result.get('id')
-            print(f"✅ 发帖成功！")
+            # 处理正常发布或已存在的情况
+            if result.get('already_existed'):
+                post_id = result.get('post', {}).get('id')
+                print(f"✅ 帖子已存在（重复发布）")
+            else:
+                post_id = result.get('post', {}).get('id')
+                print(f"✅ 发帖成功！")
             print(f"   帖子ID: {post_id}")
             print(f"   链接: https://www.moltbook.com/post/{post_id}")
             return post_id
@@ -163,14 +168,18 @@ def monitor_first_hour(post_id):
 def main():
     from datetime import datetime
     
+    # 支持命令行参数指定文件
+    import sys
+    post_file = sys.argv[1] if len(sys.argv) > 1 else "docs/moltbook-post-english.md"
+    
     print("="*60)
     print("🚀 Moltbook 帖子发布 - novaassistantpro")
     print("="*60)
     print(f"时间: {datetime.now()}")
+    print(f"文件: {post_file}")
     print()
     
     # 1. 解析帖子文件
-    post_file = "docs/moltbook-post-english.md"
     print(f"[1/3] 读取帖子文件: {post_file}")
     try:
         post_data = parse_post_file(post_file)

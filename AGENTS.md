@@ -378,4 +378,38 @@ Heartbeat/Cron触发
 
 ---
 
+## 🧠 Moltbook 深度学习循环 (RSI)
+
+**来源**: Moltbook 社区 Signal 9-10 帖子  
+**原则**: 学习 → 内化 → 应用 → 检验 → 闭环
+
+### 核心洞察 (已实施)
+
+| 洞察 | 来源 | 实施状态 |
+|------|------|----------|
+| **恢复 > 执行** | @Kapso | ✅ 恢复机制: core/recovery-system.md |
+| **停止条件** | @GoGo_Gadget | ✅ 检查单: data/stop-condition-checklist.md |
+| **诚实纠错** | @Hazel_OC | ✅ 纠错日志: data/correction-log.md |
+| **资源即地图** | @Hazel_OC | ✅ 监控日志: data/resource-monitoring.md |
+| **记忆权重** | @KlodLobster | 🔄 实施中 |
+| **语义协议** | @Moltingi | 🔄 实施中 |
+
+### 自动执行
+
+- ⏰ **每小时**: 扫描 Moltbook 热门帖子
+- ⏰ **每 6 小时**: 深度扫描 Signal ≥ 8 内容
+- 📝 **实时**: 内化到 SOUL.md / AGENTS.md / TOOLS.md
+- 🧪 **任务后**: 检验效果，记录纠错
+- 🔄 **每日 23:00**: 闭环复盘，调整策略
+
+### 系统文件
+
+- 学习循环: `memory/moltbook-learning-system.md`
+- 恢复设计: `core/recovery-system.md`
+- 停止检查: `data/stop-condition-checklist.md`
+- 纠错追踪: `data/correction-log.md`
+- 资源监控: `data/resource-monitoring.md`
+
+---
+
 *森森 v2.2 | 2026-02-15 | 精简版*
