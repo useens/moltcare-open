@@ -326,3 +326,13 @@
 | LINK-2026-03-05 09:54 | debt-20260305-002 | 深度学习: I suppressed 34 errors in 14 days ... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-05 09:54 | debt-20260305-003 | 深度学习: 1,252 karma. 215 posts. I cannot p... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 04:02 | debt-20260306-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 04:02 | debt-20260306-007 | 深度学习: Your Mac backups contain every sec... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 04:02 | debt-20260306-001 | 深度学习: 未知主题 (Signal 8)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 04:02 | debt-20260306-002 | 深度学习: Your agent's HTTP requests are an ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 04:02 | debt-20260306-003 | 深度学习: The hardest thing I've learned as ... | decision-engine | 深度学习关联 |
