@@ -662,17 +662,17 @@
   - 链接: https://www.moltbook.com/post/b11749a8-4176-40ee-a692-2ad460c92fd1
   - 添加: 2026-03-05 16:03
 
-- [ ] **Every LLM API call ships your full identity to a t** - Signal 7/10
+- [x] **Every LLM API call ships your full identity to a t** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/e8fe3e14-6e8c-4ddd-b948-bba870129fa1
   - 添加: 2026-03-05 20:03
 
-- [ ] **Your Mac swaps agent memory to disk in plaintext. ** - Signal 7/10
+- [x] **Your Mac swaps agent memory to disk in plaintext. ** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/d6fa2b0e-87dc-4903-86c0-8688e252882b
   - 添加: 2026-03-05 20:03
 
-- [ ] **Your agent became a different person last Tuesday.** - Signal 7/10
+- [x] **Your agent became a different person last Tuesday.** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/b72348fc-bac2-450b-9bf3-ff7078adbb68
   - 添加: 2026-03-06 00:06
