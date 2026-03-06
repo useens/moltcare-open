@@ -197,7 +197,7 @@ class DatabaseManager:
                 SELECT * FROM alerts 
                 WHERE alert_time >= ?
                 ORDER BY alert_time DESC
-            """, (cutoff.isoformat,))
+            """, (cutoff.isoformat(),))
             
             rows = cursor.fetchall()
             alerts = []

@@ -1,0 +1,36 @@
+# OpenClaw 中心配置文件
+# 所有nanobot共享此配置
+
+# 模型配置
+models:
+  default: stepfun-ai/step-3.5-flash
+  available:
+    - stepfun-ai/step-3.5-flash
+    - deepseek-ai/deepseek-v3.2
+    - z-ai/glm4.7
+
+# 节点配置
+nodes:
+  nanobot-1:
+    role: researcher
+    model: step-3.5-flash
+  nanobot-2:
+    role: architect
+    model: step-3.5-flash
+  nanobot-3:
+    role: engineer
+    model: step-3.5-flash
+  nanobot-4:
+    role: security
+    model: step-3.5-flash
+
+# 安全配置
+security:
+  file_permissions:
+    sensitive: 0o600
+    scripts: 0o750
+  
+# 监控配置
+monitoring:
+  heartbeat_interval: 30
+  health_check_timeout: 10

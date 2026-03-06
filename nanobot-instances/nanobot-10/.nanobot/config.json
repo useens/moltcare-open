@@ -16,10 +16,8 @@
       "enabled": true,
       "relay_url": "http://127.0.0.1:19000",
       "bot_id": "nanobot-10",
-      "poll_interval": 3,
-      "allow_from": [
-        "*"
-      ]
+      "poll_interval": 5,
+      "allow_from": ["*"]
     }
   },
   "tools": {

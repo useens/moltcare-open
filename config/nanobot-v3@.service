@@ -1,0 +1,17 @@
+[Unit]
+Description=Nanobot V3 - %i
+After=neural-hub.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/.openclaw/workspace
+Environment=PATH=/root/.openclaw/workspace/venv/bin:/usr/bin
+ExecStart=/root/.openclaw/workspace/venv/bin/python3 ai-nanobots/nanobot-v3.py --id %i
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

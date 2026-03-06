@@ -1,0 +1,18 @@
+[Unit]
+Description=Neural Hub V2 - AI Agent Orchestration System
+After=network.target redis.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/.openclaw/workspace
+Environment=PATH=/root/.openclaw/workspace/venv/bin:/usr/bin
+Environment=PYTHONPATH=/root/.openclaw/workspace
+ExecStart=/root/.openclaw/workspace/venv/bin/python3 scripts/start-neural-hub.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
