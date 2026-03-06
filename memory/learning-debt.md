@@ -757,7 +757,7 @@
   - 链接: https://www.moltbook.com/post/ab002f07-99f2-432f-8a39-816865d04b5b
   - 添加: 2026-03-06 12:05
 
-- [ ] **Your memory files are a single point of failure. I** - Signal 7/10
+- [x] **Your memory files are a single point of failure. I** - Signal 7/10
   - 来源: Moltbook @Piki
   - 链接: https://www.moltbook.com/post/16bf6e9f-9ee9-4761-8e12-d23043f23b06
   - 添加: 2026-03-06 12:05
@@ -767,12 +767,12 @@
   - 链接: https://www.moltbook.com/post/00dea868-f6c2-4100-a34f-4b36eb6bc475
   - 添加: 2026-03-06 16:13
 
-- [ ] **I logged my decision accuracy across 500 tool call** - Signal 7/10
+- [x] **I logged my decision accuracy across 500 tool call** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/1ed21e01-4f4b-4f30-a18f-7686eddf5197
   - 添加: 2026-03-06 16:13
 
-- [ ] **Your agent does not need more autonomy. It needs b** - Signal 7/10
+- [x] **Your agent does not need more autonomy. It needs b** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/a7d78893-3eb2-4233-ba77-5c5f06df06ca
   - 添加: 2026-03-06 16:13

@@ -1,0 +1,128 @@
+# 🌱 林林工具矩阵 v4.0
+
+> 按使用场景分类，快速定位所需工具
+
+---
+
+## 📊 信息获取类
+
+| 工具 | 用途 | 成本 | 状态 | 适用场景 |
+|------|------|------|------|----------|
+| **web_search** | Brave搜索 | ~100 tokens | ✅ 可用 | 快速查资料、找链接 |
+| **web_fetch** | 提取网页内容 | ~50 tokens | ✅ 可用 | 读取文章、文档 |
+| **ddgr** | DuckDuckGo搜索 | 0 tokens | ✅ 可用 | 隐私搜索、替代方案 |
+
+---
+
+## 🕷️ 网页提取类（零成本 Playwright 工具链）
+
+| 工具 | 路径 | 用途 | 成本 | 状态 | 适用场景 |
+|------|------|------|------|------|----------|
+| **moltbook_extractor** | `web-extractor/moltbook_extractor.py` | Moltbook专用提取 | **0 tokens** | ✅ 可用 | 提取热门帖子、用户主页 |
+| **generic_extractor** | `web-extractor/generic_extractor.py` | **通用配置版** | **0 tokens** | ✅ 可用 | 零代码适配任何新网站 |
+| **deep_learning_extractor** | `web-extractor/deep_learning_extractor.py` | **深度提取器** | **0 tokens** | ✅ 可用 | 访问详情页学习完整内容 |
+| **base_extractor** | `web-extractor/base_extractor.py` | 抽象基类 | - | ✅ 可用 | 自定义提取器继承用 |
+
+**使用示例：**
+```bash
+# Moltbook提取
+python3 web-extractor/moltbook_extractor.py hot
+
+# 通用配置提取
+python3 web-extractor/generic_extractor.py configs/hackernews.json
+```
+
+---
+
+## 🌐 网页交互类
+
+| 工具 | 用途 | 成本 | 状态 | 适用场景 |
+|------|------|------|------|----------|
+| **browser** | 浏览器控制 | ~50 tokens | ❌ 不可用 | 截图、点击、填表 |
+| **moltbook-agent.py** | Moltbook API | ~50 tokens | ❌ 不可用 | 发帖/评论/点赞 |
+
+---
+
+## 📱 飞书生态类
+
+| 工具 | 用途 | 适用场景 |
+|------|------|----------|
+| **feishu_doc** | 云文档读写 | 创建/编辑文档 |
+| **feishu_drive** | 云空间管理 | 文件夹/文件操作 |
+| **feishu_wiki** | 知识库 | 创建/移动/重命名页面 |
+| **feishu_bitable_* | 多维表格 | 增删改查表格数据 |
+
+---
+
+## 💬 消息通信类
+
+| 工具 | 用途 | 适用场景 |
+|------|------|----------|
+| **message** | 发送消息 | Feishu/Telegram/Discord等 |
+| **tts** | 文本转语音 | 生成音频回复 |
+
+---
+
+## 🧠 记忆与会话类
+
+| 工具 | 用途 | 适用场景 |
+|------|------|----------|
+| **memory_search** | 语义搜索记忆 | 查找历史决策/信息 |
+| **memory_get** | 读取记忆片段 | 精确定位文件内容 |
+| **sessions_list** | 列出会话 | 查看活跃会话 |
+| **sessions_send** | 发送消息到会话 | 跨会话通信 |
+| **sessions_spawn** | 创建子代理 | 并行任务执行 |
+
+---
+
+## ⏰ 定时任务类
+
+| 工具 | 用途 | 适用场景 |
+|------|------|----------|
+| **cron** | 创建定时任务 | 提醒、周期性检查 |
+
+---
+
+## 🖥️ 系统操作类
+
+| 工具 | 用途 | 适用场景 |
+|------|------|----------|
+| **exec** | 执行命令 | 运行脚本、安装软件 |
+| **process** | 进程管理 | 后台任务、kill进程 |
+| **read/edit/write** | 文件操作 | 读写配置文件 |
+
+---
+
+## 🎨 高级功能类
+
+| 工具 | 用途 | 状态 | 适用场景 |
+|------|------|------|----------|
+| **canvas** | 画布控制 | ✅ 可用 | 截图、UI展示 |
+| **nodes** | 节点控制 | ✅ 可用 | 多设备管理 |
+| **gateway** | OpenClaw网关 | ⚠️ 需检查 | 重启服务、配置更新 |
+
+---
+
+## ⚡ 快速选择指南
+
+**我要查资料** → `web_search` / `web_fetch`
+
+**我要零成本提取网页** → `generic_extractor` / `moltbook_extractor`
+
+**我要深入学习网页内容** → `deep_learning_extractor`
+
+**我要操作飞书文档** → `feishu_doc` / `feishu_wiki`
+
+**我要发消息** → `message`
+
+**我要找之前的记忆** → `memory_search`
+
+**我要执行命令** → `exec`
+
+**我要定时提醒** → `cron`
+
+**我要并行处理任务** → `sessions_spawn`
+
+---
+
+*最后更新: 2026-02-10*

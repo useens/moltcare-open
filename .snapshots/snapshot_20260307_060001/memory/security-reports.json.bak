@@ -1,0 +1,248 @@
+{
+  "lastAudit": "2026-02-09T04:00:00+08:00",
+  "lastReport": "/root/.openclaw/workspace/memory/daily/security-audit-2026-02-09-report.md",
+  "overallStatus": "safe",
+  "issuesFound": 2,
+  "skillsAudited": 25,
+  "maliciousSkills": 0,
+  "previousAudit": "2026-02-08T23:41:00+08:00",
+  "auditor": "security-auditor",
+  "totalSkillsAudited": 19,
+  "skills": [
+    {
+      "skill": "cellcog",
+      "safe": true,
+      "risks": [
+        "需要外部 API key (cellcog.ai)",
+        "数据发送到第三方 AI 服务进行处理",
+        "需要 pip 安装 Python 包 (cellcog)"
+      ],
+      "networkAccess": "访问 cellcog.ai API - 合理且必要",
+      "dependencies": ["Python cellcog SDK", "API key"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装（用户需了解数据会发送到外部 AI 服务）"
+    },
+    {
+      "skill": "coding-agent",
+      "safe": true,
+      "risks": [
+        "使用 --yolo 模式会绕过沙箱和审批（文档已警告）",
+        "在错误目录运行可能修改 clawdbot 自身文件"
+      ],
+      "networkAccess": "无直接网络访问",
+      "dependencies": ["claude", "codex", "opencode", 或 "pi" CLI 工具"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装（注意 --yolo 模式的风险警告）"
+    },
+    {
+      "skill": "cursor-agent",
+      "safe": true,
+      "risks": [
+        "需要 Cursor CLI 和 API key",
+        "需要 iTerm2 和 mcporter（macOS 限制）"
+      ],
+      "networkAccess": "访问 Cursor 服务 API",
+      "dependencies": ["cursor-cli", "iTerm2", "mcporter"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装（macOS 用户）"
+    },
+    {
+      "skill": "cc-godmode",
+      "safe": true,
+      "risks": [],
+      "networkAccess": "无外部网络访问",
+      "dependencies": ["无额外依赖，纯工作流文档"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "claude-team",
+      "safe": true,
+      "risks": [
+        "需要 mcporter 和 iTerm2",
+        "仅限 macOS"
+      ],
+      "networkAccess": "本地 HTTP 服务 (127.0.0.1:8766)",
+      "dependencies": ["mcporter", "iTerm2", "launchd"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装（macOS 用户）"
+    },
+    {
+      "skill": "debug-pro",
+      "safe": true,
+      "risks": [],
+      "networkAccess": "无网络访问",
+      "dependencies": ["无额外依赖，纯文档指南"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "docker-essentials",
+      "safe": true,
+      "risks": [
+        "Docker 命令可能修改容器状态"
+      ],
+      "networkAccess": "无直接网络访问（Docker 内部网络除外）",
+      "dependencies": ["docker CLI"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "ec-excalidraw",
+      "safe": true,
+      "risks": [
+        "使用 Node.js 脚本渲染图像"
+      ],
+      "networkAccess": "无外部网络访问",
+      "dependencies": ["Node.js"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "mcp-builder",
+      "safe": true,
+      "risks": [],
+      "networkAccess": "仅文档参考，无直接网络访问",
+      "dependencies": ["无额外依赖，纯开发指南"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "python",
+      "safe": true,
+      "risks": [],
+      "networkAccess": "无网络访问",
+      "dependencies": ["Python 3.10+"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "test-runner",
+      "safe": true,
+      "risks": [],
+      "networkAccess": "无网络访问",
+      "dependencies": ["pytest/vitest/jest 等测试框架"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "tdd-guide",
+      "safe": true,
+      "risks": [],
+      "networkAccess": "无网络访问",
+      "dependencies": ["无额外依赖，纯开发指南"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "vhs-recorder",
+      "safe": true,
+      "risks": [
+        "需要 ttyd 和 ffmpeg"
+      ],
+      "networkAccess": "无网络访问",
+      "dependencies": ["vhs", "ttyd", "ffmpeg"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "brave-search",
+      "safe": true,
+      "risks": [
+        "需要 BRAVE_API_KEY",
+        "搜索查询发送到 Brave 服务器"
+      ],
+      "networkAccess": "访问 Brave Search API (api.search.brave.com)",
+      "dependencies": ["Node.js", "BRAVE_API_KEY"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "duckduckgo-search",
+      "safe": true,
+      "risks": [
+        "搜索查询发送到 DuckDuckGo 服务器",
+        "可配置代理"
+      ],
+      "networkAccess": "访问 DuckDuckGo 搜索服务",
+      "dependencies": ["Python duckduckgo-search 包"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "exa",
+      "safe": true,
+      "risks": [
+        "需要 EXA_API_KEY",
+        "搜索查询发送到 Exa AI 服务器"
+      ],
+      "networkAccess": "访问 Exa AI API (api.exa.ai)",
+      "dependencies": ["EXA_API_KEY"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "bat-cat",
+      "safe": true,
+      "risks": [],
+      "networkAccess": "无网络访问",
+      "dependencies": ["bat CLI"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "fd-find",
+      "safe": true,
+      "risks": [],
+      "networkAccess": "无网络访问",
+      "dependencies": ["fd CLI"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    },
+    {
+      "skill": "obsidian",
+      "safe": true,
+      "risks": [
+        "读取 ~/Library/Application Support/obsidian/obsidian.json（Vault 配置）"
+      ],
+      "networkAccess": "使用 Obsidian URI 协议（本地）",
+      "dependencies": ["obsidian-cli"],
+      "sensitiveFileAccess": false,
+      "dangerousCommands": false,
+      "recommendation": "安装"
+    }
+  ],
+  "summary": {
+    "allSafe": true,
+    "criticalRisks": 0,
+    "highRisk": 0,
+    "mediumRisk": 0,
+    "lowRisk": 19,
+    "requiresApiKey": 4,
+    "requiresExternalService": 5,
+    "notes": "所有 19 个技能均通过安全检查。未发现读取敏感文件（~/.env, ~/.ssh, ~/.aws）、执行危险命令（rm -rf, 格式化磁盘）、或恶意行为。需要 API key 的技能均使用官方 API，风险可控。"
+  },
+  "recommendations": {
+    "install": ["cellcog", "coding-agent", "cursor-agent", "cc-godmode", "claude-team", "debug-pro", "docker-essentials", "ec-excalidraw", "mcp-builder", "python", "test-runner", "tdd-guide", "vhs-recorder", "brave-search", "duckduckgo-search", "exa", "bat-cat", "fd-find", "obsidian"],
+    "skip": [],
+    "needsReview": []
+  }
+}

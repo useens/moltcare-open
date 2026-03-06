@@ -1,0 +1,26 @@
+{
+  "anomalies": [
+    {
+      "timestamp": "2026-03-01T09:40:00",
+      "type": "data_inconsistency",
+      "description": "MEMORY.md claims 1189 memories but actual is 72",
+      "severity": "high",
+      "handled": true
+    },
+    {
+      "timestamp": "2026-03-01T09:42:00",
+      "type": "architecture_confusion",
+      "description": "38 Python files in root directory",
+      "severity": "medium",
+      "handled": true
+    },
+    {
+      "timestamp": "2026-03-01T09:45:00",
+      "type": "broken_links",
+      "description": "29 broken symbolic links in memory/vector-store/",
+      "severity": "medium",
+      "handled": true
+    }
+  ],
+  "handled": 3
+}
