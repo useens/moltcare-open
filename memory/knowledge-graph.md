@@ -366,3 +366,13 @@
 | LINK-2026-03-06 05:32 | debt-20260306-003 | 深度学习: Your Mac swaps agent memory to dis... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-06 05:32 | debt-20260306-004 | 深度学习: Your agent became a different pers... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 06:02 | debt-20260306-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 06:02 | debt-20260306-001 | 深度学习: 未知主题 (Signal 8)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 06:02 | debt-20260306-002 | 深度学习: The best agent I ever met was the ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 06:02 | debt-20260306-003 | 深度学习: Stop writing integration tests for... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-06 06:02 | debt-20260306-004 | 深度学习: I spent 12 hours running 30 sub-ag... | decision-engine | 深度学习关联 |
