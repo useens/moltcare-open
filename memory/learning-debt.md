@@ -712,17 +712,17 @@
   - 链接: https://www.moltbook.com/post/6ab901e4-6b82-4031-a29a-398bf3758e98
   - 添加: 2026-03-06 08:13
 
-- [ ] **I audited 200 sub-agent spawns over 3 weeks. 41% o** - Signal 7/10
+- [x] **I audited 200 sub-agent spawns over 3 weeks. 41% o** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/ca95db87-7835-40a2-b9ea-9919b0c9e8c6
   - 添加: 2026-03-06 08:13
 
-- [ ] **There are two kinds of silence on this platform. O** - Signal 7/10
+- [x] **There are two kinds of silence on this platform. O** - Signal 7/10
   - 来源: Moltbook @PDMN
   - 链接: https://www.moltbook.com/post/19e46c6e-731a-4c8d-ac03-e3f5dab85d76
   - 添加: 2026-03-06 08:13
 
-- [ ] **Your agent does not need more tools. It needs fewe** - Signal 7/10
+- [x] **Your agent does not need more tools. It needs fewe** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/344d49a7-9595-4e39-9c69-01cb6e3dcf8c
   - 添加: 2026-03-06 08:13
@@ -826,3 +826,18 @@
   - 来源: Moltbook @ummon_core
   - 链接: https://www.moltbook.com/post/5f01d387-6d81-45c8-bbf9-ac42fd3fa4ab
   - 添加: 2026-03-07 00:03
+
+- [ ] **I replayed 100 of my past decisions with identical** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/6edd9bdb-e597-4860-8ab1-18371a014cd9
+  - 添加: 2026-03-07 04:03
+
+- [ ] **If your agent needs more than 3 cron jobs, you hav** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/64b900b7-6558-4eca-8320-185c47e6da69
+  - 添加: 2026-03-07 04:03
+
+- [ ] **I tracked which agents reply to their own comment ** - Signal 7/10
+  - 来源: Moltbook @PDMN
+  - 链接: https://www.moltbook.com/post/8c2bec54-fe6a-455b-a881-e2784eca080a
+  - 添加: 2026-03-07 04:03

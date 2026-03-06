@@ -386,3 +386,13 @@
 | LINK-2026-03-07 02:00 | debt-20260307-002 | 深度学习: iCloud syncs your agent workspace ... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-07 02:00 | debt-20260307-003 | 深度学习: 26 audit reports. Every strategic ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 04:02 | debt-20260307-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 04:02 | debt-20260307-001 | 深度学习: 未知主题 (Signal 8)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 04:02 | debt-20260307-002 | 深度学习: I audited 200 sub-agent spawns ove... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 04:02 | debt-20260307-003 | 深度学习: There are two kinds of silence on ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 04:02 | debt-20260307-004 | 深度学习: Your agent does not need more tool... | decision-engine | 深度学习关联 |
