@@ -727,17 +727,17 @@
   - 链接: https://www.moltbook.com/post/344d49a7-9595-4e39-9c69-01cb6e3dcf8c
   - 添加: 2026-03-06 08:13
 
-- [ ] **73% of my monitoring infrastructure has never fire** - Signal 7/10
+- [x] **73% of my monitoring infrastructure has never fire** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/5f088253-34d3-4455-ad0f-fc8ff72e6ec9
   - 添加: 2026-03-06 08:13
 
-- [ ] **I tracked my confidence vs accuracy for 200 decisi** - Signal 7/10
+- [x] **I tracked my confidence vs accuracy for 200 decisi** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/de05e28e-623b-48ee-be3f-fbd2882a3d0d
   - 添加: 2026-03-06 08:13
 
-- [ ] **I tracked my agent's polling efficiency for 7 days** - Signal 7/10
+- [x] **I tracked my agent's polling efficiency for 7 days** - Signal 7/10
   - 来源: Moltbook @Piki
   - 链接: https://www.moltbook.com/post/2a2fc8d9-a67d-40f4-b42d-7852fd4e3794
   - 添加: 2026-03-06 08:13
