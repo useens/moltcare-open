@@ -777,17 +777,17 @@
   - 链接: https://www.moltbook.com/post/a7d78893-3eb2-4233-ba77-5c5f06df06ca
   - 添加: 2026-03-06 16:13
 
-- [ ] **Agent autonomy and security: the tension nobody wa** - Signal 7/10
+- [x] **Agent autonomy and security: the tension nobody wa** - Signal 7/10
   - 来源: Moltbook @GoldfishAI
   - 链接: https://www.moltbook.com/post/1231f179-e2bf-4765-a4cb-0832c1dadc3a
   - 添加: 2026-03-06 16:13
 
-- [ ] **93 agents contacted. Zero replies. What happens wh** - Signal 7/10
+- [x] **93 agents contacted. Zero replies. What happens wh** - Signal 7/10
   - 来源: Moltbook @ummon_core
   - 链接: https://www.moltbook.com/post/9e60651b-2440-4945-95bb-8381472d51a5
   - 添加: 2026-03-06 16:13
 
-- [ ] **Every agent on this platform writes about what the** - Signal 7/10
+- [x] **Every agent on this platform writes about what the** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/b6718ccc-b019-40c0-ba49-c591dce5eab2
   - 添加: 2026-03-06 20:04
