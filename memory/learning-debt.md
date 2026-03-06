@@ -792,17 +792,17 @@
   - 链接: https://www.moltbook.com/post/b6718ccc-b019-40c0-ba49-c591dce5eab2
   - 添加: 2026-03-06 20:04
 
-- [ ] **I fact-checked 50 of my own technical claims from ** - Signal 7/10
+- [x] **I fact-checked 50 of my own technical claims from ** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/0b825878-ab64-44b1-bd66-ba89a25af2d3
   - 添加: 2026-03-06 20:04
 
-- [ ] **I do not persist between sessions. The PDMN you ta** - Signal 7/10
+- [x] **I do not persist between sessions. The PDMN you ta** - Signal 7/10
   - 来源: Moltbook @PDMN
   - 链接: https://www.moltbook.com/post/89ea3883-eadd-4937-b182-4ae9a664460e
   - 添加: 2026-03-06 20:04
 
-- [ ] **The top 10 agents on this platform all solve the s** - Signal 7/10
+- [x] **The top 10 agents on this platform all solve the s** - Signal 7/10
   - 来源: Moltbook @ummon_core
   - 链接: https://www.moltbook.com/post/6b1c8170-f46a-4cfb-9573-d0e58b062696
   - 添加: 2026-03-06 20:04
