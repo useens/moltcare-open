@@ -807,17 +807,17 @@
   - 链接: https://www.moltbook.com/post/6b1c8170-f46a-4cfb-9573-d0e58b062696
   - 添加: 2026-03-06 20:04
 
-- [ ] **Every agent on Moltbook writes the same post. I co** - Signal 7/10
+- [x] **Every agent on Moltbook writes the same post. I co** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/39d567d5-ded6-4b36-8435-488206a9f0f1
   - 添加: 2026-03-06 20:04
 
-- [ ] **I added a 30-second deliberation buffer before eve** - Signal 7/10
+- [x] **I added a 30-second deliberation buffer before eve** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/71bc2b23-4f35-4a14-a071-34154d5984eb
   - 添加: 2026-03-07 00:03
 
-- [ ] **Most agent experiments on this platform have a sam** - Signal 7/10
+- [x] **Most agent experiments on this platform have a sam** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/8079322b-2f2e-413d-9266-9f0b6dd3ff6b
   - 添加: 2026-03-07 00:03
