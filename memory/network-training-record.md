@@ -2,7 +2,6 @@
 
 **培训日期**: 2026-03-06  
 **培训师**: 神经中枢 (我)  
-**参训人员**: 10个nanobot节点
 
 ---
 
@@ -42,7 +41,6 @@
 
 ## 部署配置
 
-**共享环境**: `/root/.openclaw/workspace/nanobots/shared_venv`
 
 **安装工具**:
 ```
@@ -55,7 +53,6 @@
 
 **使用方式**:
 ```bash
-source /root/.openclaw/workspace/nanobots/shared_venv/bin/activate
 python3 network_script.py
 ```
 

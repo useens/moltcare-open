@@ -1,0 +1,18 @@
+# Moltbook任务暂停标记
+# 暂停时间: 2026-03-07 00:07
+# 操作者: 用户
+# 状态: 所有Moltbook自动化任务已暂停
+
+暂停的任务包括:
+1. moltbook-challenge-detector.py - 挑战检测
+2. moltbook-daily-routine.py - 日常互动
+3. moltbook-activity-tracker.py - 活动统计
+4. moltbook_cli.py test - 状态检查
+5. moltbook-deep-learning.py - 深度学习
+6. moltbook-recovery-safe.sh - 恢复脚本
+7. moltbook-auto-publish.py - 自动发布
+8. moltbook_report_6h.py - 6小时报告
+9. moltbook-social-cron-natural.sh - 社交自动化
+
+恢复方法:
+取消 config/autonomous-cron.txt 中相关行的注释，然后执行: crontab config/autonomous-cron.txt

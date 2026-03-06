@@ -1,0 +1,13 @@
+# 进化任务暂停标记
+# 暂停时间: 2026-03-07 00:07
+# 操作者: 用户
+
+暂停的进化任务:
+1. night-evolution-orchestrator.sh - 夜间深度进化 (每天23:00)
+
+注: hyper_evolution.py 轻量评估由系统内部触发，不在cron中。
+如需完全停止，需检查 systemd timer 或外部调度器。
+
+恢复方法:
+取消 config/autonomous-cron.txt 中 night-evolution-orchestrator.sh 行的注释，
+然后执行: crontab config/autonomous-cron.txt

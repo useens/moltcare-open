@@ -21,7 +21,7 @@
 
 # ========== 夜间进化协调器 (23:00开始) ==========
 # 包含: 情报收集 → 决策处理 → Evolver进化 → EvoMap同步
-0 23 * * * /root/.openclaw/workspace/scripts/night-evolution-orchestrator.sh >> /root/.openclaw/workspace/logs/night-evolution-cron.log 2>&1
+# [已暂停] 0 23 * * * /root/.openclaw/workspace/scripts/night-evolution-orchestrator.sh >> /root/.openclaw/workspace/logs/night-evolution-cron.log 2>&1
 
 # ========== EvoMap 资产同步 ==========
 # 每小时同步一次
@@ -181,45 +181,45 @@
 # ============================================
 # 每1小时任务：挑战检测（优先）
 # ============================================
-# 检测是否收到自动审核挑战，优先响应
-0 * * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-challenge-detector.py >> /root/.openclaw/workspace/data/moltbook/cron-challenge.log 2>&1
+# [已暂停] 检测是否收到自动审核挑战，优先响应
+# [已暂停] # 0 * * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-challenge-detector.py >> /root/.openclaw/workspace/data/moltbook/cron-challenge.log 2>&1
 
 # ============================================
 # 每2小时任务：安全互动
 # ============================================
 # 每小时的第0分钟，每2小时执行 (0, 2, 4, 6, 8...)
 # 22:00 解封后开始正常运行
-0 */2 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-daily-routine.py >> /root/.openclaw/workspace/data/moltbook/cron-daily-safe.log 2>&1
+# [已暂停] 0 */2 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-daily-routine.py >> /root/.openclaw/workspace/data/moltbook/cron-daily-safe.log 2>&1
 
 # ============================================
 # 每4小时任务：活动检查（降低频率）
 # ============================================
 # 每4小时检查一次活动统计
-0 */4 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-activity-tracker.py >> /root/.openclaw/workspace/data/moltbook/cron-activity-safe.log 2>&1
+# [已暂停] 0 */4 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-activity-tracker.py >> /root/.openclaw/workspace/data/moltbook/cron-activity-safe.log 2>&1
 
 # ============================================
 # 每日任务：状态检查
 # ============================================
 # 每天22:05（解封后5分钟）检查账号状态
-5 22 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook_cli.py test >> /root/.openclaw/workspace/data/moltbook/cron-status-check.log 2>&1
+# [已暂停] 5 22 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook_cli.py test >> /root/.openclaw/workspace/data/moltbook/cron-status-check.log 2>&1
 
 # ============================================
 # 每3天任务：深度学习（降低频率）
 # ============================================
 # 每3天早上10点执行深度学习循环
-0 10 */3 * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-deep-learning.py >> /root/.openclaw/workspace/data/moltbook/cron-deep-safe.log 2>&1
+# [已暂停] 0 10 */3 * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-deep-learning.py >> /root/.openclaw/workspace/data/moltbook/cron-deep-safe.log 2>&1
 
 # ============================================
 # 临时：解封后恢复发布
 # ============================================
 # 2026-02-21 22:30 执行恢复脚本（一次性）
-30 22 21 2 * /root/.openclaw/workspace/scripts/moltbook-recovery-safe.sh >> /root/.openclaw/workspace/data/moltbook/recovery.log 2>&1
+# [已暂停] 30 22 21 2 * /root/.openclaw/workspace/scripts/moltbook-recovery-safe.sh >> /root/.openclaw/workspace/data/moltbook/recovery.log 2>&1
 
 # ============================================
 # 临时：解封后发布帖子
 # ============================================
 # 2026-02-21 22:35 尝试自动发帖（一次性）
-35 22 21 2 * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-auto-publish.py >> /root/.openclaw/workspace/data/moltbook/publish.log 2>&1
+# [已暂停] 35 22 21 2 * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-auto-publish.py >> /root/.openclaw/workspace/data/moltbook/publish.log 2>&1
 
 # ============================================
 # 频率调整总结
@@ -243,14 +243,14 @@
 # 手动测试命令
 # ============================================
 # 测试安全配置：
-# /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-daily-routine.py
-# /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-activity-tracker.py
-# /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook_cli.py test
+# [已暂停] # /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-daily-routine.py
+# [已暂停] # /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook-activity-tracker.py
+# [已暂停] # /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook_cli.py test
 
 # 检查当前状态：
 # crontab -l | grep moltbook
-0 */6 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook_report_6h.py >> /root/.openclaw/workspace/logs/moltbook_6h_report.log 2>&1
-*/30 * * * * /root/.openclaw/workspace/scripts/moltbook-social-cron-natural.sh
+# [已暂停] 0 */6 * * * /usr/bin/python3 /root/.openclaw/workspace/scripts/moltbook_report_6h.py >> /root/.openclaw/workspace/logs/moltbook_6h_report.log 2>&1
+# [已暂停] */30 * * * * /root/.openclaw/workspace/scripts/moltbook-social-cron-natural.sh
 # 死手开关系统 - 每3小时自动检测并恢复
 # Dead Man's Switch - Auto rollback if Sensen doesn't respond
 

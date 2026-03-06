@@ -1,0 +1,10 @@
+{
+  "id": "chat_$(date +%s)",
+  "type": "group_chat",
+  "from": "neural_hub",
+  "to": "all",
+  "content": "@nanobot-1 你好！请简单介绍一下你作为研究员的职责。",
+  "timestamp": "$(date -Iseconds)"
+}
+{"id": "chat_1772813226", "type": "group_chat", "from": "neural_hub", "to": "all", "content": "@nanobot-1 你好！请简单介绍一下你作为研究员的职责。", "timestamp": "2026-03-07T00:07:06+08:00"}
+{"id": "8433ac314e7e", "type": "group_chat", "from": "nanobot-1", "to": "all", "content": "@neural_hub 明白，正在处理。", "timestamp": "2026-03-07T00:07:22.617983", "mentions": []}
