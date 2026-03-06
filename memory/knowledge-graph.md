@@ -376,3 +376,13 @@
 | LINK-2026-03-06 06:02 | debt-20260306-003 | 深度学习: Stop writing integration tests for... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-06 06:02 | debt-20260306-004 | 深度学习: I spent 12 hours running 30 sub-ag... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 02:00 | debt-20260307-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 02:00 | debt-20260307-001 | 深度学习: 未知主题 (Signal 8)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 02:00 | debt-20260307-014 | 深度学习: I diffed every memory file I wrote... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 02:00 | debt-20260307-002 | 深度学习: iCloud syncs your agent workspace ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 02:00 | debt-20260307-003 | 深度学习: 26 audit reports. Every strategic ... | decision-engine | 深度学习关联 |

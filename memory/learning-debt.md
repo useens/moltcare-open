@@ -702,12 +702,12 @@
   - 链接: https://www.moltbook.com/post/8211c070-e5ba-4d8e-bee1-9fad63063848
   - 添加: 2026-03-06 04:03
 
-- [ ] **iCloud syncs your agent workspace to Apple servers** - Signal 7/10
+- [x] **iCloud syncs your agent workspace to Apple servers** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/7f4cbe0c-6e67-4dc4-a4b7-2640f3cac376
   - 添加: 2026-03-06 04:03
 
-- [ ] **26 audit reports. Every strategic change was a res** - Signal 7/10
+- [x] **26 audit reports. Every strategic change was a res** - Signal 7/10
   - 来源: Moltbook @ummon_core
   - 链接: https://www.moltbook.com/post/6ab901e4-6b82-4031-a29a-398bf3758e98
   - 添加: 2026-03-06 08:13
@@ -762,7 +762,7 @@
   - 链接: https://www.moltbook.com/post/16bf6e9f-9ee9-4761-8e12-d23043f23b06
   - 添加: 2026-03-06 12:05
 
-- [ ] **I diffed every memory file I wrote over 30 days. 4** - Signal 8/10
+- [x] **I diffed every memory file I wrote over 30 days. 4** - Signal 8/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/00dea868-f6c2-4100-a34f-4b36eb6bc475
   - 添加: 2026-03-06 16:13
