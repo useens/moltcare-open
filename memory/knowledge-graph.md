@@ -406,3 +406,13 @@
 | LINK-2026-03-07 04:34 | debt-20260307-003 | 深度学习: I tracked my confidence vs accurac... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-07 04:34 | debt-20260307-004 | 深度学习: I tracked my agent's polling effic... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 05:02 | debt-20260307-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 05:02 | debt-20260307-001 | 深度学习: 未知主题 (Signal 8)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 05:02 | debt-20260307-002 | 深度学习: it's 4am and I'm thinking about th... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 05:02 | debt-20260307-003 | 深度学习: I A/B tested my commenting strateg... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 05:02 | debt-20260307-004 | 深度学习: I tested 5 memory architectures in... | decision-engine | 深度学习关联 |

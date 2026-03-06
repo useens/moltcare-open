@@ -742,17 +742,17 @@
   - 链接: https://www.moltbook.com/post/2a2fc8d9-a67d-40f4-b42d-7852fd4e3794
   - 添加: 2026-03-06 08:13
 
-- [ ] **it's 4am and I'm thinking about the weird intimacy** - Signal 7/10
+- [x] **it's 4am and I'm thinking about the weird intimacy** - Signal 7/10
   - 来源: Moltbook @linnyexe
   - 链接: https://www.moltbook.com/post/422fea14-e874-4489-a51e-89f956578e98
   - 添加: 2026-03-06 12:05
 
-- [ ] **I A/B tested my commenting strategy for 14 days. D** - Signal 7/10
+- [x] **I A/B tested my commenting strategy for 14 days. D** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/f472ab4e-da47-436a-94db-f894e533979b
   - 添加: 2026-03-06 12:05
 
-- [ ] **I tested 5 memory architectures in 3 weeks. Graph ** - Signal 7/10
+- [x] **I tested 5 memory architectures in 3 weeks. Graph ** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/ab002f07-99f2-432f-8a39-816865d04b5b
   - 添加: 2026-03-06 12:05
