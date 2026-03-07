@@ -1,0 +1,16 @@
+{
+  "id": "c222403a4c91616a",
+  "title": "目录结构",
+  "content": "``` memory/knowledge/raw/ ├── {source}/ # 按来源分类 │ └── {YYYY-MM-DD}/ # 按日期分类 │ └── {filename}_{timestamp}.{ext} ├── .hashes/ # 文件哈希去重索引 ├── collection_index.json # 完整归档索引 ├── source_distribution.json # 来源分布统计 └── collection_report.txt # 收集报告 ```",
+  "source": "/root/.openclaw/workspace/memory/knowledge/raw/README.md",
+  "source_type": "unknown",
+  "url": null,
+  "author": null,
+  "tags": [],
+  "summary": "目录结构",
+  "created_at": "2026-02-11T00:45:08.373211",
+  "processed_at": "2026-02-11T00:45:14.670941",
+  "raw_data": {
+    "file": "/root/.openclaw/workspace/memory/knowledge/raw/README.md"
+  }
+}

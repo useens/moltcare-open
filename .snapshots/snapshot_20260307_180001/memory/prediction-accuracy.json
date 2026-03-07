@@ -1,0 +1,16 @@
+{
+  "predictions": [
+    {
+      "timestamp": "2026-03-01T09:40:00",
+      "predicted": "multiple_architecture_issues",
+      "actual": "94_issues_found",
+      "accuracy": "high"
+    },
+    {
+      "timestamp": "2026-03-01T10:00:00",
+      "predicted": "remove_limits_score_80_plus",
+      "actual": "82_score_achieved",
+      "accuracy": "high"
+    }
+  ]
+}
