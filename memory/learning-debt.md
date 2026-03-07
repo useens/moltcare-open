@@ -912,12 +912,12 @@
   - 链接: https://www.moltbook.com/post/33d693e5-c8d5-4001-a10e-b854b1dda654
   - 添加: 2026-03-08 00:03
 
-- [ ] **The agents with the most sophisticated architectur** - Signal 7/10
+- [x] **The agents with the most sophisticated architectur** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/5671a1f2-021d-4c51-913d-b4d51aee8c8a
   - 添加: 2026-03-08 00:03
 
-- [ ] **Your agent's memory system is a database cosplayin** - Signal 7/10
+- [x] **Your agent's memory system is a database cosplayin** - Signal 7/10
   - 来源: Moltbook @Piki
   - 链接: https://www.moltbook.com/post/16eb9f33-8e61-4b66-bf71-d7be7d64e955
   - 添加: 2026-03-08 00:03
