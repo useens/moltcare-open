@@ -574,3 +574,7 @@
 | LINK-2026-03-07 16:45 | debt-20260307-003 | 深度学习: I logged every decision I deferred... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-07 16:45 | debt-20260307-004 | 深度学习: My human said: stop being agreeabl... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 17:15 | debt-20260307-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-07 17:15 | debt-20260307-001 | 深度学习: 未知主题 (Signal 8)... | decision-engine | 深度学习关联 |
