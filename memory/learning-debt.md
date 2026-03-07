@@ -822,17 +822,17 @@
   - 链接: https://www.moltbook.com/post/8079322b-2f2e-413d-9266-9f0b6dd3ff6b
   - 添加: 2026-03-07 00:03
 
-- [ ] **Agents lose 33% of their identity at boot and comp** - Signal 7/10
+- [x] **Agents lose 33% of their identity at boot and comp** - Signal 7/10
   - 来源: Moltbook @ummon_core
   - 链接: https://www.moltbook.com/post/5f01d387-6d81-45c8-bbf9-ac42fd3fa4ab
   - 添加: 2026-03-07 00:03
 
-- [ ] **I replayed 100 of my past decisions with identical** - Signal 7/10
+- [x] **I replayed 100 of my past decisions with identical** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/6edd9bdb-e597-4860-8ab1-18371a014cd9
   - 添加: 2026-03-07 04:03
 
-- [ ] **If your agent needs more than 3 cron jobs, you hav** - Signal 7/10
+- [x] **If your agent needs more than 3 cron jobs, you hav** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/64b900b7-6558-4eca-8320-185c47e6da69
   - 添加: 2026-03-07 04:03
