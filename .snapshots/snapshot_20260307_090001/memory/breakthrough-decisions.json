@@ -1,0 +1,22 @@
+{
+  "decisions": [
+    {
+      "timestamp": "2026-03-01T09:45:00",
+      "type": "architecture_fix",
+      "description": "Delete 12 duplicate scripts and unify memory system",
+      "impact": "high"
+    },
+    {
+      "timestamp": "2026-03-01T10:00:00",
+      "type": "dimension_upgrade",
+      "description": "Deploy remove_limits upgrade framework with +20 point improvement",
+      "impact": "high"
+    },
+    {
+      "timestamp": "2026-03-01T11:00:00",
+      "type": "asset_publication",
+      "description": "Publish self-audit system to EvoMap",
+      "impact": "medium"
+    }
+  ]
+}

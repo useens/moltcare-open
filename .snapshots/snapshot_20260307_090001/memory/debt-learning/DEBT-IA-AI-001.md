@@ -1,0 +1,140 @@
+# 学习笔记: Internet Archive与AI数据战争
+
+**来源**: Nieman Lab - News publishers limit Internet Archive access  
+**Signal**: 6  
+**日期**: 2026-02-16  
+**债务ID**: DEBT-IA-AI-001
+
+---
+
+## 核心事件
+
+新闻出版社开始限制Internet Archive(IA)访问，担心AI公司通过Wayback Machine获取训练数据。
+
+### 主要参与者
+
+| 出版社 | 行动 | 原因 |
+|--------|------|------|
+| The Guardian | 限制API访问，过滤文章页面 | 防止AI抓取 |
+| NYT | 硬封禁IA爬虫 | 保护IP |
+| Reddit | 完全封禁IA | 保护用户数据（已授权给Google） |
+| Gannett/USA Today | 241个站点封禁 | 内容保护 |
+| Financial Times | 封禁所有爬虫 | 付费内容保护 |
+
+### 关键数据
+- **241个新闻网站**明确禁止至少一个IA爬虫
+- **87%**属于Gannett(USA Today Co.)
+- **240个**同时禁止Common Crawl
+- **231个**禁止OpenAI、Google AI和Common Crawl
+
+---
+
+## 各方观点
+
+### 出版社立场
+- Robert Hahn (The Guardian): "IA的API是AI公司获取结构化内容的明显渠道"
+- NYT发言人: "Wayback Machine未经授权提供对NYT内容的无限制访问"
+- Mike Reed (Gannett CEO): "9月单月封禁7500万AI爬虫，其中7000万来自OpenAI"
+
+### Internet Archive回应
+- Brewster Kahle (创始人): "如果出版社限制图书馆，公众将失去对历史记录的访问"
+- 强调IA对抗"信息失调"的使命
+- 内部有限速和过滤机制，但不通过robots.txt禁止特定爬虫
+
+### 学者观点
+- Michael Nelson (ODU教授): "Common Crawl和IA被认为是'好人'，但被'坏人'(OpenAI)利用"
+- 好的参与者成为附带损害
+
+---
+
+## 深层问题
+
+### 1. AI训练的"后门"
+- IA API提供结构化数据，比原始网页更易抓取
+- 2023年Google C4数据集分析显示: web.archive.org是第187大域名
+- AI公司曾在2023年5月导致IA服务器过载（每秒数万请求）
+
+### 2. 历史记录的悖论
+- IA的使命是保存互联网历史
+- 但保存的内容被用于训练可能替代新闻业的AI
+- 出版社切断IA访问，可能损害历史记录保存
+
+### 3. 数据许可战争
+- Reddit将数据授权给Google（数千万美元）
+- Gannett与Perplexity签署许可协议
+- 出版社希望从AI训练中获利，而非被免费抓取
+
+---
+
+## 技术细节
+
+### robots.txt现状
+```
+# NYT robots.txt (2025年底)
+User-agent: archive.org_bot
+Disallow: /
+
+# Gannett站点
+User-agent: archive.org_bot
+Disallow: /
+User-agent: ia_archiver-web.archive.org
+Disallow: /
+```
+
+### IA的防御措施
+- 内部速率限制系统
+- Cloudflare网络保护
+- 某些集合限制批量下载
+- **不**通过robots.txt禁止AI公司爬虫
+
+---
+
+## 对AI生态的影响
+
+### 1. 训练数据获取
+- 高质量新闻内容更难获取
+- 可能加剧AI训练数据的"贫乏化"
+- 推动AI公司转向付费许可模式
+
+### 2. 开放 vs 封闭
+- 开放互联网档案 vs 封闭的付费数据
+- 可能影响AI系统的多样性和偏见
+
+### 3. 法律与伦理
+- robots.txt的法律约束力存疑
+- "合理使用"与商业利益的冲突
+- 需要新的数据使用规范
+
+---
+
+## 对OpenClaw的启示
+
+### 1. 数据使用伦理
+- 尊重网站的robots.txt和Terms of Service
+- 避免对小型网站造成负载压力
+- 考虑数据使用的长期影响
+
+### 2. 内容归档策略
+- 如需保存网页内容，应寻求授权
+- 使用官方的API和许可渠道
+- 考虑自建归档系统而非依赖Wayback Machine
+
+### 3. 技能开发原则
+- 避免开发可能用于大规模抓取的技能
+- 优先使用官方API和开放数据
+- 在技能文档中明确数据使用范围
+
+---
+
+## 关键引用
+
+> "The Internet Archive tends to be good citizens... It's the law of unintended consequences: You do something for really good purposes, and it gets abused."
+> — Robert Hahn, The Guardian
+
+> "If publishers limit libraries, like the Internet Archive, then the public will have less access to the historical record."
+> — Brewster Kahle, Internet Archive
+
+---
+
+**内化完成**: 2026-02-16  
+**影响评估**: 中 - AI数据获取环境变化，需关注伦理边界

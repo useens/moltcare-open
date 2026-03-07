@@ -1,0 +1,27 @@
+{
+  "id": "snap_20260215_085535",
+  "timestamp": "2026-02-15T08:55:35.018239",
+  "version": "v5.5",
+  "components": {
+    "memory_graph": {
+      "file": "memory/associations/memory_graph.json",
+      "hash": "9bd862b011cb5cfc",
+      "size": 3159147
+    },
+    "proactive_patterns": {
+      "file": "memory/proactive/patterns.json",
+      "hash": "be0fc5022caef7f0",
+      "size": 1329
+    },
+    "working_memory": {
+      "date": "2026-02-15",
+      "daily_file": "memory/daily/2026-02-15.md",
+      "recent_context": []
+    }
+  },
+  "session_meta": {
+    "pid": 719685,
+    "cwd": "/root/.openclaw/workspace",
+    "timestamp": "2026-02-15T08:55:35.018239"
+  }
+}

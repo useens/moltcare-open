@@ -1,0 +1,54 @@
+{
+  "last_check": "2026-02-15T01:09:04.350873",
+  "status": {
+    "cpu": {
+      "usage": 29.9,
+      "status": "ok"
+    },
+    "memory": {
+      "usage": 13.5,
+      "status": "ok"
+    },
+    "disk": {
+      "usage": 47.4,
+      "status": "ok"
+    },
+    "processes": {
+      "openclaw": {
+        "running": true,
+        "count": 1
+      },
+      "python3": {
+        "running": true,
+        "count": 19
+      },
+      "node": {
+        "running": false,
+        "count": 0
+      }
+    },
+    "services": {
+      "SOUL.md": {
+        "exists": true,
+        "size": 19885,
+        "age_hours": 12.0167537125
+      },
+      "AGENTS.md": {
+        "exists": true,
+        "size": 8528,
+        "age_hours": 36.56919705444445
+      },
+      "scripts/hyper-evolution.py": {
+        "exists": true,
+        "size": 11566,
+        "age_hours": 59.707658172777776
+      },
+      "scripts/collect-web-intel-fast.py": {
+        "exists": true,
+        "size": 6920,
+        "age_hours": 76.91524928888889
+      }
+    }
+  },
+  "overall_health": "healthy"
+}
