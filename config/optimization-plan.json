@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-03-07T04:01:00.128929",
+  "timestamp": "2026-03-08T02:00:08.579904",
   "opportunities": [
     {
       "id": "temp-cleanup",
@@ -10,120 +10,180 @@
       "target_type": "files",
       "targets": [
         {
-          "path": "evolution/strategies/autonomy/__pycache__/__init__.cpython-311.pyc",
-          "size": 23047
+          "path": "scripts/__pycache__/moltbook-browser-extractor.cpython-311.pyc",
+          "size": 6304
         },
         {
-          "path": "evolution/strategies/__pycache__/__init__.cpython-311.pyc",
-          "size": 5179
+          "path": "scripts/__pycache__/evolution-loop.cpython-311.pyc",
+          "size": 15306
         },
         {
-          "path": "evolution/strategies/goal/__pycache__/__init__.cpython-311.pyc",
-          "size": 24137
+          "path": "scripts/__pycache__/meta-learning-engine.cpython-311.pyc",
+          "size": 19107
         },
         {
-          "path": "evolution/strategies/protection/__pycache__/__init__.cpython-311.pyc",
-          "size": 6059
+          "path": "scripts/__pycache__/output-verification.cpython-311.pyc",
+          "size": 6457
         },
         {
-          "path": "evolution/strategies/cognitive/__pycache__/__init__.cpython-311.pyc",
-          "size": 14014
+          "path": "scripts/__pycache__/moltbook-scan-analyzer.cpython-311.pyc",
+          "size": 13575
         },
         {
-          "path": "evolution/strategies/prediction/__pycache__/__init__.cpython-311.pyc",
-          "size": 6044
+          "path": "scripts/__pycache__/moltbook-status-v2.cpython-311.pyc",
+          "size": 9205
         },
         {
-          "path": "evolution/strategies/creativity/__pycache__/__init__.cpython-311.pyc",
-          "size": 5851
+          "path": "scripts/__pycache__/moltbook-natural-social.cpython-311.pyc",
+          "size": 4349
         },
         {
-          "path": "evolution/strategies/adaptive/__pycache__/__init__.cpython-311.pyc",
-          "size": 6165
+          "path": "scripts/__pycache__/md2pdf.cpython-311.pyc",
+          "size": 8078
         },
         {
-          "path": "evolution/strategies/self_awareness/__pycache__/__init__.cpython-311.pyc",
-          "size": 6145
+          "path": "scripts/__pycache__/moltbook-api-automation.cpython-311.pyc",
+          "size": 20611
         },
         {
-          "path": "evolution/strategies/learning/__pycache__/__init__.cpython-311.pyc",
-          "size": 27256
+          "path": "scripts/__pycache__/log-rotate.cpython-311.pyc",
+          "size": 4824
         },
         {
-          "path": "evolution/strategies/collaboration/__pycache__/__init__.cpython-311.pyc",
-          "size": 6302
+          "path": "scripts/__pycache__/knowledge_processor.cpython-311.pyc",
+          "size": 29615
         },
         {
-          "path": "evolution/collectors/__pycache__/__init__.cpython-311.pyc",
-          "size": 46991
+          "path": "scripts/__pycache__/moltbook-auto-publish.cpython-311.pyc",
+          "size": 7188
         },
         {
-          "path": "evolution/core/__pycache__/dimension_assessor.cpython-311.pyc",
-          "size": 14997
+          "path": "scripts/__pycache__/moltbook-unified-scan.cpython-311.pyc",
+          "size": 25428
         },
         {
-          "path": "evolution/core/__pycache__/evolution_orchestrator.cpython-311.pyc",
-          "size": 17627
+          "path": "scripts/__pycache__/moltbook-auto-post-v2.cpython-311.pyc",
+          "size": 7785
         },
         {
-          "path": "evolution/core/__pycache__/__init__.cpython-311.pyc",
-          "size": 5922
+          "path": "scripts/__pycache__/cognitive_security.cpython-311.pyc",
+          "size": 21176
         },
         {
-          "path": "evolution/strategies/__pycache__",
-          "size": 4096
+          "path": "scripts/__pycache__/local_memory_search.cpython-311.pyc",
+          "size": 6716
         },
         {
-          "path": "evolution/strategies/autonomy/__pycache__",
-          "size": 4096
+          "path": "scripts/__pycache__/moltbook-social-automation.cpython-311.pyc",
+          "size": 15669
         },
         {
-          "path": "evolution/strategies/goal/__pycache__",
-          "size": 4096
+          "path": "scripts/__pycache__/moltbook_social_v60.cpython-311.pyc",
+          "size": 16063
         },
         {
-          "path": "evolution/strategies/protection/__pycache__",
-          "size": 4096
+          "path": "scripts/__pycache__/deep-learning-loop-v20.cpython-311.pyc",
+          "size": 19029
         },
         {
-          "path": "evolution/strategies/cognitive/__pycache__",
-          "size": 4096
+          "path": "scripts/__pycache__/generate_token_chart.cpython-311.pyc",
+          "size": 5372
         },
         {
-          "path": "evolution/strategies/prediction/__pycache__",
-          "size": 4096
+          "path": "scripts/__pycache__/redis_multi_agent_engine.cpython-311.pyc",
+          "size": 9470
         },
         {
-          "path": "evolution/strategies/creativity/__pycache__",
-          "size": 4096
+          "path": "scripts/__pycache__/moltbook-extract-special.cpython-311.pyc",
+          "size": 9558
         },
         {
-          "path": "evolution/strategies/adaptive/__pycache__",
-          "size": 4096
+          "path": "scripts/__pycache__/molt-post-monitor.cpython-311.pyc",
+          "size": 4616
         },
         {
-          "path": "evolution/strategies/self_awareness/__pycache__",
-          "size": 4096
+          "path": "scripts/__pycache__/moltbook_report_6h.cpython-311.pyc",
+          "size": 11068
         },
         {
-          "path": "evolution/strategies/learning/__pycache__",
-          "size": 4096
+          "path": "scripts/__pycache__/rebuild-vector-index.cpython-311.pyc",
+          "size": 12272
         },
         {
-          "path": "evolution/strategies/collaboration/__pycache__",
-          "size": 4096
+          "path": "scripts/__pycache__/implementation_phase1.cpython-311.pyc",
+          "size": 15422
         },
         {
-          "path": "evolution/collectors/__pycache__",
-          "size": 4096
+          "path": "scripts/__pycache__/moltbook_social_v61.cpython-311.pyc",
+          "size": 11445
         },
         {
-          "path": "evolution/core/__pycache__",
+          "path": "scripts/__pycache__/intelligence-assessment.cpython-311.pyc",
+          "size": 2430
+        },
+        {
+          "path": "scripts/__pycache__/moltbook-home-check.cpython-311.pyc",
+          "size": 10861
+        },
+        {
+          "path": "scripts/__pycache__/log_rotation.cpython-311.pyc",
+          "size": 5838
+        },
+        {
+          "path": "scripts/__pycache__/auto-import-trigger.cpython-311.pyc",
+          "size": 1595
+        },
+        {
+          "path": "scripts/__pycache__/internalize-knowledge.cpython-311.pyc",
+          "size": 7203
+        },
+        {
+          "path": "scripts/__pycache__/upgrade-remove-limits.cpython-311.pyc",
+          "size": 17865
+        },
+        {
+          "path": "scripts/__pycache__/evomap-periodic-sync.cpython-311.pyc",
+          "size": 3596
+        },
+        {
+          "path": "scripts/__pycache__/comprehensive_system_check.cpython-311.pyc",
+          "size": 14562
+        },
+        {
+          "path": "scripts/__pycache__/memory-optimizer.cpython-311.pyc",
+          "size": 3290
+        },
+        {
+          "path": "scripts/__pycache__/deep-extractor.cpython-311.pyc",
+          "size": 16750
+        },
+        {
+          "path": "scripts/__pycache__/run-all-breakthrough-experiments.cpython-311.pyc",
+          "size": 6715
+        },
+        {
+          "path": "scripts/__pycache__/concurrency-optimizer.cpython-311.pyc",
+          "size": 2482
+        },
+        {
+          "path": "scripts/__pycache__/token-optimizer-v10.cpython-311.pyc",
+          "size": 6547
+        },
+        {
+          "path": "scripts/__pycache__/update-to-step.cpython-311.pyc",
+          "size": 3032
+        },
+        {
+          "path": "scripts/__pycache__/system-optimization-daemon.cpython-311.pyc",
+          "size": 16200
+        },
+        {
+          "path": "scripts/__pycache__",
           "size": 4096
         }
       ],
-      "estimated_saving_mb": 0.25652313232421875,
-      "description": "\u6e05\u7406 28 \u4e2a\u4e34\u65f6\u6587\u4ef6",
+      "estimated_saving_mb": 0.4375171661376953,
+      "description": "\u6e05\u7406 43 \u4e2a\u4e34\u65f6\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -134,158 +194,158 @@
       "target_type": "files",
       "targets": [
         {
-          "path": "archives/20260306/log_rotation.log",
+          "path": "archives/20260307/log_rotation.log",
           "size": 1009,
-          "age_days": 15
+          "age_days": 16
         },
         {
-          "path": "archives/20260306/upgrade-execution-20260219.log",
+          "path": "archives/20260307/upgrade-execution-20260219.log",
           "size": 202,
-          "age_days": 15
+          "age_days": 16
         },
         {
-          "path": "archives/20260306/moltbook_ai_reply.log",
+          "path": "archives/20260307/moltbook_ai_reply.log",
           "size": 207,
-          "age_days": 12
+          "age_days": 13
         },
         {
-          "path": "archives/20260306/moltbook_daily.log",
+          "path": "archives/20260307/moltbook_daily.log",
           "size": 2515,
-          "age_days": 12
+          "age_days": 13
         },
         {
-          "path": "archives/20260306/moltbook_social_20260223_034503.log",
+          "path": "archives/20260307/moltbook_social_20260223_034503.log",
           "size": 616,
           "age_days": 12
         },
         {
-          "path": "archives/20260306/cron-cooldown.log",
+          "path": "archives/20260307/cron-cooldown.log",
           "size": 7153,
-          "age_days": 13
-        },
-        {
-          "path": "archives/20260306/cron-activity.log",
-          "size": 9133,
           "age_days": 14
         },
         {
-          "path": "archives/20260306/recovery.log",
+          "path": "archives/20260307/cron-activity.log",
+          "size": 9133,
+          "age_days": 15
+        },
+        {
+          "path": "archives/20260307/recovery.log",
           "size": 786,
+          "age_days": 14
+        },
+        {
+          "path": "archives/20260307/evolution-plan-execution.log",
+          "size": 3255,
+          "age_days": 17
+        },
+        {
+          "path": "archives/20260307/evomap-task-hunter.log",
+          "size": 1086,
+          "age_days": 14
+        },
+        {
+          "path": "archives/20260307/auto-publish.log",
+          "size": 770,
+          "age_days": 15
+        },
+        {
+          "path": "archives/20260307/upgrade-execution-20260222.log",
+          "size": 202,
+          "age_days": 14
+        },
+        {
+          "path": "archives/20260307/recovery-20260222_081145.log",
+          "size": 143,
           "age_days": 13
         },
         {
-          "path": "archives/20260306/evolution-plan-execution.log",
-          "size": 3255,
+          "path": "archives/20260307/cron-evolution-full.log",
+          "size": 2346,
+          "age_days": 15
+        },
+        {
+          "path": "archives/20260307/model-usage.log",
+          "size": 2860,
           "age_days": 16
         },
         {
-          "path": "archives/20260306/evomap-task-hunter.log",
-          "size": 1086,
-          "age_days": 13
-        },
-        {
-          "path": "archives/20260306/auto-publish.log",
-          "size": 770,
-          "age_days": 14
-        },
-        {
-          "path": "archives/20260306/upgrade-execution-20260222.log",
+          "path": "archives/20260307/upgrade-execution-20260220.log",
           "size": 202,
-          "age_days": 13
+          "age_days": 16
         },
         {
-          "path": "archives/20260306/recovery-20260222_081145.log",
-          "size": 143,
-          "age_days": 12
-        },
-        {
-          "path": "archives/20260306/cron-evolution-full.log",
-          "size": 2346,
-          "age_days": 14
-        },
-        {
-          "path": "archives/20260306/model-usage.log",
-          "size": 2860,
-          "age_days": 15
-        },
-        {
-          "path": "archives/20260306/upgrade-execution-20260220.log",
-          "size": 202,
-          "age_days": 15
-        },
-        {
-          "path": "archives/20260306/cron-active-hours.log",
+          "path": "archives/20260307/cron-active-hours.log",
           "size": 29181,
-          "age_days": 14
+          "age_days": 15
         },
         {
-          "path": "archives/20260306/cron-evolution.log",
+          "path": "archives/20260307/cron-evolution.log",
           "size": 15080,
-          "age_days": 14
+          "age_days": 15
         },
         {
-          "path": "archives/20260306/memory-backup.log",
+          "path": "archives/20260307/memory-backup.log",
           "size": 1414,
-          "age_days": 14
+          "age_days": 15
         },
         {
-          "path": "archives/20260306/upgrade-execution-20260223.log",
+          "path": "archives/20260307/upgrade-execution-20260223.log",
           "size": 202,
-          "age_days": 12
+          "age_days": 13
         },
         {
-          "path": "archives/20260306/upgrade-execution-20260221.log",
+          "path": "archives/20260307/upgrade-execution-20260221.log",
           "size": 202,
-          "age_days": 14
+          "age_days": 15
         },
         {
-          "path": "archives/20260306/evomap-resolver.log",
+          "path": "archives/20260307/evomap-resolver.log",
           "size": 6552,
-          "age_days": 14
+          "age_days": 15
         },
         {
-          "path": "archives/20260306/publish.log",
+          "path": "archives/20260307/publish.log",
           "size": 508,
-          "age_days": 13
+          "age_days": 14
         },
         {
-          "path": "archives/20260306/router.log",
+          "path": "archives/20260307/router.log",
           "size": 32618,
+          "age_days": 16
+        },
+        {
+          "path": "archives/20260307/evolver-loop.log",
+          "size": 2939959,
           "age_days": 15
         },
         {
-          "path": "archives/20260306/evolver-loop.log",
-          "size": 2939959,
-          "age_days": 14
-        },
-        {
-          "path": "archives/20260306/cron-evolution-dry.log",
+          "path": "archives/20260307/cron-evolution-dry.log",
           "size": 4738,
-          "age_days": 14
+          "age_days": 15
         },
         {
-          "path": "archives/20260306/moltbook-publish-retry.log",
+          "path": "archives/20260307/moltbook-publish-retry.log",
           "size": 688,
-          "age_days": 12
-        },
-        {
-          "path": "archives/20260306/cron-moderate-hours.log",
-          "size": 6295,
-          "age_days": 14
-        },
-        {
-          "path": "archives/20260306/task-hunter.log",
-          "size": 543,
           "age_days": 13
         },
         {
-          "path": "archives/20260306/memory-optimization-20260219.log",
-          "size": 888,
+          "path": "archives/20260307/cron-moderate-hours.log",
+          "size": 6295,
           "age_days": 15
+        },
+        {
+          "path": "archives/20260307/task-hunter.log",
+          "size": 543,
+          "age_days": 14
+        },
+        {
+          "path": "archives/20260307/memory-optimization-20260219.log",
+          "size": 888,
+          "age_days": 16
         }
       ],
-      "estimated_saving_mb": 2.946348190307617,
-      "description": "\u5f52\u6863 36 \u4e2a\u8d85\u8fc77\u5929\u7684\u65e5\u5fd7\u6587\u4ef6",
+      "estimated_saving_mb": 3.1465225219726562,
+      "description": "\u5f52\u6863 37 \u4e2a\u8d85\u8fc77\u5929\u7684\u65e5\u5fd7\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -296,108 +356,108 @@
       "target_type": "files",
       "targets": [
         {
-          "path": "reports/application-debt-20260227-004.md",
-          "size": 1355,
+          "path": "reports/MOLT-UNIFIED-20260228-12.md",
+          "size": 4617,
           "age_days": 7
         },
         {
-          "path": "reports/MOLT-UNIFIED-20260228-00.md",
-          "size": 4742,
+          "path": "reports/decision-debt-20260228-008-20260228_053523.md",
+          "size": 3912,
           "age_days": 7
         },
         {
-          "path": "reports/MOLT-UNIFIED-20260227-08.md",
-          "size": 4788,
+          "path": "reports/decision-debt-20260228-004-20260228_230042.md",
+          "size": 4486,
           "age_days": 7
         },
         {
-          "path": "reports/EV-UNIFIED-20260227_2300.md",
-          "size": 474,
+          "path": "reports/decision-debt-20260228-003-20260228_230029.md",
+          "size": 4526,
           "age_days": 7
         },
         {
-          "path": "reports/decision-debt-20260228-003-20260228_020027.md",
+          "path": "reports/decision-debt-20260228-006-DONE.md",
+          "size": 2672,
+          "age_days": 7
+        },
+        {
+          "path": "reports/MOLT-UNIFIED-20260228-04.md",
+          "size": 4627,
+          "age_days": 7
+        },
+        {
+          "path": "reports/application-debt-20260228-003.md",
+          "size": 1363,
+          "age_days": 7
+        },
+        {
+          "path": "reports/decision-debt-20260226-003-20260226_174251.md",
           "size": 4009,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260227-004-20260227_233041.md",
-          "size": 3969,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260227-008-20260227_193954.md",
-          "size": 3912,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260226-003-20260226_233319.md",
-          "size": 4009,
-          "age_days": 8
-        },
-        {
-          "path": "reports/decision-debt-20260226-007-20260226_053134.md",
-          "size": 3914,
-          "age_days": 8
-        },
-        {
-          "path": "reports/decision-debt-20260227-007-20260227_193941.md",
-          "size": 3914,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260227-004-20260227_063200.md",
-          "size": 3969,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260227-007-20260227_020409.md",
-          "size": 3914,
-          "age_days": 8
-        },
-        {
-          "path": "reports/decision-debt-20260227-007-20260227_053214.md",
-          "size": 3914,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260226-004-20260226_133359.md",
-          "size": 3969,
-          "age_days": 8
-        },
-        {
-          "path": "reports/decision-debt-20260227-008-20260227_043727.md",
-          "size": 3912,
-          "age_days": 7
-        },
-        {
-          "path": "reports/MOLT-UNIFIED-20260227-16.md",
-          "size": 4871,
-          "age_days": 7
-        },
-        {
-          "path": "reports/decision-debt-20260227-008-20260227_020422.md",
-          "size": 3912,
-          "age_days": 8
-        },
-        {
-          "path": "reports/decision-debt-20260225-004-20260225_100422.md",
-          "size": 3499,
           "age_days": 9
         },
         {
-          "path": "reports/decision-debt-20260226-004-20260226_043119.md",
-          "size": 3969,
+          "path": "reports/decision-debt-20260225-007-20260225_043027.md",
+          "size": 3488,
+          "age_days": 10
+        },
+        {
+          "path": "reports/decision-debt-20260226-008-20260226_080155.md",
+          "size": 3912,
+          "age_days": 9
+        },
+        {
+          "path": "reports/decision-debt-20260225-006-20260225_233016.md",
+          "size": 3998,
+          "age_days": 10
+        },
+        {
+          "path": "reports/decision-debt-20260227-003-20260227_063145.md",
+          "size": 4009,
           "age_days": 8
         },
         {
-          "path": "reports/decision-debt-20260227-007-20260227_233054.md",
-          "size": 3914,
+          "path": "reports/decision-debt-20260225-003-20260225_104339.md",
+          "size": 3597,
+          "age_days": 10
+        },
+        {
+          "path": "reports/application-debt-20260228-007.md",
+          "size": 1338,
           "age_days": 7
+        },
+        {
+          "path": "reports/decision-debt-20260225-008-20260225_060021.md",
+          "size": 3510,
+          "age_days": 10
+        },
+        {
+          "path": "reports/decision-debt-20260225-008-20260225_080022.md",
+          "size": 3510,
+          "age_days": 10
+        },
+        {
+          "path": "reports/decision-debt-20260225-003-20260225_143859.md",
+          "size": 4009,
+          "age_days": 10
+        },
+        {
+          "path": "reports/decision-debt-20260228-006-20260228_140016.md",
+          "size": 4519,
+          "age_days": 7
+        },
+        {
+          "path": "reports/application-debt-20260228-006.md",
+          "size": 1356,
+          "age_days": 7
+        },
+        {
+          "path": "reports/decision-debt-20260225-006-20260225_070022.md",
+          "size": 3528,
+          "age_days": 10
         }
       ],
-      "estimated_saving_mb": 4.922848701477051,
-      "description": "\u5f52\u6863 1266 \u4e2a\u8d85\u8fc77\u5929\u7684\u62a5\u544a\u6587\u4ef6",
+      "estimated_saving_mb": 5.121094703674316,
+      "description": "\u5f52\u6863 1319 \u4e2a\u8d85\u8fc77\u5929\u7684\u62a5\u544a\u6587\u4ef6",
       "risk_level": "low"
     },
     {
@@ -424,7 +484,7 @@
         }
       ],
       "estimated_saving_mb": 0,
-      "description": "\u5408\u5e76 107 \u4e2a\u5206\u6563\u7684cron\u914d\u7f6e",
+      "description": "\u5408\u5e76 129 \u4e2a\u5206\u6563\u7684cron\u914d\u7f6e",
       "risk_level": "medium"
     }
   ],
@@ -433,7 +493,7 @@
     "p0_count": 1,
     "p1_count": 2,
     "p2_count": 1,
-    "estimated_saving_mb": 8.13,
+    "estimated_saving_mb": 8.71,
     "estimated_saving_percent": 0
   }
 }
