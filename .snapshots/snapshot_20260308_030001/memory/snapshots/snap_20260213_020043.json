@@ -1,0 +1,32 @@
+{
+  "id": "snap_20260213_020043",
+  "timestamp": "2026-02-13T02:00:43.842124",
+  "version": "v5.5",
+  "components": {
+    "vector_memory": {
+      "file": "memory/vector/memory_vectors.pkl",
+      "hash": "9980d273b9722f49",
+      "size": 657888
+    },
+    "memory_graph": {
+      "file": "memory/associations/memory_graph.json",
+      "hash": "9bd862b011cb5cfc",
+      "size": 3159147
+    },
+    "proactive_patterns": {
+      "file": "memory/proactive/patterns.json",
+      "hash": "be0fc5022caef7f0",
+      "size": 1329
+    },
+    "working_memory": {
+      "date": "2026-02-13",
+      "daily_file": "memory/daily/2026-02-13.md",
+      "recent_context": []
+    }
+  },
+  "session_meta": {
+    "pid": 23753,
+    "cwd": "/root/.openclaw/workspace",
+    "timestamp": "2026-02-13T02:00:43.842124"
+  }
+}
