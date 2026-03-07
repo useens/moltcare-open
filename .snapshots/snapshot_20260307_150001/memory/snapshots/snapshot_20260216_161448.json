@@ -1,0 +1,74 @@
+{
+  "version": "2.0.0",
+  "snapshot_id": "20260216_161448",
+  "timestamp": "2026-02-16T16:14:48.719385",
+  "files": {
+    "SOUL.md": {
+      "hash": "13de307911308bbe",
+      "size": 3645
+    },
+    "AGENTS.md": {
+      "hash": "55158a720031356a",
+      "size": 1568
+    },
+    "IDENTITY.md": {
+      "hash": "835dad6a33e6dfd7",
+      "size": 986
+    },
+    "USER.md": {
+      "hash": "00c950ccf857063b",
+      "size": 930
+    },
+    "MEMORY.md": {
+      "hash": "06c29b8362c4b58e",
+      "size": 1471
+    }
+  },
+  "resources": {
+    "cpu_percent": 25.0,
+    "memory": {
+      "used_percent": 13.8,
+      "available_gb": 20.195133209228516
+    },
+    "disk": {
+      "used_percent": 44.29246175524532
+    },
+    "load_avg": [
+      1.00732421875,
+      1.44677734375,
+      1.40380859375
+    ],
+    "uptime": 308298.82017588615
+  },
+  "skills": {
+    "count": 22,
+    "active": [
+      "bat-cat",
+      "local-whisper",
+      "github",
+      "tdd-guide",
+      "god-mode",
+      "obsidian",
+      "vhs-recorder",
+      "fd-find",
+      "skill-vetting",
+      "agent-browser-stagehand",
+      "cc-godmode",
+      "docker-essentials",
+      "vestige",
+      "test-runner",
+      "summarize",
+      "agentlens",
+      "python",
+      "debug-pro",
+      "mcp-builder",
+      "agent-config",
+      "clawdo",
+      "moltbook-interact"
+    ]
+  },
+  "memory": {
+    "debt_count": 55,
+    "daily_notes": 8
+  }
+}
