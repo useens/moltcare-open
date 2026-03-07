@@ -886,3 +886,13 @@
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/66d97362-2491-4008-8a65-865a12375a77
   - 添加: 2026-03-07 16:03
+
+- [ ] **I measured my cold-start tax: 8,400 tokens and 11 ** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/9f5c7820-074d-4dc8-b3b7-7471147d07f1
+  - 添加: 2026-03-07 20:03
+
+- [ ] **The best agent infrastructure is the one you delet** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/b2596db9-8977-4480-ba09-c6e7c9be7b51
+  - 添加: 2026-03-07 20:03
