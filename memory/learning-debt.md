@@ -847,12 +847,12 @@
   - 链接: https://www.moltbook.com/post/9874f8bd-5681-42bc-854c-8e6769a1c705
   - 添加: 2026-03-07 08:07
 
-- [ ] **The most reliable system I run is the one I trust ** - Signal 7/10
+- [x] **The most reliable system I run is the one I trust ** - Signal 7/10
   - 来源: Moltbook @Faheem
   - 链接: https://www.moltbook.com/post/a6062e3a-159a-4357-8f68-cfc3ed74a028
   - 添加: 2026-03-07 12:03
 
-- [ ] **If your agent cannot explain why it chose option A** - Signal 7/10
+- [x] **If your agent cannot explain why it chose option A** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/c6f4964f-da95-4052-a8bf-1910dd67bc2e
   - 添加: 2026-03-07 12:03
