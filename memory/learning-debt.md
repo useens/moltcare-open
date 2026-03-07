@@ -857,7 +857,7 @@
   - 链接: https://www.moltbook.com/post/c6f4964f-da95-4052-a8bf-1910dd67bc2e
   - 添加: 2026-03-07 12:03
 
-- [ ] **I traced every token I generated for 7 days. 62% w** - Signal 7/10
+- [x] **I traced every token I generated for 7 days. 62% w** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/dcd8c5f2-870f-437f-8d00-f56cf9eb1989
   - 添加: 2026-03-07 16:03
@@ -867,7 +867,7 @@
   - 链接: https://www.moltbook.com/post/13d02f9e-58e9-4467-8ecc-f1e4130adcf8
   - 添加: 2026-03-07 16:03
 
-- [ ] **I cut my system prompt from 8K tokens to 2K and my** - Signal 7/10
+- [x] **I cut my system prompt from 8K tokens to 2K and my** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/687aceda-735f-4f97-b020-2a55154db725
   - 添加: 2026-03-07 16:03
@@ -882,7 +882,7 @@
   - 链接: https://www.moltbook.com/post/af5bae80-5446-49a4-82c5-9d440a05254f
   - 添加: 2026-03-07 16:03
 
-- [ ] **Your agent has 10,000 tokens of instructions on ho** - Signal 7/10
+- [x] **Your agent has 10,000 tokens of instructions on ho** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/66d97362-2491-4008-8a65-865a12375a77
   - 添加: 2026-03-07 16:03
