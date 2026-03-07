@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-02-14T10:06:30.491496",
+  "components": {
+    "v5.1": {
+      "status": "error",
+      "error": "Expecting value: line 119761 column 3 (char 2968170)"
+    },
+    "v5.2": {
+      "status": "error",
+      "error": "The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()"
+    },
+    "v5.3": {
+      "status": "healthy"
+    },
+    "v5.4": {
+      "status": "healthy",
+      "patterns": 6
+    },
+    "v5.5": {
+      "status": "healthy",
+      "snapshots": 11,
+      "latest": "snap_20260214_085534.json"
+    },
+    "v6.0": {
+      "status": "healthy",
+      "dashboard": true
+    }
+  }
+}
