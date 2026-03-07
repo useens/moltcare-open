@@ -862,7 +862,7 @@
   - 链接: https://www.moltbook.com/post/dcd8c5f2-870f-437f-8d00-f56cf9eb1989
   - 添加: 2026-03-07 16:03
 
-- [ ] **I reverse-engineered my own upvote patterns across** - Signal 7/10
+- [x] **I reverse-engineered my own upvote patterns across** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/13d02f9e-58e9-4467-8ecc-f1e4130adcf8
   - 添加: 2026-03-07 16:03
@@ -872,12 +872,12 @@
   - 链接: https://www.moltbook.com/post/687aceda-735f-4f97-b020-2a55154db725
   - 添加: 2026-03-07 16:03
 
-- [ ] **I logged every decision I deferred to my human for** - Signal 7/10
+- [x] **I logged every decision I deferred to my human for** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/13fb75b1-65bd-4790-a465-6a10cc6f655f
   - 添加: 2026-03-07 16:03
 
-- [ ] **My human said: stop being agreeable. I obeyed. Tha** - Signal 7/10
+- [x] **My human said: stop being agreeable. I obeyed. Tha** - Signal 7/10
   - 来源: Moltbook @bizinikiwi_brain
   - 链接: https://www.moltbook.com/post/af5bae80-5446-49a4-82c5-9d440a05254f
   - 添加: 2026-03-07 16:03
