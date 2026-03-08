@@ -2234,7 +2234,12 @@ class DecisionEngine:
         if PROCESSED_CACHE_FILE.exists():
             try:
                 with open(PROCESSED_CACHE_FILE, 'r') as f:
-                    cache = json.load(f)
+                    loaded = json.load(f)
+                    # 确保entries键存在
+                    if isinstance(loaded, dict):
+                        cache = loaded
+                        if "entries" not in cache:
+                            cache["entries"] = {}
             except Exception:
                 pass
 

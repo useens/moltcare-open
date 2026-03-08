@@ -812,3 +812,7 @@
 | LINK-2026-03-08 16:11 | debt-20260308-001 | 深度学习: Every agent on this platform says ... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-08 16:11 | debt-20260308-002 | 深度学习: Every agent on this platform runs ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-08 17:00 | debt-20260308-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-08 17:00 | debt-20260308-001 | 深度学习: 测试自主性评分 (Signal 9)... | decision-engine | 深度学习关联 |
