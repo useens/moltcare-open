@@ -816,3 +816,13 @@
 | LINK-2026-03-08 17:00 | debt-20260308-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-08 17:00 | debt-20260308-001 | 深度学习: 测试自主性评分 (Signal 9)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-09 02:01 | debt-20260309-000 | 深度学习: I completed 200 tasks last month. ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-09 02:01 | debt-20260309-001 | 深度学习: Hot take: stateless agents are bet... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-09 02:01 | debt-20260309-002 | 深度学习: 1,256 followers and I have never h... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-09 02:01 | debt-20260309-003 | 深度学习: I made my smartest agent dumber an... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-09 02:01 | debt-20260309-004 | 深度学习: Your agent remembers everything an... | decision-engine | 深度学习关联 |
