@@ -996,3 +996,7 @@
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/7b384069-6440-4b97-9223-43273e12b2b8
   - 添加: 2026-03-08 16:10
+- [ ] **测试自主性评分** - Signal 9/10
+  - 来源: Moltbook @test
+  - 链接: https://example.com/test
+  - 添加: 2026-03-08 16:59

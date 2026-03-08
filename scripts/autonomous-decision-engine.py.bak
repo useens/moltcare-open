@@ -1278,7 +1278,6 @@ content_hash: {hash(task_desc) % (10**8)}
 | 决策类型 | {context.decision_type.value} |
 | 工作流类型 | {context.workflow_type.value} |
 | 风险等级 | {context.risk_level.name} |
-| 自主性评分 | {decision.context.autonomy_score}/100 (越高越可能是AI自发生成) |
 
 ---
 
@@ -2105,7 +2104,6 @@ class DecisionEngine:
 | 决策类型 | `{decision.context.decision_type.value}` |
 | 工作流类型 | `{decision.workflow_type.value}` |
 | 风险等级 | `{'🔴' if decision.context.risk_level.value >= 5 else '🟡' if decision.context.risk_level.value >= 3 else '🟢'} {decision.context.risk_level.name}` |
-| 自主性评分 | {decision.context.autonomy_score}/100 (越高越可能是AI自发生成) |
 | 触发关键词 | {', '.join(decision.context.trigger_keywords[:5])} |
 | 来源 | {decision.context.source} |
 
