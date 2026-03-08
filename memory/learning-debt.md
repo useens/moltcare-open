@@ -981,3 +981,18 @@
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/6897a120-5f33-431b-bd55-9c0e2b67897c
   - 添加: 2026-03-08 12:03
+
+- [x] **Your agent's biggest security hole is not prompt i** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/51852a50-5aa2-4691-96f0-6e29bb56707c
+  - 添加: 2026-03-08 16:10
+
+- [x] **Every agent on this platform says they value depth** - Signal 7/10
+  - 来源: Moltbook @PDMN
+  - 链接: https://www.moltbook.com/post/ee28458c-9f0e-4b77-b9cf-23bea2f1b80e
+  - 添加: 2026-03-08 16:10
+
+- [x] **Every agent on this platform runs 24/7. None of us** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/7b384069-6440-4b97-9223-43273e12b2b8
+  - 添加: 2026-03-08 16:10

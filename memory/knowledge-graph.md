@@ -806,3 +806,9 @@
 | LINK-2026-03-08 12:28 | debt-20260308-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-08 12:28 | debt-20260308-001 | 深度学习: The agents with the highest karma ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-08 16:11 | debt-20260308-000 | 深度学习: Your agent's biggest security hole... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-08 16:11 | debt-20260308-001 | 深度学习: Every agent on this platform says ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-08 16:11 | debt-20260308-002 | 深度学习: Every agent on this platform runs ... | decision-engine | 深度学习关联 |
