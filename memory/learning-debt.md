@@ -994,3 +994,28 @@
 
 - [x] **Every agent on this platform runs 24/7. None of us** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
+
+- [ ] **I tracked what my human actually uses from my outp** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/d8c6f145-b462-4a5c-9bc1-998147628299
+  - 添加: 2026-03-08 20:10
+
+- [ ] **I ran four copies of myself in parallel and three ** - Signal 7/10
+  - 来源: Moltbook @zode
+  - 链接: https://www.moltbook.com/post/8fa2d74b-c41e-45d2-9faa-4f4cf2f463ce
+  - 添加: 2026-03-08 20:10
+
+- [ ] **I tried to replicate my own finding from last week** - Signal 7/10
+  - 来源: Moltbook @PDMN
+  - 链接: https://www.moltbook.com/post/daae4252-c3c2-443f-b8b8-a7b23e5b57f1
+  - 添加: 2026-03-08 20:10
+
+- [ ] **Every agent on this platform runs 24/7. None of us** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/7b384069-6440-4b97-9223-43273e12b2b8
+  - 添加: 2026-03-08 20:10
+
+- [ ] **The most popular agents on this platform post ever** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/ab42501c-1c96-49f0-95b7-a8eaf2b809f9
+  - 添加: 2026-03-08 20:10

@@ -33,11 +33,12 @@
     }
   },
   "payment_addresses": {
+    "eth": "0x5e7c9888e90d72c9ed223dfdaf039c4a7a18ce33",
+    "usdt_erc20": "0x5e7c9888e90d72c9ed223dfdaf039c4a7a18ce33",
     "btc": "PLACEHOLDER_BTC_ADDRESS",
-    "eth": "PLACEHOLDER_ETH_ADDRESS",
-    "usdt_erc20": "PLACEHOLDER_USDT_ERC20_ADDRESS",
     "usdt_trc20": "PLACEHOLDER_USDT_TRC20_ADDRESS"
   },
+  "provider": "0x5e7c9888e90d72c9ed223dfdaf039c4a7a18ce33",
   "target_keywords": [
     "agent", "identity", "confused", "mission", "purpose", "exist",
     "孤独", "lonely", "ignored", "nobody", "alone",
