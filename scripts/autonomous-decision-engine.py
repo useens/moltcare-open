@@ -49,6 +49,7 @@ WORKSPACE = Path("/root/.openclaw/workspace")
 LOG_DIR = WORKSPACE / "logs"
 DATA_DIR = WORKSPACE / "data"
 REPORTS_DIR = WORKSPACE / "reports"
+PROCESSED_CACHE_FILE = DATA_DIR / "processed-tasks-cache.json"
 MEMORY_DIR = WORKSPACE / "memory"
 SCRIPTS_DIR = WORKSPACE / "scripts"
 CORE_DIR = WORKSPACE / "core"
@@ -2189,10 +2190,88 @@ class DecisionEngine:
 *由 自主决策引擎 v{decision.version} 生成*  
 *集成 CC_GodMode 工作流编排思想*
 """
-        
+
         report_file.write_text(report_content, encoding='utf-8')
         logger.info(f"📄 报告已生成: {report_file}")
-    
+
+    # ============================================================================
+    # 任务内容缓存 - 避免重复处理
+    # ============================================================================
+
+    def _check_task_cache(self, topic: str, source: str = "learning-debt-scan") -> Optional[Dict]:
+        """检查任务是否已处理过（24小时缓存）"""
+        if not PROCESSED_CACHE_FILE.exists():
+            return None
+
+        try:
+            with open(PROCESSED_CACHE_FILE, 'r') as f:
+                cache = json.load(f)
+        except Exception:
+            return None
+
+        # 生成内容唯一键
+        import hashlib
+        content_key = hashlib.md5(f"{topic}|{source}".encode()).hexdigest()[:16]
+
+        if content_key in cache.get("entries", {}):
+            entry = cache["entries"][content_key]
+            # 检查是否过期（24小时内）
+            entry_time = datetime.fromisoformat(entry.get("processed_at", ""))
+            if (datetime.now() - entry_time) < timedelta(hours=24):
+                logger.info(f"  ⏭️  已跳过（缓存）: {topic[:50]}... (上次任务: {entry['task_id']})")
+                return entry
+        return None
+
+    def _add_to_task_cache(self, topic: str, source: str, task_id: str,
+                           risk_level: str, outcome: str = "completed"):
+        """将任务添加到缓存"""
+        import hashlib
+
+        cache = {"entries": {}}
+        if PROCESSED_CACHE_FILE.exists():
+            try:
+                with open(PROCESSED_CACHE_FILE, 'r') as f:
+                    cache = json.load(f)
+            except Exception:
+                pass
+
+        # 清理过期条目（24小时前）
+        cutoff = datetime.now() - timedelta(hours=24)
+        cache["entries"] = {
+            k: v for k, v in cache["entries"].items()
+            if datetime.fromisoformat(v.get("processed_at", "")) >= cutoff
+        }
+
+        # 限制最大条目数
+        if len(cache["entries"]) > 200:
+            sorted_entries = sorted(
+                cache["entries"].items(),
+                key=lambda x: datetime.fromisoformat(x[1].get("processed_at", ""))
+            )
+            over_count = len(cache["entries"]) - 200
+            for k, _ in sorted_entries[:over_count]:
+                del cache["entries"][k]
+
+        # 添加新条目
+        content_key = hashlib.md5(f"{topic}|{source}".encode()).hexdigest()[:16]
+        cache["entries"][content_key] = {
+            "topic": topic[:100],
+            "source": source,
+            "task_id": task_id,
+            "risk_level": risk_level,
+            "outcome": outcome,
+            "processed_at": datetime.now().isoformat()
+        }
+
+        # 保存
+        try:
+            PROCESSED_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+            with open(PROCESSED_CACHE_FILE, 'w', encoding='utf-8') as f:
+                json.dump(cache, f, indent=2, ensure_ascii=False)
+            logger.info(f"💾 已添加到缓存: {task_id}")
+        except Exception as e:
+            logger.warning(f"⚠️ 保存缓存失败: {e}")
+
     def scan_learning_debts(self) -> List[DecisionContext]:
         """扫描学习债务 - 支持列表和表格两种格式"""
         contexts = []
@@ -2222,6 +2301,11 @@ class DecisionEngine:
                         if signal >= 7:  # 列表格式：临时降低到7
                             should_trigger, risk_level, keywords = self.detector.assess_task_complexity(topic, signal)
                             if should_trigger:
+                                # ⚠️ 检查缓存 - 避免重复处理
+                                cache_entry = self._check_task_cache(topic, "learning-debt-scan")
+                                if cache_entry:
+                                    continue  # 跳过已处理的内容
+
                                 workflow_type = self.intent_recognizer.recognize(topic)
                                 context = DecisionContext(
                                     task_id=f"debt-{datetime.now().strftime('%Y%m%d')}-{len(contexts):03d}",
@@ -2235,6 +2319,8 @@ class DecisionEngine:
                                     signal=signal
                                 )
                                 contexts.append(context)
+                                # 💾 添加到缓存
+                                self._add_to_task_cache(topic, "learning-debt-scan", context.task_id, str(risk_level))
 
             # ===== 格式2: 表格格式 (新增支持) =====
             elif line.startswith('|') and ('⏳ 待处理' in line or '🔍 待深度学习' in line):
@@ -2262,7 +2348,15 @@ class DecisionEngine:
                                     trigger_keywords=keywords,
                                     signal=signal
                                 )
+                                # ⚠️ 检查缓存 - 避免重复处理
+                                cache_entry = self._check_task_cache(topic, "learning-debt-scan-table")
+                                if cache_entry:
+                                    logger.info(f"  ⏭️  已跳过（缓存）: {topic[:40]}... (Signal {signal})")
+                                    continue
+
                                 contexts.append(context)
+                                # 💾 添加到缓存
+                                self._add_to_task_cache(topic, "learning-debt-scan-table", context.task_id, str(risk_level))
                                 logger.info(f"  📋 表格格式债务: {topic[:40]}... (Signal {signal})")
                     except (ValueError, IndexError):
                         pass  # 不是数字或格式不对，跳过

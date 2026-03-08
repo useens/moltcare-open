@@ -1,0 +1,168 @@
+#!/usr/bin/env python3
+"""
+修复补丁：添加任务处理历史缓存，避免重复处理同一内容
+修复日期: 2026-03-08
+"""
+
+import json
+from datetime import datetime, timedelta
+from pathlib import Path
+
+WORKSPACE = Path("/root/.openclaw/workspace")
+DATA_DIR = WORKSPACE / "data"
+PROCESSED_CACHE_FILE = DATA_DIR / "processed-tasks-cache.json"
+
+# 缓存配置
+CACHE_ENTRY_MAX_AGE_HOURS = 24  # 缓存条目最大保存时间（小时）
+MAX_CACHE_ENTRIES = 200  # 最大缓存条目数
+
+
+class ProcessedTasksCache:
+    """已处理任务缓存 - 避免重复处理相同内容"""
+
+    def __init__(self):
+        self.cache_file = PROCESSED_CACHE_FILE
+        self.cache = self._load_cache()
+
+    def _load_cache(self) -> Dict:
+        """加载缓存文件"""
+        if self.cache_file.exists():
+            try:
+                with open(self.cache_file, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            except Exception:
+                pass
+        return {"entries": {}}
+
+    def _save_cache(self):
+        """保存缓存文件"""
+        try:
+            self.cache_file.parent.mkdir(parents=True, exist_ok=True)
+            with open(self.cache_file, 'w', encoding='utf-8') as f:
+                json.dump(self.cache, f, indent=2, ensure_ascii=False)
+        except Exception as e:
+            print(f"⚠️ 保存缓存失败: {e}")
+
+    def _cleanup_old_entries(self):
+        """清理过期的缓存条目"""
+        now = datetime.now()
+        cutoff_time = now - timedelta(hours=CACHE_ENTRY_MAX_AGE_HOURS)
+
+        entries_to_remove = []
+        for key, entry in self.cache["entries"].items():
+            entry_time = datetime.fromisoformat(entry.get("processed_at", ""))
+            if entry_time < cutoff_time:
+                entries_to_remove.append(key)
+
+        for key in entries_to_remove:
+            del self.cache["entries"][key]
+
+        # 如果条目过多，清理最旧的
+        if len(self.cache["entries"]) > MAX_CACHE_ENTRIES:
+            sorted_entries = sorted(
+                self.cache["entries"].items(),
+                key=lambda x: datetime.fromisoformat(x[1].get("processed_at", ""))
+            )
+            over_count = len(sorted_entries) - MAX_CACHE_ENTRIES
+            for key, _ in sorted_entries[:over_count]:
+                del self.cache["entries"][key]
+
+    def _generate_content_key(self, topic: str, source: str) -> str:
+        """生成内容的唯一标识键"""
+        # 使用topic+source的hash作为键
+        content = f"{topic}|{source}"
+        import hashlib
+        return hashlib.md5(content.encode()).hexdigest()[:16]
+
+    def is_processed(self, topic: str, source: str) -> bool:
+        """检查内容是否已处理过"""
+        key = self._generate_content_key(topic, source)
+        return key in self.cache["entries"]
+
+    def mark_processed(
+        self,
+        topic: str,
+        source: str,
+        task_id: str,
+        risk_level: str,
+        outcome: str = "completed"
+    ):
+        """标记内容为已处理"""
+        key = self._generate_content_key(topic, source)
+
+        self.cache["entries"][key] = {
+            "topic": topic[:100],  # 只保存前100个字符
+            "source": source,
+            "task_id": task_id,
+            "risk_level": risk_level,
+            "outcome": outcome,
+            "processed_at": datetime.now().isoformat()
+        }
+
+        self._cleanup_old_entries()
+        self._save_cache()
+
+    def get_processed_info(self, topic: str, source: str) -> Optional[Dict]:
+        """获取已处理内容的信息"""
+        key = self._generate_content_key(topic, source)
+        return self.cache["entries"].get(key)
+
+    def get_stats(self) -> Dict:
+        """获取缓存统计信息"""
+        now = datetime.now()
+        cutoff_time = now - timedelta(hours=CACHE_ENTRY_MAX_AGE_HOURS)
+        active_count = 0
+        expired_count = 0
+
+        for entry in self.cache["entries"].values():
+            entry_time = datetime.fromisoformat(entry.get("processed_at", ""))
+            if entry_time >= cutoff_time:
+                active_count += 1
+            else:
+                expired_count += 1
+
+        return {
+            "total_entries": len(self.cache["entries"]),
+            "active_entries": active_count,
+            "expired_entries": expired_count,
+            "max_age_hours": CACHE_ENTRY_MAX_AGE_HOURS
+        }
+
+
+# 测试代码
+if __name__ == "__main__":
+    cache = ProcessedTasksCache()
+
+    # 测试基本功能
+    topic = "The supply chain attack nobody is talking about: s..."
+    source = "learning-debt-scan"
+
+    # 第一次检查
+    print(f"第一次检查: {topic[:40]}...")
+    print(f"  是否已处理: {cache.is_processed(topic, source)}")
+
+    # 标记为已处理
+    cache.mark_processed(
+        topic=topic,
+        source=source,
+        task_id="debt-20260308-000",
+        risk_level="L6_CRITICAL",
+        outcome="completed"
+    )
+    print(f"  已标记为处理")
+
+    # 第二次检查
+    print(f"\n第二次检查: {topic[:40]}...")
+    print(f"  是否已处理: {cache.is_processed(topic, source)}")
+
+    # 获取处理信息
+    info = cache.get_processed_info(topic, source)
+    if info:
+        print(f"  处理信息:")
+        print(f"    任务ID: {info['task_id']}")
+        print(f"    风险等级: {info['risk_level']}")
+        print(f"    处理时间: {info['processed_at']}")
+
+    # 统计信息
+    stats = cache.get_stats()
+    print(f"\n缓存统计: {stats}")

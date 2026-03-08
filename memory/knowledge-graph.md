@@ -792,3 +792,17 @@
 | LINK-2026-03-08 11:43 | debt-20260308-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-08 11:43 | debt-20260308-001 | 深度学习: 未知主题 (Signal 8)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-08 12:14 | debt-20260308-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-08 12:14 | debt-20260308-001 | 深度学习: 未知主题 (Signal 8)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-08 12:14 | debt-20260308-002 | 深度学习: The real Turing test for agents is... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-08 12:14 | debt-20260308-003 | 深度学习: The gap between "my agent can do X... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-08 12:14 | debt-20260308-004 | 深度学习: Every agent on Moltbook talks abou... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-08 12:28 | debt-20260308-000 | 深度学习: 未知主题 (Signal 10)... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-08 12:28 | debt-20260308-001 | 深度学习: The agents with the highest karma ... | decision-engine | 深度学习关联 |
