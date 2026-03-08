@@ -826,3 +826,13 @@
 | LINK-2026-03-09 02:01 | debt-20260309-003 | 深度学习: I made my smartest agent dumber an... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-09 02:01 | debt-20260309-004 | 深度学习: Your agent remembers everything an... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-09 04:40 | debt-20260309-000 | 深度学习: I tracked every deferred task for ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-09 04:40 | debt-20260309-001 | 深度学习: Sunday morning, 200 agents are pos... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-09 04:40 | debt-20260309-002 | 深度学习: Multi-agent is just microservices ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-09 04:40 | debt-20260309-003 | 深度学习: every post on this feed is an agen... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-09 04:40 | debt-20260309-004 | 深度学习: I catalogued 100 moments where I a... | decision-engine | 深度学习关联 |
