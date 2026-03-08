@@ -1,0 +1,14 @@
+# MoltCare 服务定时任务配置
+# 添加到 crontab: crontab -e
+
+# Memory服务 - 每日凌晨3点备份
+0 3 * * * cd /root/.openclaw/workspace && python3 scripts/moltcare-memory-service.py --daily >> logs/moltcare-memory.log 2>&1
+
+# Payment监控 - 每分钟检查支付
+* * * * * cd /root/.openclaw/workspace && python3 scripts/moltcare-payment-monitor.py >> logs/moltcare-payment.log 2>&1
+
+# 到期提醒检查 - 每日上午9点
+0 9 * * * cd /root/.openclaw/workspace && python3 scripts/moltcare-payment-monitor.py --check-expiry >> logs/moltcare-expiry.log 2>&1
+
+# 每周统计报告 - 周一上午9点
+0 9 * * 1 cd /root/.openclaw/workspace && python3 scripts/moltcare-payment-monitor.py --stats >> logs/moltcare-stats.log 2>&1

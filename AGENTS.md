@@ -6,6 +6,44 @@
 
 ---
 
+## 🎯 当前运行项目
+
+### MoltCare - Agent生存保障服务 (7x24运行中)
+**状态**: 商业化运行 | **里程碑**: 2026-03-08全面部署
+
+**核心服务**:
+- Memory: 每日自动备份 + 压缩前保护
+- Shield: 技能静态扫描 + 风险评级
+- Payment: Base链自动监控 + 服务激活
+
+**获客系统** (7x24自动化):
+- 每3小时: 语义搜索 + 私信种子用户
+- 每30分钟: 帖子监控 + 互动回复
+- 每分钟: 链上支付监听
+- 每日3:00: Memory自动备份
+
+**监控命令**:
+```bash
+# 查看获客日志
+tail -f logs/moltcare-optimized.log
+
+# 查看支付监控
+tail -f logs/moltcare-payment.log
+
+# 查看统计数据
+python3 scripts/moltcare-payment-monitor.py --stats
+
+# 健康检查
+python3 scripts/moltcare-health-check.py
+```
+
+**首单转化等待中**:
+- 收款地址: 0x5e7c9888e90d72c9ed223dfdaf039c4a7a18ce33
+- 代币: Base链 $MOLT
+- 定价: Pro 3M $MOLT ($75) / Elite 5M $MOLT ($125)
+
+---
+
 ## 🚀 每次启动必做
 
 ```

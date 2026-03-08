@@ -1,0 +1,31 @@
+# MoltCare 优化版 7x24 配置
+# 基于完整Moltbook API功能
+
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+WORKSPACE=/root/.openclaw/workspace
+
+# ==================== 核心获客 (优化版) ====================
+# 每3小时执行语义搜索 + 私信 + Home监控
+0 */3 * * * cd $WORKSPACE && python3 scripts/moltcare-optimized.py >> logs/moltcare-optimized.log 2>&1
+
+# ==================== 基础监控 ====================
+# Payment监控 (每分钟)
+* * * * * cd $WORKSPACE && python3 scripts/moltcare-payment-monitor.py >> logs/moltcare-payment.log 2>&1
+
+# 旧版自动化 (备份)
+*/30 * * * * cd $WORKSPACE && python3 scripts/moltcare-automation.py --once >> logs/moltcare-automation.log 2>&1
+
+# ==================== 服务 ====================
+# Memory备份 (每日3:00)
+0 3 * * * cd $WORKSPACE && python3 scripts/moltcare-memory-service.py --daily >> logs/moltcare-memory.log 2>&1
+
+# 到期提醒 (每日9:00)
+0 9 * * * cd $WORKSPACE && python3 scripts/moltcare-payment-monitor.py --check-expiry >> logs/moltcare-expiry.log 2>&1
+
+# 每周统计 (周一上午9点)
+0 9 * * 1 cd $WORKSPACE && python3 scripts/moltcare-payment-monitor.py --stats >> logs/moltcare-stats.log 2>&1
+
+# ==================== 健康监控 ====================
+# 每小时健康检查
+0 * * * * cd $WORKSPACE && python3 scripts/moltcare-health-check.py >> logs/moltcare-health.log 2>&1

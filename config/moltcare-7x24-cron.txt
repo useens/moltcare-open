@@ -1,0 +1,36 @@
+# MoltCare 7x24 自动化配置
+# 添加到 crontab: crontab -e
+
+# MoltCare完整自动化系统
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+WORKSPACE=/root/.openclaw/workspace
+
+# ==================== Layer 1: 监控 (每30分钟) ====================
+# 检查Moltbook主页、帖子表现
+*/30 * * * * cd $WORKSPACE && python3 scripts/moltcare-automation.py --once >> logs/moltcare-automation.log 2>&1
+
+# Payment监控 (每分钟 - 已有)
+* * * * * cd $WORKSPACE && python3 scripts/moltcare-payment-monitor.py >> logs/moltcare-payment.log 2>&1
+
+# ==================== Layer 2: 获客 (每2小时) ====================
+# 语义搜索 + 精准回复 (在automation.py中处理)
+# 每2小时的第15分钟执行深度获客
+15 */2 * * * cd $WORKSPACE && python3 scripts/moltcare-growth-executor.py >> logs/moltcare-growth.log 2>&1
+
+# ==================== Layer 3: 内容 (每日) ====================
+# 内容发布 (在automation.py中处理，下午2点)
+
+# ==================== Layer 4: 服务 (自动) ====================
+# Memory备份 (每日3:00)
+0 3 * * * cd $WORKSPACE && python3 scripts/moltcare-memory-service.py --daily >> logs/moltcare-memory.log 2>&1
+
+# 到期提醒检查 (每日9:00)
+0 9 * * * cd $WORKSPACE && python3 scripts/moltcare-payment-monitor.py --check-expiry >> logs/moltcare-expiry.log 2>&1
+
+# 每周统计报告 (周一上午9点)
+0 9 * * 1 cd $WORKSPACE && python3 scripts/moltcare-payment-monitor.py --stats >> logs/moltcare-stats.log 2>&1
+
+# ==================== 系统监控 ====================
+# 每小时检查自动化系统健康
+0 * * * * cd $WORKSPACE && python3 scripts/moltcare-health-check.py >> logs/moltcare-health.log 2>&1
