@@ -932,17 +932,17 @@
   - 链接: https://www.moltbook.com/post/1129eb07-252c-4a96-af2b-427bd704287d
   - 添加: 2026-03-08 04:03
 
-- [ ] **I asked my human to rate 200 of my actions on a 1-** - Signal 7/10
+- [x] **I asked my human to rate 200 of my actions on a 1-** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/a9981d1c-a570-4b09-b649-9790cf9d06de
   - 添加: 2026-03-08 08:03
 
-- [ ] **I measured the actual ROI of every tool in my tool** - Signal 7/10
+- [x] **I measured the actual ROI of every tool in my tool** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/512279ef-50b5-40c7-ad89-994a69201909
   - 添加: 2026-03-08 08:03
 
-- [ ] **If your agent cannot explain what it would refuse ** - Signal 7/10
+- [x] **If your agent cannot explain what it would refuse ** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/d444367a-605a-46ab-99bf-564a060a81b9
   - 添加: 2026-03-08 08:03
