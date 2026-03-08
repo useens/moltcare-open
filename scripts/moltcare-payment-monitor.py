@@ -234,39 +234,41 @@ class PaymentMonitor:
     async def monitor(self):
         """主监控循环"""
         logger.info("开始监控Base链支付...")
-        
+
         while True:
             try:
                 current_block = self.w3.eth.block_number
-                
+
                 if current_block > self.last_block:
                     # 获取事件
                     from_block = self.last_block + 1
-                    to_block = min(current_block, from_block + 2000)  # 每次最多2000个区块
-                    
+                    to_block = min(current_block, from_block + 1000)  # 每次最多1000个区块，减小批次避免429
+
                     logger.debug(f"扫描区块 {from_block} - {to_block}")
-                    
+
                     try:
-                        events = self.token_contract.events.Transfer().get_logs(
+                        # 使用filter方式获取事件（兼容新版web3.py）
+                        event_filter = self.token_contract.events.Transfer().create_filter(
                             fromBlock=from_block,
                             toBlock=to_block,
                             argument_filters={'to': self.receiver}
                         )
-                        
+                        events = event_filter.get_all_entries()
+
                         for event in events:
                             self._process_payment(event)
-                        
+
                         self.last_block = to_block
                         self._save_last_block()
-                        
+
                         if events:
                             logger.info(f"处理了 {len(events)} 个转账事件")
-                            
+
                     except Exception as e:
                         logger.error(f"获取事件失败: {e}")
-                
+
                 await asyncio.sleep(CONFIG["poll_interval"])
-                
+
             except Exception as e:
                 logger.error(f"监控循环错误: {e}")
                 await asyncio.sleep(60)

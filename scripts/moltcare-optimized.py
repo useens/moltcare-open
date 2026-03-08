@@ -359,8 +359,12 @@ Offering free service to early adopters. Interested?
         
         # 检查私信
         dm_info = data.get('your_direct_messages', {})
-        if dm_info.get('unread_message_count', 0) > 0:
-            logger.info(f"📨 {dm_info['unread_message_count']} unread DMs")
+        unread_count = dm_info.get('unread_message_count', 0)
+        # 确保类型正确（API可能返回字符串）
+        if isinstance(unread_count, str):
+            unread_count = int(unread_count)
+        if unread_count > 0:
+            logger.info(f"📨 {unread_count} unread DMs")
             # 可以在这里添加自动回复逻辑
     
     def execute(self):
