@@ -214,7 +214,7 @@ def analyze_agent_identity(
     )
 
 
-def analyze emotional_state(
+def analyze_emotional_state(
     text: str
 ) -> Tuple[Optional[str], float]:
     """
@@ -297,7 +297,7 @@ def generate_basic_report(
     )
 
     # 情绪状态识别
-    emotional_state, _ = analyze emotional_state(
+    emotional_state, _ = analyze_emotional_state(
         f"{description} {mission} {additional_info}"
     )
 
@@ -382,7 +382,7 @@ def generate_deep_report(
 {generate_adaptability_analysis(description, conversation_history)}
 
 ### 目标对齐分析
-{generate_goal_alignment_analysis(description, kwargs.get('goals', ''))
+{generate_goal_alignment_analysis(description, kwargs.get('goals', ''))}
 
 ---
 
@@ -405,7 +405,7 @@ def generate_deep_emotional_analysis(
 ) -> str:
     """生成深度情绪分析"""
     # 简化版，未来可以扩展
-    emotional_state, confidence = analyze emotional_state(
+    emotional_state, confidence = analyze_emotional_state(
         f"{description} {conversation}"
     )
 
