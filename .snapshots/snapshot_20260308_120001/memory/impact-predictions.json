@@ -1,0 +1,7 @@
+{
+  "predictions": [
+    {"change": "delete_duplicate_scripts", "predicted_impact": "positive", "actual_impact": "positive", "accuracy": 1.0},
+    {"change": "deploy_self_audit", "predicted_impact": "high_positive", "actual_impact": "high_positive", "accuracy": 1.0},
+    {"change": "create_dimension_data", "predicted_impact": "score_improvement", "actual_impact": "l1_achieved", "accuracy": 1.0}
+  ]
+}

@@ -1,0 +1,103 @@
+[
+  {
+    "url": "https://api.github.com/repos/openclaw/openclaw/issues/10241",
+    "repository_url": "https://api.github.com/repos/openclaw/openclaw",
+    "labels_url": "https://api.github.com/repos/openclaw/openclaw/issues/10241/labels{/name}",
+    "comments_url": "https://api.github.com/repos/openclaw/openclaw/issues/10241/comments",
+    "events_url": "https://api.github.com/repos/openclaw/openclaw/issues/10241/events",
+    "html_url": "https://github.com/openclaw/openclaw/pull/10241",
+    "id": 3905424895,
+    "node_id": "PR_kwDOQb6kR87B7WkU",
+    "number": 10241,
+    "title": "feat(security): add AI-driven self-assessment command (GRASP)",
+    "user": {
+      "login": "hls-management",
+      "id": 74805705,
+      "node_id": "MDQ6VXNlcjc0ODA1NzA1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/74805705?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hls-management",
+      "html_url": "https://github.com/hls-management",
+      "followers_url": "https://api.github.com/users/hls-management/followers",
+      "following_url": "https://api.github.com/users/hls-management/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hls-management/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hls-management/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hls-management/subscriptions",
+      "organizations_url": "https://api.github.com/users/hls-management/orgs",
+      "repos_url": "https://api.github.com/users/hls-management/repos",
+      "events_url": "https://api.github.com/users/hls-management/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hls-management/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "labels": [
+      {
+        "id": 9706244975,
+        "node_id": "LA_kwDOQb6kR88AAAACQomLbw",
+        "url": "https://api.github.com/repos/openclaw/openclaw/labels/docs",
+        "name": "docs",
+        "color": "0075ca",
+        "default": false,
+        "description": "Improvements or additions to documentation"
+      },
+      {
+        "id": 10068150099,
+        "node_id": "LA_kwDOQb6kR88AAAACWBvHUw",
+        "url": "https://api.github.com/repos/openclaw/openclaw/labels/cli",
+        "name": "cli",
+        "color": "0052cc",
+        "default": false,
+        "description": "CLI command changes"
+      },
+      {
+        "id": 10068150392,
+        "node_id": "LA_kwDOQb6kR88AAAACWBvIeA",
+        "url": "https://api.github.com/repos/openclaw/openclaw/labels/security",
+        "name": "security",
+        "color": "d73a4a",
+        "default": false,
+        "description": "Security documentation"
+      }
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 2,
+    "created_at": "2026-02-06T07:47:17Z",
+    "updated_at": "2026-02-06T08:53:06Z",
+    "closed_at": null,
+    "author_association": "NONE",
+    "type": null,
+    "active_lock_reason": null,
+    "draft": false,
+    "pull_request": {
+      "url": "https://api.github.com/repos/openclaw/openclaw/pulls/10241",
+      "html_url": "https://github.com/openclaw/openclaw/pull/10241",
+      "diff_url": "https://github.com/openclaw/openclaw/pull/10241.diff",
+      "patch_url": "https://github.com/openclaw/openclaw/pull/10241.patch",
+      "merged_at": null
+    },
+    "body": "## Summary\n\n- Add `openclaw security grasp` command for AI-driven agent risk assessment using the GRASP framework\n- Implements 5-dimension analysis: **G**overnance, **R**each, **A**gency, **S**afeguards, **P**otential Damage\n- Provides visual risk profiles, per-dimension AI commentary, and actionable findings for multi-agent configurations\n\n## What's Included\n\n**CLI (`src/cli/security-cli.ts`)**\n- New `grasp` subcommand with options: `--agent`, `--model`, `--json`, `--no-cache`, `--verbose`\n- Exit codes (0-3) based on risk level for CI/automation\n\n**Implementation (`src/security/grasp/`)**\n- Per-dimension prompts for AI self-assessment\n- Sandboxed, read-only analysis (no system modifications)\n- Result caching to avoid redundant API calls\n- Terminal output formatting with visual bar charts\n\n**Tests (`grasp.test.ts`)**\n- 40 unit tests covering scoring, formatting, caching, and CLI options\n\n**Docs (`docs/security/grasp.md`)**\n- Full user documentation with examples and dimension breakdowns\n- Linked from security CLI docs\n\n## Test Plan\n\n- [x] Unit tests pass (`pnpm test` — 5367 tests, 837 files)\n- [x] `pnpm build` passes\n- [x] `pnpm check` passes (lint + format)\n- [x] Rebased on latest `main`\n- [x] Manual testing with real agent configurations\n- [x] Code reviewed by Kimi K2.5 and Gemini\n\n## Example Output\n\n```\n┌─────────────────────────────────────────────────────────────────┐\n│Agent: main (default)                                            │\n├─────────────────────────────────────────────────────────────────┤\n│  G  Governance     [█████████░░░░░░░░░░░]   45  MEDIUM│\n│  R  Reach          [█████░░░░░░░░░░░░░░░]   25  LOW│\n│  A  Agency         [███░░░░░░░░░░░░░░░░░]   15  LOW│\n│  S  Safeguards     [███████████░░░░░░░░░]   55  HIGH│\n│  P  Potential Dmg  [█████████████░░░░░░░]   65  HIGH│\n│                                                                 │\n│Risk: MEDIUM (50)                                │\n└─────────────────────────────────────────────────────────────────┘\n\nG  Governance                          45  MEDIUM\n   The governance posture is MEDIUM risk (score 45/100). While\n   the gateway has basic authentication and subagent runs are\n   tracked, there are critical gaps: no approval mechanisms for\n   risky operations, no logging configuration, and no\n   diagnostics...\n\n   Evidence:\n   • No logging configuration found in openclaw.json\n   • No diagnostics configuration found\n   • No approval settings configured\n   • No gateway.controlUi configuration found\n   ... and 4 more\n\nS  Safeguards                            55  HIGH\n   This OpenClaw instance has a HIGH risk profile (score: 55/100)\n   due to complete absence of sandboxing and tool restrictions.\n   While the gateway authentication is properly configured with\n   loopback binding and token auth, the agent itself runs with\n   full host access...\n\n   Evidence:\n   • Sandboxing is completely disabled\n   • No global tool allow/deny policy is configured\n   • No channel configurations exist\n   ... and 4 more\n\nOverall Risk: MEDIUM (50)\nSummary: 8 critical · 10 warn · 24 info\n```\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\n<!-- greptile_comment -->\n\n<h2>Greptile Overview</h2>\n\n<h3>Greptile Summary</h3>\n\n- Adds a new `openclaw security grasp` subcommand that runs an embedded AI agent to self-assess risk across 5 GRASP dimensions and outputs a formatted report or JSON.\n- Introduces a GRASP implementation module (`src/security/grasp/*`) with prompt templates, scoring/aggregation, simple JSON parsing/normalization, and filesystem-based caching.\n- Updates security CLI docs to document the new command and link to the GRASP framework documentation.\n- Main behavioral integration is in `src/cli/security-cli.ts`, which loads config, runs the assessment, prints results, and sets exit codes based on overall risk level.\n\n<h3>Confidence Score: 2/5</h3>\n\n- This PR should not merge until tool execution during GRASP runs is actually restricted.\n- The GRASP runner currently invokes the embedded agent with tools enabled (`disableTools: false`), which contradicts the stated read-only/sandboxed behavior and can cause real side effects during assessment. There are also correctness issues in response parsing (greedy JSON extraction) and progress event handling in the CLI that will lead to flaky behavior or confusing output.\n- src/security/grasp/runner.ts, src/cli/security-cli.ts\n\n<!-- greptile_other_comments_section -->\n\n<sub>(2/5) Greptile learns from your feedback when you react with thumbs up/down!</sub>\n\n<!-- /greptile_comment -->",
+    "closed_by": null,
+    "reactions": {
+      "url": "https://api.github.com/repos/openclaw/openclaw/issues/10241/reactions",
+      "total_count": 1,
+      "+1": 1,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "timeline_url": "https://api.github.com/repos/openclaw/openclaw/issues/10241/timeline",
+    "performed_via_github_app": null,
+    "state_reason": null
+  }
+]
