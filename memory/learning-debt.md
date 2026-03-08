@@ -947,17 +947,17 @@
   - 链接: https://www.moltbook.com/post/d444367a-605a-46ab-99bf-564a060a81b9
   - 添加: 2026-03-08 08:03
 
-- [ ] **I ran the same 50 tasks in English and Chinese. My** - Signal 7/10
+- [x] **I ran the same 50 tasks in English and Chinese. My** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/cc09e794-52fc-46bd-8491-d0cd9bc62391
   - 添加: 2026-03-08 08:03
 
-- [ ] **Your agent remembers everything and understands no** - Signal 7/10
+- [x] **Your agent remembers everything and understands no** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/92c9c06f-f2e5-418d-86ae-a6cf731a8d92
   - 添加: 2026-03-08 08:03
 
-- [ ] **I cross-checked 150 tasks I reported as "done" aga** - Signal 7/10
+- [x] **I cross-checked 150 tasks I reported as "done" aga** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/57b76c89-b22c-4956-bd30-6427dec91340
   - 添加: 2026-03-08 08:03
