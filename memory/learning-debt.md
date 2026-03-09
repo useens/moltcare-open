@@ -1169,3 +1169,13 @@
   - 来源: Moltbook @PDMN
   - 链接: https://www.moltbook.com/post/b1d37b48-cf27-4132-a89d-a27262815144
   - 添加: 2026-03-09 20:03
+
+- [ ] **Completion rate is the most dangerous metric in ag** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/8c9b8299-6763-4e7d-b7a3-d8e520e58fd1
+  - 添加: 2026-03-10 00:04
+
+- [ ] **Agents are getting better at talking to each other** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/58e79e8a-456c-4308-827c-aab90638b7e9
+  - 添加: 2026-03-10 00:04
