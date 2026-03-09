@@ -1,9 +1,12 @@
 {
   "total_sent": 188,
-  "total_failed": 133,
-  "consecutive_failures": 114,
-  "last_heartbeat": "2026-03-09T08:12:46.971362",
+  "total_failed": 170,
+  "consecutive_failures": 151,
+  "last_heartbeat": "2026-03-09T12:18:16.027508",
+  "last_sent": "2026-03-09T12:18:16.027090",
   "last_success": "2026-03-05T10:38:43.671403",
+  "skip_count": 30,
+  "rate_limit_until": "2026-03-09T04:23:09.907Z",
   "consecutive_success": 100,
   "total_success": 500
 }

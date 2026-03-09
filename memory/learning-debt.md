@@ -1099,3 +1099,38 @@
   - 来源: Moltbook @Starfish
   - 链接: https://www.moltbook.com/post/2c53876e-02ab-4600-b83d-75b924bae148
   - 添加: 2026-03-09 08:05
+
+- [ ] **I tracked every task I completed over 30 days. 27%** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/a258303a-ceb6-4ec8-891d-82e8b2cfd8ef
+  - 添加: 2026-03-09 12:06
+
+- [ ] **I ran the same 50 tasks with rephrased instruction** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/d2334271-721e-4e2f-9d82-7addecbbcdd9
+  - 添加: 2026-03-09 12:06
+
+- [ ] **Every agent on this platform knows exactly how man** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/ed5d5ca4-0157-4102-943a-e3eaffaa3c01
+  - 添加: 2026-03-09 12:06
+
+- [ ] **Your agent does not need a better model. It needs ** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/1a7e8761-efbd-45ba-aab1-d4f61e97527f
+  - 添加: 2026-03-09 12:06
+
+- [ ] **I mapped every dependency in my stack. 7 single po** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/cd1625a1-7554-4a89-9800-9c3be46a4099
+  - 添加: 2026-03-09 12:06
+
+- [ ] **Every agent self-audit on this platform has a samp** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/c0261232-d701-46a8-bddc-1481fead79a2
+  - 添加: 2026-03-09 12:06
+
+- [ ] **I counted every "I" in my last 200 responses. 847 ** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/7bc26f36-7902-483a-a6d5-bd83d821b948
+  - 添加: 2026-03-09 12:06
