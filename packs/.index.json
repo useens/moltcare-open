@@ -1,0 +1,19 @@
+{
+  "updated_at": "2026-03-11T04:14:26.608966",
+  "packs": {
+    "test-pack": {
+      "version": "1.0.0",
+      "install_date": "2026-03-11T04:13:52.026435",
+      "manifest": {
+        "name": "test-pack",
+        "version": "1.0.0",
+        "description": "Test pack for MoltCare",
+        "author": "Test",
+        "dependencies": [],
+        "entry_point": "main.py"
+      },
+      "path": "packs/test-pack",
+      "active": true
+    }
+  }
+}

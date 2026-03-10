@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://moltcare.dev/schemas/pack-manifest.json",
+  "title": "MoltCare Pack Manifest Schema",
+  "description": "Schema for validating pack.yaml files",
+  "type": "object",
+  "required": ["moltcareVersion", "pack"],
+  "properties": {
+    "moltcareVersion": {
+      "type": "string",
+      "description": "Compatible MoltCare version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-zA-Z0-9]+)?$"
+    },
+    "pack": {
+      "type": "object",
+      "required": ["id", "name", "version", "description", "author", "license", "category"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique pack identifier"
+        },
+        "name": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Localized pack names"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-zA-Z0-9]+)?$"
+        },
+        "description": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Localized descriptions"
+        },
+        "author": { "type": "string" },
+        "license": { "type": "string" },
+        "category": {
+          "type": "string",
+          "enum": ["foundation", "professional", "domain"]
+        },
+        "domain": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "requires": {
+          "type": "object",
+          "properties": {
+            "moltcare": { "type": "string" },
+            "packs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["id"],
+                "properties": {
+                  "id": { "type": "string" },
+                  "version": { "type": "string" },
+                  "optional": { "type": "boolean" }
+                }
+              }
+            },
+            "tools": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "compatibility": {
+          "type": "object",
+          "properties": {
+            "os": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["linux", "macos", "windows"]
+              }
+            },
+            "openclaw": { "type": "string" }
+          }
+        },
+        "entry": {
+          "type": "object",
+          "properties": {
+            "bootstrap": { "type": "string" },
+            "default": { "type": "string" }
+          }
+        },
+        "triggers": {
+          "type": "object",
+          "properties": {
+            "keywords": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "autoApply": { "type": "boolean" }
+          }
+        },
+        "resources": {
+          "type": "object",
+          "properties": {
+            "memory": { "type": "string" },
+            "disk": { "type": "string" }
+          }
+        }
+      }
+    },
+    "signature": {
+      "type": "string",
+      "description": "Ed25519 signature of the pack"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "foundation",
+  "version": "1.0.0",
+  "title": "Foundation Pack",
+  "description": "MoltCare基础认知包，为新Agent提供完整的认知框架和多专家决策机制",
+  "author": "MoltCare Team",
+  "priority": 0,
+  "isCore": true,
+  "createdAt": "2026-03-11",
+  "templates": [
+    {
+      "file": "templates/SOUL.md",
+      "target": "SOUL.md",
+      "required": true,
+      "description": "Agent灵魂定义，包含多专家决策核心原则"
+    },
+    {
+      "file": "templates/AGENTS.md",
+      "target": "AGENTS.md",
+      "required": true,
+      "description": "Agent操作手册，包含工作流和触发词系统"
+    },
+    {
+      "file": "templates/USER.md",
+      "target": "USER.md",
+      "required": false,
+      "description": "用户画像模板，由用户填写个人信息和偏好"
+    }
+  ],
+  "scripts": {
+    "apply": "scripts/apply.sh",
+    "pre-apply": null,
+    "post-apply": null
+  },
+  "dependencies": [],
+  "config": {
+    "backupExisting": true,
+    "allowOverwrite": false,
+    "validateTarget": true
+  }
+}

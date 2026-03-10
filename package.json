@@ -1,0 +1,30 @@
+{
+  "name": "moltcare-multi-expert",
+  "version": "1.0.0",
+  "description": "MoltCare 多专家决策系统",
+  "main": "dist/multi-expert/index.js",
+  "types": "dist/multi-expert/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/multi-expert/examples/tech-selection-example.ts",
+    "example": "npm run build && node dist/multi-expert/examples/tech-selection-example.js",
+    "test": "echo '测试将在后续添加'",
+    "lint": "echo '代码风格检查将在后续添加'"
+  },
+  "keywords": [
+    "multi-agent",
+    "decision-making",
+    "expert-system",
+    "moltcare"
+  ],
+  "author": "MoltCare Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

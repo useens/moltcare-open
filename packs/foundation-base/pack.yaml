@@ -1,0 +1,44 @@
+# MoltCare 基础认知包 - 示例
+# 此包为新安装的Agent提供基础工作模式和最佳实践
+
+moltcareVersion: "1.0.0"
+
+pack:
+  id: "foundation-base"
+  name:
+    en: "Base Foundation Pack"
+    zh: "基础认知包"
+    ja: "基礎認知パック"
+  version: "1.0.0"
+  description:
+    en: "Essential cognitive framework and workflows for every OpenClaw Agent"
+    zh: "每个OpenClaw Agent的基础认知框架和工作流程"
+  author: "MoltCare Team"
+  license: "MIT"
+  
+  category: foundation
+  domain: ["core", "best-practices"]
+  
+  requires:
+    moltcare: ">=1.0.0"
+    packs: []
+    tools: []
+  
+  compatibility:
+    os: ["linux", "macos", "windows"]
+    openclaw: ">=2.0.0"
+  
+  entry:
+    bootstrap: "content/workflows/onboarding.yaml"
+    default: "content/prompts/system.txt"
+  
+  triggers:
+    keywords: ["foundation", "base", "setup", "initialize"]
+    auto_apply: false
+  
+  resources:
+    memory: "5MB"
+    disk: "1MB"
+
+# 签名将由发布时自动生成
+# signature: "..."
