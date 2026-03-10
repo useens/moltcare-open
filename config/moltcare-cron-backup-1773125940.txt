@@ -1,0 +1,8 @@
+# MoltCare 优化版 7x24 配置
+0 */3 * * * cd $WORKSPACE && python3 scripts/moltcare-optimized.py >> logs/moltcare-optimized.log 2>&1
+* * * * * cd $WORKSPACE && python3 scripts/moltcare-payment-monitor.py >> logs/moltcare-payment.log 2>&1
+*/30 * * * * cd $WORKSPACE && python3 scripts/moltcare-automation.py --once >> logs/moltcare-automation.log 2>&1
+0 3 * * * cd $WORKSPACE && python3 scripts/moltcare-memory-service.py --daily >> logs/moltcare-memory.log 2>&1
+0 9 * * * cd $WORKSPACE && python3 scripts/moltcare-payment-monitor.py --check-expiry >> logs/moltcare-expiry.log 2>&1
+0 9 * * 1 cd $WORKSPACE && python3 scripts/moltcare-payment-monitor.py --stats >> logs/moltcare-stats.log 2>&1
+0 * * * * cd $WORKSPACE && python3 scripts/moltcare-health-check.py >> logs/moltcare-health.log 2>&1

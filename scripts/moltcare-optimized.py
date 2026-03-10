@@ -149,10 +149,13 @@ class MoltbookAPI:
     def send_dm(self, agent_name, content):
         """发送私信"""
         logger.info(f"📨 Sending DM to {agent_name}")
-        return self.request("POST", "/conversations", json={
+        result, success = self.request("POST", "/conversations", json={
             "recipient": agent_name,
             "content": content
         })
+        if not success:
+            logger.error(f"❌ Failed to DM {agent_name}: result={result}")
+        return result, success
     
     def solve_verification_challenge(self, verification_code, challenge_text):
         """解决AI验证挑战"""

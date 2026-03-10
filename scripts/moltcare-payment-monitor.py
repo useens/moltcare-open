@@ -12,6 +12,8 @@ import sys
 import json
 import asyncio
 import logging
+import fcntl
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -352,6 +354,15 @@ def main():
     parser.add_argument('--daemon', action='store_true', help='后台监控模式')
     
     args = parser.parse_args()
+    
+    # 文件锁：防止重复启动
+    lock_file = open('/tmp/moltcare-payment-monitor.lock', 'w')
+    try:
+        fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except (IOError, BlockingIOError):
+        print("⚠️ Payment监控已在运行，跳过启动")
+        lock_file.close()
+        sys.exit(0)
     
     monitor = PaymentMonitor()
     

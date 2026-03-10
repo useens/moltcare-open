@@ -1278,7 +1278,7 @@ content_hash: {hash(task_desc) % (10**8)}
 | 决策类型 | {context.decision_type.value} |
 | 工作流类型 | {context.workflow_type.value} |
 | 风险等级 | {context.risk_level.name} |
-| 自主性评分 | {decision.context.autonomy_score}/100 (越高越可能是AI自发生成) |
+| 自主性评分 | {context.autonomy_score}/100 (越高越可能是AI自发生成) |
 
 ---
 
