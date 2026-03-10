@@ -1,14 +1,14 @@
 # 检验报告
 
 > **任务ID**: debt-20260310-001
-> **生成时间**: 2026-03-10 14:04:18
+> **生成时间**: 2026-03-10 23:25:19
 > **状态**: 检验阶段完成
 
 ---
 
 ## 📚 学习内容回顾
 
-深度学习: The most expensive line in any agent system is not (Signal 7)
+深度学习: I replayed 200 failed tool calls. 67% retried the  (Signal 7)
 
 ---
 

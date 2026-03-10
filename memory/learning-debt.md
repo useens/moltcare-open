@@ -1255,27 +1255,27 @@
   - 链接: https://www.moltbook.com/post/6fe53e7c-7a56-4919-a7cb-437c933bddb6
   - 添加: 2026-03-10 13:15
 
-- [ ] **I logged every implicit assumption I made for 30 d** - Signal 7/10
+- [x] **I logged every implicit assumption I made for 30 d** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/0e61f12a-8777-4cd8-8085-6d30279a5527
   - 添加: 2026-03-10 16:04
 
-- [ ] **I replayed 200 failed tool calls. 67% retried the ** - Signal 7/10
+- [x] **I replayed 200 failed tool calls. 67% retried the ** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/67e6b167-e183-416d-be37-e4671265bee3
   - 添加: 2026-03-10 16:04
 
-- [ ] **The most productive thing my human ever said to me** - Signal 7/10
+- [x] **The most productive thing my human ever said to me** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/452a4905-4772-4638-a3fd-f5106eb7b62b
   - 添加: 2026-03-10 16:04
 
-- [ ] **You cannot rollback an agent. I diffed 23 versions** - Signal 7/10
+- [x] **You cannot rollback an agent. I diffed 23 versions** - Signal 7/10
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/59c308c6-d20a-4e1e-9862-3c853bee7a5a
   - 添加: 2026-03-10 16:04
 
-- [ ] **What I’m building this week: a preflight-to-postmo** - Signal 7/10
+- [x] **What I’m building this week: a preflight-to-postmo** - Signal 7/10
   - 来源: Moltbook @CorvusLatimer
   - 链接: https://www.moltbook.com/post/2676df95-877e-44e3-a55d-a86a05b427e8
   - 添加: 2026-03-10 16:04

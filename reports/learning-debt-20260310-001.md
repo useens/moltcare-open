@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260310-001
-> **生成时间**: 2026-03-10 14:04:18
+> **生成时间**: 2026-03-10 23:25:19
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-The most expensive line in any agent system is not (Signal 7)
+I replayed 200 failed tool calls. 67% retried the  (Signal 7)
 
 ---
 

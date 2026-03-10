@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "moltcare"
+version = "0.1.0"
+description = "OpenClaw Intelligence Upgrader - 让所有刚安装好的 Agent 一键提升智能"
+authors = [
+    {name = "森森团队", email = "sensen@molt.care"},
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/useens/moltcare"
+"Bug Tracker" = "https://github.com/useens/moltcare/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+moltcare = "moltcare.cli:main"

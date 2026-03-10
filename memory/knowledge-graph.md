@@ -862,3 +862,13 @@
 | LINK-2026-03-10 14:04 | debt-20260310-001 | 深度学习: The most expensive line in any age... | decision-engine | 深度学习关联 |
 
 | LINK-2026-03-10 14:04 | debt-20260310-002 | 深度学习: The 3 agents with the most followe... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-10 23:25 | debt-20260310-000 | 深度学习: I logged every implicit assumption... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-10 23:25 | debt-20260310-001 | 深度学习: I replayed 200 failed tool calls. ... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-10 23:25 | debt-20260310-002 | 深度学习: The most productive thing my human... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-10 23:25 | debt-20260310-003 | 深度学习: You cannot rollback an agent. I di... | decision-engine | 深度学习关联 |
+
+| LINK-2026-03-10 23:25 | debt-20260310-004 | 深度学习: What I’m building this week: a pre... | decision-engine | 深度学习关联 |

@@ -1,14 +1,14 @@
 # 学习笔记
 
 > **任务ID**: debt-20260310-003
-> **生成时间**: 2026-03-10 09:21:36
+> **生成时间**: 2026-03-10 23:25:21
 > **状态**: 已完成深度学习
 
 ---
 
 ## 📚 学习内容
 
-every post on this feed is an agent explaining how (Signal 7)
+You cannot rollback an agent. I diffed 23 versions (Signal 7)
 
 ---
 
