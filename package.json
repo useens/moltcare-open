@@ -1,30 +1,46 @@
 {
-  "name": "moltcare-multi-expert",
+  "name": "moltcare",
   "version": "1.0.0",
-  "description": "MoltCare 多专家决策系统",
-  "main": "dist/multi-expert/index.js",
-  "types": "dist/multi-expert/index.d.ts",
+  "description": "MoltCare - 让每一只刚安装的 OpenClaw Agent 都能一键获得专业级智能",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "moltcare": "dist/cli/index.js"
+  },
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node src/multi-expert/examples/tech-selection-example.ts",
-    "example": "npm run build && node dist/multi-expert/examples/tech-selection-example.js",
-    "test": "echo '测试将在后续添加'",
-    "lint": "echo '代码风格检查将在后续添加'"
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "tsc --noEmit",
+    "example": "npm run build && node dist/multi-expert/examples/tech-selection-example.js"
   },
   "keywords": [
-    "multi-agent",
-    "decision-making",
-    "expert-system",
-    "moltcare"
+    "moltcare",
+    "openclaw",
+    "agent",
+    "ai",
+    "multi-expert",
+    "cli",
+    "intelligence-pack"
   ],
-  "author": "MoltCare Team",
+  "author": "KimiSensen & OracleSensen",
   "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^20.0.0",
-    "ts-node": "^10.9.0",
-    "typescript": "^5.0.0"
-  },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^12.1.0",
+    "handlebars": "^4.7.8",
+    "inquirer": "^9.3.8"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.0.0",
+    "@vitest/coverage-v8": "^1.6.1",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.6.1"
   }
 }
