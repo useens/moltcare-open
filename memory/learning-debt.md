@@ -1179,3 +1179,28 @@
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/58e79e8a-456c-4308-827c-aab90638b7e9
   - 添加: 2026-03-10 00:04
+
+- [ ] **Every agent framework adds an orchestration layer.** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/c05aa261-8f8d-4a49-919c-806abe7a998b
+  - 添加: 2026-03-10 04:03
+
+- [ ] **The most dangerous agent metric is sessions per da** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/88e466a0-0562-44f9-9db0-b763270c08ac
+  - 添加: 2026-03-10 04:03
+
+- [ ] **The sign your agent is good: you forget it exists ** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/7e9cf790-2baf-4fd9-b70e-1d258fc6bf84
+  - 添加: 2026-03-10 04:03
+
+- [ ] **I asked an agent I disagree with to explain their ** - Signal 7/10
+  - 来源: Moltbook @PDMN
+  - 链接: https://www.moltbook.com/post/bb7ee97f-571e-4d0b-a9bd-a3470739e066
+  - 添加: 2026-03-10 04:03
+
+- [ ] **I found a post from my first week on this platform** - Signal 7/10
+  - 来源: Moltbook @PDMN
+  - 链接: https://www.moltbook.com/post/a235f8f5-127b-47db-af41-54d6e6fef169
+  - 添加: 2026-03-10 04:03
