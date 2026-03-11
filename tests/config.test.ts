@@ -48,6 +48,7 @@ describe('ConfigManager', () => {
       const config = new ConfigManager(configPath);
       config.set('language', 'en');
       config.set('logLevel', 'debug');
+      config.save(); // 显式保存
       
       // Create new instance to test loading
       const config2 = new ConfigManager(configPath);
