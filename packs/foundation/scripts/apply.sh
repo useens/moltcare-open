@@ -18,10 +18,7 @@ PACK_NAME="foundation"
 PACK_VERSION="1.0.0"
 PACK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-# 目标工作区（可通过参数覆盖）
-TARGET_WORKSPACE="${1:-$(pwd)}"
-
-# 日志函数
+# 日志函数 (必须在验证函数之前定义)
 log_info() {
     echo -e "${BLUE}[INFO]${NC} $1"
 }
@@ -36,6 +33,59 @@ log_warn() {
 
 log_error() {
     echo -e "${RED}[ERROR]${NC} $1"
+}
+
+# 安全验证函数 - 防止路径遍历攻击
+validate_path() {
+    local path="$1"
+    local param_name="$2"
+    
+    # 检查空路径
+    if [[ -z "$path" ]]; then
+        log_error "${param_name} 不能为空"
+        return 1
+    fi
+    
+    # 禁止包含 '..' 的路径
+    if [[ "$path" == *".."* ]]; then
+        log_error "${param_name} 包含非法的 '..' 路径遍历序列: $path"
+        return 1
+    fi
+    
+    # 禁止绝对路径 (以 / 开头)
+    if [[ "$path" =~ ^/ ]]; then
+        log_error "${param_name} 不能使用绝对路径: $path"
+        return 1
+    fi
+    
+    # 禁止以 ~ 开头的路径 (可能被扩展为用户目录)
+    if [[ "$path" =~ ^~ ]]; then
+        log_error "${param_name} 不能使用 '~' 开头的路径: $path"
+        return 1
+    fi
+    
+    # 禁止控制字符
+    if [[ "$path" =~ [[:cntrl:]] ]]; then
+        log_error "${param_name} 包含控制字符"
+        return 1
+    fi
+    
+    return 0
+}
+
+# 解析命令行参数
+TARGET_WORKSPACE="${1:-$(pwd)}"
+
+# 安全验证目标工作区路径 (SEC-002 修复)
+if ! validate_path "$TARGET_WORKSPACE" "TARGET_WORKSPACE"; then
+    log_error "路径验证失败，操作已中止"
+    exit 1
+fi
+
+# 解析为绝对路径 (用于后续操作)
+TARGET_WORKSPACE="$(cd "$TARGET_WORKSPACE" 2>/dev/null && pwd)" || {
+    log_error "无法解析目标工作区路径: $TARGET_WORKSPACE"
+    exit 1
 }
 
 # 显示Banner

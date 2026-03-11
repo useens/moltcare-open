@@ -4,12 +4,14 @@
 
 import json
 import sys
+import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from moltcare.src.pack_manager import PackManager, PackManifest, PackInfo, get_pack_manager
-from tests.test_base import TestBase
+from pack_manager import PackManager, PackManifest, PackInfo, get_pack_manager
+from test_base import TestBase
 
 
 class TestPackManifest(unittest.TestCase):

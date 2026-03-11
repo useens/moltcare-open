@@ -103,6 +103,49 @@ class PackManager:
             print(f"[PackManager] 保存索引失败: {e}")
             return False
     
+    def _sanitize_pack_name(self, name: str) -> Tuple[bool, str]:
+        """
+        净化pack名称，防止路径遍历攻击
+        
+        禁止的字符/模式:
+        - 路径分隔符: /, \
+        - 父目录引用: .. 
+        - 空字符串或纯空白
+        - 以点开头的隐藏文件
+        - 绝对路径
+        
+        Returns:
+            (是否有效, 净化后的名称或错误信息)
+        """
+        if not name or not name.strip():
+            return False, "Pack名称不能为空"
+        
+        # 检查路径分隔符
+        if '/' in name or '\\' in name:
+            return False, "Pack名称不能包含路径分隔符"
+        
+        # 检查父目录引用
+        if '..' in name:
+            return False, "Pack名称不能包含'..'"
+        
+        # 检查隐藏文件 (以.开头)
+        if name.startswith('.'):
+            return False, "Pack名称不能以'.'开头"
+        
+        # 检查控制字符
+        for char in name:
+            if ord(char) < 32 or ord(char) == 127:
+                return False, "Pack名称包含非法控制字符"
+        
+        # 净化：去除首尾空白
+        sanitized = name.strip()
+        
+        # 检查长度限制
+        if len(sanitized) > 100:
+            return False, "Pack名称长度不能超过100字符"
+        
+        return True, sanitized
+
     def _validate_manifest(self, manifest_path: Path) -> Tuple[bool, Optional[PackManifest]]:
         """验证pack清单文件"""
         if not manifest_path.exists():
@@ -113,6 +156,16 @@ class PackManager:
             manifest = PackManifest.from_dict(data)
             if not manifest.name or not manifest.version:
                 return False, None
+            
+            # 验证pack名称安全性 (SEC-001 修复)
+            is_valid_name, result = self._sanitize_pack_name(manifest.name)
+            if not is_valid_name:
+                print(f"[PackManager] Pack名称验证失败: {result}")
+                return False, None
+            
+            # 更新净化后的名称
+            manifest.name = result
+            
             return True, manifest
         except (json.JSONDecodeError, KeyError) as e:
             print(f"[PackManager] 清单验证失败: {e}")
