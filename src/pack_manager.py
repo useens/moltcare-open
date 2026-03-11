@@ -146,6 +146,23 @@ class PackManager:
         
         return True, sanitized
 
+    def sanitizePackName(self, name: str) -> dict:
+        """
+        公共API：净化pack名称
+        
+        Returns:
+            {
+                'valid': bool,
+                'name': str (净化后的名称，如果有效),
+                'error': str (错误信息，如果无效)
+            }
+        """
+        is_valid, result = self._sanitize_pack_name(name)
+        if is_valid:
+            return {'valid': True, 'name': result, 'error': None}
+        else:
+            return {'valid': False, 'name': None, 'error': result}
+
     def _validate_manifest(self, manifest_path: Path) -> Tuple[bool, Optional[PackManifest]]:
         """验证pack清单文件"""
         if not manifest_path.exists():
