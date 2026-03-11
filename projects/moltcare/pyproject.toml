@@ -1,33 +1,75 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "moltcare"
 version = "0.1.0"
-description = "OpenClaw Intelligence Upgrader - 让所有刚安装好的 Agent 一键提升智能"
-authors = [
-    {name = "森森团队", email = "sensen@molt.care"},
-]
+description = "一键提升 OpenClaw Agent 智能"
 readme = "README.md"
 license = {text = "MIT"}
-requires-python = ">=3.8"
+requires-python = ">=3.10"
+authors = [
+    {name = "Moltcare Team"},
+]
+keywords = ["openclaw", "agent", "cli", "ai", "automation"]
 classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "click>=8.0.0",
+    "jinja2>=3.0.0",
+    "requests>=2.28.0",
 ]
 
-[project.urls]
-"Homepage" = "https://github.com/useens/moltcare"
-"Bug Tracker" = "https://github.com/useens/moltcare/issues"
-
-[tool.setuptools.packages.find]
-where = ["src"]
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
 
 [project.scripts]
-moltcare = "moltcare.cli:main"
+moltcare = "moltcare.cli:cli"
+
+[project.urls]
+Homepage = "https://github.com/useens/moltcare"
+Documentation = "https://github.com/useens/moltcare#readme"
+Repository = "https://github.com/useens/moltcare"
+Issues = "https://github.com/useens/moltcare/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["moltcare"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+select = ["E", "F", "W", "I", "N", "D", "UP", "B", "C4", "SIM"]
+ignore = ["D100", "D104", "D203", "D212"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"

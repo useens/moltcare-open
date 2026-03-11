@@ -1,0 +1,14 @@
+{
+  "project": "Moltcare",
+  "mission": "让所有OpenClaw Agent一键获得智能",
+  "status": "Phase 1 - 启动",
+  "agents": [
+    {"name": "架构师", "status": "assigned", "task": "设计项目架构"},
+    {"name": "核心开发", "status": "assigned", "task": "编写核心模板"},
+    {"name": "CLI开发", "status": "assigned", "task": "开发CLI工具"},
+    {"name": "文档", "status": "assigned", "task": "9语言文档"},
+    {"name": "测试", "status": "assigned", "task": "测试框架"},
+    {"name": "集成", "status": "assigned", "task": "GitHub配置"}
+  ],
+  "created": "2026-03-11T11:07:00+08:00"
+}
