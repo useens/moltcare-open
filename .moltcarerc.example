@@ -1,0 +1,58 @@
+# MoltCare 配置示例文件
+# 保存为 ~/.moltcare/config.yaml 或项目根目录的 .moltcare.yaml
+
+# 配置版本
+version: "1.1.0"
+
+# 界面语言 (zh/en/ja/ko/de/fr/es/ru/ar)
+language: zh
+
+# 工作区路径
+workspacePath: ~/.moltcare/workspace
+
+# 智能包目录
+packsDir: ~/.moltcare/packs
+
+# 日志级别 (debug/info/warn/error)
+logLevel: info
+
+# 自动检查更新
+autoUpdate: true
+
+# 最大缓存大小 (MB)
+maxCacheSize: 100
+
+# 界面主题 (default/dark/light)
+theme: default
+
+# 默认编辑器
+editor: nano
+
+# Git 集成配置
+git:
+  enabled: true
+  autoCommit: false
+  commitMessage: "chore: update moltcare configuration"
+
+# 智能包配置
+packs:
+  registry: https://registry.moltcare.dev
+  cacheDir: ~/.moltcare/cache
+  parallelInstall: true
+
+# 模板引擎配置
+templates:
+  engine: handlebars
+  strictMode: false
+  cacheEnabled: true
+
+# 网络配置
+network:
+  timeout: 30000
+  retryCount: 3
+
+# 高级选项
+advanced:
+  experimentalFeatures: false
+  debugMode: false
+  traceMode: false

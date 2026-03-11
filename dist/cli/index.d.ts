@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 /**
- * MoltCare CLI - 统一入口
+ * MoltCare CLI - Phase 5 优化版
  *
- * 整合功能:
- * - KimiSensen: 多专家系统, 智能包管理
- * - OracleSensen: 代码评审, 测试框架
+ * 改进功能:
+ * - 增强的错误处理机制
+ * - 优化的模板系统
+ * - 增强的配置文件支持
+ * - 完善的帮助文档和命令提示
+ * - 命令自动补全建议
  *
- * @version 1.0.0
+ * @version 1.1.0
  */
 export {};
 //# sourceMappingURL=index.d.ts.map

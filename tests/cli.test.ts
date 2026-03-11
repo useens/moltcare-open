@@ -23,9 +23,9 @@ describe('CLI Commands', () => {
   it('should show version', () => {
     try {
       const output = execSync(`node ${cliPath} --version`, { encoding: 'utf-8' });
-      expect(output).toContain('1.0.0');
+      expect(output).toContain('1.1.0');
     } catch (error: any) {
-      expect(error.stdout).toContain('1.0.0');
+      expect(error.stdout).toContain('1.1.0');
     }
   });
 

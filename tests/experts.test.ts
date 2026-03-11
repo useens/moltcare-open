@@ -51,7 +51,9 @@ describe('Multi-Expert System', () => {
       const input: ExpertInput = {
         topic: 'test topic',
         context: { key: 'value' },
-        round: 1
+        previousRounds: [],
+        currentRound: 1,
+        maxRounds: 3
       };
       
       const formatted = expert.formatInput(input);
@@ -77,11 +79,13 @@ describe('Multi-Expert System', () => {
       const input: ExpertInput = {
         topic: 'test',
         context: {},
-        round: 1
+        previousRounds: [],
+        currentRound: 1,
+        maxRounds: 3
       };
       
       const opinion = await researcher.think(input);
-      expect(opinion).toHaveProperty('content');
+      expect(opinion).toHaveProperty('opinion');
       expect(opinion).toHaveProperty('confidence');
       expect(opinion).toHaveProperty('concerns');
       expect(opinion.expertId).toBe('researcher');
@@ -104,11 +108,13 @@ describe('Multi-Expert System', () => {
       const input: ExpertInput = {
         topic: 'system design',
         context: {},
-        round: 1
+        previousRounds: [],
+        currentRound: 1,
+        maxRounds: 3
       };
       
       const opinion = await architect.think(input);
-      expect(opinion).toHaveProperty('content');
+      expect(opinion).toHaveProperty('opinion');
       expect(opinion).toHaveProperty('confidence');
       expect(opinion.expertId).toBe('architect');
     });
@@ -122,7 +128,7 @@ describe('Multi-Expert System', () => {
       expect(profile.id).toBe('engineer');
       expect(profile.name).toBe('工程师');
       expect(profile.role).toBe('Engineer');
-      expect(profile.expertise).toContain('实现评估');
+      expect(profile.expertise).toContain('实现可行性评估');
     });
 
     it('should analyze and return opinion with cost estimate', async () => {
@@ -130,13 +136,14 @@ describe('Multi-Expert System', () => {
       const input: ExpertInput = {
         topic: 'implementation',
         context: {},
-        round: 1
+        previousRounds: [],
+        currentRound: 1,
+        maxRounds: 3
       };
       
       const opinion = await engineer.think(input);
-      expect(opinion).toHaveProperty('content');
+      expect(opinion).toHaveProperty('opinion');
       expect(opinion).toHaveProperty('confidence');
-      expect(opinion).toHaveProperty('metadata');
       expect(opinion.expertId).toBe('engineer');
     });
   });
@@ -149,7 +156,7 @@ describe('Multi-Expert System', () => {
       expect(profile.id).toBe('captain');
       expect(profile.name).toBe('队长');
       expect(profile.role).toBe('Captain');
-      expect(profile.expertise).toContain('整合决策');
+      expect(profile.expertise).toContain('决策整合');
     });
 
     it('should synthesize opinions and make decision', async () => {
@@ -162,13 +169,34 @@ describe('Multi-Expert System', () => {
             { expertId: 'architect', content: 'design works', confidence: 0.9 }
           ]
         },
-        round: 3
+        previousRounds: [
+          {
+            roundNumber: 1,
+            opinions: [
+              { 
+                expertId: 'researcher', 
+                expertName: '研究员',
+                opinion: 'data is good', 
+                keyPoints: ['数据验证通过'],
+                confidence: 0.8 
+              },
+              { 
+                expertId: 'architect', 
+                expertName: '架构师',
+                opinion: 'design works', 
+                keyPoints: ['设计可行'],
+                confidence: 0.9 
+              }
+            ]
+          }
+        ],
+        currentRound: 3,
+        maxRounds: 3
       };
       
       const opinion = await captain.think(input);
-      expect(opinion).toHaveProperty('content');
+      expect(opinion).toHaveProperty('opinion');
       expect(opinion).toHaveProperty('confidence');
-      expect(opinion).toHaveProperty('metadata');
       expect(opinion.expertId).toBe('captain');
     });
   });

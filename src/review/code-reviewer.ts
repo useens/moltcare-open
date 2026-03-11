@@ -12,6 +12,7 @@ interface FileReview {
   file: string;
   score: number;
   comments: ReviewComment[];
+  issues: ReviewComment[];
 }
 
 /**
@@ -37,8 +38,8 @@ export class CodeReviewer {
         comments.push({
           line: lineNum,
           severity: 'warning',
-          message: 'Found TODO/FIXME comment',
-          suggestion: 'Resolve before committing'
+          message: '发现 TODO/FIXME 注释',
+          suggestion: '提交前请解决'
         });
         score -= 5;
       }
@@ -48,30 +49,30 @@ export class CodeReviewer {
         comments.push({
           line: lineNum,
           severity: 'warning',
-          message: 'Console.log statement found',
-          suggestion: 'Use proper logging library'
+          message: '发现 console.log 语句',
+          suggestion: '使用合适的日志库'
         });
         score -= 3;
       }
 
       // Check line length
-      if (line.length > 100) {
+      if (line.length > 120) {
         comments.push({
           line: lineNum,
           severity: 'info',
-          message: 'Line exceeds 100 characters',
-          suggestion: 'Break into multiple lines'
+          message: '行长度超过120个字符',
+          suggestion: '建议换行'
         });
         score -= 1;
       }
     });
 
     // File-level checks
-    if (!content.includes('/**') && content.length > 200) {
+    if (!content.includes('/**') && content.length > 50) {
       comments.push({
         severity: 'warning',
-        message: 'Missing JSDoc header',
-        suggestion: 'Add file-level documentation'
+        message: '缺少 JSDoc 注释',
+        suggestion: '添加文件级文档'
       });
       score -= 5;
     }
@@ -79,7 +80,8 @@ export class CodeReviewer {
     return {
       file: path.basename(filePath),
       score: Math.max(0, score),
-      comments
+      comments,
+      issues: comments
     };
   }
 
@@ -107,16 +109,33 @@ export class CodeReviewer {
     return results;
   }
 
-  generateReport(reviews: FileReview[]): string {
+  generateReport(reviews: FileReview[], format: 'markdown' | 'json' = 'markdown'): string {
+    if (format === 'json') {
+      const summary = {
+        summary: {
+          totalFiles: reviews.length,
+          avgScore: reviews.length > 0 
+            ? Math.round(reviews.reduce((sum, r) => sum + r.score, 0) / reviews.length)
+            : 0
+        },
+        files: reviews.map(r => ({
+          file: r.file,
+          score: r.score,
+          issues: r.issues
+        }))
+      };
+      return JSON.stringify(summary, null, 2);
+    }
+
     const lines: string[] = [];
-    lines.push('# Code Review Report\n');
+    lines.push('# 代码评审报告\n');
     
     const avgScore = reviews.length > 0 
       ? Math.round(reviews.reduce((sum, r) => sum + r.score, 0) / reviews.length)
       : 0;
     
-    lines.push(`**Overall Score**: ${avgScore}/100\n`);
-    lines.push(`**Files Reviewed**: ${reviews.length}\n`);
+    lines.push(`**总体评分**: ${avgScore}/100\n`);
+    lines.push(`**评审文件数**: ${reviews.length}\n`);
     lines.push('---\n');
 
     reviews.forEach(review => {
@@ -124,12 +143,12 @@ export class CodeReviewer {
       lines.push(`\n## ${status} ${review.file} (${review.score}/100)\n`);
       
       if (review.comments.length === 0) {
-        lines.push('No issues found.\n');
+        lines.push('未发现 issues。\n');
       } else {
         review.comments.forEach(comment => {
           const icon = comment.severity === 'error' ? '🔴' : 
                       comment.severity === 'warning' ? '🟡' : '🔵';
-          lines.push(`${icon} **Line ${comment.line || 'N/A'}**: ${comment.message}\n`);
+          lines.push(`${icon} **第 ${comment.line || 'N/A'} 行**: ${comment.message}\n`);
           if (comment.suggestion) {
             lines.push(`   💡 ${comment.suggestion}\n`);
           }
@@ -138,5 +157,30 @@ export class CodeReviewer {
     });
 
     return lines.join('');
+  }
+
+  /**
+   * 计算代码评分
+   */
+  calculateScore(issues: ReviewComment[], lines: number): number {
+    let score = 100;
+    
+    for (const issue of issues) {
+      if (issue.severity === 'error') {
+        score -= 10;
+      } else if (issue.severity === 'warning') {
+        score -= 5;
+      } else {
+        score -= 1;
+      }
+    }
+    
+    // 根据代码行数调整（代码越多，允许的问题数可以适当增加）
+    const allowedIssues = Math.max(3, Math.floor(lines / 50));
+    if (issues.length > allowedIssues) {
+      score -= (issues.length - allowedIssues) * 2;
+    }
+    
+    return Math.max(0, Math.min(100, score));
   }
 }

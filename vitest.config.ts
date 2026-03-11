@@ -5,6 +5,7 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     include: ['tests/**/*.test.ts'],
+    pool: 'forks', // 使用 fork 模式以支持 process.chdir()
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

@@ -45,7 +45,7 @@ describe('CodeReviewer', () => {
     
     const report = reviewer.generateReport(reviews);
     
-    expect(report).toContain('Code Review Report');
+    expect(report).toContain('代码评审报告');
     expect(report).toContain('85/100');  // Average score
   });
 });
