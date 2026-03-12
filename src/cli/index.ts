@@ -17,6 +17,7 @@ import chalk from 'chalk';
 import { initCommand } from './commands/init.js';
 import { listCommand } from './commands/list.js';
 import { applyCommand } from './commands/apply.js';
+import { statusCommand } from './commands/status.js';
 import { CodeReviewer } from '../review/code-reviewer.js';
 import { ErrorHandler, MoltCareError } from '../utils/errors-enhanced.js';
 import { HelpSystem } from '../utils/help-system.js';
@@ -208,45 +209,10 @@ program
   .description('显示 MoltCare 状态信息')
   .alias('info')
   .option('--json', '以 JSON 格式输出', false)
+  .option('-v, --verbose', '显示详细信息', false)
   .action(async (options) => {
     try {
-      const config = getEnhancedConfig();
-      
-      if (options.json) {
-        console.log(JSON.stringify({
-          version: config.get('version'),
-          initialized: config.isInitialized(),
-          language: config.get('language'),
-          workspacePath: config.get('workspacePath'),
-          logLevel: config.get('logLevel'),
-        }, null, 2));
-        return;
-      }
-
-      console.log(chalk.cyan('🦞 MoltCare 状态'));
-      console.log('');
-      console.log(chalk.white(`版本:    ${config.get('version')}`));
-      console.log(chalk.white(`状态:    ${config.isInitialized() ? chalk.green('✅ 已初始化') : chalk.yellow('⏸️ 未初始化')}`));
-      console.log(chalk.white(`语言:    ${config.get('language')}`));
-      console.log('');
-      
-      if (config.isInitialized()) {
-        console.log(chalk.white('配置信息:'));
-        console.log(chalk.gray(`  配置文件: ${config.getConfigPath('user')}`));
-        console.log(chalk.gray(`  工作区:   ${config.get('workspacePath')}`));
-        console.log(chalk.gray(`  日志级别: ${config.get('logLevel')}`));
-        console.log('');
-        
-        // 显示模板引擎状态
-        const cacheStats = templateEngine.getCacheStats();
-        console.log(chalk.white('模板引擎:'));
-        console.log(chalk.gray(`  缓存条目: ${cacheStats.size}`));
-        console.log(chalk.gray(`  引擎: Handlebars`));
-        console.log('');
-      }
-      
-      console.log(chalk.white('可用命令:'));
-      console.log(chalk.gray('  init, list, apply, review, test, sync, status, help'));
+      await statusCommand(options);
     } catch (error) {
       ErrorHandler.exit(error instanceof Error ? error : String(error));
     }
