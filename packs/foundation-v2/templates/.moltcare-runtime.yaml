@@ -1,0 +1,53 @@
+# 🦞 MoltCare v2.0 运行时配置
+# 此文件由 MoltCare 自动生成和管理
+
+version: "2.0.0"
+
+integration:
+  type: "file-level"
+  status: "active"
+  note: "运行时集成需要 OpenClaw 本体支持 hook 调用机制"
+
+features:
+  multi_agent:
+    enabled: true
+    auto_trigger: true
+    min_signal: 6
+    
+  memory_system:
+    enabled: true
+    auto_capture: true
+    signal_threshold: 7
+    system: "vestige"
+    
+  hooks:
+    enabled: true
+    pre_message: "~/.moltcare/hooks/pre_message.py"
+    post_message: "~/.moltcare/hooks/post_message.py"
+    heartbeat: "~/.moltcare/hooks/heartbeat.py"
+
+triggers:
+  force_multi_agent:
+    keywords: ["多专家讨论:"]
+    signal: 10
+    action: "强制启动多专家讨论模式"
+    
+  high_priority:
+    keywords: ["这很重要"]
+    signal: 9
+    action: "高优先级记录"
+    
+  smart_ingest:
+    keywords: ["记住这个"]
+    signal: 8
+    action: "智能摄取到学习债务"
+    
+  create_reminder:
+    keywords: ["别忘记"]
+    signal: 7
+    action: "创建待办任务"
+
+notes:
+  - "当前为文件层面集成"
+  - "运行时集成需要 OpenClaw 本体支持 hook 调用机制"
+  - "建议安装 vestige 和 clawdo 技能"
