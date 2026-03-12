@@ -326,6 +326,15 @@ def cmd_config(args):
         save_config(config)
         print(f"✓ 已设置 {key} = {value}")
 
+def cmd_wizard(args):
+    """交互式配置向导"""
+    wizard_script = Path(__file__).parent / 'scripts' / 'wizard.py'
+    if wizard_script.exists():
+        os.system(f'python3 "{wizard_script}"')
+    else:
+        print("✗ 向导脚本未找到")
+        print("  请确保 scripts/wizard.py 存在")
+
 def main():
     """主入口"""
     parser = argparse.ArgumentParser(
@@ -377,6 +386,9 @@ def main():
     config_set_parser.add_argument('key', help='配置项名称')
     config_set_parser.add_argument('value', help='配置值')
     
+    # wizard 命令
+    wizard_parser = subparsers.add_parser('wizard', help='交互式配置向导')
+    
     args = parser.parse_args()
     
     if not args.command:
@@ -390,6 +402,7 @@ def main():
         'status': cmd_status,
         'doctor': cmd_doctor,
         'config': cmd_config,
+        'wizard': cmd_wizard,
     }
     
     if args.command in commands:
