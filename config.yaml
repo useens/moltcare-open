@@ -1,0 +1,28 @@
+autoUpdate: true
+features:
+  autoSync: true
+  deepIntegration: true
+  heartbeatEnabled: true
+  hooksEnabled: true
+  smartMerge: true
+hooksDir: /root/.moltcare/hooks
+initialized: true
+initializedAt: '2026-03-12 19:08:17.810195'
+language: zh
+logLevel: info
+memory:
+  autoCapture: true
+  signalThreshold: 7
+  system: vestige
+multiAgent:
+  autoTrigger: true
+  enabled: true
+  minSignal: 6
+packsDir: /root/.moltcare/packs
+runtimeDir: /root/.moltcare/runtime
+sync:
+  autoApplyPacks: true
+  backupBeforeMerge: true
+  interval: 300
+version: 2.0.0
+workspacePath: /root/.openclaw/workspace

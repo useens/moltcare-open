@@ -1,0 +1,14 @@
+{
+  "name": "foundation-v2",
+  "version": "2.0.0",
+  "description": "MoltCare v2.0 基础包 - 深度集成版，实现真正的开箱即用",
+  "author": "MoltCare",
+  "entry_point": "scripts/setup.sh",
+  "dependencies": [],
+  "features": [
+    "multi_agent_auto_trigger",
+    "smart_memory_capture", 
+    "realtime_hooks",
+    "openclaw_sync"
+  ]
+}
