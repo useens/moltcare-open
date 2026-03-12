@@ -1,0 +1,15 @@
+{
+  "name": "ai-pack",
+  "version": "1.0.0",
+  "description": "AI 辅助编程智能包 - 包含 AI 编码最佳实践、Prompt 模板、代码审查 AI 配置",
+  "author": "MoltCare",
+  "entry_point": "scripts/setup.sh",
+  "dependencies": [],
+  "features": [
+    "ai_coding_best_practices",
+    "prompt_templates",
+    "code_review_ai",
+    "ai_pair_programming"
+  ],
+  "tags": ["ai", "coding", "prompts", "productivity"]
+}

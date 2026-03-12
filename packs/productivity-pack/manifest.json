@@ -1,0 +1,15 @@
+{
+  "name": "productivity-pack",
+  "version": "1.0.0",
+  "description": "生产力工具智能包 - 包含任务管理、时间管理、效率工具配置",
+  "author": "MoltCare",
+  "entry_point": "scripts/setup.sh",
+  "dependencies": [],
+  "features": [
+    "task_management",
+    "time_management",
+    "efficiency_tools",
+    "focus_mode"
+  ],
+  "tags": ["productivity", "time-management", "tools", "efficiency"]
+}
