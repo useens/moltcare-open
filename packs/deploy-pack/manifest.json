@@ -1,0 +1,15 @@
+{
+  "name": "deploy-pack",
+  "version": "1.0.0",
+  "description": "部署配置智能包 - 包含 Docker、docker-compose、GitHub Actions 部署工作流",
+  "author": "MoltCare",
+  "entry_point": "scripts/setup.sh",
+  "dependencies": [],
+  "features": [
+    "docker_setup",
+    "docker_compose",
+    "ci_cd_deploy",
+    "production_config"
+  ],
+  "tags": ["deployment", "docker", "ci-cd", "devops"]
+}
