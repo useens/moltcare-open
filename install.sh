@@ -12,7 +12,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # 版本
-MOLTCARE_VERSION="1.1.0"
+MOLTCARE_VERSION="2.0.0"
 REPO_URL="https://github.com/useens/moltcare-open"
 INSTALL_DIR="/usr/local/bin"
 BRANCH="master"
