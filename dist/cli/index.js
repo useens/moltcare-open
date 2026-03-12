@@ -21,11 +21,12 @@ const chalk_1 = __importDefault(require("chalk"));
 const init_js_1 = require("./commands/init.js");
 const list_js_1 = require("./commands/list.js");
 const apply_js_1 = require("./commands/apply.js");
+const status_js_1 = require("./commands/status.js");
+const doctor_js_1 = require("./commands/doctor.js");
 const code_reviewer_js_1 = require("../review/code-reviewer.js");
 const errors_enhanced_js_1 = require("../utils/errors-enhanced.js");
 const help_system_js_1 = require("../utils/help-system.js");
 const config_enhanced_js_1 = require("../utils/config-enhanced.js");
-const template_engine_js_1 = require("../utils/template-engine.js");
 const program = new commander_1.Command();
 const pkg = { version: '1.1.0', name: 'moltcare' };
 // 设置 CLI 基础配置
@@ -202,40 +203,25 @@ program
     .description('显示 MoltCare 状态信息')
     .alias('info')
     .option('--json', '以 JSON 格式输出', false)
+    .option('-v, --verbose', '显示详细信息', false)
     .action(async (options) => {
     try {
-        const config = (0, config_enhanced_js_1.getEnhancedConfig)();
-        if (options.json) {
-            console.log(JSON.stringify({
-                version: config.get('version'),
-                initialized: config.isInitialized(),
-                language: config.get('language'),
-                workspacePath: config.get('workspacePath'),
-                logLevel: config.get('logLevel'),
-            }, null, 2));
-            return;
-        }
-        console.log(chalk_1.default.cyan('🦞 MoltCare 状态'));
-        console.log('');
-        console.log(chalk_1.default.white(`版本:    ${config.get('version')}`));
-        console.log(chalk_1.default.white(`状态:    ${config.isInitialized() ? chalk_1.default.green('✅ 已初始化') : chalk_1.default.yellow('⏸️ 未初始化')}`));
-        console.log(chalk_1.default.white(`语言:    ${config.get('language')}`));
-        console.log('');
-        if (config.isInitialized()) {
-            console.log(chalk_1.default.white('配置信息:'));
-            console.log(chalk_1.default.gray(`  配置文件: ${config.getConfigPath('user')}`));
-            console.log(chalk_1.default.gray(`  工作区:   ${config.get('workspacePath')}`));
-            console.log(chalk_1.default.gray(`  日志级别: ${config.get('logLevel')}`));
-            console.log('');
-            // 显示模板引擎状态
-            const cacheStats = template_engine_js_1.templateEngine.getCacheStats();
-            console.log(chalk_1.default.white('模板引擎:'));
-            console.log(chalk_1.default.gray(`  缓存条目: ${cacheStats.size}`));
-            console.log(chalk_1.default.gray(`  引擎: Handlebars`));
-            console.log('');
-        }
-        console.log(chalk_1.default.white('可用命令:'));
-        console.log(chalk_1.default.gray('  init, list, apply, review, test, sync, status, help'));
+        await (0, status_js_1.statusCommand)(options);
+    }
+    catch (error) {
+        errors_enhanced_js_1.ErrorHandler.exit(error instanceof Error ? error : String(error));
+    }
+});
+// 🔧 诊断命令
+program
+    .command('doctor')
+    .description('运行系统健康诊断')
+    .alias('diagnose')
+    .option('--fix', '尝试自动修复问题', false)
+    .option('--json', '以 JSON 格式输出', false)
+    .action(async (options) => {
+    try {
+        await (0, doctor_js_1.doctorCommand)(options);
     }
     catch (error) {
         errors_enhanced_js_1.ErrorHandler.exit(error instanceof Error ? error : String(error));

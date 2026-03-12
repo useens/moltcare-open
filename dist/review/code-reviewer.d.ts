@@ -8,6 +8,7 @@ interface FileReview {
     file: string;
     score: number;
     comments: ReviewComment[];
+    issues: ReviewComment[];
 }
 /**
  * 代码评审器
@@ -19,7 +20,11 @@ interface FileReview {
 export declare class CodeReviewer {
     reviewFile(filePath: string): Promise<FileReview>;
     reviewDirectory(dir: string): Promise<FileReview[]>;
-    generateReport(reviews: FileReview[]): string;
+    generateReport(reviews: FileReview[], format?: 'markdown' | 'json'): string;
+    /**
+     * 计算代码评分
+     */
+    calculateScore(issues: ReviewComment[], lines: number): number;
 }
 export {};
 //# sourceMappingURL=code-reviewer.d.ts.map

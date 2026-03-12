@@ -49,7 +49,7 @@ class BaseExpert {
     formatInput(input) {
         let prompt = `# 讨论主题\n${input.topic}\n\n`;
         prompt += `# 上下文信息\n${JSON.stringify(input.context, null, 2)}\n\n`;
-        if (input.previousRounds.length > 0) {
+        if (input.previousRounds && input.previousRounds.length > 0) {
             prompt += `# 前几轮讨论摘要\n`;
             input.previousRounds.forEach(round => {
                 prompt += `## 第${round.roundNumber}轮\n`;

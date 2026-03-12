@@ -172,8 +172,11 @@ class DecisionFormatter {
     static buildExecutiveSummary(result) {
         const captainOpinion = result.finalDecision;
         const confidence = result.consensusLevel;
+        const decisionText = captainOpinion?.opinion
+            ? captainOpinion.opinion.substring(0, 200) + '...'
+            : '未形成最终决策';
         return {
-            decision: captainOpinion?.opinion.substring(0, 200) + '...' || '未形成最终决策',
+            decision: decisionText,
             confidence,
             riskLevel: this.calculateRiskLevel(result),
             urgency: 'medium-term',

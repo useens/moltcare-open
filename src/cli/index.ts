@@ -18,6 +18,7 @@ import { initCommand } from './commands/init.js';
 import { listCommand } from './commands/list.js';
 import { applyCommand } from './commands/apply.js';
 import { statusCommand } from './commands/status.js';
+import { doctorCommand } from './commands/doctor.js';
 import { CodeReviewer } from '../review/code-reviewer.js';
 import { ErrorHandler, MoltCareError } from '../utils/errors-enhanced.js';
 import { HelpSystem } from '../utils/help-system.js';
@@ -213,6 +214,21 @@ program
   .action(async (options) => {
     try {
       await statusCommand(options);
+    } catch (error) {
+      ErrorHandler.exit(error instanceof Error ? error : String(error));
+    }
+  });
+
+// 🔧 诊断命令
+program
+  .command('doctor')
+  .description('运行系统健康诊断')
+  .alias('diagnose')
+  .option('--fix', '尝试自动修复问题', false)
+  .option('--json', '以 JSON 格式输出', false)
+  .action(async (options) => {
+    try {
+      await doctorCommand(options);
     } catch (error) {
       ErrorHandler.exit(error instanceof Error ? error : String(error));
     }
