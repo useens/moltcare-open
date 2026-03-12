@@ -1,0 +1,16 @@
+{
+  "name": "test-pack-enhanced",
+  "version": "1.0.0",
+  "description": "测试自动化智能包 - 包含 pytest 配置、测试数据工厂、覆盖率检查、性能测试",
+  "author": "MoltCare",
+  "entry_point": "scripts/setup.sh",
+  "dependencies": [],
+  "features": [
+    "pytest_setup",
+    "test_data_factory",
+    "coverage_check",
+    "performance_testing",
+    "integration_testing"
+  ],
+  "tags": ["testing", "pytest", "coverage", "automation"]
+}
