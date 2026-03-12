@@ -1,0 +1,15 @@
+{
+  "name": "docs-pack",
+  "version": "1.0.0",
+  "description": "文档规范智能包 - 包含文档写作规范、API文档模板、CHANGELOG规范",
+  "author": "MoltCare",
+  "entry_point": "scripts/setup.sh",
+  "dependencies": [],
+  "features": [
+    "documentation_standards",
+    "api_doc_templates",
+    "changelog_spec",
+    "readme_template"
+  ],
+  "tags": ["documentation", "writing", "templates"]
+}
