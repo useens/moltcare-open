@@ -1,0 +1,15 @@
+{
+  "name": "security-pack",
+  "version": "1.0.0",
+  "description": "安全审计智能包 - 包含安全规范、敏感信息检查、依赖漏洞扫描配置",
+  "author": "MoltCare",
+  "entry_point": "scripts/setup.sh",
+  "dependencies": [],
+  "features": [
+    "security_best_practices",
+    "secret_scanning",
+    "dependency_check",
+    "security_audit"
+  ],
+  "tags": ["security", "audit", "compliance", "scanning"]
+}
