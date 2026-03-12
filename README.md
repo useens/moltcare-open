@@ -96,12 +96,30 @@ moltcare doctor
 
 ## 智能包 (Packs)
 
+### 🎯 推荐智能包组合
+
+#### 开发工作流 (DevOps 完整链路)
 | 智能包 | 版本 | 说明 |
 |--------|------|------|
-| **foundation-v2** | v2.0.0 | 🆕 MoltCare v2.0 深度集成版，自动触发 + 运行时 hooks |
-| **foundation** | v1.1.0 | 基础认知框架，包含 SOUL.md、AGENTS.md、USER.md 模板 |
-| **openclaw-init** | v1.0.0 | OpenClaw 初始化配置，快速开始指南 |
-| **example-user** | v1.0.0 | 已填写的 USER.md 示例模板 |
+| **dev-pack** | v1.0.0 | 💻 Python/Git/TDD 开发工作流 + Makefile + pre-commit |
+| **test-pack-enhanced** | v1.0.0 | 🧪 测试自动化 (pytest/覆盖率/性能测试) |
+| **deploy-pack** | v1.0.0 | 🚀 Docker/CI-CD 部署配置 |
+| **security-pack** | v1.0.0 | 🔒 安全审计 (bandit/safety/semgrep) |
+
+#### 效率提升
+| 智能包 | 版本 | 说明 |
+|--------|------|------|
+| **ai-pack** | v1.0.0 | 🤖 AI 辅助编程 (Prompt模板/代码审查) |
+| **docs-pack** | v1.0.0 | 📚 文档规范 (CHANGELOG/API/写作指南) |
+| **productivity-pack** | v1.0.0 | ⚡ 生产力工具 (时间管理/任务追踪) |
+
+#### 基础框架
+| 智能包 | 版本 | 说明 |
+|--------|------|------|
+| **foundation-v2** | v2.0.0 | 🏗️ MoltCare v2.0 深度集成版 |
+| **foundation** | v1.1.0 | 基础认知框架 (SOUL.md/AGENTS.md/USER.md) |
+| **openclaw-init** | v1.0.0 | OpenClaw 初始化配置 |
+| **example-user** | v1.0.0 | USER.md 配置示例模板 |
 
 ### v2.0 智能合并模式
 
@@ -335,9 +353,29 @@ Agent处理 → [post_message hook] → 自动记录高价值内容
 
 | 版本 | 日期 | 说明 |
 |------|------|------|
-| **v2.0.0** | 2026-03-12 | 🚀 **重大更新**: 深度集成模式、运行时 hooks、智能合并、自动触发 |
+| **v2.0.0** | 2026-03-12 | 🚀 **重大更新**: 12个智能包、完整DevOps链路、CI/CD自动化 |
 | v1.1.0 | 2026-03-12 | 纯 Python CLI，移除 npm 依赖 |
-| v1.0.0 | 2026-03-11 | 首个稳定版本
+| v1.0.0 | 2026-03-11 | 首个稳定版本 |
+
+## 项目状态
+
+### 已完成 ✅
+
+- **12 个智能包** - 覆盖开发全生命周期
+- **核心 DevOps 链路** - 开发(dev) → 测试(test) → 部署(deploy)
+- **CI/CD 自动化** - GitHub Actions 测试、发布、健康检查
+- **文件层面集成** - 配置自动同步到 OpenClaw workspace
+
+### 已知限制 ⚠️
+
+- 运行时集成（自动触发、Hooks调用）需要 OpenClaw 本体支持
+- 当前为文件层面集成，配置已同步但需手动触发
+
+### 路线图 🗺️
+
+- [x] Phase 1: 基础功能 (12个智能包)
+- [ ] Phase 2: 生态建设 (社区贡献、插件系统)
+- [ ] Phase 3: 运行时集成 (待 OpenClaw API)
 
 ## 许可证
 
@@ -345,4 +383,5 @@ MIT License
 
 ---
 
-*MoltCare - 每一只 Agent 都值得专业级智能*
+*MoltCare v2.0 - 从框架模板到实用工具集*  
+*共 12 个智能包，涵盖开发-测试-部署全流程*
