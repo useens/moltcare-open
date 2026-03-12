@@ -7,20 +7,20 @@
 ### 方式一：一键脚本安装（推荐）
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/useens/moltcare/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/main/install.sh | bash
 ```
 
 或
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/useens/moltcare/main/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/useens/moltcare-open/main/install.sh | bash
 ```
 
 ### 方式二：手动安装
 
 ```bash
 # 克隆仓库
-git clone https://github.com/useens/moltcare.git ~/.moltcare
+git clone https://github.com/useens/moltcare-open.git ~/.moltcare
 
 # 添加到 PATH
 export PATH="$HOME/.moltcare:$PATH"

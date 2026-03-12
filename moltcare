@@ -90,8 +90,6 @@ def cmd_init(args):
 
 def cmd_list(args):
     """列出智能包命令"""
-    print("📦 可用智能包\n")
-    
     # 查找 packs 目录
     packs_dirs = [
         Path.cwd() / 'packs',
@@ -112,10 +110,16 @@ def cmd_list(args):
                                 'name': manifest.get('name', entry.name),
                                 'version': manifest.get('version', '0.0.1'),
                                 'description': manifest.get('description', '暂无描述'),
-                                'path': entry,
+                                'path': str(entry),
                             })
                         except:
                             pass
+    
+    if args.json:
+        print(json.dumps(packs_found, ensure_ascii=False, indent=2))
+        return
+    
+    print("📦 可用智能包\n")
     
     if not packs_found:
         print("未找到智能包")
@@ -210,53 +214,117 @@ def cmd_apply(args):
 
 def cmd_status(args):
     """状态命令"""
-    print("🦞 MoltCare 状态\n")
-    
     config = load_config()
     
-    print(f"版本:     {VERSION}")
-    print(f"初始化:   {'✓ 已完成' if config.get('initialized') else '✗ 未初始化'}")
-    print(f"配置文件: {CONFIG_FILE}")
-    print(f"工作区:   {config.get('workspacePath', str(WORKSPACE_DIR))}")
-    print(f"语言:     {config.get('language', 'zh')}")
+    status_info = {
+        'version': VERSION,
+        'initialized': config.get('initialized', False),
+        'configFile': str(CONFIG_FILE),
+        'workspace': config.get('workspacePath', str(WORKSPACE_DIR)),
+        'language': config.get('language', 'zh'),
+        'autoUpdate': config.get('autoUpdate', True),
+        'logLevel': config.get('logLevel', 'info'),
+    }
+    
+    if args.json:
+        print(json.dumps(status_info, ensure_ascii=False, indent=2))
+        return
+    
+    print("🦞 MoltCare 状态\n")
+    print(f"版本:     {status_info['version']}")
+    print(f"初始化:   {'✓ 已完成' if status_info['initialized'] else '✗ 未初始化'}")
+    print(f"配置文件: {status_info['configFile']}")
+    print(f"工作区:   {status_info['workspace']}")
+    print(f"语言:     {status_info['language']}")
 
 def cmd_doctor(args):
     """诊断命令"""
-    print("🔧 MoltCare 健康诊断\n")
-    
     checks = []
     
     # 检查配置文件
     if CONFIG_FILE.exists():
-        checks.append(('✓', '配置文件存在'))
+        checks.append({'status': 'ok', 'message': '配置文件存在', 'icon': '✓'})
     else:
-        checks.append(('✗', '配置文件不存在'))
+        checks.append({'status': 'error', 'message': '配置文件不存在', 'icon': '✗'})
     
     # 检查工作目录
     if WORKSPACE_DIR.exists():
-        checks.append(('✓', '工作目录存在'))
+        checks.append({'status': 'ok', 'message': '工作目录存在', 'icon': '✓'})
     else:
-        checks.append(('✗', '工作目录不存在'))
+        checks.append({'status': 'error', 'message': '工作目录不存在', 'icon': '✗'})
     
     # 检查 Node.js (可选)
     node_version = os.popen('node --version 2>/dev/null').read().strip()
     if node_version:
-        checks.append(('✓', f'Node.js {node_version} (可选)'))
+        checks.append({'status': 'ok', 'message': f'Node.js {node_version} (可选)', 'icon': '✓'})
     else:
-        checks.append(('-', 'Node.js 未安装 (可选)'))
+        checks.append({'status': 'warning', 'message': 'Node.js 未安装 (可选)', 'icon': '-'})
     
     # 检查智能包
     packs_dir = Path.cwd() / 'packs'
     if packs_dir.exists():
         pack_count = len([d for d in packs_dir.iterdir() if d.is_dir() and not d.name.startswith('.')])
-        checks.append(('✓', f'找到 {pack_count} 个智能包'))
+        checks.append({'status': 'ok', 'message': f'找到 {pack_count} 个智能包', 'icon': '✓'})
     else:
-        checks.append(('-', '智能包目录不存在 (在项目外运行)'))
+        checks.append({'status': 'warning', 'message': '智能包目录不存在 (在项目外运行)', 'icon': '-'})
     
-    for icon, message in checks:
-        print(f"  {icon} {message}")
+    if args.json:
+        print(json.dumps(checks, ensure_ascii=False, indent=2))
+        return
+    
+    print("🔧 MoltCare 健康诊断\n")
+    
+    for check in checks:
+        print(f"  {check['icon']} {check['message']}")
     
     print("\n诊断完成")
+
+def cmd_config(args):
+    """配置管理命令"""
+    config = load_config()
+    
+    if not hasattr(args, 'config_cmd') or not args.config_cmd:
+        print("📋 MoltCare 配置管理\n")
+        print("用法:")
+        print("  moltcare config list       # 列出所有配置")
+        print("  moltcare config get <key>  # 获取配置项")
+        print("  moltcare config set <key> <value>  # 设置配置项")
+        print("\n当前配置:")
+        for key, value in sorted(config.items()):
+            print(f"  {key}: {value}")
+        return
+    
+    if args.config_cmd == 'list':
+        print("📋 MoltCare 配置\n")
+        if not config:
+            print("  (暂无配置)")
+        else:
+            for key, value in sorted(config.items()):
+                print(f"  {key}: {value}")
+    
+    elif args.config_cmd == 'get':
+        key = args.key
+        if key in config:
+            print(config[key])
+        else:
+            print(f"✗ 配置项 '{key}' 不存在")
+            sys.exit(1)
+    
+    elif args.config_cmd == 'set':
+        key = args.key
+        value = args.value
+        
+        # 尝试转换类型
+        if value.lower() == 'true':
+            value = True
+        elif value.lower() == 'false':
+            value = False
+        elif value.isdigit():
+            value = int(value)
+        
+        config[key] = value
+        save_config(config)
+        print(f"✓ 已设置 {key} = {value}")
 
 def main():
     """主入口"""
@@ -287,9 +355,27 @@ def main():
     
     # status 命令
     status_parser = subparsers.add_parser('status', help='显示状态')
+    status_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
     
     # doctor 命令
     doctor_parser = subparsers.add_parser('doctor', help='运行健康诊断')
+    doctor_parser.add_argument('--json', action='store_true', help='JSON 格式输出')
+    
+    # config 命令
+    config_parser = subparsers.add_parser('config', help='管理配置')
+    config_subparsers = config_parser.add_subparsers(dest='config_cmd', help='配置命令')
+    
+    # config list
+    config_list_parser = config_subparsers.add_parser('list', help='列出所有配置')
+    
+    # config get
+    config_get_parser = config_subparsers.add_parser('get', help='获取配置项')
+    config_get_parser.add_argument('key', help='配置项名称')
+    
+    # config set
+    config_set_parser = config_subparsers.add_parser('set', help='设置配置项')
+    config_set_parser.add_argument('key', help='配置项名称')
+    config_set_parser.add_argument('value', help='配置值')
     
     args = parser.parse_args()
     
@@ -303,6 +389,7 @@ def main():
         'apply': cmd_apply,
         'status': cmd_status,
         'doctor': cmd_doctor,
+        'config': cmd_config,
     }
     
     if args.command in commands:
