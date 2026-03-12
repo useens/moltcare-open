@@ -43,6 +43,9 @@ moltcare --help
 # 初始化配置
 moltcare init
 
+# 交互式配置向导（推荐新用户）
+moltcare wizard
+
 # 初始化到指定目录（支持CI/CD）
 moltcare init /path/to/project --yes
 
@@ -89,6 +92,21 @@ moltcare apply my-pack
 ```
 
 ## 可用命令
+
+### `moltcare wizard`
+交互式配置向导（推荐新用户）
+
+```bash
+moltcare wizard        # 启动交互式配置向导
+```
+
+向导会引导你完成：
+1. **基本信息** - 称呼、身份、技术水平
+2. **沟通偏好** - 回复详细程度、语气、输出格式
+3. **自动化设置** - 风险操作的处理方式
+4. **确认保存** - 自动写入 USER.md
+
+---
 
 ### `moltcare init [path]`
 初始化 MoltCare 配置
