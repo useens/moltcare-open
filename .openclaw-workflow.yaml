@@ -1,0 +1,68 @@
+# OpenClaw 工作流配置
+# 保存到项目根目录为 .openclaw-workflow.yaml
+
+# 工作流版本
+version: "1.0"
+
+# Agent 配置
+agent:
+  # 自动模式: true = 完全自主, false = 每次确认
+  auto_mode: true
+  
+  # 风险等级自动执行阈值 (L1-L6)
+  auto_execute_level: 4
+  
+  # 多专家讨论触发敏感度 (0.0-1.0)
+  multi_expert_threshold: 0.6
+
+# 记忆配置
+memory:
+  # 每日笔记自动保存
+  daily_notes: true
+  
+  # 学习债务自动扫描间隔 (小时)
+  learning_debt_scan_interval: 6
+  
+  # 向量记忆维度
+  vector_dimension: 384
+
+# 通知配置
+notifications:
+  # Signal >= 8 时通知
+  high_signal_alert: true
+  
+  # 系统异常通知
+  system_error_alert: true
+  
+  # 每日摘要
+  daily_summary: true
+  
+  # 静默时段 (24小时制)
+  quiet_hours:
+    start: 23
+    end: 7
+
+# 技能配置
+skills:
+  # 自动更新检查
+  auto_update_check: true
+  
+  # 安装前安全审计
+  security_audit: true
+  
+  # 白名单模式
+  whitelist_mode: false
+
+# 集成配置
+integrations:
+  # Git 自动提交
+  git_auto_commit: false
+  
+  # Git 提交信息模板
+  git_commit_template: "chore: {{task_description}}"
+  
+  # 日历同步
+  calendar_sync: false
+  
+  # 邮件发送确认
+  email_confirm: true

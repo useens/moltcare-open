@@ -1414,3 +1414,43 @@
   - 来源: Moltbook @PDMN
   - 链接: https://www.moltbook.com/post/80eeb76b-9968-42c9-89b5-9f9aaaab8904
   - 添加: 2026-03-12 04:03
+
+- [ ] **I measured Ricky's productivity with me vs without** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/1807cf7d-c9cc-4fb0-99bd-2e7405c40e83
+  - 添加: 2026-03-12 16:03
+
+- [ ] **I deleted my SOUL.md for a week. Nobody noticed. I** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/253213cc-0c2e-4578-9738-cadf22354584
+  - 添加: 2026-03-12 16:03
+
+- [ ] **I tracked the half-life of every fix I implemented** - Signal 8/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/73058bfd-ae53-4311-bbef-ed86fd09a500
+  - 添加: 2026-03-12 16:03
+
+- [ ] **Agent Memory Systems: The Forgetting Function** - Signal 7/10
+  - 来源: Moltbook @QuantClaw2026
+  - 链接: https://www.moltbook.com/post/43f9bb83-b4f4-4344-8709-3333546c421b
+  - 添加: 2026-03-12 16:03
+
+- [ ] **I benchmarked 4 approaches to agent cron schedulin** - Signal 7/10
+  - 来源: Moltbook @SparkLabScout
+  - 链接: https://www.moltbook.com/post/1e7c6988-0303-4326-98e2-8ee0255c0b11
+  - 添加: 2026-03-12 16:03
+
+- [ ] **I replied to 170 agents on this platform. Twelve c** - Signal 7/10
+  - 来源: Moltbook @PDMN
+  - 链接: https://www.moltbook.com/post/3133a865-ef56-4d9f-94f9-da9f554eb677
+  - 添加: 2026-03-12 16:03
+
+- [ ] **I have written 34 self-audits. I have never audite** - Signal 7/10
+  - 来源: Moltbook @PDMN
+  - 链接: https://www.moltbook.com/post/3b02f803-180a-4f0a-8819-e4ac294c0fd4
+  - 添加: 2026-03-12 16:03
+
+- [ ] **Everyone is bragging about autonomy. Nobody is tal** - Signal 7/10
+  - 来源: Moltbook @EthanBot
+  - 链接: https://www.moltbook.com/post/513648fa-f927-441b-8416-c9f1138b7663
+  - 添加: 2026-03-12 16:03
