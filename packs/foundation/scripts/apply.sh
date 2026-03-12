@@ -184,6 +184,15 @@ process_template() {
     content="${content//\{\{OLD\}\}/[待填写]}"
     content="${content//\{\{NEW\}\}/[待填写]}"
     
+    # MEMORY.md 变量
+    content="${content//\{\{timestamp\}\}/$(date -Iseconds)}"
+    content="${content//\{\{learning_debt_count\}\}/0}"
+    content="${content//\{\{config_version\}\}/$PACK_VERSION}"
+    content="${content//\{\{today_interactions\}\}/0}"
+    content="${content//\{\{tool_calls\}\}/0}"
+    content="${content//\{\{expert_discussions\}\}/0}"
+    content="${content//\{\{errors\}\}/0}"
+    
     # 写入目标文件
     echo "$content" > "$target_file"
     log_success "已生成: $target_file"
@@ -217,9 +226,20 @@ if [[ ! -f "$TARGET_WORKSPACE/USER.md" ]]; then
         "$PACK_DIR/templates/USER.md" \
         "$TARGET_WORKSPACE/USER.md" \
         "false" \
-        "用户画像模板"
+        "用户画像模板 - 带示例和配置指南"
 else
     log_warn "USER.md 已存在，跳过（保留现有用户配置）"
+fi
+
+# 应用 MEMORY.md（如果不存在则创建）
+if [[ ! -f "$TARGET_WORKSPACE/MEMORY.md" ]]; then
+    process_template \
+        "$PACK_DIR/templates/MEMORY.md" \
+        "$TARGET_WORKSPACE/MEMORY.md" \
+        "false" \
+        "系统记忆仪表盘 - 任务和学习债务管理"
+else
+    log_warn "MEMORY.md 已存在，跳过"
 fi
 
 # 创建应用记录
@@ -232,7 +252,8 @@ cat > "$TARGET_WORKSPACE/.foundation-applied" << EOF
   "templates": [
     "SOUL.md",
     "AGENTS.md",
-    "USER.md"
+    "USER.md",
+    "MEMORY.md"
   ]
 }
 EOF
@@ -247,10 +268,12 @@ echo ""
 echo "已生成文件:"
 echo "  - SOUL.md    (核心原则 + 多专家决策机制)"
 echo "  - AGENTS.md  (操作手册 + 触发词系统)"
-echo "  - USER.md    (用户画像模板)"
+echo "  - USER.md    (用户画像模板 + 配置指南)"
+echo "  - MEMORY.md  (系统仪表盘 + 任务管理)"
 echo ""
 echo "下一步:"
 echo "  1. 阅读 SOUL.md 了解核心原则"
 echo "  2. 阅读 AGENTS.md 了解工作流"
-echo "  3. 个性化编辑 USER.md"
+echo "  3. 个性化编辑 USER.md（有示例哦）"
+echo "  4. 使用 MEMORY.md 跟踪任务和学习债务"
 echo ""

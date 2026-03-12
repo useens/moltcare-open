@@ -15,6 +15,7 @@ NC='\033[0m' # No Color
 MOLTCARE_VERSION="1.1.0"
 REPO_URL="https://github.com/useens/moltcare-open"
 INSTALL_DIR="/usr/local/bin"
+BRANCH="master"
 
 print_banner() {
     echo -e "${BLUE}"

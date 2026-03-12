@@ -1,12 +1,13 @@
 {
   "name": "foundation",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "Foundation Pack",
   "description": "MoltCare基础认知包，为新Agent提供完整的认知框架和多专家决策机制",
   "author": "MoltCare Team",
   "priority": 0,
   "isCore": true,
   "createdAt": "2026-03-11",
+  "updatedAt": "2026-03-12",
   "templates": [
     {
       "file": "templates/SOUL.md",
@@ -24,7 +25,13 @@
       "file": "templates/USER.md",
       "target": "USER.md",
       "required": false,
-      "description": "用户画像模板，由用户填写个人信息和偏好"
+      "description": "用户画像模板，带示例内容和快速配置指南"
+    },
+    {
+      "file": "templates/MEMORY.md",
+      "target": "MEMORY.md",
+      "required": false,
+      "description": "系统记忆仪表盘，包含任务、学习债务、日程管理"
     }
   ],
   "scripts": {
