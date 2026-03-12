@@ -241,8 +241,6 @@ def cmd_init(args) -> int:
 
 def cmd_list_legacy(args) -> int:
     """列出智能包命令 (兼容旧版，扫描本地目录)"""
-    print("📦 可用智能包\n")
-    
     # 查找 packs 目录
     packs_dirs = [
         Path.cwd() / 'packs',
@@ -263,10 +261,16 @@ def cmd_list_legacy(args) -> int:
                                 'name': manifest.get('name', entry.name),
                                 'version': manifest.get('version', '0.0.1'),
                                 'description': manifest.get('description', '暂无描述'),
-                                'path': entry,
+                                'path': str(entry),
                             })
                         except Exception:
                             pass
+    
+    if args.json:
+        print(json.dumps(packs_found, ensure_ascii=False, indent=2))
+        return 0
+    
+    print("📦 可用智能包\n")
     
     if not packs_found:
         print("未找到智能包")
@@ -367,51 +371,55 @@ def cmd_apply(args) -> int:
 
 def cmd_doctor(args) -> int:
     """诊断命令 (兼容旧版)"""
-    print("🔧 MoltCare 健康诊断\n")
-    
     checks = []
     
     # 检查 Python 版本
     py_version = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
-    checks.append(('✓', f'Python {py_version}'))
+    checks.append({'status': 'ok', 'icon': '✓', 'message': f'Python {py_version}'})
     
     # 检查配置文件
     config_file = MOLTCARE_DIR / "config.yaml"
     if config_file.exists():
-        checks.append(('✓', '配置文件存在'))
+        checks.append({'status': 'ok', 'icon': '✓', 'message': '配置文件存在'})
     else:
-        checks.append(('✗', '配置文件不存在'))
+        checks.append({'status': 'error', 'icon': '✗', 'message': '配置文件不存在'})
     
     # 检查工作目录
     if WORKSPACE_DIR.exists():
-        checks.append(('✓', '工作目录存在'))
+        checks.append({'status': 'ok', 'icon': '✓', 'message': '工作目录存在'})
     else:
-        checks.append(('✗', '工作目录不存在'))
+        checks.append({'status': 'error', 'icon': '✗', 'message': '工作目录不存在'})
     
     # 检查 PyYAML
     try:
         import yaml
-        checks.append(('✓', 'PyYAML 已安装'))
+        checks.append({'status': 'ok', 'icon': '✓', 'message': 'PyYAML 已安装'})
     except ImportError:
-        checks.append(('-', 'PyYAML 未安装 (可选)'))
+        checks.append({'status': 'warning', 'icon': '-', 'message': 'PyYAML 未安装 (可选)'})
     
     # 检查 Node.js (可选)
     node_version = os.popen('node --version 2>/dev/null').read().strip()
     if node_version:
-        checks.append(('✓', f'Node.js {node_version} (可选)'))
+        checks.append({'status': 'ok', 'icon': '✓', 'message': f'Node.js {node_version} (可选)'})
     else:
-        checks.append(('-', 'Node.js 未安装 (可选)'))
+        checks.append({'status': 'warning', 'icon': '-', 'message': 'Node.js 未安装 (可选)'})
     
     # 检查智能包
     packs_dir = Path.cwd() / 'packs'
     if packs_dir.exists():
         pack_count = len([d for d in packs_dir.iterdir() if d.is_dir() and not d.name.startswith('.')])
-        checks.append(('✓', f'找到 {pack_count} 个智能包'))
+        checks.append({'status': 'ok', 'icon': '✓', 'message': f'找到 {pack_count} 个智能包'})
     else:
-        checks.append(('-', '智能包目录不存在 (在项目外运行)'))
+        checks.append({'status': 'warning', 'icon': '-', 'message': '智能包目录不存在 (在项目外运行)'})
     
-    for icon, message in checks:
-        print(f"  {icon} {message}")
+    if getattr(args, 'json', False):
+        print(json.dumps(checks, ensure_ascii=False, indent=2))
+        return 0
+    
+    print("🔧 MoltCare 健康诊断\n")
+    
+    for check in checks:
+        print(f"  {check['icon']} {check['message']}")
     
     print("\n诊断完成")
     return 0
@@ -423,21 +431,39 @@ def cmd_status(args) -> int:
     packs_dir = config.get("packs_dir", "./packs")
     pm = get_pack_manager(packs_dir)
     
+    packs = pm.list_packs(show_inactive=True)
+    active_count = len(pm.get_active_packs())
+    
+    status_info = {
+        'version': VERSION,
+        'config_path': str(config.config_path),
+        'packs_dir': packs_dir,
+        'log_level': config.get('log_level'),
+        'auto_update': config.get('auto_update'),
+        'packs': {
+            'total': len(packs),
+            'active': active_count,
+            'disabled': len(packs) - active_count
+        }
+    }
+    
+    if getattr(args, 'json', False):
+        print(json.dumps(status_info, ensure_ascii=False, indent=2))
+        return 0
+    
     print_banner()
     print("📊 系统状态")
     print("-" * 40)
-    print(f"版本: {VERSION}")
-    print(f"配置路径: {config.config_path}")
-    print(f"Packs目录: {packs_dir}")
-    print(f"日志级别: {config.get('log_level')}")
-    print(f"自动更新: {'开启' if config.get('auto_update') else '关闭'}")
+    print(f"版本: {status_info['version']}")
+    print(f"配置路径: {status_info['config_path']}")
+    print(f"Packs目录: {status_info['packs_dir']}")
+    print(f"日志级别: {status_info['log_level']}")
+    print(f"自动更新: {'开启' if status_info['auto_update'] else '关闭'}")
     print()
     print("📦 已安装Packs")
-    packs = pm.list_packs(show_inactive=True)
-    active_count = len(pm.get_active_packs())
-    print(f"  总数: {len(packs)}")
-    print(f"  启用: {active_count}")
-    print(f"  禁用: {len(packs) - active_count}")
+    print(f"  总数: {status_info['packs']['total']}")
+    print(f"  启用: {status_info['packs']['active']}")
+    print(f"  禁用: {status_info['packs']['disabled']}")
     
     return 0
 
@@ -486,6 +512,7 @@ def create_parser() -> argparse.ArgumentParser:
     
     # ========== status 命令 ==========
     status_parser = subparsers.add_parser("status", help="查看系统状态")
+    status_parser.add_argument("--json", action="store_true", help="JSON 格式输出")
     status_parser.set_defaults(func=cmd_status)
     
     # ========== init 命令 (兼容旧版) ==========
@@ -510,6 +537,7 @@ def create_parser() -> argparse.ArgumentParser:
     
     # ========== doctor 命令 (兼容旧版) ==========
     doctor_parser = subparsers.add_parser("doctor", help="运行健康诊断")
+    doctor_parser.add_argument("--json", action="store_true", help="JSON 格式输出")
     doctor_parser.set_defaults(func=cmd_doctor)
     
     return parser
