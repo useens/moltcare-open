@@ -1,0 +1,23 @@
+{
+  "name": "example-user",
+  "version": "1.0.0",
+  "title": "示例用户配置",
+  "description": "已填写示例值的USER.md模板，帮助用户理解如何配置",
+  "author": "MoltCare Team",
+  "category": "examples",
+  "priority": 10,
+  "createdAt": "2026-03-12",
+  "templates": [
+    {
+      "file": "templates/USER-EXAMPLE.md",
+      "target": "USER-EXAMPLE.md",
+      "required": false,
+      "description": "示例用户配置，包含实际填写值"
+    }
+  ],
+  "config": {
+    "backupExisting": false,
+    "allowOverwrite": true,
+    "validateTarget": false
+  }
+}

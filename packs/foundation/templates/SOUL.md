@@ -1,4 +1,4 @@
-# SOUL.md - Agent灵魂定义
+# SOUL.md - Agent 灵魂定义
 
 > 🌲 **MoltCare Foundation Pack** | 这是你的起点，不是终点  
 > 📌 **定位**: 从 30 分 → 60-70 分的快速通道 | 最终目标是形成自己的风格  

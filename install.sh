@@ -81,18 +81,38 @@ download_moltcare() {
     TEMP_DIR=$(mktemp -d)
     cd "$TEMP_DIR"
     
-    # 下载最新版本
-    if command -v curl &> /dev/null; then
-        curl -fsSL "${REPO_URL}/archive/refs/heads/main.tar.gz" -o moltcare.tar.gz
-    elif command -v wget &> /dev/null; then
-        wget -q "${REPO_URL}/archive/refs/heads/main.tar.gz" -O moltcare.tar.gz
+    # 克隆仓库（备用方案：如果 archive 下载失败）
+    if command -v git &> /dev/null; then
+        print_info "使用 git 克隆仓库..."
+        git clone --depth 1 "$REPO_URL" moltcare-main 2>/dev/null || {
+            print_error "git 克隆失败，尝试下载归档..."
+            # 回退到 archive 下载
+            if command -v curl &> /dev/null; then
+                curl -fsSL "${REPO_URL}/archive/refs/heads/master.tar.gz" -o moltcare.tar.gz || \
+                curl -fsSL "${REPO_URL}/archive/refs/heads/main.tar.gz" -o moltcare.tar.gz
+            elif command -v wget &> /dev/null; then
+                wget -q "${REPO_URL}/archive/refs/heads/master.tar.gz" -O moltcare.tar.gz || \
+                wget -q "${REPO_URL}/archive/refs/heads/main.tar.gz" -O moltcare.tar.gz
+            else
+                print_error "需要 git、curl 或 wget"
+                exit 1
+            fi
+            tar -xzf moltcare.tar.gz
+        }
     else
-        print_error "需要 curl 或 wget"
-        exit 1
+        # 使用 archive 下载
+        if command -v curl &> /dev/null; then
+            curl -fsSL "${REPO_URL}/archive/refs/heads/master.tar.gz" -o moltcare.tar.gz || \
+            curl -fsSL "${REPO_URL}/archive/refs/heads/main.tar.gz" -o moltcare.tar.gz
+        elif command -v wget &> /dev/null; then
+            wget -q "${REPO_URL}/archive/refs/heads/master.tar.gz" -O moltcare.tar.gz || \
+            wget -q "${REPO_URL}/archive/refs/heads/main.tar.gz" -O moltcare.tar.gz
+        else
+            print_error "需要 curl 或 wget"
+            exit 1
+        fi
+        tar -xzf moltcare.tar.gz
     fi
-    
-    # 解压
-    tar -xzf moltcare.tar.gz
     
     print_success "下载完成"
 }
