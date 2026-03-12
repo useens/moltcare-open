@@ -52,7 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ```bash
 # Clone the repository
-git clone https://github.com/useens/moltcare.git
+git clone https://github.com/useens/moltcare-open.git
 cd moltcare
 
 # Install dependencies
@@ -91,9 +91,9 @@ moltcare review ./src
 
 ### 🔗 Links
 
-- **Repository**: https://github.com/useens/moltcare
-- **Documentation**: https://github.com/useens/moltcare/tree/main/docs
-- **Issue Tracker**: https://github.com/useens/moltcare/issues
+- **Repository**: https://github.com/useens/moltcare-open
+- **Documentation**: https://github.com/useens/moltcare-open/tree/main/docs
+- **Issue Tracker**: https://github.com/useens/moltcare-open/issues
 
 ---
 
