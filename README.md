@@ -176,7 +176,7 @@ jobs:
       
       - name: Install MoltCare
         run: |
-          curl -fsSL https://raw.githubusercontent.com/useens/moltcare/main/install.sh | bash
+          curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/main/install.sh | bash
           echo "$HOME/.local/bin" >> $GITHUB_PATH
       
       - name: Initialize

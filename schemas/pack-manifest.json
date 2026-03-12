@@ -2,112 +2,175 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://moltcare.dev/schemas/pack-manifest.json",
   "title": "MoltCare Pack Manifest Schema",
-  "description": "Schema for validating pack.yaml files",
+  "description": "Schema for validating pack manifest files (manifest.json or pack.yaml)",
   "type": "object",
-  "required": ["moltcareVersion", "pack"],
+  "required": ["name", "version"],
   "properties": {
-    "moltcareVersion": {
+    "name": {
       "type": "string",
-      "description": "Compatible MoltCare version",
+      "description": "Pack unique identifier (lowercase, hyphen-separated)",
+      "pattern": "^[a-z0-9-]+$",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version",
       "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-zA-Z0-9]+)?$"
     },
-    "pack": {
-      "type": "object",
-      "required": ["id", "name", "version", "description", "author", "license", "category"],
-      "properties": {
-        "id": {
-          "type": "string",
-          "pattern": "^[a-z0-9-]+$",
-          "description": "Unique pack identifier"
-        },
-        "name": {
-          "type": "object",
-          "additionalProperties": { "type": "string" },
-          "description": "Localized pack names"
-        },
-        "version": {
-          "type": "string",
-          "pattern": "^\\d+\\.\\d+\\.\\d+(-[a-zA-Z0-9]+)?$"
-        },
-        "description": {
-          "type": "object",
-          "additionalProperties": { "type": "string" },
-          "description": "Localized descriptions"
-        },
-        "author": { "type": "string" },
-        "license": { "type": "string" },
-        "category": {
-          "type": "string",
-          "enum": ["foundation", "professional", "domain"]
-        },
-        "domain": {
-          "type": "array",
-          "items": { "type": "string" }
-        },
-        "requires": {
-          "type": "object",
-          "properties": {
-            "moltcare": { "type": "string" },
-            "packs": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": ["id"],
-                "properties": {
-                  "id": { "type": "string" },
-                  "version": { "type": "string" },
-                  "optional": { "type": "boolean" }
-                }
-              }
-            },
-            "tools": {
-              "type": "array",
-              "items": { "type": "string" }
-            }
-          }
-        },
-        "compatibility": {
-          "type": "object",
-          "properties": {
-            "os": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["linux", "macos", "windows"]
-              }
-            },
-            "openclaw": { "type": "string" }
-          }
-        },
-        "entry": {
-          "type": "object",
-          "properties": {
-            "bootstrap": { "type": "string" },
-            "default": { "type": "string" }
-          }
-        },
-        "triggers": {
-          "type": "object",
-          "properties": {
-            "keywords": {
-              "type": "array",
-              "items": { "type": "string" }
-            },
-            "autoApply": { "type": "boolean" }
-          }
-        },
-        "resources": {
-          "type": "object",
-          "properties": {
-            "memory": { "type": "string" },
-            "disk": { "type": "string" }
+    "title": {
+      "type": "string",
+      "description": "Human-readable pack title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Pack description"
+    },
+    "author": {
+      "type": "string",
+      "description": "Pack author name or organization"
+    },
+    "license": {
+      "type": "string",
+      "description": "Software license (e.g., MIT, Apache-2.0)"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["foundation", "professional", "domain", "core"],
+      "description": "Pack category"
+    },
+    "priority": {
+      "type": "integer",
+      "description": "Installation priority (lower = earlier)",
+      "minimum": 0
+    },
+    "isCore": {
+      "type": "boolean",
+      "description": "Whether this is a core pack"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date",
+      "description": "Creation date (YYYY-MM-DD)"
+    },
+    "entry_point": {
+      "type": "string",
+      "default": "main.py",
+      "description": "Main entry point file"
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "List of dependent pack names",
+      "items": {
+        "type": "string"
+      }
+    },
+    "templates": {
+      "type": "array",
+      "description": "Template files to apply",
+      "items": {
+        "type": "object",
+        "required": ["file", "target"],
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "Source file path within pack"
+          },
+          "target": {
+            "type": "string",
+            "description": "Target file path in workspace"
+          },
+          "required": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this template is required"
+          },
+          "description": {
+            "type": "string",
+            "description": "Template description"
           }
         }
       }
     },
-    "signature": {
-      "type": "string",
-      "description": "Ed25519 signature of the pack"
+    "scripts": {
+      "type": "object",
+      "description": "Lifecycle scripts",
+      "properties": {
+        "apply": {
+          "type": "string",
+          "description": "Script to run when applying pack"
+        },
+        "pre-apply": {
+          "type": ["string", "null"],
+          "description": "Script to run before applying"
+        },
+        "post-apply": {
+          "type": ["string", "null"],
+          "description": "Script to run after applying"
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "description": "Pack configuration options",
+      "properties": {
+        "backupExisting": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to backup existing files"
+        },
+        "allowOverwrite": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to allow overwriting existing files"
+        },
+        "validateTarget": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to validate target environment"
+        }
+      }
+    },
+    "triggers": {
+      "type": "object",
+      "description": "Auto-trigger configuration",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Keywords that trigger this pack"
+        },
+        "autoApply": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to auto-apply this pack"
+        }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "description": "Compatibility requirements",
+      "properties": {
+        "moltcare": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Required MoltCare version"
+        },
+        "openclaw": {
+          "type": "string",
+          "description": "Required OpenClaw version"
+        },
+        "os": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["linux", "macos", "windows"]
+          },
+          "description": "Supported operating systems"
+        }
+      }
     }
-  }
+  },
+  "additionalProperties": true,
+  "definitions": {}
 }
