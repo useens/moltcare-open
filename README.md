@@ -33,7 +33,6 @@ moltcare init
 
 - **Python 3.8+** (必须)
 - **PyYAML** (必须，会自动安装)
-- Node.js (可选，用于 TypeScript 开发)
 
 ## 快速开始
 
@@ -43,6 +42,9 @@ moltcare --help
 
 # 初始化配置
 moltcare init
+
+# 初始化到指定目录（支持CI/CD）
+moltcare init /path/to/project --yes
 
 # 查看可用智能包
 moltcare list
@@ -88,14 +90,101 @@ moltcare apply my-pack
 
 ## 可用命令
 
-| 命令 | 说明 |
-|------|------|
-| `moltcare init` | 初始化 MoltCare 配置 |
-| `moltcare list` | 列出可用智能包 |
-| `moltcare apply <pack>` | 应用指定智能包 |
-| `moltcare status` | 显示系统状态 |
-| `moltcare doctor` | 运行健康诊断 |
-| `moltcare config` | 管理配置 |
+### `moltcare init [path]`
+初始化 MoltCare 配置
+
+```bash
+moltcare init                      # 初始化到 ~/.moltcare
+moltcare init ./my-project         # 初始化到指定目录
+moltcare init /tmp/test --yes      # 非交互模式（CI/CD）
+moltcare init --force              # 强制重新初始化
+```
+
+**选项：**
+- `path` - 目标目录路径 (可选，默认: ~/.moltcare)
+- `-f, --force` - 强制重新初始化
+- `-y, --yes` - 非交互模式，使用默认值
+
+---
+
+### `moltcare list`
+列出可用智能包
+
+```bash
+moltcare list          # 列出所有智能包
+moltcare list --json   # JSON 格式输出
+```
+
+---
+
+### `moltcare apply <pack>`
+应用指定智能包
+
+```bash
+moltcare apply foundation           # 应用基础包
+moltcare apply foundation --force   # 强制覆盖
+moltcare apply foundation --dry-run # 预览更改
+```
+
+**选项：**
+- `-f, --force` - 强制覆盖已有文件
+- `-d, --dry-run` - 预览模式，不实际应用
+- `-g, --global-install` - 应用到全局工作区
+
+---
+
+### `moltcare status`
+显示系统状态
+
+```bash
+moltcare status        # 人类可读格式
+moltcare status --json # JSON 格式
+```
+
+---
+
+### `moltcare doctor`
+运行健康诊断
+
+```bash
+moltcare doctor        # 基础诊断
+moltcare doctor --json # JSON 格式输出
+```
+
+---
+
+### `moltcare config`
+管理配置
+
+```bash
+moltcare config list              # 列出所有配置
+moltcare config get language      # 获取配置项
+moltcare config set language en   # 设置配置项
+```
+
+## CI/CD 集成示例
+
+```yaml
+# .github/workflows/setup-agent.yml
+name: Setup Agent
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install MoltCare
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/useens/moltcare/main/install.sh | bash
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      
+      - name: Initialize
+        run: moltcare init . --yes
+      
+      - name: Apply Foundation Pack
+        run: moltcare apply foundation --yes
+```
 
 ## 开发
 
@@ -128,6 +217,13 @@ MoltCare 内置多专家决策机制，当检测到以下关键词时自动触�
 | `多专家讨论:` | 强制启动多专家讨论 |
 | `设计/架构` | 自动触发架构师参与 |
 | `对比/评估` | 自动触发研究员参与 |
+
+## 版本历史
+
+| 版本 | 日期 | 说明 |
+|------|------|------|
+| v1.1.0 | 2026-03-12 | 纯 Python CLI，移除 npm 依赖 |
+| v1.0.0 | 2026-03-11 | 首个稳定版本 |
 
 ## 许可证
 
