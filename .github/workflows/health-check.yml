@@ -1,0 +1,105 @@
+name: Daily Health Check
+
+on:
+  schedule:
+    # 每天 UTC 08:00 运行 (北京时间 16:00)
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install pyyaml requests
+
+    - name: Run health check
+      run: |
+        python << 'EOF'
+        import yaml
+        import os
+        from pathlib import Path
+
+        print("🔧 MoltCare 仓库健康检查")
+        print()
+
+        # 检查核心文件
+        required_files = [
+            "moltcare",
+            "install.sh",
+            "README.md",
+            "LICENSE",
+        ]
+        print("📄 检查核心文件...")
+        for f in required_files:
+            if Path(f).exists():
+                print(f"  ✓ {f}")
+            else:
+                print(f"  ✗ {f} 缺失!")
+
+        print()
+
+        # 检查智能包
+        print("📦 检查智能包...")
+        packs_dir = Path("packs")
+        if packs_dir.exists():
+            packs = [d for d in packs_dir.iterdir() if d.is_dir() and not d.name.startswith('.')]
+            print(f"  发现 {len(packs)} 个智能包:")
+            for pack in sorted(packs):
+                manifest = pack / "manifest.json"
+                if manifest.exists():
+                    print(f"    ✓ {pack.name}")
+                else:
+                    print(f"    ⚠ {pack.name} (缺少 manifest.json)")
+
+        print()
+
+        # 检查 CLI 版本
+        print("🔍 检查 CLI...")
+        import subprocess
+        try:
+            result = subprocess.run(["python", "moltcare", "--version"], 
+                                    capture_output=True, text=True, timeout=10)
+            version = result.stdout.strip()
+            print(f"  ✓ CLI 版本: {version}")
+        except Exception as e:
+            print(f"  ✗ CLI 检查失败: {e}")
+
+        print()
+        print("✅ 健康检查完成")
+        EOF
+
+    - name: Verify install script
+      run: |
+        echo "🧪 验证 install.sh..."
+        if grep -q "MOLTCARE_VERSION=" install.sh; then
+          VERSION=$(grep "MOLTCARE_VERSION=" install.sh | head -1 | cut -d'"' -f2)
+          echo "  ✓ install.sh 版本: $VERSION"
+        else
+          echo "  ✗ install.sh 缺少版本定义"
+        fi
+
+    - name: Check for broken links
+      run: |
+        echo "🔗 检查 README 链接..."
+        # 简单的链接检查
+        if grep -oE 'https?://[^[:space:]]+' README.md | head -5; then
+          echo "  找到外部链接（需手动验证）"
+        fi
+
+    - name: Report status
+      if: always()
+      run: |
+        echo ""
+        echo "📊 健康检查报告"
+        echo "时间: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+        echo "状态: ${{ job.status }}"

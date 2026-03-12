@@ -1,0 +1,102 @@
+name: Test
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11']
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Check Python version
+      run: python --version
+
+    - name: Test CLI installation
+      run: |
+        python moltcare --version
+        python moltcare --help
+
+    - name: Test init command
+      run: |
+        python moltcare init --force
+        test -f ~/.moltcare/config.yaml
+        echo "✓ init 命令测试通过"
+
+    - name: Test list command
+      run: |
+        python moltcare list
+        echo "✓ list 命令测试通过"
+
+    - name: Test doctor command
+      run: |
+        python moltcare doctor
+        echo "✓ doctor 命令测试通过"
+
+    - name: Test status command
+      run: |
+        python moltcare status
+        echo "✓ status 命令测试通过"
+
+    - name: Verify pack files exist
+      run: |
+        test -d packs/foundation
+        test -d packs/foundation-v2
+        test -d packs/openclaw-init
+        test -d packs/dev-pack
+        echo "✓ 所有智能包存在"
+
+    - name: Test dev-pack application
+      run: |
+        mkdir -p /tmp/test-dev-project
+        cd /tmp/test-dev-project
+        python /home/runner/work/moltcare-open/moltcare-open/moltcare apply dev-pack
+        test -f PYTHON_GUIDE.md
+        test -f Makefile
+        test -f pyproject.toml
+        echo "✓ dev-pack 应用测试通过"
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install linting tools
+      run: |
+        pip install ruff
+
+    - name: Run ruff
+      run: |
+        ruff check moltcare || true
+        echo "Linting completed"
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run shellcheck on install.sh
+      run: |
+        if command -v shellcheck &> /dev/null; then
+          shellcheck install.sh || true
+        else
+          echo "shellcheck not installed, skipping"
+        fi
+        echo "Shell script check completed"

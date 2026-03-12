@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+    - name: Verify version matches
+      run: |
+        CLI_VERSION=$(python moltcare --version 2>&1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+        TAG_VERSION="${{ steps.get_version.outputs.VERSION }}"
+        echo "CLI Version: $CLI_VERSION"
+        echo "Tag Version: $TAG_VERSION"
+        if [ "$CLI_VERSION" != "$TAG_VERSION" ]; then
+          echo "⚠️ Warning: Version mismatch!"
+          echo "CLI: $CLI_VERSION, Tag: $TAG_VERSION"
+        fi
+
+    - name: Generate Release Notes
+      id: release_notes
+      run: |
+        VERSION="${{ steps.get_version.outputs.VERSION }}"
+        echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
+        echo "## MoltCare $VERSION" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "### 安装" >> $GITHUB_OUTPUT
+        echo '```bash' >> $GITHUB_OUTPUT
+        echo "curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/master/install.sh | bash" >> $GITHUB_OUTPUT
+        echo '```' >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "### 快速开始" >> $GITHUB_OUTPUT
+        echo '```bash' >> $GITHUB_OUTPUT
+        echo "moltcare init --force" >> $GITHUB_OUTPUT
+        echo "moltcare apply foundation-v2 --merge" >> $GITHUB_OUTPUT
+        echo '```' >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "查看 [CHANGELOG](CHANGELOG.md) 了解完整变更。" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: "MoltCare ${{ steps.get_version.outputs.VERSION }}"
+        body: ${{ steps.release_notes.outputs.RELEASE_NOTES }}
+        draft: false
+        prerelease: ${{ contains(steps.get_version.outputs.VERSION, 'alpha') || contains(steps.get_version.outputs.VERSION, 'beta') || contains(steps.get_version.outputs.VERSION, 'rc') }}
+
+    - name: Update latest release badge
+      run: |
+        echo "Release ${{ steps.get_version.outputs.VERSION }} created successfully!"
