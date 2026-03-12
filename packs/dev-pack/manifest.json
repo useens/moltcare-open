@@ -1,0 +1,15 @@
+{
+  "name": "dev-pack",
+  "version": "1.0.0",
+  "description": "开发工作流智能包 - 包含 Python 规范、Git 工作流、代码审查模板、TDD 配置",
+  "author": "MoltCare",
+  "entry_point": "scripts/setup.sh",
+  "dependencies": [],
+  "features": [
+    "python_best_practices",
+    "git_workflow",
+    "code_review_template",
+    "tdd_setup"
+  ],
+  "tags": ["development", "python", "git", "tdd"]
+}
