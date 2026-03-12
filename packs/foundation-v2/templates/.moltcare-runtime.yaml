@@ -1,0 +1,109 @@
+# 🦞 MoltCare v2.0 运行时配置
+# 此文件由 MoltCare 自动生成和管理
+# 不要手动编辑，使用 `moltcare sync` 同步
+
+version: "2.0.0"
+last_sync: "{{timestamp}}"
+
+# 集成状态
+integration:
+  type: "file-level"  # 当前为文件层面集成
+  status: "active"
+  note: "运行时集成需要 OpenClaw 本体支持 hook 调用机制"
+
+# 特性开关
+features:
+  multi_agent:
+    enabled: true
+    auto_trigger: true
+    min_signal: 6
+    description: "多专家决策系统自动触发"
+    
+  memory_system:
+    enabled: true
+    auto_capture: true
+    signal_threshold: 7
+    system: "vestige"  # 推荐搭配 vestige 技能使用
+    description: "基于 FSRS-6 的记忆系统"
+    
+  hooks:
+    enabled: true
+    pre_message: "~/.moltcare/hooks/pre_message.py"
+    post_message: "~/.moltcare/hooks/post_message.py"
+    heartbeat: "~/.moltcare/hooks/heartbeat.py"
+    description: "运行时 hooks（需 OpenClaw 调用）"
+    
+  task_queue:
+    enabled: true
+    system: "clawdo"  # 推荐搭配 clawdo 技能使用
+    auto_process: false  # 手动触发更安全
+    description: "持久化任务队列"
+
+# 自动触发词配置
+triggers:
+  force_multi_agent:
+    keywords: ["多专家讨论:"]
+    signal: 10
+    action: "强制启动多专家讨论模式"
+    
+  high_priority:
+    keywords: ["这很重要", "非常关键"]
+    signal: 9
+    action: "高优先级记录并标记"
+    
+  smart_ingest:
+    keywords: ["记住这个", "学习这个"]
+    signal: 8
+    action: "智能摄取到学习债务"
+    
+  create_reminder:
+    keywords: ["别忘记", "提醒我"]
+    signal: 7
+    action: "创建待办任务"
+    
+  user_preference:
+    keywords: ["我偏好", "我喜欢", "我更喜欢"]
+    signal: 6
+    action: "记录用户偏好到 USER.md"
+    
+  design_discussion:
+    keywords: ["设计", "架构", "策略"]
+    signal: 7
+    pattern: "regex"
+    action: "自动触发架构师参与"
+
+# 同步配置
+sync:
+  interval: 300  # 5分钟
+  auto_apply_packs: false  # 手动应用更安全
+  backup_before_merge: true
+  
+# 多专家配置
+multi_agent:
+  experts:
+    researcher:
+      role: "数据验证"
+      trigger: ["数据", "来源", "准确性", "性能"]
+      
+    architect:
+      role: "系统设计"
+      trigger: ["设计", "架构", "扩展性", "可维护性"]
+      
+    engineer:
+      role: "实现评估"
+      trigger: ["实现", "工期", "成本", "可行性"]
+      
+    ethicist:
+      role: "合规审查"
+      trigger: ["安全", "隐私", "风险", "伦理"]
+      
+    captain:
+      role: "整合决策"
+      always_active: true
+
+# 用户提示
+notes:
+  - "当前为文件层面集成，配置已同步到 OpenClaw workspace"
+  - "运行时集成需要 OpenClaw 本体支持 hook 调用机制"
+  - "建议安装 vestige 技能启用完整记忆系统"
+  - "建议安装 clawdo 技能启用任务队列"
