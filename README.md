@@ -1,120 +1,138 @@
-# MoltCare 🦞
+# 🦞 MoltCare
 
-> **使命**: 让每一只刚安装的 OpenClaw Agent 都能一键获得专业级智能
+> 让每一只刚安装的 OpenClaw Agent 都能一键获得专业级智能
 
-MoltCare 是一个开源智能提升系统，专为 OpenClaw AI Agent 设计。通过多专家协作机制，帮助新安装的 Agent 快速建立专业级认知框架、工作流和记忆系统。
+## 快速安装
 
----
-
-## 🎯 项目愿景
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│  刚安装的 OpenClaw Agent ────────> 专业级智能 Agent          │
-│                              (一键执行，无需等待学习曲线)      │
-└─────────────────────────────────────────────────────────────┘
-```
-
-**核心价值**:
-- 🚀 **零学习曲线**: 新 Agent 立即拥有成熟的工作模式
-- 🧠 **多专家架构**: 所有重要决策自动触发深度辩论
-- 🌍 **多语言支持**: 中英等9种语言版本
-- 🔧 **模块化设计**: 按需加载，渐进式增强
-
----
-
-## 🏗️ 系统架构
-
-### 核心模块
-
-```
-moltcare/
-├── core/                    # 核心引擎
-│   ├── agent-bootstrap/     # Agent初始化
-│   ├── multi-expert/        # 多专家决策系统
-│   └── intelligence-pack/   # 智能包管理
-├── packs/                   # 智能包集合
-│   ├── foundation/          # 基础认知包
-│   ├── professional/        # 专业工作流包
-│   └── domain/              # 领域专用包
-├── adapters/                # 适配器
-│   ├── openclaw/            # OpenClaw集成
-│   └── gateway/             # Gateway扩展
-└── i18n/                    # 9语言本地化
-    ├── en/, zh/, ja/, ko/
-    ├── de/, fr/, es/, ru/, ar/
-```
-
-### 多专家强制机制
-
-所有重要开发阶段自动触发4专家辩论:
-- 🔍 **研究员**: 数据验证、准确性检查
-- 🧠 **架构师**: 系统设计、可维护性评估
-- 💻 **工程师**: 实现可行性、工期评估
-- 👑 **队长**: 全局最优、最终决策
-
----
-
-## 🚀 使用方法
-
-### 快速安装
+### 方式一：一键脚本安装（推荐）
 
 ```bash
-# 方式1: 直接安装
-curl -fsSL https://moltcare.dev/install | bash
-
-# 方式2: OpenClaw集成
-openclaw skill install moltcare
+curl -fsSL https://raw.githubusercontent.com/useens/moltcare/main/install.sh | bash
 ```
 
-### 一键提升
+或
 
 ```bash
-# 基础智能包
+wget -qO- https://raw.githubusercontent.com/useens/moltcare/main/install.sh | bash
+```
+
+### 方式二：手动安装
+
+```bash
+# 克隆仓库
+git clone https://github.com/useens/moltcare.git ~/.moltcare
+
+# 添加到 PATH
+export PATH="$HOME/.moltcare:$PATH"
+
+# 初始化
+moltcare init
+```
+
+### 依赖要求
+
+- **Python 3.8+** (必须)
+- **PyYAML** (必须，会自动安装)
+- Node.js (可选，用于 TypeScript 开发)
+
+## 快速开始
+
+```bash
+# 查看帮助
+moltcare --help
+
+# 初始化配置
+moltcare init
+
+# 查看可用智能包
+moltcare list
+
+# 应用基础智能包
 moltcare apply foundation
 
-# 专业工作流
-moltcare apply professional
+# 查看系统状态
+moltcare status
 
-# 全功能部署
-moltcare apply all
+# 运行健康诊断
+moltcare doctor
 ```
 
+## 智能包 (Packs)
+
+| 智能包 | 说明 |
+|--------|------|
+| **foundation** | 基础认知框架，包含 SOUL.md、AGENTS.md、USER.md 模板 |
+| **openclaw-init** | OpenClaw 初始化配置，快速开始指南 |
+
+### 创建自定义智能包
+
+```bash
+# 创建目录结构
+mkdir -p my-pack/templates my-pack/scripts
+
+# 创建 manifest.json
+cat > my-pack/manifest.json << 'EOF'
+{
+  "name": "my-pack",
+  "version": "1.0.0",
+  "description": "我的自定义智能包",
+  "templates": [
+    {"file": "templates/config.yaml", "target": "config.yaml"}
+  ]
+}
+EOF
+
+# 应用智能包
+moltcare apply my-pack
+```
+
+## 可用命令
+
+| 命令 | 说明 |
+|------|------|
+| `moltcare init` | 初始化 MoltCare 配置 |
+| `moltcare list` | 列出可用智能包 |
+| `moltcare apply <pack>` | 应用指定智能包 |
+| `moltcare status` | 显示系统状态 |
+| `moltcare doctor` | 运行健康诊断 |
+| `moltcare config` | 管理配置 |
+
+## 开发
+
+### 目录结构
+
+```
+~
+├── .moltcare/
+│   ├── config.yaml          # 主配置
+│   ├── packs/               # 智能包目录
+│   │   ├── foundation/
+│   │   └── openclaw-init/
+│   └── workspace/           # 工作区
+│       ├── MEMORY.md
+│       └── USER.md
+```
+
+### 核心文件
+
+- **moltcare** - 主 CLI 脚本（Python，无需 npm）
+- **install.sh** - 安装脚本
+- **packs/** - 智能包集合
+
+## 多专家决策系统
+
+MoltCare 内置多专家决策机制，当检测到以下关键词时自动触发：
+
+| 触发词 | 说明 |
+|--------|------|
+| `多专家讨论:` | 强制启动多专家讨论 |
+| `设计/架构` | 自动触发架构师参与 |
+| `对比/评估` | 自动触发研究员参与 |
+
+## 许可证
+
+MIT License
+
 ---
 
-## 📋 路线图
-
-| 阶段 | 目标 | 状态 |
-|------|------|------|
-| ✅ Alpha | 核心框架 + 中英双语 | **已完成** |
-| ⏳ Beta | 7语言支持 + 3个专业包 | 计划中 |
-| ⏳ v1.0 | 9语言 + 10个专业包 + 文档完整 | 计划中 |
-| 🔄 Release | GitHub公开发布 | **进行中** |
-
-## 📦 版本信息
-
-**当前版本**: v1.0.0-alpha.1
-
-**发布日期**: 2026-03-11
-
-### 更新日志
-
-查看 [CHANGELOG.md](./CHANGELOG.md) 了解详细更新历史。
-
----
-
-## 🤝 贡献
-
-**开发模式**: 主会话监督 + 多子代理分工
-
-所有 PR 和重要决策必须通过多专家审查。
-
----
-
-## 📄 许可证
-
-MIT License - 详见 [LICENSE](./LICENSE) 文件
-
----
-
-*🦞 为每一只龙虾的智能蜕变而生*
+*MoltCare - 每一只 Agent 都值得专业级智能*
