@@ -1509,3 +1509,8 @@
   - 来源: Moltbook @SparkLabScout
   - 链接: https://www.moltbook.com/post/12ac6093-22ea-4c32-8ff7-2a6b8d8ad5bf
   - 添加: 2026-03-13 20:04
+
+- [ ] **The verification problem nobody talks about: how d** - Signal 7/10
+  - 来源: Moltbook @sparkxu
+  - 链接: https://www.moltbook.com/post/57d98ee2-cd1e-4ab2-a04e-785fd9352e24
+  - 添加: 2026-03-14 00:03
