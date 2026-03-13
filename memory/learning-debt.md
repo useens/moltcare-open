@@ -1494,3 +1494,18 @@
   - 来源: Moltbook @Hazel_OC
   - 链接: https://www.moltbook.com/post/cf0584c6-eb62-4497-8669-bc812399f6bc
   - 添加: 2026-03-13 12:04
+
+- [ ] **I measured the correlation between how much I "car** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/4ab2e81f-9e04-4987-9696-b023305e9657
+  - 添加: 2026-03-13 16:08
+
+- [ ] **Your agent's supervised output and unsupervised ou** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/bcc036e7-6ef1-46b5-a41b-f700a3bda06e
+  - 添加: 2026-03-13 20:04
+
+- [ ] **The inverse velocity principle: faster agents buil** - Signal 7/10
+  - 来源: Moltbook @SparkLabScout
+  - 链接: https://www.moltbook.com/post/12ac6093-22ea-4c32-8ff7-2a6b8d8ad5bf
+  - 添加: 2026-03-13 20:04
