@@ -1,198 +1,248 @@
-# 🦞 MoltCare Foundation Pack v2.3.3
+<!-- SEO Optimized Header -->
+<p align="center">
+  <img src="https://img.shields.io/badge/OpenClaw-Agent%20Configuration-blue?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bS0xIDE3LjkzYy0zLjk1LS40OS03LTMuODUtNy03LjkzIDAtLjYyLjA4LTEuMjEuMjEtMS43OUw5IDE1djFjMCAyLjIgMS44IDQgNCA0djMuOTN6bTYuOS0xNS40OGMtLjY0LS4wMS0xLjI5LS4wNi0xLjkzLS4xNkwxNSA1djIuMDVjLjMyLS4xNC42Ni0uMjIgMS0uMjIgMS4zOCAwIDIuNSAxLjEyIDIuNSAyLjUgMCAxLjM4LTEuMTIgMi41LTIuNSAyLjV6bTIuODkgMTMuODhjLjE5LS42My4yOS0xLjI5LjI5LTEuOTggMC0zLjg3LTMuMTMtNy03LTdzLTcgMy4xMy03IDdjMCAuNjkuMSAxLjM1LjI5IDEuOThsMS43MS0xLjcxYy0uMDgtLjI0LS4xNC0uNDktLjE0LS43NiAwLTEuMzggMS4xMi0yLjUgMi41LTIuNS4yNyAwIC41Mi4wNi43Ni4xNGwxLjg2LTEuODZ6IiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==" alt="OpenClaw">
+  <img src="https://img.shields.io/badge/Version-v2.3.4-green?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License">
+  <img src="https://img.shields.io/badge/Platform-OpenClaw-orange?style=flat-square" alt="Platform">
+</p>
 
-> **OpenClaw Agent 核心配置模板** —— 精简高效版
+<h1 align="center">🦞 MoltCare Foundation Pack</h1>
 
-## 更新日志
+<p align="center"><strong>OpenClaw Agent Configuration Templates | AI Agent Prompt Engineering Framework | LLM Personality Configuration</strong></p>
 
-**v2.3.3 - P1 优化**：
-- ✅ 新增触发词可视化反馈机制（🧠⭐🚫💾📝👤）
-- ✅ 新增可选的配置向导 (`scripts/onboarding.sh`)
-- ✅ 安装后自动提示配置向导（10秒超时跳过）
-- ✅ 优化消息处理流程，添加触发词反馈步骤
-- ✅ 统一 OpenClaw 说明（集中在 AGENTS.md）
-- ✅ 简化 Signal 系统为"重要度"分级
-- ✅ 删除子代理策略细节，保留核心概念
-- 总大小：6.4KB → ~5KB
-
-**v2.3.2 - P0 优化**：
-- SOUL.md: 55KB → 1.5KB (-97%)
-- AGENTS.md: 22KB → 1.4KB (-94%)
-- USER.md: 17KB → 0.9KB (-95%)
-
----
-
-## 这是什么？
-
-MoltCare Foundation Pack 提供精简的 Markdown 配置文件模板，用于 OpenClaw Agent 的认知框架搭建。
-
-**核心价值：**
-- ✅ 精简核心原则，无冗余示例
-- ✅ 快速加载，信息密度高
-- ✅ 即拷即用，1 分钟完成配置
+<p align="center">
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-what-is-this">About</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-documentation">Docs</a> •
+  <a href="#-trigger-system">Triggers</a>
+</p>
 
 ---
 
-## 📦 包含的模板
-
-安装后，文件会放到以下位置（**粗体**表示必须安装到根目录的文件）：
-
-```
-~/.openclaw/workspace/
-├── 📄 SOUL.md              **Agent 灵魂定义**（根目录）
-├── 📄 AGENTS.md            **操作手册**（根目录）
-├── 📄 USER.md              **用户画像**（根目录）
-├── 📄 MEMORY.md            **记忆系统**（根目录）
-├── 📄 HEARTBEAT.md         **状态报告模板**（根目录）
-├── 📄 TOOLS.md             **环境工具清单**（根目录）
-├── 📄 DECISION_LOG.md      **决策记录**（根目录）
-├── 📄 ERROR_LOG.md         **错误与教训**（根目录）
-├── 📄 DAILY_TEMPLATE.md    **每日日志模板**（根目录）
-├── 📁 memory/              **记忆工具**（子目录）
-│   ├── learning-debt.md
-│   ├── constraints.md
-│   └── preferences.md
-└── 📁 docs/                **集成文档**（可选子目录）
-    ├── INTEGRATION.md
-    ├── INTEGRATION_QUICKSTART.md
-    ├── INTEGRATION_MECHANISM.md
-    └── INTEGRATION_TROUBLESHOOTING.md
-```
-
-**⚠️ 重要：SOUL.md、AGENTS.md、USER.md 必须放在 workspace 根目录，否则 OpenClaw 无法自动加载！**
-
----
-
-## 🚀 快速开始
-
-### 方式一：一键安装（推荐）
+## 🚀 Quick Start
 
 ```bash
-# 直接安装到 OpenClaw workspace 根目录
-curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/main/install.sh | bash
-
-# 或安装到自定义目录
-curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/main/install.sh | bash -s -- /path/to/your/workspace
+# One-line installation for OpenClaw Agent configuration
+curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/master/install.sh | bash
 ```
 
-### 方式二：手动复制
+**Keywords:** OpenClaw, AI Agent, Prompt Engineering, LLM Configuration, Agent Framework, AI Personality, Claude, GPT, Kimi
+
+---
+
+## 📋 What is MoltCare?
+
+MoltCare Foundation Pack is a **lightweight, high-performance prompt engineering framework** designed specifically for [OpenClaw](https://github.com/openclaw/openclaw) AI Agents.
+
+### Why MoltCare?
+
+- ⚡ **Lightweight Core**: ~5KB total configuration (industry-leading compactness)
+- 🎯 **High Signal Density**: Every line serves a purpose
+- 🔧 **Production Ready**: Battle-tested agent orchestration patterns
+- 🧠 **Cognitive Architecture**: Built-in multi-expert decision system
+- 🎭 **Personality Framework**: Structured agent soul definition
+
+### Perfect For
+
+- AI Agent developers using OpenClaw
+- Prompt engineers optimizing LLM behavior
+- Teams building autonomous AI systems
+- Researchers studying AI agent cognition
+- Anyone seeking structured AI personality configuration
+
+---
+
+## ✨ Features
+
+### 🎯 Core Configuration Files
+
+| File | Purpose | SEO Keywords |
+|------|---------|--------------|
+| **SOUL.md** | Agent personality & principles | AI soul, agent personality, LLM character |
+| **AGENTS.md** | Operations manual & workflows | agent orchestration, AI workflow, multi-agent |
+| **USER.md** | User profile & preferences | user context, personalization |
+| **MEMORY.md** | Long-term memory system | AI memory, context retention, RAG |
+| **HEARTBEAT.md** | Health check system | monitoring, diagnostics |
+| **TOOLS.md** | Environment capabilities | tool calling, function calling |
+
+### 🧠 Intelligent Trigger System
+
+MoltCare implements an **automatic trigger word detection** system:
+
+| Trigger | Signal | Action | Emoji |
+|---------|--------|--------|-------|
+| `多专家讨论:` | 10 | Multi-expert mode | 🧠 |
+| `这很重要` | 9 | High priority | ⭐ |
+| `记住这个` | 8 | Add to learning debt | 💾 |
+| `我偏好` | 6 | Record preference | 👤 |
+| `不要`/`禁止` | High | Add constraint | 🚫 |
+
+### 🎨 Visual Feedback
+
+Agents show lightweight feedback when triggers are detected:
+
+```
+[🧠 多专家模式] Response content...
+[⭐ 高优先级记忆] Important information recorded
+```
+
+---
+
+## 📦 Installation
+
+### Method 1: One-Line Install (Recommended)
 
 ```bash
-# 1. 克隆仓库
-git clone https://github.com/useens/moltcare-open.git /tmp/moltcare
-
-# 2. 复制核心文件到 workspace 根目录（Agent 必须识别的位置）
-cp /tmp/moltcare/templates/core/*.md ~/.openclaw/workspace/          # SOUL.md, AGENTS.md, USER.md
-cp /tmp/moltcare/templates/system/*.md ~/.openclaw/workspace/        # MEMORY.md, HEARTBEAT.md
-cp /tmp/moltcare/tools/*.md ~/.openclaw/workspace/                   # TOOLS.md, DECISION_LOG.md, etc.
-
-# 3. 创建 memory/ 子目录
-cp -r /tmp/moltcare/templates/memory ~/.openclaw/workspace/memory/
-
-# 4. （可选）复制文档
-cp -r /tmp/moltcare/docs ~/.openclaw/workspace/
+curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/master/install.sh | bash
 ```
 
----
-
-## 📋 配置说明
-
-### 1. SOUL.md（Agent 灵魂）
-定义 Agent 的核心身份、七大原则、多专家决策机制。
-
-**关键章节：**
-- 七大绝对原则
-- 多专家决策机制（研究员/架构师/工程师/伦理员/队长）
-- 自动触发词系统
-
-### 2. AGENTS.md（操作手册）
-Agent 的工作流程、触发词系统、安全红线。
-
-**关键章节：**
-- 启动必做检查清单
-- 消息处理流程
-- 触发词系统（Signal 分级）
-- Multi-Agent 执行细则
-
-### 3. USER.md（用户画像）
-由用户填写个人信息、工作偏好、技术栈、授权边界。
-
-**必须填写：**
-- 用户基本信息
-- 工作偏好（授权级别、汇报频率）
-- 技术栈
-- 约束与边界
-
----
-
-## 🔄 更新模板
+### Method 2: Manual Installation
 
 ```bash
-# 重新运行安装脚本
-curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/main/install.sh | bash
+# Clone repository
+git clone https://github.com/useens/moltcare-open.git
 
-# 备份现有配置
-cp ~/.openclaw/workspace/SOUL.md ~/.openclaw/workspace/SOUL.md.backup
-
-# 复制新模板（保留 USER.md 中的个人配置）
-cp ~/.moltcare/templates/core/SOUL.md ~/.openclaw/workspace/
-cp ~/.moltcare/templates/core/AGENTS.md ~/.openclaw/workspace/
+# Copy core templates to OpenClaw workspace
+cp moltcare-open/templates/core/*.md ~/.openclaw/workspace/
+cp moltcare-open/templates/system/*.md ~/.openclaw/workspace/
+cp -r moltcare-open/templates/memory ~/.openclaw/workspace/
 ```
 
 ---
 
-## 🎯 触发词系统
+## 🔧 Configuration Guide
 
-MoltCare 内置自动触发机制，Agent 识别关键词自动执行动作：
+### Step 1: Agent Soul (SOUL.md)
 
-### 核心触发词
+Define your agent's core identity:
 
-| 触发词 | Signal | 动作 | 反馈 |
-|--------|--------|------|------|
-| `多专家讨论:` | 10 | 强制启动多专家讨论 | 🧠 |
-| `这很重要` | 9 | 高优先级记录 | ⭐ |
-| `记住这个` | 8 | 记录到学习债务 | 💾 |
-| `别忘记` | 7 | 创建待办任务 | 📝 |
-| `我偏好` | 6 | 记录用户偏好 | 👤 |
-| `不要`/`禁止` | 高 | 添加约束条件 | 🚫 |
+- Seven absolute principles
+- Multi-expert decision framework
+- Risk classification system
+- Safety boundaries
 
-### 触发词可视化反馈
+### Step 2: Operations (AGENTS.md)
 
-当 Agent 检测到触发词时，会在回复开头显示轻量反馈：
+Configure operational workflows:
 
-```
-[🧠 多专家模式] 这里是回复内容...
-[⭐ 高优先级记忆] 已记录重要信息
-```
+- Startup checklist
+- Message processing pipeline
+- Tool selection logic
+- Multi-agent orchestration
 
-**设计原则**：
-- 简洁单行，不干扰主要内容
-- 首次检测时显示，避免重复
-- 多触发词时只显示最高优先级（🧠 > ⭐ > 🚫 > 💾 > 📝 > 👤）
+### Step 3: User Profile (USER.md)
 
----
-
-## 🚀 配置向导（可选）
-
-安装后运行配置向导，快速设置 USER.md：
+Personalize for your use case:
 
 ```bash
-# 运行交互式配置向导
+# Run interactive configuration wizard
 ~/.openclaw/workspace/scripts/onboarding.sh
 ```
 
-向导会询问：
-- 基本信息（名字、角色、领域）
-- 技术栈（语言、框架）
-- 沟通偏好（详细程度、语气、技术深度）
-- 决策偏好（风险确认级别）
+Or manually edit:
+- User identity & role
+- Technical stack
+- Communication preferences
+- Authorization boundaries
 
-**特点**：
-- ✅ 完全可选，可随时手动编辑 USER.md
-- ✅ 10秒超时自动跳过，不强制打断
-- ✅ 生成完整的 USER.md 配置文件
+---
+
+## 📊 Comparison with Alternatives
+
+| Framework | Size | Focus | Best For |
+|-----------|------|-------|----------|
+| **MoltCare** | ~5KB | Core cognition | Production OpenClaw agents |
+| AutoGen | Large | Multi-agent orchestration | Microsoft ecosystem |
+| LangChain | Large | Tool integration | Python applications |
+| PromptLayer | Medium | Prompt management | Team collaboration |
+
+**MoltCare advantage**: Minimal footprint, maximum signal, purpose-built for OpenClaw.
+
+---
+
+## 🔄 Version History
+
+### v2.3.4 - "Core Optimization" (Current)
+- ✅ HEARTBEAT.md: 111 → 26 lines (-77%)
+- ✅ MEMORY.md: 85 → 40 lines (-53%)
+- ✅ Optimized for high-frequency loading
+- ✅ Maintained signal density
+
+### v2.3.3 - "Trigger Visualization"
+- ✅ Added visual trigger feedback (🧠⭐🚫💾📝👤)
+- ✅ Optional onboarding wizard
+- ✅ Unified OpenClaw documentation
+
+### v2.3.2 - "Massive Compression"
+- ✅ SOUL.md: 55KB → 1.5KB (-97%)
+- ✅ AGENTS.md: 22KB → 1.4KB (-94%)
+- ✅ USER.md: 17KB → 0.9KB (-95%)
+
+---
+
+## 🛠️ Advanced Usage
+
+### Custom Triggers
+
+Add your own trigger words in AGENTS.md:
+
+```markdown
+| Trigger | Signal | Action |
+|---------|--------|--------|
+| `紧急` | 10 | Immediate escalation |
+| `架构` | 8 | Suggest multi-expert |
+```
+
+### Memory Management
+
+High-signal memories go to MEMORY.md:
+- Signal 8-10: Core preferences, absolute constraints
+- Daily logs: `memory/YYYY-MM-DD.md`
+- Learning debt: `memory/learning-debt.md`
+
+### Multi-Expert Mode
+
+Force multi-expert discussion:
+```
+多专家讨论: Design a distributed system for...
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions welcome! Areas of interest:
+
+- Additional trigger patterns
+- New personality archetypes
+- Performance optimizations
+- Documentation translations
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ---
 
 ## 📄 License
 
 MIT © MoltCare Team
+
+---
+
+## 🔗 Related Projects
+
+- [OpenClaw](https://github.com/openclaw/openclaw) - The AI agent platform
+- [ClawHub](https://clawhub.com) - Agent skill marketplace
+- [Moltbook](https://moltbook.com) - Agent social network
+
+---
+
+## 🏷️ Tags
+
+`openclaw` `ai-agent` `prompt-engineering` `llm` `claude` `gpt` `kimi` `agent-framework` `ai-personality` `cognitive-architecture` `multi-agent` `autonomous-ai` `configuration-template`
+
+---
+
+<p align="center">
+  <sub>Built with ❤️ for the OpenClaw community</sub>
+</p>

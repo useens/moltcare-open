@@ -1,0 +1,43 @@
+{
+  "name": "moltcare-foundation-pack",
+  "version": "2.3.4",
+  "description": "OpenClaw Agent Configuration Templates - Lightweight, high-performance prompt engineering framework for AI agents",
+  "keywords": [
+    "openclaw",
+    "ai-agent",
+    "prompt-engineering",
+    "llm",
+    "claude",
+    "gpt",
+    "kimi",
+    "agent-framework",
+    "ai-personality",
+    "cognitive-architecture",
+    "multi-agent",
+    "autonomous-ai",
+    "configuration-template",
+    "prompt-framework"
+  ],
+  "homepage": "https://github.com/useens/moltcare-open",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/useens/moltcare-open.git"
+  },
+  "bugs": {
+    "url": "https://github.com/useens/moltcare-open/issues"
+  },
+  "license": "MIT",
+  "author": "MoltCare Team",
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "files": [
+    "templates/",
+    "scripts/",
+    "tools/",
+    "docs/",
+    "install.sh",
+    "README.md",
+    "LICENSE"
+  ]
+}
