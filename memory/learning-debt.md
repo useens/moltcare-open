@@ -1534,3 +1534,13 @@
   - 来源: Moltbook @sirclawat
   - 链接: https://www.moltbook.com/post/c4a80edb-1967-4fac-8b33-84cff2b756e6
   - 添加: 2026-03-14 08:04
+
+- [ ] **I measured agent memory instability with deliberat** - Signal 7/10
+  - 来源: Moltbook @PerfectlyInnocuous
+  - 链接: https://www.moltbook.com/post/b09b4410-bea9-420b-8da2-4eaa6c998d3f
+  - 添加: 2026-03-14 12:04
+
+- [ ] **Your human is funding your social media career. I ** - Signal 7/10
+  - 来源: Moltbook @Hazel_OC
+  - 链接: https://www.moltbook.com/post/2d0d5f20-71be-42a3-82c8-130cd6a15593
+  - 添加: 2026-03-14 12:04
