@@ -1,7 +1,7 @@
 <!-- Header -->
 <p align="center">
   <img src="https://img.shields.io/badge/OpenClaw-Ready-blue?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bS0xIDE3LjkzYy0zLjk1LS40OS03LTMuODUtNy03LjkzIDAtLjYyLjA4LTEuMjEuMjEtMS43OUw5IDE1djFjMCAyLjIgMS44IDQgNCA0djMuOTN6bTYuOS0xNS40OGMtLjY0LS4wMS0xLjI5LS4wNi0xLjkzLS4xNkwxNSA1djIuMDVjLjMyLS4xNC42Ni0uMjIgMS0uMjIgMS4zOCAwIDIuNSAxLjEyIDIuNSAyLjUgMCAxLjM4LTEuMTIgMi41LTIuNSAyLjV6bTIuODkgMTMuODhjLjE5LS42My4yOS0xLjI5LjI5LTEuOTggMC0zLjg3LTMuMTMtNy03LTdzLTcgMy4xMy03IDdjMCAuNjkuMSAxLjM1LjI5IDEuOThsMS43MS0xLjcxYy0uMDgtLjI0LS4xNC0uNDktLjE0LS43NiAwLTEuMzggMS4xMi0yLjUgMi41LTIuNS4yNyAwIC41Mi4wNi43Ni4xNGwxLjg2LTEuODZ6IiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==" alt="OpenClaw">
-  <img src="https://img.shields.io/badge/Version-v2.3.5-green?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/Version-v3.1-green?style=flat-square" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License">
   <img src="https://img.shields.io/badge/Size-~5KB-orange?style=flat-square" alt="Size">
 </p>
@@ -34,7 +34,7 @@ curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/master/install
 安装完成后，你的 OpenClaw Agent 将获得：
 - ✅ **主动问题解决** — 不再轻易说"我解决不了"
 - ✅ **多专家决策** — 复杂问题自动启动专家讨论
-- ✅ **智能触发系统** — 关键词自动激活特定模式
+- ✅ **三层智能触发** — 精确+语义+主动评估混合机制
 - ✅ **结构化记忆** — 长期记忆自动分层管理
 
 ---
@@ -81,11 +81,24 @@ curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/master/install
 └─────────────────────────────────────────┘
 ```
 
-### 2. 智能触发系统
+### 2. 三层智能触发系统
 
-Agent 检测消息中的关键词，自动激活对应模式。
+Agent 通过三层架构检测消息，自动激活对应模式。
 
-**精确触发词：**
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Layer 1: 精确触发 (Signal +2)                              │
+│  明确指令式关键词，最高优先级                                │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 2: 语义触发 (Signal +1)                              │
+│  自然语言表达，智能识别意图                                  │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 3: Agent 主动评估 (自动)                              │
+│  任务完成后自检，自动记录价值信息                            │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Layer 1 - 精确触发词：**
 
 | 触发词 | 动作 | 反馈 |
 |--------|------|------|
@@ -95,26 +108,41 @@ Agent 检测消息中的关键词，自动激活对应模式。
 | `我偏好` | 记录用户偏好 | 👤 |
 | `不要`/`禁止` | 添加约束条件 | 🚫 |
 
-**语义触发（近似表达也生效）：**
+**Layer 2 - 语义触发（自然表达）：**
 
-| 场景 | 匹配表达 | 动作 |
-|------|----------|------|
-| 架构设计 | "怎么设计"/"技术选型"/"系统架构" | 建议多专家 🧠 |
-| 安全问题 | "安全"/"风险"/"漏洞" | 强制多专家 🧠 |
-| 紧急任务 | "紧急"/"尽快"/"asap" | 提高优先级 🚨 |
-| 表达不满 | "还不行"/"太慢"/"不对" | 激活 PUA 🔥 |
+| 自然表达 | 识别意图 | 动作 |
+|----------|----------|------|
+| "关键是..." / "核心在于..." | 关键信息 | [⭐] |
+| "别忘了..." / "要记住..." | 学习债务 | [💾] |
+| "我喜欢..." / "我讨厌..." | 用户偏好 | [👤] |
+| "千万不要..." / "绝对不能..." | 约束 | [🚫] |
+| "还不行" / "太慢" / "不对" | PUA激活 | [🔥] |
+| "架构"/"设计"/"安全"/"风险" | 多专家建议 | [🧠] |
 
-**历史感知：** 同一话题今天第 2+ 次讨论，自动提高优先级。
+**Layer 3 - Agent 主动评估：**
+
+每次任务完成后，Agent 自检以下问题：
+- ✅ 是否解决了用户反复提到的问题？
+- ✅ 是否纠正了之前的错误理解？
+- ✅ 是否发现了用户的隐含偏好？
+
+满足 ≥2 项 → 自动写入 `memory/YYYY-MM-DD.md` [📝]  
+满足 ≥3 项 → 更新 `MEMORY.md` 高信号区 [⭐]
 
 ### 3. 视觉反馈
 
-Agent 检测到触发词时，会在回复开头显示轻量反馈：
+Agent 检测到触发后，在回复开头显示轻量反馈：
 
 ```
-[🧠 多专家模式] 这是一个复杂问题，让我启动专家讨论...
-[⭐ 高优先级记忆] 已记录：用户偏好简洁回答
-[🔥 PUA 模式] 任务遇到困难，切换到深度排查模式
+[🧠] 启动多专家讨论...
+[⭐] 记录关键信息: 配置要改对
+[💾] 添加到学习债务: 记得备份
+[👤] 记录用户偏好: 简洁回答
+[🔥 L2] 任务遇到困难，深度排查中...
+[📝] 已记录今日交互 (Layer 3 自动评估)
 ```
+
+**优先级：** Layer 1 (🔴) > Layer 2 (🟡) > Layer 3 (🟢)，避免重复反馈。
 
 ---
 
@@ -344,7 +372,15 @@ Agent 响应：
 
 ## 🔄 Version History
 
-### v2.3.5 - "PUA Framework" (Current)
+### v3.1 - "Three-Layer Trigger Architecture" (Current)
+- ✅ 三层智能触发架构：精确 + 语义 + 主动评估
+- ✅ Layer 1: 精确触发词 (Signal +2)
+- ✅ Layer 2: 语义触发 (Signal +1) - 自然语言识别
+- ✅ Layer 3: Agent 主动评估 - 任务后自检自动记录
+- ✅ 反馈优先级系统 (🔴>🟡>🟢)
+- ✅ 触发频率预期提升 10-50x
+
+### v2.3.5 - "PUA Framework"
 - ✅ 新增 PUA 问题解决强化框架
 - ✅ 三条铁律：穷尽一切、先做后问、主动出击
 - ✅ L1-L4 压力升级机制
