@@ -5,7 +5,8 @@ on:
     branches: [ master, main ]
     paths:
       - 'skill/**'
-      - 'templates/**'
+      # ⚠️ 修改 templates/ 不会自动发布
+      # 如需发布，请先将 templates/ 同步到 skill/assets/ 再推送
   workflow_dispatch:
 
 jobs:
