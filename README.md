@@ -245,11 +245,32 @@ Agent 检测到触发后，在回复开头显示轻量反馈：
 clawhub install moltcare-open
 ```
 
-此命令会：
-1. 从 ClawHub 下载最新版本
-2. 自动安装到 `~/.openclaw/skills/`
-3. 复制模板到工作区
-4. 创建今日记忆文件
+**⚠️  安装位置确认**：
+安装后文件应该位于 `~/.openclaw/workspace/` **根目录**，结构如下：
+```
+~/.openclaw/workspace/
+├── AGENTS.md          ✅ 正确：直接在根目录
+├── SOUL.md           ✅ 正确：直接在根目录
+├── USER.md           ✅ 正确：直接在根目录
+├── MEMORY.md         ✅ 正确：直接在根目录
+├── HEARTBEAT.md      ✅ 正确：直接在根目录
+└── memory/           ✅ 正确：memory 子文件夹
+    ├── learning-debt.md
+    ├── constraints.md
+    └── preferences.md
+```
+
+**❌ 错误示例**（不要这样）：
+```
+~/.openclaw/workspace/
+├── core/             ❌ 错误：不要嵌套 core/
+│   ├── AGENTS.md
+│   └── ...
+├── assets/           ❌ 错误：不要嵌套 assets/
+│   └── ...
+└── templates/        ❌ 错误：不要嵌套 templates/
+    └── ...
+```
 
 **更新到最新版：**
 ```bash
@@ -257,6 +278,9 @@ clawhub update moltcare-open
 ```
 
 ### 方式二：一键脚本安装
+
+**⚠️  注意**：确保文件安装到 `~/.openclaw/workspace/` **根目录**，不要在 workspace 内创建 `core/`、`assets/` 或 `templates/` 子文件夹。
+
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/master/install.sh | bash

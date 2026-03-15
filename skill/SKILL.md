@@ -74,19 +74,40 @@ Automatically activate for:
 
 ## Installation
 
-### Step 1: Copy Templates
+### Step 1: Copy Templates (⚠️ Important: Copy to ROOT, not subfolders)
 
-Copy all files from `assets/` to `~/.openclaw/workspace/`:
+**Correct structure after installation:**
+```
+~/.openclaw/workspace/
+├── AGENTS.md          ← MUST be here
+├── SOUL.md            ← MUST be here
+├── USER.md            ← MUST be here
+├── MEMORY.md          ← MUST be here
+├── HEARTBEAT.md       ← MUST be here
+└── memory/
+    ├── learning-debt.md
+    ├── constraints.md
+    └── preferences.md
+```
 
+**❌ WRONG - Do NOT do this:**
 ```bash
-# Core templates
+# Wrong - creates subfolders
+mkdir -p ~/.openclaw/workspace/core
+mkdir -p ~/.openclaw/workspace/assets
+cp assets/* ~/.openclaw/workspace/core/  # ❌ WRONG
+```
+
+**✅ CORRECT:**
+```bash
+# Core templates → ROOT of workspace
 cp assets/SOUL.md ~/.openclaw/workspace/
 cp assets/AGENTS.md ~/.openclaw/workspace/
 cp assets/USER.md ~/.openclaw/workspace/
 cp assets/MEMORY.md ~/.openclaw/workspace/
 cp assets/HEARTBEAT.md ~/.openclaw/workspace/
 
-# Memory sub-templates
+# Memory sub-templates → workspace/memory/
 mkdir -p ~/.openclaw/workspace/memory
 cp assets/learning-debt.md ~/.openclaw/workspace/memory/
 cp assets/constraints.md ~/.openclaw/workspace/memory/
