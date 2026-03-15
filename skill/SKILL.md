@@ -141,6 +141,8 @@ echo "# $(date +%Y-%m-%d) Memory Flush" > ~/.openclaw/workspace/memory/$(date +%
 | **AGENTS.md** | Operation manual | 3-layer triggers, multi-expert, PUA levels |
 | **USER.md** | User profile | Preferences, constraints, communication style |
 | **MEMORY.md** | Long-term memory | High-signal info (Signal 8-10) |
+| **IDENTITY.md** | Agent identity | Display name, emoji, role definition |
+| **TOOLS.md** | Environment tools | Local tool versions, API keys, commands |
 
 ### System Files (Optional)
 
