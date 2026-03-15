@@ -1,0 +1,34 @@
+name: Publish to ClawHub
+
+on:
+  push:
+    branches: [ master, main ]
+    paths:
+      - 'skill/**'
+      - 'templates/**'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      
+      - name: Install ClawHub CLI
+        run: npm install -g clawhub
+      
+      - name: Publish to ClawHub
+        env:
+          CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}
+        run: |
+          # 从 skill/ 目录发布
+          clawhub publish ./skill --slug moltcare-open
+          
+      - name: Notify Success
+        if: success()
+        run: echo "✅ Skill published successfully!"
