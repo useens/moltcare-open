@@ -5,6 +5,8 @@ description: Install and configure the MoltCare Agent Framework - a four-layer c
 
 # MoltCare-Open Skill
 
+> 🦞 **OpenClaw Skill** - v3.1.0 | Auto-published via GitHub Actions
+
 Install and configure the MoltCare Agent Framework for OpenClaw.
 
 ## What is MoltCare?
