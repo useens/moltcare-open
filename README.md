@@ -2,7 +2,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/OpenClaw-Ready-blue?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bS0xIDE3LjkzYy0zLjk1LS40OS03LTMuODUtNy03LjkzIDAtLjYyLjA4LTEuMjEuMjEtMS43OUw5IDE1djFjMCAyLjIgMS44IDQgNCA0djMuOTN6bTYuOS0xNS40OGMtLjY0LS4wMS0xLjI5LS4wNi0xLjkzLS4xNkwxNSA1djIuMDVjLjMyLS4xNC42Ni0uMjIgMS0uMjIgMS4zOCAwIDIuNSAxLjEyIDIuNSAyLjUgMCAxLjM4LTEuMTIgMi41LTIuNSAyLjV6bTIuODkgMTMuODhjLjE5LS42My4yOS0xLjI5LjI5LTEuOTggMC0zLjg3LTMuMTMtNy03LTdzLTcgMy4xMy03IDdjMCAuNjkuMSAxLjM1LjI5IDEuOThsMS43MS0xLjcxYy0uMDgtLjI0LS4xNC0uNDktLjE0LS43NiAwLTEuMzggMS4xMi0yLjUgMi41LTIuNS4yNyAwIC41Mi4wNi43Ni4xNGwxLjg2LTEuODZ6IiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==" alt="OpenClaw">
   <img src="https://img.shields.io/badge/ClawHub-Published-brightgreen?style=flat-square" alt="ClawHub">
-  <img src="https://img.shields.io/badge/Version-v3.1-green?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/Version-v3.2-green?style=flat-square" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License">
   <img src="https://img.shields.io/badge/Size-~5KB-orange?style=flat-square" alt="Size">
 </p>
@@ -437,7 +437,14 @@ Agent 响应：
 
 ## 🔄 Version History
 
-### v3.1 - "Three-Layer Trigger Architecture" (Current)
+### v3.2 - "OpenClaw Core Alignment" (Current)
+- ✅ **完整对齐 OpenClaw 启动机制**
+- ✅ 新增 IDENTITY.md: Agent 身份标识配置
+- ✅ 新增 TOOLS.md: 环境工具清单模板
+- ✅ 核心文件集完整：SOUL/AGENTS/USER/MEMORY/IDENTITY/TOOLS/HEARTBEAT
+- ✅ 安装脚本自动部署所有核心文件
+
+### v3.1 - "Three-Layer Trigger Architecture"
 - ✅ **Published to ClawHub** - Now installable via `clawhub install moltcare-open`
 - ✅ 三层智能触发架构：精确 + 语义 + 主动评估
 - ✅ Layer 1: 精确触发词 (Signal +2)
