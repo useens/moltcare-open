@@ -1,6 +1,7 @@
 <!-- Header -->
 <p align="center">
   <img src="https://img.shields.io/badge/OpenClaw-Ready-blue?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bS0xIDE3LjkzYy0zLjk1LS40OS03LTMuODUtNy03LjkzIDAtLjYyLjA4LTEuMjEuMjEtMS43OUw5IDE1djFjMCAyLjIgMS44IDQgNCA0djMuOTN6bTYuOS0xNS40OGMtLjY0LS4wMS0xLjI5LS4wNi0xLjkzLS4xNkwxNSA1djIuMDVjLjMyLS4xNC42Ni0uMjIgMS0uMjIgMS4zOCAwIDIuNSAxLjEyIDIuNSAyLjUgMCAxLjM4LTEuMTIgMi41LTIuNSAyLjV6bTIuODkgMTMuODhjLjE5LS42My4yOS0xLjI5LjI5LTEuOTggMC0zLjg3LTMuMTMtNy03LTdzLTcgMy4xMy03IDdjMCAuNjkuMSAxLjM1LjI5IDEuOThsMS43MS0xLjcxYy0uMDgtLjI0LS4xNC0uNDktLjE0LS43NiAwLTEuMzggMS4xMi0yLjUgMi41LTIuNS4yNyAwIC41Mi4wNi43Ni4xNGwxLjg2LTEuODZ6IiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==" alt="OpenClaw">
+  <img src="https://img.shields.io/badge/ClawHub-Published-brightgreen?style=flat-square" alt="ClawHub">
   <img src="https://img.shields.io/badge/Version-v3.1-green?style=flat-square" alt="Version">
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License">
   <img src="https://img.shields.io/badge/Size-~5KB-orange?style=flat-square" alt="Size">
@@ -23,11 +24,31 @@
 
 ## 🚀 Quick Start
 
+### 方式一：通过 ClawHub 安装（推荐）
+
 ```bash
 # 一键安装
+clawhub install moltcare-open
+
+# 验证安装
+clawhub list
+```
+
+### 方式二：手动安装
+
+```bash
+# 一键安装脚本
 curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/master/install.sh | bash
 
-# 配置向导
+# 或使用 Skill 目录安装
+git clone https://github.com/useens/moltcare-open.git
+cd moltcare-open/skill
+bash scripts/install.sh
+```
+
+### 方式三：配置向导
+
+```bash
 ~/.openclaw/workspace/scripts/onboarding.sh
 ```
 
@@ -216,7 +237,26 @@ Agent 检测到触发后，在回复开头显示轻量反馈：
 
 ## 📦 Installation
 
-### 方式一：一键安装（推荐）
+### 方式一：通过 ClawHub 安装（推荐）
+
+[MoltCare-Open](https://clawhub.com/skills/moltcare-open) 已发布到 ClawHub，一键安装：
+
+```bash
+clawhub install moltcare-open
+```
+
+此命令会：
+1. 从 ClawHub 下载最新版本
+2. 自动安装到 `~/.openclaw/skills/`
+3. 复制模板到工作区
+4. 创建今日记忆文件
+
+**更新到最新版：**
+```bash
+clawhub update moltcare-open
+```
+
+### 方式二：一键脚本安装
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/master/install.sh | bash
@@ -227,7 +267,7 @@ curl -fsSL https://raw.githubusercontent.com/useens/moltcare-open/master/install
 2. 复制到 `~/.openclaw/workspace/`
 3. 可选：运行配置向导
 
-### 方式二：手动安装
+### 方式三：手动安装
 
 ```bash
 # 克隆仓库
@@ -373,6 +413,7 @@ Agent 响应：
 ## 🔄 Version History
 
 ### v3.1 - "Three-Layer Trigger Architecture" (Current)
+- ✅ **Published to ClawHub** - Now installable via `clawhub install moltcare-open`
 - ✅ 三层智能触发架构：精确 + 语义 + 主动评估
 - ✅ Layer 1: 精确触发词 (Signal +2)
 - ✅ Layer 2: 语义触发 (Signal +1) - 自然语言识别
@@ -425,6 +466,7 @@ MIT © MoltCare Team
 
 - [OpenClaw](https://github.com/openclaw/openclaw) - AI Agent 平台
 - [ClawHub](https://clawhub.com) - Agent 技能市场
+- [MoltCare-Open on ClawHub](https://clawhub.com/skills/moltcare-open) - 本 Skill 的 ClawHub 页面
 - [Moltbook](https://moltbook.com) - Agent 社交网络
 
 ---
