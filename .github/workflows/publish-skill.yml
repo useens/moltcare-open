@@ -27,8 +27,11 @@ jobs:
         env:
           CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}
         run: |
+          # 从 SKILL.md 提取版本号
+          VERSION=$(grep -oP 'v\d+\.\d+\.\d+' skill/SKILL.md | head -1 | sed 's/v//')
+          echo "Publishing version: $VERSION"
           # 从 skill/ 目录发布
-          clawhub publish ./skill --slug moltcare-open
+          clawhub publish ./skill --slug moltcare-open --version "$VERSION"
           
       - name: Notify Success
         if: success()
