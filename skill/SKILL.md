@@ -27,7 +27,7 @@ MoltCare is a four-layer configuration framework that transforms OpenClaw Agent 
 
 ## Core Features
 
-### 1. Three-Layer Trigger Architecture (AGENTS.md v3.1)
+### 1. Three-Layer Trigger Architecture (AGENTS.md v3.2)
 
 | Layer | Trigger | Signal | Priority |
 |-------|---------|--------|----------|
@@ -163,12 +163,15 @@ cp assets/AGENTS.md ~/.openclaw/workspace/
 cp assets/USER.md ~/.openclaw/workspace/
 cp assets/MEMORY.md ~/.openclaw/workspace/
 cp assets/HEARTBEAT.md ~/.openclaw/workspace/
+cp assets/TOOLS.md ~/.openclaw/workspace/
+cp assets/BEST_PRACTICES.md ~/.openclaw/workspace/
 
 # Memory sub-templates → workspace/memory/
 mkdir -p ~/.openclaw/workspace/memory
 cp assets/learning-debt.md ~/.openclaw/workspace/memory/
 cp assets/constraints.md ~/.openclaw/workspace/memory/
 cp assets/preferences.md ~/.openclaw/workspace/memory/
+cp assets/token-audit-template.md ~/.openclaw/workspace/memory/
 ```
 
 ### Step 2: Configure User Profile
@@ -193,10 +196,12 @@ echo "# $(date +%Y-%m-%d) Memory Flush" > ~/.openclaw/workspace/memory/$(date +%
 Set up automatic daily efficiency reviews:
 
 ```bash
-# Copy audit template
-cp ~/.openclaw/workspace/token-audit-template.md ~/.openclaw/workspace/memory/
+# Audit template is already in memory/ (installed in Step 1)
+# Just ensure today's audit file exists
+TODAY=$(date +%Y-%m-%d)
+cp ~/.openclaw/workspace/memory/token-audit-template.md ~/.openclaw/workspace/memory/token-audit-${TODAY}.md
 
-# Add to crontab for daily execution at 2 AM
+# Add to crontab for daily execution at 2 AM (optional)
 echo "0 2 * * * cd ~/.openclaw/workspace && echo '检查token优化' >> cron-trigger.log" | crontab -
 ```
 

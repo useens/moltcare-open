@@ -1,7 +1,8 @@
-# AGENTS.md - Agent 操作手册 v3.1
+# AGENTS.md - Agent 操作手册 v3.2
 
 > 🦞 **OpenClaw 深度适配版**
 > 
+> v3.2 更新: 修复启动流程对齐，新增每日 Token 优化审查
 > v3.1 更新: 完成三层触发架构 (精确 + 语义 + 主动评估)
 > v3.0 更新: 新增语义触发规则
 > v2.3.5 更新: 新增 PUA 触发词系统
@@ -10,10 +11,11 @@
 
 ## 🚀 启动流程
 
-每次会话开始时：
-1. `memory_search` 检索今日记忆
-2. `read memory/YYYY-MM-DD.md`（如存在）
-3. `pwd` 确认工作目录
+每次会话开始时（OpenClaw 自动执行）：
+1. **加载项目上下文** - OpenClaw 自动注入 AGENTS.md, SOUL.md, USER.md, MEMORY.md 等
+2. `read memory/YYYY-MM-DD.md`（如存在）- 读取今日具体任务记录
+3. `memory_search`（可选）- 仅在用户询问历史或需要语义检索时调用
+4. `pwd` 确认工作目录
 
 ---
 
@@ -284,4 +286,4 @@ IF 这是今天第 2+ 次讨论同一话题 → 提高信号等级
 - [SOUL.md](SOUL.md) - 灵魂定义（原则、人格）
 - [USER.md](USER.md) - 用户画像（偏好、约束）
 
-*AGENTS.md - 操作手册 v3.1*
+*AGENTS.md - 操作手册 v3.2*
