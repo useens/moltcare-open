@@ -209,24 +209,26 @@ mkdir -p ~/.openclaw/workspace/memory
 echo "# $(date +%Y-%m-%d) Memory Flush" > ~/.openclaw/workspace/memory/$(date +%Y-%m-%d).md
 ```
 
-### Step 4: Configure Daily Token Audit (Optional)
+### Step 4: Configure Weekly Token Audit (Auto-configured)
 
-Set up automatic daily efficiency reviews:
+Token optimization audit is **automatically configured** during installation:
 
+**Default Schedule**: Every Monday at 03:00 (cron)
+```
+0 3 * * 1 cd ~/.openclaw/workspace && echo '检查token优化' >> ~/.openclaw/workspace/.audit-trigger
+```
+
+**Trigger methods**:
+1. **Automatic** - Runs every Monday 03:00 via cron
+2. **Manual** - Say "检查token优化" anytime
+3. **Custom period** - Say "检查本周token优化" or "检查本月token优化"
+
+**To change schedule**, edit crontab:
 ```bash
-# Audit template is already in memory/ (installed in Step 1)
-# Just ensure today's audit file exists
-TODAY=$(date +%Y-%m-%d)
-cp ~/.openclaw/workspace/memory/token-audit-template.md ~/.openclaw/workspace/memory/token-audit-${TODAY}.md
-
-# Add to crontab for daily execution at 2 AM (optional)
-echo "0 2 * * * cd ~/.openclaw/workspace && echo '检查token优化' >> cron-trigger.log" | crontab -
-```
-
-Or trigger manually anytime:
-```
-用户: "检查token优化"
-Agent: [📊] 执行每日 Token 优化审查...
+crontab -e
+# Change: 0 3 * * 1 (Monday 03:00)
+# To daily: 0 3 * * * (daily 03:00)
+# To disable: Comment out or remove the line
 ```
 
 ## File Reference
@@ -251,6 +253,7 @@ Agent: [📊] 执行每日 Token 优化审查...
 | **IDENTITY.md** | Agent identity | Display name, emoji, role definition |
 | **TOOLS.md** | Environment tools | Local tool versions, API keys, commands |
 | **HEARTBEAT.md** | Health check system | Quick status checks |
+| **TOKEN_AUDIT.md** | Weekly audit config | Token optimization schedule, thresholds |
 
 ### MEMORY Templates (Read on-demand)
 

@@ -52,9 +52,11 @@ echo "📋 安装 OPTIONAL 配置（存在则加载）..."
 cp "$REPO_TMP/templates/core/IDENTITY.md" "$TARGET_DIR/" 2>/dev/null || echo "  ⚠️  IDENTITY.md 未找到"
 cp "$REPO_TMP/templates/core/TOOLS.md" "$TARGET_DIR/" 2>/dev/null || echo "  ⚠️  TOOLS.md 未找到"
 cp "$REPO_TMP/templates/system/HEARTBEAT.md" "$TARGET_DIR/" 2>/dev/null || echo "  ⚠️  HEARTBEAT.md 未找到"
+cp "$REPO_TMP/templates/core/TOKEN_AUDIT.md" "$TARGET_DIR/" 2>/dev/null || echo "  ⚠️  TOKEN_AUDIT.md 未找到"
 echo "  ✅ IDENTITY.md  - Agent 身份"
 echo "  ✅ TOOLS.md     - 环境工具"
 echo "  ✅ HEARTBEAT.md - 状态检查"
+echo "  ✅ TOKEN_AUDIT.md - Token 审查配置"
 
 # 创建 memory/ 子目录并安装记忆工具（按需读取）
 echo ""
@@ -90,6 +92,16 @@ if [ ! -f "$TARGET_DIR/memory/${TODAY}.md" ]; then
     echo "  ✅ memory/${TODAY}.md (今日记忆)"
 fi
 
+# 配置每周 Token 审查 cron
+echo ""
+echo "⏰ 配置每周 Token 审查..."
+if ! crontab -l 2>/dev/null | grep -q "检查token优化"; then
+    (crontab -l 2>/dev/null; echo "0 3 * * 1 cd $TARGET_DIR && echo '检查token优化' >> $TARGET_DIR/.audit-trigger 2>&1") | crontab -
+    echo "  ✅ 已配置每周一 03:00 自动执行 Token 审查"
+else
+    echo "  ⏭️  Token 审查已配置，跳过"
+fi
+
 echo ""
 echo "================================"
 echo "✅ 安装完成！"
@@ -101,13 +113,16 @@ echo "📁 CORE 文件（自动加载）:"
 echo "   AGENTS.md, SOUL.md, USER.md, MEMORY.md"
 echo ""
 echo "📁 OPTIONAL 文件（存在则加载）:"
-echo "   IDENTITY.md, TOOLS.md, HEARTBEAT.md"
+echo "   IDENTITY.md, TOOLS.md, HEARTBEAT.md, TOKEN_AUDIT.md"
 echo ""
 echo "📁 MEMORY 模板（按需读取）:"
 echo "   memory/learning-debt.md"
 echo "   memory/constraints.md"
 echo "   memory/preferences.md"
 echo "   memory/token-audit-template.md"
+echo ""
+echo "⏰ 自动化任务:"
+echo "   每周 Token 审查: 周一 03:00 (cron)"
 echo ""
 echo "📖 参考文档（不自动加载）:"
 echo "   skill/assets/BEST_PRACTICES.md - 效率最佳实践"

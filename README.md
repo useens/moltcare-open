@@ -170,7 +170,7 @@ Agent 通过三层架构检测消息，自动激活对应模式。
          → 需推理? → L3 AI
 ```
 
-**每日审查**: 说"检查token优化"自动审查可优化点。
+**每周审查**: 每周一 03:00 自动执行（或说"检查token优化"手动触发）
 
 ---
 
@@ -213,6 +213,7 @@ Agent 检测到触发后，在回复开头显示轻量反馈：
 | **IDENTITY.md** | Agent 身份 | 显示名称、Emoji、角色 |
 | **TOOLS.md** | 环境工具 | 可用工具、API Keys |
 | **HEARTBEAT.md** | 健康检查 | 快速巡检清单 |
+| **TOKEN_AUDIT.md** | Token 审查配置 | 每周自动审查调度 |
 
 ### MEMORY 模板（按需读取）
 
@@ -304,9 +305,10 @@ clawhub install moltcare-open
 **OPTIONAL 文件（存在则加载）:**
 ```
 ~/.openclaw/workspace/
-├── IDENTITY.md    ⚠️ Agent 身份（可选）
-├── TOOLS.md       ⚠️ 环境工具（可选）
-└── HEARTBEAT.md   ⚠️ 健康检查（可选）
+├── IDENTITY.md     ⚠️ Agent 身份（可选）
+├── TOOLS.md        ⚠️ 环境工具（可选）
+├── HEARTBEAT.md    ⚠️ 健康检查（可选）
+└── TOKEN_AUDIT.md  ⚠️ Token 审查配置（可选）
 ```
 
 **MEMORY 模板（按需读取）:**
@@ -492,7 +494,8 @@ Agent 响应：
 
 ### v3.2 - "Efficiency & Alignment" (Current)
 - ✅ **任务分层 & Token 优化** — L0-L3 四层模型，脚本化降低 90%+ Token 消耗
-- ✅ **每日 Token 审查** — 自动识别可优化任务，说"检查token优化"触发
+- ✅ **每周 Token 审查** — 每周一 03:00 自动执行（cron），说"检查token优化"手动触发
+- ✅ **TOKEN_AUDIT.md** — 新增核心配置文件，定义审查频率和阈值
 - ✅ **完整对齐 OpenClaw 启动机制** — CORE/OPTIONAL/MEMORY 三层文件分类
 - ✅ **AGENTS.md 精简 43%** — 从 289 行优化至 164 行，功能 100% 保留
 - ✅ **PUA 检查清单 7→3** — 合并为"仔细看/深入查/换思路"三大原则
