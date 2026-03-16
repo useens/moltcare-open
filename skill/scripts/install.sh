@@ -28,6 +28,8 @@ cp "${ASSETS_DIR}/AGENTS.md" "${WORKSPACE}/"
 cp "${ASSETS_DIR}/USER.md" "${WORKSPACE}/"
 cp "${ASSETS_DIR}/MEMORY.md" "${WORKSPACE}/"
 cp "${ASSETS_DIR}/HEARTBEAT.md" "${WORKSPACE}/"
+cp "${ASSETS_DIR}/TOOLS.md" "${WORKSPACE}/"
+cp "${ASSETS_DIR}/BEST_PRACTICES.md" "${WORKSPACE}/"
 
 # Copy memory templates
 echo "📝 Copying memory templates to workspace/memory/..."

@@ -72,6 +72,25 @@ Automatically activate for:
 
 **Experts:** 🔍 Researcher → 🧠 Architect → 💻 Engineer → 👑 Captain
 
+### 4. Task Layering & Cost Optimization
+
+Intelligent task execution with minimal token consumption:
+
+| Layer | Task Type | Execution | Token Cost |
+|-------|-----------|-----------|------------|
+| **L0** | Data collection, polling, formatting | Pure script | Zero |
+| **L1** | Query, display, status checks | Pure script | Zero |
+| **L2** | Anomaly detection, threshold checks | Script + conditional trigger | On-demand |
+| **L3** | Analysis, decision-making, summarization | AI invocation | Normal |
+
+**Principle**: Push computation to scripts; reserve AI for judgment.
+
+**Benefits**:
+- 90%+ reduction in token consumption for routine tasks
+- Faster response times (no model latency)
+- Predictable operational costs
+- Scalable automation
+
 ## Installation
 
 ### Step 1: Copy Templates (⚠️ Important: Copy to ROOT, not subfolders)
@@ -143,6 +162,7 @@ echo "# $(date +%Y-%m-%d) Memory Flush" > ~/.openclaw/workspace/memory/$(date +%
 | **MEMORY.md** | Long-term memory | High-signal info (Signal 8-10) |
 | **IDENTITY.md** | Agent identity | Display name, emoji, role definition |
 | **TOOLS.md** | Environment tools | Local tool versions, API keys, commands |
+| **BEST_PRACTICES.md** | Efficiency guide | Task layering, token optimization |
 
 ### System Files (Optional)
 
@@ -196,4 +216,4 @@ All templates are in `assets/` directory:
 
 ## Version
 
-v3.1 - Three-Layer Trigger Architecture
+v3.2 - Task Layering & Cost Optimization

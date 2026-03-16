@@ -92,6 +92,61 @@ HEARTBEAT
 
 ---
 
+## 🎯 任务分层工具
+
+### L0: 纯脚本层 (零 Token)
+
+```bash
+# 数据采集与处理
+curl -s "https://api.example.com/data" | jq '.'
+python process_data.py
+node fetch-and-save.js
+
+# 定时任务配置
+crontab -e
+crontab -l
+```
+
+### L1: 查询展示层 (零 Token)
+
+```bash
+# 读取缓存数据
+cat cache/status.json
+cat logs/metrics.log | tail -50
+
+# 数据聚合
+jq '.items | length' data.json
+awk '{sum+=$1} END {print sum}' numbers.txt
+```
+
+### L2: 条件触发层 (按需 Token)
+
+```bash
+# 阈值检查脚本
+node check-threshold.js --metric=cpu --limit=80
+
+# 异常时触发通知
+./alert-wrapper.sh "$(node monitor.js)"
+
+# 条件执行
+[ -f "alert.flag" ] && node notify.js
+```
+
+### L3: AI 决策层 (正常 Token)
+
+```bash
+# 仅在脚本层无法处理时调用
+# 由 Agent 自动判断，无需手动触发
+```
+
+**设计检查清单**:
+- [ ] 这个任务能用脚本完成吗？
+- [ ] 是否需要实时判断？能否改为条件触发？
+- [ ] 数据是否已缓存？能否增量更新？
+- [ ] AI 调用是否携带了最小必要上下文？
+
+---
+
 ## 🔧 待配置工具
 
 | 工具 | 用途 | 优先级 | 计划时间 |
