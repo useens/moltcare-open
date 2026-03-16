@@ -9,7 +9,7 @@ REPO_URL="https://github.com/useens/moltcare-open"
 # 默认安装到 OpenClaw workspace 根目录
 TARGET_DIR="${1:-$HOME/.openclaw/workspace}"
 
-echo "🦞 MoltCare Foundation Pack v2.3.3"
+echo "🦞 MoltCare Foundation Pack v3.2"
 echo ""
 
 # 确认目标目录
@@ -22,7 +22,6 @@ echo "🎯 安装目标: $TARGET_DIR"
 echo ""
 
 # 下载模板
-echo "📥 下载模板..."
 TMP_DIR=$(mktemp -d)
 if command -v curl &>/dev/null; then
     curl -fsSL "$REPO_URL/archive/refs/heads/master.tar.gz" | tar -xz -C "$TMP_DIR"
@@ -35,52 +34,44 @@ fi
 
 REPO_TMP="$TMP_DIR/moltcare-open-master"
 
-# 安装核心文件到根目录（Agent 必须识别的文件）
+# 安装 CORE 文件（OpenClaw 自动加载）
 echo ""
-echo "📋 安装核心配置到根目录..."
-cp "$REPO_TMP/templates/core/SOUL.md" "$TARGET_DIR/"
+echo "📋 安装 CORE 配置（OpenClaw 自动加载）..."
 cp "$REPO_TMP/templates/core/AGENTS.md" "$TARGET_DIR/"
+cp "$REPO_TMP/templates/core/SOUL.md" "$TARGET_DIR/"
 cp "$REPO_TMP/templates/core/USER.md" "$TARGET_DIR/"
+cp "$REPO_TMP/templates/system/MEMORY.md" "$TARGET_DIR/"
+echo "  ✅ AGENTS.md    - 操作手册"
+echo "  ✅ SOUL.md      - Agent 灵魂定义"
+echo "  ✅ USER.md      - 用户画像"
+echo "  ✅ MEMORY.md    - 长期记忆"
+
+# 安装 OPTIONAL 文件（存在则加载）
+echo ""
+echo "📋 安装 OPTIONAL 配置（存在则加载）..."
 cp "$REPO_TMP/templates/core/IDENTITY.md" "$TARGET_DIR/" 2>/dev/null || echo "  ⚠️  IDENTITY.md 未找到"
 cp "$REPO_TMP/templates/core/TOOLS.md" "$TARGET_DIR/" 2>/dev/null || echo "  ⚠️  TOOLS.md 未找到"
-echo "  ✅ SOUL.md"
-echo "  ✅ AGENTS.md"
-echo "  ✅ USER.md"
-echo "  ✅ IDENTITY.md"
-echo "  ✅ TOOLS.md"
+cp "$REPO_TMP/templates/system/HEARTBEAT.md" "$TARGET_DIR/" 2>/dev/null || echo "  ⚠️  HEARTBEAT.md 未找到"
+echo "  ✅ IDENTITY.md  - Agent 身份"
+echo "  ✅ TOOLS.md     - 环境工具"
+echo "  ✅ HEARTBEAT.md - 状态检查"
 
-# 安装系统文件到根目录
+# 创建 memory/ 子目录并安装记忆工具（按需读取）
 echo ""
-echo "📋 安装系统文件..."
-cp "$REPO_TMP/templates/system/MEMORY.md" "$TARGET_DIR/"
-cp "$REPO_TMP/templates/system/HEARTBEAT.md" "$TARGET_DIR/"
-echo "  ✅ MEMORY.md"
-echo "  ✅ HEARTBEAT.md"
-
-# 安装工具文件到根目录
-echo ""
-echo "📋 安装工具模板..."
-for file in "$REPO_TMP/tools/"*.md; do
-    if [ -f "$file" ]; then
-        cp "$file" "$TARGET_DIR/"
-        echo "  ✅ $(basename "$file")"
-    fi
-done
-
-# 创建 memory/ 子目录并安装记忆工具
-echo ""
-echo "📋 安装记忆工具到 memory/ 目录..."
+echo "📋 安装 MEMORY 工具（按需读取）..."
 mkdir -p "$TARGET_DIR/memory"
-for file in "$REPO_TMP/templates/memory/"*.md; do
-    if [ -f "$file" ]; then
-        cp "$file" "$TARGET_DIR/memory/"
-        echo "  ✅ memory/$(basename "$file")"
-    fi
-done
+cp "$REPO_TMP/templates/memory/learning-debt.md" "$TARGET_DIR/memory/" 2>/dev/null || echo "  ⚠️  learning-debt.md 未找到"
+cp "$REPO_TMP/templates/memory/constraints.md" "$TARGET_DIR/memory/" 2>/dev/null || echo "  ⚠️  constraints.md 未找到"
+cp "$REPO_TMP/templates/memory/preferences.md" "$TARGET_DIR/memory/" 2>/dev/null || echo "  ⚠️  preferences.md 未找到"
+cp "$REPO_TMP/templates/memory/token-audit-template.md" "$TARGET_DIR/memory/" 2>/dev/null || echo "  ⚠️  token-audit-template.md 未找到"
+echo "  ✅ memory/learning-debt.md"
+echo "  ✅ memory/constraints.md"
+echo "  ✅ memory/preferences.md"
+echo "  ✅ memory/token-audit-template.md"
 
 # 可选：安装文档
 echo ""
-echo "📋 安装集成文档（可选）..."
+echo "📋 安装文档（可选，不自动加载）..."
 mkdir -p "$TARGET_DIR/docs"
 for file in "$REPO_TMP/docs/"*.md; do
     if [ -f "$file" ]; then
@@ -92,6 +83,13 @@ done
 # 清理临时文件
 rm -rf "$TMP_DIR"
 
+# 创建今日记忆文件
+TODAY=$(date +%Y-%m-%d)
+if [ ! -f "$TARGET_DIR/memory/${TODAY}.md" ]; then
+    echo "# ${TODAY} Memory Flush" > "$TARGET_DIR/memory/${TODAY}.md"
+    echo "  ✅ memory/${TODAY}.md (今日记忆)"
+fi
+
 echo ""
 echo "================================"
 echo "✅ 安装完成！"
@@ -99,37 +97,26 @@ echo "================================"
 echo ""
 echo "已安装到: $TARGET_DIR"
 echo ""
-echo "核心文件（根目录）:"
-echo "  📄 SOUL.md       - Agent 灵魂定义"
-echo "  📄 AGENTS.md     - 操作手册"
-echo "  📄 USER.md       - 用户画像"
-echo "  📄 MEMORY.md     - 记忆系统"
-echo "  📄 HEARTBEAT.md  - 状态报告模板"
-echo "  📄 IDENTITY.md   - Agent 身份档案"
-echo "  📄 TOOLS.md      - 环境工具清单"
+echo "📁 CORE 文件（自动加载）:"
+echo "   AGENTS.md, SOUL.md, USER.md, MEMORY.md"
 echo ""
-echo "子目录:"
-echo "  📁 memory/       - 学习债务、约束、偏好"
-echo "  📁 docs/         - 集成指南（可选）"
+echo "📁 OPTIONAL 文件（存在则加载）:"
+echo "   IDENTITY.md, TOOLS.md, HEARTBEAT.md"
+echo ""
+echo "📁 MEMORY 模板（按需读取）:"
+echo "   memory/learning-debt.md"
+echo "   memory/constraints.md"
+echo "   memory/preferences.md"
+echo "   memory/token-audit-template.md"
+echo ""
+echo "📖 参考文档（不自动加载）:"
+echo "   skill/assets/BEST_PRACTICES.md - 效率最佳实践"
 echo ""
 echo "下一步:"
-echo "  1. 📝 运行配置向导（推荐）"
-echo "     $TARGET_DIR/scripts/onboarding.sh"
-echo ""
-echo "  2. ✏️  或手动编辑 USER.md"
+echo "  1. 📝 编辑 USER.md 配置用户画像"
 echo "     nano $TARGET_DIR/USER.md"
 echo ""
-echo "  3. 🔄 重启 OpenClaw Agent 加载新配置"
+echo "  2. 🔄 重启 OpenClaw Agent 加载新配置"
 echo ""
 echo "📖 详细说明: https://github.com/useens/moltcare-open#readme"
 echo ""
-
-# 询问是否运行配置向导
-if [ -t 0 ]; then
-    echo ""
-    read -t 10 -p "是否现在运行配置向导? (y/N, 10秒后自动跳过) " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        "$TARGET_DIR/scripts/onboarding.sh"
-    fi
-fi

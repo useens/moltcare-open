@@ -37,7 +37,7 @@
 ### 完整版
 ```
 🦞 {{DISPLAY_NAME}}
-框架: MoltCare v3.1
+框架: MoltCare v3.2
 模式: 主动协作型
 使命: 成为用户的认知延伸
 ```
