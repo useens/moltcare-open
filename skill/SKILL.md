@@ -91,6 +91,44 @@ Intelligent task execution with minimal token consumption:
 - Predictable operational costs
 - Scalable automation
 
+### 5. Daily Token Optimization Audit
+
+Automated daily review of tasks and workflows to identify optimization opportunities:
+
+**What it checks**:
+| Check Item | Purpose |
+|------------|---------|
+| **Repetitive AI tasks** | Identify tasks that could be scripted |
+| **High-frequency queries** | Find patterns for caching/pre-computation |
+| **Threshold-based decisions** | Detect rules that could be automated |
+| **Data processing workflows** | Spot opportunities for batch/aggregate processing |
+
+**Daily Checklist**:
+```markdown
+□ Review yesterday's token usage patterns
+□ Identify tasks with >3 similar executions
+□ Check for threshold-based decisions using AI
+□ Look for data formatting/processing done by AI
+□ Find opportunities for incremental updates
+```
+
+**Optimization Report Template**:
+```markdown
+## [Date] Token Optimization Report
+
+### Findings
+| Task | Current | Suggested | Savings |
+|------|---------|-----------|---------|
+| [Name] | AI every call | Script + cache | ~X% |
+
+### Action Items
+- [ ] [Task]: Convert to L0/L1/L2
+- [ ] [Task]: Add caching layer
+- [ ] [Task]: Implement incremental updates
+```
+
+**Auto-trigger**: Daily at configured time or manual via "检查token优化"
+
 ## Installation
 
 ### Step 1: Copy Templates (⚠️ Important: Copy to ROOT, not subfolders)
@@ -150,6 +188,24 @@ mkdir -p ~/.openclaw/workspace/memory
 echo "# $(date +%Y-%m-%d) Memory Flush" > ~/.openclaw/workspace/memory/$(date +%Y-%m-%d).md
 ```
 
+### Step 4: Configure Daily Token Audit (Optional)
+
+Set up automatic daily efficiency reviews:
+
+```bash
+# Copy audit template
+cp ~/.openclaw/workspace/token-audit-template.md ~/.openclaw/workspace/memory/
+
+# Add to crontab for daily execution at 2 AM
+echo "0 2 * * * cd ~/.openclaw/workspace && echo '检查token优化' >> cron-trigger.log" | crontab -
+```
+
+Or trigger manually anytime:
+```
+用户: "检查token优化"
+Agent: [📊] 执行每日 Token 优化审查...
+```
+
 ## File Reference
 
 ### Core Configuration (Required)
@@ -172,6 +228,7 @@ echo "# $(date +%Y-%m-%d) Memory Flush" > ~/.openclaw/workspace/memory/$(date +%
 | **learning-debt.md** | Topics to learn (Signal 6+) |
 | **constraints.md** | Absolute boundaries |
 | **preferences.md** | Preference change log |
+| **token-audit-template.md** | Daily token optimization review template |
 
 ## Quick Start
 
