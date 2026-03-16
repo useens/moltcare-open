@@ -254,6 +254,7 @@ crontab -e
 | **TOOLS.md** | Environment tools | Local tool versions, API keys, commands |
 | **HEARTBEAT.md** | Health check system | Quick status checks |
 | **TOKEN_AUDIT.md** | Weekly audit config | Token optimization schedule, thresholds |
+| **CONFIG_CHECKLIST.md** | Post-install verification | How to use all md files correctly |
 
 ### MEMORY Templates (Read on-demand)
 

@@ -217,6 +217,7 @@ Agent 检测到触发后，在回复开头显示轻量反馈：
 | **TOOLS.md** | 环境工具 | 可用工具、API Keys |
 | **HEARTBEAT.md** | 健康检查 | 快速巡检清单 |
 | **TOKEN_AUDIT.md** | Token 审查配置 | 每周自动审查调度 |
+| **CONFIG_CHECKLIST.md** | 配置检查清单 | 安装后验证所有文件使用 |
 
 ### MEMORY 模板（按需读取）
 
@@ -329,6 +330,12 @@ clawhub install moltcare-open
 ├── core/             ❌ 错误
 ├── assets/           ❌ 错误
 └── templates/        ❌ 错误
+```
+
+**⚠️ 安装后必读**:
+```bash
+# 验证所有文件正确安装，并了解如何使用
+cat ~/.openclaw/workspace/CONFIG_CHECKLIST.md
 ```
 
 **更新到最新版：**
