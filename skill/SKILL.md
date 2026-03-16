@@ -133,18 +133,32 @@ Automated daily review of tasks and workflows to identify optimization opportuni
 
 ### Step 1: Copy Templates (⚠️ Important: Copy to ROOT, not subfolders)
 
-**Correct structure after installation:**
+OpenClaw **automatically loads** these files from workspace root at session start:
+
+**CORE (required):**
 ```
 ~/.openclaw/workspace/
-├── AGENTS.md          ← MUST be here
-├── SOUL.md            ← MUST be here
-├── USER.md            ← MUST be here
-├── MEMORY.md          ← MUST be here
-├── HEARTBEAT.md       ← MUST be here
-└── memory/
-    ├── learning-debt.md
-    ├── constraints.md
-    └── preferences.md
+├── AGENTS.md      ← Operation manual (auto-loaded)
+├── SOUL.md        ← Agent principles (auto-loaded)
+├── USER.md        ← User profile (auto-loaded)
+└── MEMORY.md      ← Long-term memory (auto-loaded)
+```
+
+**OPTIONAL (loaded if exists):**
+```
+~/.openclaw/workspace/
+├── IDENTITY.md    ← Agent identity (auto-loaded)
+├── TOOLS.md       ← Environment tools (auto-loaded)
+└── HEARTBEAT.md   ← Health check system (auto-loaded)
+```
+
+**MEMORY templates (read on-demand):**
+```
+~/.openclaw/workspace/memory/
+├── learning-debt.md      (read via `read` tool)
+├── constraints.md        (read via `read` tool)
+├── preferences.md        (read via `read` tool)
+└── token-audit-template.md  (read via `read` tool)
 ```
 
 **❌ WRONG - Do NOT do this:**
@@ -155,23 +169,27 @@ mkdir -p ~/.openclaw/workspace/assets
 cp assets/* ~/.openclaw/workspace/core/  # ❌ WRONG
 ```
 
-**✅ CORRECT:**
+**✅ CORRECT (or use install.sh):**
 ```bash
-# Core templates → ROOT of workspace
-cp assets/SOUL.md ~/.openclaw/workspace/
+# Core templates → ROOT (auto-loaded by OpenClaw)
 cp assets/AGENTS.md ~/.openclaw/workspace/
+cp assets/SOUL.md ~/.openclaw/workspace/
 cp assets/USER.md ~/.openclaw/workspace/
 cp assets/MEMORY.md ~/.openclaw/workspace/
-cp assets/HEARTBEAT.md ~/.openclaw/workspace/
-cp assets/TOOLS.md ~/.openclaw/workspace/
-cp assets/BEST_PRACTICES.md ~/.openclaw/workspace/
 
-# Memory sub-templates → workspace/memory/
+# Optional templates → ROOT (auto-loaded if exists)
+cp assets/IDENTITY.md ~/.openclaw/workspace/
+cp assets/TOOLS.md ~/.openclaw/workspace/
+cp assets/HEARTBEAT.md ~/.openclaw/workspace/
+
+# Memory templates → memory/ (read on-demand)
 mkdir -p ~/.openclaw/workspace/memory
 cp assets/learning-debt.md ~/.openclaw/workspace/memory/
 cp assets/constraints.md ~/.openclaw/workspace/memory/
 cp assets/preferences.md ~/.openclaw/workspace/memory/
 cp assets/token-audit-template.md ~/.openclaw/workspace/memory/
+
+# Note: BEST_PRACTICES.md stays in skill/assets/ (reference only, not auto-loaded)
 ```
 
 ### Step 2: Configure User Profile
@@ -213,27 +231,46 @@ Agent: [📊] 执行每日 Token 优化审查...
 
 ## File Reference
 
-### Core Configuration (Required)
+### CORE Configuration (Auto-loaded by OpenClaw)
+
+**Must be in `~/.openclaw/workspace/` root.**
+
+| File | Purpose | Key Content | Required |
+|------|---------|-------------|----------|
+| **AGENTS.md** | Operation manual | 3-layer triggers, multi-expert, PUA levels | ✅ Required |
+| **SOUL.md** | Agent soul & principles | 7 principles, PUA framework, safety rules | ✅ Required |
+| **USER.md** | User profile | Preferences, constraints, communication style | ✅ Required |
+| **MEMORY.md** | Long-term memory | High-signal info (Signal 8-10) | ✅ Required |
+
+### OPTIONAL Configuration (Auto-loaded if exists)
+
+**Placed in `~/.openclaw/workspace/` root. Loaded only if file exists.**
 
 | File | Purpose | Key Content |
 |------|---------|-------------|
-| **SOUL.md** | Agent soul & principles | 7 principles, PUA framework, safety rules |
-| **AGENTS.md** | Operation manual | 3-layer triggers, multi-expert, PUA levels |
-| **USER.md** | User profile | Preferences, constraints, communication style |
-| **MEMORY.md** | Long-term memory | High-signal info (Signal 8-10) |
 | **IDENTITY.md** | Agent identity | Display name, emoji, role definition |
 | **TOOLS.md** | Environment tools | Local tool versions, API keys, commands |
-| **BEST_PRACTICES.md** | Efficiency guide | Task layering, token optimization |
+| **HEARTBEAT.md** | Health check system | Quick status checks |
 
-### System Files (Optional)
+### MEMORY Templates (Read on-demand)
+
+**Placed in `~/.openclaw/workspace/memory/`. Read via `read` tool when needed.**
 
 | File | Purpose |
 |------|---------|
-| **HEARTBEAT.md** | Health check system |
 | **learning-debt.md** | Topics to learn (Signal 6+) |
 | **constraints.md** | Absolute boundaries |
 | **preferences.md** | Preference change log |
 | **token-audit-template.md** | Daily token optimization review template |
+
+### Reference Documentation (Not auto-loaded)
+
+**Stay in `skill/assets/`. Read manually when needed.**
+
+| File | Purpose |
+|------|---------|
+| **BEST_PRACTICES.md** | Efficiency guide - Task layering, token optimization |
+| **README.md** | This documentation |
 
 ## Quick Start
 
